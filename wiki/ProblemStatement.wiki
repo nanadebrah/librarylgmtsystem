@@ -39,3 +39,19 @@ Tùy thuộc vào quyết định thực hiện tin học hoá toàn bộ hoạt
  # Quyển sách có thể được xóa chỉ khi nó chưa được mượn bởi thằng nào.
  # Truy vấn trong database
   * Hệ thống sẽ để quản lý thư viện truy vấn thông tin sách bởi ISBN hoặc là Author hoặc là Title
+  * Kết quả tìm kiếm cũng sẽ tạo ra một danh sách các sách, nó phù hợp với các thông số tìm kiếm với các chi tiết sau đây:
+    * Call number
+    * ISBN number
+    * Title
+    * Author
+  * Màn hình hiển hị sẽ bao gồm cả số bản copy còn lại (có sẵn, tức là đã trừ đi số được mượn) có thể cho mượn
+  * Màn hình hiển thị sẽ cung cấp một phương tiện để chọn một hay nhiều hàng vào một danh sách người dùng.
+  * Xem chi tiết mỗi cuốn sách sẽ cung cấp thông tin về trạng thái check-in/check-out (cái này có thể hiểu là đã phát cho mượn/ đã trả lại sách), với thông tin của người mượn.
+  * Kết quả tìm kiếm sẽ hạn chế khoảng 20 kết quả/ 1 trang và sẽ có thanh điều hướng cho các kết qủa tìm kiếm (next/previous).
+  * Người dùng có thể thực hiện tìm kiếm nhiều trước khi lựa chọn một bộ sách cho check-in hoặc check-out. Những nên lưu trữ qua kết quả tìm kiếm.
+ # Check - Out a book
+  * Quản lý thư viện có thể phát sách (check-out) bằng việc sử dụng call number (của quyển sách)
+  * Phát sách (check-out) có thể được bắt đầu từ một hoạt động tìm kiếm trước đó lúc mà người dùng đã lựa chọn một bộ sách.
+  * Mã số nhân viên, người mà sẽ mượn quyển sách phải được nhập vô.
+  * Ngày phát sách sẽ tự động được tạo ra dựa vào ngày hệ thống hiện hành.
+  * Ngày hết hạn sẽ tự động được đánh dấu là 5 ngày, kể từ hiện phát sách.
