@@ -55,3 +55,26 @@ Tùy thuộc vào quyết định thực hiện tin học hoá toàn bộ hoạt
   * Mã số nhân viên, người mà sẽ mượn quyển sách phải được nhập vô.
   * Ngày phát sách sẽ tự động được tạo ra dựa vào ngày hệ thống hiện hành.
   * Ngày hết hạn sẽ tự động được đánh dấu là 5 ngày, kể từ hiện phát sách.
+ # Check - In a book
+  * Quản lý thư viện có thể thực hiện trả sách (check-in) bằng việc sử dụng call number (của quyển sách)
+  * Trả sách (check-in) có thể được bắt đầu từ một hoạt động tìm kiếm trước đó lúc mà người dùng đã lựa chọn một bộ sách.
+  * Ngày trả sách sẽ tự động được tạo ra dựa vào ngày hệ thống hiện hành.
+  * Bất kỳ khoản phí trả muộn sẽ được tính như giữa ngày hết hạn và ngày trở lại ở mức 10 cent một ngày.
+ # Hiển thị thông tin sách.
+  * Mục này sẽ hiển thị chi tiết về một cuốn sách được lựa chọn từ hoạt động tìm kiếm
+  * Thông tin hiển thị sẽ bao gồm:
+    # Call number
+    # ISBN
+    # Title
+    # Author
+    # Issue status(In library or checked - out)
+    # If book is checked out it would display:
+     # User ID & Name
+     # Checkout date
+     # Due-date
+ # Hiển thị thông nhân viên.
+  * Quản lý thư viện có thể chọn hồ sơ nhân viên để xem
+  * Thông tin hiển thị bao gồm:
+    * Usename, ID, Address và Phone number
+    * Những cuốn sách được mượn bởi nhân viên với ngày mượn, due-date, call number, title
+    * Phí cuối cùng và tiền phạt cùng với tổng tiền
