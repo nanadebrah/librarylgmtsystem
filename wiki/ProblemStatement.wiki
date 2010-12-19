@@ -1,0 +1,37 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Mohan Ltd. là một thư viện được quản lý bằng tay bởi Ms. Monica. Tất cả các thông tin đều được ghi bằng giấy và Monica tìm thông tin rất khó khăn để quản lý khi một ai đó trả sách.Cô ấy đã duy trì 1 danh sách các thông tin về sách như tác giả, tên sách....Khi một cuốn sách được trả cô ấy phải tìm bằng tay cuốn sách đó và lại có người mượn có ấy lại ghi lại những người đăng ký mượn với thông tin về sách như tên sách, tác giả, nhân viên mượn (tên, phòng ban...), ngày mượn, ngày trả....Quá trình đó thật buồn tẻ và tốn thời gian. Cô ấy đã mang vấn đề đấy đến những lập trình viên có kinh nghiệm và họ đề xuất sẽ giải quyết vấn đề đấy bằng cách phát triển 1 hệ thống giúp Monica quản lý có hiệu quả và tiết kiệm thời gian cho cô ấy. Cô ấy sẽ chỉ là người dùng của hệ thống quản lý.OK?
+
+= Requirement Summary =
+
+Tùy thuộc vào quyết định thực hiện tin học hoá toàn bộ hoạt động quản lý thư viện, một hệ thống sẽ được phát triển dựa trên những yêu cầu sau.
+ # Thêm thông tin về nhân viên. Mỗi nhân viên sẽ có các thuộc tính sau:
+  * Employee ID(unique)
+  * Name
+  * Address
+  * Phone Number
+  * Department
+ # Một ID duy nhất sẽ được tao ra ngay bên trong mỗi nhân viên
+ # Update/Delete mỗi hồ sơ nhân viên
+  * Mỗi hồ sơ sẽ được chọn lựa bằng việc sử dụng Employee ID
+  * Mỗi hồ sơ có thể được xóa nếu không có quyển sách nào được mượn bởi người dùng.
+ # Thêm vào một quyển sách. Mỗi quyển sách phải bao gồm những thuộc tính sau:
+  * Call Number
+  * ISBN/Name of book
+  * Title
+  * Author name
+ # Call number được đề nghị phải theo nguyên tắc sau:
+  * (2 chữ cái đầu tiên của Title) - (2 chữ cái đầu tiên của tên tác giả) - dãy số của cuốn sách (tạm hiểu là số thứ tự của cuốn sách).
+  * XX-XX-NNN (tạm hiểu là XX là chữ còn NN là number)
+ # ISBN được đề nghị phải theo nguyên tắc sau:
+  * (Mã số cho đối tượng) - (dãy số của cuốn sách - kiểu như là số thứ tự)
+  * NNN-NNNN - Nó phải là duy nhất cho mỗi sự kết hợp của tiêu đề sách và tên tác giả.
+ # Tên tác giả phải hỗ trợ tối đa 30 chars.
+ # Tiêu đề sách hộ trợ tối đa 100 chars.
+ # Update/Delete một cuôn sách.
+- Một cuốn sách có thể được tìm bằng call number - Dữ liệu của cuốn sách có thể update bao gồm:
+- ISBN - Title - Author Name
+ # Quyển sách có thể được xóa chỉ khi nó chưa được mượn bởi thằng nào. 11. Truy vấn trong database - Hệ thống sẽ để quản lý thư viện truy vấn thông tin sách bởi ISBN hoặc là Author hoặc là
+Title
