@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#Thông tin về dự án.
 
 = Introduction =
 
@@ -31,7 +31,11 @@ Tùy thuộc vào quyết định thực hiện tin học hoá toàn bộ hoạt
  # Tên tác giả phải hỗ trợ tối đa 30 chars.
  # Tiêu đề sách hộ trợ tối đa 100 chars.
  # Update/Delete một cuôn sách.
-- Một cuốn sách có thể được tìm bằng call number - Dữ liệu của cuốn sách có thể update bao gồm:
-- ISBN - Title - Author Name
- # Quyển sách có thể được xóa chỉ khi nó chưa được mượn bởi thằng nào. 11. Truy vấn trong database - Hệ thống sẽ để quản lý thư viện truy vấn thông tin sách bởi ISBN hoặc là Author hoặc là
-Title
+  * Một cuốn sách có thể được tìm bằng call number
+  * Dữ liệu của cuốn sách có thể update bao gồm:
+    * ISBN
+    * Title
+    * Author Name
+ # Quyển sách có thể được xóa chỉ khi nó chưa được mượn bởi thằng nào.
+ # Truy vấn trong database
+  * Hệ thống sẽ để quản lý thư viện truy vấn thông tin sách bởi ISBN hoặc là Author hoặc là Title
