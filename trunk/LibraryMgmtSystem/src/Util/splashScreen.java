@@ -32,8 +32,8 @@ public class splashScreen extends JWindow{
         absimage=new AbsoluteConstraints(0,0);
         absprocess=new AbsoluteConstraints(0,278);
         jlabel=new JLabel();
-        image=new ImageIcon(this.getClass().getResource(".."+File.separator+"GUI"+File.separator+
-                "Images"+File.separator+"splash.png"));
+        image=new ImageIcon(this.getClass().getResource(".."+File.separatorChar+
+                "GUI"+File.separatorChar+"Images"+File.separatorChar+"splash.png"));
         jlabel.setIcon(image);
         process=new JProgressBar();
         process.setPreferredSize(new Dimension(768,7));
@@ -49,12 +49,12 @@ public class splashScreen extends JWindow{
                     process.setValue(i);
                     i++;
                     try {
-                        sleep(30);
+                        sleep(70);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(splashScreen.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                System.exit(0);
+                dispose();
             }
         }.start();
 
