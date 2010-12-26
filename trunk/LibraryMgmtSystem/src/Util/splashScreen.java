@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Util;
 
 import java.awt.Dimension;
@@ -20,32 +19,34 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  *
  * @author CuongNQ
  */
-public class splashScreen extends JWindow{
+public class splashScreen extends JWindow {
+
     AbsoluteLayout absolute;
-    AbsoluteConstraints absimage,absprocess;
+    AbsoluteConstraints absimage, absprocess;
     ImageIcon image;
     JLabel jlabel;
     JProgressBar process;
 
-    public splashScreen(){
-        absolute=new AbsoluteLayout();
-        absimage=new AbsoluteConstraints(0,0);
-        absprocess=new AbsoluteConstraints(0,278);
-        jlabel=new JLabel();
-        image=new ImageIcon(this.getClass().getResource(".."+File.separatorChar+
-                "GUI"+File.separatorChar+"Images"+File.separatorChar+"splash.png"));
+    public splashScreen() {
+        absolute = new AbsoluteLayout();
+        absimage = new AbsoluteConstraints(0, 0);
+        absprocess = new AbsoluteConstraints(0, 278);
+        jlabel = new JLabel();
+        image = new ImageIcon(this.getClass().getResource(File.separator
+                + "GUI" + File.separator + "Images" + File.separator + "splash.png"));
         jlabel.setIcon(image);
-        process=new JProgressBar();
-        process.setPreferredSize(new Dimension(768,7));
+        process = new JProgressBar();
+        process.setPreferredSize(new Dimension(768, 7));
         this.getContentPane().setLayout(absolute);
-        
-        this.getContentPane().add(process,absprocess);
-        this.getContentPane().add(jlabel,absimage);
 
-        new Thread(){
-            public void run(){
-                int i=0;
-                while(i<101){
+        this.getContentPane().add(process, absprocess);
+        this.getContentPane().add(jlabel, absimage);
+
+        new Thread() {
+
+            public void run() {
+                int i = 0;
+                while (i < 101) {
                     process.setValue(i);
                     i++;
                     try {
