@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import GUI.Images.loginFrm;
 import Util.*;
 
 /**
@@ -12,6 +13,12 @@ import Util.*;
 public class Main {
 
     public static void main(String[] args) {
-        new splashScreen();
+        splashScreen ss=new splashScreen();
+        ss.loadProcess();
+        ss.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                new loginFrm().setVisible(true);
+            }
+        });
     }
 }
