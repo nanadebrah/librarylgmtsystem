@@ -56,10 +56,10 @@ public class splashScreen extends JWindow {
         this.getContentPane().add(jlabel, absimage);
         //Pack all component
         this.pack();
-        //Setvisibe to display this pane
-        this.setVisible(true);
         //Set pane to center of monitor
         this.setLocationRelativeTo(null);
+        //Setvisibe to display this pane
+        this.setVisible(true);
     }
     /*
      *Functinon to excute processing bar
@@ -74,7 +74,7 @@ public class splashScreen extends JWindow {
                     process.setValue(i);//Set value to process bar
                     i++;
                     try {
-                        sleep(30);//Sleep 70 minisecond
+                        sleep(10);//Sleep 70 minisecond
                     } catch (InterruptedException ex) {
                         Logger.getLogger(splashScreen.class.getName()).log(Level.SEVERE, null, ex);
                     }
