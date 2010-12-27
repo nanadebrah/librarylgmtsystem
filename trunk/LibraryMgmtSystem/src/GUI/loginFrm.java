@@ -136,7 +136,7 @@ public class loginFrm extends javax.swing.JFrame {
 
         mnSystem.setText("System");
 
-        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         menuSetting.setText("Setting");
         menuSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class loginFrm extends javax.swing.JFrame {
         mnSystem.add(menuSetting);
         mnSystem.add(jSeparator1);
 
-        mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
         mnQuit.setText("Quit");
         mnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +159,7 @@ public class loginFrm extends javax.swing.JFrame {
 
         mnHelp.setText("Help");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem2.setText("Help");
         mnHelp.add(jMenuItem2);
 
@@ -207,11 +207,11 @@ public class loginFrm extends javax.swing.JFrame {
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
         //Blur layer
-        blurUI.setLocked(!blurUI.isLocked());
+        blurUI.setLocked(true);
         //Display setting dialog
         new settingDialog(this, rootPaneCheckingEnabled).setVisible(true);
         //Blur layer
-        blurUI.setLocked(!blurUI.isLocked());
+        blurUI.setLocked(false);
     }//GEN-LAST:event_menuSettingActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
