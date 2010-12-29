@@ -42,8 +42,8 @@ public class splashScreen extends JWindow {
         //Create new instance of process bar
         process = new JProgressBar();
         //Create new instance of image
-        image = new ImageIcon(this.getClass().getResource(File.separator
-                + "GUI" + File.separator + "Images" + File.separator + "splash.png"));
+        image = new ImageIcon(this.getClass().getResource(
+                "Images" + File.separator + "splash.png"));
         //Set jlabel to display image
         jlabel.setIcon(image);
         //Set size & position of process bar
