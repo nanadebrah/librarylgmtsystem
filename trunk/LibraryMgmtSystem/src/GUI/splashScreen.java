@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Util;
+package GUI;
 
 import java.awt.Dimension;
 import java.io.File;
