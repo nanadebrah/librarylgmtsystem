@@ -8,8 +8,16 @@
  *
  * Created on Dec 28, 2010, 8:30:10 PM
  */
-
 package GUI;
+
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.io.File;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicSplitPaneDivider;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 
 /**
  *
@@ -17,9 +25,31 @@ package GUI;
  */
 public class manageFrm extends javax.swing.JFrame {
 
+    //Defined Icon
+    Icon iconBook;
+    Icon iconEmp;
+    Icon iconBor;
+    Icon iconSub;
+    Icon iconAna;
+    //Defined Jlabel
+    JLabel lblBook;
+    JLabel lblEmp;
+    JLabel lblBor;
+    JLabel lblSub;
+    JLabel lblAna;
+    //Defined Panel
+    JPanel palBookIcon;
+    JPanel palEmpIcon;
+    JPanel palBorIcon;
+    JPanel palSubIcon;
+    JPanel palAnaIcon;
+
     /** Creates new form manageFrm */
     public manageFrm() {
+        //All component
         initComponents();
+        //Left menu
+        listMenuDesign();
     }
 
     /** This method is called from within the constructor to
@@ -31,30 +61,169 @@ public class manageFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        splPanel = new javax.swing.JSplitPane();
+        scrPanMenu = new javax.swing.JScrollPane();
+        lstMenu = new javax.swing.JList();
+        palMain = new javax.swing.JPanel();
+        palEmployee = new javax.swing.JPanel();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnAddEmp = new javax.swing.JButton();
+        btnEditEmp = new javax.swing.JButton();
+        btnDeleteEmp = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        palBook = new javax.swing.JPanel();
+        palSubject = new javax.swing.JPanel();
+        palBorrow = new javax.swing.JPanel();
+        palAnalytic = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         mnSystem = new javax.swing.JMenu();
         menuSetting = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        separator = new javax.swing.JPopupMenu.Separator();
         mnQuit = new javax.swing.JMenuItem();
         mnHelp = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnSubHelp = new javax.swing.JMenuItem();
         mnAbout = new javax.swing.JMenuItem();
+        mnEmp = new javax.swing.JMenu();
+        mnBook = new javax.swing.JMenu();
+        mbSub = new javax.swing.JMenu();
+        mnBor = new javax.swing.JMenu();
+        mnAna = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        splPanel.setDividerLocation(120);
+
+        lstMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scrPanMenu.setViewportView(lstMenu);
+
+        splPanel.setLeftComponent(scrPanMenu);
+
+        palMain.setLayout(new java.awt.CardLayout());
+
+        jToolBar1.setBorder(null);
+        jToolBar1.setRollover(true);
+
+        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emAdd.png"))); // NOI18N
+        btnAddEmp.setMnemonic('a');
+        btnAddEmp.setText("Add");
+        btnAddEmp.setBorderPainted(false);
+        btnAddEmp.setFocusable(false);
+        btnAddEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAddEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnAddEmp);
+
+        btnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emEdit.png"))); // NOI18N
+        btnEditEmp.setMnemonic('e');
+        btnEditEmp.setText("Edit");
+        btnEditEmp.setBorderPainted(false);
+        btnEditEmp.setFocusable(false);
+        btnEditEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEditEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnEditEmp);
+
+        btnDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/empDelete.png"))); // NOI18N
+        btnDeleteEmp.setMnemonic('d');
+        btnDeleteEmp.setText("Delete");
+        btnDeleteEmp.setBorderPainted(false);
+        btnDeleteEmp.setFocusable(false);
+        btnDeleteEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeleteEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnDeleteEmp);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        org.jdesktop.layout.GroupLayout palEmployeeLayout = new org.jdesktop.layout.GroupLayout(palEmployee);
+        palEmployee.setLayout(palEmployeeLayout);
+        palEmployeeLayout.setHorizontalGroup(
+            palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jToolBar1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+        );
+        palEmployeeLayout.setVerticalGroup(
+            palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(palEmployeeLayout.createSequentialGroup()
+                .add(jToolBar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+        );
+
+        palMain.add(palEmployee, "card3");
+
+        org.jdesktop.layout.GroupLayout palBookLayout = new org.jdesktop.layout.GroupLayout(palBook);
+        palBook.setLayout(palBookLayout);
+        palBookLayout.setHorizontalGroup(
+            palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 516, Short.MAX_VALUE)
+        );
+        palBookLayout.setVerticalGroup(
+            palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 450, Short.MAX_VALUE)
+        );
+
+        palMain.add(palBook, "card2");
+
+        org.jdesktop.layout.GroupLayout palSubjectLayout = new org.jdesktop.layout.GroupLayout(palSubject);
+        palSubject.setLayout(palSubjectLayout);
+        palSubjectLayout.setHorizontalGroup(
+            palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 516, Short.MAX_VALUE)
+        );
+        palSubjectLayout.setVerticalGroup(
+            palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 450, Short.MAX_VALUE)
+        );
+
+        palMain.add(palSubject, "card4");
+
+        org.jdesktop.layout.GroupLayout palBorrowLayout = new org.jdesktop.layout.GroupLayout(palBorrow);
+        palBorrow.setLayout(palBorrowLayout);
+        palBorrowLayout.setHorizontalGroup(
+            palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 516, Short.MAX_VALUE)
+        );
+        palBorrowLayout.setVerticalGroup(
+            palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 450, Short.MAX_VALUE)
+        );
+
+        palMain.add(palBorrow, "card4");
+
+        org.jdesktop.layout.GroupLayout palAnalyticLayout = new org.jdesktop.layout.GroupLayout(palAnalytic);
+        palAnalytic.setLayout(palAnalyticLayout);
+        palAnalyticLayout.setHorizontalGroup(
+            palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 516, Short.MAX_VALUE)
+        );
+        palAnalyticLayout.setVerticalGroup(
+            palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 450, Short.MAX_VALUE)
+        );
+
+        palMain.add(palAnalytic, "card4");
+
+        splPanel.setRightComponent(palMain);
+
         mnSystem.setText("System");
 
-        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        menuSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/settingMenu.png"))); // NOI18N
         menuSetting.setText("Setting");
-        menuSetting.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuSettingActionPerformed(evt);
-            }
-        });
         mnSystem.add(menuSetting);
-        mnSystem.add(jSeparator1);
+        mnSystem.add(separator);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
+        mnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/quitIcon.png"))); // NOI18N
         mnQuit.setText("Quit");
         mnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +236,11 @@ public class manageFrm extends javax.swing.JFrame {
 
         mnHelp.setText("Help");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem2.setText("Help");
-        mnHelp.add(jMenuItem2);
+        mnSubHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        mnSubHelp.setText("Help");
+        mnHelp.add(mnSubHelp);
 
+        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/aboutMenu.png"))); // NOI18N
         mnAbout.setText("About us");
         mnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,25 +251,82 @@ public class manageFrm extends javax.swing.JFrame {
 
         menuBar.add(mnHelp);
 
+        mnEmp.setText("Employees");
+        menuBar.add(mnEmp);
+
+        mnBook.setText("Books");
+        menuBar.add(mnBook);
+
+        mbSub.setText("Subjects");
+        menuBar.add(mbSub);
+
+        mnBor.setText("Borrows");
+        menuBar.add(mnBor);
+
+        mnAna.setText("Analytics");
+        menuBar.add(mnAna);
+
         setJMenuBar(menuBar);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 278, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
-        //
-}//GEN-LAST:event_menuSettingActionPerformed
+    /*
+     * This method contant the design of left menu, this all of main menu
+     * of program
+     */
+    private void listMenuDesign(){
+        //Set this frame to center of monitor
+        setLocationRelativeTo(null);
+        //set split panel not moveable
+        splPanel.setDividerSize(0);
+        //construct the menuList as a JList
+        lstMenu.setCellRenderer(new ImageListCellRenderer());
+        //get our icon
+        iconEmp = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "employeeIcon.png"));
+        iconBook = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "bookIcon.png"));
+        iconSub = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "subIcon.png"));
+        iconBor = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "borIcon.png"));
+        iconAna = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "AnaIcon.png"));
+        //add the images to jlabels with text
+        lblEmp = new JLabel("Employees", iconEmp, JLabel.LEFT);
+        lblBook = new JLabel("Books", iconBook, JLabel.LEFT);
+        lblSub = new JLabel("Subjects", iconSub, JLabel.LEFT);
+        lblBor = new JLabel("Borrows", iconBor, JLabel.LEFT);
+        lblAna = new JLabel("Analytics", iconAna, JLabel.LEFT);
+        //create the corresponding panels
+        palEmpIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palBookIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palSubIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palBorIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palAnaIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        //add the labels onto the panels
+        palEmpIcon.add(lblEmp);
+        palBookIcon.add(lblBook);
+        palSubIcon.add(lblSub);
+        palBorIcon.add(lblBor);
+        palAnaIcon.add(lblAna);
+        //create a panel array
+        Object[] panels = {palEmpIcon, palBookIcon, palSubIcon, palBorIcon, palAnaIcon};
+        //tell the jlist to use the panel array for its data
+        lstMenu.setListData(panels);
+    }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
@@ -111,6 +338,7 @@ public class manageFrm extends javax.swing.JFrame {
         //Blur layer
         setVisible(false);
         new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 setVisible(true);
             }
@@ -118,25 +346,44 @@ public class manageFrm extends javax.swing.JFrame {
 }//GEN-LAST:event_mnAboutActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new manageFrm().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JButton btnAddEmp;
+    private javax.swing.JButton btnDeleteEmp;
+    private javax.swing.JButton btnEditEmp;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JList lstMenu;
+    private javax.swing.JMenu mbSub;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuSetting;
     private javax.swing.JMenuItem mnAbout;
+    private javax.swing.JMenu mnAna;
+    private javax.swing.JMenu mnBook;
+    private javax.swing.JMenu mnBor;
+    private javax.swing.JMenu mnEmp;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnQuit;
+    private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
+    private javax.swing.JPanel palAnalytic;
+    private javax.swing.JPanel palBook;
+    private javax.swing.JPanel palBorrow;
+    private javax.swing.JPanel palEmployee;
+    private javax.swing.JPanel palMain;
+    private javax.swing.JPanel palSubject;
+    private javax.swing.JScrollPane scrPanMenu;
+    private javax.swing.JPopupMenu.Separator separator;
+    private javax.swing.JSplitPane splPanel;
     // End of variables declaration//GEN-END:variables
-
 }

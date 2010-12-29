@@ -64,13 +64,14 @@ public class loginFrm extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         chBxRemember = new javax.swing.JCheckBox();
         lblAbout = new javax.swing.JLabel();
+        lblLoginIcon = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mnSystem = new javax.swing.JMenu();
         menuSetting = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        separator = new javax.swing.JPopupMenu.Separator();
         mnQuit = new javax.swing.JMenuItem();
         mnHelp = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnSubHelp = new javax.swing.JMenuItem();
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,6 +90,11 @@ public class loginFrm extends javax.swing.JFrame {
 
         btnLogin.setText("Login");
         btnLogin.setToolTipText("Login to system");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         chBxRemember.setText("Remember me");
         chBxRemember.setToolTipText("Check it if you want remember login information for next time");
@@ -97,8 +103,8 @@ public class loginFrm extends javax.swing.JFrame {
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(panelLoginLayout.createSequentialGroup()
-                .add(20, 20, 20)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, panelLoginLayout.createSequentialGroup()
+                .add(21, 21, 21)
                 .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(panelLoginLayout.createSequentialGroup()
                         .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -116,6 +122,7 @@ public class loginFrm extends javax.swing.JFrame {
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panelLoginLayout.createSequentialGroup()
+                .add(9, 9, 9)
                 .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(btnLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(panelLoginLayout.createSequentialGroup()
@@ -128,15 +135,17 @@ public class loginFrm extends javax.swing.JFrame {
                             .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(chBxRemember)))
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
         lblAbout.setText("Powered by Group-01.GC0502 - Version 1.0");
 
+        lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/loginLbl.png"))); // NOI18N
+
         mnSystem.setText("System");
 
-        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        menuSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/settingMenu.png"))); // NOI18N
         menuSetting.setText("Setting");
         menuSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,9 +153,10 @@ public class loginFrm extends javax.swing.JFrame {
             }
         });
         mnSystem.add(menuSetting);
-        mnSystem.add(jSeparator1);
+        mnSystem.add(separator);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
+        mnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/quitIcon.png"))); // NOI18N
         mnQuit.setText("Quit");
         mnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,10 +169,11 @@ public class loginFrm extends javax.swing.JFrame {
 
         mnHelp.setText("Help");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem2.setText("Help");
-        mnHelp.add(jMenuItem2);
+        mnSubHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        mnSubHelp.setText("Help");
+        mnHelp.add(mnSubHelp);
 
+        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/aboutMenu.png"))); // NOI18N
         mnAbout.setText("About us");
         mnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,20 +190,24 @@ public class loginFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(107, Short.MAX_VALUE)
+                .add(lblLoginIcon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(lblAbout)
-                .add(104, 104, 104))
+                .add(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(panelLogin, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(4, 4, 4)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
+                        .add(11, 11, 11)
+                        .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(lblLoginIcon, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(lblAbout))
         );
 
@@ -223,12 +238,18 @@ public class loginFrm extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_mnAboutActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new manageFrm().setVisible(true);
+    }//GEN-LAST:event_btnLoginActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chBxRemember;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblAbout;
+    private javax.swing.JLabel lblLoginIcon;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JMenuBar menuBar;
@@ -236,8 +257,10 @@ public class loginFrm extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnAbout;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnQuit;
+    private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JPopupMenu.Separator separator;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

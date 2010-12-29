@@ -138,7 +138,7 @@ public class settingDialog extends javax.swing.JDialog {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblDataIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/connectConfig.png"))); // NOI18N
+        lblDataIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/connectLbl.png"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

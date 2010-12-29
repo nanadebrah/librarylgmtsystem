@@ -19,40 +19,30 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  */
 public class splashScreen extends JWindow {
 
-    //Defined absolute layout
+    //Defined absolute content
     AbsoluteLayout absolute;
-    //Defined absolute image and process bar
     AbsoluteConstraints absimage, absprocess;
-    //Defined image for splash screen
+    //Defined image label and image
     ImageIcon image;
-    //Defined label
     JLabel jlabel;
-    //Defined process bar
     JProgressBar process;
 
     public splashScreen() {
-        //Create new instance of absolute layout
+        //Create new instance of content
         absolute = new AbsoluteLayout();
-        //Create new instance of absolute image
         absimage = new AbsoluteConstraints(0, 0);
-        //Create new instance of absolute process bar
         absprocess = new AbsoluteConstraints(0, 278);
-        //Create new instance of jlabel
+        //Create new instance of label, image and process
         jlabel = new JLabel();
-        //Create new instance of process bar
         process = new JProgressBar();
-        //Create new instance of image
         image = new ImageIcon(this.getClass().getResource(
                 "Images" + File.separator + "splash.png"));
-        //Set jlabel to display image
+        //Set jlabel to display image and prefersize of process bar
         jlabel.setIcon(image);
-        //Set size & position of process bar
         process.setPreferredSize(new Dimension(768, 7));
-        //Set this content pane absolute layout
+        //Set this content pane absolute layout and add process, label
         this.getContentPane().setLayout(absolute);
-        //Add process bar & absolute process bar to this pane
         this.getContentPane().add(process, absprocess);
-        //Add image & absolute absolute image to this pane
         this.getContentPane().add(jlabel, absimage);
         //Pack all component
         this.pack();
