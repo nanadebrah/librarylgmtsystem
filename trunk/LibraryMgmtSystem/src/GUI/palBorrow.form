@@ -16,18 +16,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="scrPanSub" alignment="0" pref="489" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="567" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="567" max="32767" attributes="0"/>
+          <Component id="scrPanBor" alignment="0" pref="567" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="tolbarSub" min="-2" max="-2" attributes="0"/>
+              <Component id="tolbarBor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblNameSub" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIDSub" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmNmBor" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCallNoBor" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtNameSub" alignment="0" pref="205" max="32767" attributes="0"/>
-                  <Component id="txtIdSub" alignment="0" pref="205" max="32767" attributes="0"/>
+                  <Component id="txtEmNamBor" alignment="0" pref="103" max="32767" attributes="0"/>
+                  <Component id="txtCallNoBor" alignment="0" pref="103" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -35,29 +37,31 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tolbarSub" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="tolbarBor" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblIDSub" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIdSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCallNoBor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCallNoBor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNameSub" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNameSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmNmBor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmNamBor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrPanSub" pref="273" max="32767" attributes="0"/>
+              <Component id="scrPanBor" pref="273" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JToolBar" name="tolbarSub">
+    <Container class="javax.swing.JToolBar" name="tolbarBor">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -69,13 +73,39 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnAddSub">
+        <Component class="javax.swing.JButton" name="btnChkOut">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/GUI/Images/addIcon.png"/>
+              <Image iconType="3" name="/GUI/Images/chkoutIcon.png"/>
             </Property>
-            <Property name="mnemonic" type="int" value="97"/>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="mnemonic" type="int" value="111"/>
+            <Property name="text" type="java.lang.String" value="Check-Out"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnChkIn">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/GUI/Images/chkinIcon.png"/>
+            </Property>
+            <Property name="mnemonic" type="int" value="105"/>
+            <Property name="text" type="java.lang.String" value="Check-In"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnFee">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/GUI/Images/feeIcon.png"/>
+            </Property>
+            <Property name="mnemonic" type="int" value="102"/>
+            <Property name="text" type="java.lang.String" value="Fee rate"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -84,7 +114,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator1">
         </Component>
-        <Component class="javax.swing.JButton" name="btnEditSub">
+        <Component class="javax.swing.JButton" name="btnEditBor">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/editIcon.png"/>
@@ -98,7 +128,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnViewSub">
+        <Component class="javax.swing.JButton" name="btnViewBor">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/viewIcon.png"/>
@@ -112,7 +142,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDelSub">
+        <Component class="javax.swing.JButton" name="btnDelBor">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/deleteIcon.png"/>
@@ -128,7 +158,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator2">
         </Component>
-        <Component class="javax.swing.JButton" name="btnSearchSub">
+        <Component class="javax.swing.JButton" name="btnSearchBor">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/searchIcon.png"/>
@@ -143,14 +173,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="scrPanSub">
+    <Container class="javax.swing.JScrollPane" name="scrPanBor">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblSub">
+        <Component class="javax.swing.JTable" name="tblBor">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -159,19 +189,19 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblIDSub">
+    <Component class="javax.swing.JLabel" name="lblCallNoBor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID:"/>
+        <Property name="text" type="java.lang.String" value="CallNo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNameSub">
+    <Component class="javax.swing.JLabel" name="lblEmNmBor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name:"/>
+        <Property name="text" type="java.lang.String" value="Emp Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNameSub">
+    <Component class="javax.swing.JTextField" name="txtEmNamBor">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtIdSub">
+    <Component class="javax.swing.JTextField" name="txtCallNoBor">
     </Component>
   </SubComponents>
 </Form>

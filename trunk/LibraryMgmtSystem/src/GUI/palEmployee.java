@@ -98,6 +98,7 @@ public class palEmployee extends javax.swing.JPanel {
         tolbarEmp.add(separator2);
 
         btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchEmp.setMnemonic('s');
         btnSearchEmp.setText("Search");
         btnSearchEmp.setBorderPainted(false);
         btnSearchEmp.setFocusable(false);

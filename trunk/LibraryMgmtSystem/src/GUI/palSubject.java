@@ -93,6 +93,7 @@ public class palSubject extends javax.swing.JPanel {
         tolbarSub.add(separator2);
 
         btnSearchSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchSub.setMnemonic('s');
         btnSearchSub.setText("Search");
         btnSearchSub.setBorderPainted(false);
         btnSearchSub.setFocusable(false);
@@ -118,8 +119,6 @@ public class palSubject extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 489, Short.MAX_VALUE)
-            .add(0, 489, Short.MAX_VALUE)
             .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +133,6 @@ public class palSubject extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 339, Short.MAX_VALUE)
             .add(0, 339, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

@@ -47,8 +47,8 @@ public class palBook extends javax.swing.JPanel {
         txtTitlBook = new javax.swing.JTextField();
         lblCallNo = new javax.swing.JLabel();
         lblISBNBook = new javax.swing.JLabel();
-        txtCallNoBook = new javax.swing.JFormattedTextField();
-        txtISBNBook = new javax.swing.JFormattedTextField();
+        txtCallNoBook = new javax.swing.JTextField();
+        txtISBNBook = new javax.swing.JTextField();
 
         tolbarBook.setBorder(null);
         tolbarBook.setFloatable(false);
@@ -102,6 +102,7 @@ public class palBook extends javax.swing.JPanel {
         tolbarBook.add(separator2);
 
         btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchBook.setMnemonic('s');
         btnSearchBook.setText("Search");
         btnSearchBook.setBorderPainted(false);
         btnSearchBook.setFocusable(false);
@@ -141,15 +142,15 @@ public class palBook extends javax.swing.JPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(txtISBNBook)
-                    .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+                    .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lblAthBook)
                     .add(lblTitlBook))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -160,14 +161,14 @@ public class palBook extends javax.swing.JPanel {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtTitlBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblCallNo)
-                            .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblTitlBook))
+                            .add(lblTitlBook)
+                            .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(2, 2, 2)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtAthBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblISBNBook)
-                            .add(txtISBNBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblAthBook))))
+                            .add(lblAthBook)
+                            .add(txtISBNBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
         );
@@ -194,8 +195,8 @@ public class palBook extends javax.swing.JPanel {
     private javax.swing.JTable tblBook;
     private javax.swing.JToolBar tolbarBook;
     private javax.swing.JTextField txtAthBook;
-    private javax.swing.JFormattedTextField txtCallNoBook;
-    private javax.swing.JFormattedTextField txtISBNBook;
+    private javax.swing.JTextField txtCallNoBook;
+    private javax.swing.JTextField txtISBNBook;
     private javax.swing.JTextField txtTitlBook;
     // End of variables declaration//GEN-END:variables
 

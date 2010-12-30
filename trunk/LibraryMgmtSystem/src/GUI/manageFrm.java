@@ -64,12 +64,11 @@ public class manageFrm extends javax.swing.JFrame {
         scrPanMenu = new javax.swing.JScrollPane();
         lstMenu = new javax.swing.JList();
         palMain = new javax.swing.JPanel();
-        palBorrow = new javax.swing.JPanel();
-        palAnalytic = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         mnSystem = new javax.swing.JMenu();
         menuSetting = new javax.swing.JMenuItem();
         separator = new javax.swing.JPopupMenu.Separator();
+        mnLogout = new javax.swing.JMenuItem();
         mnQuit = new javax.swing.JMenuItem();
         mnEmp = new javax.swing.JMenu();
         mnBook = new javax.swing.JMenu();
@@ -81,7 +80,7 @@ public class manageFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(580, 280));
+        setMinimumSize(new java.awt.Dimension(700, 280));
         setName("mainFrm"); // NOI18N
 
         splPanel.setDividerLocation(120);
@@ -95,38 +94,13 @@ public class manageFrm extends javax.swing.JFrame {
         splPanel.setLeftComponent(scrPanMenu);
 
         palMain.setLayout(new java.awt.CardLayout());
-
-        org.jdesktop.layout.GroupLayout palBorrowLayout = new org.jdesktop.layout.GroupLayout(palBorrow);
-        palBorrow.setLayout(palBorrowLayout);
-        palBorrowLayout.setHorizontalGroup(
-            palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 620, Short.MAX_VALUE)
-        );
-        palBorrowLayout.setVerticalGroup(
-            palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 407, Short.MAX_VALUE)
-        );
-
-        palMain.add(palBorrow, "palBorrow");
-
-        org.jdesktop.layout.GroupLayout palAnalyticLayout = new org.jdesktop.layout.GroupLayout(palAnalytic);
-        palAnalytic.setLayout(palAnalyticLayout);
-        palAnalyticLayout.setHorizontalGroup(
-            palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 620, Short.MAX_VALUE)
-        );
-        palAnalyticLayout.setVerticalGroup(
-            palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 407, Short.MAX_VALUE)
-        );
-
-        palMain.add(palAnalytic, "palAnalytic");
-
         splPanel.setRightComponent(palMain);
         //Add manage Panel to Main panel
         palMain.add(new palEmployee(), "palEmployee");
         palMain.add(new palBook(), "palBook");
         palMain.add(new palSubject(), "palSubject");
+        palMain.add(new palBorrow(), "palBorrow");
+        palMain.add(new palAnalytic(), "palAnalytic");
 
         mnSystem.setText("System");
 
@@ -134,6 +108,11 @@ public class manageFrm extends javax.swing.JFrame {
         menuSetting.setText("Setting");
         mnSystem.add(menuSetting);
         mnSystem.add(separator);
+
+        mnLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
+        mnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/logoutIcon.png"))); // NOI18N
+        mnLogout.setText("Logout");
+        mnSystem.add(mnLogout);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
         mnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/quitIcon.png"))); // NOI18N
@@ -185,11 +164,11 @@ public class manageFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
         );
 
         pack();
@@ -311,8 +290,6 @@ public class manageFrm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddEmp;
-    private javax.swing.JButton btnAddEmp1;
     private javax.swing.JList lstMenu;
     private javax.swing.JMenu mbSub;
     private javax.swing.JMenuBar menuBar;
@@ -323,16 +300,13 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JMenu mnBor;
     private javax.swing.JMenu mnEmp;
     private javax.swing.JMenu mnHelp;
+    private javax.swing.JMenuItem mnLogout;
     private javax.swing.JMenuItem mnQuit;
     private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
-    private javax.swing.JPanel palAnalytic;
-    private javax.swing.JPanel palBorrow;
     private javax.swing.JPanel palMain;
     private javax.swing.JScrollPane scrPanMenu;
     private javax.swing.JPopupMenu.Separator separator;
     private javax.swing.JSplitPane splPanel;
-    private javax.swing.JToolBar tolbarEmp;
-    private javax.swing.JToolBar tolbarEmp1;
     // End of variables declaration//GEN-END:variables
 }

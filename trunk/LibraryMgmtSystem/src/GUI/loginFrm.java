@@ -34,17 +34,8 @@ public class loginFrm extends javax.swing.JFrame {
         initComponents();
         //Set this frame to center of monitor
         setLocationRelativeTo(null);
-        //Create new instance of blurUI
-        blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
-        //Create new instance of Jcomponent
-        jc = (JComponent) getContentPane();
-        //Create new instance of layer
-        layer = new JXLayer<JComponent>(jc);
-        //Set layer blur effect
-        layer.setUI(blurUI);
-        blurUI.setLockedCursor(null);
-        //set layer blur to pane
-        setContentPane(layer);
+        //Blur layer for frame
+        blurLayer();
     }
 
     /** This method is called from within the constructor to
@@ -213,6 +204,20 @@ public class loginFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void blurLayer(){
+        //Create new instance of blurUI
+        blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
+        //Create new instance of Jcomponent
+        jc = (JComponent) getContentPane();
+        //Create new instance of layer
+        layer = new JXLayer<JComponent>(jc);
+        //Set layer blur effect
+        layer.setUI(blurUI);
+        blurUI.setLockedCursor(null);
+        //set layer blur to pane
+        setContentPane(layer);
+    }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
