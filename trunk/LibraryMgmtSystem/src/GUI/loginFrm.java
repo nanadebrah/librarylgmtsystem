@@ -138,7 +138,7 @@ public class loginFrm extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
+        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
         lblAbout.setText("Powered by Group-01.GC0502 - Version 1.0");
 
         lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/loginLbl.png"))); // NOI18N
@@ -230,13 +230,8 @@ public class loginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSettingActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
-        //Blur layer
-        setVisible(false);
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);
-            }
-        });
+        //call aboutUs method
+        aboutUs();
     }//GEN-LAST:event_mnAboutActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -245,6 +240,18 @@ public class loginFrm extends javax.swing.JFrame {
         new manageFrm().setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    /*
+     * About method
+     */
+    private void aboutUs(){
+        setVisible(false);//hidden current frame
+        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                setVisible(true);//show current frame
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chBxRemember;

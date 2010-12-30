@@ -10,14 +10,11 @@
  */
 package GUI;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.io.File;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.plaf.basic.BasicSplitPaneDivider;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -48,6 +45,8 @@ public class manageFrm extends javax.swing.JFrame {
     public manageFrm() {
         //All component
         initComponents();
+        //Set this frame to center of monitor
+        setLocationRelativeTo(null);
         //Left menu
         listMenuDesign();
     }
@@ -65,14 +64,21 @@ public class manageFrm extends javax.swing.JFrame {
         scrPanMenu = new javax.swing.JScrollPane();
         lstMenu = new javax.swing.JList();
         palMain = new javax.swing.JPanel();
-        palEmployee = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
-        btnAddEmp = new javax.swing.JButton();
-        btnEditEmp = new javax.swing.JButton();
-        btnDeleteEmp = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         palBook = new javax.swing.JPanel();
+        tolbarEmp = new javax.swing.JToolBar();
+        btnAddEmp = new javax.swing.JButton();
+        separator1 = new javax.swing.JToolBar.Separator();
+        btnEditEmp = new javax.swing.JButton();
+        btnViewEmp = new javax.swing.JButton();
+        btnDeleteEmp = new javax.swing.JButton();
+        separator2 = new javax.swing.JToolBar.Separator();
+        btnSearchEmp = new javax.swing.JButton();
+        scrPanEmp = new javax.swing.JScrollPane();
+        tblEmp = new javax.swing.JTable();
+        txtIDEmpSearch = new javax.swing.JTextField();
+        lblIDEmpSearch = new javax.swing.JLabel();
+        txtNameEmpSearch = new javax.swing.JTextField();
+        lblNameEmpSearch = new javax.swing.JLabel();
         palSubject = new javax.swing.JPanel();
         palBorrow = new javax.swing.JPanel();
         palAnalytic = new javax.swing.JPanel();
@@ -91,127 +97,176 @@ public class manageFrm extends javax.swing.JFrame {
         mnAna = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(580, 280));
+        setName("mainFrm"); // NOI18N
 
         splPanel.setDividerLocation(120);
 
         lstMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstMenu.setFocusable(false);
+        lstMenu.setOpaque(false);
+        lstMenu.setSize(new java.awt.Dimension(100, 200));
         scrPanMenu.setViewportView(lstMenu);
 
         splPanel.setLeftComponent(scrPanMenu);
 
         palMain.setLayout(new java.awt.CardLayout());
 
-        jToolBar1.setBorder(null);
-        jToolBar1.setRollover(true);
+        tolbarEmp.setBorder(null);
+        tolbarEmp.setFloatable(false);
+        tolbarEmp.setBorderPainted(false);
+        tolbarEmp.setOpaque(false);
 
-        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emAdd.png"))); // NOI18N
+        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/addIcon.png"))); // NOI18N
         btnAddEmp.setMnemonic('a');
         btnAddEmp.setText("Add");
         btnAddEmp.setBorderPainted(false);
         btnAddEmp.setFocusable(false);
         btnAddEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnAddEmp);
+        btnAddEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmpActionPerformed(evt);
+            }
+        });
+        tolbarEmp.add(btnAddEmp);
+        tolbarEmp.add(separator1);
 
-        btnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/emEdit.png"))); // NOI18N
+        btnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/editIcon.png"))); // NOI18N
         btnEditEmp.setMnemonic('e');
         btnEditEmp.setText("Edit");
         btnEditEmp.setBorderPainted(false);
+        btnEditEmp.setEnabled(false);
         btnEditEmp.setFocusable(false);
         btnEditEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnEditEmp);
+        tolbarEmp.add(btnEditEmp);
 
-        btnDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/empDelete.png"))); // NOI18N
+        btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewEmp.setMnemonic('v');
+        btnViewEmp.setText("View");
+        btnViewEmp.setBorderPainted(false);
+        btnViewEmp.setEnabled(false);
+        btnViewEmp.setFocusable(false);
+        btnViewEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnViewEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarEmp.add(btnViewEmp);
+
+        btnDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
         btnDeleteEmp.setMnemonic('d');
         btnDeleteEmp.setText("Delete");
         btnDeleteEmp.setBorderPainted(false);
+        btnDeleteEmp.setEnabled(false);
         btnDeleteEmp.setFocusable(false);
         btnDeleteEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDeleteEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnDeleteEmp);
+        tolbarEmp.add(btnDeleteEmp);
+        tolbarEmp.add(separator2);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchEmp.setText("Search");
+        btnSearchEmp.setBorderPainted(false);
+        btnSearchEmp.setFocusable(false);
+        btnSearchEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSearchEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarEmp.add(btnSearchEmp);
+
+        tblEmp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrPanEmp.setViewportView(tblEmp);
 
-        org.jdesktop.layout.GroupLayout palEmployeeLayout = new org.jdesktop.layout.GroupLayout(palEmployee);
-        palEmployee.setLayout(palEmployeeLayout);
-        palEmployeeLayout.setHorizontalGroup(
-            palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jToolBar1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-        );
-        palEmployeeLayout.setVerticalGroup(
-            palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(palEmployeeLayout.createSequentialGroup()
-                .add(jToolBar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
-        );
+        txtIDEmpSearch.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
 
-        palMain.add(palEmployee, "card3");
+        lblIDEmpSearch.setText("ISBN:");
+
+        txtNameEmpSearch.setFont(new java.awt.Font("Lucida Grande", 0, 12));
+
+        lblNameEmpSearch.setText("CallNo:");
 
         org.jdesktop.layout.GroupLayout palBookLayout = new org.jdesktop.layout.GroupLayout(palBook);
         palBook.setLayout(palBookLayout);
         palBookLayout.setHorizontalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 516, Short.MAX_VALUE)
+            .add(0, 620, Short.MAX_VALUE)
+            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .add(palBookLayout.createSequentialGroup()
+                .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(lblIDEmpSearch)
+                    .add(lblNameEmpSearch))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(txtNameEmpSearch)
+                    .add(txtIDEmpSearch, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
+                .addContainerGap())
         );
         palBookLayout.setVerticalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 450, Short.MAX_VALUE)
+            .add(0, 406, Short.MAX_VALUE)
+            .add(palBookLayout.createSequentialGroup()
+                .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(palBookLayout.createSequentialGroup()
+                        .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtIDEmpSearch, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblIDEmpSearch))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtNameEmpSearch, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(lblNameEmpSearch))))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
         );
 
-        palMain.add(palBook, "card2");
+        palMain.add(new palEmployee(), "palEmployee");
+
+        palMain.add(palBook, "palBook");
 
         org.jdesktop.layout.GroupLayout palSubjectLayout = new org.jdesktop.layout.GroupLayout(palSubject);
         palSubject.setLayout(palSubjectLayout);
         palSubjectLayout.setHorizontalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 516, Short.MAX_VALUE)
+            .add(0, 620, Short.MAX_VALUE)
         );
         palSubjectLayout.setVerticalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 450, Short.MAX_VALUE)
+            .add(0, 406, Short.MAX_VALUE)
         );
 
-        palMain.add(palSubject, "card4");
+        palMain.add(palSubject, "palSubject");
 
         org.jdesktop.layout.GroupLayout palBorrowLayout = new org.jdesktop.layout.GroupLayout(palBorrow);
         palBorrow.setLayout(palBorrowLayout);
         palBorrowLayout.setHorizontalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 516, Short.MAX_VALUE)
+            .add(0, 620, Short.MAX_VALUE)
         );
         palBorrowLayout.setVerticalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 450, Short.MAX_VALUE)
+            .add(0, 406, Short.MAX_VALUE)
         );
 
-        palMain.add(palBorrow, "card4");
+        palMain.add(palBorrow, "palBorrow");
 
         org.jdesktop.layout.GroupLayout palAnalyticLayout = new org.jdesktop.layout.GroupLayout(palAnalytic);
         palAnalytic.setLayout(palAnalyticLayout);
         palAnalyticLayout.setHorizontalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 516, Short.MAX_VALUE)
+            .add(0, 620, Short.MAX_VALUE)
         );
         palAnalyticLayout.setVerticalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 450, Short.MAX_VALUE)
+            .add(0, 406, Short.MAX_VALUE)
         );
 
-        palMain.add(palAnalytic, "card4");
+        palMain.add(palAnalytic, "palAnalytic");
 
         splPanel.setRightComponent(palMain);
 
@@ -272,11 +327,11 @@ public class manageFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
+            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
         pack();
@@ -286,9 +341,7 @@ public class manageFrm extends javax.swing.JFrame {
      * This method contant the design of left menu, this all of main menu
      * of program
      */
-    private void listMenuDesign(){
-        //Set this frame to center of monitor
-        setLocationRelativeTo(null);
+    private void listMenuDesign() {        
         //set split panel not moveable
         splPanel.setDividerSize(0);
         //construct the menuList as a JList
@@ -303,7 +356,7 @@ public class manageFrm extends javax.swing.JFrame {
         iconBor = new ImageIcon(getClass().getResource(
                 "Images" + File.separator + "borIcon.png"));
         iconAna = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "AnaIcon.png"));
+                "Images" + File.separator + "anaIcon.png"));
         //add the images to jlabels with text
         lblEmp = new JLabel("Employees", iconEmp, JLabel.LEFT);
         lblBook = new JLabel("Books", iconBook, JLabel.LEFT);
@@ -326,6 +379,42 @@ public class manageFrm extends javax.swing.JFrame {
         Object[] panels = {palEmpIcon, palBookIcon, palSubIcon, palBorIcon, palAnaIcon};
         //tell the jlist to use the panel array for its data
         lstMenu.setListData(panels);
+
+        //Set selection listener event
+        lstMenu.addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                lstMenuActionPerformed(listSelectionEvent);
+            }
+        });
+    }
+
+    /*
+     *
+     */
+    private void lstMenuActionPerformed(ListSelectionEvent evt) {
+        //Get current cardlayout
+        CardLayout cardlayout=(CardLayout) palMain.getLayout();
+        //get menu index and show this panel
+        if (!evt.getValueIsAdjusting()) {            
+            switch (lstMenu.getAnchorSelectionIndex()) {
+                case 0:
+                    cardlayout.show(palMain, "palEmployee");
+                    break;
+                case 1:
+                    cardlayout.show(palMain, "palBook");
+                    break;
+                case 2:
+                    cardlayout.show(palMain, "palSubject");
+                    break;
+                case 3:
+                    cardlayout.show(palMain, "palBorrow");
+                    break;
+                case 4:
+                    cardlayout.show(palMain, "palAnalytic");
+                    break;
+            }
+        }
     }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
@@ -335,15 +424,26 @@ public class manageFrm extends javax.swing.JFrame {
 }//GEN-LAST:event_mnQuitActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
-        //Blur layer
-        setVisible(false);
+        //call aboutUs method
+        aboutUs();
+}//GEN-LAST:event_mnAboutActionPerformed
+
+    private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_btnAddEmpActionPerformed
+
+    /*
+     * About method
+     */
+    private void aboutUs() {
+        setVisible(false);//hidden current frame
         new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);
+                setVisible(true);//show current frame
             }
         });
-}//GEN-LAST:event_mnAboutActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -360,9 +460,10 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnAddEmp;
     private javax.swing.JButton btnDeleteEmp;
     private javax.swing.JButton btnEditEmp;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton btnSearchEmp;
+    private javax.swing.JButton btnViewEmp;
+    private javax.swing.JLabel lblIDEmpSearch;
+    private javax.swing.JLabel lblNameEmpSearch;
     private javax.swing.JList lstMenu;
     private javax.swing.JMenu mbSub;
     private javax.swing.JMenuBar menuBar;
@@ -379,11 +480,17 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JPanel palAnalytic;
     private javax.swing.JPanel palBook;
     private javax.swing.JPanel palBorrow;
-    private javax.swing.JPanel palEmployee;
     private javax.swing.JPanel palMain;
     private javax.swing.JPanel palSubject;
+    private javax.swing.JScrollPane scrPanEmp;
     private javax.swing.JScrollPane scrPanMenu;
     private javax.swing.JPopupMenu.Separator separator;
+    private javax.swing.JToolBar.Separator separator1;
+    private javax.swing.JToolBar.Separator separator2;
     private javax.swing.JSplitPane splPanel;
+    private javax.swing.JTable tblEmp;
+    private javax.swing.JToolBar tolbarEmp;
+    private javax.swing.JTextField txtIDEmpSearch;
+    private javax.swing.JTextField txtNameEmpSearch;
     // End of variables declaration//GEN-END:variables
 }
