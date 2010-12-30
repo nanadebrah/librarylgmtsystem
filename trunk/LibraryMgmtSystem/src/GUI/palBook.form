@@ -16,18 +16,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="scrPanEmp" alignment="0" pref="597" max="32767" attributes="0"/>
+          <Component id="scrPanBook" alignment="0" pref="604" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="tolbarEmp" min="-2" max="-2" attributes="0"/>
+              <Component id="tolbarBook" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblNameEmp" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIDEmp" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblISBNBook" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtISBNBook" alignment="0" max="32767" attributes="1"/>
+                  <Component id="txtCallNoBook" alignment="0" pref="91" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtNameEmp" pref="313" max="32767" attributes="0"/>
-                  <Component id="txtIdEmp" alignment="0" pref="313" max="32767" attributes="0"/>
+                  <Component id="lblAthBook" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTitlBook" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="txtTitlBook" alignment="1" pref="156" max="32767" attributes="1"/>
+                  <Component id="txtAthBook" alignment="1" pref="156" max="32767" attributes="1"/>
               </Group>
           </Group>
       </Group>
@@ -36,27 +46,31 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tolbarEmp" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="tolbarBook" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblIDEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIdEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTitlBook" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCallNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCallNoBook" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTitlBook" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNameEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNameEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAthBook" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblISBNBook" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtISBNBook" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAthBook" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrPanEmp" pref="361" max="32767" attributes="0"/>
+              <Component id="scrPanBook" pref="234" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JToolBar" name="tolbarEmp">
+    <Container class="javax.swing.JToolBar" name="tolbarBook">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -68,7 +82,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnAddEmp">
+        <Component class="javax.swing.JButton" name="btnAddBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/addIcon.png"/>
@@ -81,12 +95,12 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddEmpActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddBookActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator1">
         </Component>
-        <Component class="javax.swing.JButton" name="btnEditEmp">
+        <Component class="javax.swing.JButton" name="btnEditBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/editIcon.png"/>
@@ -100,7 +114,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnViewEmp">
+        <Component class="javax.swing.JButton" name="btnViewBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/viewIcon.png"/>
@@ -114,7 +128,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDelEmp">
+        <Component class="javax.swing.JButton" name="btnDelBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/deleteIcon.png"/>
@@ -130,7 +144,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator2">
         </Component>
-        <Component class="javax.swing.JButton" name="btnSearchEmp">
+        <Component class="javax.swing.JButton" name="btnSearchBook">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/searchIcon.png"/>
@@ -144,14 +158,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="scrPanEmp">
+    <Container class="javax.swing.JScrollPane" name="scrPanBook">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblEmp">
+        <Component class="javax.swing.JTable" name="tblBook">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -160,19 +174,33 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblIDEmp">
+    <Component class="javax.swing.JLabel" name="lblTitlBook">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID:"/>
+        <Property name="text" type="java.lang.String" value="Title:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNameEmp">
+    <Component class="javax.swing.JLabel" name="lblAthBook">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Name:"/>
+        <Property name="text" type="java.lang.String" value="Author:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNameEmp">
+    <Component class="javax.swing.JTextField" name="txtAthBook">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtIdEmp">
+    <Component class="javax.swing.JTextField" name="txtTitlBook">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCallNo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CallNo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblISBNBook">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ISBN:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtCallNoBook">
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txtISBNBook">
     </Component>
   </SubComponents>
 </Form>

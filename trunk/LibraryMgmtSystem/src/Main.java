@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 
-import GUI.splashScreen;
 import GUI.*;
 
 /**

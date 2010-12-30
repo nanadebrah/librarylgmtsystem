@@ -16,47 +16,51 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="scrPanEmp" alignment="0" pref="597" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="489" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="489" max="32767" attributes="0"/>
+          <Component id="scrPanSub" alignment="0" pref="489" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="tolbarEmp" min="-2" max="-2" attributes="0"/>
+              <Component id="tolbarSub" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblNameEmp" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIDEmp" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNameSub" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIDSub" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtNameEmp" pref="313" max="32767" attributes="0"/>
-                  <Component id="txtIdEmp" alignment="0" pref="313" max="32767" attributes="0"/>
+                  <Component id="txtNameSub" alignment="0" pref="205" max="32767" attributes="0"/>
+                  <Component id="txtIdSub" alignment="0" pref="205" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+          <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="339" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tolbarEmp" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="tolbarSub" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblIDEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIdEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIDSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIdSub" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNameEmp" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNameEmp" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNameSub" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNameSub" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrPanEmp" pref="361" max="32767" attributes="0"/>
+              <Component id="scrPanSub" pref="273" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JToolBar" name="tolbarEmp">
+    <Container class="javax.swing.JToolBar" name="tolbarSub">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -68,7 +72,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnAddEmp">
+        <Component class="javax.swing.JButton" name="btnAddSub">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/addIcon.png"/>
@@ -80,13 +84,10 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddEmpActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator1">
         </Component>
-        <Component class="javax.swing.JButton" name="btnEditEmp">
+        <Component class="javax.swing.JButton" name="btnEditSub">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/editIcon.png"/>
@@ -100,7 +101,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnViewEmp">
+        <Component class="javax.swing.JButton" name="btnViewSub">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/viewIcon.png"/>
@@ -114,7 +115,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDelEmp">
+        <Component class="javax.swing.JButton" name="btnDelSub">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/deleteIcon.png"/>
@@ -130,7 +131,7 @@
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="separator2">
         </Component>
-        <Component class="javax.swing.JButton" name="btnSearchEmp">
+        <Component class="javax.swing.JButton" name="btnSearchSub">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/GUI/Images/searchIcon.png"/>
@@ -144,14 +145,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="scrPanEmp">
+    <Container class="javax.swing.JScrollPane" name="scrPanSub">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblEmp">
+        <Component class="javax.swing.JTable" name="tblSub">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="0"/>
@@ -160,19 +161,19 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblIDEmp">
+    <Component class="javax.swing.JLabel" name="lblIDSub">
       <Properties>
         <Property name="text" type="java.lang.String" value="ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNameEmp">
+    <Component class="javax.swing.JLabel" name="lblNameSub">
       <Properties>
         <Property name="text" type="java.lang.String" value="Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNameEmp">
+    <Component class="javax.swing.JTextField" name="txtNameSub">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtIdEmp">
+    <Component class="javax.swing.JTextField" name="txtIdSub">
     </Component>
   </SubComponents>
 </Form>

@@ -36,15 +36,15 @@ public class palEmployee extends javax.swing.JPanel {
         separator1 = new javax.swing.JToolBar.Separator();
         btnEditEmp = new javax.swing.JButton();
         btnViewEmp = new javax.swing.JButton();
-        btnDeleteEmp = new javax.swing.JButton();
+        btnDelEmp = new javax.swing.JButton();
         separator2 = new javax.swing.JToolBar.Separator();
         btnSearchEmp = new javax.swing.JButton();
         scrPanEmp = new javax.swing.JScrollPane();
         tblEmp = new javax.swing.JTable();
-        txtIDEmpSearch = new javax.swing.JTextField();
-        lblIDEmpSearch = new javax.swing.JLabel();
-        txtNameEmpSearch = new javax.swing.JTextField();
-        lblNameEmpSearch = new javax.swing.JLabel();
+        lblIDEmp = new javax.swing.JLabel();
+        lblNameEmp = new javax.swing.JLabel();
+        txtNameEmp = new javax.swing.JTextField();
+        txtIdEmp = new javax.swing.JTextField();
 
         tolbarEmp.setBorder(null);
         tolbarEmp.setFloatable(false);
@@ -86,15 +86,15 @@ public class palEmployee extends javax.swing.JPanel {
         btnViewEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnViewEmp);
 
-        btnDeleteEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
-        btnDeleteEmp.setMnemonic('d');
-        btnDeleteEmp.setText("Delete");
-        btnDeleteEmp.setBorderPainted(false);
-        btnDeleteEmp.setEnabled(false);
-        btnDeleteEmp.setFocusable(false);
-        btnDeleteEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDeleteEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarEmp.add(btnDeleteEmp);
+        btnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
+        btnDelEmp.setMnemonic('d');
+        btnDelEmp.setText("Delete");
+        btnDelEmp.setBorderPainted(false);
+        btnDelEmp.setEnabled(false);
+        btnDelEmp.setFocusable(false);
+        btnDelEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarEmp.add(btnDelEmp);
         tolbarEmp.add(separator2);
 
         btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
@@ -115,47 +115,41 @@ public class palEmployee extends javax.swing.JPanel {
         ));
         scrPanEmp.setViewportView(tblEmp);
 
-        txtIDEmpSearch.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        lblIDEmp.setText("ID:");
 
-        lblIDEmpSearch.setText("ID:");
-
-        txtNameEmpSearch.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
-
-        lblNameEmpSearch.setText("Name:");
+        lblNameEmp.setText("Name:");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 427, Short.MAX_VALUE)
-            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblIDEmpSearch)
-                    .add(lblNameEmpSearch))
+                    .add(lblNameEmp)
+                    .add(lblIDEmp))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(txtNameEmpSearch, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, txtIDEmpSearch, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 289, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(layout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(txtIDEmpSearch, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblIDEmpSearch))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(lblIDEmp)
+                            .add(txtIdEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(2, 2, 2)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(txtNameEmpSearch, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblNameEmpSearch))))
+                            .add(lblNameEmp)
+                            .add(txtNameEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,19 +160,19 @@ public class palEmployee extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEmp;
-    private javax.swing.JButton btnDeleteEmp;
+    private javax.swing.JButton btnDelEmp;
     private javax.swing.JButton btnEditEmp;
     private javax.swing.JButton btnSearchEmp;
     private javax.swing.JButton btnViewEmp;
-    private javax.swing.JLabel lblIDEmpSearch;
-    private javax.swing.JLabel lblNameEmpSearch;
+    private javax.swing.JLabel lblIDEmp;
+    private javax.swing.JLabel lblNameEmp;
     private javax.swing.JScrollPane scrPanEmp;
     private javax.swing.JToolBar.Separator separator1;
     private javax.swing.JToolBar.Separator separator2;
     private javax.swing.JTable tblEmp;
     private javax.swing.JToolBar tolbarEmp;
-    private javax.swing.JTextField txtIDEmpSearch;
-    private javax.swing.JTextField txtNameEmpSearch;
+    private javax.swing.JTextField txtIdEmp;
+    private javax.swing.JTextField txtNameEmp;
     // End of variables declaration//GEN-END:variables
 
 }
