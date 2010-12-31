@@ -74,7 +74,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblGender" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                                  <EmptySpace pref="68" max="32767" attributes="0"/>
                                   <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
@@ -96,13 +96,13 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtName" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtDepart" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtPhone" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtEmail" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtPass" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtAdd" alignment="0" pref="159" max="32767" attributes="0"/>
-                                      <Component id="txtDOB" alignment="0" pref="159" max="32767" attributes="0"/>
+                                      <Component id="txtName" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtDepart" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtPhone" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtEmail" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtPass" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtAdd" alignment="0" pref="177" max="32767" attributes="0"/>
+                                      <Component id="txtDOB" alignment="0" pref="177" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -112,7 +112,7 @@
                           <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -279,8 +279,8 @@
     </Container>
     <Component class="javax.swing.JLabel" name="lblImage">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/GUI/Images/addEmpLbl.png"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;Images&quot;+File.separator+&quot;addEmpLbl.png&quot;))" type="code"/>
         </Property>
       </Properties>
     </Component>

@@ -11,6 +11,7 @@
 package GUI;
 
 import java.awt.event.ItemEvent;
+import java.io.File;
 
 /**
  *
@@ -111,7 +112,7 @@ public class addEmpDialog extends javax.swing.JDialog {
                         .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(palAddEmpLayout.createSequentialGroup()
                                 .add(lblGender)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 50, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 68, Short.MAX_VALUE)
                                 .add(rdbMale)
                                 .add(18, 18, 18)
                                 .add(rdbFemale))
@@ -130,19 +131,19 @@ public class addEmpDialog extends javax.swing.JDialog {
                                     .add(lblName))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))))
+                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, palAddEmpLayout.createSequentialGroup()
                         .add(btnAdd)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(btnCancel)
-                        .add(58, 58, 58))))
+                        .add(68, 68, 68))))
         );
         palAddEmpLayout.setVerticalGroup(
             palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -189,7 +190,7 @@ public class addEmpDialog extends javax.swing.JDialog {
                     .add(btnCancel)))
         );
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/addEmpLbl.png"))); // NOI18N
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"addEmpLbl.png")));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

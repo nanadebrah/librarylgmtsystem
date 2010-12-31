@@ -6,16 +6,15 @@
 /*
  * manageFrm.java
  *
- * Created on Dec 28, 2010, 8:30:10 PM
+ * Created on Dec 31, 2010, 1:32:10 PM
  */
+
 package GUI;
 
 import com.jhlabs.image.BlurFilter;
 import java.awt.*;
 import java.io.File;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
@@ -26,31 +25,14 @@ import org.jdesktop.jxlayer.plaf.ext.LockableUI;
  */
 public class manageFrm extends javax.swing.JFrame {
 
-    //Defined Icon
-    Icon iconBook;
-    Icon iconEmp;
-    Icon iconBor;
-    Icon iconSub;
-    Icon iconAna;
-    //Defined Jlabel
-    JLabel lblBook;
-    JLabel lblEmp;
-    JLabel lblBor;
-    JLabel lblSub;
-    JLabel lblAna;
-    //Defined Panel
-    JPanel palBookIcon;
-    JPanel palEmpIcon;
-    JPanel palBorIcon;
-    JPanel palSubIcon;
-    JPanel palAnaIcon;
-
     //Defined Jxlayer
     private JXLayer<JComponent> layer;
     //Defined blurUI
     private LockableUI blurUI;
     //Defined Jcomponent
     JComponent jc;
+    //Defined cardlayout
+    CardLayout cardlayout;
 
     /** Creates new form manageFrm */
     public manageFrm() {
@@ -58,11 +40,10 @@ public class manageFrm extends javax.swing.JFrame {
         initComponents();
         //Set this frame to center of monitor
         setLocationRelativeTo(null);
-        //Left menu
-        listMenuDesign();
         //Blur layer for frame
         blurLayer();
-        
+        //get cardlayout
+        cardlayout=(CardLayout) palMain.getLayout();
     }
 
     /** This method is called from within the constructor to
@@ -74,9 +55,13 @@ public class manageFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        splPanel = new javax.swing.JSplitPane();
-        scrPanMenu = new javax.swing.JScrollPane();
-        lstMenu = new javax.swing.JList();
+        taskPalManage = new org.jdesktop.swingx.JXTaskPane();
+        btnEmpMan = new JButton();
+        btnBookMan = new JButton();
+        btnSubMan = new JButton();
+        taskPalBorAna = new org.jdesktop.swingx.JXTaskPane();
+        btnBorMan = new JButton();
+        btnAnaMan = new JButton();
         palMain = new javax.swing.JPanel();
         palEmployee = new javax.swing.JPanel();
         tolbarEmp = new javax.swing.JToolBar();
@@ -94,8 +79,8 @@ public class manageFrm extends javax.swing.JFrame {
         txtNameEmp = new javax.swing.JTextField();
         txtIdEmp = new javax.swing.JTextField();
         palBook = new javax.swing.JPanel();
-        tolbarBook1 = new javax.swing.JToolBar();
-        btnAddBook1 = new javax.swing.JButton();
+        tolbarBook = new javax.swing.JToolBar();
+        btnAddBook = new javax.swing.JButton();
         separator3 = new javax.swing.JToolBar.Separator();
         btnEditBook = new javax.swing.JButton();
         btnViewBook = new javax.swing.JButton();
@@ -160,6 +145,10 @@ public class manageFrm extends javax.swing.JFrame {
         mnLogout = new javax.swing.JMenuItem();
         mnQuit = new javax.swing.JMenuItem();
         mnEmp = new javax.swing.JMenu();
+        mnAddEmp = new javax.swing.JMenuItem();
+        mnEditEmp = new javax.swing.JMenuItem();
+        mnViewEmp = new javax.swing.JMenuItem();
+        mnDelEmp = new javax.swing.JMenuItem();
         mnBook = new javax.swing.JMenu();
         mbSub = new javax.swing.JMenu();
         mnBor = new javax.swing.JMenu();
@@ -169,27 +158,91 @@ public class manageFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 280));
-        setName("mainFrm"); // NOI18N
+        setMinimumSize(new java.awt.Dimension(700, 360));
+        setName("manageFrm"); // NOI18N
 
-        splPanel.setDividerLocation(120);
+        taskPalManage.setTitle("Management");
+        taskPalManage.setFocusable(false);
+        taskPalManage.setOpaque(false);
 
-        lstMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        lstMenu.setFocusable(false);
-        lstMenu.setOpaque(false);
-        lstMenu.setSize(new java.awt.Dimension(200, 200));
-        scrPanMenu.setViewportView(lstMenu);
+        btnEmpMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"employeeIcon.png")));
+        btnEmpMan.setMnemonic('e');
+        btnEmpMan.setText("Employee");
+        btnEmpMan.setBorderPainted(false);
+        btnEmpMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEmpMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpManActionPerformed(evt);
+            }
+        });
+        taskPalManage.getContentPane().add(btnEmpMan);
 
-        splPanel.setLeftComponent(scrPanMenu);
+        btnBookMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"bookIcon.png")));
+        btnBookMan.setMnemonic('b');
+        btnBookMan.setText("Book");
+        btnBookMan.setBorderPainted(false);
+        btnBookMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBookMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookManActionPerformed(evt);
+            }
+        });
+        taskPalManage.getContentPane().add(btnBookMan);
+
+        btnSubMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"subIcon.png")));
+        btnSubMan.setMnemonic('s');
+        btnSubMan.setText("Subject");
+        btnSubMan.setBorderPainted(false);
+        btnSubMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSubMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubManActionPerformed(evt);
+            }
+        });
+        taskPalManage.getContentPane().add(btnSubMan);
+
+        taskPalBorAna.setTitle("Borrow & Analytic");
+        taskPalBorAna.setFocusable(false);
+        taskPalBorAna.setOpaque(false);
+        //Set font for all button menu
+        btnEmpMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnBookMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnSubMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnBorMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+        btnAnaMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
+
+        btnBorMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"borIcon.png")));
+        btnBorMan.setMnemonic('b');
+        btnBorMan.setText("Borrow");
+        btnBorMan.setBorderPainted(false);
+        btnBorMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBorMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorManActionPerformed(evt);
+            }
+        });
+        taskPalBorAna.getContentPane().add(btnBorMan);
+
+        btnAnaMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"anaIcon.png")));
+        btnAnaMan.setMnemonic('l');
+        btnAnaMan.setText("Analytic");
+        btnAnaMan.setBorderPainted(false);
+        btnAnaMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAnaMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnaManActionPerformed(evt);
+            }
+        });
+        taskPalBorAna.getContentPane().add(btnAnaMan);
 
         palMain.setLayout(new java.awt.CardLayout());
 
-        tolbarEmp.setBorder(null);
         tolbarEmp.setFloatable(false);
+        tolbarEmp.setBorder(null);
         tolbarEmp.setBorderPainted(false);
         tolbarEmp.setOpaque(false);
 
-        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/addIcon.png"))); // NOI18N
+        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"addIcon.png")));
         btnAddEmp.setMnemonic('a');
         btnAddEmp.setText("Add");
         btnAddEmp.setBorderPainted(false);
@@ -204,7 +257,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarEmp.add(btnAddEmp);
         tolbarEmp.add(separator1);
 
-        btnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/editIcon.png"))); // NOI18N
+        btnEditEmp.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"editIcon.png")));
         btnEditEmp.setMnemonic('e');
         btnEditEmp.setText("Edit");
         btnEditEmp.setBorderPainted(false);
@@ -214,7 +267,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnEditEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnEditEmp);
 
-        btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
         btnViewEmp.setMnemonic('v');
         btnViewEmp.setText("View");
         btnViewEmp.setBorderPainted(false);
@@ -224,7 +277,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnViewEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnViewEmp);
 
-        btnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
+        btnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"deleteIcon.png")));
         btnDelEmp.setMnemonic('d');
         btnDelEmp.setText("Delete");
         btnDelEmp.setBorderPainted(false);
@@ -235,7 +288,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarEmp.add(btnDelEmp);
         tolbarEmp.add(separator2);
 
-        btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"searchIcon.png")));
         btnSearchEmp.setMnemonic('s');
         btnSearchEmp.setText("Search");
         btnSearchEmp.setBorderPainted(false);
@@ -262,7 +315,7 @@ public class manageFrm extends javax.swing.JFrame {
         palEmployee.setLayout(palEmployeeLayout);
         palEmployeeLayout.setHorizontalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palEmployeeLayout.createSequentialGroup()
                 .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -271,8 +324,8 @@ public class manageFrm extends javax.swing.JFrame {
                     .add(lblIDEmp))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)))
         );
         palEmployeeLayout.setVerticalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -288,32 +341,27 @@ public class manageFrm extends javax.swing.JFrame {
                             .add(lblNameEmp)
                             .add(txtNameEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
         palMain.add(palEmployee, "palEmployee");
 
-        tolbarBook1.setBorder(null);
-        tolbarBook1.setFloatable(false);
-        tolbarBook1.setBorderPainted(false);
-        tolbarBook1.setOpaque(false);
+        tolbarBook.setFloatable(false);
+        tolbarBook.setBorder(null);
+        tolbarBook.setBorderPainted(false);
+        tolbarBook.setOpaque(false);
 
-        btnAddBook1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/addIcon.png"))); // NOI18N
-        btnAddBook1.setMnemonic('a');
-        btnAddBook1.setText("Add");
-        btnAddBook1.setBorderPainted(false);
-        btnAddBook1.setFocusable(false);
-        btnAddBook1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAddBook1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAddBook1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddBook1ActionPerformed(evt);
-            }
-        });
-        tolbarBook1.add(btnAddBook1);
-        tolbarBook1.add(separator3);
+        btnAddBook.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"addIcon.png")));
+        btnAddBook.setMnemonic('a');
+        btnAddBook.setText("Add");
+        btnAddBook.setBorderPainted(false);
+        btnAddBook.setFocusable(false);
+        btnAddBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAddBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarBook.add(btnAddBook);
+        tolbarBook.add(separator3);
 
-        btnEditBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/editIcon.png"))); // NOI18N
+        btnEditBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"editIcon.png")));
         btnEditBook.setMnemonic('e');
         btnEditBook.setText("Edit");
         btnEditBook.setBorderPainted(false);
@@ -321,9 +369,9 @@ public class manageFrm extends javax.swing.JFrame {
         btnEditBook.setFocusable(false);
         btnEditBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarBook1.add(btnEditBook);
+        tolbarBook.add(btnEditBook);
 
-        btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
         btnViewBook.setMnemonic('v');
         btnViewBook.setText("View");
         btnViewBook.setBorderPainted(false);
@@ -331,9 +379,9 @@ public class manageFrm extends javax.swing.JFrame {
         btnViewBook.setFocusable(false);
         btnViewBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnViewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarBook1.add(btnViewBook);
+        tolbarBook.add(btnViewBook);
 
-        btnDelBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
+        btnDelBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"deleteIcon.png")));
         btnDelBook.setMnemonic('d');
         btnDelBook.setText("Delete");
         btnDelBook.setBorderPainted(false);
@@ -341,17 +389,17 @@ public class manageFrm extends javax.swing.JFrame {
         btnDelBook.setFocusable(false);
         btnDelBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDelBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarBook1.add(btnDelBook);
-        tolbarBook1.add(separator4);
+        tolbarBook.add(btnDelBook);
+        tolbarBook.add(separator4);
 
-        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"searchIcon.png")));
         btnSearchBook.setMnemonic('s');
         btnSearchBook.setText("Search");
         btnSearchBook.setBorderPainted(false);
         btnSearchBook.setFocusable(false);
         btnSearchBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSearchBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarBook1.add(btnSearchBook);
+        tolbarBook.add(btnSearchBook);
 
         tblBook.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -375,9 +423,9 @@ public class manageFrm extends javax.swing.JFrame {
         palBook.setLayout(palBookLayout);
         palBookLayout.setHorizontalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palBookLayout.createSequentialGroup()
-                .add(tolbarBook1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(tolbarBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lblCallNo)
@@ -392,14 +440,14 @@ public class manageFrm extends javax.swing.JFrame {
                     .add(lblTitlBook))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
         );
         palBookLayout.setVerticalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(palBookLayout.createSequentialGroup()
                 .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarBook1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, palBookLayout.createSequentialGroup()
                         .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtTitlBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -413,17 +461,17 @@ public class manageFrm extends javax.swing.JFrame {
                             .add(lblAthBook)
                             .add(txtISBNBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
         palMain.add(palBook, "palBook");
 
-        tolbarSub.setBorder(null);
         tolbarSub.setFloatable(false);
+        tolbarSub.setBorder(null);
         tolbarSub.setBorderPainted(false);
         tolbarSub.setOpaque(false);
 
-        btnAddSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/addIcon.png"))); // NOI18N
+        btnAddSub.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"addIcon.png")));
         btnAddSub.setMnemonic('a');
         btnAddSub.setText("Add");
         btnAddSub.setBorderPainted(false);
@@ -433,7 +481,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarSub.add(btnAddSub);
         tolbarSub.add(separator5);
 
-        btnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/editIcon.png"))); // NOI18N
+        btnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"editIcon.png")));
         btnEditSub.setMnemonic('e');
         btnEditSub.setText("Edit");
         btnEditSub.setBorderPainted(false);
@@ -443,7 +491,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnEditSub.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarSub.add(btnEditSub);
 
-        btnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
         btnViewSub.setMnemonic('v');
         btnViewSub.setText("View");
         btnViewSub.setBorderPainted(false);
@@ -453,7 +501,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnViewSub.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarSub.add(btnViewSub);
 
-        btnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
+        btnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"deleteIcon.png")));
         btnDelSub.setMnemonic('d');
         btnDelSub.setText("Delete");
         btnDelSub.setBorderPainted(false);
@@ -464,7 +512,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarSub.add(btnDelSub);
         tolbarSub.add(separator6);
 
-        btnSearchSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"searchIcon.png")));
         btnSearchSub.setMnemonic('s');
         btnSearchSub.setText("Search");
         btnSearchSub.setBorderPainted(false);
@@ -491,7 +539,7 @@ public class manageFrm extends javax.swing.JFrame {
         palSubject.setLayout(palSubjectLayout);
         palSubjectLayout.setHorizontalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palSubjectLayout.createSequentialGroup()
                 .add(tolbarSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -500,8 +548,8 @@ public class manageFrm extends javax.swing.JFrame {
                     .add(lblIDSub))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
+                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
         );
         palSubjectLayout.setVerticalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -517,17 +565,17 @@ public class manageFrm extends javax.swing.JFrame {
                             .add(lblNameSub)
                             .add(txtNameSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
         palMain.add(palSubject, "palSubject");
 
-        tolbarBor.setBorder(null);
         tolbarBor.setFloatable(false);
+        tolbarBor.setBorder(null);
         tolbarBor.setBorderPainted(false);
         tolbarBor.setOpaque(false);
 
-        btnChkOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/chkoutIcon.png"))); // NOI18N
+        btnChkOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"chkoutIcon.png")));
         btnChkOut.setMnemonic('o');
         btnChkOut.setText("Check-Out");
         btnChkOut.setBorderPainted(false);
@@ -536,7 +584,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnChkOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnChkOut);
 
-        btnChkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/chkinIcon.png"))); // NOI18N
+        btnChkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"chkinIcon.png")));
         btnChkIn.setMnemonic('i');
         btnChkIn.setText("Check-In");
         btnChkIn.setBorderPainted(false);
@@ -545,7 +593,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnChkIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnChkIn);
 
-        btnFee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/feeIcon.png"))); // NOI18N
+        btnFee.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"feeIcon.png")));
         btnFee.setMnemonic('f');
         btnFee.setText("Fee rate");
         btnFee.setBorderPainted(false);
@@ -555,7 +603,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarBor.add(btnFee);
         tolbarBor.add(separator7);
 
-        btnEditBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/editIcon.png"))); // NOI18N
+        btnEditBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"editIcon.png")));
         btnEditBor.setMnemonic('e');
         btnEditBor.setText("Edit");
         btnEditBor.setBorderPainted(false);
@@ -565,7 +613,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnEditBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnEditBor);
 
-        btnViewBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
         btnViewBor.setMnemonic('v');
         btnViewBor.setText("View");
         btnViewBor.setBorderPainted(false);
@@ -575,7 +623,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnViewBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnViewBor);
 
-        btnDelBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/deleteIcon.png"))); // NOI18N
+        btnDelBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"deleteIcon.png")));
         btnDelBor.setMnemonic('d');
         btnDelBor.setText("Delete");
         btnDelBor.setBorderPainted(false);
@@ -586,7 +634,7 @@ public class manageFrm extends javax.swing.JFrame {
         tolbarBor.add(btnDelBor);
         tolbarBor.add(separator8);
 
-        btnSearchBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/searchIcon.png"))); // NOI18N
+        btnSearchBor.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"searchIcon.png")));
         btnSearchBor.setMnemonic('s');
         btnSearchBor.setText("Search");
         btnSearchBor.setBorderPainted(false);
@@ -613,7 +661,7 @@ public class manageFrm extends javax.swing.JFrame {
         palBorrow.setLayout(palBorrowLayout);
         palBorrowLayout.setHorizontalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palBorrowLayout.createSequentialGroup()
                 .add(tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -622,12 +670,11 @@ public class manageFrm extends javax.swing.JFrame {
                     .add(lblCallNoBor))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                    .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
         );
         palBorrowLayout.setVerticalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 417, Short.MAX_VALUE)
             .add(palBorrowLayout.createSequentialGroup()
                 .add(palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -640,17 +687,17 @@ public class manageFrm extends javax.swing.JFrame {
                             .add(lblEmNmBor)
                             .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
         );
 
         palMain.add(palBorrow, "palBorrow");
 
-        tolbarAna.setBorder(null);
         tolbarAna.setFloatable(false);
+        tolbarAna.setBorder(null);
         tolbarAna.setBorderPainted(false);
         tolbarAna.setOpaque(false);
 
-        btnTBookAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/topBookIcon.png"))); // NOI18N
+        btnTBookAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"topBookIcon.png")));
         btnTBookAna.setMnemonic('a');
         btnTBookAna.setText("Top Book");
         btnTBookAna.setBorderPainted(false);
@@ -659,7 +706,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnTBookAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBookAna);
 
-        btnTBorAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/topBorIcon.png"))); // NOI18N
+        btnTBorAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"topBorIcon.png")));
         btnTBorAna.setMnemonic('e');
         btnTBorAna.setText("Top Borrower");
         btnTBorAna.setBorderPainted(false);
@@ -668,7 +715,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnTBorAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBorAna);
 
-        btnViewAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/viewIcon.png"))); // NOI18N
+        btnViewAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
         btnViewAna.setMnemonic('v');
         btnViewAna.setText("View");
         btnViewAna.setBorderPainted(false);
@@ -678,7 +725,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnViewAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnViewAna);
 
-        btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/sendAlertIcon.png"))); // NOI18N
+        btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"sendAlertIcon.png")));
         btnAlertAna.setMnemonic('s');
         btnAlertAna.setText("Overdue Alert");
         btnAlertAna.setBorderPainted(false);
@@ -688,7 +735,7 @@ public class manageFrm extends javax.swing.JFrame {
         btnAlertAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnAlertAna);
 
-        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/revenueIcon.png"))); // NOI18N
+        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"revenueIcon.png")));
         btnRevAna.setText("Revenue");
         btnRevAna.setBorderPainted(false);
         btnRevAna.setFocusable(false);
@@ -710,41 +757,33 @@ public class manageFrm extends javax.swing.JFrame {
         palAnalytic.setLayout(palAnalyticLayout);
         palAnalyticLayout.setHorizontalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
         );
         palAnalyticLayout.setVerticalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(palAnalyticLayout.createSequentialGroup()
                 .add(tolbarAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
         );
 
         palMain.add(palAnalytic, "palAnalytic");
 
-        splPanel.setRightComponent(palMain);
-        //Add manage Panel to Main panel
-        //palMain.add(new palEmployee(), "palEmployee");
-        //palMain.add(new palBook(), "palBook");
-        //palMain.add(new palSubject(), "palSubject");
-        //palMain.add(new palBorrow(), "palBorrow");
-        //palMain.add(new palAnalytic(), "palAnalytic");
-
         mnSystem.setText("System");
 
-        menuSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/settingMenu.png"))); // NOI18N
+        menuSetting.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"settingMenu.png")));
         menuSetting.setText("Setting");
         mnSystem.add(menuSetting);
         mnSystem.add(separator);
 
         mnLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
-        mnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/logoutIcon.png"))); // NOI18N
+        mnLogout.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"logoutIcon.png")));
         mnLogout.setText("Logout");
         mnSystem.add(mnLogout);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
-        mnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/quitIcon.png"))); // NOI18N
+        mnQuit.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"quitIcon.png")));
         mnQuit.setText("Quit");
         mnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -755,7 +794,20 @@ public class manageFrm extends javax.swing.JFrame {
 
         menuBar.add(mnSystem);
 
-        mnEmp.setText("Employees");
+        mnEmp.setText("Employee");
+
+        mnAddEmp.setText("Add");
+        mnEmp.add(mnAddEmp);
+
+        mnEditEmp.setText("Edit");
+        mnEmp.add(mnEditEmp);
+
+        mnViewEmp.setText("View");
+        mnEmp.add(mnViewEmp);
+
+        mnDelEmp.setText("Delete");
+        mnEmp.add(mnDelEmp);
+
         menuBar.add(mnEmp);
 
         mnBook.setText("Books");
@@ -766,8 +818,6 @@ public class manageFrm extends javax.swing.JFrame {
 
         mnBor.setText("Borrows");
         menuBar.add(mnBor);
-
-        mnAna.setText("Analytics");
         menuBar.add(mnAna);
 
         mnHelp.setText("Help");
@@ -776,7 +826,7 @@ public class manageFrm extends javax.swing.JFrame {
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 
-        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/aboutMenu.png"))); // NOI18N
+        mnAbout.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"aboutMenu.png")));
         mnAbout.setText("About us");
         mnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -793,16 +843,35 @@ public class manageFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalManage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalBorAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .add(palMain, 0, 0, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(taskPalManage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(taskPalBorAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
+
+        //Add manageFrm Panel to Main panel
+        //palMain.add(new palEmployee(), "palEmployee");
+        //palMain.add(new palBook(), "palBook");
+        //palMain.add(new palSubject(), "palSubject");
+        //palMain.add(new palBorrow(), "palBorrow");
+        //palMain.add(new palAnalytic(), "palAnalytic");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+     * Config to set Blur layer
+     */
     private void blurLayer(){
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
@@ -826,85 +895,6 @@ public class manageFrm extends javax.swing.JFrame {
         blurUI.setLocked(!blurUI.isLocked());
     }
 
-    /*
-     * This method contant the design of left menu, this all of main menu
-     * of program
-     */
-    private void listMenuDesign() {        
-        //set split panel not moveable
-        splPanel.setDividerSize(0);
-        //construct the menuList as a JList
-        lstMenu.setCellRenderer(new ImageListCellRenderer());
-        //get our icon
-        iconEmp = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "employeeIcon.png"));
-        iconBook = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "bookIcon.png"));
-        iconSub = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "subIcon.png"));
-        iconBor = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "borIcon.png"));
-        iconAna = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "anaIcon.png"));
-        //add the images to jlabels with text
-        lblEmp = new JLabel("Employees", iconEmp, JLabel.LEFT);
-        lblBook = new JLabel("Books", iconBook, JLabel.LEFT);
-        lblSub = new JLabel("Subjects", iconSub, JLabel.LEFT);
-        lblBor = new JLabel("Borrows", iconBor, JLabel.LEFT);
-        lblAna = new JLabel("Analytics", iconAna, JLabel.LEFT);
-        //create the corresponding panels
-        palEmpIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palBookIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palSubIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palBorIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palAnaIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        //add the labels onto the panels
-        palEmpIcon.add(lblEmp);
-        palBookIcon.add(lblBook);
-        palSubIcon.add(lblSub);
-        palBorIcon.add(lblBor);
-        palAnaIcon.add(lblAna);
-        //create a panel array
-        Object[] panels = {palEmpIcon, palBookIcon, palSubIcon, palBorIcon, palAnaIcon};
-        //tell the jlist to use the panel array for its data
-        lstMenu.setListData(panels);
-
-        //Set selection listener event
-        lstMenu.addListSelectionListener(new ListSelectionListener() {
-
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                lstMenuActionPerformed(listSelectionEvent);
-            }
-        });
-    }
-
-    /*
-     *
-     */
-    private void lstMenuActionPerformed(ListSelectionEvent evt) {
-        //Get current cardlayout
-        CardLayout cardlayout=(CardLayout) palMain.getLayout();
-        //get menu index and show this panel
-        if (!evt.getValueIsAdjusting()) {            
-            switch (lstMenu.getAnchorSelectionIndex()) {
-                case 0:
-                    cardlayout.show(palMain, "palEmployee");
-                    break;
-                case 1:
-                    cardlayout.show(palMain, "palBook");
-                    break;
-                case 2:
-                    cardlayout.show(palMain, "palSubject");
-                    break;
-                case 3:
-                    cardlayout.show(palMain, "palBorrow");
-                    break;
-                case 4:
-                    cardlayout.show(palMain, "palAnalytic");
-                    break;
-            }
-        }
-    }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
@@ -917,16 +907,35 @@ public class manageFrm extends javax.swing.JFrame {
         aboutUs();
 }//GEN-LAST:event_mnAboutActionPerformed
 
-    private void btnAddBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBook1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAddBook1ActionPerformed
-
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
-        // TODO add your handling code here:
+        //Display form to add new emplpyee
         doBlur();
         new addEmpDialog(this, true).setVisible(true);
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
+
+    /*
+     * Add event change cardlayout for left menu
+     */
+    private void btnEmpManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpManActionPerformed
+        cardlayout.show(palMain, "palEmployee");
+    }//GEN-LAST:event_btnEmpManActionPerformed
+
+    private void btnBookManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookManActionPerformed
+        cardlayout.show(palMain, "palBook");
+}//GEN-LAST:event_btnBookManActionPerformed
+
+    private void btnSubManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubManActionPerformed
+        cardlayout.show(palMain, "palSubject");
+    }//GEN-LAST:event_btnSubManActionPerformed
+
+    private void btnBorManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorManActionPerformed
+        cardlayout.show(palMain, "palBorrow");
+    }//GEN-LAST:event_btnBorManActionPerformed
+
+    private void btnAnaManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaManActionPerformed
+        cardlayout.show(palMain, "palAnalytic");
+    }//GEN-LAST:event_btnAnaManActionPerformed
 
     /*
      * About method
@@ -942,21 +951,24 @@ public class manageFrm extends javax.swing.JFrame {
     }
 
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new manageFrm().setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddBook1;
+    private javax.swing.JButton btnAddBook;
     private javax.swing.JButton btnAddEmp;
     private javax.swing.JButton btnAddSub;
     private javax.swing.JButton btnAlertAna;
+    private javax.swing.JButton btnAnaMan;
+    private javax.swing.JButton btnBookMan;
+    private javax.swing.JButton btnBorMan;
     private javax.swing.JButton btnChkIn;
     private javax.swing.JButton btnChkOut;
     private javax.swing.JButton btnDelBook;
@@ -967,12 +979,14 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JButton btnEditBor;
     private javax.swing.JButton btnEditEmp;
     private javax.swing.JButton btnEditSub;
+    private javax.swing.JButton btnEmpMan;
     private javax.swing.JButton btnFee;
     private javax.swing.JButton btnRevAna;
     private javax.swing.JButton btnSearchBook;
     private javax.swing.JButton btnSearchBor;
     private javax.swing.JButton btnSearchEmp;
     private javax.swing.JButton btnSearchSub;
+    private javax.swing.JButton btnSubMan;
     private javax.swing.JButton btnTBookAna;
     private javax.swing.JButton btnTBorAna;
     private javax.swing.JButton btnViewAna;
@@ -990,20 +1004,23 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JLabel lblNameEmp;
     private javax.swing.JLabel lblNameSub;
     private javax.swing.JLabel lblTitlBook;
-    private javax.swing.JList lstMenu;
     private javax.swing.JMenu mbSub;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuSetting;
     private javax.swing.JMenuItem mnAbout;
+    private javax.swing.JMenuItem mnAddEmp;
     private javax.swing.JMenu mnAna;
     private javax.swing.JMenu mnBook;
     private javax.swing.JMenu mnBor;
+    private javax.swing.JMenuItem mnDelEmp;
+    private javax.swing.JMenuItem mnEditEmp;
     private javax.swing.JMenu mnEmp;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnLogout;
     private javax.swing.JMenuItem mnQuit;
     private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
+    private javax.swing.JMenuItem mnViewEmp;
     private javax.swing.JPanel palAnalytic;
     private javax.swing.JPanel palBook;
     private javax.swing.JPanel palBorrow;
@@ -1014,7 +1031,6 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrPanBook;
     private javax.swing.JScrollPane scrPanBor;
     private javax.swing.JScrollPane scrPanEmp;
-    private javax.swing.JScrollPane scrPanMenu;
     private javax.swing.JScrollPane scrPanSub;
     private javax.swing.JPopupMenu.Separator separator;
     private javax.swing.JToolBar.Separator separator1;
@@ -1025,14 +1041,15 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator separator6;
     private javax.swing.JToolBar.Separator separator7;
     private javax.swing.JToolBar.Separator separator8;
-    private javax.swing.JSplitPane splPanel;
+    private org.jdesktop.swingx.JXTaskPane taskPalBorAna;
+    private org.jdesktop.swingx.JXTaskPane taskPalManage;
     private javax.swing.JTable tblAna;
     private javax.swing.JTable tblBook;
     private javax.swing.JTable tblBor;
     private javax.swing.JTable tblEmp;
     private javax.swing.JTable tblSub;
     private javax.swing.JToolBar tolbarAna;
-    private javax.swing.JToolBar tolbarBook1;
+    private javax.swing.JToolBar tolbarBook;
     private javax.swing.JToolBar tolbarBor;
     private javax.swing.JToolBar tolbarEmp;
     private javax.swing.JToolBar tolbarSub;
@@ -1047,4 +1064,5 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JTextField txtNameSub;
     private javax.swing.JTextField txtTitlBook;
     // End of variables declaration//GEN-END:variables
+
 }
