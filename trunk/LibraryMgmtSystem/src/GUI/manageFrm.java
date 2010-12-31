@@ -150,9 +150,27 @@ public class manageFrm extends javax.swing.JFrame {
         mnViewEmp = new javax.swing.JMenuItem();
         mnDelEmp = new javax.swing.JMenuItem();
         mnBook = new javax.swing.JMenu();
+        mnAddBok = new javax.swing.JMenuItem();
+        mnEditBok = new javax.swing.JMenuItem();
+        mnViewBok = new javax.swing.JMenuItem();
+        mnDelBok = new javax.swing.JMenuItem();
         mbSub = new javax.swing.JMenu();
+        mnAddSub = new javax.swing.JMenuItem();
+        mnEditSub = new javax.swing.JMenuItem();
+        mnViewSub = new javax.swing.JMenuItem();
+        mnDelSub = new javax.swing.JMenuItem();
         mnBor = new javax.swing.JMenu();
+        mnChkOut = new javax.swing.JMenuItem();
+        mnChkIn = new javax.swing.JMenuItem();
+        mnFeeRate = new javax.swing.JMenuItem();
+        mnEditBor = new javax.swing.JMenuItem();
+        mnViewBor = new javax.swing.JMenuItem();
+        mnDelBor = new javax.swing.JMenuItem();
         mnAna = new javax.swing.JMenu();
+        mnTopBok = new javax.swing.JMenuItem();
+        mnTopBor = new javax.swing.JMenuItem();
+        mnOverdue = new javax.swing.JMenuItem();
+        mnRev = new javax.swing.JMenuItem();
         mnHelp = new javax.swing.JMenu();
         mnSubHelp = new javax.swing.JMenuItem();
         mnAbout = new javax.swing.JMenuItem();
@@ -190,7 +208,7 @@ public class manageFrm extends javax.swing.JFrame {
         taskPalManage.getContentPane().add(btnBookMan);
 
         btnSubMan.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"subIcon.png")));
-        btnSubMan.setMnemonic('s');
+        btnSubMan.setMnemonic('j');
         btnSubMan.setText("Subject");
         btnSubMan.setBorderPainted(false);
         btnSubMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -358,6 +376,11 @@ public class manageFrm extends javax.swing.JFrame {
         btnAddBook.setFocusable(false);
         btnAddBook.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAddBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBookActionPerformed(evt);
+            }
+        });
         tolbarBook.add(btnAddBook);
         tolbarBook.add(separator3);
 
@@ -796,28 +819,100 @@ public class manageFrm extends javax.swing.JFrame {
 
         mnEmp.setText("Employee");
 
+        mnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnaddIcon.png")));
         mnAddEmp.setText("Add");
         mnEmp.add(mnAddEmp);
 
+        mnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mneditIcon.png")));
         mnEditEmp.setText("Edit");
         mnEmp.add(mnEditEmp);
 
+        mnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnviewIcon.png")));
         mnViewEmp.setText("View");
         mnEmp.add(mnViewEmp);
 
+        mnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mndeleteIcon.png")));
         mnDelEmp.setText("Delete");
         mnEmp.add(mnDelEmp);
 
         menuBar.add(mnEmp);
 
         mnBook.setText("Books");
+
+        mnAddBok.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnaddIcon.png")));
+        mnAddBok.setText("Add");
+        mnBook.add(mnAddBok);
+
+        mnEditBok.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mneditIcon.png")));
+        mnEditBok.setText("Edit");
+        mnBook.add(mnEditBok);
+
+        mnViewBok.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnviewIcon.png")));
+        mnViewBok.setText("View");
+        mnBook.add(mnViewBok);
+
+        mnDelBok.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mndeleteIcon.png")));
+        mnDelBok.setText("Delete");
+        mnBook.add(mnDelBok);
+
         menuBar.add(mnBook);
 
-        mbSub.setText("Subjects");
+        mbSub.setText("Subject");
+
+        mnAddSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnaddIcon.png")));
+        mnAddSub.setText("Add");
+        mbSub.add(mnAddSub);
+
+        mnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mneditIcon.png")));
+        mnEditSub.setText("Edit");
+        mbSub.add(mnEditSub);
+
+        mnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mnviewIcon.png")));
+        mnViewSub.setText("View");
+        mbSub.add(mnViewSub);
+
+        mnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"mndeleteIcon.png")));
+        mnDelSub.setText("Delete");
+        mbSub.add(mnDelSub);
+
         menuBar.add(mbSub);
 
-        mnBor.setText("Borrows");
+        mnBor.setText("Borrow");
+
+        mnChkOut.setText("Check-Out");
+        mnBor.add(mnChkOut);
+
+        mnChkIn.setText("Check-In");
+        mnBor.add(mnChkIn);
+
+        mnFeeRate.setText("Fee rate");
+        mnBor.add(mnFeeRate);
+
+        mnEditBor.setText("Edit");
+        mnBor.add(mnEditBor);
+
+        mnViewBor.setText("View");
+        mnBor.add(mnViewBor);
+
+        mnDelBor.setText("Delete");
+        mnBor.add(mnDelBor);
+
         menuBar.add(mnBor);
+
+        mnAna.setText("Analytic");
+
+        mnTopBok.setText("Top Book");
+        mnAna.add(mnTopBok);
+
+        mnTopBor.setText("Top Borrower");
+        mnAna.add(mnTopBor);
+
+        mnOverdue.setText("Overdue Alert");
+        mnAna.add(mnOverdue);
+
+        mnRev.setText("Revenue");
+        mnAna.add(mnRev);
+
         menuBar.add(mnAna);
 
         mnHelp.setText("Help");
@@ -906,7 +1001,9 @@ public class manageFrm extends javax.swing.JFrame {
         //call aboutUs method
         aboutUs();
 }//GEN-LAST:event_mnAboutActionPerformed
-
+    /*
+     *
+     */
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
         //Display form to add new emplpyee
         doBlur();
@@ -936,6 +1033,16 @@ public class manageFrm extends javax.swing.JFrame {
     private void btnAnaManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaManActionPerformed
         cardlayout.show(palMain, "palAnalytic");
     }//GEN-LAST:event_btnAnaManActionPerformed
+
+    /*
+     * 
+     */
+    private void btnAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookActionPerformed
+        //Display form to add new emplpyee
+        doBlur();
+        new addBokDialog(this, true).setVisible(true);
+        doBlur();
+    }//GEN-LAST:event_btnAddBookActionPerformed
 
     /*
      * About method
@@ -1008,19 +1115,37 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuSetting;
     private javax.swing.JMenuItem mnAbout;
+    private javax.swing.JMenuItem mnAddBok;
     private javax.swing.JMenuItem mnAddEmp;
+    private javax.swing.JMenuItem mnAddSub;
     private javax.swing.JMenu mnAna;
     private javax.swing.JMenu mnBook;
     private javax.swing.JMenu mnBor;
+    private javax.swing.JMenuItem mnChkIn;
+    private javax.swing.JMenuItem mnChkOut;
+    private javax.swing.JMenuItem mnDelBok;
+    private javax.swing.JMenuItem mnDelBor;
     private javax.swing.JMenuItem mnDelEmp;
+    private javax.swing.JMenuItem mnDelSub;
+    private javax.swing.JMenuItem mnEditBok;
+    private javax.swing.JMenuItem mnEditBor;
     private javax.swing.JMenuItem mnEditEmp;
+    private javax.swing.JMenuItem mnEditSub;
     private javax.swing.JMenu mnEmp;
+    private javax.swing.JMenuItem mnFeeRate;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnLogout;
+    private javax.swing.JMenuItem mnOverdue;
     private javax.swing.JMenuItem mnQuit;
+    private javax.swing.JMenuItem mnRev;
     private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
+    private javax.swing.JMenuItem mnTopBok;
+    private javax.swing.JMenuItem mnTopBor;
+    private javax.swing.JMenuItem mnViewBok;
+    private javax.swing.JMenuItem mnViewBor;
     private javax.swing.JMenuItem mnViewEmp;
+    private javax.swing.JMenuItem mnViewSub;
     private javax.swing.JPanel palAnalytic;
     private javax.swing.JPanel palBook;
     private javax.swing.JPanel palBorrow;
