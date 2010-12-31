@@ -227,11 +227,11 @@ public class loginFrm extends javax.swing.JFrame {
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
         //Blur layer
-        blurUI.setLocked(true);
+        blurUI.setLocked(!blurUI.isLocked());
         //Display setting dialog
-        new settingDialog(this, rootPaneCheckingEnabled).setVisible(true);
+        new settingDialog(this, true).setVisible(true);
         //Blur layer
-        blurUI.setLocked(false);
+        blurUI.setLocked(!blurUI.isLocked());
     }//GEN-LAST:event_menuSettingActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed

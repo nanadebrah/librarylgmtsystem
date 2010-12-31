@@ -58,11 +58,6 @@ public class palEmployee extends javax.swing.JPanel {
         btnAddEmp.setFocusable(false);
         btnAddEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAddEmp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddEmpActionPerformed(evt);
-            }
-        });
         tolbarEmp.add(btnAddEmp);
         tolbarEmp.add(separator1);
 
@@ -153,10 +148,6 @@ public class palEmployee extends javax.swing.JPanel {
                 .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAddEmpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
