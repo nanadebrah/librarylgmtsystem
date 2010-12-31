@@ -176,7 +176,6 @@ public class manageFrm extends javax.swing.JFrame {
 
         lstMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMenu.setFocusable(false);
-        lstMenu.setOpaque(false);
         lstMenu.setSize(new java.awt.Dimension(200, 200));
         scrPanMenu.setViewportView(lstMenu);
 
