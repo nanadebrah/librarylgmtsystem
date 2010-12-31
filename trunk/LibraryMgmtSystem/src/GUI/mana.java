@@ -13,6 +13,7 @@ package GUI;
 
 import com.jhlabs.image.BlurFilter;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.io.File;
 import javax.swing.*;
@@ -62,6 +63,7 @@ public class mana extends javax.swing.JFrame {
         listMenuDesign();
         //Blur layer for frame
         blurLayer();
+        lstMenu.setSelectionForeground(Color.yellow);
     }
 
         private void blurLayer(){
@@ -368,7 +370,7 @@ public class mana extends javax.swing.JFrame {
         palEmployee.setLayout(palEmployeeLayout);
         palEmployeeLayout.setHorizontalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palEmployeeLayout.createSequentialGroup()
                 .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -377,8 +379,8 @@ public class mana extends javax.swing.JFrame {
                     .add(lblIDEmp))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
         );
         palEmployeeLayout.setVerticalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -481,7 +483,7 @@ public class mana extends javax.swing.JFrame {
         palBook.setLayout(palBookLayout);
         palBookLayout.setHorizontalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palBookLayout.createSequentialGroup()
                 .add(tolbarBook1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -498,8 +500,8 @@ public class mana extends javax.swing.JFrame {
                     .add(lblTitlBook))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
         );
         palBookLayout.setVerticalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -597,7 +599,7 @@ public class mana extends javax.swing.JFrame {
         palSubject.setLayout(palSubjectLayout);
         palSubjectLayout.setHorizontalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palSubjectLayout.createSequentialGroup()
                 .add(tolbarSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -606,8 +608,8 @@ public class mana extends javax.swing.JFrame {
                     .add(lblIDSub))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)))
+                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)))
         );
         palSubjectLayout.setVerticalGroup(
             palSubjectLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -719,7 +721,7 @@ public class mana extends javax.swing.JFrame {
         palBorrow.setLayout(palBorrowLayout);
         palBorrowLayout.setHorizontalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .add(palBorrowLayout.createSequentialGroup()
                 .add(tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -728,8 +730,8 @@ public class mana extends javax.swing.JFrame {
                     .add(lblCallNoBor))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                    .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
         );
         palBorrowLayout.setVerticalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -816,8 +818,10 @@ public class mana extends javax.swing.JFrame {
         palAnalytic.setLayout(palAnalyticLayout);
         palAnalyticLayout.setHorizontalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+            .add(palAnalyticLayout.createSequentialGroup()
+                .add(tolbarAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(261, Short.MAX_VALUE))
+            .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
         );
         palAnalyticLayout.setVerticalGroup(
             palAnalyticLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -894,16 +898,15 @@ public class mana extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(scrPanMenu, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 118, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 569, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, scrPanMenu)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                    .add(scrPanMenu, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         //Add manage Panel to Main panel

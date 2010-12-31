@@ -125,19 +125,18 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="scrPanMenu" min="-2" pref="118" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="palMain" min="-2" pref="569" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="palMain" pref="589" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="scrPanMenu" alignment="0" max="32767" attributes="1"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="palMain" alignment="0" pref="417" max="32767" attributes="1"/>
+                  <Component id="scrPanMenu" alignment="0" min="-2" pref="269" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -182,7 +181,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanEmp" alignment="0" pref="569" max="32767" attributes="0"/>
+                  <Component id="scrPanEmp" alignment="0" pref="589" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="tolbarEmp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -192,8 +191,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNameEmp" alignment="0" pref="254" max="32767" attributes="0"/>
-                          <Component id="txtIdEmp" alignment="0" pref="254" max="32767" attributes="0"/>
+                          <Component id="txtNameEmp" alignment="0" pref="274" max="32767" attributes="0"/>
+                          <Component id="txtIdEmp" alignment="0" pref="274" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -353,7 +352,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanBook" alignment="0" pref="569" max="32767" attributes="0"/>
+                  <Component id="scrPanBook" alignment="0" pref="589" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="tolbarBook1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -373,8 +372,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtTitlBook" alignment="1" pref="124" max="32767" attributes="1"/>
-                          <Component id="txtAthBook" alignment="1" pref="124" max="32767" attributes="1"/>
+                          <Component id="txtTitlBook" alignment="1" pref="144" max="32767" attributes="1"/>
+                          <Component id="txtAthBook" alignment="1" pref="144" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -552,7 +551,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanSub" alignment="0" pref="569" max="32767" attributes="0"/>
+                  <Component id="scrPanSub" alignment="0" pref="589" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="tolbarSub" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -562,8 +561,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNameSub" alignment="0" pref="235" max="32767" attributes="0"/>
-                          <Component id="txtIdSub" alignment="0" pref="235" max="32767" attributes="0"/>
+                          <Component id="txtNameSub" alignment="0" pref="255" max="32767" attributes="0"/>
+                          <Component id="txtIdSub" alignment="0" pref="255" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -720,7 +719,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanBor" alignment="0" pref="569" max="32767" attributes="0"/>
+                  <Component id="scrPanBor" alignment="0" pref="589" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="tolbarBor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -730,8 +729,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtEmNamBor" alignment="0" pref="105" max="32767" attributes="0"/>
-                          <Component id="txtCallNoBor" alignment="0" pref="105" max="32767" attributes="0"/>
+                          <Component id="txtEmNamBor" alignment="0" pref="125" max="32767" attributes="0"/>
+                          <Component id="txtCallNoBor" alignment="0" pref="125" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -915,8 +914,11 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanAna" alignment="0" pref="569" max="32767" attributes="0"/>
-                  <Component id="tolbarAna" alignment="0" pref="569" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="tolbarAna" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace pref="261" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="scrPanAna" alignment="0" pref="589" max="32767" attributes="1"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
