@@ -4,14 +4,16 @@
  */
 
 /*
- * manageFrm.java
+ * mana.java
  *
- * Created on Dec 28, 2010, 8:30:10 PM
+ * Created on Dec 31, 2010, 10:58:43 AM
  */
+
 package GUI;
 
 import com.jhlabs.image.BlurFilter;
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -24,7 +26,7 @@ import org.jdesktop.jxlayer.plaf.ext.LockableUI;
  *
  * @author CuongNQ
  */
-public class manageFrm extends javax.swing.JFrame {
+public class mana extends javax.swing.JFrame {
 
     //Defined Icon
     Icon iconBook;
@@ -51,10 +53,8 @@ public class manageFrm extends javax.swing.JFrame {
     private LockableUI blurUI;
     //Defined Jcomponent
     JComponent jc;
-
-    /** Creates new form manageFrm */
-    public manageFrm() {
-        //All component
+    /** Creates new form mana */
+    public mana() {
         initComponents();
         //Set this frame to center of monitor
         setLocationRelativeTo(null);
@@ -62,7 +62,120 @@ public class manageFrm extends javax.swing.JFrame {
         listMenuDesign();
         //Blur layer for frame
         blurLayer();
-        
+    }
+
+        private void blurLayer(){
+        //Create new instance of blurUI
+        blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
+        //Create new instance of Jcomponent
+        jc = (JComponent) getContentPane();
+        //Create new instance of layer
+        layer = new JXLayer(jc);
+        //Set layer blur effect
+        layer.setUI(blurUI);
+        blurUI.setLockedCursor(null);
+        //set layer blur to pane
+        setContentPane(layer);
+    }
+
+    /*
+     * Blur main frame when dialog open
+     */
+    public void doBlur(){
+        //set layer blur to pane
+        setContentPane(layer);
+        blurUI.setLocked(!blurUI.isLocked());
+    }
+
+    /*
+     * This method contant the design of left menu, this all of main menu
+     * of program
+     */
+    private void listMenuDesign() {        
+        //construct the menuList as a JList
+        lstMenu.setCellRenderer(new ImageListCellRenderer());
+        //get our icon
+        iconEmp = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "employeeIcon.png"));
+        iconBook = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "bookIcon.png"));
+        iconSub = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "subIcon.png"));
+        iconBor = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "borIcon.png"));
+        iconAna = new ImageIcon(getClass().getResource(
+                "Images" + File.separator + "anaIcon.png"));
+        //add the images to jlabels with text
+        lblEmp = new JLabel("Employees", iconEmp, JLabel.LEFT);
+        lblBook = new JLabel("Books", iconBook, JLabel.LEFT);
+        lblSub = new JLabel("Subjects", iconSub, JLabel.LEFT);
+        lblBor = new JLabel("Borrows", iconBor, JLabel.LEFT);
+        lblAna = new JLabel("Analytics", iconAna, JLabel.LEFT);
+        //create the corresponding panels
+        palEmpIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palBookIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palSubIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palBorIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        palAnaIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        //add the labels onto the panels
+        palEmpIcon.add(lblEmp);
+        palBookIcon.add(lblBook);
+        palSubIcon.add(lblSub);
+        palBorIcon.add(lblBor);
+        palAnaIcon.add(lblAna);
+        //create a panel array
+        Object[] panels = {palEmpIcon, palBookIcon, palSubIcon, palBorIcon, palAnaIcon};
+        //tell the jlist to use the panel array for its data
+        lstMenu.setListData(panels);
+
+        //Set selection listener event
+        lstMenu.addListSelectionListener(new ListSelectionListener() {
+
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                lstMenuActionPerformed(listSelectionEvent);
+            }
+        });
+    }
+
+    /*
+     *
+     */
+    private void lstMenuActionPerformed(ListSelectionEvent evt) {
+        //Get current cardlayout
+        CardLayout cardlayout=(CardLayout) palMain.getLayout();
+        //get menu index and show this panel
+        if (!evt.getValueIsAdjusting()) {
+            switch (lstMenu.getAnchorSelectionIndex()) {
+                case 0:
+                    cardlayout.show(palMain, "palEmployee");
+                    break;
+                case 1:
+                    cardlayout.show(palMain, "palBook");
+                    break;
+                case 2:
+                    cardlayout.show(palMain, "palSubject");
+                    break;
+                case 3:
+                    cardlayout.show(palMain, "palBorrow");
+                    break;
+                case 4:
+                    cardlayout.show(palMain, "palAnalytic");
+                    break;
+            }
+        }
+    }
+
+    /*
+     * About method
+     */
+    private void aboutUs() {
+        setVisible(false);//hidden current frame
+        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                setVisible(true);//show current frame
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -74,7 +187,6 @@ public class manageFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        splPanel = new javax.swing.JSplitPane();
         scrPanMenu = new javax.swing.JScrollPane();
         lstMenu = new javax.swing.JList();
         palMain = new javax.swing.JPanel();
@@ -169,18 +281,12 @@ public class manageFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(700, 280));
-        setName("mainFrm"); // NOI18N
-
-        splPanel.setDividerLocation(120);
 
         lstMenu.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstMenu.setFocusable(false);
         lstMenu.setOpaque(false);
         lstMenu.setSize(new java.awt.Dimension(200, 200));
         scrPanMenu.setViewportView(lstMenu);
-
-        splPanel.setLeftComponent(scrPanMenu);
 
         palMain.setLayout(new java.awt.CardLayout());
 
@@ -723,14 +829,6 @@ public class manageFrm extends javax.swing.JFrame {
 
         palMain.add(palAnalytic, "palAnalytic");
 
-        splPanel.setRightComponent(palMain);
-        //Add manage Panel to Main panel
-        //palMain.add(new palEmployee(), "palEmployee");
-        //palMain.add(new palBook(), "palBook");
-        //palMain.add(new palSubject(), "palSubject");
-        //palMain.add(new palBorrow(), "palBorrow");
-        //palMain.add(new palAnalytic(), "palAnalytic");
-
         mnSystem.setText("System");
 
         menuSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/settingMenu.png"))); // NOI18N
@@ -793,118 +891,30 @@ public class manageFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(scrPanMenu, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 118, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(palMain, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 569, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(splPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, scrPanMenu)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        //Add manage Panel to Main panel
+        //palMain.add(new palEmployee(), "palEmployee");
+        //palMain.add(new palBook(), "palBook");
+        //palMain.add(new palSubject(), "palSubject");
+        //palMain.add(new palBorrow(), "palBorrow");
+        //palMain.add(new palAnalytic(), "palAnalytic");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void blurLayer(){
-        //Create new instance of blurUI
-        blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
-        //Create new instance of Jcomponent
-        jc = (JComponent) getContentPane();
-        //Create new instance of layer
-        layer = new JXLayer(jc);
-        //Set layer blur effect
-        layer.setUI(blurUI);
-        blurUI.setLockedCursor(null);
-        //set layer blur to pane
-        setContentPane(layer);
-    }
-
-    /*
-     * Blur main frame when dialog open
-     */
-    public void doBlur(){
-        //set layer blur to pane
-        setContentPane(layer);
-        blurUI.setLocked(!blurUI.isLocked());
-    }
-
-    /*
-     * This method contant the design of left menu, this all of main menu
-     * of program
-     */
-    private void listMenuDesign() {        
-        //set split panel not moveable
-        splPanel.setDividerSize(0);
-        //construct the menuList as a JList
-        lstMenu.setCellRenderer(new ImageListCellRenderer());
-        //get our icon
-        iconEmp = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "employeeIcon.png"));
-        iconBook = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "bookIcon.png"));
-        iconSub = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "subIcon.png"));
-        iconBor = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "borIcon.png"));
-        iconAna = new ImageIcon(getClass().getResource(
-                "Images" + File.separator + "anaIcon.png"));
-        //add the images to jlabels with text
-        lblEmp = new JLabel("Employees", iconEmp, JLabel.LEFT);
-        lblBook = new JLabel("Books", iconBook, JLabel.LEFT);
-        lblSub = new JLabel("Subjects", iconSub, JLabel.LEFT);
-        lblBor = new JLabel("Borrows", iconBor, JLabel.LEFT);
-        lblAna = new JLabel("Analytics", iconAna, JLabel.LEFT);
-        //create the corresponding panels
-        palEmpIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palBookIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palSubIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palBorIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        palAnaIcon = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        //add the labels onto the panels
-        palEmpIcon.add(lblEmp);
-        palBookIcon.add(lblBook);
-        palSubIcon.add(lblSub);
-        palBorIcon.add(lblBor);
-        palAnaIcon.add(lblAna);
-        //create a panel array
-        Object[] panels = {palEmpIcon, palBookIcon, palSubIcon, palBorIcon, palAnaIcon};
-        //tell the jlist to use the panel array for its data
-        lstMenu.setListData(panels);
-
-        //Set selection listener event
-        lstMenu.addListSelectionListener(new ListSelectionListener() {
-
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                lstMenuActionPerformed(listSelectionEvent);
-            }
-        });
-    }
-
-    /*
-     *
-     */
-    private void lstMenuActionPerformed(ListSelectionEvent evt) {
-        //Get current cardlayout
-        CardLayout cardlayout=(CardLayout) palMain.getLayout();
-        //get menu index and show this panel
-        if (!evt.getValueIsAdjusting()) {            
-            switch (lstMenu.getAnchorSelectionIndex()) {
-                case 0:
-                    cardlayout.show(palMain, "palEmployee");
-                    break;
-                case 1:
-                    cardlayout.show(palMain, "palBook");
-                    break;
-                case 2:
-                    cardlayout.show(palMain, "palSubject");
-                    break;
-                case 3:
-                    cardlayout.show(palMain, "palBorrow");
-                    break;
-                case 4:
-                    cardlayout.show(palMain, "palAnalytic");
-                    break;
-            }
-        }
-    }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
@@ -917,10 +927,6 @@ public class manageFrm extends javax.swing.JFrame {
         aboutUs();
 }//GEN-LAST:event_mnAboutActionPerformed
 
-    private void btnAddBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBook1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_btnAddBook1ActionPerformed
-
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
         // TODO add your handling code here:
         doBlur();
@@ -928,30 +934,21 @@ public class manageFrm extends javax.swing.JFrame {
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 
-    /*
-     * About method
-     */
-    private void aboutUs() {
-        setVisible(false);//hidden current frame
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
-
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);//show current frame
-            }
-        });
-    }
+    private void btnAddBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBook1ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_btnAddBook1ActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+    * @param args the command line arguments
+    */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
-                new manageFrm().setVisible(true);
+                new mana().setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBook1;
     private javax.swing.JButton btnAddEmp;
@@ -1025,7 +1022,6 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator separator6;
     private javax.swing.JToolBar.Separator separator7;
     private javax.swing.JToolBar.Separator separator8;
-    private javax.swing.JSplitPane splPanel;
     private javax.swing.JTable tblAna;
     private javax.swing.JTable tblBook;
     private javax.swing.JTable tblBor;
@@ -1047,4 +1043,5 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JTextField txtNameSub;
     private javax.swing.JTextField txtTitlBook;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -165,7 +165,7 @@ public class loginFrm extends javax.swing.JFrame {
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 
-        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Images/aboutMenu.png"))); // NOI18N
+        mnAbout.setIcon(new ImageIcon(getClass().getResource(File.separator+"Images"+File.separator+"aboutMenu.png")));
         mnAbout.setText("About us");
         mnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
