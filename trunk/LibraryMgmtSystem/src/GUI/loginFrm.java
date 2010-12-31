@@ -133,11 +133,11 @@ public class loginFrm extends javax.swing.JFrame {
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
         lblAbout.setText("Powered by Group-01.GC0502 - Version 1.0");
 
-        lblLoginIcon.setIcon(new ImageIcon(getClass().getResource(File.separator+"GUI"+File.separator+"Images"+File.separator+"loginLbl.png")));
+        lblLoginIcon.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"loginLbl.png")));
 
         mnSystem.setText("System");
 
-        menuSetting.setIcon(new ImageIcon(getClass().getResource(File.separator+"GUI"+File.separator+"Images"+File.separator+"settingMenu.png")));
+        menuSetting.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"settingMenu.png")));
         menuSetting.setText("Setting");
         menuSetting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +148,7 @@ public class loginFrm extends javax.swing.JFrame {
         mnSystem.add(separator);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
-        mnQuit.setIcon(new ImageIcon(getClass().getResource(File.separator+"GUI"+File.separator+"Images"+File.separator+"quitIcon.png")));
+        mnQuit.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"quitIcon.png")));
         mnQuit.setText("Quit");
         mnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -12,7 +12,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuSetting">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(getClass().getResource(File.separator+&quot;GUI&quot;+File.separator+&quot;Images&quot;+File.separator+&quot;settingMenu.png&quot;))" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;Images&quot;+File.separator+&quot;settingMenu.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Setting"/>
               </Properties>
@@ -28,7 +28,7 @@
                   <KeyStroke key="Alt+Q"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(getClass().getResource(File.separator+&quot;GUI&quot;+File.separator+&quot;Images&quot;+File.separator+&quot;quitIcon.png&quot;))" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(&quot;Images&quot;+File.separator+&quot;quitIcon.png&quot;))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Quit"/>
               </Properties>
@@ -228,7 +228,7 @@
     <Component class="javax.swing.JLabel" name="lblLoginIcon">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new ImageIcon(getClass().getResource(File.separator+&quot;GUI&quot;+File.separator+&quot;Images&quot;+File.separator+&quot;loginLbl.png&quot;))" type="code"/>
+          <Connection code="new ImageIcon(getClass().getResource(&quot;Images&quot;+File.separator+&quot;loginLbl.png&quot;))" type="code"/>
         </Property>
       </Properties>
     </Component>
