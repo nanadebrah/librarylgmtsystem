@@ -62,6 +62,7 @@ public class manageFrm extends javax.swing.JFrame {
         listMenuDesign();
         //Blur layer for frame
         blurLayer();
+        
     }
 
     /** This method is called from within the constructor to
@@ -261,7 +262,6 @@ public class manageFrm extends javax.swing.JFrame {
         palEmployee.setLayout(palEmployeeLayout);
         palEmployeeLayout.setHorizontalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 569, Short.MAX_VALUE)
             .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
             .add(palEmployeeLayout.createSequentialGroup()
                 .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +276,6 @@ public class manageFrm extends javax.swing.JFrame {
         );
         palEmployeeLayout.setVerticalGroup(
             palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 417, Short.MAX_VALUE)
             .add(palEmployeeLayout.createSequentialGroup()
                 .add(palEmployeeLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -376,7 +375,6 @@ public class manageFrm extends javax.swing.JFrame {
         palBook.setLayout(palBookLayout);
         palBookLayout.setHorizontalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 569, Short.MAX_VALUE)
             .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
             .add(palBookLayout.createSequentialGroup()
                 .add(tolbarBook1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -399,7 +397,6 @@ public class manageFrm extends javax.swing.JFrame {
         );
         palBookLayout.setVerticalGroup(
             palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 417, Short.MAX_VALUE)
             .add(palBookLayout.createSequentialGroup()
                 .add(palBookLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, tolbarBook1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -630,7 +627,6 @@ public class manageFrm extends javax.swing.JFrame {
         );
         palBorrowLayout.setVerticalGroup(
             palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 417, Short.MAX_VALUE)
             .add(0, 417, Short.MAX_VALUE)
             .add(palBorrowLayout.createSequentialGroup()
                 .add(palBorrowLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -957,7 +953,6 @@ public class manageFrm extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddBook;
     private javax.swing.JButton btnAddBook1;
     private javax.swing.JButton btnAddEmp;
     private javax.swing.JButton btnAddSub;
@@ -1037,7 +1032,6 @@ public class manageFrm extends javax.swing.JFrame {
     private javax.swing.JTable tblEmp;
     private javax.swing.JTable tblSub;
     private javax.swing.JToolBar tolbarAna;
-    private javax.swing.JToolBar tolbarBook;
     private javax.swing.JToolBar tolbarBook1;
     private javax.swing.JToolBar tolbarBor;
     private javax.swing.JToolBar tolbarEmp;
