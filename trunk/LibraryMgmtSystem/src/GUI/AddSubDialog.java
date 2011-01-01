@@ -68,7 +68,7 @@ public class AddSubDialog extends javax.swing.JDialog {
 
         txtDes.setColumns(20);
         txtDes.setRows(5);
-        txtDes.setToolTipText("details of this book");
+        txtDes.setToolTipText("Details of this book");
         scrlPanl.setViewportView(txtDes);
 
         org.jdesktop.layout.GroupLayout palAddSubLayout = new org.jdesktop.layout.GroupLayout(palAddSub);

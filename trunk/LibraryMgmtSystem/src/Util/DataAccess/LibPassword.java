@@ -4,11 +4,13 @@
  */
 package Util.DataAccess;
 
+import java.security.MessageDigest;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import sun.misc.BASE64Encoder;
 
 /**
  *
@@ -88,5 +90,23 @@ public class LibPassword {
             e.printStackTrace();
         }
         return dePass;
+    }
+    /**
+     *
+     * @param rawPass is password unencrypt
+     * @return Password encrypted
+     */
+    public static String encryptMD5(String rawPass) {
+        try {
+            //Create instane of MessageDigest
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Digest pass and convert it to byte
+            byte[] b = md.digest(rawPass.getBytes());
+            //Return pass encrypted
+            return new BASE64Encoder().encode(b);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

@@ -83,7 +83,7 @@ public class AddEmpDialog extends javax.swing.JDialog {
 
         lblPermis.setText("Permission:");
 
-        txtName.setToolTipText("FullName");
+        txtName.setToolTipText("FullName or Username");
 
         btgrGender.add(rdbMale);
         rdbMale.setSelected(true);
@@ -150,13 +150,13 @@ public class AddEmpDialog extends javax.swing.JDialog {
                                     .add(lblName))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
+                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))))
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, palAddEmpLayout.createSequentialGroup()
                         .add(btnAdd)
