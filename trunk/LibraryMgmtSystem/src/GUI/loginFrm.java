@@ -10,7 +10,7 @@
  */
 package GUI;
 
-import Util.DataAccess.libConnection;
+import Util.DataAccess.LibConnection;
 import com.jhlabs.image.BlurFilter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -79,7 +79,7 @@ public class loginFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
+        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
         lblAbout.setText("Powered by Group-01.GC0502 - Vr1.0");
 
         lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"loginLbl.png")));
@@ -96,6 +96,11 @@ public class loginFrm extends javax.swing.JFrame {
 
         chBxRemember.setText("Remember me");
         chBxRemember.setToolTipText("Check it if you want remember login information for next time");
+        chBxRemember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chBxRememberActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +248,7 @@ public class loginFrm extends javax.swing.JFrame {
      */
     private void aboutUs() {
         setVisible(false);//hidden current frame
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 setVisible(true);//show current frame
@@ -252,12 +257,12 @@ public class loginFrm extends javax.swing.JFrame {
     }
 
     /*
-     * 
+     * Connect to SQL Server and check admin info
      */
     private void login() {
         try {
             //invoked static method to get connection
-            cn = libConnection.getConnection();
+            cn = LibConnection.getConnection();
             try {
                 //invoked store procedure login and get resultset
                 csDetails = cn.prepareCall("{call sp_Login(?,?)}");
@@ -282,10 +287,17 @@ public class loginFrm extends javax.swing.JFrame {
             ex.printStackTrace();
         } finally {
             //close all connect
-            libConnection.close(rsDetails);
-            libConnection.close(csDetails);
-            libConnection.close(cn);            
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
         }
+    }
+
+    /*
+     * Remember account entered
+     */
+    private void remember(){
+        
     }
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
@@ -312,6 +324,10 @@ public class loginFrm extends javax.swing.JFrame {
         //invoked login method
         login();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void chBxRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chBxRememberActionPerformed
+        //
+    }//GEN-LAST:event_chBxRememberActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

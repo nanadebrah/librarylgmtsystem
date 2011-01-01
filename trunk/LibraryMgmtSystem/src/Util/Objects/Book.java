@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Util.Objects;
 
 /**
@@ -10,6 +9,7 @@ package Util.Objects;
  * @author dinh manh hai
  */
 public class Book {
+
     private String CallNumber;
     private int subID;
     private String ISBN;
@@ -18,20 +18,21 @@ public class Book {
     private String Publisher;
     private int Department;
 
-    public Book(){
+    public Book() {
+    }
+
+    public Book(String CallNumber, int subID, String ISBN,
+            String Title, String AuthName, String Publisher, int Department) {
+        this.CallNumber = CallNumber;
+        this.subID = subID;
+        this.ISBN = ISBN;
+        this.Title = Title;
+        this.AuthName = AuthName;
+        this.Publisher = Publisher;
+        this.Department = Department;
 
     }
 
-    public Book(String CallNumber,int subID,String ISBN,String Title,String AuthName,String Publisher,int Department){
-        this.CallNumber=CallNumber;
-        this.subID=subID;
-        this.ISBN=ISBN;
-        this.Title=Title;
-        this.AuthName=AuthName;
-        this.Publisher=Publisher;
-        this.Department=Department;
-
-    }
     /**
      * @return the CallNumber
      */

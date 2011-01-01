@@ -10,7 +10,7 @@
  */
 package GUI;
 
-import Util.DataAccess.libConnection;
+import Util.DataAccess.LibConnection;
 import java.awt.Cursor;
 import java.io.File;
 import java.io.FileInputStream;
@@ -222,7 +222,7 @@ public class settingDialog extends javax.swing.JDialog {
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
         //Test connection
         String pass = new String(txtPass.getPassword());
-        boolean check = libConnection.testConnection(
+        boolean check = LibConnection.testConnection(
                 txtHost.getText(), txtPort.getText(),
                 txtDatabase.getText(), txtUser.getText(), pass);
         if (check) {
@@ -260,7 +260,7 @@ public class settingDialog extends javax.swing.JDialog {
             //Create instane of object
             pro = new Properties();
             File f = new File(System.getProperty("user.dir")
-                    + File.separator + "ConnectionConfig.properties");
+                    + File.separator + "Config.properties");
             //Check file exist, if not, create new property file to store
             if (!f.exists()) {
                 f.createNewFile();
@@ -303,7 +303,7 @@ public class settingDialog extends javax.swing.JDialog {
             //Create instane of object
             pro = new Properties();
             File f = new File(System.getProperty("user.dir")
-                    + File.separator + "ConnectionConfig.properties");
+                    + File.separator + "Config.properties");
             //Check file exist
             if (!f.exists()) {
                 System.out.println("File not found!");

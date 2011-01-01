@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Util.Objects;
 
 /**
@@ -10,6 +9,7 @@ package Util.Objects;
  * @author dinh manh hai
  */
 public class Borrow {
+
     private int BorID;
     private String CallNumber;
     private int EmpID;
@@ -19,19 +19,21 @@ public class Borrow {
     private String ChkInDate;
     private float TotalFee;
 
-    public Borrow(){
+    public Borrow() {
+    }
 
+    public Borrow(int BorID, String CallNumber, int EmpID, int IssueStatus,
+            String ChkOutDate, String DueDate, String ChkInDate, float TotalFee) {
+        this.BorID = BorID;
+        this.CallNumber = CallNumber;
+        this.ChkInDate = ChkInDate;
+        this.ChkOutDate = ChkOutDate;
+        this.DueDate = DueDate;
+        this.EmpID = EmpID;
+        this.IssueStatus = IssueStatus;
+        this.TotalFee = TotalFee;
     }
-    public Borrow(int BorID,String CallNumber,int EmpID,int IssueStatus,String ChkOutDate,String DueDate,String ChkInDate,float TotalFee){
-        this.BorID=BorID;
-        this.CallNumber=CallNumber;
-        this.ChkInDate=ChkInDate;
-        this.ChkOutDate=ChkOutDate;
-        this.DueDate=DueDate;
-        this.EmpID=EmpID;
-        this.IssueStatus=IssueStatus;
-        this.TotalFee=TotalFee;
-    }
+
     /**
      * @return the BorID
      */

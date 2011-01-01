@@ -17,10 +17,10 @@ import java.io.File;
  *
  * @author CuongNQ
  */
-public class addEmpDialog extends javax.swing.JDialog {
+public class AddEmpDialog extends javax.swing.JDialog {
 
     /** Creates new form addEmpDialog */
-    public addEmpDialog(java.awt.Frame parent, boolean modal) {
+    public AddEmpDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

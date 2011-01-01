@@ -4,7 +4,7 @@
  */
 
 /*
- * addSubDialog.java
+ * AddSubDialog.java
  *
  * Created on Dec 31, 2010, 6:54:30 PM
  */
@@ -17,10 +17,10 @@ import java.io.File;
  *
  * @author CuongNQ
  */
-public class addSubDialog extends javax.swing.JDialog {
+public class AddSubDialog extends javax.swing.JDialog {
 
-    /** Creates new form addSubDialog */
-    public addSubDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form AddSubDialog */
+    public AddSubDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -138,7 +138,7 @@ public class addSubDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                addSubDialog dialog = new addSubDialog(new javax.swing.JFrame(), true);
+                AddSubDialog dialog = new AddSubDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

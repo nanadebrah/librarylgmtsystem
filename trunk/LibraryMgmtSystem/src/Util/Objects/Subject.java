@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Util.Objects;
 
 /**
@@ -10,18 +9,18 @@ package Util.Objects;
  * @author dinh manh hai
  */
 public class Subject {
+
     private int SubID;
     private String SubName;
     private String Description;
 
-    public Subject(){
-
+    public Subject() {
     }
 
-    public Subject(int SubID,String SubName,String Description){
-        this.Description=Description;
-        this.SubID=SubID;
-        this.SubName=SubName;
+    public Subject(int SubID, String SubName, String Description) {
+        this.Description = Description;
+        this.SubID = SubID;
+        this.SubName = SubName;
     }
 
     /**

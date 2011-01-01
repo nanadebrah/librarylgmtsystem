@@ -1007,7 +1007,7 @@ public class manageFrm extends javax.swing.JFrame {
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
         //Display form to add new emplpyee
         doBlur();
-        new addEmpDialog(this, true).setVisible(true);
+        new AddEmpDialog(this, true).setVisible(true);
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 
@@ -1040,7 +1040,7 @@ public class manageFrm extends javax.swing.JFrame {
     private void btnAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookActionPerformed
         //Display form to add new emplpyee
         doBlur();
-        new addBokDialog(this, true).setVisible(true);
+        new AddBokDialog(this, true).setVisible(true);
         doBlur();
     }//GEN-LAST:event_btnAddBookActionPerformed
 
@@ -1049,7 +1049,7 @@ public class manageFrm extends javax.swing.JFrame {
      */
     private void aboutUs() {
         setVisible(false);//hidden current frame
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 setVisible(true);//show current frame

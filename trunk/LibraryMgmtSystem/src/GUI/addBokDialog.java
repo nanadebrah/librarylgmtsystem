@@ -4,7 +4,7 @@
  */
 
 /*
- * addBokDialog.java
+ * AddBokDialog.java
  *
  * Created on Dec 31, 2010, 6:10:53 PM
  */
@@ -17,10 +17,10 @@ import java.io.File;
  *
  * @author CuongNQ
  */
-public class addBokDialog extends javax.swing.JDialog {
+public class AddBokDialog extends javax.swing.JDialog {
 
-    /** Creates new form addBokDialog */
-    public addBokDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form AddBokDialog */
+    public AddBokDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

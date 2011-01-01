@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Util.Objects;
 
 /**
@@ -10,19 +9,20 @@ package Util.Objects;
  * @author dinh manh hai
  */
 public class Fee {
+
     private String Fee;
     private float BorFee;
     private float LateFee;
 
-    public Fee(){
-
+    public Fee() {
     }
 
-    public Fee(String Fee,float BorFee,float LateFee){
-        this.BorFee=BorFee;
-        this.Fee=Fee;
-        this.LateFee=LateFee;
+    public Fee(String Fee, float BorFee, float LateFee) {
+        this.BorFee = BorFee;
+        this.Fee = Fee;
+        this.LateFee = LateFee;
     }
+
     /**
      * @return the Fee
      */
