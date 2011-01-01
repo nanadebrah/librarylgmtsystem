@@ -223,7 +223,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtName">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Full Name"/>
+            <Property name="toolTipText" type="java.lang.String" value="FullName"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdbMale">
@@ -244,6 +244,9 @@
           </Properties>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="txtDOB">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="His ( her ) date of birth"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAdd">
           <Properties>

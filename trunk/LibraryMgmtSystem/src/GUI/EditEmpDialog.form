@@ -233,6 +233,12 @@
           </Properties>
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="txtDOB">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Edit  date of birth of employee"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDOBActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAdd">
           <Properties>

@@ -83,7 +83,7 @@ public class AddEmpDialog extends javax.swing.JDialog {
 
         lblPermis.setText("Permission:");
 
-        txtName.setToolTipText("Full Name");
+        txtName.setToolTipText("FullName");
 
         btgrGender.add(rdbMale);
         rdbMale.setSelected(true);
@@ -91,6 +91,8 @@ public class AddEmpDialog extends javax.swing.JDialog {
 
         btgrGender.add(rdbFemale);
         rdbFemale.setText("Female");
+
+        txtDOB.setToolTipText("His ( her ) date of birth");
 
         txtAdd.setToolTipText("His( her ) address");
 

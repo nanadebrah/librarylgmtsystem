@@ -88,6 +88,13 @@ public class EditEmpDialog extends javax.swing.JDialog {
 
         rdbFemale.setText("Female");
 
+        txtDOB.setToolTipText("Edit  date of birth of employee");
+        txtDOB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDOBActionPerformed(evt);
+            }
+        });
+
         txtAdd.setToolTipText("Edit address of Emp");
 
         txtPass.setToolTipText("Edit password of Emp");
@@ -249,6 +256,10 @@ public class EditEmpDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDOBActionPerformed
 
     /**
     * @param args the command line arguments
