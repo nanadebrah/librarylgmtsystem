@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="System setting"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -29,8 +30,11 @@
                   <Component id="lblDataIcon" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnTest" min="-2" pref="59" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                      <Component id="lblTest" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblTest" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCheck" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -54,6 +58,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnTest" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="lblTest" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCheck" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -220,6 +225,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTest">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCheck">
     </Component>
   </SubComponents>
 </Form>

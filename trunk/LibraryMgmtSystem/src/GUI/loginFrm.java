@@ -206,7 +206,10 @@ public class loginFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void blurLayer(){
+    /*
+     * Config to set Blur layer
+     */
+    private void blurLayer() {
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
@@ -220,6 +223,15 @@ public class loginFrm extends javax.swing.JFrame {
         setContentPane(layer);
     }
 
+    /*
+     * Blur main frame when dialog open
+     */
+    public void doBlur() {
+        //set layer blur to pane
+        setContentPane(layer);
+        blurUI.setLocked(!blurUI.isLocked());
+    }
+
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
         dispose();
@@ -228,11 +240,11 @@ public class loginFrm extends javax.swing.JFrame {
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
         //Blur layer
-        blurUI.setLocked(!blurUI.isLocked());
+        doBlur();
         //Display setting dialog
         new settingDialog(this, true).setVisible(true);
         //Blur layer
-        blurUI.setLocked(!blurUI.isLocked());
+        doBlur();
     }//GEN-LAST:event_menuSettingActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
@@ -249,9 +261,9 @@ public class loginFrm extends javax.swing.JFrame {
     /*
      * About method
      */
-    private void aboutUs(){
+    private void aboutUs() {
         setVisible(false);//hidden current frame
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter()  {
 
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 setVisible(true);//show current frame

@@ -51,9 +51,11 @@ public class settingDialog extends javax.swing.JDialog {
         lblDataIcon = new javax.swing.JLabel();
         btnTest = new javax.swing.JButton();
         lblTest = new javax.swing.JLabel();
+        lblCheck = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("System setting");
+        setResizable(false);
 
         conectSetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Connect Setting"));
 
@@ -154,8 +156,10 @@ public class settingDialog extends javax.swing.JDialog {
                     .add(lblDataIcon)
                     .add(layout.createSequentialGroup()
                         .add(btnTest, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(51, 51, 51)
-                        .add(lblTest)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(lblTest)
+                            .add(lblCheck))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(conectSetPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -173,7 +177,8 @@ public class settingDialog extends javax.swing.JDialog {
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(btnTest, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(lblTest))
+                            .add(lblTest)
+                            .add(lblCheck))
                         .add(17, 17, 17)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -196,6 +201,7 @@ public class settingDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lblCheck;
     private javax.swing.JLabel lblDataIcon;
     private javax.swing.JLabel lblDatabase;
     private javax.swing.JLabel lblHost;
