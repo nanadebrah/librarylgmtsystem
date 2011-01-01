@@ -12,15 +12,15 @@ import GUI.*;
 public class Main {
 
     //Defined login frame
-    loginFrm login;
+    LoginFrm login;
     //Defined splash screen
-    splashScreen ss;
+    SplashScreen ss;
 
     public Main() {
         //Create new instance of login frame
-        login = new loginFrm();
+        login = new LoginFrm();
         //Create new instance of splash screen
-        ss = new splashScreen();
+        ss = new SplashScreen();
         //Do splashscreen
         ss.loadProcess();
         //When splash screen closed display login frame

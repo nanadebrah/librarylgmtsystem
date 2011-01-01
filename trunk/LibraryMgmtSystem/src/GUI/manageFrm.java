@@ -23,7 +23,7 @@ import org.jdesktop.jxlayer.plaf.ext.LockableUI;
  *
  * @author CuongNQ
  */
-public class manageFrm extends javax.swing.JFrame {
+public class ManageFrm extends javax.swing.JFrame {
 
     //Defined Jxlayer
     private JXLayer<JComponent> layer;
@@ -35,7 +35,7 @@ public class manageFrm extends javax.swing.JFrame {
     CardLayout cardlayout;
 
     /** Creates new form manageFrm */
-    public manageFrm() {
+    public ManageFrm() {
         //All component
         initComponents();
         //Set this frame to center of monitor
@@ -1063,7 +1063,7 @@ public class manageFrm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new manageFrm().setVisible(true);
+                new ManageFrm().setVisible(true);
             }
         });
     }

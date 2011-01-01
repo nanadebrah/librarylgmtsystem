@@ -4,7 +4,7 @@
  */
 
 /*
- * settingDialog.java
+ * SettingDialog.java
  *
  * Created on Dec 27, 2010, 4:55:14 PM
  */
@@ -24,10 +24,10 @@ import javax.swing.ImageIcon;
  *
  * @author CuongNQ
  */
-public class settingDialog extends javax.swing.JDialog {
+public class SettingDialog extends javax.swing.JDialog {
 
-    /** Creates new form settingDialog */
-    public settingDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form SettingDialog */
+    public SettingDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);

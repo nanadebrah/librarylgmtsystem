@@ -17,7 +17,7 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  * @author CuongNQ
  * This class contant funcition to display splash screeen
  */
-public class splashScreen extends JWindow {
+public class SplashScreen extends JWindow {
 
     //Defined absolute content
     AbsoluteLayout absolute;
@@ -27,7 +27,7 @@ public class splashScreen extends JWindow {
     JLabel jlabel;
     JProgressBar process;
 
-    public splashScreen() {
+    public SplashScreen() {
         //Create new instance of content
         absolute = new AbsoluteLayout();
         absimage = new AbsoluteConstraints(0, 0);
@@ -66,7 +66,7 @@ public class splashScreen extends JWindow {
                     try {
                         sleep(10);//Sleep 70 minisecond
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(splashScreen.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -76,7 +76,7 @@ public class splashScreen extends JWindow {
             t.join();//Join thread
             dispose();//Disopse this splash screen when done
         } catch (InterruptedException ex) {
-            Logger.getLogger(splashScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

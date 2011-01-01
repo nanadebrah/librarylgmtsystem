@@ -4,7 +4,7 @@
  */
 
 /*
- * loginFrm.java
+ * LoginFrm.java
  *
  * Created on Jan 1, 2011, 2:29:26 PM
  */
@@ -27,7 +27,7 @@ import org.jdesktop.jxlayer.plaf.ext.LockableUI;
  *
  * @author CuongNQ
  */
-public class loginFrm extends javax.swing.JFrame {
+public class LoginFrm extends javax.swing.JFrame {
 
     //Defined Jxlayer
     private JXLayer<JComponent> layer;
@@ -40,8 +40,8 @@ public class loginFrm extends javax.swing.JFrame {
     ResultSet rsDetails = null;
     CallableStatement csDetails = null;
 
-    /** Creates new form loginFrm */
-    public loginFrm() {
+    /** Creates new form LoginFrm */
+    public LoginFrm() {
         initComponents();
         //Set this frame to center of monitor
         setLocationRelativeTo(null);
@@ -272,7 +272,7 @@ public class loginFrm extends javax.swing.JFrame {
                 //login successful, display manage frame
                 if (rsDetails.next()) {
                     dispose();
-                    new manageFrm().setVisible(true);
+                    new ManageFrm().setVisible(true);
                 } else {//display error
                     doBlur();
                     JOptionPane.showMessageDialog(this,
@@ -304,7 +304,7 @@ public class loginFrm extends javax.swing.JFrame {
         //Blur layer
         doBlur();
         //Display setting dialog
-        new settingDialog(this, true).setVisible(true);
+        new SettingDialog(this, true).setVisible(true);
         //Blur layer
         doBlur();
 }//GEN-LAST:event_menuSettingActionPerformed
