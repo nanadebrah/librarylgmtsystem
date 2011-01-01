@@ -6,12 +6,18 @@
 /*
  * loginFrm.java
  *
- * Created on Dec 27, 2010, 9:14:31 AM
+ * Created on Jan 1, 2011, 2:29:26 PM
  */
 package GUI;
 
+import Util.DataAccess.libConnection;
 import com.jhlabs.image.BlurFilter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.*;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
@@ -29,6 +35,10 @@ public class loginFrm extends javax.swing.JFrame {
     private LockableUI blurUI;
     //Defined Jcomponent
     JComponent jc;
+    //Defined connection, rs and cs to connect and query database
+    Connection cn = null;
+    ResultSet rsDetails = null;
+    CallableStatement csDetails = null;
 
     /** Creates new form loginFrm */
     public loginFrm() {
@@ -48,15 +58,15 @@ public class loginFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblAbout = new javax.swing.JLabel();
+        lblLoginIcon = new javax.swing.JLabel();
         panelLogin = new javax.swing.JPanel();
         lblUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
         chBxRemember = new javax.swing.JCheckBox();
-        lblAbout = new javax.swing.JLabel();
-        lblLoginIcon = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         mnSystem = new javax.swing.JMenu();
         menuSetting = new javax.swing.JMenuItem();
@@ -67,8 +77,12 @@ public class loginFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login - Library Management System");
         setResizable(false);
+
+        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12)); // NOI18N
+        lblAbout.setText("Powered by Group-01.GC0502 - Vr1.0");
+
+        lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"loginLbl.png")));
 
         panelLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Login Information"));
 
@@ -80,16 +94,15 @@ public class loginFrm extends javax.swing.JFrame {
 
         txtPassword.setToolTipText("Your password");
 
+        chBxRemember.setText("Remember me");
+        chBxRemember.setToolTipText("Check it if you want remember login information for next time");
+
         btnLogin.setText("Login");
-        btnLogin.setToolTipText("Login to system");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-
-        chBxRemember.setText("Remember me");
-        chBxRemember.setToolTipText("Check it if you want remember login information for next time");
 
         org.jdesktop.layout.GroupLayout panelLoginLayout = new org.jdesktop.layout.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
@@ -104,36 +117,31 @@ public class loginFrm extends javax.swing.JFrame {
                             .add(lblUserName))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(txtUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
-                    .add(chBxRemember))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(btnLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 119, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                    .add(panelLoginLayout.createSequentialGroup()
+                        .add(chBxRemember)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 76, Short.MAX_VALUE)
+                        .add(btnLogin)))
                 .addContainerGap())
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(panelLoginLayout.createSequentialGroup()
                 .add(9, 9, 9)
-                .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(btnLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(panelLoginLayout.createSequentialGroup()
-                        .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblUserName)
-                            .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblPassword)
-                            .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(chBxRemember)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(lblUserName)
+                    .add(txtUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(lblPassword)
+                    .add(txtPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(chBxRemember)
+                    .add(btnLogin))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
-        lblAbout.setText("Powered by Group-01.GC0502 - Version 1.0");
-
-        lblLoginIcon.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"loginLbl.png")));
 
         mnSystem.setText("System");
 
@@ -183,24 +191,21 @@ public class loginFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .add(lblLoginIcon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(lblAbout)
+                    .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(lblAbout)
-                .add(156, 156, 156))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(layout.createSequentialGroup()
-                        .add(11, 11, 11)
-                        .add(panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(lblLoginIcon, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, lblLoginIcon, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, panelLogin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(16, 16, 16)
                 .add(lblAbout))
         );
 
@@ -233,11 +238,55 @@ public class loginFrm extends javax.swing.JFrame {
         blurUI.setLocked(!blurUI.isLocked());
     }
 
-    private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
-        //Dispose this frame
-        dispose();
-        System.exit(0);
-    }//GEN-LAST:event_mnQuitActionPerformed
+    /*
+     * About method
+     */
+    private void aboutUs() {
+        setVisible(false);//hidden current frame
+        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                setVisible(true);//show current frame
+            }
+        });
+    }
+
+    /*
+     * 
+     */
+    private void login() {
+        try {
+            //invoked static method to get connection
+            cn = libConnection.getConnection();
+            try {
+                //invoked store procedure login and get resultset
+                csDetails = cn.prepareCall("{call sp_Login(?,?)}");
+                csDetails.setString(1, txtUsername.getText());
+                csDetails.setString(2, new String(txtPassword.getPassword()));
+                rsDetails = csDetails.executeQuery();
+                //login successful, display manage frame
+                if (rsDetails.next()) {
+                    dispose();
+                    new manageFrm().setVisible(true);
+                } else {//display error
+                    doBlur();
+                    JOptionPane.showMessageDialog(this,
+                            "Wrong username or password.",
+                            "Error", JOptionPane.WARNING_MESSAGE);
+                    doBlur();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            libConnection.close(rsDetails);
+            libConnection.close(csDetails);
+            libConnection.close(cn);            
+        }
+    }
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
         //Blur layer
@@ -246,31 +295,24 @@ public class loginFrm extends javax.swing.JFrame {
         new settingDialog(this, true).setVisible(true);
         //Blur layer
         doBlur();
-    }//GEN-LAST:event_menuSettingActionPerformed
+}//GEN-LAST:event_menuSettingActionPerformed
+
+    private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
+        //Dispose this frame
+        dispose();
+        System.exit(0);
+}//GEN-LAST:event_mnQuitActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
-        //call aboutUs method
+        //invoked aboutUs method
         aboutUs();
-    }//GEN-LAST:event_mnAboutActionPerformed
+}//GEN-LAST:event_mnAboutActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        new manageFrm().setVisible(true);
+        //invoked login method
+        login();
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /*
-     * About method
-     */
-    private void aboutUs() {
-        setVisible(false);//hidden current frame
-        new aboutWindow().addWindowListener(new java.awt.event.WindowAdapter()  {
-
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);//show current frame
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chBxRemember;

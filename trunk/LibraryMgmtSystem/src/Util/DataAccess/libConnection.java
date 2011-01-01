@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,7 +46,7 @@ public class libConnection {
                     + File.separator + "ConnectionConfig.properties");
             //Check file exist
             if (!f.exists()) {
-                JOptionPane.showMessageDialog(new JFrame(),
+                JOptionPane.showMessageDialog(null,
                         "You must config connection setting!",
                         "Error", JOptionPane.ERROR_MESSAGE);
                 return null;
@@ -61,7 +60,8 @@ public class libConnection {
             database = pro.getProperty("database");
             username = pro.getProperty("username");
             password = pro.getProperty("password");
-            url = "jdbc:sqlserver://" + host + ":" + port + ";DatabaseName=" + database;
+            url = "jdbc:sqlserver://" + host + ":"
+                    + port + ";DatabaseName=" + database;
 
             //Load driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -71,10 +71,16 @@ public class libConnection {
             return cn;
         } catch (IOException ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Connect error","Error",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Connect error","Error",
+                    JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Connect error","Error",
+                    JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
                 if (in != null) {
@@ -136,12 +142,16 @@ public class libConnection {
             if (obj instanceof PreparedStatement) {
                 ((PreparedStatement) obj).close();
             }
-
+            if(obj instanceof CallableStatement){
+                ((CallableStatement) obj).close();
+            }
             if (obj instanceof ResultSet) {
                 ((ResultSet) obj).close();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"close error","Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 }
