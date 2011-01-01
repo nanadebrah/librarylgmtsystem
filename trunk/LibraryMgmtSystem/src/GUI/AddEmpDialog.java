@@ -83,12 +83,24 @@ public class AddEmpDialog extends javax.swing.JDialog {
 
         lblPermis.setText("Permission:");
 
+        txtName.setToolTipText("Full Name");
+
         btgrGender.add(rdbMale);
         rdbMale.setSelected(true);
         rdbMale.setText("Male");
 
         btgrGender.add(rdbFemale);
         rdbFemale.setText("Female");
+
+        txtAdd.setToolTipText("His( her ) address");
+
+        txtPass.setToolTipText("His( her ) password");
+
+        txtEmail.setToolTipText("His( her ) email");
+
+        txtPhone.setToolTipText("His( her ) phone number");
+
+        txtDepart.setToolTipText("His( her ) department");
 
         cbxPermis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Librarian", "Employee" }));
         cbxPermis.addItemListener(new java.awt.event.ItemListener() {
@@ -117,7 +129,7 @@ public class AddEmpDialog extends javax.swing.JDialog {
                         .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(palAddEmpLayout.createSequentialGroup()
                                 .add(lblGender)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 83, Short.MAX_VALUE)
                                 .add(rdbMale)
                                 .add(18, 18, 18)
                                 .add(rdbFemale))

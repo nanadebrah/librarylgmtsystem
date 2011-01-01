@@ -65,6 +65,12 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblSub.setText("Subject:");
 
+        txtTitle.setToolTipText("Title of this book");
+
+        txtAuthor.setToolTipText("Author of this book");
+
+        txtPublish.setToolTipText("Publisher of this book");
+
         btnAdd.setText("Add");
 
         btnCancel.setText("Cancel");
@@ -75,6 +81,9 @@ public class AddBokDialog extends javax.swing.JDialog {
         });
 
         cbxSub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxSub.setToolTipText("Subject of this book");
+
+        txtNoCop.setToolTipText("Copies of this book");
 
         org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
         palAddBok.setLayout(palAddBokLayout);
@@ -84,33 +93,30 @@ public class AddBokDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(palAddBokLayout.createSequentialGroup()
-                        .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(palAddBokLayout.createSequentialGroup()
-                                .add(lblTitle)
-                                .add(56, 56, 56)
-                                .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
-                            .add(lblAuth)
-                            .add(palAddBokLayout.createSequentialGroup()
-                                .add(lblPublish)
-                                .add(26, 26, 26)
-                                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(org.jdesktop.layout.GroupLayout.LEADING, txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                                    .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))))
-                        .addContainerGap())
+                        .add(lblTitle)
+                        .add(56, 56, 56)
+                        .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                    .add(lblAuth)
+                    .add(palAddBokLayout.createSequentialGroup()
+                        .add(lblPublish)
+                        .add(26, 26, 26)
+                        .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                            .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)))
                     .add(palAddBokLayout.createSequentialGroup()
                         .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lblNoCop)
                             .add(lblSub))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(cbxSub, 0, 256, Short.MAX_VALUE)
+                            .add(cbxSub, 0, 266, Short.MAX_VALUE)
                             .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(palAddBokLayout.createSequentialGroup()
                                 .add(21, 21, 21)
                                 .add(btnAdd)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btnCancel)))
-                        .addContainerGap())))
+                                .add(btnCancel)))))
+                .addContainerGap())
         );
         palAddBokLayout.setVerticalGroup(
             palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

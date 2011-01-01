@@ -54,6 +54,8 @@ public class EditSubDialog extends javax.swing.JDialog {
 
         lblDes.setText("Description:");
 
+        txtName.setToolTipText("Book's name");
+
         btnSave.setText("Save");
 
         btnCancel.setText("Cancel");
@@ -65,6 +67,7 @@ public class EditSubDialog extends javax.swing.JDialog {
 
         txtDes.setColumns(20);
         txtDes.setRows(5);
+        txtDes.setToolTipText("details of this book");
         scrlPanl.setViewportView(txtDes);
 
         org.jdesktop.layout.GroupLayout palEditSubLayout = new org.jdesktop.layout.GroupLayout(palEditSub);
@@ -82,7 +85,7 @@ public class EditSubDialog extends javax.swing.JDialog {
                         .add(btnSave)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnCancel))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, scrlPanl)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, scrlPanl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                     .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -106,7 +109,6 @@ public class EditSubDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 419, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(lblImage)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -115,7 +117,6 @@ public class EditSubDialog extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 234, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()

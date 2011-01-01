@@ -81,10 +81,22 @@ public class EditEmpDialog extends javax.swing.JDialog {
 
         lblPermis.setText("Permission:");
 
+        txtName.setToolTipText("Edit name of Emp");
+
         rdbMale.setSelected(true);
         rdbMale.setText("Male");
 
         rdbFemale.setText("Female");
+
+        txtAdd.setToolTipText("Edit address of Emp");
+
+        txtPass.setToolTipText("Edit password of Emp");
+
+        txtEmail.setToolTipText("Edit email of Emp");
+
+        txtPhone.setToolTipText("Edit phone number of Emp");
+
+        txtDepart.setToolTipText("Edit department of Emp");
 
         cbxPermis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Librarian", "Employee" }));
         cbxPermis.addItemListener(new java.awt.event.ItemListener() {
@@ -113,7 +125,7 @@ public class EditEmpDialog extends javax.swing.JDialog {
                         .add(palEditEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(palEditEmpLayout.createSequentialGroup()
                                 .add(lblGender)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 97, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 112, Short.MAX_VALUE)
                                 .add(rdbMale)
                                 .add(18, 18, 18)
                                 .add(rdbFemale))

@@ -55,6 +55,8 @@ public class AddSubDialog extends javax.swing.JDialog {
 
         lblDes.setText("Description:");
 
+        txtName.setToolTipText("Book's name");
+
         btnAdd.setText("Add");
 
         btnCancel.setText("Cancel");
@@ -66,6 +68,7 @@ public class AddSubDialog extends javax.swing.JDialog {
 
         txtDes.setColumns(20);
         txtDes.setRows(5);
+        txtDes.setToolTipText("details of this book");
         scrlPanl.setViewportView(txtDes);
 
         org.jdesktop.layout.GroupLayout palAddSubLayout = new org.jdesktop.layout.GroupLayout(palAddSub);
@@ -83,7 +86,7 @@ public class AddSubDialog extends javax.swing.JDialog {
                         .add(btnAdd)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnCancel))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, scrlPanl)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, scrlPanl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                     .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                 .addContainerGap())
         );

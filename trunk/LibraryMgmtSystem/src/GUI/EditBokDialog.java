@@ -63,6 +63,12 @@ public class EditBokDialog extends javax.swing.JDialog {
 
         lblSub.setText("Subject:");
 
+        txtTitle.setToolTipText("Edit title of book");
+
+        txtAuthor.setToolTipText("Edit author of book");
+
+        txtPublish.setToolTipText("Edit publisher of book");
+
         btnSave.setText("Save");
 
         btnCancel.setText("Cancel");
@@ -73,6 +79,9 @@ public class EditBokDialog extends javax.swing.JDialog {
         });
 
         cbxSub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxSub.setToolTipText("Edit subject of book");
+
+        txtNoCop.setToolTipText("Edit copies of this book");
 
         org.jdesktop.layout.GroupLayout palEditBokLayout = new org.jdesktop.layout.GroupLayout(palEditBok);
         palEditBok.setLayout(palEditBokLayout);
@@ -90,15 +99,15 @@ public class EditBokDialog extends javax.swing.JDialog {
                         .add(lblPublish)
                         .add(26, 26, 26)
                         .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)))
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                            .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
                     .add(palEditBokLayout.createSequentialGroup()
                         .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(lblNoCop)
                             .add(lblSub))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(cbxSub, 0, 256, Short.MAX_VALUE)
+                            .add(cbxSub, 0, 269, Short.MAX_VALUE)
                             .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(palEditBokLayout.createSequentialGroup()
                                 .add(21, 21, 21)
