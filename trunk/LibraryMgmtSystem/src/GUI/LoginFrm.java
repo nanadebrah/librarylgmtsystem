@@ -11,17 +11,25 @@
 package GUI;
 
 import Util.DataAccess.LibConnection;
+import Util.DataAccess.LibPassword;
 import com.jhlabs.image.BlurFilter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Properties;
 import javax.swing.*;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
+import Util.DataAccess.LibConnection;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -277,7 +285,7 @@ public class LoginFrm extends javax.swing.JFrame {
                     doBlur();
                     JOptionPane.showMessageDialog(this,
                             "Wrong username or password.",
-                            "Error", JOptionPane.WARNING_MESSAGE);
+                            "Login Failed", JOptionPane.WARNING_MESSAGE);
                     doBlur();
                 }
             } catch (SQLException ex) {
@@ -294,11 +302,71 @@ public class LoginFrm extends javax.swing.JFrame {
     }
 
     /*
+     * Save user and pass to property file
+     */
+    private void saveConfig(String user, String pass) {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist, if not, create new property file to store
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            //load property file
+            in = new FileInputStream(f);
+            pro.load(in);
+
+            //Save all config to file
+            pro.setProperty("loginUser", user);
+            pro.setProperty("loinPass", pass);
+            pro.store(new FileOutputStream(f), null);
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /*
      * Remember account entered
      */
     private void remember(){
         
     }
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        //invoked login method
+        login();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void chBxRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chBxRememberActionPerformed
+        //Remember username & password
+    }//GEN-LAST:event_chBxRememberActionPerformed
+
+    private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
+        //invoked aboutUs method
+        aboutUs();
+    }//GEN-LAST:event_mnAboutActionPerformed
+
+    private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
+        //Dispose this frame
+        dispose();
+        System.exit(0);
+    }//GEN-LAST:event_mnQuitActionPerformed
 
     private void menuSettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingActionPerformed
         //Blur layer
@@ -307,27 +375,7 @@ public class LoginFrm extends javax.swing.JFrame {
         new SettingDialog(this, true).setVisible(true);
         //Blur layer
         doBlur();
-}//GEN-LAST:event_menuSettingActionPerformed
-
-    private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
-        //Dispose this frame
-        dispose();
-        System.exit(0);
-}//GEN-LAST:event_mnQuitActionPerformed
-
-    private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
-        //invoked aboutUs method
-        aboutUs();
-}//GEN-LAST:event_mnAboutActionPerformed
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        //invoked login method
-        login();
-    }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void chBxRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chBxRememberActionPerformed
-        //
-    }//GEN-LAST:event_chBxRememberActionPerformed
+    }//GEN-LAST:event_menuSettingActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

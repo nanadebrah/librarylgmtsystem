@@ -95,11 +95,11 @@ public class LibConnection {
 
     /**
      *
-     * @param host
-     * @param port
-     * @param database
-     * @param username
-     * @param password
+     * @param host of server
+     * @param port of server
+     * @param database of server
+     * @param username of server
+     * @param password of server
      * @return Connect successful or not
      */
     public static boolean testConnection(String host, String port,
