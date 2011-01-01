@@ -55,6 +55,8 @@ public class LoginFrm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         //Blur layer for frame
         blurLayer();
+        //Load user & pass from config file
+        loadConfig();
     }
 
     /** This method is called from within the constructor to
@@ -104,11 +106,6 @@ public class LoginFrm extends javax.swing.JFrame {
 
         chBxRemember.setText("Remember me");
         chBxRemember.setToolTipText("Check it if you want remember login information for next time");
-        chBxRemember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chBxRememberActionPerformed(evt);
-            }
-        });
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +242,7 @@ public class LoginFrm extends javax.swing.JFrame {
     /*
      * Blur main frame when dialog open
      */
-    public void doBlur() {
+    private void doBlur() {
         //set layer blur to pane
         setContentPane(layer);
         blurUI.setLocked(!blurUI.isLocked());
@@ -323,7 +320,8 @@ public class LoginFrm extends javax.swing.JFrame {
 
             //Save all config to file
             pro.setProperty("loginUser", user);
-            pro.setProperty("loinPass", pass);
+            //Encrypt pass and save to file config
+            pro.setProperty("loginPass", LibPassword.encryptPass(pass));
             pro.store(new FileOutputStream(f), null);
 
         } catch (FileNotFoundException ex) {
@@ -342,20 +340,71 @@ public class LoginFrm extends javax.swing.JFrame {
     }
 
     /*
+     * Load config file
+     */
+    private boolean loadConfig() {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist
+            if (!f.exists()) {
+                System.out.println("File not found!");
+                return false;
+            } else {
+                in = new FileInputStream(f);
+            }
+            //load property file
+            pro.load(in);
+
+            //set all field
+            txtUsername.setText(pro.getProperty("loginUser"));
+            //get pass from config and depass
+            txtPassword.setText(
+                    LibPassword.decryptPass(pro.getProperty("loginPass")));
+            //Check remmeber check
+            if(txtUsername.getText().length()>0
+                    &&txtPassword.getPassword().length>0){
+                    chBxRemember.setSelected(true);
+            }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return true;
+    }
+    /*
      * Remember account entered
      */
-    private void remember(){
-        
+
+    private void doRemember() {
+        if (chBxRemember.isSelected()) {
+            saveConfig(txtUsername.getText(),
+                    new String(txtPassword.getPassword()));
+        } else {
+            saveConfig("", "");
+        }
     }
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        //invoked doRemember method to remember password
+        doRemember();
         //invoked login method
         login();
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void chBxRememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chBxRememberActionPerformed
-        //Remember username & password
-    }//GEN-LAST:event_chBxRememberActionPerformed
 
     private void mnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAboutActionPerformed
         //invoked aboutUs method
@@ -376,7 +425,6 @@ public class LoginFrm extends javax.swing.JFrame {
         //Blur layer
         doBlur();
     }//GEN-LAST:event_menuSettingActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chBxRemember;

@@ -984,7 +984,7 @@ public class ManageFrm extends javax.swing.JFrame {
     /*
      * Blur main frame when dialog open
      */
-    public void doBlur(){
+    private void doBlur(){
         //set layer blur to pane
         setContentPane(layer);
         blurUI.setLocked(!blurUI.isLocked());
