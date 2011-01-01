@@ -14,6 +14,15 @@ public class Fee {
     private float BorFee;
     private float LateFee;
 
+    public Fee(){
+
+    }
+
+    public Fee(String Fee,float BorFee,float LateFee){
+        this.BorFee=BorFee;
+        this.Fee=Fee;
+        this.LateFee=LateFee;
+    }
     /**
      * @return the Fee
      */

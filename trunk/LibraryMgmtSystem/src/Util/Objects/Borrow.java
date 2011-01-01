@@ -16,9 +16,22 @@ public class Borrow {
     private int IssueStatus;
     private String ChkOutDate;
     private String DueDate;
-    private String ChklnDate;
+    private String ChkInDate;
     private float TotalFee;
 
+    public Borrow(){
+
+    }
+    public Borrow(int BorID,String CallNumber,int EmpID,int IssueStatus,String ChkOutDate,String DueDate,String ChkInDate,float TotalFee){
+        this.BorID=BorID;
+        this.CallNumber=CallNumber;
+        this.ChkInDate=ChkInDate;
+        this.ChkOutDate=ChkOutDate;
+        this.DueDate=DueDate;
+        this.EmpID=EmpID;
+        this.IssueStatus=IssueStatus;
+        this.TotalFee=TotalFee;
+    }
     /**
      * @return the BorID
      */
@@ -106,15 +119,15 @@ public class Borrow {
     /**
      * @return the ChklnDate
      */
-    public String getChklnDate() {
-        return ChklnDate;
+    public String getChkInDate() {
+        return ChkInDate;
     }
 
     /**
      * @param ChklnDate the ChklnDate to set
      */
-    public void setChklnDate(String ChklnDate) {
-        this.ChklnDate = ChklnDate;
+    public void setChkInDate(String ChkInDate) {
+        this.ChkInDate = ChkInDate;
     }
 
     /**

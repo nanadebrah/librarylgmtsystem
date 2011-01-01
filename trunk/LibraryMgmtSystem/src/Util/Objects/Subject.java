@@ -14,6 +14,16 @@ public class Subject {
     private String SubName;
     private String Description;
 
+    public Subject(){
+
+    }
+
+    public Subject(int SubID,String SubName,String Description){
+        this.Description=Description;
+        this.SubID=SubID;
+        this.SubName=SubName;
+    }
+
     /**
      * @return the SubID
      */
