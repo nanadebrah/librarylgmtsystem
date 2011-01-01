@@ -137,6 +137,7 @@ public class loginFrm extends javax.swing.JFrame {
 
         mnSystem.setText("System");
 
+        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         menuSetting.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"settingMenu.png")));
         menuSetting.setText("Setting");
         menuSetting.addActionListener(new java.awt.event.ActionListener() {

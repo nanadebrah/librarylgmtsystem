@@ -143,6 +143,16 @@ AS
 				Phone=@Phone,Department=@Department
 		WHERE EmpID=@EmpID
 	END
+--Create Procedure Login
+CREATE PROC sp_Login(
+	@Name VARCHAR(45),
+	@Password VARCHAR(32))
+AS
+	BEGIN
+		SELECT EmpID FROM Employee
+		WHERE [Name]=@Name AND Password=@Password
+			AND Permission=1
+	END
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 'root','Ha Noi','0986948677','GC0502'
@@ -150,5 +160,7 @@ sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 select * from Employee
 
 sp_GetEmp 4
+
+sp_Login 'root','root'
 
 DELETE FROM Employee

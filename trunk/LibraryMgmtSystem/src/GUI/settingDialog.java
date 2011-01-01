@@ -10,7 +10,15 @@
  */
 package GUI;
 
+import Util.DataAccess.libConnection;
+import java.awt.Cursor;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,6 +31,11 @@ public class settingDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        //invoked set default all field
+        if (!loadConfig()) {
+            setField();
+        }
+;
     }
 
     /** This method is called from within the constructor to
@@ -40,14 +53,14 @@ public class settingDialog extends javax.swing.JDialog {
         lblDatabase = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        txtHost = new javax.swing.JTextField();
+        txtPort = new javax.swing.JTextField();
+        txtDatabase = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         btnDefault = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
+        txtPass = new javax.swing.JPasswordField();
         lblDataIcon = new javax.swing.JLabel();
         btnTest = new javax.swing.JButton();
         lblTest = new javax.swing.JLabel();
@@ -70,8 +83,18 @@ public class settingDialog extends javax.swing.JDialog {
         lblPassword.setText("Password:");
 
         btnDefault.setText("Default");
+        btnDefault.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDefaultActionPerformed(evt);
+            }
+        });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnClose.setText("Close");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -101,15 +124,15 @@ public class settingDialog extends javax.swing.JDialog {
                             .add(lblPassword))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
+                            .add(txtUser, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .add(txtDatabase, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)))
                     .add(conectSetPanelLayout.createSequentialGroup()
                         .add(lblPort)
                         .add(43, 43, 43)
                         .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
+                            .add(txtHost, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                            .add(txtPort, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         conectSetPanelLayout.setVerticalGroup(
@@ -117,23 +140,23 @@ public class settingDialog extends javax.swing.JDialog {
             .add(conectSetPanelLayout.createSequentialGroup()
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblHost)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtHost, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblPort)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblDatabase)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtDatabase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblUsername)
-                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtUser, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblPassword)
-                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtPass, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnSave)
@@ -145,6 +168,11 @@ public class settingDialog extends javax.swing.JDialog {
         lblDataIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"connectLbl.png")));
 
         btnTest.setText("Test");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,21 +214,153 @@ public class settingDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+     *Check connection using JDBC 4
+     */
+    private void checkConnection() {
+        //Change cursor
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        //Test connection
+        String pass = new String(txtPass.getPassword());
+        boolean check = libConnection.testConnection(
+                txtHost.getText(), txtPort.getText(),
+                txtDatabase.getText(), txtUser.getText(), pass);
+        if (check) {
+            lblCheck.setText("OK!");
+            lblDataIcon.setIcon(new ImageIcon(getClass().getResource(
+                    "Images" + File.separator + "connectLbl.png")));
+        } else {
+            lblCheck.setText("Error!!!!");
+            lblDataIcon.setIcon(new ImageIcon(getClass().getResource(
+                    "Images" + File.separator + "connectLblProb.png")));
+        }
+        //Change cursor
+        setCursor(null);
+    }
+
+    /*
+     * Default all field text
+     */
+    private void setField() {
+        txtHost.setText("10.211.55.3");
+        txtPort.setText("1433");
+        txtDatabase.setText("Library");
+        txtUser.setText("sa");
+        txtPass.setText("9988776655");
+    }
+
+    /*
+     * Save config to property file
+     */
+    private void saveConfig() {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "ConnectionConfig.properties");
+            //Check file exist, if not, create new property file to store
+            if (!f.exists()) {
+                f.createNewFile();
+            }                
+            //load property file
+            in = new FileInputStream(f);
+            pro.load(in);
+
+            //Save all config to file
+            pro.setProperty("host", txtHost.getText());
+            pro.setProperty("port", txtPort.getText());
+            pro.setProperty("database", txtDatabase.getText());
+            pro.setProperty("username", txtUser.getText());
+            pro.setProperty("password", new String(txtPass.getPassword()));
+            pro.store(new FileOutputStream(f), null);
+            lblCheck.setText("Saved!");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /*
+     * Load config file
+     */
+    private boolean loadConfig() {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "ConnectionConfig.properties");
+            //Check file exist
+            if (!f.exists()) {
+                System.out.println("File not found!");
+                return false;
+            } else {
+                in = new FileInputStream(f);
+            }
+            //load property file
+            pro.load(in);
+
+            //set all field
+            txtHost.setText(pro.getProperty("host"));
+            txtPort.setText(pro.getProperty("port"));
+            txtDatabase.setText(pro.getProperty("database"));
+            txtUser.setText(pro.getProperty("username"));
+            txtPass.setText(pro.getProperty("password"));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return true;
+    }
+
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         //Dispose this dialog
         dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+        //invoked medthod check connection
+        checkConnection();
+    }//GEN-LAST:event_btnTestActionPerformed
+
+    private void btnDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefaultActionPerformed
+        //invoked method set default all field
+        setField();
+    }//GEN-LAST:event_btnDefaultActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        //invoked method save config
+        saveConfig();
+    }//GEN-LAST:event_btnSaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDefault;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTest;
     private javax.swing.JPanel conectSetPanel;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lblCheck;
     private javax.swing.JLabel lblDataIcon;
     private javax.swing.JLabel lblDatabase;
@@ -209,5 +369,10 @@ public class settingDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblPort;
     private javax.swing.JLabel lblTest;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JTextField txtDatabase;
+    private javax.swing.JTextField txtHost;
+    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JTextField txtPort;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
