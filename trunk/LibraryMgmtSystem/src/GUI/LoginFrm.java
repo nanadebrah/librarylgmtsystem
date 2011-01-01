@@ -272,9 +272,11 @@ public class LoginFrm extends javax.swing.JFrame {
                 //invoked store procedure login and get resultset
                 csDetails = cn.prepareCall("{call sp_Login(?,?)}");
                 csDetails.setString(1, txtUsername.getText());
-                csDetails.setString(2, new String(txtPassword.getPassword()));
+                //Encrypt to MD5 and set
+                csDetails.setString(2, LibPassword.encryptMD5(
+                        new String(txtPassword.getPassword())));
                 rsDetails = csDetails.executeQuery();
-                //login successful, display manage frame
+                //login successful, display manage frame and dispose this frame
                 if (rsDetails.next()) {
                     dispose();
                     new ManageFrm().setVisible(true);
@@ -386,10 +388,10 @@ public class LoginFrm extends javax.swing.JFrame {
         }
         return true;
     }
+
     /*
      * Remember account entered
      */
-
     private void doRemember() {
         if (chBxRemember.isSelected()) {
             saveConfig(txtUsername.getText(),
