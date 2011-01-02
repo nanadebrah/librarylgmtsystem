@@ -166,29 +166,32 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_GetBook
 (
-@CallNumber VARCHAR(9),
-@ISBN VARCHAR(8),
-@Title VARCHAR(100),
-@AuthName VARCHAR(30)
+	@CallNumber VARCHAR(9),
+	@ISBN VARCHAR(8),
+	@Title VARCHAR(100),
+	@AuthName VARCHAR(30)
 )
 AS
 	SELECT * FROM Book 
-	WHERE CallNumber = @CallNumber AND @ISBN = ISBN AND @Title=Title AND @AuthName = AuthName
+	WHERE	CallNumber LIKE @CallNumber AND 
+			ISBN LIKE @ISBN AND 
+			Title LIKE @Title AND
+			AuthName LIKE @AuthName
 
 --procedure to insert a book 
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_addBook' AND type = 'P')
-   DROP PROCEDURE sp_addBook
+         WHERE name = 'sp_AddBook' AND type = 'P')
+   DROP PROCEDURE sp_AddBook
 GO
-CREATE PROC sp_addBook
+CREATE PROC sp_AddBook
 (
-@CallNumber VARCHAR(9),
-@ISBN VARCHAR(8),
-@SubID int,
-@Title VARCHAR(100),
-@Author VARCHAR(30),
-@Publisher VARCHAR(45),
-@NoOfCopy tinyint
+	@CallNumber VARCHAR(9),
+	@ISBN VARCHAR(8),
+	@SubID int,
+	@Title VARCHAR(100),
+	@Author VARCHAR(30),
+	@Publisher VARCHAR(45),
+	@NoOfCopy tinyint
 )
 AS
 	INSERT INTO Book(
@@ -197,25 +200,96 @@ AS
 		VALUES(@CallNumber,@ISBN,@SubID,@Title,
 		@Author,@Publisher,@NoOfCopy) 
 	
+--Procedure to edit a book
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_EditBook' AND type = 'P')
+   DROP PROCEDURE sp_EditBook
+GO
+CREATE PROC sp_EditBook
+(
+	@CallNumber VARCHAR(9),
+	@ISBN VARCHAR(8),
+	@SubID int,
+	@Title VARCHAR(100),
+	@Author VARCHAR(30),
+	@Publisher VARCHAR(45),
+	@NoOfCopy tinyint
+)
+AS
+	UPDATE Employee SET
+		CallNumber=@CallNumber ,ISBN=@ISBN ,SubID=@SubID,
+		Title=@Title ,Author=@Author ,Publisher=@Publisher,
+		NoOfCopy=@NoOfCopy
+		WHERE CallNumber=@CallNumber
 
 --Create procedure to get Subject 
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_Sub' AND type = 'P')
-   DROP PROCEDURE sp_Sub
+         WHERE name = 'sp_GetSub' AND type = 'P')
+   DROP PROCEDURE sp_GetSub
 GO
-CREATE PROC sp_Sub
-(
-@SubID INT,
-@SubName VARCHAR(45)
-)
+CREATE PROC sp_GetSub
+	@SubID INT,
+	@SubName VARCHAR(45)
 AS
 	SELECT * FROM Subject 
-	WHERE  SubID = @SubID AND SubName = @SubName 
+	WHERE  SubID LIKE @SubID AND 
+			SubName LIKE @SubName 
 
---Create procedure to 
+--Create procedure to insert Subject
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_AddSub' AND type = 'P')
+   DROP PROCEDURE sp_AddSub
+GO
+CREATE PROC sp_AddSub
+(
+	@SubID int,
+	@SubName VARCHAR(45),
+	@Description VARCHAR(200)
+)
+AS
+	INSERT INTO Subject(
+		SubID,SubName,Description)
+		VALUES(@SubID,@SubName,@Description)
+--procedure to edit Subject
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_EditSub' AND type = 'P')
+   DROP PROCEDURE sp_EditSub
+GO
+CREATE PROC sp_EditSub
+(
+	@SubID int,
+	@SubName VARCHAR(45),
+	@Description VARCHAR(200)
+)
+AS
+	UPDATE Subject SET
+		SubID=@SubID ,SubName=@SubName ,Description=@Description,
+		WHERE SubID=@SubID
 
+--procedure to get a Borrow
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_AddBorrow' AND type = 'P')
+   DROP PROCEDURE sp_AddBorrow
+GO
+CREATE PROC sp_AddBorrow
+(
+	@BorID int,
+	@CallNumber VARCHAR(45),
+	@EmpID VARCHAR(200),
+	@IssueStatus bit,
+	@ChkOutDate DATETIME,
+	@DueDate DATETIME,
+	@ChkInDate DATETIME,
+	@TotalFee float
+)
+AS
+	INSERT INTO Borrow(
+		BorID,CallNumber,EmpID,IssueStatus,
+		ChkOutDate,DueDate,ChkInDate,TotalFee)
+		VALUES(@BorID,@CallNumber,@EmpID,@IssueStatus,
+				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
 -----------------------------
-sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
+sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 'root','Ha Noi','0986948677','GC0502'
 
 select * from Employee
@@ -225,3 +299,4 @@ sp_GetEmp 4
 sp_Login 'root','root'
 
 DELETE FROM Employee
+
