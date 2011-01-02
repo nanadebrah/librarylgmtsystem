@@ -26,7 +26,7 @@ public class LibConnection {
      * @exception IOException is made if acessing to stream fails.
      * @exception ClassNotFoundException
      */
-    public static Connection getConnection(){
+    public static Connection getConnection() {
         //Defined Connection and field to connect
         Connection cn = null;
         FileInputStream in = null;
@@ -70,15 +70,15 @@ public class LibConnection {
             return cn;
         } catch (IOException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Connect error","Error",
+            JOptionPane.showMessageDialog(null, "Connect error", "Error",
                     JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Connect error","Error",
+            JOptionPane.showMessageDialog(null, "Connect error", "Error",
                     JOptionPane.ERROR_MESSAGE);
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Connect error","Error",
+            JOptionPane.showMessageDialog(null, "Connect error", "Error",
                     JOptionPane.ERROR_MESSAGE);
         } finally {
             try {
@@ -141,7 +141,7 @@ public class LibConnection {
             if (obj instanceof PreparedStatement) {
                 ((PreparedStatement) obj).close();
             }
-            if(obj instanceof CallableStatement){
+            if (obj instanceof CallableStatement) {
                 ((CallableStatement) obj).close();
             }
             if (obj instanceof ResultSet) {
@@ -149,7 +149,7 @@ public class LibConnection {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"close error","Error",
+            JOptionPane.showMessageDialog(null, "close error", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

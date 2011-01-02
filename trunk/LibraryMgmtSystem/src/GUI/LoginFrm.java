@@ -10,14 +10,12 @@
  */
 package GUI;
 
-import Util.DataAccess.LibConnection;
 import Util.LibPassword;
 import com.jhlabs.image.BlurFilter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import javax.swing.*;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
@@ -60,7 +58,7 @@ public class LoginFrm extends javax.swing.JFrame {
         //Load user & pass from config file
         loadConfig();
         //Set manage from param
-        this.man=man;
+        this.man = man;
     }
 
     /** This method is called from within the constructor to
@@ -127,8 +125,8 @@ public class LoginFrm extends javax.swing.JFrame {
                 .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(panelLoginLayout.createSequentialGroup()
                         .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblPassword)
-                            .add(lblUserName))
+                            .add(lblUserName)
+                            .add(lblPassword))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(txtUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
@@ -369,9 +367,9 @@ public class LoginFrm extends javax.swing.JFrame {
             txtPassword.setText(
                     LibPassword.decryptPass(pro.getProperty("loginPass")));
             //Check remmeber check
-            if(txtUsername.getText().length()>0
-                    &&txtPassword.getPassword().length>0){
-                    chBxRemember.setSelected(true);
+            if (txtUsername.getText().length() > 0
+                    && txtPassword.getPassword().length > 0) {
+                chBxRemember.setSelected(true);
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();

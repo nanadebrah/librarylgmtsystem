@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
@@ -433,20 +433,23 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrPanEmp" alignment="0" pref="589" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="tolbarEmp" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNameEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblIDEmp" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNameEmp" alignment="0" pref="283" max="32767" attributes="0"/>
-                          <Component id="txtIdEmp" alignment="0" pref="283" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblIDEmp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="32" pref="32" max="32" attributes="0"/>
+                              <Component id="txtIdEmp" pref="283" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNameEmp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
+                              <Component id="txtNameEmp" pref="283" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <Component id="scrPanEmp" alignment="0" pref="589" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -628,23 +631,23 @@
                       <Component id="tolbarBook" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblISBNBook" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtISBNBook" alignment="0" max="32767" attributes="1"/>
-                          <Component id="txtCallNoBook" alignment="0" pref="88" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txtISBNBook" alignment="2" pref="88" max="32767" attributes="1"/>
+                          <Component id="txtCallNoBook" alignment="2" pref="88" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblAthBook" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTitlBook" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAthBook" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtTitlBook" alignment="1" pref="153" max="32767" attributes="1"/>
-                          <Component id="txtAthBook" alignment="1" pref="153" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txtAthBook" alignment="2" pref="153" max="32767" attributes="1"/>
+                          <Component id="txtTitlBook" alignment="2" pref="153" max="32767" attributes="1"/>
                       </Group>
                   </Group>
               </Group>
@@ -827,13 +830,13 @@
                       <Component id="tolbarSub" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNameSub" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblIDSub" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNameSub" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNameSub" alignment="0" pref="264" max="32767" attributes="0"/>
-                          <Component id="txtIdSub" alignment="0" pref="264" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txtIdSub" alignment="2" pref="264" max="32767" attributes="0"/>
+                          <Component id="txtNameSub" alignment="2" pref="264" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -999,9 +1002,9 @@
                           <Component id="lblCallNoBor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtEmNamBor" alignment="0" pref="131" max="32767" attributes="0"/>
-                          <Component id="txtCallNoBor" alignment="0" pref="131" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txtEmNamBor" alignment="2" pref="131" max="32767" attributes="0"/>
+                          <Component id="txtCallNoBor" alignment="2" pref="131" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
