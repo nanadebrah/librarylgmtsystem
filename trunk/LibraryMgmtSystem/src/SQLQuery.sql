@@ -104,6 +104,19 @@ AS
 		VALUES(@Name,@DOB,@Gender,@Email,@Password,
 		@Address,@Phone,1,@Department)
 	END
+--get an employee
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetAnEmp' AND type = 'P')
+   DROP PROCEDURE sp_GetAnEmp
+GO
+CREATE PROC sp_GetAnEmp
+	@EmpID INT,
+	@Name VARCHAR(45)
+AS
+	SELECT * FROM Employee
+	WHERE  EmpID LIKE @EmpID AND 
+			[Name] LIKE @Name
+
 --Create Procedure get all field of a Employee
 CREATE PROC sp_GetEmp(@EmpID INT)
 AS
@@ -115,7 +128,7 @@ AS
 CREATE PROC sp_GetAllEmp
 AS
 	BEGIN
-		SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
+		SELECT * FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
@@ -155,6 +168,17 @@ AS
 				Phone=@Phone,Department=@Department
 		WHERE EmpID=@EmpID
 	END
+-- delete an Employee 
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_DelEmp' AND type = 'P')
+   DROP PROCEDURE sp_DelEmp
+GO
+CREATE PROC sp_DelEmp
+	@EmpID INT,
+AS
+	SELECT * FROM Subject 
+	WHERE  SubID LIKE @SubID AND 
+			SubName LIKE @SubName 
 --Create Procedure Login
 CREATE PROC sp_Login(
 	@Name VARCHAR(45),
@@ -179,10 +203,10 @@ CREATE PROC sp_GetBook
 )
 AS
 	SELECT * FROM Book 
-	WHERE	CallNumber LIKE @CallNumber AND 
-			ISBN LIKE @ISBN AND 
-			Title LIKE @Title AND
-			AuthName LIKE @AuthName
+	WHERE	CallNumber LIKE @CallNumber	 
+			AND ISBN LIKE @ISBN  
+			AND Title LIKE @Title 
+			AND AuthName LIKE @AuthName
 
 --procedure to insert a book 
 IF EXISTS (SELECT name FROM sysobjects 
@@ -217,14 +241,14 @@ CREATE PROC sp_EditBook
 	@ISBN VARCHAR(8),
 	@SubID int,
 	@Title VARCHAR(100),
-	@Author VARCHAR(30),
+	@AuthName VARCHAR(30),
 	@Publisher VARCHAR(45),
 	@NoOfCopy tinyint
 )
 AS
-	UPDATE Employee SET
+	UPDATE Book SET
 		CallNumber=@CallNumber ,ISBN=@ISBN ,SubID=@SubID,
-		Title=@Title ,Author=@Author ,Publisher=@Publisher,
+		Title=@Title ,AuthName=@AuthName ,Publisher=@Publisher,
 		NoOfCopy=@NoOfCopy
 		WHERE CallNumber=@CallNumber
 
@@ -248,14 +272,14 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_AddSub
 (
-	@SubID int,
+	--@SubID int,
 	@SubName VARCHAR(45),
 	@Description VARCHAR(200)
 )
 AS
 	INSERT INTO Subject(
-		SubID,SubName,Description)
-		VALUES(@SubID,@SubName,@Description)
+		SubName,Description)
+		VALUES(@SubName,@Description)
 --procedure to edit Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_EditSub' AND type = 'P')
@@ -269,10 +293,10 @@ CREATE PROC sp_EditSub
 )
 AS
 	UPDATE Subject SET
-		SubID=@SubID ,SubName=@SubName ,Description=@Description,
+		SubID=@SubID ,SubName=@SubName ,Description=@Description
 		WHERE SubID=@SubID
 
---procedure to get a Borrow
+--procedure to add a Borrow
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddBorrow' AND type = 'P')
    DROP PROCEDURE sp_AddBorrow
@@ -294,9 +318,22 @@ AS
 		ChkOutDate,DueDate,ChkInDate,TotalFee)
 		VALUES(@BorID,@CallNumber,@EmpID,@IssueStatus,
 				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
+
+--get a borrow
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetBorrow' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrow
+GO
+CREATE PROC sp_GetBorrow
+	@BorID INT,
+	@EmpID INT
+AS
+	SELECT * FROM  Borrow
+	WHERE  BorID LIKE @BorID AND 
+			EmpID LIKE @EmpID 
 -----------------------------
-sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
-'63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
+sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
+'root','Ha Noi','0986948677','GC0502'
 
 select * from Employee
 
@@ -305,4 +342,33 @@ sp_GetEmp 4
 sp_Login 'root','root'
 
 DELETE FROM Employee
+--Add some sample entity
+EXEC sp_AddSub 'Kid','Books for children'
+EXEC sp_AddSub 'Teen','Books for teenage'
+EXEC sp_AddSub 'Horror','Horror books , horror fiction'
+EXEC sp_AddSub 'Romance','Romance books'
+EXEC sp_AddSub 'Travel','Travel books, travel guides,travel writting'
+
+
+EXEC sp_AddBook 'El-Ch-001','993-0001',1,'Elf on the Shelf','Chanda A. Bell',
+'CCA and B, LLC',10
+EXEC sp_AddBook 'Th-Ri-002','927-0002',1,'The Lost Hero','Rick Riordan',
+'Hyperion',17
+EXEC sp_AddBook 'Aw-Kr-003','978-0003',2,'Awakened','Kristin Cast',
+'St. Martins Press',01
+EXEC sp_AddBook 'An-Da-004','326-0004',2,'Anatomy of a Boyfriend','Daria Snadowsky',
+'Random House Childrens Books',22
+EXEC sp_AddBook 'Of-Ba-005','299-0005',1,'Of Thee I Sing: A Letter to My Daughters','Barack Obama',
+'Random House Childrens Books',29
+
+EXEC sp_AddBorrow 
+
+select * from Book
+
+select * from Subject
+
+select * from Borrow
+
+--Select DATE_FORMAT(NOW(),'%a %m/%d/%Y') as [date] 
+
 
