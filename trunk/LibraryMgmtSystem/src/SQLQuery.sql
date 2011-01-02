@@ -152,8 +152,8 @@ AS
 CREATE PROC sp_GetAllEmp
 AS
 	BEGIN
-            SELECT EmpID,[Name],Gender,Email,Department,Permission
-            FROM Employee
+		SELECT EmpID,[Name],Gender,Email,Department,Permission
+	FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
@@ -429,7 +429,7 @@ EXEC sp_AddSub 'Romance','Romance books'
 EXEC sp_AddSub 'Travel','Travel books, travel guides,travel writting'
 
 
-EXEC sp_AddBook 'El-Ch-001','993-0001',1,'Elf on the Shelf','Chanda A. Bell',
+EXEC sp_AddBook 'EL-CH-001','993-0001',1,'Elf on the Shelf','Chanda A. Bell',
 'CCA and B, LLC',10
 EXEC sp_AddBook 'Th-Ri-002','927-0002',1,'The Lost Hero','Rick Riordan',
 'Hyperion',17
