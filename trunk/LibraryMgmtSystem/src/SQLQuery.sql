@@ -19,6 +19,7 @@ CREATE TABLE Employee(
 	Department VARCHAR(45) NOT NULL,
 	CONSTRAINT pk_EmpID PRIMARY KEY (EmpID)
 )
+
 go
 --Create Subject table
 CREATE TABLE Subject(
@@ -58,6 +59,8 @@ CREATE TABLE Borrow(
 	CONSTRAINT fk_CallNo FOREIGN KEY (CallNumber)
 		REFERENCES Book(CallNumber)
 )
+go
+ALTER TABLE Borrow ALTER COLUMN ChkInDate DATETIME NULL
 go
 --Create Fee table
 CREATE TABLE Fee(
@@ -113,7 +116,7 @@ CREATE PROC sp_GetAnEmp
 	@EmpID INT,
 	@Name VARCHAR(45)
 AS
-	SELECT * FROM Employee
+	SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
 	WHERE  EmpID LIKE @EmpID AND 
 			[Name] LIKE @Name
 
@@ -128,7 +131,7 @@ AS
 CREATE PROC sp_GetAllEmp
 AS
 	BEGIN
-		SELECT * FROM Employee
+		SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
@@ -303,7 +306,6 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_AddBorrow
 (
-	@BorID int,
 	@CallNumber VARCHAR(45),
 	@EmpID VARCHAR(200),
 	@IssueStatus bit,
@@ -314,9 +316,9 @@ CREATE PROC sp_AddBorrow
 )
 AS
 	INSERT INTO Borrow(
-		BorID,CallNumber,EmpID,IssueStatus,
+		CallNumber,EmpID,IssueStatus,
 		ChkOutDate,DueDate,ChkInDate,TotalFee)
-		VALUES(@BorID,@CallNumber,@EmpID,@IssueStatus,
+		VALUES(@CallNumber,@EmpID,@IssueStatus,
 				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
 
 --get a borrow
@@ -361,14 +363,14 @@ EXEC sp_AddBook 'An-Da-004','326-0004',2,'Anatomy of a Boyfriend','Daria Snadows
 EXEC sp_AddBook 'Of-Ba-005','299-0005',1,'Of Thee I Sing: A Letter to My Daughters','Barack Obama',
 'Random House Childrens Books',29
 
-EXEC sp_AddBorrow 
+--EXEC sp_AddBorrow 'El-Ch-001',3,1,'1/1/2011'
+
+select * from Employee
 
 select * from Book
 
 select * from Subject
 
 select * from Borrow
-
---Select DATE_FORMAT(NOW(),'%a %m/%d/%Y') as [date] 
 
 
