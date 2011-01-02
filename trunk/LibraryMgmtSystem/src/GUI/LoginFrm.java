@@ -11,7 +11,7 @@
 package GUI;
 
 import Util.DataAccess.LibConnection;
-import Util.DataAccess.LibPassword;
+import Util.LibPassword;
 import com.jhlabs.image.BlurFilter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -290,7 +290,7 @@ public class LoginFrm extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             //close all connect

@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Util.DataAccess;
+package Util;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
-import sun.misc.BASE64Encoder;
 
 /**
  *
@@ -100,10 +100,19 @@ public class LibPassword {
         try {
             //Create instane of MessageDigest
             MessageDigest md = MessageDigest.getInstance("MD5");
-            //Digest pass and convert it to byte
-            byte[] b = md.digest(rawPass.getBytes());
-            //Return pass encrypted
-            return new BASE64Encoder().encode(b);
+            //Resets the digest for further use.
+            md.reset();
+            //Update the digest using the specified ByteBuffer.
+            md.update(rawPass.getBytes());
+            //The array of bytes for the resulting hash value.
+            byte[] digest = md.digest();
+            BigInteger bigInt = new BigInteger(1, digest);
+            String hashtext = bigInt.toString(16);
+            // Now we need to zero pad it if you actually want the full 32 chars.
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
         } catch (Exception ex) {
             ex.printStackTrace();
         }

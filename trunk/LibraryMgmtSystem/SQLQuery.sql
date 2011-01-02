@@ -155,7 +155,7 @@ AS
 	END
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
-'Y6nw6nu5gFB5a2SehUgYRQ==','Ha Noi','0986948677','GC0502'
+'63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
 select * from Employee
 

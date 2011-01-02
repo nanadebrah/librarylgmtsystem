@@ -8,12 +8,14 @@
  *
  * Created on Dec 31, 2010, 1:32:10 PM
  */
-
 package GUI;
 
+import Util.DataAccess.LibConnection;
+import Util.Objects.Employee;
 import com.jhlabs.image.BlurFilter;
 import java.awt.*;
 import java.io.File;
+import java.sql.Connection;
 import javax.swing.*;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
@@ -34,6 +36,8 @@ public class ManageFrm extends javax.swing.JFrame {
     //Defined cardlayout
     CardLayout cardlayout;
 
+    Connection cn=null;
+
     /** Creates new form manageFrm */
     public ManageFrm() {
         //All component
@@ -43,7 +47,7 @@ public class ManageFrm extends javax.swing.JFrame {
         //Blur layer for frame
         blurLayer();
         //get cardlayout
-        cardlayout=(CardLayout) palMain.getLayout();
+        cardlayout = (CardLayout) palMain.getLayout();
     }
 
     /** This method is called from within the constructor to
@@ -967,7 +971,7 @@ public class ManageFrm extends javax.swing.JFrame {
     /*
      * Config to set Blur layer
      */
-    private void blurLayer(){
+    private void blurLayer() {
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
@@ -984,12 +988,17 @@ public class ManageFrm extends javax.swing.JFrame {
     /*
      * Blur main frame when dialog open
      */
-    private void doBlur(){
+    private void doBlur() {
         //set layer blur to pane
         setContentPane(layer);
         blurUI.setLocked(!blurUI.isLocked());
     }
-
+    /*
+     * Method add employee to server
+     */
+    private void addEmp(){
+        cn=LibConnection.getConnection();
+    }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
@@ -1002,12 +1011,15 @@ public class ManageFrm extends javax.swing.JFrame {
         aboutUs();
 }//GEN-LAST:event_mnAboutActionPerformed
     /*
-     *
+     * Invoked method to display dialog to add a employee to database
      */
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
         //Display form to add new emplpyee
         doBlur();
-        new AddEmpDialog(this, true).setVisible(true);
+        AddEmpDialog empDialog = new AddEmpDialog(this, true);
+        empDialog.setVisible(true);
+        //invoked method add employee
+        empDialog=null;//clear this object
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 
@@ -1058,16 +1070,16 @@ public class ManageFrm extends javax.swing.JFrame {
     }
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new ManageFrm().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBook;
     private javax.swing.JButton btnAddEmp;
@@ -1189,5 +1201,4 @@ public class ManageFrm extends javax.swing.JFrame {
     private javax.swing.JTextField txtNameSub;
     private javax.swing.JTextField txtTitlBook;
     // End of variables declaration//GEN-END:variables
-
 }

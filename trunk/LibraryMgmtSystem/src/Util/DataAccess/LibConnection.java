@@ -6,7 +6,6 @@ package Util.DataAccess;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
@@ -27,7 +26,7 @@ public class LibConnection {
      * @exception IOException is made if acessing to stream fails.
      * @exception ClassNotFoundException
      */
-    public static Connection getConnection() throws FileNotFoundException {
+    public static Connection getConnection(){
         //Defined Connection and field to connect
         Connection cn = null;
         FileInputStream in = null;

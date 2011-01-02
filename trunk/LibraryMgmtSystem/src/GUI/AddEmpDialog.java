@@ -10,8 +10,11 @@
  */
 package GUI;
 
+import Util.Objects.Employee;
 import java.awt.event.ItemEvent;
 import java.io.File;
+import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,10 +22,13 @@ import java.io.File;
  */
 public class AddEmpDialog extends javax.swing.JDialog {
 
+    public Employee emp = null;
+
     /** Creates new form addEmpDialog */
     public AddEmpDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        //Set to center of screen
         setLocationRelativeTo(null);
     }
 
@@ -112,6 +118,11 @@ public class AddEmpDialog extends javax.swing.JDialog {
         });
 
         btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -238,6 +249,47 @@ public class AddEmpDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+     * Check valid all field
+     */
+    private boolean checkValid() {
+        java.util.Date date = txtDOB.getDate();
+        if (cbxPermis.getSelectedItem().toString().equals("Librarian")) {
+            if (txtName.getText().length() == 0 || date == null || txtPass.getPassword().length == 0
+                    || txtDepart.getText().length() == 0 || txtAdd.getText().length() == 0
+                    || txtEmail.getText().length() == 0 || txtPhone.getText().length() == 0) {
+                return false;
+            }
+        } else {
+            if (txtName.getText().length() == 0 || date == null
+                    || txtDepart.getText().length() == 0 || txtAdd.getText().length() == 0
+                    || txtEmail.getText().length() == 0 || txtPhone.getText().length() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     * Transfer all field to object
+     */
+    private void toObject() {
+        emp = new Employee();
+        emp.setName(txtName.getText());
+        emp.setGender(rdbMale.isSelected());
+        java.sql.Date sqlDate = new Date(txtDOB.getDate().getTime());
+        emp.setDOB(sqlDate.toString());
+        emp.setAddress(txtAdd.getText());
+        emp.setPassword(new String(txtPass.getPassword()));
+        emp.setPhone(txtPhone.getText());
+        emp.setDepartment(txtDepart.getText());
+        if (cbxPermis.getSelectedItem().toString().equals("Librarian")) {
+            emp.setPermission(1);
+        } else {
+            emp.setPermission(0);
+        }
+    }
+
     private void cbxPermisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPermisItemStateChanged
         //If  permission is employee, it doesn't need password
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -252,10 +304,41 @@ public class AddEmpDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxPermisItemStateChanged
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        //Dispose this dialog
         dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        //invoked when add button clicked
+        if (checkValid()) {
+            //set object
+            toObject();
+            //Dispose this dialog
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "All field must valid",
+                    "Warning!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                AddEmpDialog dialog = new AddEmpDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgrGender;
     private javax.swing.JButton btnAdd;

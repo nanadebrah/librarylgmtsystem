@@ -16,25 +16,28 @@ public class Employee {
     private boolean Gender;
     private String Email;
     private String Password;
+    private String Phone;
     private String Address;
-    private boolean Permission;
+    private int Permission;
     private String Department;
 
     //Default constructor
     public Employee() {
     }
     //Param constructor
+
     public Employee(int EmpID, String Name, String DOB, boolean Gender,
-                            String Email, String Password, String Address,
-                                    boolean Permission, String Department) {
-        this.EmpID=EmpID;
-        this.DOB=DOB;
-        this.Gender=Gender;
-        this.Email=Email;
-        this.Password=Password;
-        this.Address=Address;
-        this.Permission=Permission;
-        this.Department=Department;
+            String Email, String Password, String Address,
+            int Permission, String Department, String Phone) {
+        this.EmpID = EmpID;
+        this.DOB = DOB;
+        this.Gender = Gender;
+        this.Email = Email;
+        this.Password = Password;
+        this.Address = Address;
+        this.Permission = Permission;
+        this.Department = Department;
+        this.Phone = Phone;
     }
 
     /**
@@ -138,14 +141,14 @@ public class Employee {
     /**
      * @return the Permission
      */
-    public boolean isPermission() {
+    public int isPermission() {
         return Permission;
     }
 
     /**
      * @param Permission the Permission to set
      */
-    public void setPermission(boolean Permission) {
+    public void setPermission(int Permission) {
         this.Permission = Permission;
     }
 
@@ -161,5 +164,19 @@ public class Employee {
      */
     public void setDepartment(String Department) {
         this.Department = Department;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return Phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String Phone) {
+        this.Phone = Phone;
     }
 }
