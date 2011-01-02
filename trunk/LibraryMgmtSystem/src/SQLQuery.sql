@@ -104,12 +104,18 @@ AS
 		VALUES(@Name,@DOB,@Gender,@Email,@Password,
 		@Address,@Phone,1,@Department)
 	END
---Create Procedure get all field Employee
+--Create Procedure get all field of a Employee
 CREATE PROC sp_GetEmp(@EmpID INT)
 AS
 	BEGIN
 		SELECT * FROM Employee
 		WHERE EmpID=@EmpID
+	END
+--Create Procedure get all field of all Employee
+CREATE PROC sp_GetAllEmp
+AS
+	BEGIN
+		SELECT * FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
