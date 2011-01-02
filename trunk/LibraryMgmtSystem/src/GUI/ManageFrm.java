@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -60,6 +62,8 @@ public class ManageFrm extends javax.swing.JFrame {
         blurLayer();
         //get cardlayout
         cardlayout = (CardLayout) palMain.getLayout();
+        //
+        refreshEmpTable();
     }
 
     /** This method is called from within the constructor to
@@ -1045,8 +1049,8 @@ public class ManageFrm extends javax.swing.JFrame {
                 csDetails.setString(8, emp.getDepartment());
                 csDetails.execute();
                 JOptionPane.showMessageDialog(this, "Add librarian successful",
-                            "Successful!", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
                 csDetails = cn.prepareCall("{call sp_InsEmp(?,?,?,?,?,?,?)}");
                 csDetails.setString(1, emp.getName());
                 csDetails.setDate(2, new Date(emp.getDOB()));
@@ -1057,7 +1061,7 @@ public class ManageFrm extends javax.swing.JFrame {
                 csDetails.setString(7, emp.getDepartment());
                 csDetails.execute();
                 JOptionPane.showMessageDialog(this, "Add employee successful",
-                            "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -1068,6 +1072,42 @@ public class ManageFrm extends javax.swing.JFrame {
         }
     }
 
+    /*
+     * Refresh employee table
+     */
+    private void refreshEmpTable() {
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall("{call sp_GetAllEmp}");
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                Vector vt = new Vector();
+                vt.addElement(rsDetails.getInt(1));
+                vt.addElement(rsDetails.getString(2));
+                if (rsDetails.getInt(3) == 1) {
+                    vt.addElement("Male");
+                } else {
+                    vt.addElement("Female");
+                }
+
+                vt.addElement(rsDetails.getString(4));
+                vt.addElement(rsDetails.getString(5));
+                if (rsDetails.getInt(6)==1) {
+                    vt.addElement("Librarian");
+                }else{
+                    vt.addElement("Employee");
+                }
+                empModel.addRow(vt);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+    }
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
         dispose();
@@ -1087,8 +1127,9 @@ public class ManageFrm extends javax.swing.JFrame {
         AddEmpDialog empDialog = new AddEmpDialog(this, true);
         empDialog.setVisible(true);
         //invoked method add employee
-        if(empDialog.emp!=null)
+        if (empDialog.emp != null) {
             addEmp(empDialog.emp);
+        }
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 

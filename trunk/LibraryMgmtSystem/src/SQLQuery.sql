@@ -115,7 +115,7 @@ AS
 CREATE PROC sp_GetAllEmp
 AS
 	BEGIN
-		SELECT * FROM Employee
+		SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
