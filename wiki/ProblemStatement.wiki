@@ -26,7 +26,7 @@ Tùy thuộc vào quyết định thực hiện tin học hoá toàn bộ hoạt
   * (2 chữ cái đầu tiên của Title) - (2 chữ cái đầu tiên của tên tác giả) - dãy số của cuốn sách (tạm hiểu là số thứ tự của cuốn sách).
   * XX-XX-NNN (tạm hiểu là XX là chữ còn NN là number)
  # ISBN được đề nghị phải theo nguyên tắc sau:
-  * (Mã số cho đối tượng) - (dãy số của cuốn sách - kiểu như là số thứ tự)
+  * (Mã số của Subject) - (dãy số của cuốn sách - kiểu như là số thứ tự)
   * NNN-NNNN - Nó phải là duy nhất cho mỗi sự kết hợp của tiêu đề sách và tên tác giả.
  # Tên tác giả phải hỗ trợ tối đa 30 chars.
  # Tiêu đề sách hộ trợ tối đa 100 chars.
