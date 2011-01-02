@@ -565,10 +565,13 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tblEmp">
                   <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="0"/>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="empModel" type="code"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//Set selection mode&#xa;tblEmp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);&#xa;//Set model&#xa;empModel=new DefaultTableModel() {&#xa;    public boolean isCellEditable(int column, int row) {&#xa;        return false;&#xa;    }&#xa;};&#xa;//All Column&#xa;empModel.addColumn(&quot;ID&quot;);&#xa;empModel.addColumn(&quot;Name&quot;);&#xa;empModel.addColumn(&quot;Gender&quot;);&#xa;empModel.addColumn(&quot;Email&quot;);&#xa;empModel.addColumn(&quot;Department&quot;);&#xa;empModel.addColumn(&quot;Permission&quot;);"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>

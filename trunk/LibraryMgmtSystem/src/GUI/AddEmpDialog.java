@@ -276,10 +276,14 @@ public class AddEmpDialog extends javax.swing.JDialog {
     private void toObject() {
         emp = new Employee();
         emp.setName(txtName.getText());
-        emp.setGender(rdbMale.isSelected());
-        java.sql.Date sqlDate = new Date(txtDOB.getDate().getTime());
-        emp.setDOB(sqlDate.toString());
+        if (rdbMale.isSelected()) {
+            emp.setGender(1);
+        } else {
+            emp.setGender(0);
+        }
+        emp.setDOB(txtDOB.getDate().getTime());
         emp.setAddress(txtAdd.getText());
+        emp.setEmail(txtEmail.getText());
         emp.setPassword(new String(txtPass.getPassword()));
         emp.setPhone(txtPhone.getText());
         emp.setDepartment(txtDepart.getText());

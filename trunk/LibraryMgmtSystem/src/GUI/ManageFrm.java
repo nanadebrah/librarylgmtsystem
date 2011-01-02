@@ -11,12 +11,20 @@
 package GUI;
 
 import Util.DataAccess.LibConnection;
+import Util.LibPassword;
 import Util.Objects.Employee;
 import com.jhlabs.image.BlurFilter;
 import java.awt.*;
 import java.io.File;
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
@@ -35,8 +43,12 @@ public class ManageFrm extends javax.swing.JFrame {
     JComponent jc;
     //Defined cardlayout
     CardLayout cardlayout;
-
-    Connection cn=null;
+    //Defined connection, rs and cs to connect and query database
+    Connection cn = null;
+    ResultSet rsDetails = null;
+    CallableStatement csDetails = null;
+    //Create model
+    DefaultTableModel empModel;
 
     /** Creates new form manageFrm */
     public ManageFrm() {
@@ -319,14 +331,22 @@ public class ManageFrm extends javax.swing.JFrame {
         btnSearchEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnSearchEmp);
 
-        tblEmp.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
+        //Set selection mode
+        tblEmp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //Set model
+        empModel=new DefaultTableModel() {
+            public boolean isCellEditable(int column, int row) {
+                return false;
             }
-        ));
+        };
+        //All Column
+        empModel.addColumn("ID");
+        empModel.addColumn("Name");
+        empModel.addColumn("Gender");
+        empModel.addColumn("Email");
+        empModel.addColumn("Department");
+        empModel.addColumn("Permission");
+        tblEmp.setModel(empModel);
         scrPanEmp.setViewportView(tblEmp);
 
         lblIDEmp.setText("Emp ID:");
@@ -993,11 +1013,59 @@ public class ManageFrm extends javax.swing.JFrame {
         setContentPane(layer);
         blurUI.setLocked(!blurUI.isLocked());
     }
+
+    /*
+     * About method
+     */
+    private void aboutUs() {
+        setVisible(false);//hidden current frame
+        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                setVisible(true);//show current frame
+            }
+        });
+    }
+
     /*
      * Method add employee to server
      */
-    private void addEmp(){
-        cn=LibConnection.getConnection();
+    private void addEmp(Employee emp) {
+        cn = LibConnection.getConnection();
+        try {
+            if (emp.getPermission() == 1) {
+                csDetails = cn.prepareCall("{call sp_InsLib(?,?,?,?,?,?,?,?)}");
+                csDetails.setString(1, emp.getName());
+                csDetails.setDate(2, new Date(emp.getDOB()));
+                csDetails.setInt(3, emp.getGender());
+                csDetails.setString(4, emp.getEmail());
+                csDetails.setString(5, LibPassword.encryptMD5(emp.getPassword()));
+                csDetails.setString(6, emp.getAddress());
+                csDetails.setString(7, emp.getPhone());
+                csDetails.setString(8, emp.getDepartment());
+                csDetails.execute();
+                JOptionPane.showMessageDialog(this, "Add librarian successful",
+                            "Successful!", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                csDetails = cn.prepareCall("{call sp_InsEmp(?,?,?,?,?,?,?)}");
+                csDetails.setString(1, emp.getName());
+                csDetails.setDate(2, new Date(emp.getDOB()));
+                csDetails.setInt(3, emp.getGender());
+                csDetails.setString(4, emp.getEmail());
+                csDetails.setString(5, emp.getAddress());
+                csDetails.setString(6, emp.getPhone());
+                csDetails.setString(7, emp.getDepartment());
+                csDetails.execute();
+                JOptionPane.showMessageDialog(this, "Add employee successful",
+                            "Successful!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
     }
 
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
@@ -1019,7 +1087,8 @@ public class ManageFrm extends javax.swing.JFrame {
         AddEmpDialog empDialog = new AddEmpDialog(this, true);
         empDialog.setVisible(true);
         //invoked method add employee
-        empDialog=null;//clear this object
+        if(empDialog.emp!=null)
+            addEmp(empDialog.emp);
         doBlur();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 
@@ -1055,19 +1124,6 @@ public class ManageFrm extends javax.swing.JFrame {
         new AddBokDialog(this, true).setVisible(true);
         doBlur();
     }//GEN-LAST:event_btnAddBookActionPerformed
-
-    /*
-     * About method
-     */
-    private void aboutUs() {
-        setVisible(false);//hidden current frame
-        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
-
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);//show current frame
-            }
-        });
-    }
 
     /**
      * @param args the command line arguments

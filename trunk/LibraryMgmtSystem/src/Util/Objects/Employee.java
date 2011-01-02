@@ -12,8 +12,8 @@ public class Employee {
 
     private int EmpID;
     private String Name;
-    private String DOB;
-    private boolean Gender;
+    private long DOB;
+    private int Gender;
     private String Email;
     private String Password;
     private String Phone;
@@ -26,7 +26,7 @@ public class Employee {
     }
     //Param constructor
 
-    public Employee(int EmpID, String Name, String DOB, boolean Gender,
+    public Employee(int EmpID, String Name, long DOB, int Gender,
             String Email, String Password, String Address,
             int Permission, String Department, String Phone) {
         this.EmpID = EmpID;
@@ -71,28 +71,28 @@ public class Employee {
     /**
      * @return the DOB
      */
-    public String getDOB() {
+    public long getDOB() {
         return DOB;
     }
 
     /**
      * @param DOB the DOB to set
      */
-    public void setDOB(String DOB) {
+    public void setDOB(long DOB) {
         this.DOB = DOB;
     }
 
     /**
      * @return the Gender
      */
-    public boolean isGender() {
+    public int getGender() {
         return Gender;
     }
 
     /**
      * @param Gender the Gender to set
      */
-    public void setGender(boolean Gender) {
+    public void setGender(int Gender) {
         this.Gender = Gender;
     }
 
@@ -141,7 +141,7 @@ public class Employee {
     /**
      * @return the Permission
      */
-    public int isPermission() {
+    public int getPermission() {
         return Permission;
     }
 
