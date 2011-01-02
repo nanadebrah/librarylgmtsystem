@@ -510,6 +510,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditEmpActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnViewEmp">
                   <Properties>
@@ -553,6 +556,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchEmpActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -568,9 +574,19 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="empModel" type="code"/>
                     </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblEmpMouseClicked"/>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tblEmpFocusLost"/>
+                  </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//Set selection mode&#xa;tblEmp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);&#xa;//Set model&#xa;empModel=new DefaultTableModel() {&#xa;    public boolean isCellEditable(int column, int row) {&#xa;        return false;&#xa;    }&#xa;};&#xa;//All Column&#xa;empModel.addColumn(&quot;ID&quot;);&#xa;empModel.addColumn(&quot;Name&quot;);&#xa;empModel.addColumn(&quot;Gender&quot;);&#xa;empModel.addColumn(&quot;Email&quot;);&#xa;empModel.addColumn(&quot;Department&quot;);&#xa;empModel.addColumn(&quot;Permission&quot;);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//Set selection mode&#xa;tblEmp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);&#xa;&#xa;//Set model&#xa;empModel=new DefaultTableModel() {&#xa;    public boolean isCellEditable(int column, int row) {&#xa;        return false;&#xa;    }&#xa;};&#xa;&#xa;//All Column&#xa;empModel.addColumn(&quot;ID&quot;);&#xa;empModel.addColumn(&quot;Name&quot;);&#xa;empModel.addColumn(&quot;Gender&quot;);&#xa;empModel.addColumn(&quot;Email&quot;);&#xa;empModel.addColumn(&quot;Department&quot;);&#xa;empModel.addColumn(&quot;Permission&quot;);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

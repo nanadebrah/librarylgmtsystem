@@ -8,11 +8,13 @@
  *
  * Created on Dec 31, 2010, 5:17:20 PM
  */
-
 package GUI;
 
+import Util.Objects.Employee;
 import java.awt.event.ItemEvent;
 import java.io.File;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +22,19 @@ import java.io.File;
  */
 public class EditEmpDialog extends javax.swing.JDialog {
 
+    //Defined employee object
+    public Employee emp = null;
+
     /** Creates new form EditEmpDialog */
-    public EditEmpDialog(java.awt.Frame parent, boolean modal) {
+    public EditEmpDialog(java.awt.Frame parent, boolean modal, Employee emp) {
         super(parent, modal);
         initComponents();
+        //Set this frame to center of monitor
+        setLocationRelativeTo(null);
+        //set employee object
+        this.emp = emp;
+        //Load oldInfo
+        setField();
     }
 
     /** This method is called from within the constructor to
@@ -35,6 +46,7 @@ public class EditEmpDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgrGender = new javax.swing.ButtonGroup();
         palEditEmp = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
@@ -60,6 +72,12 @@ public class EditEmpDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         palEditEmp.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Information"));
 
@@ -83,17 +101,14 @@ public class EditEmpDialog extends javax.swing.JDialog {
 
         txtName.setToolTipText("Edit name of Emp");
 
+        btgrGender.add(rdbMale);
         rdbMale.setSelected(true);
         rdbMale.setText("Male");
 
+        btgrGender.add(rdbFemale);
         rdbFemale.setText("Female");
 
         txtDOB.setToolTipText("Edit  date of birth of employee");
-        txtDOB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDOBActionPerformed(evt);
-            }
-        });
 
         txtAdd.setToolTipText("Edit address of Emp");
 
@@ -113,6 +128,11 @@ public class EditEmpDialog extends javax.swing.JDialog {
         });
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -151,13 +171,13 @@ public class EditEmpDialog extends javax.swing.JDialog {
                                     .add(lblName))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(palEditEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))))
+                                    .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtDepart, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtAdd, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                                    .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))))
                         .addContainerGap())
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, palEditEmpLayout.createSequentialGroup()
                         .add(btnSave)
@@ -239,6 +259,75 @@ public class EditEmpDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+     * Set all info to field
+     */
+    private void setField() {
+        if (emp != null) {
+            txtName.setText(emp.getName());
+            if (emp.getGender() == 1) {
+                rdbMale.setSelected(true);
+            } else {
+                rdbFemale.setSelected(true);
+            }
+            java.util.Date date = new Date(emp.getDOB());
+            txtDOB.setDate(date);
+            txtAdd.setText(emp.getAddress());
+            txtEmail.setText(emp.getEmail());
+            txtPhone.setText(emp.getPhone());
+            txtDepart.setText(emp.getDepartment());
+            if (emp.getPermission() == 1) {
+                cbxPermis.setSelectedIndex(0);
+            } else {
+                cbxPermis.setSelectedIndex(1);
+            }
+        }
+    }
+
+    /*
+     * Check valid all field
+     */
+    private boolean checkValid() {
+        java.util.Date date = txtDOB.getDate();
+        if (cbxPermis.getSelectedItem().toString().equals("Librarian")) {
+            if (txtName.getText().length() == 0 || date == null || txtPass.getPassword().length == 0
+                    || txtDepart.getText().length() == 0 || txtAdd.getText().length() == 0
+                    || txtEmail.getText().length() == 0 || txtPhone.getText().length() == 0) {
+                return false;
+            }
+        } else {
+            if (txtName.getText().length() == 0 || date == null
+                    || txtDepart.getText().length() == 0 || txtAdd.getText().length() == 0
+                    || txtEmail.getText().length() == 0 || txtPhone.getText().length() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     * Transfer all field to object
+     */
+    private void toObject() {
+        emp.setName(txtName.getText());
+        if (rdbMale.isSelected()) {
+            emp.setGender(1);
+        } else {
+            emp.setGender(0);
+        }
+        emp.setDOB(txtDOB.getDate().getTime());
+        emp.setAddress(txtAdd.getText());
+        emp.setEmail(txtEmail.getText());
+        emp.setPassword(new String(txtPass.getPassword()));
+        emp.setPhone(txtPhone.getText());
+        emp.setDepartment(txtDepart.getText());
+        if (cbxPermis.getSelectedItem().toString().equals("Librarian")) {
+            emp.setPermission(1);
+        } else {
+            emp.setPermission(0);
+        }
+    }
+
     private void cbxPermisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxPermisItemStateChanged
         //If  permission is employee, it doesn't need password
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -253,22 +342,40 @@ public class EditEmpDialog extends javax.swing.JDialog {
 }//GEN-LAST:event_cbxPermisItemStateChanged
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        //set object null
+        emp=null;
+        //close this dialog
         dispose();
 }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDOBActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        //invoked when save button clicked
+        if (checkValid()) {
+            //set object
+            toObject();
+            //Dispose this dialog
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "All field must valid",
+                    "Warning!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //set object null
+        emp=null;
+    }//GEN-LAST:event_formWindowClosing
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                EditEmpDialog dialog = new EditEmpDialog(new javax.swing.JFrame(), true);
+                EditEmpDialog dialog = new EditEmpDialog(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
@@ -277,8 +384,8 @@ public class EditEmpDialog extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btgrGender;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbxPermis;
@@ -303,5 +410,4 @@ public class EditEmpDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
-
 }

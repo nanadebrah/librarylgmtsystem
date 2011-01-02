@@ -4,6 +4,8 @@
  */
 package Util.Objects;
 
+import java.util.Vector;
+
 /**
  *
  * @author CuongNQ
@@ -174,9 +176,31 @@ public class Employee {
     }
 
     /**
-     * @param phone the phone to set
+     * @param Phone the phone to set
      */
     public void setPhone(String Phone) {
         this.Phone = Phone;
+    }
+
+    /**
+     * Convert employee to vector
+     */
+    public Vector toVector() {
+        Vector vt = new Vector();
+        vt.addElement(EmpID);
+        vt.addElement(Name);
+        if (Gender == 1) {
+            vt.addElement("Male");
+        } else {
+            vt.addElement("Female");
+        }
+        vt.addElement(Email);
+        vt.addElement(Department);
+        if (Permission == 1) {
+            vt.addElement("Librarian");
+        } else {
+            vt.addElement("Employee");
+        }
+        return vt;
     }
 }

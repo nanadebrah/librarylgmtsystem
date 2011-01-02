@@ -10,21 +10,15 @@
  */
 package GUI;
 
-import Util.DataAccess.LibConnection;
-import Util.LibPassword;
+import Util.DataAccess.AccessEmp;
 import Util.Objects.Employee;
 import com.jhlabs.image.BlurFilter;
 import java.awt.*;
 import java.io.File;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.jxlayer.JXLayer;
@@ -62,6 +56,7 @@ public class ManageFrm extends javax.swing.JFrame {
         blurLayer();
         //get cardlayout
         cardlayout = (CardLayout) palMain.getLayout();
+        setBorSelect(btnEmpMan);
         //Refresh Employee table
         refreshEmpTable();
     }
@@ -303,6 +298,11 @@ public class ManageFrm extends javax.swing.JFrame {
         btnEditEmp.setFocusable(false);
         btnEditEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditEmpActionPerformed(evt);
+            }
+        });
         tolbarEmp.add(btnEditEmp);
 
         btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource("Images"+File.separator+"viewIcon.png")));
@@ -333,16 +333,23 @@ public class ManageFrm extends javax.swing.JFrame {
         btnSearchEmp.setFocusable(false);
         btnSearchEmp.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSearchEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSearchEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchEmpActionPerformed(evt);
+            }
+        });
         tolbarEmp.add(btnSearchEmp);
 
         //Set selection mode
         tblEmp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         //Set model
         empModel=new DefaultTableModel() {
             public boolean isCellEditable(int column, int row) {
                 return false;
             }
         };
+
         //All Column
         empModel.addColumn("ID");
         empModel.addColumn("Name");
@@ -351,6 +358,16 @@ public class ManageFrm extends javax.swing.JFrame {
         empModel.addColumn("Department");
         empModel.addColumn("Permission");
         tblEmp.setModel(empModel);
+        tblEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpMouseClicked(evt);
+            }
+        });
+        tblEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tblEmpFocusLost(evt);
+            }
+        });
         scrPanEmp.setViewportView(tblEmp);
 
         lblIDEmp.setText("Emp ID:");
@@ -1032,93 +1049,77 @@ public class ManageFrm extends javax.swing.JFrame {
     }
 
     /*
-     * Method add employee to server
-     */
-    private void addEmp(Employee emp) {
-        cn = LibConnection.getConnection();
-        try {
-            if (emp.getPermission() == 1) {
-                csDetails = cn.prepareCall("{call sp_InsLib(?,?,?,?,?,?,?,?)}");
-                csDetails.setString(1, emp.getName());
-                csDetails.setDate(2, new Date(emp.getDOB()));
-                csDetails.setInt(3, emp.getGender());
-                csDetails.setString(4, emp.getEmail());
-                csDetails.setString(5, LibPassword.encryptMD5(emp.getPassword()));
-                csDetails.setString(6, emp.getAddress());
-                csDetails.setString(7, emp.getPhone());
-                csDetails.setString(8, emp.getDepartment());
-                csDetails.execute();
-                JOptionPane.showMessageDialog(this, "Add librarian successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                csDetails = cn.prepareCall("{call sp_InsEmp(?,?,?,?,?,?,?)}");
-                csDetails.setString(1, emp.getName());
-                csDetails.setDate(2, new Date(emp.getDOB()));
-                csDetails.setInt(3, emp.getGender());
-                csDetails.setString(4, emp.getEmail());
-                csDetails.setString(5, emp.getAddress());
-                csDetails.setString(6, emp.getPhone());
-                csDetails.setString(7, emp.getDepartment());
-                csDetails.execute();
-                JOptionPane.showMessageDialog(this, "Add employee successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-    }
-
-    /*
      * Refresh employee table
      */
     private void refreshEmpTable() {
-        cn = LibConnection.getConnection();
         removeModel(empModel);
-        try {
-            csDetails = cn.prepareCall("{call sp_GetAllEmp}");
-            rsDetails = csDetails.executeQuery();
-            while (rsDetails.next()) {
-                Vector vt = new Vector();
-                vt.addElement(rsDetails.getInt(1));
-                vt.addElement(rsDetails.getString(2));
-                if (rsDetails.getInt(3) == 1) {
-                    vt.addElement("Male");
-                } else {
-                    vt.addElement("Female");
-                }
+        AccessEmp.getAllEmp(empModel);
+    }
 
-                vt.addElement(rsDetails.getString(4));
-                vt.addElement(rsDetails.getString(5));
-                if (rsDetails.getInt(6) == 1) {
-                    vt.addElement("Librarian");
-                } else {
-                    vt.addElement("Employee");
-                }
-                empModel.addRow(vt);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
+    /*
+     * Set border painted for button selected
+     */
+    private void setBorSelect(JButton btSelected) {
+        btnEmpMan.setBorderPainted(false);
+        btnBookMan.setBorderPainted(false);
+        btnSubMan.setBorderPainted(false);
+        btnBorMan.setBorderPainted(false);
+        btnAnaMan.setBorderPainted(false);
+        btSelected.setBorderPainted(true);
     }
 
     /*
      * Remove all field on model
      */
-    private void removeModel(DefaultTableModel model){
+    private void removeModel(DefaultTableModel model) {
         int row = model.getRowCount();
         for (int i = 0; i < row; i++) {
             model.removeRow(0);
         }
     }
+
+    /*
+     *Method edit employee on databse and edit on employee table
+     */
+    private void editEmp() {
+        //Get Id employee selected
+        String empID = tblEmp.getValueAt(tblEmp.getSelectedRow(), 0).toString();
+        //Get employee from database
+        Employee emp = AccessEmp.getAEmp(new Integer(empID));
+        doBlur();
+        //Create instance of Employee edit dialog and display it
+        EditEmpDialog empEdit = new EditEmpDialog(this, true, emp);
+        empEdit.setVisible(true);
+        //Update data on database
+        if (empEdit.emp != null) {
+            AccessEmp.editEmp(empEdit.emp);
+            //Remove old data on table model
+            empModel.removeRow(tblEmp.getSelectedRow());
+            //Add new row
+            empModel.addRow(emp.toVector());
+        }
+        tblEmp.clearSelection();
+        doBlur();
+    }
+
+    /*
+     *Method add employee on databse
+     */
+    private void addEmp() {
+        doBlur();
+        //Display Add employee dialog
+        AddEmpDialog empAddDialog = new AddEmpDialog(this, true);
+        empAddDialog.setVisible(true);
+        //invoked method add employee
+        if (empAddDialog.emp != null) {
+            AccessEmp.addEmp(empAddDialog.emp);
+        }
+        doBlur();
+    }
+    
+    /*
+     * Invoked quit program
+     */
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
         //Dispose this frame
         dispose();
@@ -1133,15 +1134,7 @@ public class ManageFrm extends javax.swing.JFrame {
      * Invoked method to display dialog to add a employee to database
      */
     private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
-        //Display form to add new emplpyee
-        doBlur();
-        AddEmpDialog empDialog = new AddEmpDialog(this, true);
-        empDialog.setVisible(true);
-        //invoked method add employee
-        if (empDialog.emp != null) {
-            addEmp(empDialog.emp);
-        }
-        doBlur();
+        addEmp();
 }//GEN-LAST:event_btnAddEmpActionPerformed
 
     /*
@@ -1149,35 +1142,67 @@ public class ManageFrm extends javax.swing.JFrame {
      */
     private void btnEmpManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpManActionPerformed
         cardlayout.show(palMain, "palEmployee");
-        btnEmpMan.setBorderPainted(true);
+        setBorSelect(btnEmpMan);
         refreshEmpTable();
     }//GEN-LAST:event_btnEmpManActionPerformed
 
     private void btnBookManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookManActionPerformed
         cardlayout.show(palMain, "palBook");
+        setBorSelect(btnBookMan);
 }//GEN-LAST:event_btnBookManActionPerformed
 
     private void btnSubManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubManActionPerformed
         cardlayout.show(palMain, "palSubject");
+        setBorSelect(btnSubMan);
     }//GEN-LAST:event_btnSubManActionPerformed
 
     private void btnBorManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorManActionPerformed
         cardlayout.show(palMain, "palBorrow");
+        setBorSelect(btnBorMan);
     }//GEN-LAST:event_btnBorManActionPerformed
 
     private void btnAnaManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaManActionPerformed
         cardlayout.show(palMain, "palAnalytic");
+        setBorSelect(btnAnaMan);
     }//GEN-LAST:event_btnAnaManActionPerformed
 
     /*
-     * 
+     *Display form to add new emplpyee
      */
     private void btnAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookActionPerformed
-        //Display form to add new emplpyee
         doBlur();
         new AddBokDialog(this, true).setVisible(true);
         doBlur();
     }//GEN-LAST:event_btnAddBookActionPerformed
+
+    private void tblEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpMouseClicked
+        //Set enable acction button
+        btnEditEmp.setEnabled(true);
+        btnViewEmp.setEnabled(true);
+        btnDelEmp.setEnabled(true);
+        //If double click display edit employee dialog
+        if (evt.getClickCount() == 2) {
+            editEmp();
+        }
+    }//GEN-LAST:event_tblEmpMouseClicked
+
+    private void tblEmpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblEmpFocusLost
+        //Set disable acction button
+        btnEditEmp.setEnabled(false);
+        btnViewEmp.setEnabled(false);
+        btnDelEmp.setEnabled(false);
+    }//GEN-LAST:event_tblEmpFocusLost
+
+    private void btnEditEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditEmpActionPerformed
+        editEmp();
+    }//GEN-LAST:event_btnEditEmpActionPerformed
+
+    /*
+     * Event invoked search employee method
+     */
+    private void btnSearchEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchEmpActionPerformed
 
     /**
      * @param args the command line arguments
