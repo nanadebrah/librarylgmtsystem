@@ -62,7 +62,7 @@ public class ManageFrm extends javax.swing.JFrame {
         blurLayer();
         //get cardlayout
         cardlayout = (CardLayout) palMain.getLayout();
-        //
+        //Refresh Employee table
         refreshEmpTable();
     }
 
@@ -1077,6 +1077,7 @@ public class ManageFrm extends javax.swing.JFrame {
      */
     private void refreshEmpTable() {
         cn = LibConnection.getConnection();
+        removeModel(empModel);
         try {
             csDetails = cn.prepareCall("{call sp_GetAllEmp}");
             rsDetails = csDetails.executeQuery();
@@ -1092,20 +1093,30 @@ public class ManageFrm extends javax.swing.JFrame {
 
                 vt.addElement(rsDetails.getString(4));
                 vt.addElement(rsDetails.getString(5));
-                if (rsDetails.getInt(6)==1) {
+                if (rsDetails.getInt(6) == 1) {
                     vt.addElement("Librarian");
-                }else{
+                } else {
                     vt.addElement("Employee");
                 }
                 empModel.addRow(vt);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }finally {
+        } finally {
             //close all connect
             LibConnection.close(rsDetails);
             LibConnection.close(csDetails);
             LibConnection.close(cn);
+        }
+    }
+
+    /*
+     * Remove all field on model
+     */
+    private void removeModel(DefaultTableModel model){
+        int row = model.getRowCount();
+        for (int i = 0; i < row; i++) {
+            model.removeRow(0);
         }
     }
     private void mnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnQuitActionPerformed
@@ -1138,6 +1149,8 @@ public class ManageFrm extends javax.swing.JFrame {
      */
     private void btnEmpManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpManActionPerformed
         cardlayout.show(palMain, "palEmployee");
+        btnEmpMan.setBorderPainted(true);
+        refreshEmpTable();
     }//GEN-LAST:event_btnEmpManActionPerformed
 
     private void btnBookManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookManActionPerformed
