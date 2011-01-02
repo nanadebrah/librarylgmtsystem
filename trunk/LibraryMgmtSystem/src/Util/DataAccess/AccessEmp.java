@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.DocFlavor.STRING;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -192,6 +193,64 @@ public class AccessEmp {
             ex.printStackTrace();
         } finally {
             //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+    }
+
+    /**
+     *
+     * @param empModel is Table model to get all data employee
+     * @param EmpID is employee's ID to find
+     * @param Name is employee's name fo find
+     */
+    public static void searchEmp(DefaultTableModel empModel, String EmpID, String Name) {
+        //Defined connection, rs and cs to connect and query database
+        Connection cn = LibConnection.getConnection();
+        ResultSet rsDetails = null;
+        CallableStatement csDetails = null;
+        try {            
+            if (EmpID.length() == 0 && Name.length() != 0) {
+                //Save Name only
+                csDetails = cn.prepareCall("{call sp_GetAnEmpWithName(?)}");
+                csDetails.setString(1, Name);
+            } else if (EmpID.length() != 0 && Name.length() == 0) {
+                //Search EmpID only
+                csDetails = cn.prepareCall("{call sp_GetAnEmpWithEmpID(?)}");
+                csDetails.setInt(1, new Integer(EmpID));
+            } else if (EmpID.length() != 0 && Name.length() != 0) {
+                //Search both ID & Name
+                csDetails = cn.prepareCall("{call sp_GetAnEmpAll(?,?)}");
+                csDetails.setInt(1, new Integer(EmpID));
+                csDetails.setString(2, Name);
+            } else {
+                getAllEmp(empModel);
+                return;
+            }
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                Vector vt = new Vector();
+                vt.addElement(rsDetails.getInt(1));
+                vt.addElement(rsDetails.getString(2));
+                if (rsDetails.getInt(3) == 1) {
+                    vt.addElement("Male");
+                } else {
+                    vt.addElement("Female");
+                }
+                vt.addElement(rsDetails.getString(4));
+                vt.addElement(rsDetails.getString(5));
+                if (rsDetails.getInt(6) == 1) {
+                    vt.addElement("Librarian");
+                } else {
+                    vt.addElement("Employee");
+                }
+                empModel.addRow(vt);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }

@@ -7,6 +7,7 @@ package GUI;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
@@ -28,13 +29,19 @@ public class AboutWindow extends JWindow {
     JLabel jlabel;
     //Defined btnClose
     JButton btnClose;
+    //Defined Jframe
+    JFrame jframe;
 
-    public AboutWindow() {
+    public AboutWindow(JFrame j) {
         //Create new instance of close button
         btnClose = new JButton("Close");
+        //Create new instance of current frame
+        this.jframe=j;
         //Add action close when click
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //Show current jframe
+                jframe.setVisible(true);
                 dispose();
             }
         });

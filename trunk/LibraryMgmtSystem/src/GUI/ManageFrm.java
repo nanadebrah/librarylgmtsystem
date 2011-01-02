@@ -57,8 +57,7 @@ public class ManageFrm extends javax.swing.JFrame {
         //get cardlayout
         cardlayout = (CardLayout) palMain.getLayout();
         setBorSelect(btnEmpMan);
-        //Refresh Employee table
-        refreshEmpTable();
+        
     }
 
     /** This method is called from within the constructor to
@@ -193,6 +192,11 @@ public class ManageFrm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 360));
         setName("manageFrm"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         taskPalManage.setTitle("Management");
         taskPalManage.setFocusable(false);
@@ -848,6 +852,11 @@ public class ManageFrm extends javax.swing.JFrame {
         mnLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
         mnLogout.setIcon(new ImageIcon(getClass().getResource("Images"+File.separator+"logoutIcon.png")));
         mnLogout.setText("Logout");
+        mnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnLogoutActionPerformed(evt);
+            }
+        });
         mnSystem.add(mnLogout);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
@@ -1040,12 +1049,7 @@ public class ManageFrm extends javax.swing.JFrame {
      */
     private void aboutUs() {
         setVisible(false);//hidden current frame
-        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
-
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);//show current frame
-            }
-        });
+        new AboutWindow(this);
     }
 
     /*
@@ -1054,6 +1058,15 @@ public class ManageFrm extends javax.swing.JFrame {
     private void refreshEmpTable() {
         removeModel(empModel);
         AccessEmp.getAllEmp(empModel);
+    }
+
+    /*
+     * Seacrch employee by Id or name
+     */
+    private void searchEmp(){
+        removeModel(empModel);
+        AccessEmp.searchEmp(empModel,
+                txtIdEmp.getText(), txtNameEmp.getText());
     }
 
     /*
@@ -1201,8 +1214,24 @@ public class ManageFrm extends javax.swing.JFrame {
      * Event invoked search employee method
      */
     private void btnSearchEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchEmpActionPerformed
-        // TODO add your handling code here:
+        searchEmp();
     }//GEN-LAST:event_btnSearchEmpActionPerformed
+
+    private void mnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLogoutActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new LoginFrm(this).setVisible(true);
+    }//GEN-LAST:event_mnLogoutActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Refresh Employee table
+        new Thread(new Runnable() {
+
+            public void run() {
+                refreshEmpTable();
+            }
+        }).start();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

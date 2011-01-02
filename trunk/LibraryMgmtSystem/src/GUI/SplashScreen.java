@@ -26,6 +26,10 @@ public class SplashScreen extends JWindow {
     ImageIcon image;
     JLabel jlabel;
     JProgressBar process;
+    //Defined login frame
+    LoginFrm login;
+    //Defined Management frame
+    ManageFrm man;
 
     public SplashScreen() {
         //Create new instance of content
@@ -50,13 +54,16 @@ public class SplashScreen extends JWindow {
         this.setLocationRelativeTo(null);
         //Setvisibe to display this pane
         this.setVisible(true);
+        //Do splashscreen
+        loadProcess();
     }
+
     /*
      *Functinon to excute processing bar
      */
-    public void loadProcess() {
+    private void loadProcess() {
         //Create new thread to run process bar
-        Thread t=new Thread() {
+        Thread t = new Thread() {
 
             public void run() {
                 int i = 0;
@@ -64,7 +71,17 @@ public class SplashScreen extends JWindow {
                     process.setValue(i);//Set value to process bar
                     i++;
                     try {
-                        sleep(10);//Sleep 70 minisecond
+                        switch (i) {
+                            case 30:
+                                man = new ManageFrm();
+                                break;
+                            case 60:
+                                login = new LoginFrm(man);
+                                break;
+                            default:
+                                sleep(10);//Sleep 70 minisecond
+                                break;
+                        }
                     } catch (InterruptedException ex) {
                         Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -75,6 +92,7 @@ public class SplashScreen extends JWindow {
             t.start();//Start thread
             t.join();//Join thread
             dispose();//Disopse this splash screen when done
+            login.setVisible(true);
         } catch (InterruptedException ex) {
             Logger.getLogger(SplashScreen.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -152,7 +152,8 @@ AS
 CREATE PROC sp_GetAllEmp
 AS
 	BEGIN
-		SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
+            SELECT EmpID,[Name],Gender,Email,Department,Permission
+            FROM Employee
 	END
 --Create Procedure edit Employee
 CREATE PROC sp_EditEmp(
@@ -201,10 +202,10 @@ CREATE PROC sp_DelEmp
 	@EmpID INT
 AS
 	BEGIN
-		IF NOT EXISTS (SELECT @EmpID FROM Borrow 
+		IF NOT EXISTS (SELECT @EmpID FROM Borrow
 			WHERE EmpID = @EmpID AND IssueStatus = 1)
 		DELETE FROM Employee WHERE EmpID = @EmpID
-		ELSE 
+		ELSE
 			PRINT 'ko duoc'
 	END
 --Create Procedure Login
@@ -288,10 +289,10 @@ GO
 CREATE PROC sp_GetSubByID
 	@SubID INT
 AS
-	SELECT * FROM Subject 
-	WHERE  SubID = @SubID 
+	SELECT * FROM Subject
+	WHERE  SubID = @SubID
 --Create procedure to get Subject by SubName
-IF EXISTS (SELECT name FROM sysobjects 
+IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetSubByName' AND type = 'P')
    DROP PROCEDURE sp_GetSubByName
 GO
@@ -301,7 +302,7 @@ AS
 	SELECT * FROM Subject 
 	WHERE SubName LIKE '%'+@SubName+'%'
 --Create procedure to get Subject by SubID and SubName
-IF EXISTS (SELECT name FROM sysobjects 
+IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetSubByAll' AND type = 'P')
    DROP PROCEDURE sp_GetSubByAll
 GO
@@ -309,7 +310,7 @@ CREATE PROC sp_GetSubByAll
 	@SubId INT,
 	@SubName VARCHAR(45)
 AS
-	SELECT * FROM Subject 
+	SELECT * FROM Subject
 	WHERE SubID = @SubID AND SubName LIKE '%'+@SubName+'%'
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
@@ -377,12 +378,12 @@ AS
 			b.CallNumber,b.ChkOutDate,b.ChkInDate
 	FROM	Borrow b INNER JOIN Employee e
 	ON		b.EmpID = e.EmpID
-	WHERE	CallNumber LIKE '%'+@CallNumber+'%' AND 
+	WHERE	CallNumber LIKE '%'+@CallNumber+'%' AND
 			[Name] LIKE '%'+@EmpName+'%'
 
---Edit a borrow 
+--Edit a borrow
 
-IF EXISTS (SELECT name FROM sysobjects 
+IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_AddBorrow' AND type = 'P')
    DROP PROCEDURE sp_AddBorrow
 GO
@@ -403,15 +404,15 @@ AS
 		TotalFee=@TotalFee
 		WHERE CallNumber=@CallNumber
 --Top 10 Book
---IF EXISTS (SELECT name FROM sysobjects 
+--IF EXISTS (SELECT name FROM sysobjects
 --         WHERE name = 'sp_TopBook' AND type = 'P')
 --   DROP PROCEDURE sp_TopBook
 --CREATE PROC sp_TopBook
 --AS
---	SELECT 
+--	SELECT
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
-'root','Ha Noi','0986948677','GC0502'
+'63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
 select * from Employee
 
@@ -441,7 +442,7 @@ EXEC sp_AddBook 'Of-Ba-005','299-0005',1,'Of Thee I Sing: A Letter to My Daughte
 
 EXEC sp_AddBorrow 'El-Ch-001',3,1,'1/1/2011','1/6/2011',Null,5
 
-EXEC sp_DelEmp 3 
+EXEC sp_DelEmp 3
 
 select * from Employee
 

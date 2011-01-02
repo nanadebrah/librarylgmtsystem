@@ -47,9 +47,11 @@ public class LoginFrm extends javax.swing.JFrame {
     Connection cn = null;
     ResultSet rsDetails = null;
     CallableStatement csDetails = null;
+    //Defined frame to manage
+    ManageFrm man;
 
     /** Creates new form LoginFrm */
-    public LoginFrm() {
+    public LoginFrm(ManageFrm man) {
         initComponents();
         //Set this frame to center of monitor
         setLocationRelativeTo(null);
@@ -57,6 +59,8 @@ public class LoginFrm extends javax.swing.JFrame {
         blurLayer();
         //Load user & pass from config file
         loadConfig();
+        //Set manage from param
+        this.man=man;
     }
 
     /** This method is called from within the constructor to
@@ -253,12 +257,7 @@ public class LoginFrm extends javax.swing.JFrame {
      */
     private void aboutUs() {
         setVisible(false);//hidden current frame
-        new AboutWindow().addWindowListener(new java.awt.event.WindowAdapter() {
-
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                setVisible(true);//show current frame
-            }
-        });
+        new AboutWindow(this);
     }
 
     /*
@@ -279,7 +278,8 @@ public class LoginFrm extends javax.swing.JFrame {
                 //login successful, display manage frame and dispose this frame
                 if (rsDetails.next()) {
                     dispose();
-                    new ManageFrm().setVisible(true);
+                    //Display manage frame
+                    man.setVisible(true);
                 } else {//display error
                     doBlur();
                     JOptionPane.showMessageDialog(this,
