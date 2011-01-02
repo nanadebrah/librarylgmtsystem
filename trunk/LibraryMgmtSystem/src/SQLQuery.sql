@@ -236,7 +236,15 @@ AS
 			AND ISBN LIKE @ISBN  
 			AND Title LIKE @Title 
 			AND AuthName LIKE @AuthName
-
+--procedure to get newest book added
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetNewestBook' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestBook
+GO
+CREATE PROC sp_GetNewestBook
+AS
+	SELECT TOP 1 CallNumber FROM BOOK
+	ORDER BY CallNumber DESC
 --procedure to insert a book 
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddBook' AND type = 'P')
@@ -431,7 +439,7 @@ EXEC sp_AddSub 'Travel','Travel books, travel guides,travel writting'
 
 EXEC sp_AddBook 'EL-CH-001','993-0001',1,'Elf on the Shelf','Chanda A. Bell',
 'CCA and B, LLC',10
-EXEC sp_AddBook 'Th-Ri-002','927-0002',1,'The Lost Hero','Rick Riordan',
+EXEC sp_AddBook 'TH-RI-002','927-0002',1,'The Lost Hero','Rick Riordan',
 'Hyperion',17
 EXEC sp_AddBook 'Aw-Kr-003','978-0003',2,'Awakened','Kristin Cast',
 'St. Martins Press',01
