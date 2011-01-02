@@ -48,10 +48,10 @@ CREATE TABLE Borrow(
 	BorID INT NOT NULL IDENTITY,
 	CallNumber VARCHAR(9) NOT NULL,
 	EmpID INT NOT NULL,
-	IssueStatus BIT NOT NULL,
+	IssueStatus BIT NOT NULL,--1 = checked out ,0 = checked in
 	ChkOutDate DATETIME NOT NULL,
 	DueDate DATETIME NOT NULL,
-	ChkInDate DATETIME NOT NULL,
+	ChkInDate DATETIME,
 	TotalFee FLOAT,
 	CONSTRAINT pk_BorID PRIMARY KEY (BorID),
 	CONSTRAINT fk_EmpID FOREIGN KEY (EmpID)
@@ -59,8 +59,6 @@ CREATE TABLE Borrow(
 	CONSTRAINT fk_CallNo FOREIGN KEY (CallNumber)
 		REFERENCES Book(CallNumber)
 )
-go
-ALTER TABLE Borrow ALTER COLUMN ChkInDate DATETIME NULL
 go
 --Create Fee table
 CREATE TABLE Fee(
@@ -107,18 +105,41 @@ AS
 		VALUES(@Name,@DOB,@Gender,@Email,@Password,
 		@Address,@Phone,1,@Department)
 	END
---get an employee
+--get an employee with one parameter : name
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAnEmp' AND type = 'P')
-   DROP PROCEDURE sp_GetAnEmp
+         WHERE name = 'sp_GetAnEmpWithName' AND type = 'P')
+   DROP PROCEDURE sp_GetAnEmpWithName
 GO
-CREATE PROC sp_GetAnEmp
+CREATE PROC sp_GetAnEmpWithName
+	@Name VARCHAR(45)
+AS
+	SELECT EmpID,[Name],Gender,Email,Department,Permission
+	FROM Employee
+	WHERE [Name] LIKE '%'+@Name+'%'
+--get an employee with one parameter : EmpID
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetAnEmpWithEmpID' AND type = 'P')
+   DROP PROCEDURE sp_GetAnEmpWithEmpID
+GO
+CREATE PROC sp_GetAnEmpWithEmpID
+	@EmpID INT
+AS
+	SELECT EmpID,[Name],Gender,Email,Department,Permission
+	FROM Employee
+	WHERE EmpId=@EmpID
+--get an employee with both of them : name and empID
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetAnEmpAll' AND type = 'P')
+   DROP PROCEDURE sp_GetAnEmpAll
+GO
+CREATE PROC sp_GetAnEmpAll
 	@EmpID INT,
 	@Name VARCHAR(45)
 AS
-	SELECT EmpID,[Name],Gender,Email,Department,Permission FROM Employee
-	WHERE  EmpID LIKE @EmpID AND 
-			[Name] LIKE @Name
+	SELECT EmpID,[Name],Gender,Email,Department,Permission
+	FROM Employee
+	WHERE EmpId=@EmpID AND [Name] LIKE '%'+@Name+'%'
+
 
 --Create Procedure get all field of a Employee
 CREATE PROC sp_GetEmp(@EmpID INT)
@@ -177,11 +198,15 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP PROCEDURE sp_DelEmp
 GO
 CREATE PROC sp_DelEmp
-	@EmpID INT,
+	@EmpID INT
 AS
-	SELECT * FROM Subject 
-	WHERE  SubID LIKE @SubID AND 
-			SubName LIKE @SubName 
+	BEGIN
+		IF NOT EXISTS (SELECT @EmpID FROM Borrow 
+			WHERE EmpID = @EmpID AND IssueStatus = 1)
+		DELETE FROM Employee WHERE EmpID = @EmpID
+		ELSE 
+			PRINT 'ko duoc'
+	END
 --Create Procedure Login
 CREATE PROC sp_Login(
 	@Name VARCHAR(45),
@@ -255,19 +280,37 @@ AS
 		NoOfCopy=@NoOfCopy
 		WHERE CallNumber=@CallNumber
 
---Create procedure to get Subject 
+--Create procedure to get Subject by SubId
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetSub' AND type = 'P')
-   DROP PROCEDURE sp_GetSub
+         WHERE name = 'sp_GetSubByID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByID
 GO
-CREATE PROC sp_GetSub
-	@SubID INT,
+CREATE PROC sp_GetSubByID
+	@SubID INT
+AS
+	SELECT * FROM Subject 
+	WHERE  SubID = @SubID 
+--Create procedure to get Subject by SubName
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetSubByName' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByName
+GO
+CREATE PROC sp_GetSubByName
 	@SubName VARCHAR(45)
 AS
 	SELECT * FROM Subject 
-	WHERE  SubID LIKE @SubID AND 
-			SubName LIKE @SubName 
-
+	WHERE SubName LIKE '%'+@SubName+'%'
+--Create procedure to get Subject by SubID and SubName
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetSubByAll' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByAll
+GO
+CREATE PROC sp_GetSubByAll
+	@SubId INT,
+	@SubName VARCHAR(45)
+AS
+	SELECT * FROM Subject 
+	WHERE SubID = @SubID AND SubName LIKE '%'+@SubName+'%'
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddSub' AND type = 'P')
@@ -307,7 +350,7 @@ GO
 CREATE PROC sp_AddBorrow
 (
 	@CallNumber VARCHAR(45),
-	@EmpID VARCHAR(200),
+	@EmpID int,
 	@IssueStatus bit,
 	@ChkOutDate DATETIME,
 	@DueDate DATETIME,
@@ -321,18 +364,51 @@ AS
 		VALUES(@CallNumber,@EmpID,@IssueStatus,
 				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
 
---get a borrow
+--get a borrow by CallNumber and EmpName
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBorrow' AND type = 'P')
-   DROP PROCEDURE sp_GetBorrow
+         WHERE name = 'sp_GetBorrowByAll' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrowByAll
 GO
-CREATE PROC sp_GetBorrow
-	@BorID INT,
-	@EmpID INT
+CREATE PROC sp_GetBorrowByAll
+	@CallNumber INT,
+	@EmpName VARCHAR(45)
 AS
-	SELECT * FROM  Borrow
-	WHERE  BorID LIKE @BorID AND 
-			EmpID LIKE @EmpID 
+	SELECT	b.BorID,b.EmpID,e.[Name],
+			b.CallNumber,b.ChkOutDate,b.ChkInDate
+	FROM	Borrow b INNER JOIN Employee e
+	ON		b.EmpID = e.EmpID
+	WHERE	CallNumber LIKE '%'+@CallNumber+'%' AND 
+			[Name] LIKE '%'+@EmpName+'%'
+
+--Edit a borrow 
+
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_AddBorrow' AND type = 'P')
+   DROP PROCEDURE sp_AddBorrow
+GO
+CREATE PROC sp_AddBorrow
+(
+	@CallNumber VARCHAR(45),
+	@EmpID int,
+	@IssueStatus bit,
+	@ChkOutDate DATETIME,
+	@DueDate DATETIME,
+	@ChkInDate DATETIME,
+	@TotalFee float
+)
+AS
+	UPDATE Borrow SET
+		CallNumber=@CallNumber,EmpID=@EmpID,IssueStatus=@IssueStatus,
+		ChkOutDate=@ChkOutDate,DueDate=@DueDate,ChkInDate=@ChkInDate,
+		TotalFee=@TotalFee
+		WHERE CallNumber=@CallNumber
+--Top 10 Book
+--IF EXISTS (SELECT name FROM sysobjects 
+--         WHERE name = 'sp_TopBook' AND type = 'P')
+--   DROP PROCEDURE sp_TopBook
+--CREATE PROC sp_TopBook
+--AS
+--	SELECT 
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 'root','Ha Noi','0986948677','GC0502'
@@ -363,7 +439,9 @@ EXEC sp_AddBook 'An-Da-004','326-0004',2,'Anatomy of a Boyfriend','Daria Snadows
 EXEC sp_AddBook 'Of-Ba-005','299-0005',1,'Of Thee I Sing: A Letter to My Daughters','Barack Obama',
 'Random House Childrens Books',29
 
---EXEC sp_AddBorrow 'El-Ch-001',3,1,'1/1/2011'
+EXEC sp_AddBorrow 'El-Ch-001',3,1,'1/1/2011','1/6/2011',Null,5
+
+EXEC sp_DelEmp 3 
 
 select * from Employee
 
