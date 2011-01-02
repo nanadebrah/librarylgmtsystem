@@ -296,7 +296,7 @@ AS
 				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
-'root','Ha Noi','0986948677','GC0502'
+'63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
 select * from Employee
 
