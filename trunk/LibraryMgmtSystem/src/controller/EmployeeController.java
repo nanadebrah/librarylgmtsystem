@@ -28,14 +28,16 @@ public class EmployeeController {
     private PalEmployee view;
     private ManageFrm parent;
     private DefaultTableModel empModel;
-    private AddEmployeeController addemp;
-    private EditEmployeeController editemp;
+    private AddEmployeeController addEmp;
+    private EditEmployeeController editEmp;
+    private ManageController manage;
 
-    public EmployeeController(PalEmployee view,
-            DefaultTableModel empModel, ManageFrm parent) {
+    public EmployeeController(PalEmployee view, DefaultTableModel empModel,
+            ManageFrm parent, ManageController manage) {
         this.view = view;
         this.parent = parent;
         this.empModel = empModel;
+        this.manage = manage;
         initComponent();
     }
 
@@ -123,62 +125,57 @@ public class EmployeeController {
      *Method edit employee on databse and edit on employee table
      */
     private void editEmp() {
+        manage.doBlur();
         //Get Id employee selected
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
-        //doBlur();
         //Create instance of Employee edit dialog and display it
-        editemp = new EditEmployeeController(
+        editEmp = new EditEmployeeController(
                 new EditEmpDialog(parent, true), emp);
-        editemp.getView().setVisible(true);
+        editEmp.getView().setVisible(true);
         //Update data on database
-        if (editemp.getEmp() != null) {
-            AccessEmp.getInstance().editEmp(editemp.getEmp());
+        if (editEmp.getEmp() != null) {
+            AccessEmp.getInstance().editEmp(editEmp.getEmp());
             //Remove old data on table model
             empModel.removeRow(view.getTblEmp().getSelectedRow());
             //Add new row
             empModel.addRow(emp.toVector());
         }
         view.getTblEmp().clearSelection();
-        //doBlur();
+        manage.doBlur();
     }
 
     /*
      *Method add employee on databse
      */
     private void addEmp() {
-        //doBlur();
+        manage.doBlur();
         //Display Add employee dialog
-        addemp = new AddEmployeeController(new AddEmpDialog(parent, true));
-        addemp.getView().setVisible(true);
+        addEmp = new AddEmployeeController(new AddEmpDialog(parent, true));
+        addEmp.getView().setVisible(true);
         //invoked method add employee
-        if (addemp.getEmp() != null) {
-            AccessEmp.getInstance().addEmp(addemp.getEmp());
+        if (addEmp.getEmp() != null) {
+            AccessEmp.getInstance().addEmp(addEmp.getEmp());
         }
         view.getTblEmp().clearSelection();
-        //doBlur();
-    }
-
-    /*
-     * Remove all field on model
-     */
-    private void removeModel(DefaultTableModel model) {
-        int row = model.getRowCount();
-        for (int i = 0; i < row; i++) {
-            model.removeRow(0);
-        }
+        manage.doBlur();
     }
 
     /*
      * Seacrch employee by Id or name
      */
     public void searchEmp() {
-        removeModel(empModel);
-        AccessEmp.getInstance().searchEmp(
+        manage.removeModel(empModel);
+        new Thread(new Runnable() {
+
+            public void run() {
+                AccessEmp.getInstance().searchEmp(
                 empModel, view.getTxtIdEmp().getText(),
                 view.getTxtNameEmp().getText());
+            }
+        }).start();
     }
 
     /*
@@ -190,12 +187,12 @@ public class EmployeeController {
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
-        //doBlur();
+        manage.doBlur();
         //Create instance of Employee edit dialog and display it
         ViewEmpDialog empView = new ViewEmpDialog(parent, true, emp);
         empView.setVisible(true);
         tableFocus();
-        //doBlur();
+        manage.doBlur();
     }
 
     /**

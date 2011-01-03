@@ -19,7 +19,7 @@ import view.AddEmpDialog;
  */
 public class AddEmployeeController {
 
-    //
+    //Defined
     private Employee emp = null;
     private AddEmpDialog view;
 
@@ -28,9 +28,13 @@ public class AddEmployeeController {
         initComponent();
     }
 
+    /**
+     * initialize the controller.
+     */
     private void initComponent() {
         //Create new employee
         setEmp(new Employee());
+        
         //Add event close btn
         getView().getBtnCancel().addActionListener(new ActionListener() {
 
@@ -39,6 +43,7 @@ public class AddEmployeeController {
                 getView().dispose();
             }
         });
+
         //Add event add btn
         getView().getBtnAdd().addActionListener(new ActionListener() {
 
@@ -49,6 +54,7 @@ public class AddEmployeeController {
                 getView().dispose();
             }
         });
+
         //Add item listenner
         getView().getCbxPermis().addItemListener(new ItemListener() {
 
@@ -65,6 +71,7 @@ public class AddEmployeeController {
                 }
             }
         });
+
         //Add window event
         view.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {

@@ -172,4 +172,116 @@ public class PalSubject extends javax.swing.JPanel {
     private javax.swing.JTextField txtNameSub;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the btnAddSub
+     */
+    public javax.swing.JButton getBtnAddSub() {
+        return btnAddSub;
+    }
+
+    /**
+     * @param btnAddSub the btnAddSub to set
+     */
+    public void setBtnAddSub(javax.swing.JButton btnAddSub) {
+        this.btnAddSub = btnAddSub;
+    }
+
+    /**
+     * @return the btnDelSub
+     */
+    public javax.swing.JButton getBtnDelSub() {
+        return btnDelSub;
+    }
+
+    /**
+     * @param btnDelSub the btnDelSub to set
+     */
+    public void setBtnDelSub(javax.swing.JButton btnDelSub) {
+        this.btnDelSub = btnDelSub;
+    }
+
+    /**
+     * @return the btnEditSub
+     */
+    public javax.swing.JButton getBtnEditSub() {
+        return btnEditSub;
+    }
+
+    /**
+     * @param btnEditSub the btnEditSub to set
+     */
+    public void setBtnEditSub(javax.swing.JButton btnEditSub) {
+        this.btnEditSub = btnEditSub;
+    }
+
+    /**
+     * @return the btnSearchSub
+     */
+    public javax.swing.JButton getBtnSearchSub() {
+        return btnSearchSub;
+    }
+
+    /**
+     * @param btnSearchSub the btnSearchSub to set
+     */
+    public void setBtnSearchSub(javax.swing.JButton btnSearchSub) {
+        this.btnSearchSub = btnSearchSub;
+    }
+
+    /**
+     * @return the btnViewSub
+     */
+    public javax.swing.JButton getBtnViewSub() {
+        return btnViewSub;
+    }
+
+    /**
+     * @param btnViewSub the btnViewSub to set
+     */
+    public void setBtnViewSub(javax.swing.JButton btnViewSub) {
+        this.btnViewSub = btnViewSub;
+    }
+
+    /**
+     * @return the tblSub
+     */
+    public javax.swing.JTable getTblSub() {
+        return tblSub;
+    }
+
+    /**
+     * @param tblSub the tblSub to set
+     */
+    public void setTblSub(javax.swing.JTable tblSub) {
+        this.tblSub = tblSub;
+    }
+
+    /**
+     * @return the txtIdSub
+     */
+    public javax.swing.JTextField getTxtIdSub() {
+        return txtIdSub;
+    }
+
+    /**
+     * @param txtIdSub the txtIdSub to set
+     */
+    public void setTxtIdSub(javax.swing.JTextField txtIdSub) {
+        this.txtIdSub = txtIdSub;
+    }
+
+    /**
+     * @return the txtNameSub
+     */
+    public javax.swing.JTextField getTxtNameSub() {
+        return txtNameSub;
+    }
+
+    /**
+     * @param txtNameSub the txtNameSub to set
+     */
+    public void setTxtNameSub(javax.swing.JTextField txtNameSub) {
+        this.txtNameSub = txtNameSub;
+    }
+
 }

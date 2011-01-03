@@ -23,6 +23,7 @@ public class AddSubDialog extends javax.swing.JDialog {
     public AddSubDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -60,11 +61,6 @@ public class AddSubDialog extends javax.swing.JDialog {
         btnAdd.setText("Add");
 
         btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
         txtDes.setColumns(20);
         txtDes.setRows(5);
@@ -133,11 +129,6 @@ public class AddSubDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        dispose();
-}//GEN-LAST:event_btnCancelActionPerformed
-
     /**
     * @param args the command line arguments
     */
@@ -166,5 +157,61 @@ public class AddSubDialog extends javax.swing.JDialog {
     private javax.swing.JTextArea txtDes;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnAdd
+     */
+    public javax.swing.JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    /**
+     * @param btnAdd the btnAdd to set
+     */
+    public void setBtnAdd(javax.swing.JButton btnAdd) {
+        this.btnAdd = btnAdd;
+    }
+
+    /**
+     * @return the btnCancel
+     */
+    public javax.swing.JButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    /**
+     * @param btnCancel the btnCancel to set
+     */
+    public void setBtnCancel(javax.swing.JButton btnCancel) {
+        this.btnCancel = btnCancel;
+    }
+
+    /**
+     * @return the txtDes
+     */
+    public javax.swing.JTextArea getTxtDes() {
+        return txtDes;
+    }
+
+    /**
+     * @param txtDes the txtDes to set
+     */
+    public void setTxtDes(javax.swing.JTextArea txtDes) {
+        this.txtDes = txtDes;
+    }
+
+    /**
+     * @return the txtName
+     */
+    public javax.swing.JTextField getTxtName() {
+        return txtName;
+    }
+
+    /**
+     * @param txtName the txtName to set
+     */
+    public void setTxtName(javax.swing.JTextField txtName) {
+        this.txtName = txtName;
+    }
 
 }

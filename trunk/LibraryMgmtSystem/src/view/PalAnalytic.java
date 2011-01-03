@@ -133,4 +133,88 @@ public class PalAnalytic extends javax.swing.JPanel {
     private javax.swing.JToolBar tolbarAna;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the btnAlertAna
+     */
+    public javax.swing.JButton getBtnAlertAna() {
+        return btnAlertAna;
+    }
+
+    /**
+     * @param btnAlertAna the btnAlertAna to set
+     */
+    public void setBtnAlertAna(javax.swing.JButton btnAlertAna) {
+        this.btnAlertAna = btnAlertAna;
+    }
+
+    /**
+     * @return the btnRevAna
+     */
+    public javax.swing.JButton getBtnRevAna() {
+        return btnRevAna;
+    }
+
+    /**
+     * @param btnRevAna the btnRevAna to set
+     */
+    public void setBtnRevAna(javax.swing.JButton btnRevAna) {
+        this.btnRevAna = btnRevAna;
+    }
+
+    /**
+     * @return the btnTBookAna
+     */
+    public javax.swing.JButton getBtnTBookAna() {
+        return btnTBookAna;
+    }
+
+    /**
+     * @param btnTBookAna the btnTBookAna to set
+     */
+    public void setBtnTBookAna(javax.swing.JButton btnTBookAna) {
+        this.btnTBookAna = btnTBookAna;
+    }
+
+    /**
+     * @return the btnTBorAna
+     */
+    public javax.swing.JButton getBtnTBorAna() {
+        return btnTBorAna;
+    }
+
+    /**
+     * @param btnTBorAna the btnTBorAna to set
+     */
+    public void setBtnTBorAna(javax.swing.JButton btnTBorAna) {
+        this.btnTBorAna = btnTBorAna;
+    }
+
+    /**
+     * @return the btnViewAna
+     */
+    public javax.swing.JButton getBtnViewAna() {
+        return btnViewAna;
+    }
+
+    /**
+     * @param btnViewAna the btnViewAna to set
+     */
+    public void setBtnViewAna(javax.swing.JButton btnViewAna) {
+        this.btnViewAna = btnViewAna;
+    }
+
+    /**
+     * @return the tblAna
+     */
+    public javax.swing.JTable getTblAna() {
+        return tblAna;
+    }
+
+    /**
+     * @param tblAna the tblAna to set
+     */
+    public void setTblAna(javax.swing.JTable tblAna) {
+        this.tblAna = tblAna;
+    }
+
 }

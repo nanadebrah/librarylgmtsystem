@@ -27,7 +27,7 @@ public class AccessBook {
         return instance;
     }
 
-    public void addEmp(Book bok) {
+    public void addBook(Book bok) {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();
         CallableStatement csDetails = null;

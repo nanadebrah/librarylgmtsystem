@@ -193,4 +193,144 @@ public class PalBorrow extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmNamBor;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * @return the btnChkIn
+     */
+    public javax.swing.JButton getBtnChkIn() {
+        return btnChkIn;
+    }
+
+    /**
+     * @param btnChkIn the btnChkIn to set
+     */
+    public void setBtnChkIn(javax.swing.JButton btnChkIn) {
+        this.btnChkIn = btnChkIn;
+    }
+
+    /**
+     * @return the btnChkOut
+     */
+    public javax.swing.JButton getBtnChkOut() {
+        return btnChkOut;
+    }
+
+    /**
+     * @param btnChkOut the btnChkOut to set
+     */
+    public void setBtnChkOut(javax.swing.JButton btnChkOut) {
+        this.btnChkOut = btnChkOut;
+    }
+
+    /**
+     * @return the btnDelBor
+     */
+    public javax.swing.JButton getBtnDelBor() {
+        return btnDelBor;
+    }
+
+    /**
+     * @param btnDelBor the btnDelBor to set
+     */
+    public void setBtnDelBor(javax.swing.JButton btnDelBor) {
+        this.btnDelBor = btnDelBor;
+    }
+
+    /**
+     * @return the btnEditBor
+     */
+    public javax.swing.JButton getBtnEditBor() {
+        return btnEditBor;
+    }
+
+    /**
+     * @param btnEditBor the btnEditBor to set
+     */
+    public void setBtnEditBor(javax.swing.JButton btnEditBor) {
+        this.btnEditBor = btnEditBor;
+    }
+
+    /**
+     * @return the btnFee
+     */
+    public javax.swing.JButton getBtnFee() {
+        return btnFee;
+    }
+
+    /**
+     * @param btnFee the btnFee to set
+     */
+    public void setBtnFee(javax.swing.JButton btnFee) {
+        this.btnFee = btnFee;
+    }
+
+    /**
+     * @return the btnSearchBor
+     */
+    public javax.swing.JButton getBtnSearchBor() {
+        return btnSearchBor;
+    }
+
+    /**
+     * @param btnSearchBor the btnSearchBor to set
+     */
+    public void setBtnSearchBor(javax.swing.JButton btnSearchBor) {
+        this.btnSearchBor = btnSearchBor;
+    }
+
+    /**
+     * @return the btnViewBor
+     */
+    public javax.swing.JButton getBtnViewBor() {
+        return btnViewBor;
+    }
+
+    /**
+     * @param btnViewBor the btnViewBor to set
+     */
+    public void setBtnViewBor(javax.swing.JButton btnViewBor) {
+        this.btnViewBor = btnViewBor;
+    }
+
+    /**
+     * @return the tblBor
+     */
+    public javax.swing.JTable getTblBor() {
+        return tblBor;
+    }
+
+    /**
+     * @param tblBor the tblBor to set
+     */
+    public void setTblBor(javax.swing.JTable tblBor) {
+        this.tblBor = tblBor;
+    }
+
+    /**
+     * @return the txtCallNoBor
+     */
+    public javax.swing.JTextField getTxtCallNoBor() {
+        return txtCallNoBor;
+    }
+
+    /**
+     * @param txtCallNoBor the txtCallNoBor to set
+     */
+    public void setTxtCallNoBor(javax.swing.JTextField txtCallNoBor) {
+        this.txtCallNoBor = txtCallNoBor;
+    }
+
+    /**
+     * @return the txtEmNamBor
+     */
+    public javax.swing.JTextField getTxtEmNamBor() {
+        return txtEmNamBor;
+    }
+
+    /**
+     * @param txtEmNamBor the txtEmNamBor to set
+     */
+    public void setTxtEmNamBor(javax.swing.JTextField txtEmNamBor) {
+        this.txtEmNamBor = txtEmNamBor;
+    }
+
 }
