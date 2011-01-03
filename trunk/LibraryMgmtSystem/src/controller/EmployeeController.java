@@ -4,7 +4,7 @@
  */
 package controller;
 
-import controller.connection.AccessEmp;
+import model.AccessEmp;
 import entity.Employee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,17 +24,17 @@ import view.ViewEmpDialog;
  */
 public class EmployeeController {
 
-    //Defined Employee Panel
+    //Defined
     private PalEmployee view;
-    private ManageFrm manView;
+    private ManageFrm parent;
     private DefaultTableModel empModel;
     private AddEmployeeController addemp;
     private EditEmployeeController editemp;
 
     public EmployeeController(PalEmployee view,
-            DefaultTableModel empModel, ManageFrm manView) {
+            DefaultTableModel empModel, ManageFrm parent) {
         this.view = view;
-        this.manView = manView;
+        this.parent = parent;
         this.empModel = empModel;
         initComponent();
     }
@@ -131,7 +131,7 @@ public class EmployeeController {
         //doBlur();
         //Create instance of Employee edit dialog and display it
         editemp = new EditEmployeeController(
-                new EditEmpDialog(manView, true), emp);
+                new EditEmpDialog(parent, true), emp);
         editemp.getView().setVisible(true);
         //Update data on database
         if (editemp.getEmp() != null) {
@@ -151,7 +151,7 @@ public class EmployeeController {
     private void addEmp() {
         //doBlur();
         //Display Add employee dialog
-        addemp = new AddEmployeeController(new AddEmpDialog(manView, true));
+        addemp = new AddEmployeeController(new AddEmpDialog(parent, true));
         addemp.getView().setVisible(true);
         //invoked method add employee
         if (addemp.getEmp() != null) {
@@ -192,7 +192,7 @@ public class EmployeeController {
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
         //doBlur();
         //Create instance of Employee edit dialog and display it
-        ViewEmpDialog empView = new ViewEmpDialog(manView, true, emp);
+        ViewEmpDialog empView = new ViewEmpDialog(parent, true, emp);
         empView.setVisible(true);
         tableFocus();
         //doBlur();

@@ -322,4 +322,18 @@ public class PalBook extends javax.swing.JPanel {
         this.txtTitlBook = txtTitlBook;
     }
 
+    /**
+     * @return the tblBook
+     */
+    public javax.swing.JTable getTblBook() {
+        return tblBook;
+    }
+
+    /**
+     * @param tblBook the tblBook to set
+     */
+    public void setTblBook(javax.swing.JTable tblBook) {
+        this.tblBook = tblBook;
+    }
+
 }

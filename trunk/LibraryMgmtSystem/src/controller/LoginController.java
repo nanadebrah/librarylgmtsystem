@@ -5,7 +5,7 @@
 package controller;
 
 import com.jhlabs.image.BlurFilter;
-import controller.connection.LibConnection;
+import model.LibConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

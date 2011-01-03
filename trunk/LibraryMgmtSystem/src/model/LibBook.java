@@ -4,7 +4,6 @@
  */
 package model;
 
-import controller.connection.AccessBook;
 import entity.Book;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

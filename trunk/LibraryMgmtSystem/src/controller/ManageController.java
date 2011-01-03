@@ -20,6 +20,7 @@ import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
 import view.AboutWindow;
 import view.ManageFrm;
+import view.PalBook;
 import view.PalEmployee;
 
 /**
@@ -33,6 +34,9 @@ public class ManageController {
     //Defined EmployeeController & employee panel
     private EmployeeController empControl;
     private DefaultTableModel empModel;
+    //Defined BookController & book panel
+    private BookController bookControl;
+    private DefaultTableModel bookModel;
     //Defined about window
     private AboutWindow about;
     //Defined Setting Dialog
@@ -57,17 +61,52 @@ public class ManageController {
      *  initialize the controller.
      */
     private void initComponent() {
-        //Create model
+
+        //Create instance of card layout
+        cardLayout = (CardLayout) view.getPalMain().getLayout();
+        //Create employee model
         empModel = new DefaultTableModel() {
 
             public boolean isCellEditable(int column, int row) {
                 return false;
             }
         };
-        //Create instance of card layout
-        cardLayout = (CardLayout) view.getPalMain().getLayout();
         //Create new employee panel
         empControl = new EmployeeController(new PalEmployee(), empModel, view);
+        //Add employee panel
+        view.getPalMain().add(empControl.getView(), "PalEmployee");
+
+        //Add btn Employee manage
+        view.getBtnEmpMan().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(view.getPalMain(), "PalEmployee");
+                setBorSelect(view.getBtnEmpMan());
+            }
+        });
+
+
+        //Create book model
+        bookModel = new DefaultTableModel() {
+
+            public boolean isCellEditable(int column, int row) {
+                return false;
+            }
+        };
+        //Create new book panel
+        bookControl = new BookController(new PalBook(), bookModel, view);
+        //Add ebook panel
+        view.getPalMain().add(bookControl.getView(), "PalBook");
+        //Add btn Book manage
+        view.getBtnBookMan().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(view.getPalMain(), "PalBook");
+                setBorSelect(view.getBtnEmpMan());
+            }
+        });
+
+
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
@@ -79,18 +118,6 @@ public class ManageController {
         blurUI.setLockedCursor(null);
         //set layer blur to pane
         view.setContentPane(layer);
-
-        //Add employee panel
-        view.getPalMain().add(empControl.getView(), "palEmployee");
-
-        //Add btn Employee manage
-        view.getBtnEmpMan().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(view.getPalMain(), "palEmployee");
-                setBorSelect(view.getBtnEmpMan());
-            }
-        });
 
         //Add event window open
         view.addWindowListener(new java.awt.event.WindowAdapter() {

@@ -4,7 +4,7 @@
  */
 package controller;
 
-import controller.connection.LibConnection;
+import model.LibConnection;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
