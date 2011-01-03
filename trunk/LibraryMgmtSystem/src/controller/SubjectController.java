@@ -7,9 +7,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessEmp;
+import model.AccessSub;
 import view.AddSubDialog;
 import view.ManageFrm;
 import view.PalSubject;
@@ -69,7 +71,10 @@ public class SubjectController {
         addSubject.getView().setVisible(true);
         //invoked method add employee
         if (addSubject.getSub() != null) {
-            System.out.println(addSubject.getSub().getSubName());
+            if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
+                JOptionPane.showMessageDialog(getView(), "Add subject successful",
+                    "Successful!", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         view.getTblSub().clearSelection();
         manage.doBlur();

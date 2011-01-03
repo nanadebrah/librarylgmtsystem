@@ -23,6 +23,9 @@ public class AccessEmp {
 
     //Defined instance of AccessEmp
     private static AccessEmp instance = new AccessEmp();
+    private Connection cn = null;
+    private ResultSet rsDetails = null;
+    private CallableStatement csDetails = null;
 
     /*
      * Static method get instance of AccessEmp
@@ -40,9 +43,7 @@ public class AccessEmp {
         //Defined Object
         Employee emp = null;
         //Defined connection, rs and cs to connect and query database
-        Connection cn = LibConnection.getConnection();
-        ResultSet rsDetails = null;
-        CallableStatement csDetails = null;
+        cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall("{call sp_GetEmp(?)}");
             csDetails.setInt(1, EmpID);
@@ -81,11 +82,9 @@ public class AccessEmp {
      *
      * @param emp is employee object to add to database
      */
-    public void addEmp(Employee emp) {
+    public boolean addEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database
-        Connection cn = LibConnection.getConnection();
-        CallableStatement csDetails = null;
-
+        cn = LibConnection.getConnection();
         try {
             if (emp.getPermission() == 1) {
                 csDetails = cn.prepareCall("{call sp_InsLib(?,?,?,?,?,?,?,?)}");
@@ -99,8 +98,7 @@ public class AccessEmp {
                 csDetails.setString(7, emp.getPhone());
                 csDetails.setString(8, emp.getDepartment());
                 csDetails.execute();
-                JOptionPane.showMessageDialog(null, "Add librarian successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                return true;
             } else {
                 csDetails = cn.prepareCall("{call sp_InsEmp(?,?,?,?,?,?,?)}");
                 csDetails.setString(1, emp.getName());
@@ -111,8 +109,7 @@ public class AccessEmp {
                 csDetails.setString(6, emp.getPhone());
                 csDetails.setString(7, emp.getDepartment());
                 csDetails.execute();
-                JOptionPane.showMessageDialog(null, "Add employee successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -121,6 +118,7 @@ public class AccessEmp {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return false;
     }
 
     /**
@@ -129,9 +127,7 @@ public class AccessEmp {
      */
     public void getAllEmp(DefaultTableModel empModel) {
         //Defined connection, rs and cs to connect and query database
-        Connection cn = LibConnection.getConnection();
-        ResultSet rsDetails = null;
-        CallableStatement csDetails = null;
+        cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall("{call sp_GetAllEmp}");
             rsDetails = csDetails.executeQuery();

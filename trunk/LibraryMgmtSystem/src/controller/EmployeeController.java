@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.MouseAdapter;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import view.AddEmpDialog;
@@ -157,7 +158,10 @@ public class EmployeeController {
         addEmp.getView().setVisible(true);
         //invoked method add employee
         if (addEmp.getEmp() != null) {
-            AccessEmp.getInstance().addEmp(addEmp.getEmp());
+            if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
+                JOptionPane.showMessageDialog(getView(), "Add successful",
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         view.getTblEmp().clearSelection();
         manage.doBlur();
@@ -172,8 +176,8 @@ public class EmployeeController {
 
             public void run() {
                 AccessEmp.getInstance().searchEmp(
-                empModel, view.getTxtIdEmp().getText(),
-                view.getTxtNameEmp().getText());
+                        empModel, view.getTxtIdEmp().getText(),
+                        view.getTxtNameEmp().getText());
             }
         }).start();
     }
