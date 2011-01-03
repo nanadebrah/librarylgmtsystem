@@ -51,6 +51,7 @@ public class AddBokDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add a book");
         setResizable(false);
 
         palAddBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));

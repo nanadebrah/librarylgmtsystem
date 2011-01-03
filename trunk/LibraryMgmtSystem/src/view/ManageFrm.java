@@ -85,12 +85,12 @@ public class ManageFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("For manager");
         setMinimumSize(new java.awt.Dimension(700, 360));
         setName("manageFrm"); // NOI18N
 
         taskPalManage.setTitle("Management");
         taskPalManage.setFocusable(false);
-        taskPalManage.setOpaque(false);
 
         btnEmpMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Employee)));
         btnEmpMan.setMnemonic('e');
@@ -115,7 +115,6 @@ public class ManageFrm extends javax.swing.JFrame {
 
         taskPalBorAna.setTitle("Borrow & Analytic");
         taskPalBorAna.setFocusable(false);
-        taskPalBorAna.setOpaque(false);
         //Set font for all button menu
         btnEmpMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         btnBookMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N

@@ -71,11 +71,21 @@ public class SettingDialog extends javax.swing.JDialog {
 
         lblPassword.setText("Password:");
 
+        txtHost.setToolTipText("Example: localhost");
+
+        txtPort.setToolTipText("Example: 1443");
+
+        txtDatabase.setToolTipText("database's name");
+
+        txtUser.setToolTipText("Your account");
+
         btnDefault.setText("Default");
 
         btnSave.setText("Save");
 
         btnClose.setText("Close");
+
+        txtPass.setToolTipText("Your password");
 
         org.jdesktop.layout.GroupLayout conectSetPanelLayout = new org.jdesktop.layout.GroupLayout(conectSetPanel);
         conectSetPanel.setLayout(conectSetPanelLayout);

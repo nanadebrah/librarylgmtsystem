@@ -65,6 +65,7 @@ public class EditEmpDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit information for employee");
         setResizable(false);
 
         palEditEmp.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Information"));

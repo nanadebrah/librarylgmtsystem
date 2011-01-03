@@ -50,6 +50,7 @@ public class EditBokDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Edit details for book");
 
         palEditBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
 

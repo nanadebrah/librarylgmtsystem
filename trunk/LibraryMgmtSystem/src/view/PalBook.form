@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
@@ -26,8 +26,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtISBNBook" alignment="2" pref="142" max="32767" attributes="1"/>
-                  <Component id="txtCallNoBook" alignment="2" pref="142" max="32767" attributes="1"/>
+                  <Component id="txtISBNBook" alignment="2" pref="174" max="32767" attributes="1"/>
+                  <Component id="txtCallNoBook" alignment="2" pref="174" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -36,8 +36,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtAthBook" alignment="2" pref="166" max="32767" attributes="1"/>
-                  <Component id="txtTitlBook" alignment="2" pref="166" max="32767" attributes="1"/>
+                  <Component id="txtAthBook" alignment="2" pref="198" max="32767" attributes="1"/>
+                  <Component id="txtTitlBook" alignment="2" pref="198" max="32767" attributes="1"/>
               </Group>
           </Group>
       </Group>
@@ -72,10 +72,10 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="tolbarBook">
       <Properties>
+        <Property name="floatable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
-        <Property name="floatable" type="boolean" value="false"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
@@ -183,8 +183,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAthBook">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="search book by author"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTitlBook">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="search book by title"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCallNo">
       <Properties>
@@ -197,8 +203,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCallNoBook">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="search book by order"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtISBNBook">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="search book by ISBN"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

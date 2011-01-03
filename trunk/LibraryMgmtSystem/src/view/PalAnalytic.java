@@ -42,6 +42,8 @@ public class PalAnalytic extends javax.swing.JPanel {
         scrPanAna = new javax.swing.JScrollPane();
         tblAna = new javax.swing.JTable();
 
+        setToolTipText("show details");
+
         tolbarAna.setBorder(null);
         tolbarAna.setFloatable(false);
         tolbarAna.setBorderPainted(false);
@@ -107,13 +109,11 @@ public class PalAnalytic extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 535, Short.MAX_VALUE)
             .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
             .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 386, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

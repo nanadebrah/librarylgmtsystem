@@ -66,6 +66,7 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Show details of employee or librarian");
         setResizable(false);
 
         lblViewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_InfoEmp)));

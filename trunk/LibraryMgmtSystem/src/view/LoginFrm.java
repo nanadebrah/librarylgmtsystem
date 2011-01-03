@@ -54,6 +54,7 @@ public class LoginFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOGIN");
         setResizable(false);
 
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
@@ -93,7 +94,7 @@ public class LoginFrm extends javax.swing.JFrame {
                             .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                     .add(panelLoginLayout.createSequentialGroup()
                         .add(chBxRemember)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, Short.MAX_VALUE)
                         .add(btnLogin)))
                 .addContainerGap())
         );
