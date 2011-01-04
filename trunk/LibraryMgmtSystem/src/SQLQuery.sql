@@ -37,8 +37,8 @@ CREATE TABLE Book(
 	Title VARCHAR(100) NOT NULL,
 	AuthName VARCHAR(30) NOT NULL,
 	Publisher VARCHAR(45) NOT NULL,
-	NoOfCopy TINYINT NOT NULL,
-	NoInLib TINYINT NOT NULL,
+	NoOfCopy TINYINT,
+	NoInLib TINYINT,
 	CONSTRAINT pk_CallNumber PRIMARY KEY (CallNumber),
 	CONSTRAINT fk_SubID FOREIGN KEY (SubID)
 		REFERENCES Subject(SubID),
@@ -348,8 +348,8 @@ CREATE PROC sp_EditSub
 	@Description VARCHAR(200)
 )
 AS
-	UPDATE Subject SET
-		SubID=@SubID ,SubName=@SubName ,Description=@Description
+	UPDATE Subject SET SubName=@SubName,
+		Description=@Description
 		WHERE SubID=@SubID
 
 --procedure to add a Borrow

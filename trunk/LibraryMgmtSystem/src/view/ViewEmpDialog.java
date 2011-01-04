@@ -10,8 +10,6 @@
  */
 package view;
 
-import entity.Employee;
-import java.sql.Date;
 import model.LibImages;
 
 /**
@@ -21,13 +19,11 @@ import model.LibImages;
 public class ViewEmpDialog extends javax.swing.JDialog {
 
     /** Creates new form ViewEmpDialog */
-    public ViewEmpDialog(java.awt.Frame parent, boolean modal, Employee emp) {
+    public ViewEmpDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         //Set to center of screen
         setLocationRelativeTo(null);
-        //Set field
-        setLabel(emp);
     }
 
     /** This method is called from within the constructor to
@@ -205,11 +201,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         );
 
         btnClose.setText("Close");
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseActionPerformed(evt);
-            }
-        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,9 +212,9 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                     .add(layout.createSequentialGroup()
                         .add(lblViewImage)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(palInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnClose)))
+                        .add(palInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnClose))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -241,33 +232,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        //Close this dialog
-        dispose();
-}//GEN-LAST:event_btnCloseActionPerformed
-
-    /*
-     * Set all information
-     */
-    private void setLabel(Employee emp) {
-        lblID1.setText(new Integer(emp.getEmpID()).toString());
-        lblName1.setText(emp.getName());
-        lblDOB1.setText(new Date(emp.getDOB()).toString());
-        if (emp.getGender() == 1) {
-            lblGender1.setText("Male");
-        } else {
-            lblGender1.setText("Female");
-        }
-        lblEmail1.setText(emp.getEmail());
-        lblAddress1.setText(emp.getAddress());
-        lblPhone1.setText(emp.getPhone());
-        if (emp.getPermission() == 1) {
-            lblPermission1.setText("Librarian");
-        } else {
-            lblPermission1.setText("Employee");
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
@@ -296,4 +260,172 @@ public class ViewEmpDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JPanel palInfo;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnClose
+     */
+    public javax.swing.JButton getBtnClose() {
+        return btnClose;
+    }
+
+    /**
+     * @param btnClose the btnClose to set
+     */
+    public void setBtnClose(javax.swing.JButton btnClose) {
+        this.btnClose = btnClose;
+    }
+
+    /**
+     * @return the lblAddress1
+     */
+    public javax.swing.JLabel getLblAddress1() {
+        return lblAddress1;
+    }
+
+    /**
+     * @param lblAddress1 the lblAddress1 to set
+     */
+    public void setLblAddress1(javax.swing.JLabel lblAddress1) {
+        this.lblAddress1 = lblAddress1;
+    }
+
+    /**
+     * @return the lblChkIn1
+     */
+    public javax.swing.JLabel getLblChkIn1() {
+        return lblChkIn1;
+    }
+
+    /**
+     * @param lblChkIn1 the lblChkIn1 to set
+     */
+    public void setLblChkIn1(javax.swing.JLabel lblChkIn1) {
+        this.lblChkIn1 = lblChkIn1;
+    }
+
+    /**
+     * @return the lblChkOut1
+     */
+    public javax.swing.JLabel getLblChkOut1() {
+        return lblChkOut1;
+    }
+
+    /**
+     * @param lblChkOut1 the lblChkOut1 to set
+     */
+    public void setLblChkOut1(javax.swing.JLabel lblChkOut1) {
+        this.lblChkOut1 = lblChkOut1;
+    }
+
+    /**
+     * @return the lblDOB1
+     */
+    public javax.swing.JLabel getLblDOB1() {
+        return lblDOB1;
+    }
+
+    /**
+     * @param lblDOB1 the lblDOB1 to set
+     */
+    public void setLblDOB1(javax.swing.JLabel lblDOB1) {
+        this.lblDOB1 = lblDOB1;
+    }
+
+    /**
+     * @return the lblEmail1
+     */
+    public javax.swing.JLabel getLblEmail1() {
+        return lblEmail1;
+    }
+
+    /**
+     * @param lblEmail1 the lblEmail1 to set
+     */
+    public void setLblEmail1(javax.swing.JLabel lblEmail1) {
+        this.lblEmail1 = lblEmail1;
+    }
+
+    /**
+     * @return the lblFee1
+     */
+    public javax.swing.JLabel getLblFee1() {
+        return lblFee1;
+    }
+
+    /**
+     * @param lblFee1 the lblFee1 to set
+     */
+    public void setLblFee1(javax.swing.JLabel lblFee1) {
+        this.lblFee1 = lblFee1;
+    }
+
+    /**
+     * @return the lblGender1
+     */
+    public javax.swing.JLabel getLblGender1() {
+        return lblGender1;
+    }
+
+    /**
+     * @param lblGender1 the lblGender1 to set
+     */
+    public void setLblGender1(javax.swing.JLabel lblGender1) {
+        this.lblGender1 = lblGender1;
+    }
+
+    /**
+     * @return the lblID1
+     */
+    public javax.swing.JLabel getLblID1() {
+        return lblID1;
+    }
+
+    /**
+     * @param lblID1 the lblID1 to set
+     */
+    public void setLblID1(javax.swing.JLabel lblID1) {
+        this.lblID1 = lblID1;
+    }
+
+    /**
+     * @return the lblName1
+     */
+    public javax.swing.JLabel getLblName1() {
+        return lblName1;
+    }
+
+    /**
+     * @param lblName1 the lblName1 to set
+     */
+    public void setLblName1(javax.swing.JLabel lblName1) {
+        this.lblName1 = lblName1;
+    }
+
+    /**
+     * @return the lblPermission1
+     */
+    public javax.swing.JLabel getLblPermission1() {
+        return lblPermission1;
+    }
+
+    /**
+     * @param lblPermission1 the lblPermission1 to set
+     */
+    public void setLblPermission1(javax.swing.JLabel lblPermission1) {
+        this.lblPermission1 = lblPermission1;
+    }
+
+    /**
+     * @return the lblPhone1
+     */
+    public javax.swing.JLabel getLblPhone1() {
+        return lblPhone1;
+    }
+
+    /**
+     * @param lblPhone1 the lblPhone1 to set
+     */
+    public void setLblPhone1(javax.swing.JLabel lblPhone1) {
+        this.lblPhone1 = lblPhone1;
+    }
 }

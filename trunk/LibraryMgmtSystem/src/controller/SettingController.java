@@ -177,21 +177,27 @@ public class SettingController {
      *Check connection using JDBC 4
      */
     private void checkConnection() {
-        //Change cursor
-        view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        //Test connection
-        String pass = new String(view.getTxtPass().getPassword());
-        boolean check = LibConnection.testConnection(
-                view.getTxtHost().getText(), view.getTxtPort().getText(),
-                view.getTxtDatabase().getText(), view.getTxtUser().getText(), pass);
-        view.setConnectImage(check);
-        if (check) {
-            view.getLblCheck().setText("OK!");
-        } else {
-            view.getLblCheck().setText("Error!!!!");
-        }
-        //Change cursor
-        view.setCursor(null);
+        new Thread(new Runnable() {
+
+            public void run() {
+                //Change cursor
+                view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                //Test connection
+                String pass = new String(view.getTxtPass().getPassword());
+                boolean check = LibConnection.testConnection(
+                        view.getTxtHost().getText(), view.getTxtPort().getText(),
+                        view.getTxtDatabase().getText(), view.getTxtUser().getText(), pass);
+                view.setConnectImage(check);
+                if (check) {
+                    view.getLblCheck().setText("OK!");
+                } else {
+                    view.getLblCheck().setText("Error!!!!");
+                }
+                //Change cursor
+                view.setCursor(null);
+            }
+        }).start();
+
     }
 
     /**

@@ -4,7 +4,6 @@
  */
 package model;
 
-import model.LibPassword;
 import entity.Employee;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -12,7 +11,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,10 +58,6 @@ public class AccessEmp {
                 emp.setPhone(rsDetails.getString(8));
                 emp.setPermission(rsDetails.getInt(9));
                 emp.setDepartment(rsDetails.getString(10));
-                //close all connect
-                LibConnection.close(rsDetails);
-                LibConnection.close(csDetails);
-                LibConnection.close(cn);
                 //return employee object
                 return emp;
             }
@@ -163,7 +157,7 @@ public class AccessEmp {
      *
      * @param emp is employee to update in database
      */
-    public void editEmp(Employee emp) {
+    public boolean editEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();
         CallableStatement csDetails = null;
@@ -182,8 +176,7 @@ public class AccessEmp {
                 csDetails.setString(8, emp.getPhone());
                 csDetails.setString(9, emp.getDepartment());
                 csDetails.execute();
-                JOptionPane.showMessageDialog(null, "Update librarian successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                return true;
             } else {
                 csDetails = cn.prepareCall("{call sp_EditEmp(?,?,?,?,?,?,?,?)}");
                 csDetails.setInt(1, emp.getEmpID());
@@ -195,8 +188,7 @@ public class AccessEmp {
                 csDetails.setString(7, emp.getPhone());
                 csDetails.setString(8, emp.getDepartment());
                 csDetails.execute();
-                JOptionPane.showMessageDialog(null, "Update employee successful",
-                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -205,6 +197,7 @@ public class AccessEmp {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return false;
     }
 
     /**

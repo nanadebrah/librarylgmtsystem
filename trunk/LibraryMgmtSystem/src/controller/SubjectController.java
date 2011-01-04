@@ -2,19 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
+import entity.Subject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import model.AccessEmp;
 import model.AccessSub;
 import view.AddSubDialog;
+import view.EditSubDialog;
 import view.ManageFrm;
 import view.PalSubject;
+import view.ViewSubDialog;
 
 /**
  *
@@ -27,14 +30,16 @@ public class SubjectController {
     private ManageFrm parent;
     private DefaultTableModel subModel;
     private AddSubjectController addSubject;
+    private EditSubjectController editSubject;
+    private ViewSubjectController viewSubject;
     private ManageController manage;
 
     public SubjectController(PalSubject view,
-            DefaultTableModel subModel, ManageFrm parent,ManageController manage){
-        this.view=view;
-        this.subModel=subModel;
-        this.parent=parent;
-        this.manage=manage;
+            DefaultTableModel subModel, ManageFrm parent, ManageController manage) {
+        this.view = view;
+        this.subModel = subModel;
+        this.parent = parent;
+        this.manage = manage;
         initComponent();
     }
 
@@ -42,7 +47,7 @@ public class SubjectController {
      *  initialize the controller.
      */
     private void initComponent() {
-        
+
         //Set selection mode
         getView().getTblSub().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
@@ -59,12 +64,124 @@ public class SubjectController {
                 addSubject();
             }
         });
+
+        //Add event search btn
+        getView().getBtnSearchSub().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                searchSubject();
+            }
+        });
+
+        //Add event edit btn
+        getView().getBtnEditSub().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                editSubject();
+            }
+        });
+
+        //Add event view btn
+        getView().getBtnViewSub().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                viewSubject();
+            }
+        });
+
+        //Add event to subject table
+        view.getTblSub().addFocusListener(new FocusAdapter() {
+
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tableFocus();
+            }
+        });
+
+        view.getTblSub().addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //Set enable acction button
+                view.getBtnDelSub().setEnabled(true);
+                view.getBtnEditSub().setEnabled(true);
+                view.getBtnViewSub().setEnabled(true);
+                //If double click display edit employee dialog
+                if (evt.getClickCount() == 2) {
+                    viewSubject();
+                }
+            }
+        });
+    }
+
+    /*
+     * View subject
+     */
+    private void viewSubject(){
+        //Get Id employee selected
+        String subID = view.getTblSub().getValueAt(
+                view.getTblSub().getSelectedRow(), 0).toString();
+        //Get employee from database
+        Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
+        manage.doBlur();
+        //Create instance of Employee edit dialog and display it
+        viewSubject=new ViewSubjectController(new ViewSubDialog(parent, true), sub);
+        viewSubject.getView().setVisible(true);
+        tableFocus();
+        manage.doBlur();
+    }
+
+    /*
+     * Edit subject
+     */
+    private void editSubject(){
+        manage.doBlur();
+        //Get Id employee selected
+        String subID = view.getTblSub().getValueAt(
+                view.getTblSub().getSelectedRow(), 0).toString();
+        //Get employee from database
+        Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
+        //Create instance of Employee edit dialog and display it
+        editSubject = new EditSubjectController(
+                new EditSubDialog(parent, true), sub);
+        editSubject.getView().setVisible(true);
+        //Update data on database
+        if (editSubject.getSub() != null) {
+            if (AccessSub.getInstance().editSub(editSubject.getSub())) {
+                JOptionPane.showMessageDialog(getView(), "Update successful",
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Remove old data on table model
+                subModel.removeRow(view.getTblSub().getSelectedRow());
+                //Add new row
+                subModel.addRow(sub.toVector());
+            }
+        }
+        view.getTblSub().clearSelection();
+        manage.doBlur();
+    }
+
+    /*
+     * Do lost focus table
+     */
+    private void tableFocus() {
+        //Set disable acction button
+        view.getBtnEditSub().setEnabled(false);
+        view.getBtnDelSub().setEnabled(false);
+        view.getBtnViewSub().setEnabled(false);
+        view.getTblSub().setFocusable(false);
+    }
+
+    /*
+     * Seacrh subject
+     */
+    public void searchSubject() {
+        manage.removeModel(subModel);
+        AccessSub.getInstance().searchSubject(subModel,
+                getView().getTxtIdSub().getText(), getView().getTxtNameSub().getText());
     }
 
     /*
      * Add an subject
      */
-    private void addSubject(){
+    private void addSubject() {
         manage.doBlur();
         //Display Add employee dialog
         addSubject = new AddSubjectController(new AddSubDialog(parent, true));
@@ -73,7 +190,7 @@ public class SubjectController {
         if (addSubject.getSub() != null) {
             if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
                 JOptionPane.showMessageDialog(getView(), "Add subject successful",
-                    "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         view.getTblSub().clearSelection();

@@ -8,6 +8,8 @@ import com.jhlabs.image.BlurFilter;
 import model.LibConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -53,14 +55,14 @@ public class LoginController {
 
     public LoginController(LoginFrm view, ManageController loginControl) {
         this.view = view;
-        this.loginControl=loginControl;
+        this.loginControl = loginControl;
         initComponent();
         //Load user & pass from config file
         loadConfig();
     }
 
     /*
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -108,7 +110,7 @@ public class LoginController {
                 about = new AboutWindow(view);
             }
         });
-        
+
         //Add event to login
         view.getBtnLogin().addActionListener(new ActionListener() {
 
@@ -117,6 +119,30 @@ public class LoginController {
                 doRemember();
                 //invoked login method
                 login();
+            }
+        });
+
+        //Add event enter key
+        view.getTxtUsername().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //invoked doRemember method to remember password
+                    doRemember();
+                    //invoked login method
+                    login();
+                }
+            }
+        });
+        view.getTxtPassword().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    //invoked doRemember method to remember password
+                    doRemember();
+                    //invoked login method
+                    login();
+                }
             }
         });
     }
@@ -236,40 +262,47 @@ public class LoginController {
      * Connect to SQL Server and check admin info
      */
     private void login() {
-        try {
-            //invoked static method to get connection
-            cn = LibConnection.getConnection();
-            try {
-                //invoked store procedure login and get resultset
-                csDetails = cn.prepareCall("{call sp_Login(?,?)}");
-                csDetails.setString(1, view.getTxtUsername().getText());
-                //Encrypt to MD5 and set
-                csDetails.setString(2, LibPassword.getInstance().encryptMD5(
-                        new String(view.getTxtPassword().getPassword())));
-                rsDetails = csDetails.executeQuery();
-                //login successful, display manage frame and dispose this frame
-                if (rsDetails.next()) {
-                    view.dispose();
-                    //Display manage frame
-                    loginControl.getView().setVisible(true);
-                } else {//display error
-                    doBlur();
-                    JOptionPane.showMessageDialog(view,
-                            "Wrong username or password.",
-                            "Login Failed", JOptionPane.WARNING_MESSAGE);
-                    doBlur();
+        new Thread(new Runnable() {
+
+            public void run() {
+                try {
+                    //invoked static method to get connection
+                    cn = LibConnection.getConnection();
+                    try {
+                        //invoked store procedure login and get resultset
+                        csDetails = cn.prepareCall("{call sp_Login(?,?)}");
+                        csDetails.setString(1, view.getTxtUsername().getText());
+                        //Encrypt to MD5 and set
+                        csDetails.setString(2, LibPassword.getInstance().encryptMD5(
+                                new String(view.getTxtPassword().getPassword())));
+                        rsDetails = csDetails.executeQuery();
+                        //login successful, display manage frame and dispose this frame
+                        if (rsDetails.next()) {
+                            view.dispose();
+                            //Display manage frame
+                            loginControl.getView().setVisible(true);
+                        } else {//display error
+                            doBlur();
+                            JOptionPane.showMessageDialog(view,
+                                    "Wrong username or password.",
+                                    "Login Failed", JOptionPane.WARNING_MESSAGE);
+                            //Sleep 1 minisecond/ otherwise can't doBlur again
+                            Thread.sleep(1);
+                            doBlur();
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    //close all connect
+                    LibConnection.close(rsDetails);
+                    LibConnection.close(csDetails);
+                    LibConnection.close(cn);
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
+        }).start();
     }
 
     /**

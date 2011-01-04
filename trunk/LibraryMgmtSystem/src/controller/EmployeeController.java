@@ -31,6 +31,7 @@ public class EmployeeController {
     private DefaultTableModel empModel;
     private AddEmployeeController addEmp;
     private EditEmployeeController editEmp;
+    private ViewEmployeeController viewEmp;
     private ManageController manage;
 
     public EmployeeController(PalEmployee view, DefaultTableModel empModel,
@@ -138,11 +139,14 @@ public class EmployeeController {
         editEmp.getView().setVisible(true);
         //Update data on database
         if (editEmp.getEmp() != null) {
-            AccessEmp.getInstance().editEmp(editEmp.getEmp());
-            //Remove old data on table model
-            empModel.removeRow(view.getTblEmp().getSelectedRow());
-            //Add new row
-            empModel.addRow(emp.toVector());
+            if (AccessEmp.getInstance().editEmp(editEmp.getEmp())) {
+                JOptionPane.showMessageDialog(getView(), "Update successful",
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Remove old data on table model
+                empModel.removeRow(view.getTblEmp().getSelectedRow());
+                //Add new row
+                empModel.addRow(emp.toVector());
+            }
         }
         view.getTblEmp().clearSelection();
         manage.doBlur();
@@ -193,8 +197,8 @@ public class EmployeeController {
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
         manage.doBlur();
         //Create instance of Employee edit dialog and display it
-        ViewEmpDialog empView = new ViewEmpDialog(parent, true, emp);
-        empView.setVisible(true);
+        viewEmp=new ViewEmployeeController(new ViewEmpDialog(parent, true), emp);
+        viewEmp.getView().setVisible(true);
         tableFocus();
         manage.doBlur();
     }

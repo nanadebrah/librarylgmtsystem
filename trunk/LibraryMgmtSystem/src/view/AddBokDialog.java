@@ -48,6 +48,8 @@ public class AddBokDialog extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         cbxSub = new javax.swing.JComboBox();
         txtNoCop = new javax.swing.JSpinner();
+        lblNoInLib = new javax.swing.JLabel();
+        txtNoInLib = new javax.swing.JSpinner();
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,7 +64,7 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblPublish.setText("Publisher:");
 
-        lblNoCop.setText("No of Copy:");
+        lblNoCop.setText("No of copy:");
 
         lblSub.setText("Subject:");
 
@@ -75,16 +77,15 @@ public class AddBokDialog extends javax.swing.JDialog {
         btnAdd.setText("Add");
 
         btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
         cbxSub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxSub.setToolTipText("Subject of this book");
 
         txtNoCop.setToolTipText("Copies of this book");
+
+        lblNoInLib.setText("No in library:");
+
+        txtNoInLib.setToolTipText("Copies of this book");
 
         org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
         palAddBok.setLayout(palAddBokLayout);
@@ -106,11 +107,16 @@ public class AddBokDialog extends javax.swing.JDialog {
                     .add(lblSub))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .add(txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(cbxSub, 0, 267, Short.MAX_VALUE))
+                    .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(palAddBokLayout.createSequentialGroup()
+                        .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 75, Short.MAX_VALUE)
+                        .add(lblNoInLib)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(cbxSub, 0, 269, Short.MAX_VALUE))
                 .addContainerGap())
         );
         palAddBokLayout.setVerticalGroup(
@@ -132,7 +138,11 @@ public class AddBokDialog extends javax.swing.JDialog {
                     .add(palAddBokLayout.createSequentialGroup()
                         .add(lblNoCop)
                         .add(6, 6, 6))
-                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(palAddBokLayout.createSequentialGroup()
+                        .add(lblNoInLib)
+                        .add(6, 6, 6))
+                    .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblSub)
@@ -169,11 +179,6 @@ public class AddBokDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        dispose();
-}//GEN-LAST:event_btnCancelActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
@@ -181,12 +186,14 @@ public class AddBokDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblAuth;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblNoCop;
+    private javax.swing.JLabel lblNoInLib;
     private javax.swing.JLabel lblPublish;
     private javax.swing.JLabel lblSub;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel palAddBok;
     private javax.swing.JTextField txtAuthor;
     private javax.swing.JSpinner txtNoCop;
+    private javax.swing.JSpinner txtNoInLib;
     private javax.swing.JTextField txtPublish;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables

@@ -85,7 +85,7 @@ public class ManageFrm extends javax.swing.JFrame {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("For manager");
+        setTitle("Library Management System");
         setMinimumSize(new java.awt.Dimension(700, 360));
         setName("manageFrm"); // NOI18N
 
