@@ -1,0 +1,255 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="2"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnClose" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblImage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="bookInfoPal" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Component id="bookInfoPal" min="-2" pref="247" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="lblImage" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnClose" min="-2" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblImage">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_InfoBook))" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="bookInfoPal">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Book Information"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAth" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPub" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSub" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoC" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoInL" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWho" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAth1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPub1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSub1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoC1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoInL1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWho1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="206" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblCallNo1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblISBN1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblTitle1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblAth1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblPub1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblSub1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblNoC1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblNoInL1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblWho1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblCallNo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblISBN" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblAth" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblPub" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblSub" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblNoC" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblNoInL" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblWho" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblCallNo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CallNumber:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblISBN">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ISBN:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Title:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAth">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Author:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPub">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Publisher:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSub">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Subject:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNoC">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="No of copies:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNoInL">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="No in library:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblWho">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New borrowed by:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCallNo1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblISBN1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTitle1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblAth1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPub1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSub1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNoC1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNoInL1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblWho1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btnClose">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Close"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

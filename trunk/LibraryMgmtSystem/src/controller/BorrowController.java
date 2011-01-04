@@ -17,11 +17,11 @@ public class BorrowController {
 
     //Defined
     private PalBorrow view;
-    private ManageFrm parent;
     private DefaultTableModel borModel;
+    private ManageController parent;
 
     public BorrowController(PalBorrow view,
-            DefaultTableModel borModel, ManageFrm parent) {
+            DefaultTableModel borModel, ManageController parent) {
         this.view = view;
         this.borModel = borModel;
         this.parent = parent;

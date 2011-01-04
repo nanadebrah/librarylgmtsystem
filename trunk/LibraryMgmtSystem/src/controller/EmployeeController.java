@@ -27,19 +27,17 @@ public class EmployeeController {
 
     //Defined
     private PalEmployee view;
-    private ManageFrm parent;
     private DefaultTableModel empModel;
     private AddEmployeeController addEmp;
     private EditEmployeeController editEmp;
     private ViewEmployeeController viewEmp;
-    private ManageController manage;
+    private ManageController parent;
 
     public EmployeeController(PalEmployee view, DefaultTableModel empModel,
-            ManageFrm parent, ManageController manage) {
+            ManageController manage) {
         this.view = view;
-        this.parent = parent;
         this.empModel = empModel;
-        this.manage = manage;
+        this.parent = manage;
         initComponent();
     }
 
@@ -127,7 +125,7 @@ public class EmployeeController {
      *Method edit employee on databse and edit on employee table
      */
     private void editEmp() {
-        manage.doBlur();
+        parent.doBlur();
         //Get Id employee selected
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
@@ -135,7 +133,7 @@ public class EmployeeController {
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
         //Create instance of Employee edit dialog and display it
         editEmp = new EditEmployeeController(
-                new EditEmpDialog(parent, true), emp);
+                new EditEmpDialog(parent.getView(), true), emp);
         editEmp.getView().setVisible(true);
         //Update data on database
         if (editEmp.getEmp() != null) {
@@ -149,16 +147,16 @@ public class EmployeeController {
             }
         }
         view.getTblEmp().clearSelection();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /*
      *Method add employee on databse
      */
     private void addEmp() {
-        manage.doBlur();
+        parent.doBlur();
         //Display Add employee dialog
-        addEmp = new AddEmployeeController(new AddEmpDialog(parent, true));
+        addEmp = new AddEmployeeController(new AddEmpDialog(parent.getView(), true));
         addEmp.getView().setVisible(true);
         //invoked method add employee
         if (addEmp.getEmp() != null) {
@@ -168,14 +166,14 @@ public class EmployeeController {
             }
         }
         view.getTblEmp().clearSelection();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /*
      * Seacrch employee by Id or name
      */
     public void searchEmp() {
-        manage.removeModel(empModel);
+        parent.removeModel(empModel);
         new Thread(new Runnable() {
 
             public void run() {
@@ -195,12 +193,12 @@ public class EmployeeController {
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
         Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
-        manage.doBlur();
+        parent.doBlur();
         //Create instance of Employee edit dialog and display it
-        viewEmp=new ViewEmployeeController(new ViewEmpDialog(parent, true), emp);
+        viewEmp = new ViewEmployeeController(new ViewEmpDialog(parent.getView(), true), emp);
         viewEmp.getView().setVisible(true);
         tableFocus();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /**

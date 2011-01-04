@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.util.Vector;
+
 /**
  *
  * @author dinh manh hai
@@ -16,21 +18,22 @@ public class Book {
     private String Title;
     private String AuthName;
     private String Publisher;
-    private int Department;
+    private int noOfCopy;
+    private int noInLib;
 
     public Book() {
     }
 
     public Book(String CallNumber, int subID, String ISBN,
-            String Title, String AuthName, String Publisher, int Department) {
+            String Title, String AuthName, String Publisher, int noCopy, int noLib) {
         this.CallNumber = CallNumber;
         this.subID = subID;
         this.ISBN = ISBN;
         this.Title = Title;
         this.AuthName = AuthName;
         this.Publisher = Publisher;
-        this.Department = Department;
-
+        this.noOfCopy = noCopy;
+        this.noInLib = noLib;
     }
 
     /**
@@ -118,16 +121,44 @@ public class Book {
     }
 
     /**
-     * @return the Department
+     * @return the noOfCopy
      */
-    public int getDepartment() {
-        return Department;
+    public int getNoOfCopy() {
+        return noOfCopy;
     }
 
     /**
-     * @param Department the Department to set
+     * @param noOfCopy the noOfCopy to set
      */
-    public void setDepartment(int Department) {
-        this.Department = Department;
+    public void setNoOfCopy(int noOfCopy) {
+        this.noOfCopy = noOfCopy;
+    }
+
+    /**
+     * @return the noInLib
+     */
+    public int getNoInLib() {
+        return noInLib;
+    }
+
+    /**
+     * @param noInLib the noInLib to set
+     */
+    public void setNoInLib(int noInLib) {
+        this.noInLib = noInLib;
+    }
+
+    /**
+     * @return Vector ob book
+     */
+    public Vector toVector() {
+        //Defined vector
+        Vector vt = new Vector();
+        vt.addElement(CallNumber);
+        vt.addElement(ISBN);
+        vt.addElement(Title);
+        vt.addElement(AuthName);
+        vt.addElement(noOfCopy+"/"+noInLib);
+        return vt;
     }
 }

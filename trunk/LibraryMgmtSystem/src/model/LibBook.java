@@ -32,7 +32,8 @@ public class LibBook {
     public String generateCallNo(Book bok) {
         //Defined
         String callNumber = null;
-        String title, author, sequence;
+        String title, author, sequence, newest;
+        Integer intSe = 0;
         Pattern pt;
         Matcher ma;
         //First 2 alphabets of title
@@ -46,9 +47,12 @@ public class LibBook {
         author = ma.group().toUpperCase();
         //sequence number of book
         pt = Pattern.compile("\\w{3}?");
-        ma = pt.matcher(AccessBook.getInstance().getNewestBook());
-        ma.find();
-        Integer intSe = new Integer(ma.group());
+        newest = AccessBook.getInstance().getNewestBook();
+        if (newest != null) {
+            ma = pt.matcher(newest);
+            ma.find();
+            intSe = Integer.parseInt(ma.group());
+        }
         //increment sequence number of book
         intSe++;
         //set zero in head
@@ -62,9 +66,5 @@ public class LibBook {
         //set complete call number and return it
         callNumber = title + "-" + author + "-" + sequence;
         return callNumber;
-    }
-
-    public String generateISBN(Book bok){
-        return "";
     }
 }

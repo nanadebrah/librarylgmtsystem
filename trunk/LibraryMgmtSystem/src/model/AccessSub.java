@@ -57,12 +57,90 @@ public class AccessSub {
 
     /**
      * 
+     * @param subName
+     * @return
+     */
+    public int getSubjectID(String subName){
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall("{call sp_GetSubID(?)}");
+            csDetails.setString(1, subName);
+            rsDetails = csDetails.executeQuery();
+            if (rsDetails.next()) {
+                return rsDetails.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return 0;
+    }
+
+    /**
+     * 
+     * @param subID
+     * @return
+     */
+    public String getSubjectName(int subID){
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall("{call sp_GetSubName(?)}");
+            csDetails.setInt(1, subID);
+            rsDetails = csDetails.executeQuery();
+            if (rsDetails.next()) {
+                return rsDetails.getString(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return "";
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public String getSubjectAllName(){
+        String sub="";
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall("{call sp_GetAllSubName}");
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                sub+=rsDetails.getString(1)+",";
+            }
+            return  sub;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return "";
+    }
+
+    /**
+     * 
      * @param SubID
      * @return
      */
     public Subject getAnSubject(int SubID) {
         //Defined Object
-        Subject emp = null;
+        Subject sub = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
@@ -70,10 +148,10 @@ public class AccessSub {
             csDetails.setInt(1, SubID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
-                emp = new Subject(rsDetails.getInt(1), rsDetails.getString(2),
+                sub = new Subject(rsDetails.getInt(1), rsDetails.getString(2),
                         rsDetails.getString(3));
                 //return employee object
-                return emp;
+                return sub;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

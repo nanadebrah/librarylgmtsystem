@@ -37,8 +37,8 @@ CREATE TABLE Book(
 	Title VARCHAR(100) NOT NULL,
 	AuthName VARCHAR(30) NOT NULL,
 	Publisher VARCHAR(45) NOT NULL,
-	NoOfCopy TINYINT,
-	NoInLib TINYINT,
+	NoOfCopy TINYINT NOT NULL,
+	NoInLib TINYINT NOT NULL,
 	CONSTRAINT pk_CallNumber PRIMARY KEY (CallNumber),
 	CONSTRAINT fk_SubID FOREIGN KEY (SubID)
 		REFERENCES Subject(SubID),
@@ -221,10 +221,10 @@ AS
 	END
 --Create procedure to get Book 
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBook' AND type = 'P')
-   DROP PROCEDURE sp_GetBook
+         WHERE name = 'sp_GetAllBook' AND type = 'P')
+   DROP PROCEDURE sp_GetAllBook
 GO
-CREATE PROC sp_GetBook
+CREATE PROC sp_GetAllBook
 (
 	@CallNumber VARCHAR(9),
 	@ISBN VARCHAR(8),
@@ -232,11 +232,12 @@ CREATE PROC sp_GetBook
 	@AuthName VARCHAR(30)
 )
 AS
-	SELECT * FROM Book 
-	WHERE	CallNumber LIKE @CallNumber	 
-			AND ISBN LIKE @ISBN  
-			AND Title LIKE @Title 
-			AND AuthName LIKE @AuthName
+	SELECT CallNumber,ISBN,Title,AuthName,SubID,NoOfCopy,NoInLib
+	FROM Book WHERE
+			CallNumber LIKE '%'+@CallNumber+'%'	 
+			AND ISBN LIKE '%'+@ISBN+'%'  
+			AND Title LIKE '%'+@Title+'%' 
+			AND AuthName LIKE '%'+@AuthName+'%'
 --procedure to get newest book added
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetNewestBook' AND type = 'P')
@@ -255,18 +256,19 @@ CREATE PROC sp_AddBook
 (
 	@CallNumber VARCHAR(9),
 	@ISBN VARCHAR(8),
-	@SubID int,
+	@SubID INT,
 	@Title VARCHAR(100),
 	@Author VARCHAR(30),
 	@Publisher VARCHAR(45),
-	@NoOfCopy tinyint
+	@NoOfCopy TINYINT,
+	@NoInLib TINYINT
 )
 AS
 	INSERT INTO Book(
 		CallNumber,ISBN,SubID,Title,
-		AuthName,Publisher,NoOfCopy)
+		AuthName,Publisher,NoOfCopy,NoInLib)
 		VALUES(@CallNumber,@ISBN,@SubID,@Title,
-		@Author,@Publisher,@NoOfCopy) 
+		@Author,@Publisher,@NoOfCopy,@NoInLib) 
 	
 --Procedure to edit a book
 IF EXISTS (SELECT name FROM sysobjects 
@@ -321,6 +323,32 @@ CREATE PROC sp_GetSubByAll
 AS
 	SELECT * FROM Subject
 	WHERE SubID = @SubID AND SubName LIKE '%'+@SubName+'%'
+--Create procedure to get subject ID by name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubID
+GO
+CREATE PROC sp_GetSubID
+	(@SubName VARCHAR(45))
+AS
+	SELECT SubID FROM Subject WHERE SubName=@SubName
+--Create procedure to get subject Name by ID
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetSubName
+GO
+CREATE PROC sp_GetSubName
+	(@SubID INT)
+AS
+	SELECT SubName FROM Subject WHERE SubID=@SubID
+--Create procedure to get all subject name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetAllSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetAllSubName
+GO
+CREATE PROC sp_GetAllSubName
+AS
+	SELECT SubName FROM Subject
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddSub' AND type = 'P')

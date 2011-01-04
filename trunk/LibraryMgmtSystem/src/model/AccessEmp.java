@@ -208,9 +208,7 @@ public class AccessEmp {
      */
     public void searchEmp(DefaultTableModel empModel, String EmpID, String Name) {
         //Defined connection, rs and cs to connect and query database
-        Connection cn = LibConnection.getConnection();
-        ResultSet rsDetails = null;
-        CallableStatement csDetails = null;
+        cn = LibConnection.getConnection();
         try {
             if (EmpID.length() == 0 && Name.length() != 0) {
                 //Save Name only

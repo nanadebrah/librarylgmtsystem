@@ -23,6 +23,7 @@ public class EditBokDialog extends javax.swing.JDialog {
     public EditBokDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -34,7 +35,7 @@ public class EditBokDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        palEditBok = new javax.swing.JPanel();
+        palAddBok = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         lblAuth = new javax.swing.JLabel();
         lblPublish = new javax.swing.JLabel();
@@ -43,16 +44,21 @@ public class EditBokDialog extends javax.swing.JDialog {
         txtTitle = new javax.swing.JTextField();
         txtAuthor = new javax.swing.JTextField();
         txtPublish = new javax.swing.JTextField();
-        btnSave = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         cbxSub = new javax.swing.JComboBox();
         txtNoCop = new javax.swing.JSpinner();
+        lblNoInLib = new javax.swing.JLabel();
+        txtNoInLib = new javax.swing.JSpinner();
+        lblTitle1 = new javax.swing.JLabel();
+        txtISBN = new javax.swing.JFormattedTextField();
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit details for book");
+        setResizable(false);
 
-        palEditBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
+        palAddBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
 
         lblTitle.setText("Title:");
 
@@ -60,86 +66,102 @@ public class EditBokDialog extends javax.swing.JDialog {
 
         lblPublish.setText("Publisher:");
 
-        lblNoCop.setText("No of Copy:");
+        lblNoCop.setText("No of copies:");
 
         lblSub.setText("Subject:");
 
-        txtTitle.setToolTipText("Edit title of book");
+        txtTitle.setToolTipText("Title of this book");
 
-        txtAuthor.setToolTipText("Edit author of book");
+        txtAuthor.setToolTipText("Author of this book");
 
-        txtPublish.setToolTipText("Edit publisher of book");
+        txtPublish.setToolTipText("Publisher of this book");
 
-        btnSave.setText("Save");
+        btnAdd.setText("Add");
 
         btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
-        cbxSub.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxSub.setToolTipText("Edit subject of book");
+        cbxSub.setToolTipText("Subject of this book");
 
-        txtNoCop.setToolTipText("Edit copies of this book");
+        txtNoCop.setToolTipText("Copies of this book");
 
-        org.jdesktop.layout.GroupLayout palEditBokLayout = new org.jdesktop.layout.GroupLayout(palEditBok);
-        palEditBok.setLayout(palEditBokLayout);
-        palEditBokLayout.setHorizontalGroup(
-            palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(palEditBokLayout.createSequentialGroup()
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(palEditBokLayout.createSequentialGroup()
+        lblNoInLib.setText("No in library:");
+
+        txtNoInLib.setToolTipText("Copies of this book");
+
+        lblTitle1.setText("ISBN:");
+
+        org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
+        palAddBok.setLayout(palAddBokLayout);
+        palAddBokLayout.setHorizontalGroup(
+            palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(palAddBokLayout.createSequentialGroup()
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(palAddBokLayout.createSequentialGroup()
                         .addContainerGap()
-                        .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(lblTitle)
                             .add(lblAuth)
                             .add(lblPublish)
                             .add(lblNoCop)
-                            .add(lblSub))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                            .add(txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                            .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .add(lblSub)
+                            .add(lblTitle1))
+                        .add(18, 18, 18)
+                        .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(cbxSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(cbxSub, 0, 270, Short.MAX_VALUE)))
-                    .add(palEditBokLayout.createSequentialGroup()
+                            .add(txtPublish, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtAuthor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(palAddBokLayout.createSequentialGroup()
                         .add(130, 130, 130)
-                        .add(btnSave)
+                        .add(btnAdd, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnCancel)))
-                .addContainerGap())
+                        .add(btnCancel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, palAddBokLayout.createSequentialGroup()
+                        .addContainerGap(246, Short.MAX_VALUE)
+                        .add(lblNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        palEditBokLayout.setVerticalGroup(
-            palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(palEditBokLayout.createSequentialGroup()
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+        palAddBokLayout.setVerticalGroup(
+            palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(palAddBokLayout.createSequentialGroup()
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(lblTitle1)
+                    .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblTitle)
                     .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblAuth)
                     .add(txtAuthor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblPublish)
                     .add(txtPublish, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(palEditBokLayout.createSequentialGroup()
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(palAddBokLayout.createSequentialGroup()
                         .add(lblNoCop)
                         .add(6, 6, 6))
-                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(palAddBokLayout.createSequentialGroup()
+                        .add(lblNoInLib)
+                        .add(6, 6, 6))
+                    .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblSub)
                     .add(cbxSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btnCancel)
-                    .add(btnSave)))
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnAdd)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnCancel))
+                .add(29, 29, 29))
         );
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_EditBook)));
@@ -149,9 +171,10 @@ public class EditBokDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(lblImage)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palEditBok, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(14, 14, 14)
+                .add(palAddBok, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,52 +182,162 @@ public class EditBokDialog extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(41, 41, 41)
+                        .add(92, 92, 92)
                         .add(lblImage))
-                    .add(palEditBok, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(palAddBok, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 273, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
-        dispose();
-}//GEN-LAST:event_btnCancelActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                EditBokDialog dialog = new EditBokDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbxSub;
     private javax.swing.JLabel lblAuth;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblNoCop;
+    private javax.swing.JLabel lblNoInLib;
     private javax.swing.JLabel lblPublish;
     private javax.swing.JLabel lblSub;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JPanel palEditBok;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JPanel palAddBok;
     private javax.swing.JTextField txtAuthor;
+    private javax.swing.JFormattedTextField txtISBN;
     private javax.swing.JSpinner txtNoCop;
+    private javax.swing.JSpinner txtNoInLib;
     private javax.swing.JTextField txtPublish;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnAdd
+     */
+    public javax.swing.JButton getBtnAdd() {
+        return btnAdd;
+    }
+
+    /**
+     * @param btnAdd the btnAdd to set
+     */
+    public void setBtnAdd(javax.swing.JButton btnAdd) {
+        this.btnAdd = btnAdd;
+    }
+
+    /**
+     * @return the btnCancel
+     */
+    public javax.swing.JButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    /**
+     * @param btnCancel the btnCancel to set
+     */
+    public void setBtnCancel(javax.swing.JButton btnCancel) {
+        this.btnCancel = btnCancel;
+    }
+
+    /**
+     * @return the cbxSub
+     */
+    public javax.swing.JComboBox getCbxSub() {
+        return cbxSub;
+    }
+
+    /**
+     * @param cbxSub the cbxSub to set
+     */
+    public void setCbxSub(javax.swing.JComboBox cbxSub) {
+        this.cbxSub = cbxSub;
+    }
+
+    /**
+     * @return the txtAuthor
+     */
+    public javax.swing.JTextField getTxtAuthor() {
+        return txtAuthor;
+    }
+
+    /**
+     * @param txtAuthor the txtAuthor to set
+     */
+    public void setTxtAuthor(javax.swing.JTextField txtAuthor) {
+        this.txtAuthor = txtAuthor;
+    }
+
+    /**
+     * @return the txtISBN
+     */
+    public javax.swing.JFormattedTextField getTxtISBN() {
+        return txtISBN;
+    }
+
+    /**
+     * @param txtISBN the txtISBN to set
+     */
+    public void setTxtISBN(javax.swing.JFormattedTextField txtISBN) {
+        this.txtISBN = txtISBN;
+    }
+
+    /**
+     * @return the txtNoCop
+     */
+    public javax.swing.JSpinner getTxtNoCop() {
+        return txtNoCop;
+    }
+
+    /**
+     * @param txtNoCop the txtNoCop to set
+     */
+    public void setTxtNoCop(javax.swing.JSpinner txtNoCop) {
+        this.txtNoCop = txtNoCop;
+    }
+
+    /**
+     * @return the txtNoInLib
+     */
+    public javax.swing.JSpinner getTxtNoInLib() {
+        return txtNoInLib;
+    }
+
+    /**
+     * @param txtNoInLib the txtNoInLib to set
+     */
+    public void setTxtNoInLib(javax.swing.JSpinner txtNoInLib) {
+        this.txtNoInLib = txtNoInLib;
+    }
+
+    /**
+     * @return the txtPublish
+     */
+    public javax.swing.JTextField getTxtPublish() {
+        return txtPublish;
+    }
+
+    /**
+     * @param txtPublish the txtPublish to set
+     */
+    public void setTxtPublish(javax.swing.JTextField txtPublish) {
+        this.txtPublish = txtPublish;
+    }
+
+    /**
+     * @return the txtTitle
+     */
+    public javax.swing.JTextField getTxtTitle() {
+        return txtTitle;
+    }
+
+    /**
+     * @param txtTitle the txtTitle to set
+     */
+    public void setTxtTitle(javax.swing.JTextField txtTitle) {
+        this.txtTitle = txtTitle;
+    }
 
 }

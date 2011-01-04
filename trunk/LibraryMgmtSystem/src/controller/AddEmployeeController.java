@@ -73,7 +73,7 @@ public class AddEmployeeController {
         });
 
         //Add window event
-        view.addWindowListener(new WindowAdapter() {
+        getView().addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
                 emp=null;
             }

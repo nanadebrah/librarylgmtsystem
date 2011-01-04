@@ -114,15 +114,15 @@ public class ManageController {
         };
 
         //Create new employee controller
-        empControl = new EmployeeController(new PalEmployee(), empModel, view, this);
+        empControl = new EmployeeController(new PalEmployee(), empModel, this);
         //Create new book controller
-        bookControl = new BookController(new PalBook(), bookModel, view);
+        bookControl = new BookController(new PalBook(), bookModel, this);
         //Create new subject controller
-        subControl = new SubjectController(new PalSubject(), subModel, view, this);
+        subControl = new SubjectController(new PalSubject(), subModel, this);
         //Create new borrow controller
-        borControl = new BorrowController(new PalBorrow(), borModel, view);
+        borControl = new BorrowController(new PalBorrow(), borModel, this);
         //Create new analytic controller
-        anaControl = new AnalyticController(new PalAnalytic(), anaModel, view);
+        anaControl = new AnalyticController(new PalAnalytic(), anaModel, this);
 
         //Add employee panel
         view.getPalMain().add(empControl.getView(), "PalEmployee");

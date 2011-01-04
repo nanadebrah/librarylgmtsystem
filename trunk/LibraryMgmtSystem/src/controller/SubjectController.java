@@ -27,19 +27,17 @@ public class SubjectController {
 
     //Defined
     private PalSubject view;
-    private ManageFrm parent;
     private DefaultTableModel subModel;
     private AddSubjectController addSubject;
     private EditSubjectController editSubject;
     private ViewSubjectController viewSubject;
-    private ManageController manage;
+    private ManageController parent;
 
     public SubjectController(PalSubject view,
-            DefaultTableModel subModel, ManageFrm parent, ManageController manage) {
+            DefaultTableModel subModel, ManageController manage) {
         this.view = view;
         this.subModel = subModel;
-        this.parent = parent;
-        this.manage = manage;
+        this.parent = manage;
         initComponent();
     }
 
@@ -121,19 +119,19 @@ public class SubjectController {
                 view.getTblSub().getSelectedRow(), 0).toString();
         //Get employee from database
         Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
-        manage.doBlur();
+        parent.doBlur();
         //Create instance of Employee edit dialog and display it
-        viewSubject=new ViewSubjectController(new ViewSubDialog(parent, true), sub);
+        viewSubject=new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
         viewSubject.getView().setVisible(true);
         tableFocus();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /*
      * Edit subject
      */
     private void editSubject(){
-        manage.doBlur();
+        parent.doBlur();
         //Get Id employee selected
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
@@ -141,7 +139,7 @@ public class SubjectController {
         Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
         //Create instance of Employee edit dialog and display it
         editSubject = new EditSubjectController(
-                new EditSubDialog(parent, true), sub);
+                new EditSubDialog(parent.getView(), true), sub);
         editSubject.getView().setVisible(true);
         //Update data on database
         if (editSubject.getSub() != null) {
@@ -155,7 +153,7 @@ public class SubjectController {
             }
         }
         view.getTblSub().clearSelection();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /*
@@ -173,7 +171,7 @@ public class SubjectController {
      * Seacrh subject
      */
     public void searchSubject() {
-        manage.removeModel(subModel);
+        parent.removeModel(subModel);
         AccessSub.getInstance().searchSubject(subModel,
                 getView().getTxtIdSub().getText(), getView().getTxtNameSub().getText());
     }
@@ -182,9 +180,9 @@ public class SubjectController {
      * Add an subject
      */
     private void addSubject() {
-        manage.doBlur();
+        parent.doBlur();
         //Display Add employee dialog
-        addSubject = new AddSubjectController(new AddSubDialog(parent, true));
+        addSubject = new AddSubjectController(new AddSubDialog(parent.getView(), true));
         addSubject.getView().setVisible(true);
         //invoked method add employee
         if (addSubject.getSub() != null) {
@@ -194,7 +192,7 @@ public class SubjectController {
             }
         }
         view.getTblSub().clearSelection();
-        manage.doBlur();
+        parent.doBlur();
     }
 
     /**

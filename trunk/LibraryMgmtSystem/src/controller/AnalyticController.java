@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import javax.swing.ListSelectionModel;
@@ -18,14 +17,14 @@ public class AnalyticController {
 
     //Defined
     private PalAnalytic view;
-    private ManageFrm parent;
     private DefaultTableModel anaModel;
+    private ManageController parent;
 
     public AnalyticController(PalAnalytic view,
-            DefaultTableModel anaModel, ManageFrm parent){
-        this.view=view;
-        this.anaModel=anaModel;
+            DefaultTableModel anaModel, ManageController parent) {
+        this.view = view;
         this.parent=parent;
+        this.anaModel = anaModel;
         initComponent();
     }
 
