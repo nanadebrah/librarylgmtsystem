@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.util.Vector;
+
 /**
  *
  * @author dinh manh hai
@@ -63,5 +65,16 @@ public class Subject {
      */
     public void setDescription(String Description) {
         this.Description = Description;
+    }
+
+    /*
+     * subject to vector
+     */
+    public Vector toVector(){
+        Vector vt = new Vector();
+        vt.addElement(SubID);
+        vt.addElement(SubName);
+        vt.addElement(Description);
+        return vt;
     }
 }
