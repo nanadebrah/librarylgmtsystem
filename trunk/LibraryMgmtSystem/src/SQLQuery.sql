@@ -47,18 +47,24 @@ go
 --Create Borrow table
 CREATE TABLE Borrow(
 	BorID INT NOT NULL IDENTITY,
-	CallNumber VARCHAR(9) NOT NULL,
 	EmpID INT NOT NULL,
+	
+	CONSTRAINT pk_BorID PRIMARY KEY (BorID),
+	CONSTRAINT fk_EmpID FOREIGN KEY (EmpID)
+		REFERENCES Employee(EmpID),
+	
+)
+go
+--Create BorrowDetail table
+CREATE TABLE BorrowDetail
+(	
+	BorID INT NOT NULL REFERENCES Borrow(BorID),
+	CallNumber VARCHAR(9) NOT NULL REFERENCES Book(CallNumber),
 	IssueStatus BIT NOT NULL,--1 = checked out ,0 = checked in
 	ChkOutDate DATETIME NOT NULL,
 	DueDate DATETIME NOT NULL,
 	ChkInDate DATETIME,
 	TotalFee FLOAT,
-	CONSTRAINT pk_BorID PRIMARY KEY (BorID),
-	CONSTRAINT fk_EmpID FOREIGN KEY (EmpID)
-		REFERENCES Employee(EmpID),
-	CONSTRAINT fk_CallNo FOREIGN KEY (CallNumber)
-		REFERENCES Book(CallNumber)
 )
 go
 --Create Fee table
@@ -458,11 +464,29 @@ AS
 --CREATE PROC sp_TopBook
 --AS
 --	SELECT
+
+
+--Procedure get newest EMP
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetNewestEmp' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestEmp
+GO
+CREATE PROC sp_GetNewestEmp
+AS
+	SELECT TOP 1 EmpID FROM Employee ORDER BY EmpID DESC
+--Procedure get newest SUBJECT
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetNewestSub' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestSub
+GO
+CREATE PROC sp_GetNewestSub
+AS
+	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
-select * from Employee
+select * from dbo.Employee
 
 sp_GetEmp 4
 
