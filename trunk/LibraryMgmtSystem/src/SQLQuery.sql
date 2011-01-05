@@ -354,12 +354,12 @@ AS
 	SELECT SubName FROM Subject WHERE SubID=@SubID
 --Create procedure to get all subject name
 IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetAllSubName' AND type = 'P')
-   DROP PROCEDURE sp_GetAllSubName
+         WHERE name = 'sp_GetAllSub' AND type = 'P')
+   DROP PROCEDURE sp_GetAllSub
 GO
 CREATE PROC sp_GetAllSubName
 AS
-	SELECT SubName FROM Subject
+	SELECT * FROM Subject
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddSub' AND type = 'P')
