@@ -22,7 +22,7 @@ public class LibImages {
         return instance;
     }
 
-    /*
+    /**
      *
      */
     //Other image

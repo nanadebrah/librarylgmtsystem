@@ -25,7 +25,7 @@ public class AccessEmp {
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
 
-    /*
+    /**
      * Static method get instance of AccessEmp
      */
     public static AccessEmp getInstance() {
@@ -37,13 +37,13 @@ public class AccessEmp {
      * @param EmpID is ID to query on database
      * @return Employee queried
      */
-    public Employee getAEmp(int EmpID) {
+    public Employee getAnEmp(int EmpID) {
         //Defined Object
         Employee emp = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall("{call sp_GetEmp(?)}");
+            csDetails = cn.prepareCall(LibProcedure.GetAEmp);
             csDetails.setInt(1, EmpID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -81,7 +81,7 @@ public class AccessEmp {
         cn = LibConnection.getConnection();
         try {
             if (emp.getPermission() == 1) {
-                csDetails = cn.prepareCall("{call sp_InsLib(?,?,?,?,?,?,?,?)}");
+                csDetails = cn.prepareCall(LibProcedure.AddLib);
                 csDetails.setString(1, emp.getName());
                 csDetails.setDate(2, new Date(emp.getDOB()));
                 csDetails.setInt(3, emp.getGender());
@@ -94,7 +94,7 @@ public class AccessEmp {
                 csDetails.execute();
                 return true;
             } else {
-                csDetails = cn.prepareCall("{call sp_InsEmp(?,?,?,?,?,?,?)}");
+                csDetails = cn.prepareCall(LibProcedure.AddEmp);
                 csDetails.setString(1, emp.getName());
                 csDetails.setDate(2, new Date(emp.getDOB()));
                 csDetails.setInt(3, emp.getGender());
@@ -123,7 +123,7 @@ public class AccessEmp {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall("{call sp_GetAllEmp}");
+            csDetails = cn.prepareCall(LibProcedure.GetAllEmp);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 Vector vt = new Vector();
@@ -164,7 +164,7 @@ public class AccessEmp {
 
         try {
             if (emp.getPermission() == 1) {
-                csDetails = cn.prepareCall("{call sp_EditLib(?,?,?,?,?,?,?,?,?)}");
+                csDetails = cn.prepareCall(LibProcedure.EditLib);
                 csDetails.setInt(1, emp.getEmpID());
                 csDetails.setString(2, emp.getName());
                 csDetails.setDate(3, new Date(emp.getDOB()));
@@ -178,7 +178,7 @@ public class AccessEmp {
                 csDetails.execute();
                 return true;
             } else {
-                csDetails = cn.prepareCall("{call sp_EditEmp(?,?,?,?,?,?,?,?)}");
+                csDetails = cn.prepareCall(LibProcedure.EditEmp);
                 csDetails.setInt(1, emp.getEmpID());
                 csDetails.setString(2, emp.getName());
                 csDetails.setDate(3, new Date(emp.getDOB()));
@@ -212,15 +212,15 @@ public class AccessEmp {
         try {
             if (EmpID.length() == 0 && Name.length() != 0) {
                 //Save Name only
-                csDetails = cn.prepareCall("{call sp_GetAnEmpWithName(?)}");
+                csDetails = cn.prepareCall(LibProcedure.GetEmpByName);
                 csDetails.setString(1, Name);
             } else if (EmpID.length() != 0 && Name.length() == 0) {
                 //Search EmpID only
-                csDetails = cn.prepareCall("{call sp_GetAnEmpWithEmpID(?)}");
+                csDetails = cn.prepareCall(LibProcedure.GetEmpByID);
                 csDetails.setInt(1, new Integer(EmpID));
             } else if (EmpID.length() != 0 && Name.length() != 0) {
                 //Search both ID & Name
-                csDetails = cn.prepareCall("{call sp_GetAnEmpAll(?,?)}");
+                csDetails = cn.prepareCall(LibProcedure.GetEmpByBoth);
                 csDetails.setInt(1, new Integer(EmpID));
                 csDetails.setString(2, Name);
             } else {

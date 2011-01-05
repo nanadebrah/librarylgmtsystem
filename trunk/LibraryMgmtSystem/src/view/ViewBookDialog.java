@@ -205,23 +205,6 @@ public class ViewBookDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ViewBookDialog dialog = new ViewBookDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookInfoPal;
     private javax.swing.JButton btnClose;
@@ -272,20 +255,6 @@ public class ViewBookDialog extends javax.swing.JDialog {
      */
     public void setLblAth1(javax.swing.JLabel lblAth1) {
         this.lblAth1 = lblAth1;
-    }
-
-    /**
-     * @return the lblCallNo1
-     */
-    public javax.swing.JLabel getLblCallNo1() {
-        return lblCallNo1;
-    }
-
-    /**
-     * @param lblCallNo1 the lblCallNo1 to set
-     */
-    public void setLblCallNo1(javax.swing.JLabel lblCallNo1) {
-        this.lblCallNo1 = lblCallNo1;
     }
 
     /**
@@ -384,6 +353,20 @@ public class ViewBookDialog extends javax.swing.JDialog {
      */
     public void setLblWho1(javax.swing.JLabel lblWho1) {
         this.lblWho1 = lblWho1;
+    }
+
+    /**
+     * @return the lblCallNo1
+     */
+    public javax.swing.JLabel getLblCallNo1() {
+        return lblCallNo1;
+    }
+
+    /**
+     * @param lblCallNo1 the lblCallNo1 to set
+     */
+    public void setLblCallNo1(javax.swing.JLabel lblCallNo1) {
+        this.lblCallNo1 = lblCallNo1;
     }
 
 }

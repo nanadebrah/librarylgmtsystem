@@ -38,7 +38,7 @@ import view.SettingDialog;
 public class LoginController {
 
     //
-    private ManageController loginControl;
+    private ManageController manageControl;
     private AboutWindow about;
     //Defined Setting Dialog
     private LoginFrm view;
@@ -53,9 +53,9 @@ public class LoginController {
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
 
-    public LoginController(LoginFrm view, ManageController loginControl) {
+    public LoginController(LoginFrm view, ManageController manageControl) {
         this.view = view;
-        this.loginControl = loginControl;
+        this.manageControl = manageControl;
         initComponent();
         //Load user & pass from config file
         loadConfig();
@@ -246,7 +246,7 @@ public class LoginController {
         }
     }
 
-    /*
+    /**
      * Remember account entered
      */
     private void doRemember() {
@@ -280,7 +280,7 @@ public class LoginController {
                         if (rsDetails.next()) {
                             view.dispose();
                             //Display manage frame
-                            loginControl.getView().setVisible(true);
+                            manageControl.getView().setVisible(true);
                         } else {//display error
                             doBlur();
                             JOptionPane.showMessageDialog(view,

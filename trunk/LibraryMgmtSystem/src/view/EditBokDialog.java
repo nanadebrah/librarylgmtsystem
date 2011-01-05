@@ -76,7 +76,7 @@ public class EditBokDialog extends javax.swing.JDialog {
 
         txtPublish.setToolTipText("Publisher of this book");
 
-        btnAdd.setText("Add");
+        btnAdd.setText("Save");
 
         btnCancel.setText("Cancel");
 
@@ -87,8 +87,15 @@ public class EditBokDialog extends javax.swing.JDialog {
         lblNoInLib.setText("No in library:");
 
         txtNoInLib.setToolTipText("Copies of this book");
+        txtNoInLib.setEnabled(false);
 
         lblTitle1.setText("ISBN:");
+
+        try {
+            txtISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
         palAddBok.setLayout(palAddBokLayout);

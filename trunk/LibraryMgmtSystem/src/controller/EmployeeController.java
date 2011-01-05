@@ -130,7 +130,7 @@ public class EmployeeController {
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
-        Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
+        Employee emp = AccessEmp.getInstance().getAnEmp(new Integer(empID));
         //Create instance of Employee edit dialog and display it
         editEmp = new EditEmployeeController(
                 new EditEmpDialog(parent.getView(), true), emp);
@@ -192,7 +192,7 @@ public class EmployeeController {
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
-        Employee emp = AccessEmp.getInstance().getAEmp(new Integer(empID));
+        Employee emp = AccessEmp.getInstance().getAnEmp(new Integer(empID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewEmp = new ViewEmployeeController(new ViewEmpDialog(parent.getView(), true), emp);

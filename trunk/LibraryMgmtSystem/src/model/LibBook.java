@@ -16,6 +16,11 @@ public class LibBook {
 
     //Defined instance of LibBook
     private static LibBook instance = new LibBook();
+    //Defined
+    private String callNumber = null;
+    private String title, author, sequence, newest;
+    private Pattern pt;
+    private Matcher ma;
 
     /*
      * Static method get instance of Libook
@@ -26,23 +31,18 @@ public class LibBook {
 
     /**
      *
-     * @param bok is Book added from dialog
+     * @param book is Book added from dialog
      * @return Callnumber generated
      */
-    public String generateCallNo(Book bok) {
-        //Defined
-        String callNumber = null;
-        String title, author, sequence, newest;
+    public String generateCallNo(Book book) {
         Integer intSe = 0;
-        Pattern pt;
-        Matcher ma;
         //First 2 alphabets of title
         pt = Pattern.compile("^\\w{2}");
-        ma = pt.matcher(bok.getTitle());
+        ma = pt.matcher(book.getTitle());
         ma.find();
         title = ma.group().toUpperCase();
         //First 2 alphabets of author
-        ma = pt.matcher(bok.getAuthName());
+        ma = pt.matcher(book.getAuthName());
         ma.find();
         author = ma.group().toUpperCase();
         //sequence number of book
@@ -66,5 +66,23 @@ public class LibBook {
         //set complete call number and return it
         callNumber = title + "-" + author + "-" + sequence;
         return callNumber;
+    }
+
+    public String fixCallNo(Book book) {
+        //First 2 alphabets of title
+        pt = Pattern.compile("^\\w{2}");
+        ma = pt.matcher(book.getTitle());
+        ma.find();
+        title = ma.group().toUpperCase();
+        //First 2 alphabets of author
+        ma = pt.matcher(book.getAuthName());
+        ma.find();
+        author = ma.group().toUpperCase();
+        //sequence number of book
+        pt = Pattern.compile("\\w{3}?");
+        ma = pt.matcher(book.getCallNumber());
+        ma.find();
+        sequence = ma.group();
+        return title + "-" + author + "-" + sequence;
     }
 }

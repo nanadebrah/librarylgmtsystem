@@ -118,7 +118,7 @@ public class SubjectController {
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
         //Get employee from database
-        Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
+        Subject sub = AccessSub.getInstance().getASubject(new Integer(subID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewSubject=new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
@@ -136,7 +136,7 @@ public class SubjectController {
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
         //Get employee from database
-        Subject sub = AccessSub.getInstance().getAnSubject(new Integer(subID));
+        Subject sub = AccessSub.getInstance().getASubject(new Integer(subID));
         //Create instance of Employee edit dialog and display it
         editSubject = new EditSubjectController(
                 new EditSubDialog(parent.getView(), true), sub);

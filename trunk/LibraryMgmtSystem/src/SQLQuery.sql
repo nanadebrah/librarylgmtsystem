@@ -232,7 +232,7 @@ CREATE PROC sp_GetAllBook
 	@AuthName VARCHAR(30)
 )
 AS
-	SELECT CallNumber,ISBN,Title,AuthName,SubID,NoOfCopy,NoInLib
+	SELECT CallNumber,ISBN,Title,AuthName,Publisher,NoOfCopy,NoInLib
 	FROM Book WHERE
 			CallNumber LIKE '%'+@CallNumber+'%'	 
 			AND ISBN LIKE '%'+@ISBN+'%'  
@@ -278,19 +278,30 @@ GO
 CREATE PROC sp_EditBook
 (
 	@CallNumber VARCHAR(9),
+	@fixCallNumber VARCHAR(9),
 	@ISBN VARCHAR(8),
-	@SubID int,
+	@SubID INT,
 	@Title VARCHAR(100),
 	@AuthName VARCHAR(30),
 	@Publisher VARCHAR(45),
-	@NoOfCopy tinyint
+	@NoOfCopy TINYINT,
+	@NoInLib TINYINT
 )
 AS
 	UPDATE Book SET
-		CallNumber=@CallNumber ,ISBN=@ISBN ,SubID=@SubID,
-		Title=@Title ,AuthName=@AuthName ,Publisher=@Publisher,
-		NoOfCopy=@NoOfCopy
+		CallNumber=@fixCallNumber,ISBN=@ISBN,SubID=@SubID,Title=@Title,
+		AuthName=@AuthName,Publisher=@Publisher,
+		NoOfCopy=@NoOfCopy,NoInLib=@NoInLib
 		WHERE CallNumber=@CallNumber
+--Create procedure to get a book by call no
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetABook' AND type = 'P')
+   DROP PROCEDURE sp_GetABook
+GO
+CREATE PROC sp_GetABook
+	(@CallNumber VARCHAR(9))
+AS
+	SELECT * FROM Book WHERE CallNumber=@CallNumber
 
 --Create procedure to get Subject by SubId
 IF EXISTS (SELECT name FROM sysobjects 
@@ -490,3 +501,4 @@ select * from Subject
 select * from Borrow
 
 
+update Book set NoInLib=5 where ISBN='978-1402'

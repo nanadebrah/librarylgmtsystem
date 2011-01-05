@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Edit details for book"/>
@@ -196,7 +196,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAdd">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Add"/>
+            <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancel">
@@ -222,6 +222,7 @@
         <Component class="javax.swing.JSpinner" name="txtNoInLib">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitle1">
@@ -230,6 +231,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtISBN">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="###-####" subtype="-1" type="5"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

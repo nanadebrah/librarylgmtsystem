@@ -13,6 +13,7 @@ import java.util.Vector;
 public class Book {
 
     private String CallNumber;
+    private String fixCallNumber;
     private int subID;
     private String ISBN;
     private String Title;
@@ -154,11 +155,26 @@ public class Book {
     public Vector toVector() {
         //Defined vector
         Vector vt = new Vector();
-        vt.addElement(CallNumber);
+        vt.addElement(fixCallNumber);
         vt.addElement(ISBN);
         vt.addElement(Title);
         vt.addElement(AuthName);
+        vt.addElement(Publisher);
         vt.addElement(noOfCopy+"/"+noInLib);
         return vt;
+    }
+
+    /**
+     * @return the fixCallNumber
+     */
+    public String getFixCallNumber() {
+        return fixCallNumber;
+    }
+
+    /**
+     * @param fixCallNumber the fixCallNumber to set
+     */
+    public void setFixCallNumber(String fixCallNumber) {
+        this.fixCallNumber = fixCallNumber;
     }
 }

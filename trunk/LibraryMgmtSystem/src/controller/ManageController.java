@@ -8,10 +8,6 @@ import com.jhlabs.image.BlurFilter;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +15,7 @@ import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
 import view.AboutWindow;
+import view.LoginFrm;
 import view.ManageFrm;
 import view.PalAnalytic;
 import view.PalBook;
@@ -59,17 +56,14 @@ public class ManageController {
     private LockableUI blurUI;
     //Defined Jcomponent
     private JComponent jc;
-    //Defined connection, rs and cs to connect and query database
-    private Connection cn = null;
-    private ResultSet rsDetails = null;
-    private CallableStatement csDetails = null;
+    private LoginController loginConrol;
 
     public ManageController(ManageFrm view) {
         this.view = view;
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -181,8 +175,10 @@ public class ManageController {
         view.addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowOpened(java.awt.event.WindowEvent evt) {
+                setBorSelect(view.getBtnEmpMan());
                 empControl.searchEmp();
                 subControl.searchSubject();
+                bookControl.searchBook();
             }
         });
 
@@ -204,6 +200,16 @@ public class ManageController {
             }
         });
 
+        //Add event logout menu
+        view.getMnLogout().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                view.dispose();
+                loginConrol = new LoginController(new LoginFrm(), getThis());
+                loginConrol.getView().setVisible(true);
+
+            }
+        });
 
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
@@ -218,7 +224,7 @@ public class ManageController {
         view.setContentPane(layer);
     }
 
-    /*
+    /**
      * Set border painted for button selected
      */
     private void setBorSelect(JButton btSelected) {
@@ -230,7 +236,7 @@ public class ManageController {
         btSelected.setBorderPainted(true);
     }
 
-    /*
+    /**
      * Remove all field on model
      */
     public void removeModel(DefaultTableModel model) {
@@ -240,7 +246,7 @@ public class ManageController {
         }
     }
 
-    /*
+    /**
      * Blur main frame when dialog open
      */
     public void doBlur() {
@@ -261,5 +267,13 @@ public class ManageController {
      */
     public void setView(ManageFrm view) {
         this.view = view;
+    }
+
+    /**
+     * This method get instance of manage controller
+     * @return ManageController
+     */
+    private ManageController getThis(){
+        return this;
     }
 }

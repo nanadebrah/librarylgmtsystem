@@ -37,6 +37,10 @@ public class AddBookController {
         //Create new instance of book
         setBook(new Book());
 
+        //Add default value
+        getView().getTxtNoCop().setValue(1);
+        getView().getTxtNoInLib().setValue(1);
+
         //Add event cancel btn
         getView().getBtnCancel().addActionListener(new ActionListener() {
 
@@ -62,7 +66,7 @@ public class AddBookController {
 
                     public void run() {
                         //Load subject list
-                        String[] subList = AccessSub.getInstance().getSubjectAllName().split(",");
+                        String[] subList = AccessSub.getInstance().getAllSubjectName().split(",");
                         for (String subName : subList) {
                             getView().getCbxSub().addItem(subName);
                         }
@@ -88,8 +92,8 @@ public class AddBookController {
             public void stateChanged(ChangeEvent e) {
                 //set min value
                 if(Integer.parseInt(
-                        getView().getTxtNoCop().getValue().toString())<0){
-                    getView().getTxtNoCop().setValue(0);
+                        getView().getTxtNoCop().getValue().toString())<1){
+                    getView().getTxtNoCop().setValue(1);
                 }
                 //set both field
                 getView().getTxtNoInLib().setValue(

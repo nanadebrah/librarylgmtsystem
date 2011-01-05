@@ -4,15 +4,20 @@
  */
 package controller;
 
+import entity.Book;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBook;
 import view.AddBokDialog;
+import view.EditBokDialog;
 import view.ManageFrm;
 import view.PalBook;
+import view.ViewBookDialog;
 
 /**
  *
@@ -25,6 +30,8 @@ public class BookController {
     private ManageController parent;
     private DefaultTableModel bookModel;
     private AddBookController addBook;
+    private ViewBookController viewBook;
+    private EditBookController editBook;
 
     public BookController(PalBook view,
             DefaultTableModel bokModel, ManageController parent) {
@@ -48,8 +55,38 @@ public class BookController {
         bookModel.addColumn("ISBN");
         bookModel.addColumn("Title");
         bookModel.addColumn("Author");
-        bookModel.addColumn("Subject");
+        bookModel.addColumn("Publisher");
         bookModel.addColumn("Copies/Store");
+
+        //Add event to book table
+        getView().getTblBook().addFocusListener(new FocusAdapter() {
+
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tableFocus();
+            }
+        });
+
+        getView().getTblBook().addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                //Set enable acction button
+                view.getBtnEditBook().setEnabled(true);
+                view.getBtnDelBook().setEnabled(true);
+                view.getBtnViewBook().setEnabled(true);
+                //If double click display edit employee dialog
+                if (evt.getClickCount() == 2) {
+                    viewBook();
+                }
+            }
+        });
+
+        //Add event view btn
+        getView().getBtnViewBook().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                viewBook();
+            }
+        });
 
         //Add event add btn
         getView().getBtnAddBook().addActionListener(new ActionListener() {
@@ -68,12 +105,66 @@ public class BookController {
                 searchBook();
             }
         });
+
+        //Add event edit btn
+        getView().getBtnEditBook().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                editBook();
+            }
+        });
+    }
+
+    /**
+     *Method edit book on databse and edit on book table
+     */
+    private void editBook() {
+        parent.doBlur();
+        //Get call no of book selected
+        String callNo = view.getTblBook().getValueAt(
+                view.getTblBook().getSelectedRow(), 0).toString();
+        //Get employee from database
+        Book book = AccessBook.getInstance().getABook(callNo);
+        //Create instance of book edit dialog and display it
+        editBook = new EditBookController(
+                new EditBokDialog(parent.getView(), true), book);
+        editBook.getView().setVisible(true);
+        //Update data on database
+        if (editBook.getBook() != null) {
+            if (AccessBook.getInstance().editBook(editBook.getBook())) {
+                JOptionPane.showMessageDialog(getView(), "Update successful",
+                        "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Remove old data on table model
+                bookModel.removeRow(view.getTblBook().getSelectedRow());
+                //Add new row
+                bookModel.addRow(book.toVector());
+            }
+        }
+        view.getTblBook().clearSelection();
+        parent.doBlur();
     }
 
     /*
+     * View a book
+     */
+    private void viewBook() {
+        //Get Id employee selected
+        String callNo = view.getTblBook().getValueAt(
+                view.getTblBook().getSelectedRow(), 0).toString();
+        //Get employee from database
+        Book book = AccessBook.getInstance().getABook(callNo);
+        parent.doBlur();
+        //Create instance of Employee edit dialog and display it
+        viewBook = new ViewBookController(new ViewBookDialog(parent.getView(), true), book);
+        viewBook.getView().setVisible(true);
+        tableFocus();
+        parent.doBlur();
+    }
+
+    /**
      * Method search Book
      */
-    private void searchBook() {
+    public void searchBook() {
         parent.removeModel(bookModel);
         new Thread(new Runnable() {
 
