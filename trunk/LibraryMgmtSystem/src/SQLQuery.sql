@@ -407,17 +407,17 @@ CREATE PROC sp_AddBorrow
 	@CallNumber VARCHAR(45),
 	@EmpID int,
 	@IssueStatus bit,
-	@ChkOutDate DATETIME,
+	@IssueDate DATETIME,
 	@DueDate DATETIME,
-	@ChkInDate DATETIME,
+	@ReturnDate DATETIME,
 	@TotalFee float
 )
 AS
 	INSERT INTO Borrow(
 		CallNumber,EmpID,IssueStatus,
-		ChkOutDate,DueDate,ChkInDate,TotalFee)
+		IssueDate,DueDate,ReturnDate,TotalFee)
 		VALUES(@CallNumber,@EmpID,@IssueStatus,
-				@ChkOutDate,@DueDate,@ChkInDate,@TotalFee)
+				@IssueDate,@DueDate,@ReturnDate,@TotalFee)
 
 --get a borrow by CallNumber and EmpName
 IF EXISTS (SELECT name FROM sysobjects 
@@ -429,7 +429,7 @@ CREATE PROC sp_GetBorrowByAll
 	@EmpName VARCHAR(45)
 AS
 	SELECT	b.BorID,b.EmpID,e.[Name],
-			b.CallNumber,b.ChkOutDate,b.ChkInDate
+			b.CallNumber,b.IssueDate,b.ReturnDate
 	FROM	Borrow b INNER JOIN Employee e
 	ON		b.EmpID = e.EmpID
 	WHERE	CallNumber LIKE '%'+@CallNumber+'%' AND
@@ -446,15 +446,15 @@ CREATE PROC sp_AddBorrow
 	@CallNumber VARCHAR(45),
 	@EmpID int,
 	@IssueStatus bit,
-	@ChkOutDate DATETIME,
+	@IssueDate DATETIME,
 	@DueDate DATETIME,
-	@ChkInDate DATETIME,
+	@ReturnDate DATETIME,
 	@TotalFee float
 )
 AS
 	UPDATE Borrow SET
 		CallNumber=@CallNumber,EmpID=@EmpID,IssueStatus=@IssueStatus,
-		ChkOutDate=@ChkOutDate,DueDate=@DueDate,ChkInDate=@ChkInDate,
+		IssueDate=@IssueDate,DueDate=@DueDate,ReturnDate=@ReturnDate,
 		TotalFee=@TotalFee
 		WHERE CallNumber=@CallNumber
 --Top 10 Book
