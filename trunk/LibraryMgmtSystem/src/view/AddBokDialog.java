@@ -86,8 +86,8 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
-        txtNoInLib.setToolTipText("Copies of this book");
         txtNoInLib.setEnabled(false);
+        txtNoInLib.setToolTipText("Copies of this book");
 
         lblTitle1.setText("ISBN:");
 
@@ -114,32 +114,25 @@ public class AddBokDialog extends javax.swing.JDialog {
                         .add(18, 18, 18)
                         .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(cbxSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(txtPublish, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(palAddBokLayout.createSequentialGroup()
-                        .add(122, 122, 122)
-                        .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(palAddBokLayout.createSequentialGroup()
-                        .add(122, 122, 122)
-                        .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(palAddBokLayout.createSequentialGroup()
-                        .add(122, 122, 122)
-                        .add(txtAuthor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(palAddBokLayout.createSequentialGroup()
-                        .add(122, 122, 122)
-                        .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 75, Short.MAX_VALUE)
-                        .add(lblNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(palAddBokLayout.createSequentialGroup()
-                        .add(20, 20, 20)
-                        .add(lblSub))
+                            .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtPublish, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtAuthor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(palAddBokLayout.createSequentialGroup()
                         .add(130, 130, 130)
                         .add(btnAdd, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnCancel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .add(btnCancel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 86, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(palAddBokLayout.createSequentialGroup()
+                        .add(20, 20, 20)
+                        .add(lblSub))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, palAddBokLayout.createSequentialGroup()
+                        .addContainerGap(246, Short.MAX_VALUE)
+                        .add(lblNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         palAddBokLayout.setVerticalGroup(
             palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

@@ -85,19 +85,14 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtName" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtDOB" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtAdd" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtPass" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtEmail" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtPhone" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtDepart" alignment="0" pref="221" max="32767" attributes="0"/>
                               <Component id="cbxPermis" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="txtDepart" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtPhone" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtEmail" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtPass" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtAdd" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtDOB" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Component id="txtName" alignment="0" pref="221" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -106,6 +101,13 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="94" pref="94" max="94" attributes="0"/>
+                          <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="86" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

@@ -86,8 +86,8 @@ public class EditBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
-        txtNoInLib.setToolTipText("Copies of this book");
         txtNoInLib.setEnabled(false);
+        txtNoInLib.setToolTipText("Copies of this book");
 
         lblTitle1.setText("ISBN:");
 

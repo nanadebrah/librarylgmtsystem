@@ -221,8 +221,8 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="txtNoInLib">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitle1">

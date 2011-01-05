@@ -34,6 +34,12 @@ public class SubjectController {
     private ViewSubjectController viewSubject;
     private ManageController parent;
 
+    /**
+     * 
+     * @param view
+     * @param subModel
+     * @param manage
+     */
     public SubjectController(PalSubject view,
             DefaultTableModel subModel, ManageController manage) {
         this.view = view;
