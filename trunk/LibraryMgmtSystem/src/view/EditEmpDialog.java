@@ -199,7 +199,7 @@ public class EditEmpDialog extends javax.swing.JDialog {
                     .add(btnCancel)))
         );
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_EditEmp)));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_EDITEMP)));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

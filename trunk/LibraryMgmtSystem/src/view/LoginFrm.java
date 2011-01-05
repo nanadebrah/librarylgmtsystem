@@ -60,7 +60,7 @@ public class LoginFrm extends javax.swing.JFrame {
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
         lblAbout.setText("Powered by Group-01.GC0502 - Vr1.0");
 
-        lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_Login)));
+        lblLoginIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_LOGIN)));
 
         panelLogin.setBorder(javax.swing.BorderFactory.createTitledBorder("Login Information"));
 
@@ -90,8 +90,8 @@ public class LoginFrm extends javax.swing.JFrame {
                             .add(lblPassword))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(panelLoginLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(txtUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                            .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                            .add(txtUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .add(txtPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)))
                     .add(panelLoginLayout.createSequentialGroup()
                         .add(chBxRemember)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, Short.MAX_VALUE)
@@ -118,14 +118,13 @@ public class LoginFrm extends javax.swing.JFrame {
 
         mnSystem.setText("System");
 
-        menuSetting.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_Setting)));
+        menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_SETTING)));
         menuSetting.setText("Setting");
         mnSystem.add(menuSetting);
         mnSystem.add(separator);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
-        mnQuit.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_Quit)));
+        mnQuit.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_QUIT)));
         mnQuit.setText("Quit");
         mnSystem.add(mnQuit);
 
@@ -137,7 +136,7 @@ public class LoginFrm extends javax.swing.JFrame {
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 
-        mnAbout.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_About)));
+        mnAbout.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_ABOUT)));
         mnAbout.setText("About us");
         mnHelp.add(mnAbout);
 

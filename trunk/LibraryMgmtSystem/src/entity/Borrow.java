@@ -22,6 +22,17 @@ public class Borrow {
     public Borrow() {
     }
 
+    /**
+     * 
+     * @param BorID
+     * @param CallNumber
+     * @param EmpID
+     * @param IssueStatus
+     * @param ChkOutDate
+     * @param DueDate
+     * @param ChkInDate
+     * @param TotalFee
+     */
     public Borrow(int BorID, String CallNumber, int EmpID, int IssueStatus,
             String ChkOutDate, String DueDate, String ChkInDate, float TotalFee) {
         this.BorID = BorID;

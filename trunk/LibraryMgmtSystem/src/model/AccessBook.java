@@ -42,7 +42,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.AddBook);
+            csDetails = cn.prepareCall(LibProcedure.ADDBOOK);
             csDetails.setString(1, book.getCallNumber());
             csDetails.setString(2, book.getISBN());
             csDetails.setInt(3, book.getSubID());
@@ -69,12 +69,12 @@ public class AccessBook {
      * @param book
      * @return
      */
-    public boolean editBook(Book book){
+    public boolean editBook(Book book) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.EditBook);
+            csDetails = cn.prepareCall(LibProcedure.EDITBOOK);
             csDetails.setString(1, book.getCallNumber());
             csDetails.setString(2, book.getFixCallNumber());
             csDetails.setString(3, book.getISBN());
@@ -101,13 +101,13 @@ public class AccessBook {
      * @param callNo
      * @return
      */
-    public Book getABook(String callNo){
+    public Book getBook(String callNo) {
         //Defined Object
         Book book = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GetABook);
+            csDetails = cn.prepareCall(LibProcedure.GETBOOK);
             csDetails.setString(1, callNo);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -149,7 +149,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
         try {
             //Search both ID & Name
-            csDetails = cn.prepareCall(LibProcedure.SearchBook);
+            csDetails = cn.prepareCall(LibProcedure.SEARCHBOOK);
             csDetails.setString(1, CallNo);
             csDetails.setString(2, ISBN);
             csDetails.setString(3, Title);
@@ -162,8 +162,8 @@ public class AccessBook {
                 vt.addElement(rsDetails.getString(3));
                 vt.addElement(rsDetails.getString(4));
                 vt.addElement(rsDetails.getString(5));
-                vt.addElement(rsDetails.getInt(6)+"/"+rsDetails.getInt(7));
-                
+                vt.addElement(rsDetails.getInt(6) + "/" + rsDetails.getInt(7));
+
                 bookModel.addRow(vt);
             }
         } catch (SQLException ex) {
@@ -183,19 +183,13 @@ public class AccessBook {
     public String getNewestBook() {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
-        //Defined book
-        String CallNumber = null;
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.GetNewestBook);
+            csDetails = cn.prepareCall(LibProcedure.GETNEWESTBOOK);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
-                CallNumber = rsDetails.getString(1);
+                return rsDetails.getString(1);
             } else {
-                //close all connect
-                LibConnection.close(rsDetails);
-                LibConnection.close(csDetails);
-                LibConnection.close(cn);
                 return null;
             }
         } catch (SQLException ex) {
@@ -206,6 +200,6 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return CallNumber;
+        return null;
     }
 }

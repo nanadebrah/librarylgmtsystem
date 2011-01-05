@@ -26,8 +26,20 @@ public class Employee {
     //Default constructor
     public Employee() {
     }
-    //Param constructor
 
+    /**
+     * 
+     * @param EmpID
+     * @param Name
+     * @param DOB
+     * @param Gender
+     * @param Email
+     * @param Password
+     * @param Address
+     * @param Permission
+     * @param Department
+     * @param Phone
+     */
     public Employee(int EmpID, String Name, long DOB, int Gender,
             String Email, String Password, String Address,
             int Permission, String Department, String Phone) {

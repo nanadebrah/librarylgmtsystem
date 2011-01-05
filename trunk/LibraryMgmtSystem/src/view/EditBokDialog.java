@@ -171,7 +171,7 @@ public class EditBokDialog extends javax.swing.JDialog {
                 .add(29, 29, 29))
         );
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_EditBook)));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_EDITBOOK)));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

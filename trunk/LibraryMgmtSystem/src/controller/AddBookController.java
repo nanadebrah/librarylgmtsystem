@@ -117,6 +117,7 @@ public class AddBookController {
         getBook().setSubID(AccessSub.getInstance().getSubjectID(
                 getView().getCbxSub().getSelectedItem().toString()));
         getBook().setCallNumber(LibBook.getInstance().generateCallNo(getBook()));
+        getBook().setFixCallNumber(getBook().getCallNumber());
     }
 
     /**

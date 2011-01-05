@@ -147,9 +147,9 @@ public class SettingDialog extends javax.swing.JDialog {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lblConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_Connect)));
+        lblConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_CONNECT)));
 
-        btnTest.setText("Test");
+        btnTest.setText("Check");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,10 +197,10 @@ public class SettingDialog extends javax.swing.JDialog {
     public void setConnectImage(boolean check) {
         if (check) {
             lblConnect.setIcon(new ImageIcon(
-                    getClass().getResource(LibImages.Label_Connect)));
+                    getClass().getResource(LibImages.LABEL_CONNECT)));
         } else {
             lblConnect.setIcon(new ImageIcon(
-                    getClass().getResource(LibImages.Label_ConnectFailed)));
+                    getClass().getResource(LibImages.LABEL_CONNECTFAILED)));
         }
     }      
 

@@ -37,13 +37,13 @@ public class AccessEmp {
      * @param EmpID is ID to query on database
      * @return Employee queried
      */
-    public Employee getAnEmp(int EmpID) {
+    public Employee getEmp(int EmpID) {
         //Defined Object
         Employee emp = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GetAEmp);
+            csDetails = cn.prepareCall(LibProcedure.GETEMP);
             csDetails.setInt(1, EmpID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -81,7 +81,7 @@ public class AccessEmp {
         cn = LibConnection.getConnection();
         try {
             if (emp.getPermission() == 1) {
-                csDetails = cn.prepareCall(LibProcedure.AddLib);
+                csDetails = cn.prepareCall(LibProcedure.ADDLIB);
                 csDetails.setString(1, emp.getName());
                 csDetails.setDate(2, new Date(emp.getDOB()));
                 csDetails.setInt(3, emp.getGender());
@@ -94,7 +94,7 @@ public class AccessEmp {
                 csDetails.execute();
                 return true;
             } else {
-                csDetails = cn.prepareCall(LibProcedure.AddEmp);
+                csDetails = cn.prepareCall(LibProcedure.ADDEMP);
                 csDetails.setString(1, emp.getName());
                 csDetails.setDate(2, new Date(emp.getDOB()));
                 csDetails.setInt(3, emp.getGender());
@@ -123,7 +123,7 @@ public class AccessEmp {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GetAllEmp);
+            csDetails = cn.prepareCall(LibProcedure.GETALLEMP);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 Vector vt = new Vector();
@@ -164,7 +164,7 @@ public class AccessEmp {
 
         try {
             if (emp.getPermission() == 1) {
-                csDetails = cn.prepareCall(LibProcedure.EditLib);
+                csDetails = cn.prepareCall(LibProcedure.EDITLIB);
                 csDetails.setInt(1, emp.getEmpID());
                 csDetails.setString(2, emp.getName());
                 csDetails.setDate(3, new Date(emp.getDOB()));
@@ -178,7 +178,7 @@ public class AccessEmp {
                 csDetails.execute();
                 return true;
             } else {
-                csDetails = cn.prepareCall(LibProcedure.EditEmp);
+                csDetails = cn.prepareCall(LibProcedure.EDITEMP);
                 csDetails.setInt(1, emp.getEmpID());
                 csDetails.setString(2, emp.getName());
                 csDetails.setDate(3, new Date(emp.getDOB()));
@@ -212,15 +212,15 @@ public class AccessEmp {
         try {
             if (EmpID.length() == 0 && Name.length() != 0) {
                 //Save Name only
-                csDetails = cn.prepareCall(LibProcedure.GetEmpByName);
+                csDetails = cn.prepareCall(LibProcedure.GETEMPBYNAME);
                 csDetails.setString(1, Name);
             } else if (EmpID.length() != 0 && Name.length() == 0) {
                 //Search EmpID only
-                csDetails = cn.prepareCall(LibProcedure.GetEmpByID);
+                csDetails = cn.prepareCall(LibProcedure.GETEMPBYID);
                 csDetails.setInt(1, new Integer(EmpID));
             } else if (EmpID.length() != 0 && Name.length() != 0) {
                 //Search both ID & Name
-                csDetails = cn.prepareCall(LibProcedure.GetEmpByBoth);
+                csDetails = cn.prepareCall(LibProcedure.GETEMPBYBOTH);
                 csDetails.setInt(1, new Integer(EmpID));
                 csDetails.setString(2, Name);
             } else {
@@ -254,5 +254,32 @@ public class AccessEmp {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+    }
+    /**
+     *
+     * @return
+     */
+    public int getNewestEmp() {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        //Defined book
+
+        try {
+            csDetails = cn.prepareCall(LibProcedure.GETNEWESTEMP);
+            rsDetails = csDetails.executeQuery();
+            if (rsDetails.next()) {
+                return rsDetails.getInt(1);
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return 0;
     }
 }

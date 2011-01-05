@@ -46,7 +46,7 @@ public class SplashScreen extends JWindow {
         jlabel = new JLabel();
         jlabel2 = new JLabel("Loading..........");
         process = new JProgressBar();
-        image = new ImageIcon(this.getClass().getResource(LibImages.Splash));
+        image = new ImageIcon(this.getClass().getResource(LibImages.SPLASH));
         //Set jlabel to display image and prefersize of process bar
         jlabel.setIcon(image);
         process.setPreferredSize(new Dimension(768, 7));

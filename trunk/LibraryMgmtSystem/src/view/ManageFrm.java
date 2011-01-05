@@ -92,21 +92,21 @@ public class ManageFrm extends javax.swing.JFrame {
         taskPalManage.setTitle("Management");
         taskPalManage.setFocusable(false);
 
-        btnEmpMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Employee)));
+        btnEmpMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_EMPLOYEE)));
         btnEmpMan.setMnemonic('e');
         btnEmpMan.setText("Employee");
         btnEmpMan.setBorderPainted(false);
         btnEmpMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         taskPalManage.getContentPane().add(btnEmpMan);
 
-        btnBookMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Book)));
+        btnBookMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BOOK)));
         btnBookMan.setMnemonic('b');
         btnBookMan.setText("Book");
         btnBookMan.setBorderPainted(false);
         btnBookMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         taskPalManage.getContentPane().add(btnBookMan);
 
-        btnSubMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Sub)));
+        btnSubMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SUB)));
         btnSubMan.setMnemonic('j');
         btnSubMan.setText("Subject");
         btnSubMan.setBorderPainted(false);
@@ -122,14 +122,14 @@ public class ManageFrm extends javax.swing.JFrame {
         btnBorMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         btnAnaMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
 
-        btnBorMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Borrow)));
+        btnBorMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BORROW)));
         btnBorMan.setMnemonic('b');
         btnBorMan.setText("Borrow");
         btnBorMan.setBorderPainted(false);
         btnBorMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         taskPalBorAna.getContentPane().add(btnBorMan);
 
-        btnAnaMan.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Analytic)));
+        btnAnaMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ANALYTIC)));
         btnAnaMan.setMnemonic('l');
         btnAnaMan.setText("Analytic");
         btnAnaMan.setBorderPainted(false);
@@ -140,18 +140,18 @@ public class ManageFrm extends javax.swing.JFrame {
 
         mnSystem.setText("System");
 
-        menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_Setting)));
+        menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_SETTING)));
         menuSetting.setText("Setting");
         mnSystem.add(menuSetting);
         mnSystem.add(separator);
 
         mnLogout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
-        mnLogout.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_Logout)));
+        mnLogout.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_LOGOUT)));
         mnLogout.setText("Logout");
         mnSystem.add(mnLogout);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
-        mnQuit.setIcon(new ImageIcon(getClass().getResource(LibImages.Menu_Quit)));
+        mnQuit.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_QUIT)));
         mnQuit.setText("Quit");
         mnSystem.add(mnQuit);
 
@@ -159,19 +159,19 @@ public class ManageFrm extends javax.swing.JFrame {
 
         mnEmp.setText("Employee");
 
-        mnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add)));
+        mnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD)));
         mnAddEmp.setText("Add");
         mnEmp.add(mnAddEmp);
 
-        mnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit)));
+        mnEditEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT)));
         mnEditEmp.setText("Edit");
         mnEmp.add(mnEditEmp);
 
-        mnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View)));
+        mnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW)));
         mnViewEmp.setText("View");
         mnEmp.add(mnViewEmp);
 
-        mnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete)));
+        mnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE)));
         mnDelEmp.setText("Delete");
         mnEmp.add(mnDelEmp);
 
@@ -179,19 +179,19 @@ public class ManageFrm extends javax.swing.JFrame {
 
         mnBook.setText("Books");
 
-        mnAddBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add)));
+        mnAddBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD)));
         mnAddBok.setText("Add");
         mnBook.add(mnAddBok);
 
-        mnEditBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit)));
+        mnEditBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT)));
         mnEditBok.setText("Edit");
         mnBook.add(mnEditBok);
 
-        mnViewBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View)));
+        mnViewBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW)));
         mnViewBok.setText("View");
         mnBook.add(mnViewBok);
 
-        mnDelBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete)));
+        mnDelBok.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE)));
         mnDelBok.setText("Delete");
         mnBook.add(mnDelBok);
 
@@ -199,19 +199,19 @@ public class ManageFrm extends javax.swing.JFrame {
 
         mbSub.setText("Subject");
 
-        mnAddSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add)));
+        mnAddSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD)));
         mnAddSub.setText("Add");
         mbSub.add(mnAddSub);
 
-        mnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit)));
+        mnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT)));
         mnEditSub.setText("Edit");
         mbSub.add(mnEditSub);
 
-        mnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View)));
+        mnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW)));
         mnViewSub.setText("View");
         mbSub.add(mnViewSub);
 
-        mnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete)));
+        mnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE)));
         mnDelSub.setText("Delete");
         mbSub.add(mnDelSub);
 
@@ -261,7 +261,7 @@ public class ManageFrm extends javax.swing.JFrame {
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 
-        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_About)));
+        mnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ABOUT)));
         mnAbout.setText("About us");
         mnHelp.add(mnAbout);
 
@@ -278,7 +278,7 @@ public class ManageFrm extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalManage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalBorAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE))
+                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

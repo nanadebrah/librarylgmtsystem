@@ -17,6 +17,12 @@ public class Fee {
     public Fee() {
     }
 
+    /**
+     * 
+     * @param Fee
+     * @param BorFee
+     * @param LateFee
+     */
     public Fee(String Fee, float BorFee, float LateFee) {
         this.BorFee = BorFee;
         this.Fee = Fee;

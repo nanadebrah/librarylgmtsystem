@@ -49,7 +49,7 @@ public class AddSubDialog extends javax.swing.JDialog {
         setTitle("Add information for subject");
         setResizable(false);
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_AddSub)));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_ADDSUB)));
 
         palAddSub.setBorder(javax.swing.BorderFactory.createTitledBorder("Subject Information"));
 

@@ -195,7 +195,7 @@ public class AddEmpDialog extends javax.swing.JDialog {
                     .add(btnCancel)))
         );
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_AddEmp)));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_ADDEMP)));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

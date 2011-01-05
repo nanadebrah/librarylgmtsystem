@@ -8,6 +8,8 @@ import entity.Book;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -41,7 +43,7 @@ public class BookController {
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -113,6 +115,40 @@ public class BookController {
                 editBook();
             }
         });
+
+        //Add enter key search
+        getView().getTxtAthBook().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBook();
+                }
+            }
+        });
+        getView().getTxtCallNoBook().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBook();
+                }
+            }
+        });
+        getView().getTxtISBNBook().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBook();
+                }
+            }
+        });
+        getView().getTxtTitlBook().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBook();
+                }
+            }
+        });
     }
 
     /**
@@ -124,7 +160,7 @@ public class BookController {
         String callNo = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getABook(callNo);
+        Book book = AccessBook.getInstance().getBook(callNo);
         //Create instance of book edit dialog and display it
         editBook = new EditBookController(
                 new EditBokDialog(parent.getView(), true), book);
@@ -144,7 +180,7 @@ public class BookController {
         parent.doBlur();
     }
 
-    /*
+    /**
      * View a book
      */
     private void viewBook() {
@@ -152,7 +188,7 @@ public class BookController {
         String callNo = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getABook(callNo);
+        Book book = AccessBook.getInstance().getBook(callNo);
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewBook = new ViewBookController(new ViewBookDialog(parent.getView(), true), book);
@@ -178,7 +214,7 @@ public class BookController {
         }).start();
     }
 
-    /*
+    /**
      *Method add employee on database
      */
     private void addBook() {
@@ -192,12 +228,14 @@ public class BookController {
                 JOptionPane.showMessageDialog(getView(), "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
             }
+            //Add new row
+            bookModel.addRow(addBook.getBook().toVector());
         }
         view.getTblBook().clearSelection();
         parent.doBlur();
     }
 
-    /*
+    /**
      * Do lost focus table
      */
     private void tableFocus() {

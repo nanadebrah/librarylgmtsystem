@@ -53,7 +53,7 @@ public class AboutWindow extends JWindow {
         //Create new instance of jlabel
         jlabel = new JLabel();
         //Create new instance of image
-        image = new ImageIcon(getClass().getResource(LibImages.About));
+        image = new ImageIcon(getClass().getResource(LibImages.ABOUT));
         //Set jlabel to display image
         jlabel.setIcon(image);
         //Set this content pane absolute layout

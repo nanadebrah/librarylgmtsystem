@@ -9,13 +9,14 @@ import entity.Employee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import view.AddEmpDialog;
 import view.EditEmpDialog;
-import view.ManageFrm;
 import view.PalEmployee;
 import view.ViewEmpDialog;
 
@@ -33,6 +34,12 @@ public class EmployeeController {
     private ViewEmployeeController viewEmp;
     private ManageController parent;
 
+    /**
+     * 
+     * @param view
+     * @param empModel
+     * @param manage
+     */
     public EmployeeController(PalEmployee view, DefaultTableModel empModel,
             ManageController manage) {
         this.view = view;
@@ -41,7 +48,7 @@ public class EmployeeController {
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -77,6 +84,7 @@ public class EmployeeController {
                 }
             }
         });
+
         //Add event to add employee btn
         view.getBtnAddEmp().addActionListener(new ActionListener() {
 
@@ -85,6 +93,7 @@ public class EmployeeController {
                 addEmp();
             }
         });
+
         //Add event click search employee
         view.getBtnSearchEmp().addActionListener(new ActionListener() {
 
@@ -93,6 +102,7 @@ public class EmployeeController {
                 searchEmp();
             }
         });
+
         //Add event view button
         view.getBtnViewEmp().addActionListener(new ActionListener() {
 
@@ -100,6 +110,7 @@ public class EmployeeController {
                 viewEmp();
             }
         });
+
         //Add event edit btn
         view.getBtnEditEmp().addActionListener(new ActionListener() {
 
@@ -108,9 +119,27 @@ public class EmployeeController {
                 editEmp();
             }
         });
+
+        //Add event enter key
+        getView().getTxtIdEmp().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchEmp();
+                }
+            }
+        });
+        getView().getTxtNameEmp().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchEmp();
+                }
+            }
+        });
     }
 
-    /*
+    /**
      * Do lost focus table
      */
     private void tableFocus() {
@@ -121,7 +150,7 @@ public class EmployeeController {
         view.getTblEmp().setFocusable(false);
     }
 
-    /*
+    /**
      *Method edit employee on databse and edit on employee table
      */
     private void editEmp() {
@@ -130,7 +159,7 @@ public class EmployeeController {
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
-        Employee emp = AccessEmp.getInstance().getAnEmp(new Integer(empID));
+        Employee emp = AccessEmp.getInstance().getEmp(new Integer(empID));
         //Create instance of Employee edit dialog and display it
         editEmp = new EditEmployeeController(
                 new EditEmpDialog(parent.getView(), true), emp);
@@ -150,7 +179,7 @@ public class EmployeeController {
         parent.doBlur();
     }
 
-    /*
+    /**
      *Method add employee on databse
      */
     private void addEmp() {
@@ -163,13 +192,16 @@ public class EmployeeController {
             if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
                 JOptionPane.showMessageDialog(getView(), "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Add new employee to table
+                addEmp.getEmp().setEmpID(AccessEmp.getInstance().getNewestEmp());
+                empModel.addRow(addEmp.getEmp().toVector());
             }
         }
         view.getTblEmp().clearSelection();
         parent.doBlur();
     }
 
-    /*
+    /**
      * Seacrch employee by Id or name
      */
     public void searchEmp() {
@@ -184,7 +216,7 @@ public class EmployeeController {
         }).start();
     }
 
-    /*
+    /**
      * Method view full information employee
      */
     private void viewEmp() {
@@ -192,7 +224,7 @@ public class EmployeeController {
         String empID = view.getTblEmp().getValueAt(
                 view.getTblEmp().getSelectedRow(), 0).toString();
         //Get employee from database
-        Employee emp = AccessEmp.getInstance().getAnEmp(new Integer(empID));
+        Employee emp = AccessEmp.getInstance().getEmp(new Integer(empID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewEmp = new ViewEmployeeController(new ViewEmpDialog(parent.getView(), true), emp);

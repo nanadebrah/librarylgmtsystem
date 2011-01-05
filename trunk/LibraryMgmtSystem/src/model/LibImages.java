@@ -26,85 +26,85 @@ public class LibImages {
      *
      */
     //Other image
-    public static final String Splash =
+    public static final String SPLASH =
             "images" + File.separator + "other" + File.separator + "Splash.png";
-    public static final String About =
+    public static final String ABOUT =
             "images" + File.separator + "other" + File.separator + "About.png";
     //Label image
-    public static final String Label_Login = "images" + File.separator
+    public static final String LABEL_LOGIN = "images" + File.separator
             + "labelImages" + File.separator + "Login.png";
-    public static final String Label_InfoSub = "images" + File.separator
+    public static final String LABEL_INFOSUB = "images" + File.separator
             + "labelImages" + File.separator + "InfoSub.png";
-    public static final String Label_InfoEmp = "images" + File.separator
+    public static final String LABEL_INFOEMP = "images" + File.separator
             + "labelImages" + File.separator + "InfoEmp.png";
-    public static final String Label_InfoBook = "images" + File.separator
+    public static final String LABEL_INFOBOOK = "images" + File.separator
             + "labelImages" + File.separator + "InfoBook.png";
-    public static final String Label_EditSub = "images" + File.separator
+    public static final String LABEL_EDITSUB = "images" + File.separator
             + "labelImages" + File.separator + "EditSub.png";
-    public static final String Label_EditEmp = "images" + File.separator
+    public static final String LABEL_EDITEMP = "images" + File.separator
             + "labelImages" + File.separator + "EditEmp.png";
-    public static final String Label_EditBook = "images" + File.separator
+    public static final String LABEL_EDITBOOK = "images" + File.separator
             + "labelImages" + File.separator + "EditBook.png";
-    public static final String Label_ConnectFailed = "images" + File.separator
+    public static final String LABEL_CONNECTFAILED = "images" + File.separator
             + "labelImages" + File.separator + "ConnectFailed.png";
-    public static final String Label_Connect = "images" + File.separator
+    public static final String LABEL_CONNECT = "images" + File.separator
             + "labelImages" + File.separator + "Connect.png";
-    public static final String Label_AddSub = "images" + File.separator
+    public static final String LABEL_ADDSUB = "images" + File.separator
             + "labelImages" + File.separator + "AddSub.png";
-    public static final String Label_AddEmp = "images" + File.separator
+    public static final String LABEL_ADDEMP = "images" + File.separator
             + "labelImages" + File.separator + "AddEmp.png";
-    public static final String Label_AddBook = "images" + File.separator
+    public static final String LABEL_ADDBOOK = "images" + File.separator
             + "labelImages" + File.separator + "AddBook.png";
     //Menu image
-    public static final String Menu_Add = "images" + File.separator
+    public static final String MENU_ADD = "images" + File.separator
             + "menuImages" + File.separator + "Add.png";
-    public static final String Menu_Delete = "images" + File.separator
+    public static final String MENU_DELETE = "images" + File.separator
             + "menuImages" + File.separator + "Delete.png";
-    public static final String Menu_Edit = "images" + File.separator
+    public static final String MENU_EDIT = "images" + File.separator
             + "menuImages" + File.separator + "Edit.png";
-    public static final String Menu_Logout = "images" + File.separator
+    public static final String MENU_LOGOUT = "images" + File.separator
             + "menuImages" + File.separator + "Logout.png";
-    public static final String Menu_Quit = "images" + File.separator
+    public static final String MENU_QUIT = "images" + File.separator
             + "menuImages" + File.separator + "Quit.png";
-    public static final String Menu_Setting = "images" + File.separator
+    public static final String MENU_SETTING = "images" + File.separator
             + "menuImages" + File.separator + "Setting.png";
-    public static final String Menu_View = "images" + File.separator
+    public static final String MENU_VIEW = "images" + File.separator
             + "menuImages" + File.separator + "View.png";
-    public static final String Menu_About = "images" + File.separator
+    public static final String MENU_ABOUT = "images" + File.separator
             + "menuImages" + File.separator + "About.png";
     //Taskbar image
-    public static final String Taskbar_Add = "images" + File.separator
+    public static final String TASKBAR_ADD = "images" + File.separator
             + "taskbarImages" + File.separator + "Add.png";
-    public static final String Taskbar_Analytic = "images" + File.separator
+    public static final String TASKBAR_ANALYTIC = "images" + File.separator
             + "taskbarImages" + File.separator + "Analytic.png";
-    public static final String Taskbar_Book = "images" + File.separator
+    public static final String TASKBAR_BOOK = "images" + File.separator
             + "taskbarImages" + File.separator + "Book.png";
-    public static final String Taskbar_Borrow = "images" + File.separator
+    public static final String TASKBAR_BORROW = "images" + File.separator
             + "taskbarImages" + File.separator + "Borrow.png";
-    public static final String Taskbar_CheckIn = "images" + File.separator
+    public static final String TASKBAR_CHECKIN = "images" + File.separator
             + "taskbarImages" + File.separator + "CheckIn.png";
-    public static final String Taskbar_CheckOut = "images" + File.separator
+    public static final String TASKBAR_CHECKOUT = "images" + File.separator
             + "taskbarImages" + File.separator + "CheckOut.png";
-    public static final String Taskbar_Delete = "images" + File.separator
+    public static final String TASKBAR_DETELE = "images" + File.separator
             + "taskbarImages" + File.separator + "Delete.png";
-    public static final String Taskbar_Edit = "images" + File.separator
+    public static final String TASKBAR_EDIT = "images" + File.separator
             + "taskbarImages" + File.separator + "Edit.png";
-    public static final String Taskbar_Employee = "images" + File.separator
+    public static final String TASKBAR_EMPLOYEE = "images" + File.separator
             + "taskbarImages" + File.separator + "Employee.png";
-    public static final String Taskbar_Fee = "images" + File.separator
+    public static final String TASKBAR_FEE = "images" + File.separator
             + "taskbarImages" + File.separator + "Fee.png";
-    public static final String Taskbar_Revenue = "images" + File.separator
+    public static final String TASKBAR_REVENUE = "images" + File.separator
             + "taskbarImages" + File.separator + "Revenue.png";
-    public static final String Taskbar_Search = "images" + File.separator
+    public static final String TASKBAR_SEARCH = "images" + File.separator
             + "taskbarImages" + File.separator + "Search.png";
-    public static final String Taskbar_SendAlert = "images" + File.separator
+    public static final String TASKBAR_SENDALERT = "images" + File.separator
             + "taskbarImages" + File.separator + "SendAlert.png";
-    public static final String Taskbar_Sub = "images" + File.separator
+    public static final String TASKBAR_SUB = "images" + File.separator
             + "taskbarImages" + File.separator + "Sub.png";
-    public static final String Taskbar_TopBook = "images" + File.separator
+    public static final String TASKBAR_TOPBOOK = "images" + File.separator
             + "taskbarImages" + File.separator + "TopBook.png";
-    public static final String Taskbar_TopBorrower = "images" + File.separator
+    public static final String TASKBAR_TOPBORROWER = "images" + File.separator
             + "taskbarImages" + File.separator + "TopBorrower.png";
-    public static final String Taskbar_View = "images" + File.separator
+    public static final String TASKBAR_VIEW = "images" + File.separator
             + "taskbarImages" + File.separator + "View.png";
 }

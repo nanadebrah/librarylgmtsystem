@@ -65,7 +65,7 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         setTitle("Show details of employee or librarian");
         setResizable(false);
 
-        lblViewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_InfoEmp)));
+        lblViewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOEMP)));
 
         palInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee or Librarian Information"));
 

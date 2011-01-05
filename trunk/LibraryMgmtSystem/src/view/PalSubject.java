@@ -54,7 +54,7 @@ public class PalSubject extends javax.swing.JPanel {
         tolbarSub.setBorderPainted(false);
         tolbarSub.setOpaque(false);
 
-        btnAddSub.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Add)));
+        btnAddSub.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ADD)));
         btnAddSub.setMnemonic('a');
         btnAddSub.setText("Add");
         btnAddSub.setBorderPainted(false);
@@ -64,7 +64,7 @@ public class PalSubject extends javax.swing.JPanel {
         tolbarSub.add(btnAddSub);
         tolbarSub.add(separator5);
 
-        btnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Edit)));
+        btnEditSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
         btnEditSub.setMnemonic('e');
         btnEditSub.setText("Edit");
         btnEditSub.setBorderPainted(false);
@@ -74,7 +74,7 @@ public class PalSubject extends javax.swing.JPanel {
         btnEditSub.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarSub.add(btnEditSub);
 
-        btnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_View)));
+        btnViewSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewSub.setMnemonic('v');
         btnViewSub.setText("View");
         btnViewSub.setBorderPainted(false);
@@ -84,7 +84,7 @@ public class PalSubject extends javax.swing.JPanel {
         btnViewSub.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarSub.add(btnViewSub);
 
-        btnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Delete)));
+        btnDelSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_DETELE)));
         btnDelSub.setMnemonic('d');
         btnDelSub.setText("Delete");
         btnDelSub.setBorderPainted(false);
@@ -95,7 +95,7 @@ public class PalSubject extends javax.swing.JPanel {
         tolbarSub.add(btnDelSub);
         tolbarSub.add(separator6);
 
-        btnSearchSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Search)));
+        btnSearchSub.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
         btnSearchSub.setMnemonic('s');
         btnSearchSub.setText("Search");
         btnSearchSub.setBorderPainted(false);
@@ -126,7 +126,7 @@ public class PalSubject extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

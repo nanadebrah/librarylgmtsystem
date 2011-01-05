@@ -25,6 +25,17 @@ public class Book {
     public Book() {
     }
 
+    /**
+     * 
+     * @param CallNumber
+     * @param subID
+     * @param ISBN
+     * @param Title
+     * @param AuthName
+     * @param Publisher
+     * @param noCopy
+     * @param noLib
+     */
     public Book(String CallNumber, int subID, String ISBN,
             String Title, String AuthName, String Publisher, int noCopy, int noLib) {
         this.CallNumber = CallNumber;
@@ -150,6 +161,20 @@ public class Book {
     }
 
     /**
+     * @return the fixCallNumber
+     */
+    public String getFixCallNumber() {
+        return fixCallNumber;
+    }
+
+    /**
+     * @param fixCallNumber the fixCallNumber to set
+     */
+    public void setFixCallNumber(String fixCallNumber) {
+        this.fixCallNumber = fixCallNumber;
+    }
+
+    /**
      * @return Vector ob book
      */
     public Vector toVector() {
@@ -162,19 +187,5 @@ public class Book {
         vt.addElement(Publisher);
         vt.addElement(noOfCopy+"/"+noInLib);
         return vt;
-    }
-
-    /**
-     * @return the fixCallNumber
-     */
-    public String getFixCallNumber() {
-        return fixCallNumber;
-    }
-
-    /**
-     * @param fixCallNumber the fixCallNumber to set
-     */
-    public void setFixCallNumber(String fixCallNumber) {
-        this.fixCallNumber = fixCallNumber;
     }
 }

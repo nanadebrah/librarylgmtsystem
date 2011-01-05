@@ -49,7 +49,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         tolbarAna.setBorderPainted(false);
         tolbarAna.setOpaque(false);
 
-        btnTBookAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_TopBook)));
+        btnTBookAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBOOK)));
         btnTBookAna.setMnemonic('a');
         btnTBookAna.setText("Top Book");
         btnTBookAna.setBorderPainted(false);
@@ -58,7 +58,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBookAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBookAna);
 
-        btnTBorAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_TopBorrower)));
+        btnTBorAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBORROWER)));
         btnTBorAna.setMnemonic('e');
         btnTBorAna.setText("Top Borrower");
         btnTBorAna.setBorderPainted(false);
@@ -67,7 +67,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBorAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBorAna);
 
-        btnViewAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_View)));
+        btnViewAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewAna.setMnemonic('v');
         btnViewAna.setText("View");
         btnViewAna.setBorderPainted(false);
@@ -77,7 +77,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnViewAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnViewAna);
 
-        btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_SendAlert)));
+        btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
         btnAlertAna.setMnemonic('s');
         btnAlertAna.setText("Overdue Alert");
         btnAlertAna.setBorderPainted(false);
@@ -87,7 +87,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnAlertAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnAlertAna);
 
-        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Revenue)));
+        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE)));
         btnRevAna.setText("Revenue");
         btnRevAna.setBorderPainted(false);
         btnRevAna.setFocusable(false);

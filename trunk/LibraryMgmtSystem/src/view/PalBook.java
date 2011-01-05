@@ -58,7 +58,7 @@ public class PalBook extends javax.swing.JPanel {
         tolbarBook.setBorderPainted(false);
         tolbarBook.setOpaque(false);
 
-        btnAddBook.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Add)));
+        btnAddBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ADD)));
         btnAddBook.setMnemonic('a');
         btnAddBook.setText("Add");
         btnAddBook.setBorderPainted(false);
@@ -68,7 +68,7 @@ public class PalBook extends javax.swing.JPanel {
         tolbarBook.add(btnAddBook);
         tolbarBook.add(separator3);
 
-        btnEditBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Edit)));
+        btnEditBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
         btnEditBook.setMnemonic('e');
         btnEditBook.setText("Edit");
         btnEditBook.setBorderPainted(false);
@@ -78,7 +78,7 @@ public class PalBook extends javax.swing.JPanel {
         btnEditBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBook.add(btnEditBook);
 
-        btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_View)));
+        btnViewBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewBook.setMnemonic('v');
         btnViewBook.setText("View");
         btnViewBook.setBorderPainted(false);
@@ -88,7 +88,7 @@ public class PalBook extends javax.swing.JPanel {
         btnViewBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBook.add(btnViewBook);
 
-        btnDelBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Delete)));
+        btnDelBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_DETELE)));
         btnDelBook.setMnemonic('d');
         btnDelBook.setText("Delete");
         btnDelBook.setBorderPainted(false);
@@ -99,7 +99,7 @@ public class PalBook extends javax.swing.JPanel {
         tolbarBook.add(btnDelBook);
         tolbarBook.add(separator4);
 
-        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Search)));
+        btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
         btnSearchBook.setMnemonic('s');
         btnSearchBook.setText("Search");
         btnSearchBook.setBorderPainted(false);
@@ -138,7 +138,7 @@ public class PalBook extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

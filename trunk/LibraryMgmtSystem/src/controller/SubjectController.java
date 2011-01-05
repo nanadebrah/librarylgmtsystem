@@ -8,6 +8,8 @@ import entity.Subject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -15,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import model.AccessSub;
 import view.AddSubDialog;
 import view.EditSubDialog;
-import view.ManageFrm;
 import view.PalSubject;
 import view.ViewSubDialog;
 
@@ -41,7 +42,7 @@ public class SubjectController {
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -94,7 +95,6 @@ public class SubjectController {
                 tableFocus();
             }
         });
-
         view.getTblSub().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -108,9 +108,27 @@ public class SubjectController {
                 }
             }
         });
+
+        //Add event enter key
+        getView().getTxtIdSub().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchSubject();
+                }
+            }
+        });
+        getView().getTxtNameSub().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchSubject();
+                }
+            }
+        });
     }
 
-    /*
+    /**
      * View subject
      */
     private void viewSubject(){
@@ -118,7 +136,7 @@ public class SubjectController {
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
         //Get employee from database
-        Subject sub = AccessSub.getInstance().getASubject(new Integer(subID));
+        Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewSubject=new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
@@ -127,7 +145,7 @@ public class SubjectController {
         parent.doBlur();
     }
 
-    /*
+    /**
      * Edit subject
      */
     private void editSubject(){
@@ -136,7 +154,7 @@ public class SubjectController {
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
         //Get employee from database
-        Subject sub = AccessSub.getInstance().getASubject(new Integer(subID));
+        Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
         //Create instance of Employee edit dialog and display it
         editSubject = new EditSubjectController(
                 new EditSubDialog(parent.getView(), true), sub);
@@ -156,7 +174,7 @@ public class SubjectController {
         parent.doBlur();
     }
 
-    /*
+    /**
      * Do lost focus table
      */
     private void tableFocus() {
@@ -167,7 +185,7 @@ public class SubjectController {
         view.getTblSub().setFocusable(false);
     }
 
-    /*
+    /**
      * Seacrh subject
      */
     public void searchSubject() {
@@ -176,7 +194,7 @@ public class SubjectController {
                 getView().getTxtIdSub().getText(), getView().getTxtNameSub().getText());
     }
 
-    /*
+    /**
      * Add an subject
      */
     private void addSubject() {
@@ -189,6 +207,9 @@ public class SubjectController {
             if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
                 JOptionPane.showMessageDialog(getView(), "Add subject successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Add subject to table
+                addSubject.getSub().setSubID(AccessSub.getInstance().getNewestSub());
+                subModel.addRow(addSubject.getSub().toVector());
             }
         }
         view.getTblSub().clearSelection();

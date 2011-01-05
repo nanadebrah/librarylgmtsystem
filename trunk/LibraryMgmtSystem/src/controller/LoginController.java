@@ -61,7 +61,7 @@ public class LoginController {
         loadConfig();
     }
 
-    /*
+    /**
      * initialize the controller.
      */
     private void initComponent() {
@@ -147,7 +147,7 @@ public class LoginController {
         });
     }
 
-    /*
+    /**
      * Blur main frame when dialog open
      */
     private void doBlur() {
@@ -156,7 +156,7 @@ public class LoginController {
         blurUI.setLocked(!blurUI.isLocked());
     }
 
-    /*
+    /**
      * Load config file
      */
     private boolean loadConfig() {
@@ -205,7 +205,7 @@ public class LoginController {
         return true;
     }
 
-    /*
+    /**
      * Save user and pass to property file
      */
     private void saveConfig(String user, String pass) {
@@ -258,7 +258,7 @@ public class LoginController {
         }
     }
 
-    /*
+    /**
      * Connect to SQL Server and check admin info
      */
     private void login() {

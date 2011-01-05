@@ -54,7 +54,7 @@ public class PalEmployee extends javax.swing.JPanel {
         tolbarEmp.setBorderPainted(false);
         tolbarEmp.setOpaque(false);
 
-        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Add)));
+        btnAddEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_ADD)));
         btnAddEmp.setMnemonic('a');
         btnAddEmp.setText("Add");
         btnAddEmp.setBorderPainted(false);
@@ -64,7 +64,7 @@ public class PalEmployee extends javax.swing.JPanel {
         tolbarEmp.add(btnAddEmp);
         tolbarEmp.add(separator1);
 
-        btnEditEmp.setIcon(new ImageIcon(getClass().getResource(LibImages.Taskbar_Edit)));
+        btnEditEmp.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
         btnEditEmp.setMnemonic('e');
         btnEditEmp.setText("Edit");
         btnEditEmp.setBorderPainted(false);
@@ -74,7 +74,7 @@ public class PalEmployee extends javax.swing.JPanel {
         btnEditEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnEditEmp);
 
-        btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_View)));
+        btnViewEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewEmp.setMnemonic('v');
         btnViewEmp.setText("View");
         btnViewEmp.setBorderPainted(false);
@@ -84,7 +84,7 @@ public class PalEmployee extends javax.swing.JPanel {
         btnViewEmp.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarEmp.add(btnViewEmp);
 
-        btnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Delete)));
+        btnDelEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_DETELE)));
         btnDelEmp.setMnemonic('d');
         btnDelEmp.setText("Delete");
         btnDelEmp.setBorderPainted(false);
@@ -95,7 +95,7 @@ public class PalEmployee extends javax.swing.JPanel {
         tolbarEmp.add(btnDelEmp);
         tolbarEmp.add(separator2);
 
-        btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Search)));
+        btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
         btnSearchEmp.setMnemonic('s');
         btnSearchEmp.setText("Search");
         btnSearchEmp.setBorderPainted(false);

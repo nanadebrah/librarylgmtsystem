@@ -66,47 +66,53 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPublish" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNoCop" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cbxSub" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                              <Component id="txtPublish" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="122" pref="122" max="122" attributes="0"/>
+                          <Component id="txtISBN" min="-2" pref="269" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="122" pref="122" max="122" attributes="0"/>
+                          <Component id="txtTitle" min="-2" pref="269" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="122" pref="122" max="122" attributes="0"/>
+                          <Component id="txtAuthor" min="-2" pref="269" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="122" pref="122" max="122" attributes="0"/>
+                          <Component id="txtNoCop" min="-2" pref="49" max="-2" attributes="0"/>
+                          <EmptySpace pref="75" max="32767" attributes="0"/>
+                          <Component id="lblNoInLib" min="-2" pref="82" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNoInLib" min="-2" pref="49" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                          <Component id="lblSub" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="130" pref="130" max="130" attributes="0"/>
                           <Component id="btnAdd" min="-2" pref="75" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="btnCancel" min="-2" pref="86" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPublish" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNoCop" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="txtNoCop" min="-2" pref="49" max="-2" attributes="0"/>
-                                          <EmptySpace pref="75" max="32767" attributes="0"/>
-                                          <Component id="lblNoInLib" min="-2" pref="82" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtNoInLib" min="-2" pref="49" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtPublish" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
-                                      <Component id="txtAuthor" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
-                                      <Component id="txtTitle" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
-                                      <Component id="txtISBN" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="lblSub" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="111" pref="111" max="111" attributes="0"/>
-                          <Component id="cbxSub" min="-2" pref="269" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -249,7 +255,7 @@
     <Component class="javax.swing.JLabel" name="lblImage">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_AddBook))" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_ADDBOOK))" type="code"/>
         </Property>
       </Properties>
     </Component>

@@ -55,7 +55,7 @@ public class PalBorrow extends javax.swing.JPanel {
         tolbarBor.setBorderPainted(false);
         tolbarBor.setOpaque(false);
 
-        btnChkOut.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_CheckOut)));
+        btnChkOut.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_CHECKOUT)));
         btnChkOut.setMnemonic('o');
         btnChkOut.setText("Check-Out");
         btnChkOut.setBorderPainted(false);
@@ -64,7 +64,7 @@ public class PalBorrow extends javax.swing.JPanel {
         btnChkOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnChkOut);
 
-        btnChkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_CheckIn)));
+        btnChkIn.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_CHECKIN)));
         btnChkIn.setMnemonic('i');
         btnChkIn.setText("Check-In");
         btnChkIn.setBorderPainted(false);
@@ -73,7 +73,7 @@ public class PalBorrow extends javax.swing.JPanel {
         btnChkIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnChkIn);
 
-        btnFee.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Fee)));
+        btnFee.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FEE)));
         btnFee.setMnemonic('f');
         btnFee.setText("Fee rate");
         btnFee.setBorderPainted(false);
@@ -83,7 +83,7 @@ public class PalBorrow extends javax.swing.JPanel {
         tolbarBor.add(btnFee);
         tolbarBor.add(separator7);
 
-        btnEditBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Edit)));
+        btnEditBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
         btnEditBor.setMnemonic('e');
         btnEditBor.setText("Edit");
         btnEditBor.setBorderPainted(false);
@@ -93,7 +93,7 @@ public class PalBorrow extends javax.swing.JPanel {
         btnEditBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnEditBor);
 
-        btnViewBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_View)));
+        btnViewBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewBor.setMnemonic('v');
         btnViewBor.setText("View");
         btnViewBor.setBorderPainted(false);
@@ -103,7 +103,7 @@ public class PalBorrow extends javax.swing.JPanel {
         btnViewBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnViewBor);
 
-        btnDelBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Delete)));
+        btnDelBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_DETELE)));
         btnDelBor.setMnemonic('d');
         btnDelBor.setText("Delete");
         btnDelBor.setBorderPainted(false);
@@ -114,7 +114,7 @@ public class PalBorrow extends javax.swing.JPanel {
         tolbarBor.add(btnDelBor);
         tolbarBor.add(separator8);
 
-        btnSearchBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Taskbar_Search)));
+        btnSearchBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
         btnSearchBor.setMnemonic('s');
         btnSearchBor.setText("Search");
         btnSearchBor.setBorderPainted(false);
@@ -145,7 +145,7 @@ public class PalBorrow extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

@@ -72,6 +72,14 @@ public class EditEmployeeController {
                 emp = null;
                 getView().dispose();
             }
+
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                //If employee, hiden passtext and pass label
+                if (emp.getPermission() == 0) {
+                    getView().getTxtPass().setVisible(false);
+                    getView().getLblPass().setVisible(false);
+                }
+            }
         });
     }
 

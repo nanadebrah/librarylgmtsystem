@@ -60,7 +60,7 @@ public class ViewBookDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_InfoBook)));
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOBOOK)));
 
         bookInfoPal.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
 

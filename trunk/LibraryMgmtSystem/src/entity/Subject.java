@@ -19,6 +19,12 @@ public class Subject {
     public Subject() {
     }
 
+    /**
+     * 
+     * @param SubID
+     * @param SubName
+     * @param Description
+     */
     public Subject(int SubID, String SubName, String Description) {
         this.Description = Description;
         this.SubID = SubID;

@@ -56,7 +56,7 @@
     <Component class="javax.swing.JLabel" name="lblImage">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Label_InfoSub))" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOSUB))" type="code"/>
         </Property>
       </Properties>
     </Component>

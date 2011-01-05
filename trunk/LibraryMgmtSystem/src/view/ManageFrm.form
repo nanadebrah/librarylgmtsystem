@@ -12,7 +12,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="menuSetting">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(getClass().getResource(LibImages.Menu_Setting))" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(LibImages.MENU_SETTING))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Setting"/>
               </Properties>
@@ -25,7 +25,7 @@
                   <KeyStroke key="Alt+L"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(getClass().getResource(LibImages.Menu_Logout))" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(LibImages.MENU_LOGOUT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
@@ -36,7 +36,7 @@
                   <KeyStroke key="Alt+Q"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ImageIcon(getClass().getResource(LibImages.Menu_Quit))" type="code"/>
+                  <Connection code="new ImageIcon(getClass().getResource(LibImages.MENU_QUIT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Quit"/>
               </Properties>
@@ -51,7 +51,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnAddEmp">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -59,7 +59,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnEditEmp">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
@@ -67,7 +67,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnViewEmp">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View"/>
               </Properties>
@@ -75,7 +75,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnDelEmp">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
@@ -90,7 +90,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnAddBok">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -98,7 +98,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnEditBok">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
@@ -106,7 +106,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnViewBok">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View"/>
               </Properties>
@@ -114,7 +114,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnDelBok">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
@@ -129,7 +129,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnAddSub">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Add))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ADD))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
@@ -137,7 +137,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnEditSub">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Edit))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_EDIT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
@@ -145,7 +145,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnViewSub">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_View))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_VIEW))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View"/>
               </Properties>
@@ -153,7 +153,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnDelSub">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_Delete))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_DELETE))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
@@ -240,7 +240,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mnAbout">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.Menu_About))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_ABOUT))" type="code"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="About us"/>
               </Properties>
@@ -283,7 +283,7 @@
                   <Component id="taskPalBorAna" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="palMain" pref="589" max="32767" attributes="0"/>
+              <Component id="palMain" pref="567" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -308,7 +308,7 @@
         <Component class="javax.swing.JButton" name="btnEmpMan">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(getClass().getResource(LibImages.Taskbar_Employee))" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(LibImages.TASKBAR_EMPLOYEE))" type="code"/>
             </Property>
             <Property name="mnemonic" type="int" value="101"/>
             <Property name="text" type="java.lang.String" value="Employee"/>
@@ -322,7 +322,7 @@
         <Component class="javax.swing.JButton" name="btnBookMan">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(getClass().getResource(LibImages.Taskbar_Book))" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(LibImages.TASKBAR_BOOK))" type="code"/>
             </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Book"/>
@@ -336,7 +336,7 @@
         <Component class="javax.swing.JButton" name="btnSubMan">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(getClass().getResource(LibImages.Taskbar_Sub))" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(LibImages.TASKBAR_SUB))" type="code"/>
             </Property>
             <Property name="mnemonic" type="int" value="106"/>
             <Property name="text" type="java.lang.String" value="Subject"/>
@@ -361,7 +361,7 @@
         <Component class="javax.swing.JButton" name="btnBorMan">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(getClass().getResource(LibImages.Taskbar_Borrow))" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(LibImages.TASKBAR_BORROW))" type="code"/>
             </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Borrow"/>
@@ -375,7 +375,7 @@
         <Component class="javax.swing.JButton" name="btnAnaMan">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ImageIcon(getClass().getResource(LibImages.Taskbar_Analytic))" type="code"/>
+              <Connection code="new ImageIcon(getClass().getResource(LibImages.TASKBAR_ANALYTIC))" type="code"/>
             </Property>
             <Property name="mnemonic" type="int" value="108"/>
             <Property name="text" type="java.lang.String" value="Analytic"/>
