@@ -19,6 +19,12 @@ public class LibProcedure {
     public static LibProcedure getInstance() {
         return instance;
     }
+
+    /**
+     * Fee procedure
+     */
+    public static final String GETFEE = "{call sp_GetFee}";
+
     /**
      * Book procedure
      */

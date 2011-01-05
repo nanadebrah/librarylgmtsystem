@@ -149,7 +149,7 @@ public class SettingDialog extends javax.swing.JDialog {
 
         lblConnect.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_CONNECT)));
 
-        btnTest.setText("Check");
+        btnTest.setText("Check Connection");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +160,7 @@ public class SettingDialog extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lblConnect)
                     .add(layout.createSequentialGroup()
-                        .add(btnTest, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 59, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(btnTest, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 126, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(lblTest)

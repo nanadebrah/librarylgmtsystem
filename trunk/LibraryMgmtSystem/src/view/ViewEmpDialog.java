@@ -59,6 +59,8 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         lblChkIn1 = new javax.swing.JLabel();
         lblChkOut1 = new javax.swing.JLabel();
         lblFee1 = new javax.swing.JLabel();
+        lblDepart1 = new javax.swing.JLabel();
+        lblDepart = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,6 +115,10 @@ public class ViewEmpDialog extends javax.swing.JDialog {
 
         lblFee1.setText("Empty");
 
+        lblDepart1.setText("Empty");
+
+        lblDepart.setText("Department:");
+
         org.jdesktop.layout.GroupLayout palInfoLayout = new org.jdesktop.layout.GroupLayout(palInfo);
         palInfo.setLayout(palInfoLayout);
         palInfoLayout.setHorizontalGroup(
@@ -131,20 +137,22 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                             .add(lblPhone)
                             .add(lblPermission)
                             .add(lblChkIn)
-                            .add(lblChkOut))
+                            .add(lblChkOut)
+                            .add(lblDepart))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblID1)
-                            .add(lblName1)
-                            .add(lblDOB1)
-                            .add(lblGender1)
                             .add(lblEmail1)
+                            .add(lblGender1)
+                            .add(lblDOB1)
+                            .add(lblName1)
+                            .add(lblID1)
                             .add(lblAddress1)
                             .add(lblPhone1)
                             .add(lblPermission1)
                             .add(lblChkIn1)
                             .add(lblChkOut1)
-                            .add(lblFee1)))
+                            .add(lblFee1)
+                            .add(lblDepart1)))
                     .add(lblFee))
                 .addContainerGap(198, Short.MAX_VALUE))
         );
@@ -154,16 +162,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                 .add(13, 13, 13)
                 .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(palInfoLayout.createSequentialGroup()
-                        .add(lblID1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblName1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblDOB1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblGender1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblEmail1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblAddress1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblPhone1)
@@ -176,15 +174,29 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblFee1))
                     .add(palInfoLayout.createSequentialGroup()
-                        .add(lblID)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblID)
+                            .add(lblID1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblName)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblName)
+                            .add(lblName1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblDOB)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblDOB)
+                            .add(lblDOB1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblGender)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblGender)
+                            .add(lblGender1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblEmail)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblEmail)
+                            .add(lblEmail1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(lblDepart)
+                            .add(lblDepart1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblAddress)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -243,6 +255,8 @@ public class ViewEmpDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblChkOut1;
     private javax.swing.JLabel lblDOB;
     private javax.swing.JLabel lblDOB1;
+    private javax.swing.JLabel lblDepart;
+    private javax.swing.JLabel lblDepart1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmail1;
     private javax.swing.JLabel lblFee;
@@ -427,5 +441,19 @@ public class ViewEmpDialog extends javax.swing.JDialog {
      */
     public void setLblPhone1(javax.swing.JLabel lblPhone1) {
         this.lblPhone1 = lblPhone1;
+    }
+
+    /**
+     * @return the lblDepart1
+     */
+    public javax.swing.JLabel getLblDepart1() {
+        return lblDepart1;
+    }
+
+    /**
+     * @param lblDepart1 the lblDepart1 to set
+     */
+    public void setLblDepart1(javax.swing.JLabel lblDepart1) {
+        this.lblDepart1 = lblDepart1;
     }
 }

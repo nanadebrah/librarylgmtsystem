@@ -92,20 +92,22 @@
                               <Component id="lblPermission" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblChkIn" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblChkOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDepart" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblID1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblName1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDOB1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblGender1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblEmail1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmail1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblGender1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDOB1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblName1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblID1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblAddress1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblPhone1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblPermission1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblChkIn1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblChkOut1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblFee1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDepart1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="lblFee" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -120,16 +122,6 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblID1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblName1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblDOB1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblGender1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblEmail1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblAddress1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblPhone1" min="-2" max="-2" attributes="0"/>
@@ -143,15 +135,35 @@
                           <Component id="lblFee1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblID" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblID1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblName" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblName1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblDOB" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDOB1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblGender" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblGender" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblGender1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmail1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblDepart" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDepart1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblAddress" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -280,6 +292,16 @@
         <Component class="javax.swing.JLabel" name="lblFee1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblDepart1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblDepart">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Department:"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -63,6 +63,7 @@ public class ViewEmployeeController {
         getView().getLblEmail1().setText(emp.getEmail());
         getView().getLblAddress1().setText(emp.getAddress());
         getView().getLblPhone1().setText(emp.getPhone());
+        getView().getLblDepart1().setText(emp.getDepartment());
         if (emp.getPermission() == 1) {
             getView().getLblPermission1().setText("Librarian");
         } else {

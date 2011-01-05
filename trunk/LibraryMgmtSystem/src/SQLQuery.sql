@@ -358,14 +358,22 @@ CREATE PROC sp_GetSubName
 	(@SubID INT)
 AS
 	SELECT SubName FROM Subject WHERE SubID=@SubID
---Create procedure to get all subject name
+--Create procedure to get all subject
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetAllSub' AND type = 'P')
    DROP PROCEDURE sp_GetAllSub
 GO
-CREATE PROC sp_GetAllSubName
+CREATE PROC sp_GetAllSub
 AS
 	SELECT * FROM Subject
+--Create procedure to get all subject name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetAllSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetAllSubName
+GO
+CREATE PROC sp_GetAllSubName
+AS
+	SELECT SubName FROM Subject
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddSub' AND type = 'P')
@@ -373,7 +381,6 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_AddSub
 (
-	--@SubID int,
 	@SubName VARCHAR(45),
 	@Description VARCHAR(200)
 )
@@ -482,9 +489,19 @@ GO
 CREATE PROC sp_GetNewestSub
 AS
 	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
+--Procedure get fee
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetFee' AND type = 'P')
+   DROP PROCEDURE sp_GetFee
+GO
+CREATE PROC sp_GetFee
+AS
+	SELECT * FROM Fee WHERE Fee='Fee'
 -----------------------------
 sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
+
+INSERT INTO Fee VALUES ('Fee',0,0.1)
 
 select * from dbo.Employee
 
@@ -524,5 +541,6 @@ select * from Subject
 
 select * from Borrow
 
+select * from Borrow B JOIN BorrowDetail D WHERE B.BorID=D.BorID
 
 update Book set NoInLib=5 where ISBN='978-1402'
