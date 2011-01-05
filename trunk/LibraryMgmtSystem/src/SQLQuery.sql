@@ -61,9 +61,9 @@ CREATE TABLE BorrowDetail
 	BorID INT NOT NULL REFERENCES Borrow(BorID),
 	CallNumber VARCHAR(9) NOT NULL REFERENCES Book(CallNumber),
 	IssueStatus BIT NOT NULL,--1 = checked out ,0 = checked in
-	ChkOutDate DATETIME NOT NULL,
+	IssueDate DATETIME NOT NULL,
 	DueDate DATETIME NOT NULL,
-	ChkInDate DATETIME,
+	ReturnDate DATETIME,
 	TotalFee FLOAT,
 )
 go
