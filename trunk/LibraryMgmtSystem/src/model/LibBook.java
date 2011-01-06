@@ -18,7 +18,7 @@ public class LibBook {
     private static LibBook instance = new LibBook();
     //Defined
     private String callNumber = null;
-    private String title, author, sequence, newest;
+    private String title, author, sequence;
     private Pattern pt;
     private Matcher ma;
 
@@ -46,13 +46,7 @@ public class LibBook {
         ma.find();
         author = ma.group().toUpperCase();
         //sequence number of book
-        pt = Pattern.compile("\\w{3}?");
-        newest = AccessBook.getInstance().getNewestBook();
-        if (newest != null) {
-            ma = pt.matcher(newest);
-            ma.find();
-            intSe = Integer.parseInt(ma.group());
-        }
+        intSe = AccessBook.getInstance().getNewestBook();
         //increment sequence number of book
         intSe++;
         //set zero in head

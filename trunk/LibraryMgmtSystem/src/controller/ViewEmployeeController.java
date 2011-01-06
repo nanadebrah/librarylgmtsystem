@@ -8,8 +8,7 @@ import entity.Employee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import model.LibUtil;
 import view.ViewEmpDialog;
 
 /**
@@ -36,25 +35,8 @@ public class ViewEmployeeController {
         getView().getLblID1().setText(new Integer(emp.getEmpID()).toString());
         getView().getLblName1().setText(emp.getName());
         String DOB=new Date(emp.getDOB()).toString();
-        Pattern pt;
-        Matcher ma;
-        //Get year
-        pt = Pattern.compile("^\\d{4}");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String y = ma.group();
-        //Get day
-        pt = Pattern.compile("\\d{2}$");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String d = ma.group();
-        //get moth
-        pt = Pattern.compile("-\\d{2}-");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String m = ma.group().substring(1).substring(0, 2);
 
-        getView().getLblDOB1().setText(m+"/"+d+"/"+y);
+        getView().getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
         if (emp.getGender() == 1) {
             getView().getLblGender1().setText("Male");
         } else {

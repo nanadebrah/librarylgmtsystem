@@ -55,6 +55,8 @@ public class LibImages {
             + "labelImages" + File.separator + "AddEmp.png";
     public static final String LABEL_ADDBOOK = "images" + File.separator
             + "labelImages" + File.separator + "AddBook.png";
+    public static final String LABEL_FEERATE = "images" + File.separator
+            + "labelImages" + File.separator + "FeeRate.png";
     //Menu image
     public static final String MENU_ADD = "images" + File.separator
             + "menuImages" + File.separator + "Add.png";

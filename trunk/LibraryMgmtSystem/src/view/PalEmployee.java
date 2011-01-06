@@ -114,9 +114,9 @@ public class PalEmployee extends javax.swing.JPanel {
         ));
         scrPanEmp.setViewportView(tblEmp);
 
-        lblIDEmp.setText("Emp ID:");
+        lblIDEmp.setText("Employee ID:");
 
-        lblNameEmp.setText("Emp Name:");
+        lblNameEmp.setText("Employee Name:");
 
         txtNameEmp.setToolTipText("Employee's Username");
 
@@ -130,14 +130,12 @@ public class PalEmployee extends javax.swing.JPanel {
                 .add(tolbarEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(lblIDEmp)
-                        .add(32, 32, 32)
-                        .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(lblNameEmp)
-                        .add(10, 10, 10)
-                        .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))))
+                    .add(lblIDEmp)
+                    .add(lblNameEmp))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(txtNameEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .add(txtIdEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)))
             .add(scrPanEmp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

@@ -177,10 +177,10 @@ public class AccessBook {
     }
 
     /**
-     * 
-     * @return name of newest book added
+     *
+     * @return
      */
-    public String getNewestBook() {
+    public int getNewestBook() {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
 
@@ -188,9 +188,7 @@ public class AccessBook {
             csDetails = cn.prepareCall(LibProcedure.GETNEWESTBOOK);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
-                return rsDetails.getString(1);
-            } else {
-                return null;
+                return rsDetails.getInt(1);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -200,6 +198,6 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return null;
+        return 0;
     }
 }

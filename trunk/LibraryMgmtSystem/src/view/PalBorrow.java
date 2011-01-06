@@ -46,8 +46,8 @@ public class PalBorrow extends javax.swing.JPanel {
         scrPanBor = new javax.swing.JScrollPane();
         tblBor = new javax.swing.JTable();
         lblCallNoBor = new javax.swing.JLabel();
-        lblEmNmBor = new javax.swing.JLabel();
-        txtEmNamBor = new javax.swing.JTextField();
+        lblEmpID = new javax.swing.JLabel();
+        txtEmpID = new javax.swing.JTextField();
         txtCallNoBor = new javax.swing.JTextField();
 
         tolbarBor.setBorder(null);
@@ -135,9 +135,9 @@ public class PalBorrow extends javax.swing.JPanel {
 
         lblCallNoBor.setText("CallNo:");
 
-        lblEmNmBor.setText("Emp Name:");
+        lblEmpID.setText("Employee ID");
 
-        txtEmNamBor.setToolTipText("Username of employee");
+        txtEmpID.setToolTipText("Username of employee");
 
         txtCallNoBor.setToolTipText("order of book");
 
@@ -150,12 +150,12 @@ public class PalBorrow extends javax.swing.JPanel {
                 .add(tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblEmNmBor)
+                    .add(lblEmpID)
                     .add(lblCallNoBor))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
+                    .add(txtEmpID, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -168,8 +168,8 @@ public class PalBorrow extends javax.swing.JPanel {
                             .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(2, 2, 2)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(lblEmNmBor)
-                            .add(txtEmNamBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(lblEmpID)
+                            .add(txtEmpID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
         );
@@ -185,14 +185,14 @@ public class PalBorrow extends javax.swing.JPanel {
     private javax.swing.JButton btnSearchBor;
     private javax.swing.JButton btnViewBor;
     private javax.swing.JLabel lblCallNoBor;
-    private javax.swing.JLabel lblEmNmBor;
+    private javax.swing.JLabel lblEmpID;
     private javax.swing.JScrollPane scrPanBor;
     private javax.swing.JToolBar.Separator separator7;
     private javax.swing.JToolBar.Separator separator8;
     private javax.swing.JTable tblBor;
     private javax.swing.JToolBar tolbarBor;
     private javax.swing.JTextField txtCallNoBor;
-    private javax.swing.JTextField txtEmNamBor;
+    private javax.swing.JTextField txtEmpID;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -322,17 +322,17 @@ public class PalBorrow extends javax.swing.JPanel {
     }
 
     /**
-     * @return the txtEmNamBor
+     * @return the txtEmpID
      */
-    public javax.swing.JTextField getTxtEmNamBor() {
-        return txtEmNamBor;
+    public javax.swing.JTextField getTxtEmpID() {
+        return txtEmpID;
     }
 
     /**
-     * @param txtEmNamBor the txtEmNamBor to set
+     * @param txtEmpID the txtEmpID to set
      */
-    public void setTxtEmNamBor(javax.swing.JTextField txtEmNamBor) {
-        this.txtEmNamBor = txtEmNamBor;
+    public void setTxtEmpID(javax.swing.JTextField txtEmpID) {
+        this.txtEmpID = txtEmpID;
     }
 
 }

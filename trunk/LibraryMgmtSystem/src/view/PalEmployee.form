@@ -20,16 +20,13 @@
               <Component id="tolbarEmp" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblIDEmp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="32" pref="32" max="32" attributes="0"/>
-                      <Component id="txtIdEmp" pref="276" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblNameEmp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Component id="txtNameEmp" pref="276" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="lblIDEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNameEmp" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="txtNameEmp" alignment="0" pref="243" max="32767" attributes="0"/>
+                  <Component id="txtIdEmp" alignment="0" pref="243" max="32767" attributes="0"/>
               </Group>
           </Group>
           <Component id="scrPanEmp" alignment="0" pref="582" max="32767" attributes="0"/>
@@ -166,12 +163,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="lblIDEmp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Emp ID:"/>
+        <Property name="text" type="java.lang.String" value="Employee ID:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNameEmp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Emp Name:"/>
+        <Property name="text" type="java.lang.String" value="Employee Name:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNameEmp">

@@ -179,6 +179,7 @@ public class ManageController {
                 empControl.searchEmp();
                 subControl.searchSubject();
                 bookControl.searchBook();
+                borControl.searchBorrow();
             }
         });
 

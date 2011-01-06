@@ -21,13 +21,13 @@
               <Component id="tolbarBor" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblEmNmBor" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEmpID" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCallNoBor" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtEmNamBor" alignment="2" pref="189" max="32767" attributes="0"/>
-                  <Component id="txtCallNoBor" alignment="2" pref="189" max="32767" attributes="0"/>
+                  <Component id="txtEmpID" alignment="2" pref="182" max="32767" attributes="0"/>
+                  <Component id="txtCallNoBor" alignment="2" pref="182" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -44,8 +44,8 @@
                       </Group>
                       <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblEmNmBor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtEmNamBor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmpID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmpID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -189,12 +189,12 @@
         <Property name="text" type="java.lang.String" value="CallNo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEmNmBor">
+    <Component class="javax.swing.JLabel" name="lblEmpID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Emp Name:"/>
+        <Property name="text" type="java.lang.String" value="Employee ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmNamBor">
+    <Component class="javax.swing.JTextField" name="txtEmpID">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Username of employee"/>
       </Properties>

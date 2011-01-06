@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.BorrowDetail;
 import entity.Employee;
 import entity.Fee;
 import java.awt.event.ActionEvent;
@@ -13,15 +14,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBook;
+import model.AccessBorrow;
 import model.AccessEmp;
 import model.AccessFee;
+import model.LibUtil;
 import view.CheckOutDialog;
 
 /**
@@ -38,9 +40,10 @@ public class CheckOutController {
     private ManageController parent;
     private Vector vt;
     private HashSet set;
-    private int borrowerID;
+    private int empID;
     private Fee fee;
     private float borFee, lateFee;
+    private BorrowDetail borDetail;
 
     public CheckOutController(CheckOutDialog view, DefaultTableModel bookModel,
             DefaultTableModel empModel, DefaultTableModel outModel, ManageController parent) {
@@ -74,11 +77,13 @@ public class CheckOutController {
         //Add check out model
         getView().getTblCheckOut().setModel(outModel);
 
+        //Add event cancel btn
         getView().getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().dispose();
+                borDetail=null;
                 parent.removeModel(outModel);
+                getView().dispose();
             }
         });
 
@@ -86,6 +91,7 @@ public class CheckOutController {
         getView().addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
+                borDetail=null;
                 parent.removeModel(outModel);
             }
         });
@@ -97,6 +103,9 @@ public class CheckOutController {
                 searchBook();
                 //Add book model to table
                 getView().getTblBoth().setModel(bookModel);
+                //Change title
+                getView().getScrPanBoth().setBorder(
+                        javax.swing.BorderFactory.createTitledBorder("Book Information"));
             }
         });
 
@@ -107,6 +116,31 @@ public class CheckOutController {
                 searchEmp();
                 //Add employee model to table
                 getView().getTblBoth().setModel(empModel);
+                //Change title
+                getView().getScrPanBoth().setBorder(
+                        javax.swing.BorderFactory.createTitledBorder("Employee Information"));
+            }
+        });
+
+        //Add event check out btn
+        getView().getBtnCheckOut().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (!set.isEmpty() && empID > 0) {
+                    int sure = JOptionPane.showConfirmDialog(view,
+                            "You sure all information is correct!",
+                            "Checking-out", JOptionPane.YES_NO_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                    if (sure == JOptionPane.OK_OPTION) {
+                        checkOut();
+                        getView().dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(view,
+                            "All information not correct!", "Checking-out",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
@@ -137,6 +171,25 @@ public class CheckOutController {
         });
     }
 
+    private void checkOut() {
+        //Add new borrow to databse
+        AccessBorrow.getInstance().addBorrow(empID);
+        //Add borrow details for earch book
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            //Create new borrow detail object
+            borDetail = new BorrowDetail();
+            borDetail.setBorID(AccessBorrow.getInstance().getNewestBorrowID());
+            borDetail.setEmpID(empID);
+            borDetail.setCallNumber(it.next().toString());            
+            borDetail.setIssueDate(getView().getTxtIssueDate().getDate().getTime());
+            borDetail.setDueDate(getView().getTxtDueDate().getDate().getTime());
+            borDetail.setIssueStatus(0);
+            //Add new borrow detail to databse
+            AccessBorrow.getInstance().addBorDetail(borDetail);
+        }
+    }
+
     /**
      * 
      */
@@ -144,31 +197,14 @@ public class CheckOutController {
         //Get field employee selected
         String empID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 0).toString();
-        borrowerID = new Integer(empID);
-        Employee emp = AccessEmp.getInstance().getEmp(borrowerID);
+        this.empID = new Integer(empID);
+        Employee emp = AccessEmp.getInstance().getEmp(this.empID);
         //Set all information
         getView().getLblID1().setText(new Integer(emp.getEmpID()).toString());
         getView().getLblName1().setText(emp.getName());
         String DOB = new Date(emp.getDOB()).toString();
-        Pattern pt;
-        Matcher ma;
-        //Get year
-        pt = Pattern.compile("^\\d{4}");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String y = ma.group();
-        //Get day
-        pt = Pattern.compile("\\d{2}$");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String d = ma.group();
-        //get moth
-        pt = Pattern.compile("-\\d{2}-");
-        ma = pt.matcher(DOB);
-        ma.find();
-        String m = ma.group().substring(1).substring(0, 2);
 
-        getView().getLblDOB1().setText(m + "/" + d + "/" + y);
+        getView().getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
         if (emp.getGender() == 1) {
             getView().getLblGender1().setText("Male");
         } else {
@@ -275,5 +311,19 @@ public class CheckOutController {
      */
     public void setView(CheckOutDialog view) {
         this.view = view;
+    }
+
+    /**
+     * @return the borDetail
+     */
+    public BorrowDetail getBorDetail() {
+        return borDetail;
+    }
+
+    /**
+     * @param borDetail the borDetail to set
+     */
+    public void setBorDetail(BorrowDetail borDetail) {
+        this.borDetail = borDetail;
     }
 }

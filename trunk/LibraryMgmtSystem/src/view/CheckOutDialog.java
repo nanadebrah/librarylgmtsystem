@@ -70,7 +70,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        scrPanBook = new javax.swing.JScrollPane();
+        scrPanBoth = new javax.swing.JScrollPane();
         tblBoth = new javax.swing.JTable();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel4 = new javax.swing.JPanel();
@@ -286,9 +286,9 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
             }
         ));
-        scrPanBook.setViewportView(tblBoth);
+        scrPanBoth.setViewportView(tblBoth);
 
-        jPanel7.add(scrPanBook, java.awt.BorderLayout.CENTER);
+        jPanel7.add(scrPanBoth, java.awt.BorderLayout.CENTER);
 
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -367,6 +367,8 @@ public class CheckOutDialog extends javax.swing.JDialog {
         );
 
         jSplitPane2.setRightComponent(jPanel4);
+
+        scrPanCheckOut.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Selected"));
 
         tblCheckOut.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -550,7 +552,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
     private javax.swing.JPanel palBorrowInfo;
     private javax.swing.JPanel palCheck;
     private javax.swing.JPanel palSearchBook;
-    private javax.swing.JScrollPane scrPanBook;
+    private javax.swing.JScrollPane scrPanBoth;
     private javax.swing.JScrollPane scrPanCheckOut;
     private javax.swing.JTable tblBoth;
     private javax.swing.JTable tblCheckOut;
@@ -958,4 +960,17 @@ public class CheckOutDialog extends javax.swing.JDialog {
         this.txtTitlBook = txtTitlBook;
     }
 
+    /**
+     * @return the scrPanBoth
+     */
+    public javax.swing.JScrollPane getScrPanBoth() {
+        return scrPanBoth;
+    }
+
+    /**
+     * @param scrPanBoth the scrPanBoth to set
+     */
+    public void setScrPanBoth(javax.swing.JScrollPane scrPanBoth) {
+        this.scrPanBoth = scrPanBoth;
+    }
 }

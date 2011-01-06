@@ -211,7 +211,7 @@ public class AccessEmp {
         cn = LibConnection.getConnection();
         try {
             if (EmpID.length() == 0 && Name.length() != 0) {
-                //Save Name only
+                //Search Name only
                 csDetails = cn.prepareCall(LibProcedure.GETEMPBYNAME);
                 csDetails.setString(1, Name);
             } else if (EmpID.length() != 0 && Name.length() == 0) {

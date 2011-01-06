@@ -19,12 +19,10 @@ public class LibProcedure {
     public static LibProcedure getInstance() {
         return instance;
     }
-
     /**
      * Fee procedure
      */
     public static final String GETFEE = "{call sp_GetFee}";
-
     /**
      * Book procedure
      */
@@ -33,7 +31,6 @@ public class LibProcedure {
     public static final String GETBOOK = "{call sp_GetABook(?)}";
     public static final String SEARCHBOOK = "{call sp_GetAllBook(?,?,?,?)}";
     public static final String GETNEWESTBOOK = "{call sp_GetNewestBook}";
-
     /**
      * Employee procedure
      */
@@ -47,7 +44,6 @@ public class LibProcedure {
     public static final String GETEMPBYID = "{call sp_GetAnEmpWithEmpID(?)}";
     public static final String GETEMPBYBOTH = "{call sp_GetAnEmpAll(?,?)}";
     public static final String GETNEWESTEMP = "{call sp_GetNewestEmp}";
-    
     /**
      * Subject procedure
      */
@@ -61,4 +57,15 @@ public class LibProcedure {
     public static final String GETSUBBYBOTH = "{call sp_GetSubByAll(?,?)}";
     public static final String EDITSUB = "{call sp_EditSub(?,?,?)}";
     public static final String GETNEWESTSUB = "{call sp_GetNewestSub}";
+    /**
+     * Borrow procedure
+     */
+    public static final String ADDBORROW = "{call sp_AddBorrow(?)}";
+    public static final String ADDBORDETAIL = "{call sp_AddBorDetail(?,?,?,?,?)}";
+    public static final String GETNEWESTBORROWID = "{call sp_GetNewestBorrowID}";
+    public static final String GETBORROWBYBORID = "{call sp_GetBorrowByBorID(?)}";
+    public static final String GETBORBYCALLNO = "{call sp_GetBorrowByCalNo(?)}";
+    public static final String GETBORBYEMPID = "{call sp_GetBorrowByEmpID(?)}";
+    public static final String GETBORBYBOTH = "{call sp_GetBorrowByBoth(?,?)}";
+    public static final String GETALLBORROW = "{call sp_GetAllBorrow}";
 }

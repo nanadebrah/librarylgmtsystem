@@ -31,6 +31,7 @@ CREATE TABLE Subject(
 go
 --Create Book table
 CREATE TABLE Book(
+	BookID INT IDENTITY NOT NULL,
 	CallNumber VARCHAR(9) NOT NULL,
 	ISBN VARCHAR(8) NOT NULL,
 	SubID INT NOT NULL,
@@ -39,7 +40,8 @@ CREATE TABLE Book(
 	Publisher VARCHAR(45) NOT NULL,
 	NoOfCopy TINYINT NOT NULL,
 	NoInLib TINYINT NOT NULL,
-	CONSTRAINT pk_CallNumber PRIMARY KEY (CallNumber),
+	CONSTRAINT pk_BookID PRIMARY KEY (BookID),
+	CONSTRAINT uq_CallNumber UNIQUE (CallNumber),
 	CONSTRAINT fk_SubID FOREIGN KEY (SubID)
 		REFERENCES Subject(SubID),
 )
@@ -251,8 +253,8 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_GetNewestBook
 AS
-	SELECT TOP 1 CallNumber FROM BOOK
-	ORDER BY CallNumber DESC
+	SELECT TOP 1 BookID FROM BOOK
+	ORDER BY BookID DESC
 --procedure to insert a book 
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddBook' AND type = 'P')
@@ -410,60 +412,107 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP PROCEDURE sp_AddBorrow
 GO
 CREATE PROC sp_AddBorrow
-(
-	@CallNumber VARCHAR(45),
-	@EmpID int,
-	@IssueStatus bit,
-	@IssueDate DATETIME,
-	@DueDate DATETIME,
-	@ReturnDate DATETIME,
-	@TotalFee float
-)
+		(@EmpID int)
 AS
-	INSERT INTO Borrow(
-		CallNumber,EmpID,IssueStatus,
-		IssueDate,DueDate,ReturnDate,TotalFee)
-		VALUES(@CallNumber,@EmpID,@IssueStatus,
-				@IssueDate,@DueDate,@ReturnDate,@TotalFee)
-
---get a borrow by CallNumber and EmpName
+	BEGIN
+	INSERT INTO Borrow(EmpID)
+		VALUES(@EmpID)
+	END
+--procedure to add borrow details
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBorrowByAll' AND type = 'P')
-   DROP PROCEDURE sp_GetBorrowByAll
+         WHERE name = 'sp_AddBorDetail' AND type = 'P')
+   DROP PROCEDURE sp_AddBorDetail
 GO
-CREATE PROC sp_GetBorrowByAll
-	@CallNumber INT,
-	@EmpName VARCHAR(45)
+CREATE PROC sp_AddBorDetail
+	(@BorID INT,
+	@CallNumber VARCHAR(9),
+	@IssueStatus BIT,
+	@IssueDate DATETIME,
+	@DueDate DATETIME)
 AS
-	SELECT	b.BorID,b.EmpID,e.[Name],
-			b.CallNumber,b.IssueDate,b.ReturnDate
-	FROM	Borrow b INNER JOIN Employee e
-	ON		b.EmpID = e.EmpID
-	WHERE	CallNumber LIKE '%'+@CallNumber+'%' AND
-			[Name] LIKE '%'+@EmpName+'%'
+	BEGIN
+	INSERT INTO BorrowDetail(BorID,CallNumber,
+	IssueStatus,IssueDate,DueDate) VALUES (@BorID,
+	@CallNumber,@IssueStatus,@IssueDate,@DueDate)
+
+	UPDATE Book SET NoInLib=(NoInLib-1) WHERE
+	CallNumber=@CallNumber
+	END
+--Create procedure get newest borrow
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetNewestBorrowID' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestBorrowID
+GO
+CREATE PROC sp_GetNewestBorrowID
+AS
+	SELECT TOP 1 BorID FROM Borrow ORDER BY BorID DESC
+--Create procedure get all borrow status
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetAllBorStatus' AND type = 'P')
+   DROP PROCEDURE sp_GetAllBorStatus
+GO
+CREATE PROC sp_GetAllBorStatus
+	(@BorID INT)
+AS
+	SELECT IssueStatus FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID WHERE BD.BorID=@BorID
+--get a borrow by CallNumber
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetBorrowByCalNo' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrowByCalNo
+GO
+CREATE PROC sp_GetBorrowByCalNo
+	(@CallNumber VARCHAR(9))
+AS
+	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
+	FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID WHERE CallNumber LIKE '%'+@CallNumber+'%'
+--Get a borrow by emp name
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetBorrowByEmpID' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrowByEmpID
+GO
+CREATE PROC sp_GetBorrowByEmpID
+	(@EmpID INT)
+AS
+	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
+	FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID WHERE EmpID=@EmpID
+--Get a borrow by emp name
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetBorrowByBoth' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrowByBoth
+GO
+CREATE PROC sp_GetBorrowByBoth
+	(@CallNumber VARCHAR(9),@EmpID INT)
+AS
+	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
+	FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID WHERE CallNumber LIKE
+	'%'+@CallNumber+'%' AND B.EmpID=@EmpID
+--Get all borrow to table
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetAllBorrow' AND type = 'P')
+   DROP PROCEDURE sp_GetAllBorrow
+GO
+CREATE PROC sp_GetAllBorrow
+AS
+	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
+	FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID
+--Get newest borrow to table
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetBorrowByBorID' AND type = 'P')
+   DROP PROCEDURE sp_GetBorrowByBorID
+GO
+CREATE PROC sp_GetBorrowByBorID
+	(@BorID INT)
+AS
+	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
+	FROM Borrow B JOIN BorrowDetail BD
+	ON B.BorID=BD.BorID WHERE B.BorID=@BorID
 
 --Edit a borrow
-
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_AddBorrow' AND type = 'P')
-   DROP PROCEDURE sp_AddBorrow
-GO
-CREATE PROC sp_AddBorrow
-(
-	@CallNumber VARCHAR(45),
-	@EmpID int,
-	@IssueStatus bit,
-	@IssueDate DATETIME,
-	@DueDate DATETIME,
-	@ReturnDate DATETIME,
-	@TotalFee float
-)
-AS
-	UPDATE Borrow SET
-		CallNumber=@CallNumber,EmpID=@EmpID,IssueStatus=@IssueStatus,
-		IssueDate=@IssueDate,DueDate=@DueDate,ReturnDate=@ReturnDate,
-		TotalFee=@TotalFee
-		WHERE CallNumber=@CallNumber
 --Top 10 Book
 --IF EXISTS (SELECT name FROM sysobjects
 --         WHERE name = 'sp_TopBook' AND type = 'P')
@@ -498,7 +547,7 @@ CREATE PROC sp_GetFee
 AS
 	SELECT * FROM Fee WHERE Fee='Fee'
 -----------------------------
-sp_InsLib 'root','07/27/1991',0,'cuongnqgc00033@fpt.edu.vn',
+sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
 INSERT INTO Fee VALUES ('Fee',0,0.1)
@@ -541,6 +590,13 @@ select * from Subject
 
 select * from Borrow
 
-select * from Borrow B JOIN BorrowDetail D WHERE B.BorID=D.BorID
+select * from BorrowDetail
+
+select * from Borrow B JOIN BorrowDetail D ON B.BorID=D.BorID
+
+select IssueStatus from Borrow B JOIN BorrowDetail BD
+ON B.BorID=BD.BorID WHERE DB.BorID=3
 
 update Book set NoInLib=5 where ISBN='978-1402'
+
+DELETE Borrow

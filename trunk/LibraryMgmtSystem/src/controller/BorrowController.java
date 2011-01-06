@@ -6,8 +6,10 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import model.AccessBorrow;
 import view.CheckOutDialog;
 import view.ManageFrm;
 import view.PalBorrow;
@@ -64,15 +66,17 @@ public class BorrowController {
 
         //Set selection mode
         getView().getTblBor().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         //Add model to table
         getView().getTblBor().setModel(borModel);
+
         //Set bor model
-        borModel.addColumn("gi do1");
-        borModel.addColumn("gi do2");
-        borModel.addColumn("gi do3");
-        borModel.addColumn("gi do4");
-        borModel.addColumn("gi do5");
-        borModel.addColumn("gi do6");
+        borModel.addColumn("Borrow ID");
+        borModel.addColumn("Employee ID");
+        borModel.addColumn("Call Number");
+        borModel.addColumn("Issue Date");
+        borModel.addColumn("Due Date");
+        borModel.addColumn("Issue Status");
         //Set book model
         bookModel.addColumn("Call Number");
         bookModel.addColumn("ISBN");
@@ -98,12 +102,37 @@ public class BorrowController {
         getView().getBtnChkOut().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                checkOut=new CheckOutController(
+                checkOut = new CheckOutController(
                         new CheckOutDialog(parent.getView(), true),
-                        bookModel, empModel, outModel,parent);
+                        bookModel, empModel, outModel, parent);
                 checkOut.getView().setVisible(true);
+
+                if (checkOut.getBorDetail() != null) {
+                    JOptionPane.showMessageDialog(view,
+                            "Check-out successful!", "Checking-out",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    AccessBorrow.getInstance().getNewestBorrow(borModel);
+                }
             }
         });
+
+        //Add event search btn
+        getView().getBtnSearchBor().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                searchBorrow();
+            }
+        });
+    }
+
+    /**
+     * 
+     */
+    public void searchBorrow() {
+        parent.removeModel(borModel);
+        AccessBorrow.getInstance().searchBor(borModel,
+                getView().getTxtEmpID().getText(),
+                getView().getTxtCallNoBor().getText());
     }
 
     /**
