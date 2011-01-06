@@ -90,7 +90,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Borrower Infomation"/>
+                        <TitledBorder title="Employee Search"/>
                       </Border>
                     </Property>
                   </Properties>
@@ -594,7 +594,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Book Information"/>
+            <TitledBorder title="Book Search"/>
           </Border>
         </Property>
       </Properties>

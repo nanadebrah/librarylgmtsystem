@@ -81,7 +81,7 @@ public class CheckOutController {
         getView().getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                borDetail=null;
+                borDetail = null;
                 parent.removeModel(outModel);
                 getView().dispose();
             }
@@ -91,7 +91,7 @@ public class CheckOutController {
         getView().addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
-                borDetail=null;
+                borDetail = null;
                 parent.removeModel(outModel);
             }
         });
@@ -181,7 +181,7 @@ public class CheckOutController {
             borDetail = new BorrowDetail();
             borDetail.setBorID(AccessBorrow.getInstance().getNewestBorrowID());
             borDetail.setEmpID(empID);
-            borDetail.setCallNumber(it.next().toString());            
+            borDetail.setCallNumber(it.next().toString());
             borDetail.setIssueDate(getView().getTxtIssueDate().getDate().getTime());
             borDetail.setDueDate(getView().getTxtDueDate().getDate().getTime());
             borDetail.setIssueStatus(0);
@@ -249,8 +249,11 @@ public class CheckOutController {
                 noInLib = Integer.parseInt(temp[1]);
                 //If of store book
                 if (noInLib == 0) {
-                    JOptionPane.showMessageDialog(getView(), "Out stock!",
+                    JOptionPane.showMessageDialog(getView(), "Out of stock!",
                             "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                    //If out of stock remove it on set
+                    set.remove(view.getTblBoth().getValueAt(
+                            view.getTblBoth().getSelectedRow(), 0).toString());
                     return;
                 }
             } else if (i == 0) {//get callnumber

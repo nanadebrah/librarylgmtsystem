@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBorrow;
+import model.AccessFee;
 import view.CheckOutDialog;
+import view.FeeRateDialog;
 import view.ManageFrm;
 import view.PalBorrow;
 
@@ -25,6 +27,7 @@ public class BorrowController {
     private DefaultTableModel borModel;
     private ManageController parent;
     private CheckOutController checkOut;
+    private FeeRateController feeControl;
     private DefaultTableModel bookModel;
     private DefaultTableModel empModel;
     private DefaultTableModel outModel;
@@ -98,6 +101,14 @@ public class BorrowController {
         empModel.addColumn("Department");
         empModel.addColumn("Permission");
 
+        //Add event fee rate btn
+        getView().getBtnFee().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                editFee();
+            }
+        });
+
         //Add event check out btn
         getView().getBtnChkOut().addActionListener(new ActionListener() {
 
@@ -123,6 +134,20 @@ public class BorrowController {
                 searchBorrow();
             }
         });
+    }
+
+    /**
+     *
+     */
+    private void editFee() {
+        feeControl = new FeeRateController(
+                new FeeRateDialog(parent.getView(), true));
+        feeControl.getView().setVisible(true);
+        if (feeControl.getFee() != null) {
+            AccessFee.getInstance().editFee(feeControl.getFee());
+            JOptionPane.showMessageDialog(getView(), "Update successful",
+                    "Successful!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**

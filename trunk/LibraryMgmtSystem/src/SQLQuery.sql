@@ -546,6 +546,17 @@ GO
 CREATE PROC sp_GetFee
 AS
 	SELECT * FROM Fee WHERE Fee='Fee'
+--Procedure edit fee
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_EditFee' AND type = 'P')
+   DROP PROCEDURE sp_EditFee
+GO
+CREATE PROC sp_EditFee
+	(@BorFee FLOAT,
+	@LateFee FLOAT)
+AS
+	UPDATE Fee SET BorFee=@BorFee,LateFee=@LateFee
+	WHERE Fee='Fee'
 -----------------------------
 sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'

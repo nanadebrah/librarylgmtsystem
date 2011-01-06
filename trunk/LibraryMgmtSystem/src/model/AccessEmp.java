@@ -160,8 +160,6 @@ public class AccessEmp {
     public boolean editEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();
-        CallableStatement csDetails = null;
-
         try {
             if (emp.getPermission() == 1) {
                 csDetails = cn.prepareCall(LibProcedure.EDITLIB);

@@ -103,7 +103,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
         jSplitPane1.setDividerLocation(500);
         jSplitPane1.setDividerSize(0);
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Borrower Infomation"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Search"));
 
         tolbarEmp.setBorder(null);
         tolbarEmp.setFloatable(false);
@@ -412,7 +412,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
                 .add(jSplitPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 145, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
 
-        palSearchBook.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
+        palSearchBook.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Search"));
 
         tolbarBook.setBorder(null);
         tolbarBook.setFloatable(false);

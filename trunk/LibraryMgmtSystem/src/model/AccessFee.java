@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import entity.Fee;
@@ -31,14 +30,18 @@ public class AccessFee {
         return instance;
     }
 
-    public Fee getFee(){
+    /**
+     * 
+     * @return
+     */
+    public Fee getFee() {
         //Defined Object
         Fee fee = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.GETFEE);
-            rsDetails=csDetails.executeQuery();
+            rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 fee = new Fee();
                 //Set all field on database to fee object
@@ -57,5 +60,24 @@ public class AccessFee {
             LibConnection.close(cn);
         }
         return null;
+    }
+
+    public boolean editFee(Fee fee) {
+        //Defined connection, rs and cs to connect and query database
+        Connection cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.EDITFEE);
+            csDetails.setFloat(1, fee.getBorFee());
+            csDetails.setFloat(2, fee.getLateFee());
+            csDetails.execute();
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return false;
     }
 }

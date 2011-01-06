@@ -4,7 +4,7 @@
  */
 
 /*
- * FeeDialog.java
+ * FeeRateDialog.java
  *
  * Created on Jan 6, 2011, 9:06:24 AM
  */
@@ -17,12 +17,13 @@ import model.LibImages;
  *
  * @author CuongNQ
  */
-public class FeeDialog extends javax.swing.JDialog {
+public class FeeRateDialog extends javax.swing.JDialog {
 
-    /** Creates new form FeeDialog */
-    public FeeDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form FeeRateDialog */
+    public FeeRateDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -128,23 +129,6 @@ public class FeeDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FeeDialog dialog = new FeeDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FeePal;
     private javax.swing.JButton btnCancel;
@@ -155,5 +139,61 @@ public class FeeDialog extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField txtDayFee;
     private javax.swing.JFormattedTextField txtLateFee;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnCancel
+     */
+    public javax.swing.JButton getBtnCancel() {
+        return btnCancel;
+    }
+
+    /**
+     * @param btnCancel the btnCancel to set
+     */
+    public void setBtnCancel(javax.swing.JButton btnCancel) {
+        this.btnCancel = btnCancel;
+    }
+
+    /**
+     * @return the btnChange
+     */
+    public javax.swing.JButton getBtnChange() {
+        return btnChange;
+    }
+
+    /**
+     * @param btnChange the btnChange to set
+     */
+    public void setBtnChange(javax.swing.JButton btnChange) {
+        this.btnChange = btnChange;
+    }
+
+    /**
+     * @return the txtDayFee
+     */
+    public javax.swing.JFormattedTextField getTxtDayFee() {
+        return txtDayFee;
+    }
+
+    /**
+     * @param txtDayFee the txtDayFee to set
+     */
+    public void setTxtDayFee(javax.swing.JFormattedTextField txtDayFee) {
+        this.txtDayFee = txtDayFee;
+    }
+
+    /**
+     * @return the txtLateFee
+     */
+    public javax.swing.JFormattedTextField getTxtLateFee() {
+        return txtLateFee;
+    }
+
+    /**
+     * @param txtLateFee the txtLateFee to set
+     */
+    public void setTxtLateFee(javax.swing.JFormattedTextField txtLateFee) {
+        this.txtLateFee = txtLateFee;
+    }
 
 }

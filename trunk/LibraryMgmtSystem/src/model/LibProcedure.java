@@ -23,6 +23,8 @@ public class LibProcedure {
      * Fee procedure
      */
     public static final String GETFEE = "{call sp_GetFee}";
+    public static final String EDITFEE = "{call sp_EditFee(?,?)}";
+    
     /**
      * Book procedure
      */
@@ -31,6 +33,7 @@ public class LibProcedure {
     public static final String GETBOOK = "{call sp_GetABook(?)}";
     public static final String SEARCHBOOK = "{call sp_GetAllBook(?,?,?,?)}";
     public static final String GETNEWESTBOOK = "{call sp_GetNewestBook}";
+
     /**
      * Employee procedure
      */
@@ -44,6 +47,7 @@ public class LibProcedure {
     public static final String GETEMPBYID = "{call sp_GetAnEmpWithEmpID(?)}";
     public static final String GETEMPBYBOTH = "{call sp_GetAnEmpAll(?,?)}";
     public static final String GETNEWESTEMP = "{call sp_GetNewestEmp}";
+
     /**
      * Subject procedure
      */
@@ -57,6 +61,7 @@ public class LibProcedure {
     public static final String GETSUBBYBOTH = "{call sp_GetSubByAll(?,?)}";
     public static final String EDITSUB = "{call sp_EditSub(?,?,?)}";
     public static final String GETNEWESTSUB = "{call sp_GetNewestSub}";
+
     /**
      * Borrow procedure
      */
