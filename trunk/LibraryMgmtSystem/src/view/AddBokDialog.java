@@ -41,7 +41,6 @@ public class AddBokDialog extends javax.swing.JDialog {
         lblPublish = new javax.swing.JLabel();
         lblNoCop = new javax.swing.JLabel();
         lblSub = new javax.swing.JLabel();
-        txtTitle = new javax.swing.JTextField();
         txtAuthor = new javax.swing.JTextField();
         txtPublish = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
@@ -51,6 +50,7 @@ public class AddBokDialog extends javax.swing.JDialog {
         lblNoInLib = new javax.swing.JLabel();
         txtNoInLib = new javax.swing.JSpinner();
         lblTitle1 = new javax.swing.JLabel();
+        txtTitle = new javax.swing.JTextField();
         txtISBN = new javax.swing.JFormattedTextField();
         lblImage = new javax.swing.JLabel();
 
@@ -70,8 +70,6 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblSub.setText("Subject:");
 
-        txtTitle.setToolTipText("Title of this book");
-
         txtAuthor.setToolTipText("Author of this book");
 
         txtPublish.setToolTipText("Publisher of this book");
@@ -86,8 +84,8 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
-        txtNoInLib.setEnabled(false);
         txtNoInLib.setToolTipText("Copies of this book");
+        txtNoInLib.setEnabled(false);
 
         lblTitle1.setText("ISBN:");
 
@@ -111,12 +109,11 @@ public class AddBokDialog extends javax.swing.JDialog {
                     .add(lblTitle1))
                 .add(18, 18, 18)
                 .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(txtPublish, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(cbxSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(txtAuthor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 269, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtISBN, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(txtTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(txtAuthor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(txtPublish, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .add(cbxSub, 0, 269, Short.MAX_VALUE))
                 .addContainerGap())
             .add(palAddBokLayout.createSequentialGroup()
                 .add(130, 130, 130)
@@ -134,17 +131,21 @@ public class AddBokDialog extends javax.swing.JDialog {
                 .add(9, 9, 9)
                 .add(txtNoInLib, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(81, 81, 81))
+            .add(palAddBokLayout.createSequentialGroup()
+                .add(127, 127, 127)
+                .add(txtNoCop, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(239, Short.MAX_VALUE))
         );
         palAddBokLayout.setVerticalGroup(
             palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(palAddBokLayout.createSequentialGroup()
-                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lblTitle1))
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(lblTitle1)
+                    .add(txtISBN, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblTitle)
-                    .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palAddBokLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(lblAuth)
