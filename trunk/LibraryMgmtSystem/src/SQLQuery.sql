@@ -6,6 +6,7 @@ go
 USE Library
 go
 
+/* CREATE TABLE */
 --------------------------------------------
 --Create Employee table
 CREATE TABLE Employee(
@@ -82,6 +83,9 @@ CREATE TABLE Fee(
 	LateFee FLOAT NOT NULL
 )
 
+/********************************************************************/
+
+/* EMPLOYEE */
 -----------------------------------
 -----------------------------------
 --Create Procedure insert employee
@@ -233,6 +237,18 @@ AS
 			PRINT 'ko duoc'
 	END
 
+--Procedure get newest EMP
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetNewestEmp' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestEmp
+GO
+CREATE PROC sp_GetNewestEmp
+AS
+	SELECT TOP 1 EmpID FROM Employee ORDER BY EmpID DESC
+/*-------------------------------------------------------------------*/
+
+
+/* LOGIN */
 --Create Procedure Login
 CREATE PROC sp_Login(
 	@Name VARCHAR(45),
@@ -243,7 +259,114 @@ AS
 		WHERE [Name]=@Name AND Password=@Password
 			AND Permission=1
 	END
+/*--------------------------------------------------------------------*/
 
+
+/* SUBJECT */
+--Create procedure to get Subject by SubName
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubByName' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByName
+GO
+CREATE PROC sp_GetSubByName
+	@SubName VARCHAR(45)
+AS
+	SELECT * FROM Subject 
+	WHERE SubName LIKE '%'+@SubName+'%'
+
+--Create procedure to get Subject by SubID and SubName
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubByAll' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByAll
+GO
+CREATE PROC sp_GetSubByAll
+	@SubId INT,
+	@SubName VARCHAR(45)
+AS
+	SELECT * FROM Subject
+	WHERE SubID = @SubID AND SubName LIKE '%'+@SubName+'%'
+
+--Create procedure to get subject ID by name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubID
+GO
+CREATE PROC sp_GetSubID
+	(@SubName VARCHAR(45))
+AS
+	SELECT SubID FROM Subject WHERE SubName=@SubName
+
+--Create procedure to get subject Name by ID
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetSubName
+GO
+CREATE PROC sp_GetSubName
+	(@SubID INT)
+AS
+	SELECT SubName FROM Subject WHERE SubID=@SubID
+
+--Create procedure to get all subject
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetAllSub' AND type = 'P')
+   DROP PROCEDURE sp_GetAllSub
+GO
+CREATE PROC sp_GetAllSub
+AS
+	SELECT * FROM Subject
+
+--Create procedure to get all subject name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetAllSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetAllSubName
+GO
+CREATE PROC sp_GetAllSubName
+AS
+	SELECT SubName FROM Subject
+
+--Create procedure to insert Subject
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_AddSub' AND type = 'P')
+   DROP PROCEDURE sp_AddSub
+GO
+CREATE PROC sp_AddSub
+(
+	@SubName VARCHAR(45),
+	@Description VARCHAR(200)
+)
+AS
+	INSERT INTO Subject(
+		SubName,Description)
+		VALUES(@SubName,@Description)
+
+--procedure to edit Subject
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_EditSub' AND type = 'P')
+   DROP PROCEDURE sp_EditSub
+GO
+CREATE PROC sp_EditSub
+(
+	@SubID int,
+	@SubName VARCHAR(45),
+	@Description VARCHAR(200)
+)
+AS
+	UPDATE Subject SET SubName=@SubName,
+		Description=@Description
+		WHERE SubID=@SubID
+
+--Procedure get newest SUBJECT
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetNewestSub' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestSub
+GO
+CREATE PROC sp_GetNewestSub
+AS
+	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
+
+/*-----------------------------------------------------*/
+
+/* BOOK */
 --Create procedure to get Book 
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetAllBook' AND type = 'P')
@@ -344,131 +467,7 @@ AS
 	SELECT * FROM Subject
 	WHERE  SubID = @SubID
 
---Create procedure to get Subject by SubName
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubByName' AND type = 'P')
-   DROP PROCEDURE sp_GetSubByName
-GO
-CREATE PROC sp_GetSubByName
-	@SubName VARCHAR(45)
-AS
-	SELECT * FROM Subject 
-	WHERE SubName LIKE '%'+@SubName+'%'
-
---Create procedure to get Subject by SubID and SubName
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubByAll' AND type = 'P')
-   DROP PROCEDURE sp_GetSubByAll
-GO
-CREATE PROC sp_GetSubByAll
-	@SubId INT,
-	@SubName VARCHAR(45)
-AS
-	SELECT * FROM Subject
-	WHERE SubID = @SubID AND SubName LIKE '%'+@SubName+'%'
-
---Create procedure to get subject ID by name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubID' AND type = 'P')
-   DROP PROCEDURE sp_GetSubID
-GO
-CREATE PROC sp_GetSubID
-	(@SubName VARCHAR(45))
-AS
-	SELECT SubID FROM Subject WHERE SubName=@SubName
-
---Create procedure to get subject Name by ID
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubName' AND type = 'P')
-   DROP PROCEDURE sp_GetSubName
-GO
-CREATE PROC sp_GetSubName
-	(@SubID INT)
-AS
-	SELECT SubName FROM Subject WHERE SubID=@SubID
-
---Create procedure to get all subject
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetAllSub' AND type = 'P')
-   DROP PROCEDURE sp_GetAllSub
-GO
-CREATE PROC sp_GetAllSub
-AS
-	SELECT * FROM Subject
-
---Create procedure to get all subject name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetAllSubName' AND type = 'P')
-   DROP PROCEDURE sp_GetAllSubName
-GO
-CREATE PROC sp_GetAllSubName
-AS
-	SELECT SubName FROM Subject
-
---Create procedure to insert Subject
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddSub' AND type = 'P')
-   DROP PROCEDURE sp_AddSub
-GO
-CREATE PROC sp_AddSub
-(
-	@SubName VARCHAR(45),
-	@Description VARCHAR(200)
-)
-AS
-	INSERT INTO Subject(
-		SubName,Description)
-		VALUES(@SubName,@Description)
-
---procedure to edit Subject
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_EditSub' AND type = 'P')
-   DROP PROCEDURE sp_EditSub
-GO
-CREATE PROC sp_EditSub
-(
-	@SubID int,
-	@SubName VARCHAR(45),
-	@Description VARCHAR(200)
-)
-AS
-	UPDATE Subject SET SubName=@SubName,
-		Description=@Description
-		WHERE SubID=@SubID
-/*CHECK OUT */
---procedure to add a Borrow
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddBorrow' AND type = 'P')
-   DROP PROCEDURE sp_AddBorrow
-GO
-CREATE PROC sp_AddBorrow
-		(@EmpID int)
-AS
-	BEGIN
-	INSERT INTO Borrow(EmpID)
-		VALUES(@EmpID)
-	END
-
---procedure to add borrow details
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddBorDetail' AND type = 'P')
-   DROP PROCEDURE sp_AddBorDetail
-GO
-CREATE PROC sp_AddBorDetail
-	(@BorID INT,
-	@CallNumber VARCHAR(9),
-	@IssueStatus BIT,
-	@IssueDate DATETIME,
-	@DueDate DATETIME)
-AS
-	BEGIN
-	INSERT INTO BorrowDetail(BorID,CallNumber,
-	IssueStatus,IssueDate,DueDate) VALUES (@BorID,
-	@CallNumber,@IssueStatus,@IssueDate,@DueDate)
-
-	UPDATE Book SET NoInLib=(NoInLib-1) WHERE
-	CallNumber=@CallNumber
-	END
+/*-------------------------------------------------------*/
 
 --Create procedure get newest borrow
 IF EXISTS (SELECT name FROM sysobjects 
@@ -537,6 +536,27 @@ AS
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
 	ON BD.CallNumber=BO.CallNumber
+
+--View Borrow FULL information
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetFullBorrowInfo' AND type = 'P')
+   DROP PROCEDURE sp_GetFullBorrowInfo
+GO
+CREATE PROC sp_GetFullBorrowInfo
+	(
+		@BorID INT,
+		@EmpID INT,
+		@CallNumber VARCHAR(9)
+	)
+AS
+	SELECT E.EmpID,E.[Name],E.DOB,E.Gender,E.Email,E.Department,
+	E.Address,E.Phone,E.Permission,BD.BorID,BD.IssueStatus,
+	BD.IssueDate,BD.DueDate,BD.ReturnDate,BD.TotalFee,
+	BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher
+	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.CallNumber=BO.CallNumber WHERE BD.BorID=@BorID
+	AND E.EmpID=@EmpID AND BO.CallNumber=@CallNumber
 /* ---------------------------------------------------------------- */
 
 
@@ -574,7 +594,7 @@ AS
 	END
 /*------------------------------------------------------------------*/
 
-/* Search check out */ 
+/* SEARCH CHECK-OUT */ 
 --Get all check out information to check in
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_SearhAllCheckOut' AND type = 'P')
@@ -681,6 +701,7 @@ AS
 /*----------------------------------------------------------------*/
 
 /*CHECK IN*/
+---------------------------------------------------------------
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_CheckIn' AND type = 'P')
    DROP PROCEDURE sp_CheckIn
@@ -703,24 +724,7 @@ AS
 	END
 /*------------------------------------------------------*/
 
---Procedure get newest EMP
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetNewestEmp' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestEmp
-GO
-CREATE PROC sp_GetNewestEmp
-AS
-	SELECT TOP 1 EmpID FROM Employee ORDER BY EmpID DESC
-
---Procedure get newest SUBJECT
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetNewestSub' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestSub
-GO
-CREATE PROC sp_GetNewestSub
-AS
-	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
-
+/* FEE */
 --Procedure get fee
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetFee' AND type = 'P')
@@ -742,12 +746,17 @@ AS
 	UPDATE Fee SET BorFee=@BorFee,LateFee=@LateFee
 	WHERE Fee='Fee'
 -----------------------------
+
+/* DEFAULT VALUE */
+
 --Insert default user with User&Pass [root|root]
 sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 
 --Insert default fee value
 INSERT INTO Fee VALUES ('Fee',0,0.1)
+
+/*--------------------------------------------------------------*/
 
 select * from dbo.Employee
 
@@ -771,7 +780,10 @@ ON B.BorID=BD.BorID WHERE DB.BorID=3
 
 update Book set NoInLib=5 where ISBN='978-1402'
 
-SELECT B.BorID,B.EmpID,[Name],Title,BD.CallNumber,IssueDate,DueDate 
+SELECT E.EmpID,E.[Name],E.DOB,E.Gender,E.Email,E.Department,
+E.Address,E.Phone,E.Permission,BD.BorID,BD.IssueStatus,
+BD.IssueDate,BD.DueDate,BD.ReturnDate,BD.TotalFee,
+BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher
 FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
 ON BD.CallNumber=BO.CallNumber

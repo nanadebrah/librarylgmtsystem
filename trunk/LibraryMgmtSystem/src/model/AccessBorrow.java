@@ -279,4 +279,59 @@ public class AccessBorrow {
             LibConnection.close(cn);
         }
     }
+
+    public void getFullBorInfo(String[] arr, int borID, int empID, String CallNo) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.GET_FULL_BOR_INFO);
+            csDetails.setInt(1, borID);
+            csDetails.setInt(2, empID);
+            csDetails.setString(3, CallNo);
+            rsDetails = csDetails.executeQuery();
+            if (rsDetails.next()) {
+                arr[0] = String.valueOf(rsDetails.getInt(1));
+                arr[1] = rsDetails.getString(2);
+                arr[2] = LibUtil.getInstance().convertDate(rsDetails.getDate(3).toString());
+                if (rsDetails.getInt(4) == 1) {
+                    arr[3] = "Male";
+                } else {
+                    arr[3] = "Female";
+                }
+                arr[4] = rsDetails.getString(5);
+                arr[5] = rsDetails.getString(6);
+                arr[6] = rsDetails.getString(7);
+                arr[7] = rsDetails.getString(8);
+                if (rsDetails.getInt(9) == 1) {
+                    arr[8] = "Librarian";
+                } else {
+                    arr[8] = "Employee";
+                }
+                arr[9] = String.valueOf(rsDetails.getInt(10));
+                if (rsDetails.getInt(11) == 0) {
+                    arr[10] = "Checked-Out";
+                    arr[13] = "--";
+                    arr[14] = "--";
+                } else {
+                    arr[10] = "Checked-In";
+                    arr[13] = LibUtil.getInstance().convertDate(rsDetails.getDate(14).toString());
+                    arr[14] = String.valueOf(rsDetails.getFloat(15));
+                }
+                arr[11] = LibUtil.getInstance().convertDate(rsDetails.getDate(12).toString());
+                arr[12] = LibUtil.getInstance().convertDate(rsDetails.getDate(13).toString());
+                arr[15] = rsDetails.getString(16);
+                arr[16] = rsDetails.getString(17);
+                arr[17] = rsDetails.getString(18);
+                arr[18] = rsDetails.getString(19);
+                arr[19] = rsDetails.getString(20);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+    }
 }

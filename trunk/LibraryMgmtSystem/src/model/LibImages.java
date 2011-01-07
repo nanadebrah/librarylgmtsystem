@@ -21,7 +21,6 @@ public class LibImages {
     public static LibImages getInstance() {
         return instance;
     }
-
     /**
      *
      */
@@ -57,6 +56,8 @@ public class LibImages {
             + "labelImages" + File.separator + "AddBook.png";
     public static final String LABEL_FEERATE = "images" + File.separator
             + "labelImages" + File.separator + "FeeRate.png";
+    public static final String LABEL_INFOBOR = "images" + File.separator
+            + "labelImages" + File.separator + "InfoBorrow.png";
     //Menu image
     public static final String MENU_ADD = "images" + File.separator
             + "menuImages" + File.separator + "Add.png";

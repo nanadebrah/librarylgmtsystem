@@ -17,6 +17,7 @@ import view.CheckInDialog;
 import view.CheckOutDialog;
 import view.FeeRateDialog;
 import view.PalBorrow;
+import view.ViewBorrowDialog;
 
 /**
  *
@@ -31,6 +32,7 @@ public class BorrowController {
     private CheckOutController checkOut;
     private CheckInController checkIn;
     private FeeRateController feeControl;
+    private ViewBorrowController viewControl;
     private DefaultTableModel bookModel;
     private DefaultTableModel empModel;
     private DefaultTableModel outModel;
@@ -181,6 +183,14 @@ public class BorrowController {
             }
         });
 
+        //Add event view btn
+        getView().getBtnViewBor().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                viewBorrowInfo();
+            }
+        });
+
         //Add event to borrow table
         getView().getTblBor().addFocusListener(new FocusAdapter() {
 
@@ -194,14 +204,30 @@ public class BorrowController {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //Set enable acction button
                 view.getBtnViewBor().setEnabled(true);
-                view.getBtnEditBor().setEnabled(true);
                 view.getBtnDelBor().setEnabled(true);
                 //If double click display edit employee dialog
                 if (evt.getClickCount() == 2) {
-                    //
+                    viewBorrowInfo();
                 }
             }
         });
+    }
+
+    private void viewBorrowInfo() {
+        parent.doBlur();
+        //Get field borID selected
+        int borID = Integer.parseInt(view.getTblBor().getValueAt(
+                view.getTblBor().getSelectedRow(), 0).toString());
+        //Get field empID selected
+        int empID = Integer.parseInt(view.getTblBor().getValueAt(
+                view.getTblBor().getSelectedRow(), 1).toString());
+        //Get field CallNo selected
+        String callNo = view.getTblBor().getValueAt(
+                view.getTblBor().getSelectedRow(), 3).toString();
+        viewControl = new ViewBorrowController(new ViewBorrowDialog(
+                parent.getView(), true), borID, empID, callNo);
+        viewControl.getView().setVisible(true);
+        parent.doBlur();
     }
 
     /**
@@ -210,7 +236,6 @@ public class BorrowController {
     private void tableFocus() {
         //Set disable acction button
         view.getBtnViewBor().setEnabled(false);
-        view.getBtnEditBor().setEnabled(false);
         view.getBtnDelBor().setEnabled(false);
         view.getTblBor().setFocusable(false);
     }

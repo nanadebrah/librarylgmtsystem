@@ -38,7 +38,6 @@ public class PalBorrow extends javax.swing.JPanel {
         btnChkIn = new javax.swing.JButton();
         btnFee = new javax.swing.JButton();
         separator7 = new javax.swing.JToolBar.Separator();
-        btnEditBor = new javax.swing.JButton();
         btnViewBor = new javax.swing.JButton();
         btnDelBor = new javax.swing.JButton();
         separator8 = new javax.swing.JToolBar.Separator();
@@ -82,16 +81,6 @@ public class PalBorrow extends javax.swing.JPanel {
         btnFee.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnFee);
         tolbarBor.add(separator7);
-
-        btnEditBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
-        btnEditBor.setMnemonic('e');
-        btnEditBor.setText("Edit");
-        btnEditBor.setBorderPainted(false);
-        btnEditBor.setEnabled(false);
-        btnEditBor.setFocusable(false);
-        btnEditBor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEditBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarBor.add(btnEditBor);
 
         btnViewBor.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
         btnViewBor.setMnemonic('v');
@@ -154,8 +143,8 @@ public class PalBorrow extends javax.swing.JPanel {
                     .add(lblCallNoBor))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtEmpID, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
+                    .add(txtEmpID, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -180,7 +169,6 @@ public class PalBorrow extends javax.swing.JPanel {
     private javax.swing.JButton btnChkIn;
     private javax.swing.JButton btnChkOut;
     private javax.swing.JButton btnDelBor;
-    private javax.swing.JButton btnEditBor;
     private javax.swing.JButton btnFee;
     private javax.swing.JButton btnSearchBor;
     private javax.swing.JButton btnViewBor;
@@ -235,20 +223,6 @@ public class PalBorrow extends javax.swing.JPanel {
      */
     public void setBtnDelBor(javax.swing.JButton btnDelBor) {
         this.btnDelBor = btnDelBor;
-    }
-
-    /**
-     * @return the btnEditBor
-     */
-    public javax.swing.JButton getBtnEditBor() {
-        return btnEditBor;
-    }
-
-    /**
-     * @param btnEditBor the btnEditBor to set
-     */
-    public void setBtnEditBor(javax.swing.JButton btnEditBor) {
-        this.btnEditBor = btnEditBor;
     }
 
     /**
