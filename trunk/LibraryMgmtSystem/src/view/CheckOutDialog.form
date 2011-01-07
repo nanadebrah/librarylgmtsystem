@@ -449,29 +449,33 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblFee" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblIssueDate" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblDueDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblIssueDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblFee1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDueDate" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtIssueDate" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtIssueDate" alignment="0" min="-2" pref="168" max="-2" attributes="1"/>
+                                      <Component id="txtDueDate" alignment="0" pref="168" max="32767" attributes="1"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="41" pref="41" max="41" attributes="0"/>
                                   <Component id="btnCheckOut" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" max="-2" attributes="0">
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblFee" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblFee1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -488,9 +492,9 @@
                               <Component id="txtDueDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblFee" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblFee1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblFee1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFee" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -524,10 +528,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFee">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Fee Rate:"/>
+                    <Property name="text" type="java.lang.String" value="Fee:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFee1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Fee"/>
+                  </Properties>
                 </Component>
                 <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
                 </Component>

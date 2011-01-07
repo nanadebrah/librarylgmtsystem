@@ -334,4 +334,24 @@ public class AccessBorrow {
             LibConnection.close(cn);
         }
     }
+
+    public boolean deleteBorrow(int borID, String CallNumber) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.DETELE_BORROW);
+            csDetails.setInt(1, borID);
+            csDetails.setString(2, CallNumber);
+            if (csDetails.execute()) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return true;
+    }
 }

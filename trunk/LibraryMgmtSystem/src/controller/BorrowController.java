@@ -191,6 +191,13 @@ public class BorrowController {
             }
         });
 
+        view.getBtnDelBor().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                deleteBorrow();
+            }
+        });
+
         //Add event to borrow table
         view.getTblBor().addFocusListener(new FocusAdapter() {
 
@@ -213,6 +220,35 @@ public class BorrowController {
         });
     }
 
+    private void deleteBorrow() {
+        parent.doBlur();
+        int sure = JOptionPane.showConfirmDialog(parent.getView(),
+                "You sure want delete this borrow!",
+                "Delete borrow", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+        if (sure == JOptionPane.OK_OPTION) {
+            //Get borID and CallNo selected
+            String borID = view.getTblBor().getValueAt(
+                    view.getTblBor().getSelectedRow(), 0).toString();
+            String callNo = view.getTblBor().getValueAt(
+                    view.getTblBor().getSelectedRow(), 3).toString();
+            if (!AccessBorrow.getInstance().deleteBorrow(Integer.parseInt(borID), callNo)) {
+                JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
+                        + "Because this borrow isn't checked-in.", "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(parent.getView(),
+                        "Delete successful!", "Successful!",
+                        JOptionPane.INFORMATION_MESSAGE);
+                borModel.removeRow(view.getTblBor().getSelectedRow());
+            }
+        }
+        parent.doBlur();
+    }
+
+    /**
+     *
+     */
     private void viewBorrowInfo() {
         parent.doBlur();
         //Get field borID selected

@@ -74,6 +74,7 @@ public class LibProcedure {
     public static final String GET_BOR_BY_BOTH = "{call sp_GetBorrowByBoth(?,?)}";
     public static final String GET_ALL_BORROW = "{call sp_GetAllBorrow}";
     public static final String GET_FULL_BOR_INFO = "{call sp_GetFullBorrowInfo(?,?,?)}";
+    public static final String DETELE_BORROW = "{call sp_DelBorrow(?,?)}";
     //-------------------------------------------------------
     //Searching to check=in
     public static final String SEARCH_ALL_CHECKOUT =

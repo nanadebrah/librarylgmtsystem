@@ -65,52 +65,43 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPublish" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblNoCop" alignment="0" pref="89" max="32767" attributes="0"/>
-                              <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="txtPublish" alignment="2" min="-2" pref="269" max="-2" attributes="0"/>
-                              <Component id="txtAuthor" alignment="2" min="-2" pref="269" max="-2" attributes="0"/>
-                              <Component id="txtTitle" alignment="2" min="-2" pref="269" max="-2" attributes="0"/>
-                              <Component id="txtISBN" alignment="2" min="-2" pref="269" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="130" pref="130" max="130" attributes="0"/>
-                          <Component id="btnAdd" min="-2" pref="75" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCancel" min="-2" pref="86" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="20" pref="20" max="20" attributes="0"/>
-                          <Component id="lblSub" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
-                          <Component id="lblNoInLib" pref="87" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="124" pref="124" max="124" attributes="0"/>
-                          <Component id="txtNoCop" pref="50" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                          <Component id="txtNoInLib" pref="51" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="127" pref="127" max="127" attributes="0"/>
-                          <Component id="cbxSub" min="-2" pref="269" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPublish" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoCop" alignment="0" pref="89" max="32767" attributes="0"/>
+                      <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtNoCop" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="txtPublish" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                      <Component id="cbxSub" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                      <Component id="txtAuthor" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                      <Component id="txtTitle" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
+                      <Component id="txtISBN" alignment="0" min="-2" pref="269" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="130" pref="130" max="130" attributes="0"/>
+                  <Component id="btnAdd" min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancel" min="-2" pref="86" max="-2" attributes="0"/>
+                  <EmptySpace pref="119" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                  <Component id="lblSub" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="346" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="2" attributes="0">
+                  <EmptySpace min="188" pref="188" max="188" attributes="0"/>
+                  <Component id="lblNoInLib" min="-2" pref="87" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Component id="txtNoInLib" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace min="81" pref="81" max="81" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -128,19 +119,19 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="txtAuthor" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblAuth" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtAuthor" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="txtPublish" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPublish" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPublish" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
-                      <Component id="lblNoInLib" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNoCop" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoCop" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoInLib" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNoInLib" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -226,8 +217,8 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="txtNoInLib">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitle1">

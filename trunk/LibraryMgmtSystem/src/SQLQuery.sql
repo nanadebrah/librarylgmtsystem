@@ -227,14 +227,25 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP PROCEDURE sp_DelEmp
 GO
 CREATE PROC sp_DelEmp
-	@EmpID INT
+	(@EmpID INT)
 AS
 	BEGIN
-		IF NOT EXISTS (SELECT @EmpID FROM Borrow
-			WHERE EmpID = @EmpID AND IssueStatus = 1)
+		IF NOT EXISTS
+		(
+			SELECT TOP 1 EmpID FROM Borrow B JOIN
+			BorrowDetail BD ON B.BorID=BD.BorID
+			WHERE EmpID = @EmpID AND IssueStatus = 0
+		)
+		BEGIN
+		DELETE FROM BorrowDetail WHERE BorID
+		=(SELECT TOP 1 B.BorID FROM Borrow B JOIN 
+		BorrowDetail BD ON B.BorID=BD.BorID
+		WHERE B.EmpID=@EmpID)
+		DELETE FROM Borrow WHERE EmpID=@EmpID
 		DELETE FROM Employee WHERE EmpID = @EmpID
+		END
 		ELSE
-			PRINT 'ko duoc'
+			SELECT 'ERROR'
 	END
 
 --Procedure get newest EMP
@@ -364,6 +375,36 @@ CREATE PROC sp_GetNewestSub
 AS
 	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
 
+--Create procedure to get Subject by SubId
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_GetSubByID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByID
+GO
+CREATE PROC sp_GetSubByID
+	@SubID INT
+AS
+	SELECT * FROM Subject
+	WHERE  SubID = @SubID
+
+-- DELETE subject
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_DelSub' AND type = 'P')
+   DROP PROCEDURE sp_DelSub
+GO
+CREATE PROC sp_DelSub
+	(@SubID INT)
+AS
+	BEGIN
+		IF NOT EXISTS
+		(
+			SELECT TOP 1 SubID FROM Book
+			WHERE SubID=@SubID
+		)
+		DELETE FROM Subject WHERE SubID=@SubID
+		ELSE
+			SELECT 'ERROR'
+	END
+
 /*-----------------------------------------------------*/
 
 /* BOOK */
@@ -456,17 +497,27 @@ AS
 	Title,AuthName,Publisher,NoOfCopy,NoInLib
 	FROM Book WHERE CallNumber=@CallNumber
 
---Create procedure to get Subject by SubId
+--- DELETE BOOK
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetSubByID' AND type = 'P')
-   DROP PROCEDURE sp_GetSubByID
+         WHERE name = 'sp_DelBook' AND type = 'P')
+   DROP PROCEDURE sp_DelBook
 GO
-CREATE PROC sp_GetSubByID
-	@SubID INT
+CREATE PROC sp_DelBook
+	(@CallNumber VARCHAR(9))
 AS
-	SELECT * FROM Subject
-	WHERE  SubID = @SubID
-
+	BEGIN		
+		IF NOT EXISTS
+		(
+			SELECT TOP 1 CallNumber FROM BorrowDetail
+			WHERE CallNumber=@CallNumber AND IssueStatus=0
+		)
+		BEGIN
+		DELETE FROM BorrowDetail WHERE CallNumber=@CallNumber
+		DELETE FROM Book WHERE CallNumber=@CallNumber
+		END
+		ELSE
+			SELECT 'ERROR'
+	END
 /*-------------------------------------------------------*/
 
 --Create procedure get newest borrow
@@ -557,6 +608,32 @@ AS
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
 	ON BD.CallNumber=BO.CallNumber WHERE BD.BorID=@BorID
 	AND E.EmpID=@EmpID AND BO.CallNumber=@CallNumber
+
+-- DELETE BORROW
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_DelBorrow' AND type = 'P')
+   DROP PROCEDURE sp_DelBorrow
+GO
+CREATE PROC sp_DelBorrow
+	(
+		@BorID INT,
+		@CallNumber VARCHAR(45)
+	)
+AS
+	BEGIN		
+		IF NOT EXISTS
+		(
+			SELECT TOP 1 CallNumber FROM BorrowDetail
+			WHERE CallNumber=@CallNumber AND BorID=@BorID
+			AND IssueStatus=0
+		)
+		BEGIN
+		DELETE FROM BorrowDetail WHERE CallNumber=@CallNumber
+		AND BorID=@BorID
+		END
+		ELSE
+			SELECT 'ERROR'
+	END
 /* ---------------------------------------------------------------- */
 
 

@@ -75,6 +75,7 @@ public class SubjectController {
 
             public void actionPerformed(ActionEvent e) {
                 searchSubject();
+                tableFocus();
             }
         });
 
@@ -149,7 +150,7 @@ public class SubjectController {
                 "Delete subject", JOptionPane.YES_NO_OPTION,
                 JOptionPane.INFORMATION_MESSAGE);
         if (sure == JOptionPane.OK_OPTION) {
-            //Get Id employee selected
+            //Get subID selected
             String subID = view.getTblSub().getValueAt(
                     view.getTblSub().getSelectedRow(), 0).toString();
             if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {

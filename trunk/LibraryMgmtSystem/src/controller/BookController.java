@@ -168,7 +168,7 @@ public class BookController {
                 "Delete book", JOptionPane.YES_NO_OPTION,
                 JOptionPane.INFORMATION_MESSAGE);
         if (sure == JOptionPane.OK_OPTION) {
-            //Get Id employee selected
+            //Get book id selected
             String callNumber = view.getTblBook().getValueAt(
                     view.getTblBook().getSelectedRow(), 0).toString();
             if (!AccessBook.getInstance().deleteBook(callNumber)) {

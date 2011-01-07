@@ -43,8 +43,8 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSplitPane2" alignment="0" pref="802" max="32767" attributes="0"/>
-              <Component id="jSplitPane3" alignment="0" pref="802" max="32767" attributes="0"/>
+              <Component id="jSplitPane2" alignment="0" pref="773" max="32767" attributes="0"/>
+              <Component id="jSplitPane3" alignment="0" pref="773" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -110,8 +110,8 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtNameEmp" alignment="0" pref="111" max="32767" attributes="1"/>
-                                          <Component id="txtIdEmp" alignment="0" pref="111" max="32767" attributes="1"/>
+                                          <Component id="txtNameEmp" alignment="0" pref="82" max="32767" attributes="1"/>
+                                          <Component id="txtIdEmp" alignment="0" pref="82" max="32767" attributes="1"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -458,28 +458,30 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="21" pref="21" max="21" attributes="0"/>
+                                  <Component id="btnCheckIn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblFee" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblReDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblIssueDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblFee1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtReDate" alignment="0" pref="162" max="32767" attributes="0"/>
-                                      <Component id="txtIssueDate" alignment="0" pref="162" max="32767" attributes="0"/>
+                                      <Component id="txtIssueDate" alignment="0" pref="154" max="32767" attributes="1"/>
+                                      <Component id="txtReDate" alignment="0" pref="154" max="32767" attributes="1"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="btnCheckIn" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblFee" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="20" pref="20" max="20" attributes="0"/>
+                                  <Component id="lblFee1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -497,12 +499,12 @@
                               <Component id="lblReDate" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtReDate" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblFee" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblFee1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnCheckIn" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -534,10 +536,13 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFee">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Fee Rate:"/>
+                    <Property name="text" type="java.lang.String" value="Fee:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFee1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Fee"/>
+                  </Properties>
                 </Component>
                 <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
                   <Properties>
@@ -558,9 +563,9 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="498" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="497" max="32767" attributes="0"/>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                          <Component id="scrPanCheckIn" alignment="0" pref="498" max="32767" attributes="0"/>
+                          <Component id="scrPanCheckIn" alignment="0" pref="497" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -644,8 +649,8 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtCallNoBook" alignment="0" pref="159" max="32767" attributes="1"/>
-                          <Component id="txtISBNBook" alignment="0" pref="159" max="32767" attributes="1"/>
+                          <Component id="txtCallNoBook" alignment="0" pref="145" max="32767" attributes="1"/>
+                          <Component id="txtISBNBook" alignment="0" pref="145" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -654,8 +659,8 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtAthBook" alignment="1" pref="238" max="32767" attributes="3"/>
-                          <Component id="txtTitlBook" alignment="1" pref="238" max="32767" attributes="3"/>
+                          <Component id="txtAthBook" alignment="1" pref="221" max="32767" attributes="3"/>
+                          <Component id="txtTitlBook" alignment="1" pref="221" max="32767" attributes="3"/>
                       </Group>
                   </Group>
               </Group>
@@ -768,7 +773,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="tolbarBor" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Component id="lblBorID" max="32767" attributes="0"/>
+                      <Component id="lblBorID" pref="67" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtBorID" min="-2" pref="67" max="-2" attributes="2"/>
                   </Group>
