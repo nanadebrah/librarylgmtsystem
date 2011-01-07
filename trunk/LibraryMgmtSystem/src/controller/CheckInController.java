@@ -22,9 +22,9 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import model.AccessBorrow;
 import model.AccessEmp;
 import model.AccessFee;
-import model.AccessMutil;
 import model.LibUtil;
 import view.CheckInDialog;
 
@@ -89,6 +89,7 @@ public class CheckInController {
         getView().getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                checkin = null;
                 removeModel();
                 getView().dispose();
             }
@@ -101,7 +102,7 @@ public class CheckInController {
                 parent.removeModel(searchModel);
                 map.clear();
                 if (getView().getTxtBorID().getText().length() > 0) {
-                    AccessMutil.getInstance().searchCheckOutByBorID(map,
+                    AccessBorrow.getInstance().searchCheckOutByBorID(map,
                             Integer.parseInt(getView().getTxtBorID().getText()));
                     getBorrow();
                 }
@@ -114,7 +115,7 @@ public class CheckInController {
             public void actionPerformed(ActionEvent e) {
                 parent.removeModel(searchModel);
                 map.clear();
-                AccessMutil.getInstance().searchCheckOutByBookInfo(map,
+                AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
                         getView().getTxtCallNoBook().getText(),
                         getView().getTxtISBNBook().getText(),
                         getView().getTxtTitlBook().getText(),
@@ -129,7 +130,7 @@ public class CheckInController {
             public void actionPerformed(ActionEvent e) {
                 parent.removeModel(searchModel);
                 map.clear();
-                AccessMutil.getInstance().searchCheckOutByEmpInfo(map,
+                AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
                         getView().getTxtIdEmp().getText(),
                         getView().getTxtNameEmp().getText());
                 getBorrow();
@@ -163,6 +164,7 @@ public class CheckInController {
         getView().addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
+                setCheckin(null);
                 removeModel();
             }
         });
@@ -174,7 +176,7 @@ public class CheckInController {
                 if (inModel.getRowCount() > 0) {
                     int sure = JOptionPane.showConfirmDialog(view,
                             "You sure all information is correct!",
-                            "Checking-out", JOptionPane.YES_NO_OPTION,
+                            "Checking-in", JOptionPane.YES_NO_OPTION,
                             JOptionPane.INFORMATION_MESSAGE);
 
                     if (sure == JOptionPane.OK_OPTION) {
@@ -184,19 +186,40 @@ public class CheckInController {
                     }
                 } else {
                     JOptionPane.showMessageDialog(view,
-                            "All information not correct!", "Checking-out",
+                            "All information not correct!", "Checking-in",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
     }
 
+    /**
+     * Clear all model
+     */
     private void removeModel() {
         parent.removeModel(searchModel);
         parent.removeModel(inModel);
     }
 
+    /**
+     *  
+     */
     private void checkIn() {
+        for (int i = 0; i < inModel.getRowCount(); i++) {
+            //Get field borID selected
+            int borID = Integer.parseInt(
+                    view.getTblCheckIn().getValueAt(i, 0).toString());
+            //Get field CallNo selected
+            String callNo = view.getTblCheckIn().getValueAt(i, 1).toString();
+            //Get return date
+            long returnDate = view.getTxtReDate().getDate().getTime();
+            //Get total fee
+            float totalFee = Float.parseFloat(
+                    view.getTblCheckIn().getValueAt(i, 5).toString());
+            //Update on database
+            AccessBorrow.getInstance().checkIn(borID,
+                    callNo, returnDate, totalFee);
+        }
     }
 
     /**
@@ -206,16 +229,16 @@ public class CheckInController {
         keyset = map.keySet();
         it = keyset.iterator();
         while (it.hasNext()) {
-            checkin = (CheckIn) map.get(it.next());
+            setCheckin((CheckIn) map.get(it.next()));
             vt = new Vector();
-            vt.add(checkin.getBorID());
-            vt.add(checkin.getEmpID());
-            vt.add(checkin.getCallNumber());
-            vt.add(checkin.getTitle());
-            vt.add(checkin.getAuth());
-            vt.add(checkin.getPublisher());
+            vt.add(getCheckin().getBorID());
+            vt.add(getCheckin().getEmpID());
+            vt.add(getCheckin().getCallNumber());
+            vt.add(getCheckin().getTitle());
+            vt.add(getCheckin().getAuth());
+            vt.add(getCheckin().getPublisher());
             vt.add(LibUtil.getInstance().convertDate(
-                    new Date(checkin.getDueDate()).toString()));
+                    new Date(getCheckin().getDueDate()).toString()));
             searchModel.addRow(vt);
         }
     }
@@ -242,20 +265,24 @@ public class CheckInController {
         //Get field CallNo selected
         String callNo = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 2).toString();
+        //If this book is'n selected
         if (set.add(borID + "," + callNo)) {
             //Set all check-in information
-            checkin = (CheckIn) map.get(borID + "," + callNo);
+            setCheckin((CheckIn) map.get(borID + "," + callNo));
+            //Set issue date
             getView().getTxtIssueDate().setDate(
-                    new java.util.Date(checkin.getIssueDate()));
+                    new java.util.Date(getCheckin().getIssueDate()));
+            //Create a new vector to add checkin info from checkin object
             vt = new Vector();
-            vt.add(checkin.getBorID());
-            vt.add(checkin.getCallNumber());
-            vt.add(checkin.getISBN());
+            vt.add(getCheckin().getBorID());
+            vt.add(getCheckin().getCallNumber());
+            vt.add(getCheckin().getISBN());
             //Calculate Borrow infomation
-            int DayBor = (int) (checkin.getDueDate() - checkin.getIssueDate())
+            int DayBor = (int) (getView().getTxtReDate().getDate().getTime()
+                    - getCheckin().getIssueDate())
                     / (24 * 60 * 60 * 1000);
             int DayLate = (int) (getView().getTxtReDate().getDate().getTime()
-                    - checkin.getDueDate()) / (24 * 60 * 60 * 1000);
+                    - getCheckin().getDueDate()) / (24 * 60 * 60 * 1000);
             float BorrowFee = DayBor * borFee;
             float Fine = 0;
             vt.add(DayBor + "/" + BorrowFee);
@@ -305,9 +332,9 @@ public class CheckInController {
         String callNo = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 2).toString();
         //Set all check-in information
-        checkin = (CheckIn) map.get(borID + "," + callNo);
+        setCheckin((CheckIn) map.get(borID + "," + callNo));
         getView().getTxtIssueDate().setDate(
-                new java.util.Date(checkin.getIssueDate()));
+                new java.util.Date(getCheckin().getIssueDate()));
     }
 
     /**
@@ -322,5 +349,19 @@ public class CheckInController {
      */
     public void setView(CheckInDialog view) {
         this.view = view;
+    }
+
+    /**
+     * @return the checkin
+     */
+    public CheckIn getCheckin() {
+        return checkin;
+    }
+
+    /**
+     * @param checkin the checkin to set
+     */
+    public void setCheckin(CheckIn checkin) {
+        this.checkin = checkin;
     }
 }

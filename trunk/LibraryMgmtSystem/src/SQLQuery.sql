@@ -435,7 +435,7 @@ AS
 	UPDATE Subject SET SubName=@SubName,
 		Description=@Description
 		WHERE SubID=@SubID
-
+/*CHECK OUT */
 --procedure to add a Borrow
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddBorrow' AND type = 'P')
@@ -479,17 +479,9 @@ CREATE PROC sp_GetNewestBorrowID
 AS
 	SELECT TOP 1 BorID FROM Borrow ORDER BY BorID DESC
 
---Create procedure get all borrow status
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAllBorStatus' AND type = 'P')
-   DROP PROCEDURE sp_GetAllBorStatus
-GO
-CREATE PROC sp_GetAllBorStatus
-	(@BorID INT)
-AS
-	SELECT IssueStatus FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID WHERE BD.BorID=@BorID
+/*---------------------------------------------------------*/
 
+/* Borrow  Manage*/
 --get a borrow by CallNumber
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetBorrowByCalNo' AND type = 'P')
@@ -498,9 +490,11 @@ GO
 CREATE PROC sp_GetBorrowByCalNo
 	(@CallNumber VARCHAR(9))
 AS
-	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
-	FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID WHERE CallNumber LIKE '%'+@CallNumber+'%'
+	SELECT B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+	BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,BD.TotalFee
+	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.CallNumber=BO.CallNumber WHERE BO.CallNumber LIKE '%'+@CallNumber+'%'
 
 --Get a borrow by emp name
 IF EXISTS (SELECT name FROM sysobjects 
@@ -510,9 +504,11 @@ GO
 CREATE PROC sp_GetBorrowByEmpID
 	(@EmpID INT)
 AS
-	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
-	FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID WHERE EmpID=@EmpID
+	SELECT B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+	BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,BD.TotalFee
+	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.CallNumber=BO.CallNumber WHERE E.EmpID=@EmpID
 
 --Get a borrow by emp name
 IF EXISTS (SELECT name FROM sysobjects 
@@ -522,10 +518,12 @@ GO
 CREATE PROC sp_GetBorrowByBoth
 	(@CallNumber VARCHAR(9),@EmpID INT)
 AS
-	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
-	FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID WHERE CallNumber LIKE
-	'%'+@CallNumber+'%' AND B.EmpID=@EmpID
+	SELECT B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+	BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,BD.TotalFee
+	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.CallNumber=BO.CallNumber WHERE BO.CallNumber LIKE
+	'%'+@CallNumber+'%' AND E.EmpID=@EmpID
 
 --Get all borrow to table
 IF EXISTS (SELECT name FROM sysobjects 
@@ -534,22 +532,49 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_GetAllBorrow
 AS
-	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
-	FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID
+	SELECT B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+	BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,BD.TotalFee
+	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.CallNumber=BO.CallNumber
+/* ---------------------------------------------------------------- */
 
---Get newest borrow to table
+
+/* CHECK OUT */
+-- Prepare check out. Create new new Order ID and Employee check out
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBorrowByBorID' AND type = 'P')
-   DROP PROCEDURE sp_GetBorrowByBorID
+         WHERE name = 'sp_PrepareCheckOut' AND type = 'P')
+   DROP PROCEDURE sp_PrepareCheckOut
 GO
-CREATE PROC sp_GetBorrowByBorID
-	(@BorID INT)
+CREATE PROC sp_PrepareCheckOut
+	(@EmpID INT)
 AS
-	SELECT B.BorID,EmpID,CallNumber,IssueDate,DueDate,IssueStatus
-	FROM Borrow B JOIN BorrowDetail BD
-	ON B.BorID=BD.BorID WHERE B.BorID=@BorID
+	INSERT INTO Borrow(EmpID) VALUES (@EmpID)
 
+--Check out, add new check out to borrow and borrow detail
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_CheckOut' AND type = 'P')
+   DROP PROCEDURE sp_CheckOut
+GO
+CREATE PROC sp_CheckOut
+	(
+		@CallNumber VARCHAR(9),
+		@IssueDate DATETIME,
+		@DueDate DATETIME
+	)
+AS
+	BEGIN	
+	DECLARE @BorID INT
+	SELECT TOP 1 @BorID=BorID FROM Borrow ORDER BY BorID DESC	
+
+	INSERT INTO BorrowDetail(BorID,CallNumber,IssueStatus,IssueDate,DueDate)
+	VALUES(@BorID,@CallNumber,0,@IssueDate,@DueDate)
+
+	UPDATE Book SET NoInLib=NoInLib-1 WHERE CallNumber=@CallNumber
+	END
+/*------------------------------------------------------------------*/
+
+/* Search check out */ 
 --Get all check out information to check in
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_SearhAllCheckOut' AND type = 'P')
@@ -653,6 +678,31 @@ AS
 	E.EmpID=@EmpID AND E.[Name] LIKE '%'+@Name+'%'
 	AND BD.IssueStatus=0
 
+/*----------------------------------------------------------------*/
+
+/*CHECK IN*/
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_CheckIn' AND type = 'P')
+   DROP PROCEDURE sp_CheckIn
+GO
+CREATE PROC sp_CheckIn
+	(
+		@BorID INT,
+		@CallNumber VARCHAR(9),
+		@ReturnDate DATETIME,
+		@TotalFee FLOAT		
+	)
+AS
+	BEGIN
+		UPDATE BorrowDetail SET ReturnDate=@ReturnDate,
+		TotalFee=@TotalFee,IssueStatus=1 WHERE
+		BorID=@BorID AND CallNumber=@CallNumber
+
+		UPDATE Book SET NoInLib=NoInLib+1 WHERE
+		CallNumber=@CallNumber
+	END
+/*------------------------------------------------------*/
+
 --Procedure get newest EMP
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetNewestEmp' AND type = 'P')
@@ -726,5 +776,4 @@ FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
 ON BD.CallNumber=BO.CallNumber
 
-SELECT BorID,IssueDate,DueDate,CallNumber
-FROM BorrowDetail WHERE BorID=@BorID
+SELECT * FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID

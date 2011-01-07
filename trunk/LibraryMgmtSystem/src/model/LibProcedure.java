@@ -61,15 +61,19 @@ public class LibProcedure {
     /**
      * Borrow procedure
      */
-    public static final String ADD_BORROW = "{call sp_AddBorrow(?)}";
-    public static final String ADD_BORDETAIL = "{call sp_AddBorDetail(?,?,?,?,?)}";
-    public static final String GET_NEWEST_BORROWID = "{call sp_GetNewestBorrowID}";
-    public static final String GET_BORROW_BY_BORID = "{call sp_GetBorrowByBorID(?)}";
+    //Check out
+    public static final String PREPARE_CHECKOUT = "{call sp_PrepareCheckOut(?)}";
+    public static final String CHECK_OUT = "{call sp_CheckOut(?,?,?)}";
+    //-------------------------------------------------------
+
+    //Borrow Manage
     public static final String GET_BOR_BY_CALLNO = "{call sp_GetBorrowByCalNo(?)}";
     public static final String GET_BOR_BY_EMPID = "{call sp_GetBorrowByEmpID(?)}";
     public static final String GET_BOR_BY_BOTH = "{call sp_GetBorrowByBoth(?,?)}";
     public static final String GET_ALL_BORROW = "{call sp_GetAllBorrow}";
-
+    //-------------------------------------------------------
+    
+    //Searching to check=in
     public static final String SEARCH_ALL_CHECKOUT =
             "{call sp_SearhAllCheckOut}";
     public static final String SEARCH_CHECKOUT_BY_BORID =
@@ -82,4 +86,9 @@ public class LibProcedure {
             "{call sp_SearhCheckOutByEmpName(?)}";
     public static final String SEARCH_CHECKOUT_BY_ALL_EMPINFO =
             "{call sp_SearhCheckOutByAllEmpInfo(?,?)}";
+    //-------------------------------------------------------
+
+    //Check-in
+    public static final String CHECK_IN = "{call sp_CheckIn(?,?,?,?)}";
+    //-------------------------------------------------------
 }

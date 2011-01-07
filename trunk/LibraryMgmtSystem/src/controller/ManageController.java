@@ -178,8 +178,7 @@ public class ManageController {
                 setBorSelect(view.getBtnEmpMan());
                 empControl.searchEmp();
                 subControl.searchSubject();
-                bookControl.searchBook();
-                borControl.searchBorrow();
+                bookControl.searchBook();                
             }
         });
 

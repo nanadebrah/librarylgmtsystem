@@ -64,6 +64,9 @@ public class FeeRateController {
         });
     }
 
+    /**
+     * 
+     */
     private void getCurrentSetting(){
         setFee(AccessFee.getInstance().getFee());
         getView().getTxtDayFee().setText("$"+Float.toString(getFee().getBorFee()));

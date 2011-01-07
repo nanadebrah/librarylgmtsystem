@@ -14,7 +14,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -40,6 +40,7 @@ public class CheckOutController {
     private ManageController parent;
     private Vector vt;
     private HashSet set;
+    private TreeMap map;
     private int empID;
     private Fee fee;
     private float borFee, lateFee;
@@ -69,6 +70,8 @@ public class CheckOutController {
         getView().getTxtDueDate().setDate(new java.util.Date(
                 new java.util.Date().getTime() + 432000000));
 
+        //Create new map
+        map=new TreeMap();
         //Create new set
         set = new HashSet();
         //Set selection mode;
@@ -176,22 +179,16 @@ public class CheckOutController {
      * 
      */
     private void checkOut() {
-        //Add new borrow to databse
-        AccessBorrow.getInstance().addBorrow(empID);
         //Add borrow details for earch book
-        Iterator it = set.iterator();
+        java.util.Iterator it = set.iterator();
         while (it.hasNext()) {
-            //Create new borrow detail object
-            borDetail = new BorrowDetail();
-            borDetail.setBorID(AccessBorrow.getInstance().getNewestBorrowID());
-            borDetail.setEmpID(empID);
+            borDetail=new BorrowDetail();
             borDetail.setCallNumber(it.next().toString());
             borDetail.setIssueDate(getView().getTxtIssueDate().getDate().getTime());
             borDetail.setDueDate(getView().getTxtDueDate().getDate().getTime());
-            borDetail.setIssueStatus(0);
-            //Add new borrow detail to databse
-            AccessBorrow.getInstance().addBorDetail(borDetail);
+            map.put(borDetail.getCallNumber(), borDetail);
         }
+        AccessBorrow.getInstance().checkOut(empID, map);
     }
 
     /**
