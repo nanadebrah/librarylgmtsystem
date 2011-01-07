@@ -288,6 +288,10 @@ public class AccessEmp {
      * @return
      */
     public boolean deleteEmp(int empID) {
+        //If root, return it
+        if (empID == 1) {
+            return false;
+        }
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {

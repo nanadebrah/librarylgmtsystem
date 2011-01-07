@@ -829,40 +829,9 @@ AS
 --Insert default user with User&Pass [root|root]
 sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
+GO
 
 --Insert default fee value
 INSERT INTO Fee VALUES ('Fee',0,0.1)
 
 /*--------------------------------------------------------------*/
-
-select * from dbo.Employee
-
-
-EXEC sp_DelEmp 3
-
-select * from Employee
-
-select * from Book
-
-select * from Subject
-
-select * from Borrow
-
-select * from BorrowDetail
-
-select * from Borrow B JOIN BorrowDetail D ON B.BorID=D.BorID
-
-select IssueStatus from Borrow B JOIN BorrowDetail BD
-ON B.BorID=BD.BorID WHERE DB.BorID=3
-
-update Book set NoInLib=5 where ISBN='978-1402'
-
-SELECT E.EmpID,E.[Name],E.DOB,E.Gender,E.Email,E.Department,
-E.Address,E.Phone,E.Permission,BD.BorID,BD.IssueStatus,
-BD.IssueDate,BD.DueDate,BD.ReturnDate,BD.TotalFee,
-BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher
-FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
-JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-ON BD.CallNumber=BO.CallNumber
-
-SELECT * FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
