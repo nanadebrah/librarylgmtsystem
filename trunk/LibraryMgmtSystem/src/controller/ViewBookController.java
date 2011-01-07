@@ -21,6 +21,11 @@ public class ViewBookController {
     private Book book = null;
     private ViewBookDialog view;
 
+    /**
+     * 
+     * @param view
+     * @param book
+     */
     public ViewBookController(ViewBookDialog view, Book book) {
         this.view = view;
         this.book = book;
@@ -32,21 +37,21 @@ public class ViewBookController {
      */
     private void initComponent() {
         //Set all information
-        getView().getLblCallNo1().setText(book.getCallNumber());
-        getView().getLblISBN1().setText(book.getISBN());
-        getView().getLblTitle1().setText(book.getTitle());
-        getView().getLblAth1().setText(book.getAuthName());
-        getView().getLblPub1().setText(book.getPublisher());
-        getView().getLblSub1().setText(
+        view.getLblCallNo1().setText(book.getCallNumber());
+        view.getLblISBN1().setText(book.getISBN());
+        view.getLblTitle1().setText(book.getTitle());
+        view.getLblAth1().setText(book.getAuthName());
+        view.getLblPub1().setText(book.getPublisher());
+        view.getLblSub1().setText(
                 AccessSub.getInstance().getSubjectName(book.getSubID()));
-        getView().getLblNoC1().setText(String.valueOf(book.getNoOfCopy()));
-        getView().getLblNoInL1().setText(String.valueOf(book.getNoInLib()));
+        view.getLblNoC1().setText(String.valueOf(book.getNoOfCopy()));
+        view.getLblNoInL1().setText(String.valueOf(book.getNoInLib()));
 
         //Add event btn close
-        getView().getBtnClose().addActionListener(new ActionListener() {
+        view.getBtnClose().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().dispose();
+                view.dispose();
             }
         });
     }

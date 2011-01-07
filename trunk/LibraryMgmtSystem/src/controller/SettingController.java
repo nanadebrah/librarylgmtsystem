@@ -35,8 +35,7 @@ public class SettingController {
         }
     }
 
-
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -73,7 +72,7 @@ public class SettingController {
         });
     }
 
-    /*
+    /**
      * Default all field text
      */
     private void setField() {
@@ -84,7 +83,7 @@ public class SettingController {
         view.getTxtPass().setText("9988776655");
     }
 
-    /*
+    /**
      * Save config to property file
      */
     private void saveConfig() {
@@ -128,8 +127,9 @@ public class SettingController {
         }
     }
 
-    /*
+    /**
      * Load config file
+     * @return
      */
     private boolean loadConfig() {
         //Defined object
@@ -173,7 +173,7 @@ public class SettingController {
         return true;
     }
 
-    /*
+    /**
      *Check connection using JDBC 4
      */
     private void checkConnection() {

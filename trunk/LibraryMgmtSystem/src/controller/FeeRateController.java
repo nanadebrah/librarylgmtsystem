@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import entity.Fee;
@@ -21,6 +20,10 @@ public class FeeRateController {
     private Fee fee = null;
     private FeeRateDialog view;
 
+    /**
+     * 
+     * @param view
+     */
     public FeeRateController(FeeRateDialog view) {
         this.view = view;
         initComponent();
@@ -30,36 +33,37 @@ public class FeeRateController {
      *  initialize the controller.
      */
     private void initComponent() {
-        
+
         //Get current setting
         getCurrentSetting();
 
         //Add event cancel btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                fee=null;
-                getView().dispose();
+                fee = null;
+                view.dispose();
             }
         });
 
         //Add event close window
-        getView().addWindowListener(new java.awt.event.WindowAdapter() {
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
+
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                fee=null;
-                getView().dispose();
+                fee = null;
+                view.dispose();
             }
         });
 
         //Add event change btn
-        getView().getBtnChange().addActionListener(new ActionListener() {
+        view.getBtnChange().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                fee=new Fee();
+                fee = new Fee();
                 fee.setFee("Fee");
-                fee.setBorFee(new Float(getView().getTxtDayFee().getText().substring(1)));
-                fee.setLateFee(new Float(getView().getTxtLateFee().getText().substring(1)));
-                getView().dispose();
+                fee.setBorFee(new Float(view.getTxtDayFee().getText().substring(1)));
+                fee.setLateFee(new Float(view.getTxtLateFee().getText().substring(1)));
+                view.dispose();
             }
         });
     }
@@ -67,10 +71,10 @@ public class FeeRateController {
     /**
      * 
      */
-    private void getCurrentSetting(){
-        setFee(AccessFee.getInstance().getFee());
-        getView().getTxtDayFee().setText("$"+Float.toString(getFee().getBorFee()));
-        getView().getTxtLateFee().setText("$"+Float.toString(getFee().getLateFee()));
+    private void getCurrentSetting() {
+        fee = AccessFee.getInstance().getFee();
+        view.getTxtDayFee().setText("$" + Float.toString(getFee().getBorFee()));
+        view.getTxtLateFee().setText("$" + Float.toString(getFee().getLateFee()));
     }
 
     /**

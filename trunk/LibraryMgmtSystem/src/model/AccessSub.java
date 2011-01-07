@@ -289,4 +289,28 @@ public class AccessSub {
         }
         return 0;
     }
+
+    /**
+     * 
+     * @param subID
+     * @return
+     */
+    public boolean deleteSub(int subID) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.DETELE_SUB);
+            csDetails.setInt(1, subID);
+            if (csDetails.execute()) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return true;
+    }
 }

@@ -23,7 +23,7 @@ public class AnalyticController {
     public AnalyticController(PalAnalytic view,
             DefaultTableModel anaModel, ManageController parent) {
         this.view = view;
-        this.parent=parent;
+        this.parent = parent;
         this.anaModel = anaModel;
         initComponent();
     }
@@ -34,9 +34,9 @@ public class AnalyticController {
     private void initComponent() {
 
         //Set selection mode
-        getView().getTblAna().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        view.getTblAna().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
-        getView().getTblAna().setModel(anaModel);
+        view.getTblAna().setModel(anaModel);
         //Set model
         anaModel.addColumn("gi do");
         anaModel.addColumn("gi do");

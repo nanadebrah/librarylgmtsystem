@@ -20,6 +20,11 @@ public class ViewSubjectController {
     private Subject sub = null;
     private ViewSubDialog view;
 
+    /**
+     * 
+     * @param view
+     * @param sub
+     */
     public ViewSubjectController(ViewSubDialog view, Subject sub) {
         this.view = view;
         this.sub = sub;
@@ -31,14 +36,14 @@ public class ViewSubjectController {
      */
     private void initComponent() {
         //Set field
-        getView().getLblSubID1().setText(new Integer(sub.getSubID()).toString());
-        getView().getLblName1().setText(sub.getSubName());
-        getView().getTxtDes().setText(sub.getDescription());
+        view.getLblSubID1().setText(new Integer(sub.getSubID()).toString());
+        view.getLblName1().setText(sub.getSubName());
+        view.getTxtDes().setText(sub.getDescription());
         //Add event close btn
-        getView().getBtnClose().addActionListener(new ActionListener() {
+        view.getBtnClose().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().dispose();
+                view.dispose();
             }
         });
     }

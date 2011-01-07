@@ -33,49 +33,50 @@ public class AddEmployeeController {
      */
     private void initComponent() {
         //Create new employee
-        setEmp(new Employee());
-        
+        emp = new Employee();
+
         //Add event close btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                emp=null;
-                getView().dispose();
+                emp = null;
+                view.dispose();
             }
         });
 
         //Add event add btn
-        getView().getBtnAdd().addActionListener(new ActionListener() {
+        view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 //set object
                 toObject();
                 //Dispose this dialog
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add item listenner
-        getView().getCbxPermis().addItemListener(new ItemListener() {
+        view.getCbxPermis().addItemListener(new ItemListener() {
 
             public void itemStateChanged(ItemEvent e) {
                 //If  permission is employee, it doesn't need password
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     if (e.getItem().equals("Employee")) {
-                        getView().getTxtPass().setVisible(false);
-                        getView().getLblPass().setVisible(false);
+                        view.getTxtPass().setVisible(false);
+                        view.getLblPass().setVisible(false);
                     } else {
-                        getView().getTxtPass().setVisible(true);
-                        getView().getLblPass().setVisible(true);
+                        view.getTxtPass().setVisible(true);
+                        view.getLblPass().setVisible(true);
                     }
                 }
             }
         });
 
         //Add window event
-        getView().addWindowListener(new WindowAdapter() {
+        view.addWindowListener(new WindowAdapter() {
+
             public void windowClosing(WindowEvent evt) {
-                emp=null;
+                emp = null;
             }
         });
     }
@@ -84,23 +85,23 @@ public class AddEmployeeController {
      * Transfer all field to object
      */
     private void toObject() {
-        setEmp(new Employee());
-        getEmp().setName(getView().getTxtName().getText());
-        if (getView().getRdbMale().isSelected()) {
-            getEmp().setGender(1);
+        emp = new Employee();
+        emp.setName(view.getTxtName().getText());
+        if (view.getRdbMale().isSelected()) {
+            emp.setGender(1);
         } else {
-            getEmp().setGender(0);
+            emp.setGender(0);
         }
-        getEmp().setDOB(getView().getTxtDOB().getDate().getTime());
-        getEmp().setAddress(getView().getTxtAdd().getText());
-        getEmp().setEmail(getView().getTxtEmail().getText());
-        getEmp().setPassword(new String(getView().getTxtPass().getPassword()));
-        getEmp().setPhone(getView().getTxtPhone().getText());
-        getEmp().setDepartment(getView().getTxtDepart().getText());
-        if (getView().getCbxPermis().getSelectedItem().toString().equals("Librarian")) {
-            getEmp().setPermission(1);
+        emp.setDOB(view.getTxtDOB().getDate().getTime());
+        emp.setAddress(view.getTxtAdd().getText());
+        emp.setEmail(view.getTxtEmail().getText());
+        emp.setPassword(new String(view.getTxtPass().getPassword()));
+        emp.setPhone(view.getTxtPhone().getText());
+        emp.setDepartment(view.getTxtDepart().getText());
+        if (view.getCbxPermis().getSelectedItem().toString().equals("Librarian")) {
+            emp.setPermission(1);
         } else {
-            getEmp().setPermission(0);
+            emp.setPermission(0);
         }
     }
 

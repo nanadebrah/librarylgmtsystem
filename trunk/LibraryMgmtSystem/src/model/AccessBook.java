@@ -200,4 +200,28 @@ public class AccessBook {
         }
         return 0;
     }
+
+    /**
+     * 
+     * @param CallNumber
+     * @return
+     */
+    public boolean deleteBook(String CallNumber) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.DETELE_BOOK);
+            csDetails.setString(1, CallNumber);
+            if (csDetails.execute()) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return true;
+    }
 }

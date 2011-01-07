@@ -21,6 +21,11 @@ public class ViewEmployeeController {
     private Employee emp = null;
     private ViewEmpDialog view;
 
+    /**
+     * 
+     * @param view
+     * @param emp
+     */
     public ViewEmployeeController(ViewEmpDialog view, Employee emp) {
         this.view = view;
         this.emp = emp;
@@ -32,30 +37,30 @@ public class ViewEmployeeController {
      */
     private void initComponent() {
         //Set all information
-        getView().getLblID1().setText(new Integer(emp.getEmpID()).toString());
-        getView().getLblName1().setText(emp.getName());
-        String DOB=new Date(emp.getDOB()).toString();
+        view.getLblID1().setText(new Integer(emp.getEmpID()).toString());
+        view.getLblName1().setText(emp.getName());
+        String DOB = new Date(emp.getDOB()).toString();
 
-        getView().getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
+        view.getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
         if (emp.getGender() == 1) {
-            getView().getLblGender1().setText("Male");
+            view.getLblGender1().setText("Male");
         } else {
-            getView().getLblGender1().setText("Female");
+            view.getLblGender1().setText("Female");
         }
-        getView().getLblEmail1().setText(emp.getEmail());
-        getView().getLblAddress1().setText(emp.getAddress());
-        getView().getLblPhone1().setText(emp.getPhone());
-        getView().getLblDepart1().setText(emp.getDepartment());
+        view.getLblEmail1().setText(emp.getEmail());
+        view.getLblAddress1().setText(emp.getAddress());
+        view.getLblPhone1().setText(emp.getPhone());
+        view.getLblDepart1().setText(emp.getDepartment());
         if (emp.getPermission() == 1) {
-            getView().getLblPermission1().setText("Librarian");
+            view.getLblPermission1().setText("Librarian");
         } else {
-            getView().getLblPermission1().setText("Employee");
+            view.getLblPermission1().setText("Employee");
         }
         //Add event close btn
-        getView().getBtnClose().addActionListener(new ActionListener() {
+        view.getBtnClose().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().dispose();
+                view.dispose();
             }
         });
     }

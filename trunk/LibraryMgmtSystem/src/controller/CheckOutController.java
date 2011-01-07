@@ -62,12 +62,12 @@ public class CheckOutController {
         fee = AccessFee.getInstance().getFee();
         borFee = fee.getBorFee();
         lateFee = fee.getLateFee();
-        getView().getLblFee1().setText("$" + Float.toString(borFee) + "/Day | $"
+        view.getLblFee1().setText("$" + Float.toString(borFee) + "/Day | $"
                 + Float.toString(lateFee) + "/Late Day");
 
         //Set default issue date and due date
-        getView().getTxtIssueDate().setDate(new java.util.Date());
-        getView().getTxtDueDate().setDate(new java.util.Date(
+        view.getTxtIssueDate().setDate(new java.util.Date());
+        view.getTxtDueDate().setDate(new java.util.Date(
                 new java.util.Date().getTime() + 432000000));
 
         //Create new map
@@ -75,23 +75,23 @@ public class CheckOutController {
         //Create new set
         set = new HashSet();
         //Set selection mode;
-        getView().getTblBoth().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        view.getTblBoth().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Add check out model
-        getView().getTblCheckOut().setModel(outModel);
+        view.getTblCheckOut().setModel(outModel);
 
         //Add event cancel btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 borDetail = null;
                 parent.removeModel(outModel);
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add window event
-        getView().addWindowListener(new WindowAdapter() {
+        view.addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
                 borDetail = null;
@@ -100,33 +100,33 @@ public class CheckOutController {
         });
 
         //Add event search book btn
-        getView().getBtnSearchBook().addActionListener(new ActionListener() {
+        view.getBtnSearchBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 searchBook();
                 //Add book model to table
-                getView().getTblBoth().setModel(bookModel);
+                view.getTblBoth().setModel(bookModel);
                 //Change title
-                getView().getScrPanBoth().setBorder(
+                view.getScrPanBoth().setBorder(
                         javax.swing.BorderFactory.createTitledBorder("Book Information"));
             }
         });
 
         //Add event search employee btn
-        getView().getBtnSearchEmp().addActionListener(new ActionListener() {
+        view.getBtnSearchEmp().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 searchEmp();
                 //Add employee model to table
-                getView().getTblBoth().setModel(empModel);
+                view.getTblBoth().setModel(empModel);
                 //Change title
-                getView().getScrPanBoth().setBorder(
+                view.getScrPanBoth().setBorder(
                         javax.swing.BorderFactory.createTitledBorder("Employee Information"));
             }
         });
 
         //Add event check out btn
-        getView().getBtnCheckOut().addActionListener(new ActionListener() {
+        view.getBtnCheckOut().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 if (!set.isEmpty() && empID > 0) {
@@ -138,23 +138,23 @@ public class CheckOutController {
                     if (sure == JOptionPane.OK_OPTION) {
                         checkOut();
                         parent.removeModel(outModel);
-                        getView().dispose();
+                        view.dispose();
                     }
                 } else {
                     JOptionPane.showMessageDialog(view,
-                            "All information not correct!", "Checking-out",
+                            "All information not correct!", "Check-out",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
 
         //Add event double click to select book
-        getView().getTblBoth().addMouseListener(new MouseAdapter() {
+        view.getTblBoth().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //If double click display edit employee dialog
                 if (evt.getClickCount() == 2) {
-                    if (getView().getTblBoth().getModel() == bookModel) {
+                    if (view.getTblBoth().getModel() == bookModel) {
                         selectBook();
                     } else {
                         selectEmployee();
@@ -164,7 +164,7 @@ public class CheckOutController {
         });
 
         //Add event doublie click to deselect book
-        getView().getTblCheckOut().addMouseListener(new MouseAdapter() {
+        view.getTblCheckOut().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //If double click display edit employee dialog
@@ -184,8 +184,8 @@ public class CheckOutController {
         while (it.hasNext()) {
             borDetail=new BorrowDetail();
             borDetail.setCallNumber(it.next().toString());
-            borDetail.setIssueDate(getView().getTxtIssueDate().getDate().getTime());
-            borDetail.setDueDate(getView().getTxtDueDate().getDate().getTime());
+            borDetail.setIssueDate(view.getTxtIssueDate().getDate().getTime());
+            borDetail.setDueDate(view.getTxtDueDate().getDate().getTime());
             map.put(borDetail.getCallNumber(), borDetail);
         }
         AccessBorrow.getInstance().checkOut(empID, map);
@@ -201,23 +201,23 @@ public class CheckOutController {
         this.empID = new Integer(empID);
         Employee emp = AccessEmp.getInstance().getEmp(this.empID);
         //Set all information
-        getView().getLblID1().setText(new Integer(emp.getEmpID()).toString());
-        getView().getLblName1().setText(emp.getName());
+        view.getLblID1().setText(new Integer(emp.getEmpID()).toString());
+        view.getLblName1().setText(emp.getName());
         String DOB = new Date(emp.getDOB()).toString();
 
-        getView().getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
+        view.getLblDOB1().setText(LibUtil.getInstance().convertDate(DOB));
         if (emp.getGender() == 1) {
-            getView().getLblGender1().setText("Male");
+            view.getLblGender1().setText("Male");
         } else {
-            getView().getLblGender1().setText("Female");
+            view.getLblGender1().setText("Female");
         }
-        getView().getLblAddress1().setText(emp.getAddress());
-        getView().getLblPhone1().setText(emp.getPhone());
-        getView().getLblDepart1().setText(emp.getDepartment());
+        view.getLblAddress1().setText(emp.getAddress());
+        view.getLblPhone1().setText(emp.getPhone());
+        view.getLblDepart1().setText(emp.getDepartment());
         if (emp.getPermission() == 1) {
-            getView().getLblPermission1().setText("Librarian");
+            view.getLblPermission1().setText("Librarian");
         } else {
-            getView().getLblPermission1().setText("Employee");
+            view.getLblPermission1().setText("Employee");
         }
     }
 
@@ -250,7 +250,7 @@ public class CheckOutController {
                 noInLib = Integer.parseInt(temp[1]);
                 //If of store book
                 if (noInLib == 0) {
-                    JOptionPane.showMessageDialog(getView(), "Out of stock!",
+                    JOptionPane.showMessageDialog(view, "Out of stock!",
                             "Warning!", JOptionPane.INFORMATION_MESSAGE);
                     //If out of stock remove it on set
                     set.remove(view.getTblBoth().getValueAt(
@@ -295,10 +295,10 @@ public class CheckOutController {
 
             public void run() {
                 AccessBook.getInstance().searchBook(bookModel,
-                        getView().getTxtCallNoBook().getText(),
-                        getView().getTxtISBNBook().getText(),
-                        getView().getTxtTitlBook().getText(),
-                        getView().getTxtAthBook().getText());
+                        view.getTxtCallNoBook().getText(),
+                        view.getTxtISBNBook().getText(),
+                        view.getTxtTitlBook().getText(),
+                        view.getTxtAthBook().getText());
             }
         }).start();
     }

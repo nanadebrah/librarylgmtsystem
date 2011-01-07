@@ -120,8 +120,16 @@ public class EmployeeController {
             }
         });
 
+        //Add event delte btn
+        view.getBtnDelEmp().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                deleteEmp();
+            }
+        });
+
         //Add event enter key
-        getView().getTxtIdEmp().addKeyListener(new KeyAdapter() {
+        view.getTxtIdEmp().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -129,7 +137,7 @@ public class EmployeeController {
                 }
             }
         });
-        getView().getTxtNameEmp().addKeyListener(new KeyAdapter() {
+        view.getTxtNameEmp().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -137,6 +145,33 @@ public class EmployeeController {
                 }
             }
         });
+    }
+
+    /**
+     * 
+     */
+    private void deleteEmp() {
+        parent.doBlur();
+        int sure = JOptionPane.showConfirmDialog(parent.getView(),
+                "You sure want delete this employee!",
+                "Delete employee", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+        if (sure == JOptionPane.OK_OPTION) {
+            //Get Id employee selected
+            String empID = view.getTblEmp().getValueAt(
+                    view.getTblEmp().getSelectedRow(), 0).toString();
+            if (!AccessEmp.getInstance().deleteEmp(Integer.parseInt(empID))) {
+                JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
+                        + "Because this employee is borrowing many book.", "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(parent.getView(),
+                        "Delete successful!", "Successful!",
+                        JOptionPane.INFORMATION_MESSAGE);
+                empModel.removeRow(view.getTblEmp().getSelectedRow());
+            }
+        }
+        parent.doBlur();
     }
 
     /**
@@ -167,7 +202,7 @@ public class EmployeeController {
         //Update data on database
         if (editEmp.getEmp() != null) {
             if (AccessEmp.getInstance().editEmp(editEmp.getEmp())) {
-                JOptionPane.showMessageDialog(getView(), "Update successful",
+                JOptionPane.showMessageDialog(view, "Update successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
                 //Remove old data on table model
                 empModel.removeRow(view.getTblEmp().getSelectedRow());
@@ -190,7 +225,7 @@ public class EmployeeController {
         //invoked method add employee
         if (addEmp.getEmp() != null) {
             if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
-                JOptionPane.showMessageDialog(getView(), "Add successful",
+                JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
                 //Add new employee to table
                 addEmp.getEmp().setEmpID(AccessEmp.getInstance().getNewestEmp());

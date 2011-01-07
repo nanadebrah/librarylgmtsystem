@@ -21,63 +21,68 @@ public class EditEmployeeController {
     private Employee emp = null;
     private EditEmpDialog view;
 
+    /**
+     * 
+     * @param view
+     * @param emp
+     */
     public EditEmployeeController(EditEmpDialog view, Employee emp) {
         this.view = view;
         this.emp = emp;
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
         //Set all old field of employee
         setField();
         //add event chang permission
-        getView().getCbxPermis().addItemListener(new ItemListener() {
+        view.getCbxPermis().addItemListener(new ItemListener() {
 
             public void itemStateChanged(ItemEvent e) {
                 //If  permission is employee, it doesn't need password
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     if (e.getItem().equals("Employee")) {
-                        getView().getTxtPass().setVisible(false);
-                        getView().getLblPass().setVisible(false);
+                        view.getTxtPass().setVisible(false);
+                        view.getLblPass().setVisible(false);
                     } else {
-                        getView().getTxtPass().setVisible(true);
-                        getView().getLblPass().setVisible(true);
+                        view.getTxtPass().setVisible(true);
+                        view.getLblPass().setVisible(true);
                     }
                 }
             }
         });
         //Add event cancel btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 emp = null;
-                getView().dispose();
+                view.dispose();
             }
         });
         //Add event add btn
-        getView().getBtnSave().addActionListener(new ActionListener() {
+        view.getBtnSave().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 toObject();
-                getView().dispose();
+                view.dispose();
             }
         });
         //Add event windows closing
-        getView().addWindowListener(new java.awt.event.WindowAdapter() {
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 emp = null;
-                getView().dispose();
+                view.dispose();
             }
 
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 //If employee, hiden passtext and pass label
                 if (emp.getPermission() == 0) {
-                    getView().getTxtPass().setVisible(false);
-                    getView().getLblPass().setVisible(false);
+                    view.getTxtPass().setVisible(false);
+                    view.getLblPass().setVisible(false);
                 }
             }
         });
@@ -87,47 +92,47 @@ public class EditEmployeeController {
      * Set all info to field
      */
     private void setField() {
-        if (getEmp() != null) {
-            getView().getTxtName().setText(getEmp().getName());
-            if (getEmp().getGender() == 1) {
-                getView().getRdbMale().setSelected(true);
+        if (emp != null) {
+            view.getTxtName().setText(emp.getName());
+            if (emp.getGender() == 1) {
+                view.getRdbMale().setSelected(true);
             } else {
-                getView().getRdbFemale().setSelected(true);
+                view.getRdbFemale().setSelected(true);
             }
-            java.util.Date date = new java.util.Date(getEmp().getDOB());
-            getView().getTxtDOB().setDate(date);
-            getView().getTxtAdd().setText(getEmp().getAddress());
-            getView().getTxtEmail().setText(getEmp().getEmail());
-            getView().getTxtPhone().setText(getEmp().getPhone());
-            getView().getTxtDepart().setText(getEmp().getDepartment());
-            if (getEmp().getPermission() == 1) {
-                getView().getCbxPermis().setSelectedIndex(0);
+            java.util.Date date = new java.util.Date(emp.getDOB());
+            view.getTxtDOB().setDate(date);
+            view.getTxtAdd().setText(emp.getAddress());
+            view.getTxtEmail().setText(emp.getEmail());
+            view.getTxtPhone().setText(emp.getPhone());
+            view.getTxtDepart().setText(emp.getDepartment());
+            if (emp.getPermission() == 1) {
+                view.getCbxPermis().setSelectedIndex(0);
             } else {
-                getView().getCbxPermis().setSelectedIndex(1);
+                view.getCbxPermis().setSelectedIndex(1);
             }
         }
     }
 
-    /*
+    /**
      * Transfer all field to object
      */
     private void toObject() {
-        getEmp().setName(getView().getTxtName().getText());
-        if (getView().getRdbMale().isSelected()) {
-            getEmp().setGender(1);
+        emp.setName(view.getTxtName().getText());
+        if (view.getRdbMale().isSelected()) {
+            emp.setGender(1);
         } else {
-            getEmp().setGender(0);
+            emp.setGender(0);
         }
-        getEmp().setDOB(getView().getTxtDOB().getDate().getTime());
-        getEmp().setAddress(getView().getTxtAdd().getText());
-        getEmp().setEmail(getView().getTxtEmail().getText());
-        getEmp().setPassword(new String(getView().getTxtPass().getPassword()));
-        getEmp().setPhone(getView().getTxtPhone().getText());
-        getEmp().setDepartment(getView().getTxtDepart().getText());
-        if (getView().getCbxPermis().getSelectedItem().toString().equals("Librarian")) {
-            getEmp().setPermission(1);
+        emp.setDOB(view.getTxtDOB().getDate().getTime());
+        emp.setAddress(view.getTxtAdd().getText());
+        emp.setEmail(view.getTxtEmail().getText());
+        emp.setPassword(new String(view.getTxtPass().getPassword()));
+        emp.setPhone(view.getTxtPhone().getText());
+        emp.setDepartment(view.getTxtDepart().getText());
+        if (view.getCbxPermis().getSelectedItem().toString().equals("Librarian")) {
+            emp.setPermission(1);
         } else {
-            getEmp().setPermission(0);
+            emp.setPermission(0);
         }
     }
 

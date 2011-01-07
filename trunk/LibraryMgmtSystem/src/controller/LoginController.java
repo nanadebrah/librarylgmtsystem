@@ -53,6 +53,11 @@ public class LoginController {
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
 
+    /**
+     * 
+     * @param view
+     * @param manageControl
+     */
     public LoginController(LoginFrm view, ManageController manageControl) {
         this.view = view;
         this.manageControl = manageControl;
@@ -69,7 +74,7 @@ public class LoginController {
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
-        jc = (JComponent) getView().getContentPane();
+        jc = (JComponent) view.getContentPane();
         //Create new instance of layer
         layer = new JXLayer<JComponent>(jc);
         //Set layer blur effect
@@ -86,7 +91,7 @@ public class LoginController {
                 doBlur();
                 //Display setting dialog
                 new SettingController(new SettingDialog(
-                        getView(), true)).getView().setVisible(true);
+                        view, true)).getView().setVisible(true);
                 //Blur layer
                 doBlur();
             }
@@ -97,7 +102,7 @@ public class LoginController {
 
             public void actionPerformed(ActionEvent e) {
                 //Dispose this frame
-                getView().dispose();
+                view.dispose();
                 System.exit(0);
             }
         });
@@ -106,7 +111,7 @@ public class LoginController {
         view.getMnAbout().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().setVisible(false);//hidden current frame
+                view.setVisible(false);//hidden current frame
                 about = new AboutWindow(view);
             }
         });
@@ -152,7 +157,7 @@ public class LoginController {
      */
     private void doBlur() {
         //set layer blur to pane
-        getView().setContentPane(layer);
+        view.setContentPane(layer);
         blurUI.setLocked(!blurUI.isLocked());
     }
 

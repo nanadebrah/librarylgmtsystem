@@ -58,6 +58,10 @@ public class ManageController {
     private JComponent jc;
     private LoginController loginConrol;
 
+    /**
+     * 
+     * @param view
+     */
     public ManageController(ManageFrm view) {
         this.view = view;
         initComponent();
@@ -195,8 +199,8 @@ public class ManageController {
         view.getMnAbout().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                getView().setVisible(false);//hidden current frame
-                about = new AboutWindow(getView());
+                view.setVisible(false);//hidden current frame
+                about = new AboutWindow(view);
             }
         });
 
@@ -214,7 +218,7 @@ public class ManageController {
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
-        jc = (JComponent) getView().getContentPane();
+        jc = (JComponent) view.getContentPane();
         //Create new instance of layer
         layer = new JXLayer<JComponent>(jc);
         //Set layer blur effect
@@ -237,7 +241,8 @@ public class ManageController {
     }
 
     /**
-     * Remove all field on model
+     * 
+     * @param model
      */
     public void removeModel(DefaultTableModel model) {
         int row = model.getRowCount();

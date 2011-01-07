@@ -95,10 +95,10 @@ public class BorrowController {
         };
 
         //Set selection mode
-        getView().getTblBor().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        view.getTblBor().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Add model to table
-        getView().getTblBor().setModel(borModel);
+        view.getTblBor().setModel(borModel);
 
         //Set searchModel
         searchModel.addColumn("Borrow ID");
@@ -148,7 +148,7 @@ public class BorrowController {
         empModel.addColumn("Permission");
 
         //Add event fee rate btn
-        getView().getBtnFee().addActionListener(new ActionListener() {
+        view.getBtnFee().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -157,7 +157,7 @@ public class BorrowController {
         });
 
         //Add event check out btn
-        getView().getBtnChkOut().addActionListener(new ActionListener() {
+        view.getBtnChkOut().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -166,7 +166,7 @@ public class BorrowController {
         });
 
         //Add event check in btn
-        getView().getBtnChkIn().addActionListener(new ActionListener() {
+        view.getBtnChkIn().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -175,7 +175,7 @@ public class BorrowController {
         });
 
         //Add event search btn
-        getView().getBtnSearchBor().addActionListener(new ActionListener() {
+        view.getBtnSearchBor().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -184,7 +184,7 @@ public class BorrowController {
         });
 
         //Add event view btn
-        getView().getBtnViewBor().addActionListener(new ActionListener() {
+        view.getBtnViewBor().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 viewBorrowInfo();
@@ -192,14 +192,14 @@ public class BorrowController {
         });
 
         //Add event to borrow table
-        getView().getTblBor().addFocusListener(new FocusAdapter() {
+        view.getTblBor().addFocusListener(new FocusAdapter() {
 
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tableFocus();
             }
         });
 
-        getView().getTblBor().addMouseListener(new MouseAdapter() {
+        view.getTblBor().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //Set enable acction button
@@ -251,7 +251,7 @@ public class BorrowController {
         checkIn.getView().setVisible(true);
         if (checkIn.getCheckin() != null) {
             JOptionPane.showMessageDialog(view,
-                    "Check-in successful!", "Checked-in",
+                    "Check-in successful!", "Check-in",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         parent.doBlur();
@@ -269,7 +269,7 @@ public class BorrowController {
 
         if (checkOut.getBorDetail() != null) {
             JOptionPane.showMessageDialog(view,
-                    "Check-out successful!", "Checked-out",
+                    "Check-out successful!", "Check-out",
                     JOptionPane.INFORMATION_MESSAGE);
         }
         parent.doBlur();
@@ -285,7 +285,7 @@ public class BorrowController {
         feeControl.getView().setVisible(true);
         if (feeControl.getFee() != null) {
             AccessFee.getInstance().editFee(feeControl.getFee());
-            JOptionPane.showMessageDialog(getView(), "Update successful",
+            JOptionPane.showMessageDialog(view, "Update successful",
                     "Successful!", JOptionPane.INFORMATION_MESSAGE);
         }
         parent.doBlur();
@@ -297,8 +297,8 @@ public class BorrowController {
     public void searchBorrow() {
         parent.removeModel(borModel);
         AccessBorrow.getInstance().searchBor(borModel,
-                getView().getTxtEmpID().getText(),
-                getView().getTxtCallNoBor().getText());
+                view.getTxtEmpID().getText(),
+                view.getTxtCallNoBor().getText());
     }
 
     /**

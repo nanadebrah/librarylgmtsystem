@@ -31,33 +31,33 @@ public class EditSubjectController {
      */
     private void initComponent() {
         //Set field
-        getView().getTxtName().setText(sub.getSubName());
-        getView().getTxtDes().setText(sub.getDescription());
+        view.getTxtName().setText(sub.getSubName());
+        view.getTxtDes().setText(sub.getDescription());
 
         //Add event cancel btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 sub=null;
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add event close window
-        getView().addWindowListener(new java.awt.event.WindowAdapter() {
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 sub=null;
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add event save btn
-        getView().getBtnSave().addActionListener(new ActionListener() {
+        view.getBtnSave().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                sub.setSubName(getView().getTxtName().getText());
-                sub.setDescription(getView().getTxtDes().getText());
-                getView().dispose();
+                sub.setSubName(view.getTxtName().getText());
+                sub.setDescription(view.getTxtDes().getText());
+                view.dispose();
             }
         });
     }

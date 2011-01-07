@@ -57,9 +57,9 @@ public class FeeRateDialog extends javax.swing.JDialog {
 
         btnCancel.setText("Cancel");
 
-        txtDayFee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtDayFee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤###0.00;(¤###0.00)"))));
 
-        txtLateFee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        txtLateFee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤###0.00;(¤###0.00)"))));
 
         org.jdesktop.layout.GroupLayout FeePalLayout = new org.jdesktop.layout.GroupLayout(FeePal);
         FeePal.setLayout(FeePalLayout);

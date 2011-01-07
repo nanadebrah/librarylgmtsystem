@@ -17,7 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import model.AccessBook;
 import view.AddBokDialog;
 import view.EditBokDialog;
-import view.ManageFrm;
 import view.PalBook;
 import view.ViewBookDialog;
 
@@ -49,9 +48,9 @@ public class BookController {
     private void initComponent() {
 
         //Set selection mode
-        getView().getTblBook().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        view.getTblBook().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
-        getView().getTblBook().setModel(bookModel);
+        view.getTblBook().setModel(bookModel);
         //Set model
         bookModel.addColumn("Call Number");
         bookModel.addColumn("ISBN");
@@ -61,14 +60,14 @@ public class BookController {
         bookModel.addColumn("Copies/Store");
 
         //Add event to book table
-        getView().getTblBook().addFocusListener(new FocusAdapter() {
+        view.getTblBook().addFocusListener(new FocusAdapter() {
 
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tableFocus();
             }
         });
 
-        getView().getTblBook().addMouseListener(new MouseAdapter() {
+        view.getTblBook().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //Set enable acction button
@@ -83,7 +82,7 @@ public class BookController {
         });
 
         //Add event view btn
-        getView().getBtnViewBook().addActionListener(new ActionListener() {
+        view.getBtnViewBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 viewBook();
@@ -91,7 +90,7 @@ public class BookController {
         });
 
         //Add event add btn
-        getView().getBtnAddBook().addActionListener(new ActionListener() {
+        view.getBtnAddBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -100,7 +99,7 @@ public class BookController {
         });
 
         //Add event search btn
-        getView().getBtnSearchBook().addActionListener(new ActionListener() {
+        view.getBtnSearchBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
@@ -109,15 +108,23 @@ public class BookController {
         });
 
         //Add event edit btn
-        getView().getBtnEditBook().addActionListener(new ActionListener() {
+        view.getBtnEditBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 editBook();
             }
         });
 
+        //Add event del btn
+        view.getBtnDelBook().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                deleteBook();
+            }
+        });
+
         //Add enter key search
-        getView().getTxtAthBook().addKeyListener(new KeyAdapter() {
+        view.getTxtAthBook().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -125,7 +132,7 @@ public class BookController {
                 }
             }
         });
-        getView().getTxtCallNoBook().addKeyListener(new KeyAdapter() {
+        view.getTxtCallNoBook().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -133,7 +140,7 @@ public class BookController {
                 }
             }
         });
-        getView().getTxtISBNBook().addKeyListener(new KeyAdapter() {
+        view.getTxtISBNBook().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -141,7 +148,7 @@ public class BookController {
                 }
             }
         });
-        getView().getTxtTitlBook().addKeyListener(new KeyAdapter() {
+        view.getTxtTitlBook().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -149,6 +156,33 @@ public class BookController {
                 }
             }
         });
+    }
+
+    /**
+     * 
+     */
+    private void deleteBook() {
+        parent.doBlur();
+        int sure = JOptionPane.showConfirmDialog(parent.getView(),
+                "You sure want delete this book!",
+                "Delete book", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+        if (sure == JOptionPane.OK_OPTION) {
+            //Get Id employee selected
+            String callNumber = view.getTblBook().getValueAt(
+                    view.getTblBook().getSelectedRow(), 0).toString();
+            if (!AccessBook.getInstance().deleteBook(callNumber)) {
+                JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
+                        + "Because this book is borrowing by some one!", "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(parent.getView(),
+                        "Delete successful!", "Successful!",
+                        JOptionPane.INFORMATION_MESSAGE);
+                bookModel.removeRow(view.getTblBook().getSelectedRow());
+            }
+        }
+        parent.doBlur();
     }
 
     /**
@@ -168,7 +202,7 @@ public class BookController {
         //Update data on database
         if (editBook.getBook() != null) {
             if (AccessBook.getInstance().editBook(editBook.getBook())) {
-                JOptionPane.showMessageDialog(getView(), "Update successful",
+                JOptionPane.showMessageDialog(view, "Update successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
                 //Remove old data on table model
                 bookModel.removeRow(view.getTblBook().getSelectedRow());
@@ -206,10 +240,10 @@ public class BookController {
 
             public void run() {
                 AccessBook.getInstance().searchBook(bookModel,
-                        getView().getTxtCallNoBook().getText(),
-                        getView().getTxtISBNBook().getText(),
-                        getView().getTxtTitlBook().getText(),
-                        getView().getTxtAthBook().getText());
+                        view.getTxtCallNoBook().getText(),
+                        view.getTxtISBNBook().getText(),
+                        view.getTxtTitlBook().getText(),
+                        view.getTxtAthBook().getText());
             }
         }).start();
     }
@@ -225,7 +259,7 @@ public class BookController {
         //invoked method add employee
         if (addBook.getBook() != null) {
             if (AccessBook.getInstance().addBook(addBook.getBook())) {
-                JOptionPane.showMessageDialog(getView(), "Add successful",
+                JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
             }
             //Add new row

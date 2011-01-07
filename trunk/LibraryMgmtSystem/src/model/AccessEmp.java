@@ -253,6 +253,7 @@ public class AccessEmp {
             LibConnection.close(cn);
         }
     }
+
     /**
      *
      * @return
@@ -279,5 +280,29 @@ public class AccessEmp {
             LibConnection.close(cn);
         }
         return 0;
+    }
+
+    /**
+     * 
+     * @param empID
+     * @return
+     */
+    public boolean deleteEmp(int empID) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.DETELE_EMP);
+            csDetails.setInt(1, empID);
+            if (csDetails.execute()) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return true;
     }
 }

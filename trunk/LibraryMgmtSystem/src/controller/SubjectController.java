@@ -63,7 +63,7 @@ public class SubjectController {
         subModel.addColumn("Description");
 
         //Add event add btn
-        getView().getBtnAddSub().addActionListener(new ActionListener() {
+        view.getBtnAddSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 addSubject();
@@ -71,7 +71,7 @@ public class SubjectController {
         });
 
         //Add event search btn
-        getView().getBtnSearchSub().addActionListener(new ActionListener() {
+        view.getBtnSearchSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 searchSubject();
@@ -79,7 +79,7 @@ public class SubjectController {
         });
 
         //Add event edit btn
-        getView().getBtnEditSub().addActionListener(new ActionListener() {
+        view.getBtnEditSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 editSubject();
@@ -87,10 +87,18 @@ public class SubjectController {
         });
 
         //Add event view btn
-        getView().getBtnViewSub().addActionListener(new ActionListener() {
+        view.getBtnViewSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 viewSubject();
+            }
+        });
+
+        //Add event del btn
+        view.getBtnDelSub().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                deleteEmp();
             }
         });
 
@@ -134,10 +142,34 @@ public class SubjectController {
         });
     }
 
+    private void deleteEmp() {
+        parent.doBlur();
+        int sure = JOptionPane.showConfirmDialog(parent.getView(),
+                "You sure want delete this subject!",
+                "Delete subject", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+        if (sure == JOptionPane.OK_OPTION) {
+            //Get Id employee selected
+            String subID = view.getTblSub().getValueAt(
+                    view.getTblSub().getSelectedRow(), 0).toString();
+            if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {
+                JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
+                        + "Because many book is using this subject.", "Error!",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(parent.getView(),
+                        "Delete successful!", "Successful!",
+                        JOptionPane.INFORMATION_MESSAGE);
+                subModel.removeRow(view.getTblSub().getSelectedRow());
+            }
+        }
+        parent.doBlur();
+    }
+
     /**
      * View subject
      */
-    private void viewSubject(){
+    private void viewSubject() {
         //Get Id employee selected
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
@@ -145,7 +177,7 @@ public class SubjectController {
         Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
-        viewSubject=new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
+        viewSubject = new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
         viewSubject.getView().setVisible(true);
         tableFocus();
         parent.doBlur();
@@ -154,7 +186,7 @@ public class SubjectController {
     /**
      * Edit subject
      */
-    private void editSubject(){
+    private void editSubject() {
         parent.doBlur();
         //Get Id employee selected
         String subID = view.getTblSub().getValueAt(

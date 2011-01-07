@@ -35,31 +35,31 @@ public class AddBookController {
      */
     private void initComponent() {
         //Create new instance of book
-        setBook(new Book());
+        book = new Book();
 
         //Add default value
-        getView().getTxtNoCop().setValue(1);
-        getView().getTxtNoInLib().setValue(1);
+        view.getTxtNoCop().setValue(1);
+        view.getTxtNoInLib().setValue(1);
 
         //Add event cancel btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                setBook(null);
-                getView().dispose();
+                book = null;
+                view.dispose();
             }
         });
 
         //Add window event
-        getView().addWindowListener(new WindowAdapter() {
+        view.addWindowListener(new WindowAdapter() {
 
             public void windowClosing(WindowEvent evt) {
-                setBook(null);
+                book = null;
             }
         });
 
         //Add event window opened
-        getView().addWindowListener(new java.awt.event.WindowAdapter() {
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
 
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 new Thread(new Runnable() {
@@ -68,7 +68,7 @@ public class AddBookController {
                         //Load subject list
                         String[] subList = AccessSub.getInstance().getAllSubjectName().split(",");
                         for (String subName : subList) {
-                            getView().getCbxSub().addItem(subName);
+                            view.getCbxSub().addItem(subName);
                         }
                     }
                 }).start();
@@ -76,28 +76,28 @@ public class AddBookController {
         });
 
         //Add event add btn
-        getView().getBtnAdd().addActionListener(new ActionListener() {
+        view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 //set object
                 toObject();
                 //Dispose this dialog
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add event sniper txt no book
-        getView().getTxtNoCop().addChangeListener(new ChangeListener() {
+        view.getTxtNoCop().addChangeListener(new ChangeListener() {
 
             public void stateChanged(ChangeEvent e) {
                 //set min value
-                if(Integer.parseInt(
-                        getView().getTxtNoCop().getValue().toString())<1){
-                    getView().getTxtNoCop().setValue(1);
+                if (Integer.parseInt(
+                        view.getTxtNoCop().getValue().toString()) < 1) {
+                    view.getTxtNoCop().setValue(1);
                 }
                 //set both field
-                getView().getTxtNoInLib().setValue(
-                        getView().getTxtNoCop().getValue());
+                view.getTxtNoInLib().setValue(
+                        view.getTxtNoCop().getValue());
             }
         });
     }
@@ -106,18 +106,18 @@ public class AddBookController {
      * get all field to object
      */
     private void toObject() {
-        getBook().setISBN(getView().getTxtISBN().getText());
-        getBook().setTitle(getView().getTxtTitle().getText());
-        getBook().setAuthName(getView().getTxtAuthor().getText());
-        getBook().setPublisher(getView().getTxtPublish().getText());
-        getBook().setNoOfCopy(new Integer(
-                getView().getTxtNoCop().getValue().toString()));
-        getBook().setNoInLib(new Integer(
-                getView().getTxtNoInLib().getValue().toString()));
-        getBook().setSubID(AccessSub.getInstance().getSubjectID(
-                getView().getCbxSub().getSelectedItem().toString()));
-        getBook().setCallNumber(LibBook.getInstance().generateCallNo(getBook()));
-        getBook().setFixCallNumber(getBook().getCallNumber());
+        book.setISBN(view.getTxtISBN().getText());
+        book.setTitle(view.getTxtTitle().getText());
+        book.setAuthName(view.getTxtAuthor().getText());
+        book.setPublisher(view.getTxtPublish().getText());
+        book.setNoOfCopy(new Integer(
+                view.getTxtNoCop().getValue().toString()));
+        book.setNoInLib(new Integer(
+                view.getTxtNoInLib().getValue().toString()));
+        book.setSubID(AccessSub.getInstance().getSubjectID(
+                view.getCbxSub().getSelectedItem().toString()));
+        book.setCallNumber(LibBook.getInstance().generateCallNo(book));
+        book.setFixCallNumber(book.getCallNumber());
     }
 
     /**

@@ -31,32 +31,33 @@ public class AddSubjectController {
      */
     private void initComponent() {
         //Create new employee
-        setSub(new Subject());
-        
+        sub = new Subject();
+
         //Add event close btn
-        getView().getBtnCancel().addActionListener(new ActionListener() {
+        view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 sub = null;
-                getView().dispose();
+                view.dispose();
             }
         });
-        
+
         //Add event add btn
-        getView().getBtnAdd().addActionListener(new ActionListener() {
+        view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 //set object
                 toObject();
                 //Dispose this dialog
-                getView().dispose();
+                view.dispose();
             }
         });
 
         //Add window event
         view.addWindowListener(new WindowAdapter() {
+
             public void windowClosing(WindowEvent evt) {
-                sub=null;
+                sub = null;
             }
         });
     }
@@ -64,9 +65,9 @@ public class AddSubjectController {
     /*
      * Transfer all field to object
      */
-    private void toObject(){
-        sub.setSubName(getView().getTxtName().getText());
-        sub.setDescription(getView().getTxtDes().getText());
+    private void toObject() {
+        sub.setSubName(view.getTxtName().getText());
+        sub.setDescription(view.getTxtDes().getText());
     }
 
     /**
