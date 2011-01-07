@@ -11,9 +11,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBorrow;
 import model.AccessFee;
+import view.CheckInDialog;
 import view.CheckOutDialog;
 import view.FeeRateDialog;
-import view.ManageFrm;
 import view.PalBorrow;
 
 /**
@@ -27,10 +27,13 @@ public class BorrowController {
     private DefaultTableModel borModel;
     private ManageController parent;
     private CheckOutController checkOut;
+    private CheckInController checkIn;
     private FeeRateController feeControl;
     private DefaultTableModel bookModel;
     private DefaultTableModel empModel;
     private DefaultTableModel outModel;
+    private DefaultTableModel inModel;
+    private DefaultTableModel searchModel;
 
     public BorrowController(PalBorrow view,
             DefaultTableModel borModel, ManageController parent) {
@@ -46,12 +49,21 @@ public class BorrowController {
     private void initComponent() {
 
         //Create book model
+        searchModel = new DefaultTableModel() {
+
+            public boolean isCellEditable(int column, int row) {
+                return false;
+            }
+        };
+
+        //Create book model
         bookModel = new DefaultTableModel() {
 
             public boolean isCellEditable(int column, int row) {
                 return false;
             }
         };
+
         //Create employee model
         empModel = new DefaultTableModel() {
 
@@ -66,6 +78,13 @@ public class BorrowController {
                 return false;
             }
         };
+        //Create check-in model
+        inModel = new DefaultTableModel() {
+
+            public boolean isCellEditable(int column, int row) {
+                return false;
+            }
+        };
 
         //Set selection mode
         getView().getTblBor().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -73,6 +92,21 @@ public class BorrowController {
         //Add model to table
         getView().getTblBor().setModel(borModel);
 
+        //Set searchModel
+        searchModel.addColumn("Borrow ID");
+        searchModel.addColumn("Employee ID");
+        searchModel.addColumn("Call Number");
+        searchModel.addColumn("Title");
+        searchModel.addColumn("Auth");
+        searchModel.addColumn("Publisher");
+        searchModel.addColumn("Due Date");
+                //Set int model
+        inModel.addColumn("Borrow ID");
+        inModel.addColumn("Call Number");
+        inModel.addColumn("ISBN");
+        inModel.addColumn("Day Borrow/Fee");
+        inModel.addColumn("Day Late/Fine");
+        inModel.addColumn("Total Fee");
         //Set bor model
         borModel.addColumn("Borrow ID");
         borModel.addColumn("Employee ID");
@@ -113,17 +147,15 @@ public class BorrowController {
         getView().getBtnChkOut().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                checkOut = new CheckOutController(
-                        new CheckOutDialog(parent.getView(), true),
-                        bookModel, empModel, outModel, parent);
-                checkOut.getView().setVisible(true);
+                checkOut();
+            }
+        });
 
-                if (checkOut.getBorDetail() != null) {
-                    JOptionPane.showMessageDialog(view,
-                            "Check-out successful!", "Checking-out",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    AccessBorrow.getInstance().getNewestBorrow(borModel);
-                }
+        //Add event check in btn
+        getView().getBtnChkIn().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                checkIn();
             }
         });
 
@@ -134,6 +166,30 @@ public class BorrowController {
                 searchBorrow();
             }
         });
+    }
+
+    private void checkIn() {
+        checkIn = new CheckInController(
+                new CheckInDialog(parent.getView(), true),
+                searchModel, inModel, parent);
+        checkIn.getView().setVisible(true);
+    }
+
+    /**
+     *
+     */
+    private void checkOut() {
+        checkOut = new CheckOutController(
+                new CheckOutDialog(parent.getView(), true),
+                bookModel, empModel, outModel, parent);
+        checkOut.getView().setVisible(true);
+
+        if (checkOut.getBorDetail() != null) {
+            JOptionPane.showMessageDialog(view,
+                    "Check-out successful!", "Checking-out",
+                    JOptionPane.INFORMATION_MESSAGE);
+            AccessBorrow.getInstance().getNewestBorrow(borModel);
+        }
     }
 
     /**

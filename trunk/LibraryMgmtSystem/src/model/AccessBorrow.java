@@ -42,7 +42,7 @@ public class AccessBorrow {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.ADDBORROW);
+            csDetails = cn.prepareCall(LibProcedure.ADD_BORROW);
             csDetails.setInt(1, EmpID);
             csDetails.execute();
             return true;
@@ -66,7 +66,7 @@ public class AccessBorrow {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.ADDBORDETAIL);
+            csDetails = cn.prepareCall(LibProcedure.ADD_BORDETAIL);
             csDetails.setInt(1, borDetail.getBorID());
             csDetails.setString(2, borDetail.getCallNumber());
             csDetails.setInt(3, borDetail.getIssueStatus());
@@ -95,7 +95,7 @@ public class AccessBorrow {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETNEWESTBORROWID);
+            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_BORROWID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 return rsDetails.getInt(1);
@@ -111,13 +111,18 @@ public class AccessBorrow {
         return 0;
     }
 
-    public BorrowDetail getNewestBorrow(DefaultTableModel borModel) {
+    /**
+     *
+     * @param borModel
+     * @return
+     */
+    public void getNewestBorrow(DefaultTableModel borModel) {
         BorrowDetail borDetail = new BorrowDetail();
         int newestID=getNewestBorrowID();
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETBORROWBYBORID);
+            csDetails = cn.prepareCall(LibProcedure.GET_BORROW_BY_BORID);
             csDetails.setInt(1, newestID);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
@@ -137,7 +142,6 @@ public class AccessBorrow {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return null;
     }
 
     /**
@@ -153,19 +157,19 @@ public class AccessBorrow {
         try {
             if (EmpID.length() == 0 && CallNo.length() != 0) {
                 //Search CallNo only
-                csDetails = cn.prepareCall(LibProcedure.GETBORBYCALLNO);
+                csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_CALLNO);
                 csDetails.setString(1, CallNo);
             } else if (EmpID.length() != 0 && CallNo.length() == 0) {
                 //Search EmpID only
-                csDetails = cn.prepareCall(LibProcedure.GETBORBYEMPID);
+                csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_EMPID);
                 csDetails.setInt(1, new Integer(EmpID));
             } else if (EmpID.length() != 0 && CallNo.length() != 0) {
                 //Search both ID & CallNo
-                csDetails = cn.prepareCall(LibProcedure.GETBORBYBOTH);
+                csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_BOTH);
                 csDetails.setString(1, CallNo);
                 csDetails.setInt(2, new Integer(EmpID));
             } else {
-                csDetails = cn.prepareCall(LibProcedure.GETALLBORROW);
+                csDetails = cn.prepareCall(LibProcedure.GET_ALL_BORROW);
             }
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {

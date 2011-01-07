@@ -64,14 +64,14 @@ public class CheckOutController {
         getView().getLblFee1().setText("$" + Float.toString(borFee) + "/Day | $"
                 + Float.toString(lateFee) + "/Late Day");
 
-        //Set default issue day and return day
+        //Set default issue date and due date
         getView().getTxtIssueDate().setDate(new java.util.Date());
         getView().getTxtDueDate().setDate(new java.util.Date(
                 new java.util.Date().getTime() + 432000000));
 
         //Create new set
         set = new HashSet();
-        //Set selection mode
+        //Set selection mode;
         getView().getTblBoth().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Add check out model
@@ -134,6 +134,7 @@ public class CheckOutController {
 
                     if (sure == JOptionPane.OK_OPTION) {
                         checkOut();
+                        parent.removeModel(outModel);
                         getView().dispose();
                     }
                 } else {
@@ -171,6 +172,9 @@ public class CheckOutController {
         });
     }
 
+    /**
+     * 
+     */
     private void checkOut() {
         //Add new borrow to databse
         AccessBorrow.getInstance().addBorrow(empID);

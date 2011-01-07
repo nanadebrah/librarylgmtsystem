@@ -320,7 +320,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         lblDueDate.setText("Due Date:");
 
-        lblFee.setText("Fee:");
+        lblFee.setText("Fee Rate:");
 
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -368,7 +368,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         jSplitPane2.setRightComponent(jPanel4);
 
-        scrPanCheckOut.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Selected"));
+        scrPanCheckOut.setBorder(javax.swing.BorderFactory.createTitledBorder("Check-Out"));
 
         tblCheckOut.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

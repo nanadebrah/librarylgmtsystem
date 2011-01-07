@@ -51,7 +51,7 @@ public class FeeRateDialog extends javax.swing.JDialog {
 
         lblDayFee.setText("Day Fee:");
 
-        lblLateFee.setText("Late Fee:");
+        lblLateFee.setText("Late Fine:");
 
         btnChange.setText("Change");
 

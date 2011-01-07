@@ -42,7 +42,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.ADDBOOK);
+            csDetails = cn.prepareCall(LibProcedure.ADD_BOOK);
             csDetails.setString(1, book.getCallNumber());
             csDetails.setString(2, book.getISBN());
             csDetails.setInt(3, book.getSubID());
@@ -74,7 +74,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.EDITBOOK);
+            csDetails = cn.prepareCall(LibProcedure.EDIT_BOOK);
             csDetails.setString(1, book.getCallNumber());
             csDetails.setString(2, book.getFixCallNumber());
             csDetails.setString(3, book.getISBN());
@@ -107,7 +107,7 @@ public class AccessBook {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETBOOK);
+            csDetails = cn.prepareCall(LibProcedure.GET_BOOK);
             csDetails.setString(1, callNo);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -149,7 +149,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
         try {
             //Search both ID & Name
-            csDetails = cn.prepareCall(LibProcedure.SEARCHBOOK);
+            csDetails = cn.prepareCall(LibProcedure.SEARCH_BOOK);
             csDetails.setString(1, CallNo);
             csDetails.setString(2, ISBN);
             csDetails.setString(3, Title);
@@ -185,7 +185,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETNEWESTBOOK);
+            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_BOOK);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 return rsDetails.getInt(1);

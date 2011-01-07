@@ -77,8 +77,8 @@ public class CheckInDialog extends javax.swing.JDialog {
         btnCancel = new javax.swing.JButton();
         lblIssueDate = new javax.swing.JLabel();
         lblReDate = new javax.swing.JLabel();
-        lblTolFee = new javax.swing.JLabel();
-        lblTolFee1 = new javax.swing.JLabel();
+        lblFee = new javax.swing.JLabel();
+        lblFee1 = new javax.swing.JLabel();
         txtIssueDate = new org.jdesktop.swingx.JXDatePicker();
         txtReDate = new org.jdesktop.swingx.JXDatePicker();
         jPanel8 = new javax.swing.JPanel();
@@ -108,7 +108,7 @@ public class CheckInDialog extends javax.swing.JDialog {
         jSplitPane2.setDividerLocation(500);
         jSplitPane2.setDividerSize(0);
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Borrower Infomation"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Infomation"));
 
         tolbarEmp.setBorder(null);
         tolbarEmp.setFloatable(false);
@@ -284,6 +284,8 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jPanel7.setLayout(new java.awt.BorderLayout());
 
+        scrPanBoth.setBorder(javax.swing.BorderFactory.createTitledBorder("Borrow Information"));
+
         tblBoth.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -326,7 +328,7 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         lblReDate.setText("Return Date:");
 
-        lblTolFee.setText("Total Fee:");
+        lblFee.setText("Fee Rate:");
 
         txtIssueDate.setEditable(false);
 
@@ -339,12 +341,12 @@ public class CheckInDialog extends javax.swing.JDialog {
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblTolFee)
+                            .add(lblFee)
                             .add(lblReDate)
                             .add(lblIssueDate))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblTolFee1)
+                            .add(lblFee1)
                             .add(txtReDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .add(txtIssueDate, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
                         .addContainerGap())
@@ -366,8 +368,8 @@ public class CheckInDialog extends javax.swing.JDialog {
                     .add(txtReDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(lblTolFee)
-                    .add(lblTolFee1))
+                    .add(lblFee)
+                    .add(lblFee1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnCheckIn)
@@ -376,7 +378,7 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jSplitPane3.setRightComponent(jPanel4);
 
-        scrPanCheckIn.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Selected"));
+        scrPanCheckIn.setBorder(javax.swing.BorderFactory.createTitledBorder("Check-In"));
 
         tblCheckIn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -600,6 +602,8 @@ public class CheckInDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblDOB1;
     private javax.swing.JLabel lblDepart;
     private javax.swing.JLabel lblDepart1;
+    private javax.swing.JLabel lblFee;
+    private javax.swing.JLabel lblFee1;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblGender1;
     private javax.swing.JLabel lblID;
@@ -617,8 +621,6 @@ public class CheckInDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblReDate;
     private javax.swing.JLabel lblTitlBook;
-    private javax.swing.JLabel lblTolFee;
-    private javax.swing.JLabel lblTolFee1;
     private javax.swing.JPanel palBorrowInfo1;
     private javax.swing.JPanel palCheck1;
     private javax.swing.JPanel palSearchBoth;
@@ -949,20 +951,6 @@ public class CheckInDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the lblTolFee1
-     */
-    public javax.swing.JLabel getLblTolFee1() {
-        return lblTolFee1;
-    }
-
-    /**
-     * @param lblTolFee1 the lblTolFee1 to set
-     */
-    public void setLblTolFee1(javax.swing.JLabel lblTolFee1) {
-        this.lblTolFee1 = lblTolFee1;
-    }
-
-    /**
      * @return the txtAthBook
      */
     public javax.swing.JTextField getTxtAthBook() {
@@ -1058,6 +1046,20 @@ public class CheckInDialog extends javax.swing.JDialog {
      */
     public void setTxtNameEmp(javax.swing.JTextField txtNameEmp) {
         this.txtNameEmp = txtNameEmp;
+    }
+
+    /**
+     * @return the lblFee1
+     */
+    public javax.swing.JLabel getLblFee1() {
+        return lblFee1;
+    }
+
+    /**
+     * @param lblFee1 the lblFee1 to set
+     */
+    public void setLblFee1(javax.swing.JLabel lblFee1) {
+        this.lblFee1 = lblFee1;
     }
 
 }

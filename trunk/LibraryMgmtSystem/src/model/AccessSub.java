@@ -40,7 +40,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.ADDSUB);
+            csDetails = cn.prepareCall(LibProcedure.ADD_SUB);
             csDetails.setString(1, sub.getSubName());
             csDetails.setString(2, sub.getDescription());
             csDetails.execute();
@@ -64,7 +64,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETSUBID);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUBID);
             csDetails.setString(1, subName);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -90,7 +90,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETSUBNAME);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUBNAME);
             csDetails.setInt(1, subID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -116,7 +116,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETALLSUBNAME);
+            csDetails = cn.prepareCall(LibProcedure.GET_ALL_SUBNAME);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 sub += rsDetails.getString(1) + ",";
@@ -144,7 +144,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETSUB);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUB);
             csDetails.setInt(1, SubID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -172,7 +172,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETALLSUB);
+            csDetails = cn.prepareCall(LibProcedure.GET_ALL_SUB);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 Vector vt = new Vector();
@@ -203,15 +203,15 @@ public class AccessSub {
         try {
             if (SubID.length() == 0 && SubName.length() != 0) {
                 //Save Name only
-                csDetails = cn.prepareCall(LibProcedure.GETSUBBYNAME);
+                csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_NAME);
                 csDetails.setString(1, SubName);
             } else if (SubID.length() != 0 && SubName.length() == 0) {
                 //Search EmpID only
-                csDetails = cn.prepareCall(LibProcedure.GETSUB);
+                csDetails = cn.prepareCall(LibProcedure.GET_SUB);
                 csDetails.setInt(1, new Integer(SubID));
             } else if (SubID.length() != 0 && SubName.length() != 0) {
                 //Search both ID & Name
-                csDetails = cn.prepareCall(LibProcedure.GETSUBBYBOTH);
+                csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_BOTH);
                 csDetails.setInt(1, new Integer(SubID));
                 csDetails.setString(2, SubName);
             } else {
@@ -246,7 +246,7 @@ public class AccessSub {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.EDITSUB);
+            csDetails = cn.prepareCall(LibProcedure.EDIT_SUB);
             csDetails.setInt(1, sub.getSubID());
             csDetails.setString(2, sub.getSubName());
             csDetails.setString(3, sub.getDescription());
@@ -272,7 +272,7 @@ public class AccessSub {
         //Defined book
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETNEWESTSUB);
+            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_SUB);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 return rsDetails.getInt(1);

@@ -40,7 +40,7 @@ public class AccessFee {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GETFEE);
+            csDetails = cn.prepareCall(LibProcedure.GET_FEE);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 fee = new Fee();
@@ -66,7 +66,7 @@ public class AccessFee {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.EDITFEE);
+            csDetails = cn.prepareCall(LibProcedure.EDIT_FEE);
             csDetails.setFloat(1, fee.getBorFee());
             csDetails.setFloat(2, fee.getLateFee());
             csDetails.execute();

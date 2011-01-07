@@ -46,7 +46,8 @@ public class EditSubDialog extends javax.swing.JDialog {
         txtDes = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("edit information for subject");
+        setTitle("Edit information for subject");
+        setResizable(false);
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_EDITSUB)));
 

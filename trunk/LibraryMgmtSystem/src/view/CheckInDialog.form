@@ -90,7 +90,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Borrower Infomation"/>
+                        <TitledBorder title="Employee Infomation"/>
                       </Border>
                     </Property>
                   </Properties>
@@ -400,6 +400,13 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                   <SubComponents>
                     <Container class="javax.swing.JScrollPane" name="scrPanBoth">
+                      <Properties>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                            <TitledBorder title="Borrow Information"/>
+                          </Border>
+                        </Property>
+                      </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
@@ -456,13 +463,13 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblTolFee" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblFee" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblReDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblIssueDate" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblTolFee1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblFee1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtReDate" alignment="0" pref="162" max="32767" attributes="0"/>
                                       <Component id="txtIssueDate" alignment="0" pref="162" max="32767" attributes="0"/>
                                   </Group>
@@ -492,8 +499,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblTolFee" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTolFee1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFee" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblFee1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -525,12 +532,12 @@
                     <Property name="text" type="java.lang.String" value="Return Date:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblTolFee">
+                <Component class="javax.swing.JLabel" name="lblFee">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Total Fee:"/>
+                    <Property name="text" type="java.lang.String" value="Fee Rate:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblTolFee1">
+                <Component class="javax.swing.JLabel" name="lblFee1">
                 </Component>
                 <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
                   <Properties>
@@ -571,7 +578,7 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Book Selected"/>
+                        <TitledBorder title="Check-In"/>
                       </Border>
                     </Property>
                   </Properties>
