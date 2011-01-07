@@ -1,6 +1,6 @@
 #summary Thông tin về dự án.
 
-= Introduction =
+= Introduction = (Bản dịch tiếng việt cho dễ hiểu)
 
 Mohan Ltd. là một thư viện được quản lý bằng tay bởi Ms. Monica. Tất cả các thông tin đều được ghi bằng giấy và Monica tìm thông tin rất khó khăn để quản lý khi một ai đó trả sách.Cô ấy đã duy trì 1 danh sách các thông tin về sách như tác giả, tên sách....Khi một cuốn sách được trả cô ấy phải tìm bằng tay cuốn sách đó và lại có người mượn có ấy lại ghi lại những người đăng ký mượn với thông tin về sách như tên sách, tác giả, nhân viên mượn (tên, phòng ban...), ngày mượn, ngày trả....Quá trình đó thật buồn tẻ và tốn thời gian. Cô ấy đã mang vấn đề đấy đến những lập trình viên có kinh nghiệm và họ đề xuất sẽ giải quyết vấn đề đấy bằng cách phát triển 1 hệ thống giúp Monica quản lý có hiệu quả và tiết kiệm thời gian cho cô ấy. Cô ấy sẽ chỉ là người dùng của hệ thống quản lý.OK?
 
