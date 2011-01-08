@@ -36,12 +36,13 @@ public class LibProcedure {
     /**
      * Employee procedure
      */
-    public static final String GET_EMP = "{call sp_GetEmp(?)}";
+    public static final String GET_EMP_INFO = "{call sp_GetEmpInfo(?)}";
+    public static final String GET_EMP_BOR_INFO = "{call sp_GetEmpBorowInfo(?)}";
     public static final String ADD_LIB = "{call sp_InsLib(?,?,?,?,?,?,?,?)}";
     public static final String ADD_EMP = "{call sp_InsEmp(?,?,?,?,?,?,?)}";
-    public static final String GET_ALL_EMP = "{call sp_GetAllEmp}";
     public static final String EDIT_LIB = "{call sp_EditLib(?,?,?,?,?,?,?,?,?)}";
     public static final String EDIT_EMP = "{call sp_EditEmp(?,?,?,?,?,?,?,?)}";
+    public static final String GET_ALL_EMP = "{call sp_GetAllEmp}";
     public static final String GET_EMP_BY_NAME = "{call sp_GetAnEmpWithName(?)}";
     public static final String GET_EMP_BY_ID = "{call sp_GetAnEmpWithEmpID(?)}";
     public static final String GET_EMP_BY_BOTH = "{call sp_GetAnEmpAll(?,?)}";

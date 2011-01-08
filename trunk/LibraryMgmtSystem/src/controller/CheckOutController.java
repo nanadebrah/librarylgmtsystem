@@ -199,7 +199,7 @@ public class CheckOutController {
         String empID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 0).toString();
         this.empID = new Integer(empID);
-        Employee emp = AccessEmp.getInstance().getEmp(this.empID);
+        Employee emp = AccessEmp.getInstance().getEmpInfo(this.empID);
         //Set all information
         view.getLblID1().setText(new Integer(emp.getEmpID()).toString());
         view.getLblName1().setText(emp.getName());

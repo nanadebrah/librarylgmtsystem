@@ -80,7 +80,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(632, 540));
 
         palInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Infomation"));
 
@@ -288,7 +288,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
         palInfo1Layout.setVerticalGroup(
             palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(palInfo1Layout.createSequentialGroup()
-                .add(20, 20, 20)
+                .add(40, 40, 40)
                 .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(lblBorID1)
                     .add(lblBorID)
@@ -324,7 +324,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
                     .add(lblTolFee))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, palInfo1Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
+                .addContainerGap(167, Short.MAX_VALUE)
                 .add(btnClose))
         );
 
@@ -334,10 +334,10 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(palInfo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(lblImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, palInfo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(lblImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(palInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -352,7 +352,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
                         .add(lblImage)
                         .add(48, 48, 48)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palInfo1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(palInfo1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

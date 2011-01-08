@@ -257,6 +257,9 @@
       <Dimension value="[700, 360]"/>
     </Property>
     <Property name="name" type="java.lang.String" value="manageFrm" noResource="true"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[880, 270]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
@@ -283,7 +286,7 @@
                   <Component id="taskPalBorAna" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="palMain" pref="567" max="32767" attributes="0"/>
+              <Component id="palMain" pref="721" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -26,7 +26,8 @@ public class AccessEmp {
     private CallableStatement csDetails = null;
 
     /**
-     * Static method get instance of AccessEmp
+     * 
+     * @return
      */
     public static AccessEmp getInstance() {
         return instance;
@@ -37,13 +38,13 @@ public class AccessEmp {
      * @param EmpID is ID to query on database
      * @return Employee queried
      */
-    public Employee getEmp(int EmpID) {
+    public Employee getEmpInfo(int EmpID) {
         //Defined Object
         Employee emp = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_EMP);
+            csDetails = cn.prepareCall(LibProcedure.GET_EMP_INFO);
             csDetails.setInt(1, EmpID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -72,9 +73,49 @@ public class AccessEmp {
         return null;
     }
 
+    public void getEmpBorInfo(DefaultTableModel borModel, int empID) {
+        java.util.Vector vt;
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            csDetails = cn.prepareCall(LibProcedure.GET_EMP_BOR_INFO);
+            csDetails.setInt(1, empID);
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                vt = new java.util.Vector();
+                vt.addElement(rsDetails.getInt(1));
+                vt.addElement(rsDetails.getString(2));
+                vt.addElement(rsDetails.getString(3));
+                vt.addElement(LibUtil.getInstance().convertDate(
+                        rsDetails.getDate(4).toString()));
+                vt.addElement(LibUtil.getInstance().convertDate(
+                        rsDetails.getDate(5).toString()));
+                if (rsDetails.getInt(6) == 0) {
+                    vt.addElement("Checked-Out");
+                    vt.addElement("--");
+                    vt.addElement("--");
+                } else {
+                    vt.addElement("Checked-In");
+                    vt.addElement(LibUtil.getInstance().convertDate(
+                            rsDetails.getDate(7).toString()));
+                    vt.addElement(rsDetails.getFloat(8));
+                }
+                borModel.addRow(vt);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+    }
+
     /**
      *
-     * @param emp is employee object to add to database
+     * @param emp
+     * @return
      */
     public boolean addEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database
@@ -154,8 +195,9 @@ public class AccessEmp {
     }
 
     /**
-     *
-     * @param emp is employee to update in database
+     * 
+     * @param emp
+     * @return
      */
     public boolean editEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database

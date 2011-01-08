@@ -210,7 +210,7 @@ public class BookController {
                 bookModel.addRow(book.toVector());
             }
         }
-        view.getTblBook().clearSelection();
+        tableFocus();
         parent.doBlur();
     }
 

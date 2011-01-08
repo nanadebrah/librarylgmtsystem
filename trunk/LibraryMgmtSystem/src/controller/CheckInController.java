@@ -278,9 +278,15 @@ public class CheckInController {
             vt.add(checkin.getCallNumber());
             vt.add(checkin.getISBN());
             //Calculate Borrow infomation
+            int DueDay = (int) ((checkin.getDueDate() - checkin.getIssueDate())
+                    / (24 * 60 * 60 * 1000));
             int DayBor = (int) (view.getTxtReDate().getDate().getTime()
                     - checkin.getIssueDate())
                     / (24 * 60 * 60 * 1000);
+            //If day borrow is great than due day, set it default due day
+            if (DayBor > DueDay) {
+                DayBor = DueDay;
+            }
             int DayLate = (int) (view.getTxtReDate().getDate().getTime()
                     - checkin.getDueDate()) / (24 * 60 * 60 * 1000);
             float BorrowFee = DayBor * borFee;
@@ -305,7 +311,7 @@ public class CheckInController {
         //Get field employee selected
         String empID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 1).toString();
-        Employee emp = AccessEmp.getInstance().getEmp(Integer.parseInt(empID));
+        Employee emp = AccessEmp.getInstance().getEmpInfo(Integer.parseInt(empID));
         //Set all employee information
         view.getLblID1().setText(new Integer(emp.getEmpID()).toString());
         view.getLblName1().setText(emp.getName());

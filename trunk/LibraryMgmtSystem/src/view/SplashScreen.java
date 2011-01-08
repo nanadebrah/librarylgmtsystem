@@ -4,7 +4,6 @@
  */
 package view;
 
-import controller.LoginController;
 import controller.ManageController;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -126,7 +125,7 @@ public class SplashScreen extends JWindow {
 
     /**
      * 
-     * @param args
+     * @param args START LIBRARY MANAGEMENT SYSTEM
      */
     public static void main(String[] args) {
         new SplashScreen();

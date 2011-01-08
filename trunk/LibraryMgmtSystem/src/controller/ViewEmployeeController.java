@@ -8,6 +8,8 @@ import entity.Employee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import javax.swing.table.DefaultTableModel;
+import model.AccessEmp;
 import model.LibUtil;
 import view.ViewEmpDialog;
 
@@ -20,6 +22,7 @@ public class ViewEmployeeController {
     //Defined
     private Employee emp = null;
     private ViewEmpDialog view;
+    private DefaultTableModel borModel;
 
     /**
      * 
@@ -30,6 +33,7 @@ public class ViewEmployeeController {
         this.view = view;
         this.emp = emp;
         initComponent();
+        getEmpBorDetail();
     }
 
     /**
@@ -63,6 +67,29 @@ public class ViewEmployeeController {
                 view.dispose();
             }
         });
+
+        //Create bor model
+        borModel = new DefaultTableModel() {
+
+            public boolean isCellEditable(int column, int row) {
+                return false;
+            }
+        };
+        borModel.addColumn("Borrow ID");
+        borModel.addColumn("Call Number");
+        borModel.addColumn("Title");
+        borModel.addColumn("Issue Date");
+        borModel.addColumn("Due Date");
+        borModel.addColumn("Issue Status");
+        borModel.addColumn("Return Date");
+        borModel.addColumn("Total Fee");
+
+        //Add model to table
+        view.getTblBor().setModel(borModel);
+    }
+
+    private void getEmpBorDetail() {
+        AccessEmp.getInstance().getEmpBorInfo(borModel, emp.getEmpID());
     }
 
     /**

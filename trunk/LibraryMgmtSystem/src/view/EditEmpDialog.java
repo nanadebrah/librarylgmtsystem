@@ -144,17 +144,18 @@ public class EditEmpDialog extends javax.swing.JDialog {
                             .add(txtDOB, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                             .add(txtName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                         .addContainerGap())
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, palEditEmpLayout.createSequentialGroup()
-                        .add(btnSave)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(btnCancel)
-                        .add(68, 68, 68))
                     .add(palEditEmpLayout.createSequentialGroup()
                         .add(94, 94, 94)
                         .add(rdbMale)
                         .add(18, 18, 18)
                         .add(rdbFemale)
                         .addContainerGap(86, Short.MAX_VALUE))))
+            .add(palEditEmpLayout.createSequentialGroup()
+                .add(97, 97, 97)
+                .add(btnSave)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(btnCancel)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         palEditEmpLayout.setVerticalGroup(
             palEditEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -195,10 +196,11 @@ public class EditEmpDialog extends javax.swing.JDialog {
                 .add(palEditEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblPermis)
                     .add(cbxPermis, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(palEditEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnSave)
-                    .add(btnCancel)))
+                    .add(btnCancel))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_EDITEMP)));
@@ -223,7 +225,7 @@ public class EditEmpDialog extends javax.swing.JDialog {
                         .add(lblImage))
                     .add(layout.createSequentialGroup()
                         .add(9, 9, 9)
-                        .add(palEditEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(palEditEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 376, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

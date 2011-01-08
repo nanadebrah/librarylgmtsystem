@@ -45,11 +45,10 @@ public class EditEmployeeController {
                 //If  permission is employee, it doesn't need password
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     if (e.getItem().equals("Employee")) {
-                        view.getTxtPass().setVisible(false);
-                        view.getLblPass().setVisible(false);
+                        view.getTxtPass().setText("");
+                        view.getTxtPass().setEditable(false);
                     } else {
-                        view.getTxtPass().setVisible(true);
-                        view.getLblPass().setVisible(true);
+                        view.getTxtPass().setEditable(true);
                     }
                 }
             }
@@ -81,8 +80,7 @@ public class EditEmployeeController {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 //If employee, hiden passtext and pass label
                 if (emp.getPermission() == 0) {
-                    view.getTxtPass().setVisible(false);
-                    view.getLblPass().setVisible(false);
+                    view.getTxtPass().setEditable(false);
                 }
             }
         });

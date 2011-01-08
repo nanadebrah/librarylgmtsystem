@@ -62,11 +62,10 @@ public class AddEmployeeController {
                 //If  permission is employee, it doesn't need password
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     if (e.getItem().equals("Employee")) {
-                        view.getTxtPass().setVisible(false);
-                        view.getLblPass().setVisible(false);
+                        view.getTxtPass().setText("");
+                        view.getTxtPass().setEditable(false);
                     } else {
-                        view.getTxtPass().setVisible(true);
-                        view.getLblPass().setVisible(true);
+                        view.getTxtPass().setEditable(true);
                     }
                 }
             }

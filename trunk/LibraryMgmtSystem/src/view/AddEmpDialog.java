@@ -145,11 +145,11 @@ public class AddEmpDialog extends javax.swing.JDialog {
                 .add(rdbFemale)
                 .addContainerGap(43, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, palAddEmpLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .add(btnAdd)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(btnCancel)
-                .add(68, 68, 68))
+                .add(70, 70, 70))
         );
         palAddEmpLayout.setVerticalGroup(
             palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -190,10 +190,11 @@ public class AddEmpDialog extends javax.swing.JDialog {
                 .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblPermis)
                     .add(cbxPermis, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(palAddEmpLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnAdd)
-                    .add(btnCancel)))
+                    .add(btnCancel))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_ADDEMP)));
@@ -218,8 +219,8 @@ public class AddEmpDialog extends javax.swing.JDialog {
                         .add(lblImage))
                     .add(layout.createSequentialGroup()
                         .add(9, 9, 9)
-                        .add(palAddEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .add(palAddEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 376, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

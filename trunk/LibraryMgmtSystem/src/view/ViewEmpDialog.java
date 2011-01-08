@@ -45,9 +45,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         lblAddress = new javax.swing.JLabel();
         lblPhone = new javax.swing.JLabel();
         lblPermission = new javax.swing.JLabel();
-        lblChkIn = new javax.swing.JLabel();
-        lblChkOut = new javax.swing.JLabel();
-        lblFee = new javax.swing.JLabel();
         lblID1 = new javax.swing.JLabel();
         lblName1 = new javax.swing.JLabel();
         lblDOB1 = new javax.swing.JLabel();
@@ -56,16 +53,16 @@ public class ViewEmpDialog extends javax.swing.JDialog {
         lblAddress1 = new javax.swing.JLabel();
         lblPhone1 = new javax.swing.JLabel();
         lblPermission1 = new javax.swing.JLabel();
-        lblChkIn1 = new javax.swing.JLabel();
-        lblChkOut1 = new javax.swing.JLabel();
-        lblFee1 = new javax.swing.JLabel();
         lblDepart1 = new javax.swing.JLabel();
         lblDepart = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
+        scrPanBorUser = new javax.swing.JScrollPane();
+        tblBor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show details of employee or librarian");
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(675, 531));
 
         lblViewImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOEMP)));
 
@@ -87,12 +84,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
 
         lblPermission.setText("Permission:");
 
-        lblChkIn.setText("Check-in:");
-
-        lblChkOut.setText("Check-out:");
-
-        lblFee.setText("Total fee:");
-
         lblID1.setText("Empty");
 
         lblName1.setText("Empty");
@@ -109,12 +100,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
 
         lblPermission1.setText("Empty");
 
-        lblChkIn1.setText("Empty");
-
-        lblChkOut1.setText("Empty");
-
-        lblFee1.setText("Empty");
-
         lblDepart1.setText("Empty");
 
         lblDepart.setText("Department:");
@@ -126,35 +111,27 @@ public class ViewEmpDialog extends javax.swing.JDialog {
             .add(palInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(palInfoLayout.createSequentialGroup()
-                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblID)
-                            .add(lblName)
-                            .add(lblDOB)
-                            .add(lblGender)
-                            .add(lblEmail)
-                            .add(lblAddress)
-                            .add(lblPhone)
-                            .add(lblPermission)
-                            .add(lblChkIn)
-                            .add(lblChkOut)
-                            .add(lblDepart))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblEmail1)
-                            .add(lblGender1)
-                            .add(lblDOB1)
-                            .add(lblName1)
-                            .add(lblID1)
-                            .add(lblAddress1)
-                            .add(lblPhone1)
-                            .add(lblPermission1)
-                            .add(lblChkIn1)
-                            .add(lblChkOut1)
-                            .add(lblFee1)
-                            .add(lblDepart1)))
-                    .add(lblFee))
-                .addContainerGap(198, Short.MAX_VALUE))
+                    .add(lblID)
+                    .add(lblName)
+                    .add(lblDOB)
+                    .add(lblGender)
+                    .add(lblEmail)
+                    .add(lblAddress)
+                    .add(lblPhone)
+                    .add(lblPermission)
+                    .add(lblDepart))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(lblEmail1)
+                    .add(lblGender1)
+                    .add(lblDOB1)
+                    .add(lblName1)
+                    .add(lblID1)
+                    .add(lblAddress1)
+                    .add(lblPhone1)
+                    .add(lblPermission1)
+                    .add(lblDepart1))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         palInfoLayout.setVerticalGroup(
             palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -166,13 +143,7 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblPhone1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblPermission1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblChkIn1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblChkOut1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblFee1))
+                        .add(lblPermission1))
                     .add(palInfoLayout.createSequentialGroup()
                         .add(palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(lblID)
@@ -202,17 +173,41 @@ public class ViewEmpDialog extends javax.swing.JDialog {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(lblPhone)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblPermission)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblChkIn)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblChkOut)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(lblFee)))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .add(lblPermission)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         btnClose.setText("Close");
+
+        scrPanBorUser.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee's Borrow Details:"));
+
+        tblBor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        scrPanBorUser.setViewportView(tblBor);
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(scrPanBorUser, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(btnClose))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .add(scrPanBorUser, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                .add(1, 1, 1)
+                .add(btnClose)
+                .addContainerGap())
+        );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,25 +216,22 @@ public class ViewEmpDialog extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(lblViewImage)
+                        .add(lblViewImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(palInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnClose))
+                        .add(palInfo, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(78, 78, 78)
-                        .add(lblViewImage))
-                    .add(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(palInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(btnClose))
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                    .add(lblViewImage)
+                    .add(palInfo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 267, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,20 +239,15 @@ public class ViewEmpDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblAddress1;
-    private javax.swing.JLabel lblChkIn;
-    private javax.swing.JLabel lblChkIn1;
-    private javax.swing.JLabel lblChkOut;
-    private javax.swing.JLabel lblChkOut1;
     private javax.swing.JLabel lblDOB;
     private javax.swing.JLabel lblDOB1;
     private javax.swing.JLabel lblDepart;
     private javax.swing.JLabel lblDepart1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblEmail1;
-    private javax.swing.JLabel lblFee;
-    private javax.swing.JLabel lblFee1;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblGender1;
     private javax.swing.JLabel lblID;
@@ -273,6 +260,8 @@ public class ViewEmpDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblPhone1;
     private javax.swing.JLabel lblViewImage;
     private javax.swing.JPanel palInfo;
+    private javax.swing.JScrollPane scrPanBorUser;
+    private javax.swing.JTable tblBor;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -304,34 +293,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
     }
 
     /**
-     * @return the lblChkIn1
-     */
-    public javax.swing.JLabel getLblChkIn1() {
-        return lblChkIn1;
-    }
-
-    /**
-     * @param lblChkIn1 the lblChkIn1 to set
-     */
-    public void setLblChkIn1(javax.swing.JLabel lblChkIn1) {
-        this.lblChkIn1 = lblChkIn1;
-    }
-
-    /**
-     * @return the lblChkOut1
-     */
-    public javax.swing.JLabel getLblChkOut1() {
-        return lblChkOut1;
-    }
-
-    /**
-     * @param lblChkOut1 the lblChkOut1 to set
-     */
-    public void setLblChkOut1(javax.swing.JLabel lblChkOut1) {
-        this.lblChkOut1 = lblChkOut1;
-    }
-
-    /**
      * @return the lblDOB1
      */
     public javax.swing.JLabel getLblDOB1() {
@@ -357,20 +318,6 @@ public class ViewEmpDialog extends javax.swing.JDialog {
      */
     public void setLblEmail1(javax.swing.JLabel lblEmail1) {
         this.lblEmail1 = lblEmail1;
-    }
-
-    /**
-     * @return the lblFee1
-     */
-    public javax.swing.JLabel getLblFee1() {
-        return lblFee1;
-    }
-
-    /**
-     * @param lblFee1 the lblFee1 to set
-     */
-    public void setLblFee1(javax.swing.JLabel lblFee1) {
-        this.lblFee1 = lblFee1;
     }
 
     /**
@@ -455,5 +402,19 @@ public class ViewEmpDialog extends javax.swing.JDialog {
      */
     public void setLblDepart1(javax.swing.JLabel lblDepart1) {
         this.lblDepart1 = lblDepart1;
+    }
+
+    /**
+     * @return the tblBor
+     */
+    public javax.swing.JTable getTblBor() {
+        return tblBor;
+    }
+
+    /**
+     * @param tblBor the tblBor to set
+     */
+    public void setTblBor(javax.swing.JTable tblBor) {
+        this.tblBor = tblBor;
     }
 }

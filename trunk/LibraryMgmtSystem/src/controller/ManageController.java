@@ -10,10 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
+import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import view.AboutWindow;
 import view.LoginDialog;
 import view.ManageFrm;
@@ -228,6 +230,9 @@ public class ManageController {
                 //
                 //
                 //
+                SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.OfficeBlue2007Skin");
+                SwingUtilities.updateComponentTreeUI(view);
+                view.pack();
             }
         });
 
