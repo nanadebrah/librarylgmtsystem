@@ -47,6 +47,8 @@ public class CheckInController {
     private HashSet set;
     private TreeMap map;
     private float borFee, lateFee;
+    private int page;
+    private int totalRow;
 
     public CheckInController(CheckInDialog view, DefaultTableModel searchModel,
             DefaultTableModel inModel, ManageController parent) {
@@ -62,6 +64,9 @@ public class CheckInController {
      */
     private void initComponent() {
 
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Get fee setting
         Fee fee = AccessFee.getInstance().getFee();
         borFee = fee.getBorFee();
@@ -113,14 +118,7 @@ public class CheckInController {
         view.getBtnSearchBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                parent.removeModel(searchModel);
-                map.clear();
-                AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
-                        view.getTxtCallNoBook().getText(),
-                        view.getTxtISBNBook().getText(),
-                        view.getTxtTitlBook().getText(),
-                        view.getTxtAthBook().getText());
-                getBorrow();
+                searchByBookInfo();
             }
         });
 
@@ -128,12 +126,8 @@ public class CheckInController {
         view.getBtnSearchEmp().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                parent.removeModel(searchModel);
-                map.clear();
-                AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
-                        view.getTxtIdEmp().getText(),
-                        view.getTxtNameEmp().getText());
-                getBorrow();
+                page = 1;
+                searchByEmpInfo();
             }
         });
 
@@ -191,6 +185,86 @@ public class CheckInController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    if (view.getTxtIdEmp().getText().length() > 0
+                            || view.getTxtNameEmp().getText().length() > 0) {
+                        searchByEmpInfo();
+                    } else {
+                        searchByBookInfo();
+                    }
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchByEmpInfo();
+                } else {
+                    searchByBookInfo();
+                }
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchByEmpInfo();
+                } else {
+                    searchByBookInfo();
+                }
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchByEmpInfo();
+                } else {
+                    searchByBookInfo();
+                }
+            }
+        });
+    }
+
+    private void searchByEmpInfo() {
+        parent.removeModel(searchModel);
+        map.clear();
+        totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
+                view.getTxtIdEmp().getText(),
+                view.getTxtNameEmp().getText(), (page - 1));
+        view.getLblPage().setText("Page " + page + "/"
+                + LibUtil.getInstance().getPage(totalRow));
+        getBorrow();
+    }
+
+    private void searchByBookInfo() {
+        parent.removeModel(searchModel);
+        map.clear();
+        totalRow = AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
+                view.getTxtCallNoBook().getText(),
+                view.getTxtISBNBook().getText(),
+                view.getTxtTitlBook().getText(),
+                view.getTxtAthBook().getText(), (page - 1));
+        view.getLblPage().setText("Page " + page + "/"
+                + LibUtil.getInstance().getPage(totalRow));
+        getBorrow();
     }
 
     /**

@@ -101,13 +101,13 @@ public class AccessBook {
      * @param callNo
      * @return
      */
-    public Book getBook(String callNo) {
+    public Book getBookInfo(String callNo) {
         //Defined Object
         Book book = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_BOOK);
+            csDetails = cn.prepareCall(LibProcedure.GET_BOOK_INFO);
             csDetails.setString(1, callNo);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -136,35 +136,39 @@ public class AccessBook {
     }
 
     /**
-     * 
-     * @param bookModel
-     * @param CallNo
-     * @param ISBN
-     * @param Title
-     * @param Auth
+     *
+     * @param borModel
+     * @param callNo
      */
-    public void searchBook(DefaultTableModel bookModel, String CallNo, String ISBN,
-            String Title, String Auth) {
+    public void getBookBorInfo(DefaultTableModel borModel, String callNo) {
+        java.util.Vector vt;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            //Search both ID & Name
-            csDetails = cn.prepareCall(LibProcedure.SEARCH_BOOK);
-            csDetails.setString(1, CallNo);
-            csDetails.setString(2, ISBN);
-            csDetails.setString(3, Title);
-            csDetails.setString(4, Auth);
+            csDetails = cn.prepareCall(LibProcedure.GET_BOOK_BOR_INFO);
+            csDetails.setString(1, callNo);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
-                Vector vt = new Vector();
-                vt.addElement(rsDetails.getString(1));
-                vt.addElement(rsDetails.getString(2));
+                vt = new java.util.Vector();
+                vt.addElement(rsDetails.getInt(1));
+                vt.addElement(rsDetails.getInt(2));
                 vt.addElement(rsDetails.getString(3));
                 vt.addElement(rsDetails.getString(4));
-                vt.addElement(rsDetails.getString(5));
-                vt.addElement(rsDetails.getInt(6) + "/" + rsDetails.getInt(7));
-
-                bookModel.addRow(vt);
+                vt.addElement(LibUtil.getInstance().convertDate(
+                        rsDetails.getDate(5).toString()));
+                vt.addElement(LibUtil.getInstance().convertDate(
+                        rsDetails.getDate(6).toString()));
+                if (rsDetails.getInt(7) == 0) {
+                    vt.addElement("Checked-Out");
+                    vt.addElement("--");
+                    vt.addElement("--");
+                } else {
+                    vt.addElement("Checked-In");
+                    vt.addElement(LibUtil.getInstance().convertDate(
+                            rsDetails.getDate(8).toString()));
+                    vt.addElement(rsDetails.getFloat(9));
+                }
+                borModel.addRow(vt);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -174,6 +178,53 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+    }
+
+    /**
+     * 
+     * @param bookModel
+     * @param CallNo
+     * @param ISBN
+     * @param Title
+     * @param Auth
+     * @param page
+     * @return
+     */
+    public int searchBook(DefaultTableModel bookModel, String CallNo, String ISBN,
+            String Title, String Auth, int page) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+        try {
+            //Search both ID & Name
+            csDetails = cn.prepareCall(LibProcedure.SEARCH_BOOK);
+            csDetails.setString(1, CallNo);
+            csDetails.setString(2, ISBN);
+            csDetails.setString(3, Title);
+            csDetails.setString(4, Auth);
+            csDetails.setInt(5, page);
+            csDetails.setInt(6, LibUtil.noRow);
+            csDetails.registerOutParameter(7, java.sql.Types.INTEGER);
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                Vector vt = new Vector();
+                vt.addElement(rsDetails.getString(1));
+                vt.addElement(rsDetails.getString(2));
+                vt.addElement(rsDetails.getString(3));
+                vt.addElement(rsDetails.getString(4));
+                vt.addElement(rsDetails.getString(5));
+                vt.addElement(rsDetails.getInt(6) + "/" + rsDetails.getInt(7));
+                bookModel.addRow(vt);
+            }
+            return csDetails.getInt(7);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return 1;
     }
 
     /**

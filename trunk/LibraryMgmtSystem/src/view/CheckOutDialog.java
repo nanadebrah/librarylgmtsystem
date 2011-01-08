@@ -211,7 +211,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
                         .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(txtNameEmp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(lblNameEmp))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 32, Short.MAX_VALUE)
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblID)
                     .add(lblID1))
@@ -261,19 +261,23 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         jSplitPane1.setRightComponent(palBorrowInfo);
 
-        btnFirst.setText("First");
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setBorderPainted(false);
         jPanel6.add(btnFirst);
 
-        btnBack.setText("Back");
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setBorderPainted(false);
         jPanel6.add(btnBack);
 
         lblPage.setText("Page 1/1");
         jPanel6.add(lblPage);
 
-        btnNext.setText("Next");
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setBorderPainted(false);
         jPanel6.add(btnNext);
 
-        btnLast.setText("Last");
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setBorderPainted(false);
         jPanel6.add(btnLast);
 
         jPanel7.setLayout(new java.awt.BorderLayout());
@@ -302,7 +306,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
             .add(jPanel5Layout.createSequentialGroup()
                 .add(jPanel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 288, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel5);

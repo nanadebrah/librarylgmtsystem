@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import entity.Book;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
+import model.AccessBook;
 import model.AccessSub;
 import view.ViewBookDialog;
 
@@ -20,6 +21,7 @@ public class ViewBookController {
     //Defined
     private Book book = null;
     private ViewBookDialog view;
+    private DefaultTableModel borModel;
 
     /**
      * 
@@ -30,6 +32,7 @@ public class ViewBookController {
         this.view = view;
         this.book = book;
         initComponent();
+        getBookBorDetail();
     }
 
     /**
@@ -54,6 +57,33 @@ public class ViewBookController {
                 view.dispose();
             }
         });
+
+        //Create bor model
+        borModel = new DefaultTableModel() {
+
+            public boolean isCellEditable(int column, int row) {
+                return false;
+            }
+        };
+        borModel.addColumn("Borrow ID");
+        borModel.addColumn("Employee ID");
+        borModel.addColumn("Name");
+        borModel.addColumn("Department");
+        borModel.addColumn("Issue Date");
+        borModel.addColumn("Due Date");
+        borModel.addColumn("Issue Status");
+        borModel.addColumn("Return Date");
+        borModel.addColumn("Total Fee");
+
+        //Add model to table
+        view.getTblBor().setModel(borModel);
+    }
+
+    /**
+     *
+     */
+    private void getBookBorDetail() {
+        AccessBook.getInstance().getBookBorInfo(borModel, book.getCallNumber());
     }
 
     /**

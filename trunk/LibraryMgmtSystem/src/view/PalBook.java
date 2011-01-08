@@ -42,8 +42,6 @@ public class PalBook extends javax.swing.JPanel {
         btnDelBook = new javax.swing.JButton();
         separator4 = new javax.swing.JToolBar.Separator();
         btnSearchBook = new javax.swing.JButton();
-        scrPanBook = new javax.swing.JScrollPane();
-        tblBook = new javax.swing.JTable();
         lblTitlBook = new javax.swing.JLabel();
         lblAthBook = new javax.swing.JLabel();
         txtAthBook = new javax.swing.JTextField();
@@ -52,6 +50,15 @@ public class PalBook extends javax.swing.JPanel {
         lblISBNBook = new javax.swing.JLabel();
         txtCallNoBook = new javax.swing.JTextField();
         txtISBNBook = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        scrPanBook = new javax.swing.JScrollPane();
+        tblBook = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        txtPage = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         tolbarBook.setBorder(null);
         tolbarBook.setFloatable(false);
@@ -108,16 +115,6 @@ public class PalBook extends javax.swing.JPanel {
         btnSearchBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBook.add(btnSearchBook);
 
-        tblBook.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        scrPanBook.setViewportView(tblBook);
-
         lblTitlBook.setText("Title:");
 
         lblAthBook.setText("Author:");
@@ -134,11 +131,45 @@ public class PalBook extends javax.swing.JPanel {
 
         txtISBNBook.setToolTipText("search book by ISBN");
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        tblBook.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        scrPanBook.setViewportView(tblBook);
+
+        jPanel1.add(scrPanBook, java.awt.BorderLayout.CENTER);
+
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setBorderPainted(false);
+        jPanel2.add(btnFirst);
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setBorderPainted(false);
+        jPanel2.add(btnBack);
+
+        txtPage.setText("Pages");
+        jPanel2.add(txtPage);
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setBorderPainted(false);
+        jPanel2.add(btnNext);
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setBorderPainted(false);
+        jPanel2.add(btnLast);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -147,16 +178,18 @@ public class PalBook extends javax.swing.JPanel {
                     .add(lblCallNo))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtISBNBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                    .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                    .add(txtISBNBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .add(txtCallNoBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lblTitlBook)
                     .add(lblAthBook))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
+                    .add(txtAthBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                    .add(txtTitlBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -175,18 +208,27 @@ public class PalBook extends javax.swing.JPanel {
                             .add(lblISBNBook)
                             .add(lblAthBook)
                             .add(txtISBNBook, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
+                .addContainerGap(409, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(68, 68, 68)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBook;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelBook;
     private javax.swing.JButton btnEditBook;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnSearchBook;
     private javax.swing.JButton btnViewBook;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblAthBook;
     private javax.swing.JLabel lblCallNo;
     private javax.swing.JLabel lblISBNBook;
@@ -199,6 +241,7 @@ public class PalBook extends javax.swing.JPanel {
     private javax.swing.JTextField txtAthBook;
     private javax.swing.JTextField txtCallNoBook;
     private javax.swing.JTextField txtISBNBook;
+    private javax.swing.JLabel txtPage;
     private javax.swing.JTextField txtTitlBook;
     // End of variables declaration//GEN-END:variables
 
@@ -340,6 +383,76 @@ public class PalBook extends javax.swing.JPanel {
      */
     public void setTblBook(javax.swing.JTable tblBook) {
         this.tblBook = tblBook;
+    }
+
+    /**
+     * @return the btnBack
+     */
+    public javax.swing.JButton getBtnBack() {
+        return btnBack;
+    }
+
+    /**
+     * @param btnBack the btnBack to set
+     */
+    public void setBtnBack(javax.swing.JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    /**
+     * @return the btnFirst
+     */
+    public javax.swing.JButton getBtnFirst() {
+        return btnFirst;
+    }
+
+    /**
+     * @param btnFirst the btnFirst to set
+     */
+    public void setBtnFirst(javax.swing.JButton btnFirst) {
+        this.btnFirst = btnFirst;
+    }
+
+    /**
+     * @return the btnLast
+     */
+    public javax.swing.JButton getBtnLast() {
+        return btnLast;
+    }
+
+    /**
+     * @param btnLast the btnLast to set
+     */
+    public void setBtnLast(javax.swing.JButton btnLast) {
+        this.btnLast = btnLast;
+    }
+
+    /**
+     * @return the btnNext
+     */
+    public javax.swing.JButton getBtnNext() {
+        return btnNext;
+    }
+
+    /**
+     * @param btnNext the btnNext to set
+     */
+    public void setBtnNext(javax.swing.JButton btnNext) {
+        this.btnNext = btnNext;
+    }
+
+    /**
+     * @return the txtPage
+     */
+    public javax.swing.JLabel getTxtPage() {
+        return txtPage;
+    }
+
+    /**
+     * @param txtPage the txtPage to set
+     */
+    public void setTxtPage(javax.swing.JLabel txtPage) {
+        this.txtPage = txtPage;
     }
 
 }

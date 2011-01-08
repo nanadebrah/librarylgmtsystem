@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessSub;
+import model.LibUtil;
 import view.AddSubDialog;
 import view.EditSubDialog;
 import view.PalSubject;
@@ -33,6 +34,8 @@ public class SubjectController {
     private EditSubjectController editSubject;
     private ViewSubjectController viewSubject;
     private ManageController parent;
+    private int page;
+    private int totalRow;
 
     /**
      * 
@@ -53,6 +56,9 @@ public class SubjectController {
      */
     private void initComponent() {
 
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Set selection mode
         getView().getTblSub().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
@@ -74,6 +80,7 @@ public class SubjectController {
         view.getBtnSearchSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                page = 1;
                 searchSubject();
                 tableFocus();
             }
@@ -99,7 +106,7 @@ public class SubjectController {
         view.getBtnDelSub().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                deleteEmp();
+                deleteSub();
             }
         });
 
@@ -141,9 +148,48 @@ public class SubjectController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    searchSubject();
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                searchSubject();
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                searchSubject();
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                searchSubject();
+            }
+        });
     }
 
-    private void deleteEmp() {
+    /**
+     * 
+     */
+    private void deleteSub() {
         parent.doBlur();
         int sure = JOptionPane.showConfirmDialog(parent.getView(),
                 "You sure want delete this subject!",
@@ -155,7 +201,7 @@ public class SubjectController {
                     view.getTblSub().getSelectedRow(), 0).toString();
             if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "Because many book is using this subject.", "Error!",
+                        + "May be many book is using this subject.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -229,8 +275,12 @@ public class SubjectController {
      */
     public void searchSubject() {
         parent.removeModel(subModel);
-        AccessSub.getInstance().searchSubject(subModel,
-                getView().getTxtIdSub().getText(), getView().getTxtNameSub().getText());
+        totalRow = AccessSub.getInstance().searchSubject(subModel,
+                getView().getTxtIdSub().getText(),
+                getView().getTxtNameSub().getText(), (page - 1));
+
+        view.getTxtPage().setText("Page " + page + "/"
+                + LibUtil.getInstance().getPage(totalRow));
     }
 
     /**

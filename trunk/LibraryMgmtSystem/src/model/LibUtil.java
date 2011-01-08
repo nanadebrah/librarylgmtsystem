@@ -18,6 +18,7 @@ public class LibUtil {
     //Defined
     private Pattern pt;
     private Matcher ma;
+    public static int noRow = 3;
 
     /*
      * Static method get instance of Libook
@@ -26,6 +27,11 @@ public class LibUtil {
         return instance;
     }
 
+    /**
+     * 
+     * @param date
+     * @return
+     */
     public String convertDate(String date) {
         //Get year
         pt = Pattern.compile("^\\d{4}");
@@ -44,5 +50,9 @@ public class LibUtil {
         String m = ma.group().substring(1).substring(0, 2);
 
         return m + "/" + d + "/" + y;
+    }
+
+    public int getPage(int totalRow) {
+        return (int) Math.ceil((float) totalRow / noRow);
     }
 }

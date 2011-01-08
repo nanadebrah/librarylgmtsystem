@@ -96,30 +96,29 @@ public class EditBookController {
     private void balance() {
         //Defined new no of copies value
         int newNoC = Integer.parseInt(view.getTxtNoCop().getValue().toString());
-
-        //new copies value equals new no in lib or value copies equals zero
-        if (newNoC == Integer.parseInt(
-                view.getTxtNoInLib().getValue().toString()) || newNoC == 0) {
-            //if new copies value to less than one
+        
+        //Neu so copy bang so trong kho
+        if (noCopies == noInLib) {
             if (newNoC < 1) {
                 view.getTxtNoCop().setValue(1);
                 view.getTxtNoInLib().setValue(1);
             } else {
                 view.getTxtNoInLib().setValue(newNoC);
             }
-        } else if (newNoC < noCopies) {//if new copies value less than old value - it's subtract
-            //new value offset by old value less than no in lib
-            if ((noCopies - newNoC) <= noInLib) {
-                //set value in lib is no in lib subtract
-                //old value and new value copies offset
-                view.getTxtNoInLib().setValue(noInLib - (noCopies - newNoC));
-            } else {
-                //min value, add one to new value copies
-                view.getTxtNoCop().setValue(newNoC + 1);
+        } else {//Neu chung ko bang nhau
+            //Neu so moi nho hon so cu tuc la tru
+            if (newNoC < noCopies) {
+                //Neu so giam di ma lon hon so trong kho
+                if ((noCopies - newNoC) > noInLib) {
+                    //set so trong kho bang 0 va set so copy bang hieu voi so trong kho
+                    view.getTxtNoInLib().setValue(0);
+                    view.getTxtNoCop().setValue(noCopies - noInLib);
+                } else {//Neu khong la so tru di nho hon so trong kho
+                    view.getTxtNoInLib().setValue(noInLib - (noCopies - newNoC));
+                }
+            } else {//Neu khong la cong
+                view.getTxtNoInLib().setValue(noInLib + (newNoC - noCopies));
             }
-        } else {//it's add
-            //Add no in lib is sum of offset new and old copies value
-            view.getTxtNoInLib().setValue(noInLib + (newNoC - noCopies));
         }
     }
 

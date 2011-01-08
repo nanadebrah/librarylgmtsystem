@@ -88,6 +88,9 @@ public class ViewEmployeeController {
         view.getTblBor().setModel(borModel);
     }
 
+    /**
+     * 
+     */
     private void getEmpBorDetail() {
         AccessEmp.getInstance().getEmpBorInfo(borModel, emp.getEmpID());
     }

@@ -55,10 +55,13 @@ public class ViewBookDialog extends javax.swing.JDialog {
         lblNoC1 = new javax.swing.JLabel();
         lblNoInL1 = new javax.swing.JLabel();
         lblWho1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
+        scrPanBorBook = new javax.swing.JScrollPane();
+        tblBor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(774, 560));
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOBOOK)));
 
@@ -127,7 +130,7 @@ public class ViewBookDialog extends javax.swing.JDialog {
                     .add(lblNoC1)
                     .add(lblNoInL1)
                     .add(lblWho1))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
         bookInfoPalLayout.setVerticalGroup(
             bookInfoPalLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -174,17 +177,47 @@ public class ViewBookDialog extends javax.swing.JDialog {
 
         btnClose.setText("Close");
 
+        scrPanBorBook.setBorder(javax.swing.BorderFactory.createTitledBorder("Book's Borrow Details:"));
+
+        tblBor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        scrPanBorBook.setViewportView(tblBor);
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(scrPanBorBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(btnClose))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .add(scrPanBorBook, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .add(1, 1, 1)
+                .add(btnClose)
+                .addContainerGap())
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(btnClose)
-                    .add(layout.createSequentialGroup()
-                        .add(lblImage)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(lblImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 160, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
                         .add(bookInfoPal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -193,13 +226,13 @@ public class ViewBookDialog extends javax.swing.JDialog {
             .add(layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(11, 11, 11)
-                        .add(bookInfoPal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(53, 53, 53)
+                        .add(lblImage))
                     .add(layout.createSequentialGroup()
-                        .add(70, 70, 70)
-                        .add(lblImage)))
+                        .add(11, 11, 11)
+                        .add(bookInfoPal, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(btnClose))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,6 +241,7 @@ public class ViewBookDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookInfoPal;
     private javax.swing.JButton btnClose;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAth;
     private javax.swing.JLabel lblAth1;
     private javax.swing.JLabel lblCallNo;
@@ -227,6 +261,8 @@ public class ViewBookDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblWho;
     private javax.swing.JLabel lblWho1;
+    private javax.swing.JScrollPane scrPanBorBook;
+    private javax.swing.JTable tblBor;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -367,6 +403,20 @@ public class ViewBookDialog extends javax.swing.JDialog {
      */
     public void setLblCallNo1(javax.swing.JLabel lblCallNo1) {
         this.lblCallNo1 = lblCallNo1;
+    }
+
+    /**
+     * @return the tblBor
+     */
+    public javax.swing.JTable getTblBor() {
+        return tblBor;
+    }
+
+    /**
+     * @param tblBor the tblBor to set
+     */
+    public void setTblBor(javax.swing.JTable tblBor) {
+        this.tblBor = tblBor;
     }
 
 }

@@ -42,12 +42,19 @@ public class PalSubject extends javax.swing.JPanel {
         btnDelSub = new javax.swing.JButton();
         separator6 = new javax.swing.JToolBar.Separator();
         btnSearchSub = new javax.swing.JButton();
-        scrPanSub = new javax.swing.JScrollPane();
-        tblSub = new javax.swing.JTable();
         lblIDSub = new javax.swing.JLabel();
         lblNameSub = new javax.swing.JLabel();
         txtNameSub = new javax.swing.JTextField();
         txtIdSub = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        scrPanSub = new javax.swing.JScrollPane();
+        tblSub = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        txtPage = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         tolbarSub.setBorder(null);
         tolbarSub.setFloatable(false);
@@ -104,6 +111,16 @@ public class PalSubject extends javax.swing.JPanel {
         btnSearchSub.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarSub.add(btnSearchSub);
 
+        lblIDSub.setText("Subject ID:");
+
+        lblNameSub.setText("Subject Name:");
+
+        txtNameSub.setToolTipText("Subject's username");
+
+        txtIdSub.setToolTipText("Subject's ID");
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         tblSub.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -114,19 +131,33 @@ public class PalSubject extends javax.swing.JPanel {
         ));
         scrPanSub.setViewportView(tblSub);
 
-        lblIDSub.setText("Subject ID:");
+        jPanel1.add(scrPanSub, java.awt.BorderLayout.CENTER);
 
-        lblNameSub.setText("Subject Name:");
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setBorderPainted(false);
+        jPanel2.add(btnFirst);
 
-        txtNameSub.setToolTipText("Subject's username");
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setBorderPainted(false);
+        jPanel2.add(btnBack);
 
-        txtIdSub.setToolTipText("Subject's ID");
+        txtPage.setText("Pages");
+        jPanel2.add(txtPage);
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setBorderPainted(false);
+        jPanel2.add(btnNext);
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setBorderPainted(false);
+        jPanel2.add(btnLast);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -135,8 +166,9 @@ public class PalSubject extends javax.swing.JPanel {
                     .add(lblNameSub))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)))
+                    .add(txtIdSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                    .add(txtNameSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)))
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -152,17 +184,23 @@ public class PalSubject extends javax.swing.JPanel {
                             .add(lblNameSub)
                             .add(txtNameSub, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanSub, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddSub;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelSub;
     private javax.swing.JButton btnEditSub;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnSearchSub;
     private javax.swing.JButton btnViewSub;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblIDSub;
     private javax.swing.JLabel lblNameSub;
     private javax.swing.JScrollPane scrPanSub;
@@ -172,6 +210,7 @@ public class PalSubject extends javax.swing.JPanel {
     private javax.swing.JToolBar tolbarSub;
     private javax.swing.JTextField txtIdSub;
     private javax.swing.JTextField txtNameSub;
+    private javax.swing.JLabel txtPage;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -284,6 +323,76 @@ public class PalSubject extends javax.swing.JPanel {
      */
     public void setTxtNameSub(javax.swing.JTextField txtNameSub) {
         this.txtNameSub = txtNameSub;
+    }
+
+    /**
+     * @return the btnBack
+     */
+    public javax.swing.JButton getBtnBack() {
+        return btnBack;
+    }
+
+    /**
+     * @param btnBack the btnBack to set
+     */
+    public void setBtnBack(javax.swing.JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    /**
+     * @return the btnFirst
+     */
+    public javax.swing.JButton getBtnFirst() {
+        return btnFirst;
+    }
+
+    /**
+     * @param btnFirst the btnFirst to set
+     */
+    public void setBtnFirst(javax.swing.JButton btnFirst) {
+        this.btnFirst = btnFirst;
+    }
+
+    /**
+     * @return the btnLast
+     */
+    public javax.swing.JButton getBtnLast() {
+        return btnLast;
+    }
+
+    /**
+     * @param btnLast the btnLast to set
+     */
+    public void setBtnLast(javax.swing.JButton btnLast) {
+        this.btnLast = btnLast;
+    }
+
+    /**
+     * @return the btnNext
+     */
+    public javax.swing.JButton getBtnNext() {
+        return btnNext;
+    }
+
+    /**
+     * @param btnNext the btnNext to set
+     */
+    public void setBtnNext(javax.swing.JButton btnNext) {
+        this.btnNext = btnNext;
+    }
+
+    /**
+     * @return the txtPage
+     */
+    public javax.swing.JLabel getTxtPage() {
+        return txtPage;
+    }
+
+    /**
+     * @param txtPage the txtPage to set
+     */
+    public void setTxtPage(javax.swing.JLabel txtPage) {
+        this.txtPage = txtPage;
     }
 
 }

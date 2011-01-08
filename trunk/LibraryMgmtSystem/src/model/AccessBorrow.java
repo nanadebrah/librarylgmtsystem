@@ -68,31 +68,25 @@ public class AccessBorrow {
         return false;
     }
 
-    /**
-     * 
-     * @param borModel
-     * @param EmpID
-     * @param CallNo
-     */
-    public void searchBor(DefaultTableModel borModel, String EmpID, String CallNo) {
+    public int searchBor(DefaultTableModel borModel,
+            String EmpID, String CallNo, int page) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            if (EmpID.length() == 0 && CallNo.length() != 0) {
+            if (EmpID.length() == 0) {
                 //Search CallNo only
                 csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_CALLNO);
                 csDetails.setString(1, CallNo);
-            } else if (EmpID.length() != 0 && CallNo.length() == 0) {
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
+            } else {
                 //Search EmpID only
                 csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_EMPID);
                 csDetails.setInt(1, new Integer(EmpID));
-            } else if (EmpID.length() != 0 && CallNo.length() != 0) {
-                //Search both ID & CallNo
-                csDetails = cn.prepareCall(LibProcedure.GET_BOR_BY_BOTH);
-                csDetails.setString(1, CallNo);
-                csDetails.setInt(2, new Integer(EmpID));
-            } else {
-                csDetails = cn.prepareCall(LibProcedure.GET_ALL_BORROW);
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             }
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
@@ -115,6 +109,7 @@ public class AccessBorrow {
                 }
                 borModel.addRow(vt);
             }
+            return csDetails.getInt(4);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -123,6 +118,7 @@ public class AccessBorrow {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return 1;
     }
 
     /**
@@ -192,15 +188,17 @@ public class AccessBorrow {
     }
 
     /**
-     *
-     * @param searchModel
+     * 
+     * @param map
      * @param CallNo
      * @param ISBN
      * @param Title
      * @param Auth
+     * @param page
+     * @return
      */
-    public void searchCheckOutByBookInfo(TreeMap map, String CallNo, String ISBN,
-            String Title, String Auth) {
+    public int searchCheckOutByBookInfo(TreeMap map, String CallNo, String ISBN,
+            String Title, String Auth, int page) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
@@ -209,6 +207,9 @@ public class AccessBorrow {
             csDetails.setString(2, ISBN);
             csDetails.setString(3, Title);
             csDetails.setString(4, Auth);
+            csDetails.setInt(5, page);
+            csDetails.setInt(6, LibUtil.noRow);
+            csDetails.registerOutParameter(7, java.sql.Types.INTEGER);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 checkin = new CheckIn();
@@ -223,6 +224,7 @@ public class AccessBorrow {
                 checkin.setIssueDate(rsDetails.getDate(9).getTime());
                 map.put(checkin.getBorID() + "," + checkin.getCallNumber(), checkin);
             }
+            return csDetails.getInt(7);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -231,30 +233,34 @@ public class AccessBorrow {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return 1;
     }
 
     /**
-     *
+     * 
      * @param map
      * @param EmpID
      * @param Name
+     * @param page
+     * @return
      */
-    public void searchCheckOutByEmpInfo(TreeMap map, String EmpID, String Name) {
+    public int searchCheckOutByEmpInfo(TreeMap map, String EmpID,
+            String Name, int page) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            if (EmpID.length() != 0 && Name.length() == 0) {
+            if (EmpID.length() != 0) {
                 csDetails = cn.prepareCall(LibProcedure.SERCH_CHECKOUT_BY_EMPID);
                 csDetails.setInt(1, Integer.parseInt(EmpID));
-            } else if (EmpID.length() == 0 && Name.length() != 0) {
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
+            } else {
                 csDetails = cn.prepareCall(LibProcedure.SEARCH_CHECKOUT_BY_EMPNAME);
                 csDetails.setString(1, Name);
-            } else if (EmpID.length() != 0 && Name.length() != 0) {
-                csDetails = cn.prepareCall(LibProcedure.SEARCH_CHECKOUT_BY_EMPNAME);
-                csDetails.setInt(1, Integer.parseInt(EmpID));
-                csDetails.setString(2, Name);
-            } else {
-                csDetails = cn.prepareCall(LibProcedure.SEARCH_ALL_CHECKOUT);
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             }
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
@@ -270,6 +276,7 @@ public class AccessBorrow {
                 checkin.setIssueDate(rsDetails.getDate(9).getTime());
                 map.put(checkin.getBorID() + "," + checkin.getCallNumber(), checkin);
             }
+            return csDetails.getInt(4);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -278,6 +285,7 @@ public class AccessBorrow {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return 1;
     }
 
     public void getFullBorInfo(String[] arr, int borID, int empID, String CallNo) {

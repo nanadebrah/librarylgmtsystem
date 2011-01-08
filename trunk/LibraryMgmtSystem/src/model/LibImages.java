@@ -75,6 +75,15 @@ public class LibImages {
             + "menuImages" + File.separator + "View.png";
     public static final String MENU_ABOUT = "images" + File.separator
             + "menuImages" + File.separator + "About.png";
+    //navigation bar
+    public static final String MENU_FIRST = "images" + File.separator
+            + "menuImages" + File.separator + "First.png";
+    public static final String MENU_LAST = "images" + File.separator
+            + "menuImages" + File.separator + "Last.png";
+    public static final String MENU_NEXT = "images" + File.separator
+            + "menuImages" + File.separator + "Next.png";
+    public static final String MENU_BACK = "images" + File.separator
+            + "menuImages" + File.separator + "Back.png";
     //Taskbar image
     public static final String TASKBAR_ADD = "images" + File.separator
             + "taskbarImages" + File.separator + "Add.png";

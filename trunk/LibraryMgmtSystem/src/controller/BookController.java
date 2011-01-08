@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBook;
+import model.LibUtil;
 import view.AddBokDialog;
 import view.EditBokDialog;
 import view.PalBook;
@@ -33,6 +34,8 @@ public class BookController {
     private AddBookController addBook;
     private ViewBookController viewBook;
     private EditBookController editBook;
+    private int page;
+    private int totalRow;
 
     public BookController(PalBook view,
             DefaultTableModel bokModel, ManageController parent) {
@@ -47,6 +50,9 @@ public class BookController {
      */
     private void initComponent() {
 
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Set selection mode
         view.getTblBook().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
@@ -103,6 +109,7 @@ public class BookController {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
+                page=1;
                 searchBook();
             }
         });
@@ -156,6 +163,42 @@ public class BookController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    searchBook();
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                searchBook();
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                searchBook();
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                searchBook();
+            }
+        });
     }
 
     /**
@@ -173,7 +216,7 @@ public class BookController {
                     view.getTblBook().getSelectedRow(), 0).toString();
             if (!AccessBook.getInstance().deleteBook(callNumber)) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "Because this book is borrowing by some one!", "Error!",
+                        + "May be this book is borrowing by some one!", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -194,7 +237,7 @@ public class BookController {
         String callNo = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getBook(callNo);
+        Book book = AccessBook.getInstance().getBookInfo(callNo);
         //Create instance of book edit dialog and display it
         editBook = new EditBookController(
                 new EditBokDialog(parent.getView(), true), book);
@@ -222,7 +265,7 @@ public class BookController {
         String callNo = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getBook(callNo);
+        Book book = AccessBook.getInstance().getBookInfo(callNo);
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewBook = new ViewBookController(new ViewBookDialog(parent.getView(), true), book);
@@ -239,11 +282,13 @@ public class BookController {
         new Thread(new Runnable() {
 
             public void run() {
-                AccessBook.getInstance().searchBook(bookModel,
+                totalRow = AccessBook.getInstance().searchBook(bookModel,
                         view.getTxtCallNoBook().getText(),
                         view.getTxtISBNBook().getText(),
                         view.getTxtTitlBook().getText(),
-                        view.getTxtAthBook().getText());
+                        view.getTxtAthBook().getText(), (page - 1));
+                view.getTxtPage().setText("Page " + page + "/"
+                        + LibUtil.getInstance().getPage(totalRow));
             }
         }).start();
     }

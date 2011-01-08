@@ -157,7 +157,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="29" max="32767" attributes="0"/>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblID" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblID1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -355,7 +355,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel7" min="-2" pref="288" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel6" max="32767" attributes="0"/>
+                          <Component id="jPanel6" pref="42" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -367,12 +367,18 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="btnFirst">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="First"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST))" type="code"/>
+                        </Property>
+                        <Property name="borderPainted" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnBack">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Back"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK))" type="code"/>
+                        </Property>
+                        <Property name="borderPainted" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblPage">
@@ -382,12 +388,18 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="btnNext">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Next"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT))" type="code"/>
+                        </Property>
+                        <Property name="borderPainted" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnLast">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Last"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST))" type="code"/>
+                        </Property>
+                        <Property name="borderPainted" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>

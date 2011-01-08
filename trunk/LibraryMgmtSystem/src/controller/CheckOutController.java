@@ -45,6 +45,8 @@ public class CheckOutController {
     private Fee fee;
     private float borFee, lateFee;
     private BorrowDetail borDetail;
+    private int page;
+    private Integer totalRow;
 
     public CheckOutController(CheckOutDialog view, DefaultTableModel bookModel,
             DefaultTableModel empModel, DefaultTableModel outModel, ManageController parent) {
@@ -58,6 +60,9 @@ public class CheckOutController {
 
     private void initComponent() {
 
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Get fee setting
         fee = AccessFee.getInstance().getFee();
         borFee = fee.getBorFee();
@@ -71,7 +76,7 @@ public class CheckOutController {
                 new java.util.Date().getTime() + 432000000));
 
         //Create new map
-        map=new TreeMap();
+        map = new TreeMap();
         //Create new set
         set = new HashSet();
         //Set selection mode;
@@ -103,12 +108,8 @@ public class CheckOutController {
         view.getBtnSearchBook().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                page = 1;
                 searchBook();
-                //Add book model to table
-                view.getTblBoth().setModel(bookModel);
-                //Change title
-                view.getScrPanBoth().setBorder(
-                        javax.swing.BorderFactory.createTitledBorder("Book Information"));
             }
         });
 
@@ -116,12 +117,8 @@ public class CheckOutController {
         view.getBtnSearchEmp().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                page = 1;
                 searchEmp();
-                //Add employee model to table
-                view.getTblBoth().setModel(empModel);
-                //Change title
-                view.getScrPanBoth().setBorder(
-                        javax.swing.BorderFactory.createTitledBorder("Employee Information"));
             }
         });
 
@@ -173,6 +170,62 @@ public class CheckOutController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    if (view.getTxtIdEmp().getText().length() > 0
+                            || view.getTxtNameEmp().getText().length() > 0) {
+                        searchEmp();
+                    } else {
+                        searchBook();
+                    }
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchEmp();
+                } else {
+                    searchBook();
+                }
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchEmp();
+                } else {
+                    searchBook();
+                }
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                if (view.getTxtIdEmp().getText().length() > 0
+                        || view.getTxtNameEmp().getText().length() > 0) {
+                    searchEmp();
+                } else {
+                    searchBook();
+                }
+            }
+        });
     }
 
     /**
@@ -182,7 +235,7 @@ public class CheckOutController {
         //Add borrow details for earch book
         java.util.Iterator it = set.iterator();
         while (it.hasNext()) {
-            borDetail=new BorrowDetail();
+            borDetail = new BorrowDetail();
             borDetail.setCallNumber(it.next().toString());
             borDetail.setIssueDate(view.getTxtIssueDate().getDate().getTime());
             borDetail.setDueDate(view.getTxtDueDate().getDate().getTime());
@@ -276,12 +329,19 @@ public class CheckOutController {
      */
     public void searchEmp() {
         parent.removeModel(empModel);
+        //Add employee model to table
+        view.getTblBoth().setModel(empModel);
+        //Change title
+        view.getScrPanBoth().setBorder(
+                javax.swing.BorderFactory.createTitledBorder("Employee Information"));
         new Thread(new Runnable() {
 
             public void run() {
-                AccessEmp.getInstance().searchEmp(
+                totalRow = AccessEmp.getInstance().searchEmp(
                         empModel, view.getTxtIdEmp().getText(),
-                        view.getTxtNameEmp().getText());
+                        view.getTxtNameEmp().getText(), (page - 1));
+                view.getLblPage().setText("Page " + page + "/"
+                        + LibUtil.getInstance().getPage(totalRow));
             }
         }).start();
     }
@@ -291,14 +351,21 @@ public class CheckOutController {
      */
     private void searchBook() {
         parent.removeModel(bookModel);
+        //Add book model to table
+        view.getTblBoth().setModel(bookModel);
+        //Change title
+        view.getScrPanBoth().setBorder(
+                javax.swing.BorderFactory.createTitledBorder("Book Information"));
         new Thread(new Runnable() {
 
             public void run() {
-                AccessBook.getInstance().searchBook(bookModel,
+                totalRow = AccessBook.getInstance().searchBook(bookModel,
                         view.getTxtCallNoBook().getText(),
                         view.getTxtISBNBook().getText(),
                         view.getTxtTitlBook().getText(),
-                        view.getTxtAthBook().getText());
+                        view.getTxtAthBook().getText(), (page - 1));
+                view.getLblPage().setText("Page " + page + "/"
+                        + LibUtil.getInstance().getPage(totalRow));
             }
         }).start();
     }

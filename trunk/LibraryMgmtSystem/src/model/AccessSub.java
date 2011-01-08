@@ -64,7 +64,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_SUBID);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
             csDetails.setString(1, subName);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -144,7 +144,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_SUB);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
             csDetails.setInt(1, SubID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -165,58 +165,32 @@ public class AccessSub {
     }
 
     /**
-     *
-     * @param subModel is subject model of subject manage table
-     */
-    public void getAllSubject(DefaultTableModel subModel) {
-        //Defined connection, rs and cs to connect and query database
-        cn = LibConnection.getConnection();
-        try {
-            csDetails = cn.prepareCall(LibProcedure.GET_ALL_SUB);
-            rsDetails = csDetails.executeQuery();
-            while (rsDetails.next()) {
-                Vector vt = new Vector();
-                vt.addElement(rsDetails.getInt(1));
-                vt.addElement(rsDetails.getString(2));
-                vt.addElement(rsDetails.getString(3));
-                subModel.addRow(vt);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-    }
-
-    /**
      * 
-     * @param subModel is subject model
-     * @param SubID is subject id
-     * @param SubName is subject name
+     * @param subModel
+     * @param SubID
+     * @param SubName
+     * @param page
+     * @return
      */
-    public void searchSubject(DefaultTableModel subModel, String SubID, String SubName) {
+    public int searchSubject(DefaultTableModel subModel,
+            String SubID, String SubName, int page) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            if (SubID.length() == 0 && SubName.length() != 0) {
+            if (SubID.length() == 0) {
                 //Save Name only
                 csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_NAME);
                 csDetails.setString(1, SubName);
-            } else if (SubID.length() != 0 && SubName.length() == 0) {
-                //Search EmpID only
-                csDetails = cn.prepareCall(LibProcedure.GET_SUB);
-                csDetails.setInt(1, new Integer(SubID));
-            } else if (SubID.length() != 0 && SubName.length() != 0) {
-                //Search both ID & Name
-                csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_BOTH);
-                csDetails.setInt(1, new Integer(SubID));
-                csDetails.setString(2, SubName);
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             } else {
-                getAllSubject(subModel);
-                return;
+                //Search EmpID only
+                csDetails = cn.prepareCall(LibProcedure.GET_SUB_WITH_ID);
+                csDetails.setInt(1, new Integer(SubID));
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             }
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
@@ -226,6 +200,7 @@ public class AccessSub {
                 vt.addElement(rsDetails.getString(3));
                 subModel.addRow(vt);
             }
+            return csDetails.getInt(4);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -234,6 +209,7 @@ public class AccessSub {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return 1;
     }
 
     /**

@@ -42,12 +42,19 @@ public class PalBorrow extends javax.swing.JPanel {
         btnDelBor = new javax.swing.JButton();
         separator8 = new javax.swing.JToolBar.Separator();
         btnSearchBor = new javax.swing.JButton();
-        scrPanBor = new javax.swing.JScrollPane();
-        tblBor = new javax.swing.JTable();
         lblCallNoBor = new javax.swing.JLabel();
         lblEmpID = new javax.swing.JLabel();
         txtEmpID = new javax.swing.JTextField();
         txtCallNoBor = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        scrPanBor = new javax.swing.JScrollPane();
+        tblBor = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        txtPage = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         tolbarBor.setBorder(null);
         tolbarBor.setFloatable(false);
@@ -112,6 +119,16 @@ public class PalBorrow extends javax.swing.JPanel {
         btnSearchBor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBor.add(btnSearchBor);
 
+        lblCallNoBor.setText("CallNo:");
+
+        lblEmpID.setText("Employee ID");
+
+        txtEmpID.setToolTipText("Username of employee");
+
+        txtCallNoBor.setToolTipText("order of book");
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         tblBor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -122,19 +139,33 @@ public class PalBorrow extends javax.swing.JPanel {
         ));
         scrPanBor.setViewportView(tblBor);
 
-        lblCallNoBor.setText("CallNo:");
+        jPanel1.add(scrPanBor, java.awt.BorderLayout.CENTER);
 
-        lblEmpID.setText("Employee ID");
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setBorderPainted(false);
+        jPanel2.add(btnFirst);
 
-        txtEmpID.setToolTipText("Username of employee");
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setBorderPainted(false);
+        jPanel2.add(btnBack);
 
-        txtCallNoBor.setToolTipText("order of book");
+        txtPage.setText("Pages");
+        jPanel2.add(txtPage);
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setBorderPainted(false);
+        jPanel2.add(btnNext);
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setBorderPainted(false);
+        jPanel2.add(btnLast);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .add(tolbarBor, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -143,8 +174,9 @@ public class PalBorrow extends javax.swing.JPanel {
                     .add(lblCallNoBor))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                    .add(txtEmpID, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
+                    .add(txtEmpID, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .add(txtCallNoBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -160,18 +192,22 @@ public class PalBorrow extends javax.swing.JPanel {
                             .add(lblEmpID)
                             .add(txtEmpID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanBor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnChkIn;
     private javax.swing.JButton btnChkOut;
     private javax.swing.JButton btnDelBor;
     private javax.swing.JButton btnFee;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnSearchBor;
     private javax.swing.JButton btnViewBor;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCallNoBor;
     private javax.swing.JLabel lblEmpID;
     private javax.swing.JScrollPane scrPanBor;
@@ -181,6 +217,7 @@ public class PalBorrow extends javax.swing.JPanel {
     private javax.swing.JToolBar tolbarBor;
     private javax.swing.JTextField txtCallNoBor;
     private javax.swing.JTextField txtEmpID;
+    private javax.swing.JLabel txtPage;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -307,6 +344,76 @@ public class PalBorrow extends javax.swing.JPanel {
      */
     public void setTxtEmpID(javax.swing.JTextField txtEmpID) {
         this.txtEmpID = txtEmpID;
+    }
+
+    /**
+     * @return the btnBack
+     */
+    public javax.swing.JButton getBtnBack() {
+        return btnBack;
+    }
+
+    /**
+     * @param btnBack the btnBack to set
+     */
+    public void setBtnBack(javax.swing.JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    /**
+     * @return the btnFirst
+     */
+    public javax.swing.JButton getBtnFirst() {
+        return btnFirst;
+    }
+
+    /**
+     * @param btnFirst the btnFirst to set
+     */
+    public void setBtnFirst(javax.swing.JButton btnFirst) {
+        this.btnFirst = btnFirst;
+    }
+
+    /**
+     * @return the btnLast
+     */
+    public javax.swing.JButton getBtnLast() {
+        return btnLast;
+    }
+
+    /**
+     * @param btnLast the btnLast to set
+     */
+    public void setBtnLast(javax.swing.JButton btnLast) {
+        this.btnLast = btnLast;
+    }
+
+    /**
+     * @return the btnNext
+     */
+    public javax.swing.JButton getBtnNext() {
+        return btnNext;
+    }
+
+    /**
+     * @param btnNext the btnNext to set
+     */
+    public void setBtnNext(javax.swing.JButton btnNext) {
+        this.btnNext = btnNext;
+    }
+
+    /**
+     * @return the txtPage
+     */
+    public javax.swing.JLabel getTxtPage() {
+        return txtPage;
+    }
+
+    /**
+     * @param txtPage the txtPage to set
+     */
+    public void setTxtPage(javax.swing.JLabel txtPage) {
+        this.txtPage = txtPage;
     }
 
 }

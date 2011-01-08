@@ -39,8 +39,15 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnViewAna = new javax.swing.JButton();
         btnAlertAna = new javax.swing.JButton();
         btnRevAna = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         scrPanAna = new javax.swing.JScrollPane();
         tblAna = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        txtPage = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         setToolTipText("show details");
 
@@ -95,6 +102,8 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnRevAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnRevAna);
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         tblAna.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -105,32 +114,66 @@ public class PalAnalytic extends javax.swing.JPanel {
         ));
         scrPanAna.setViewportView(tblAna);
 
+        jPanel1.add(scrPanAna, java.awt.BorderLayout.CENTER);
+
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setBorderPainted(false);
+        jPanel2.add(btnFirst);
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setBorderPainted(false);
+        jPanel2.add(btnBack);
+
+        txtPage.setText("Pages");
+        jPanel2.add(txtPage);
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setBorderPainted(false);
+        jPanel2.add(btnNext);
+
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setBorderPainted(false);
+        jPanel2.add(btnLast);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
-            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(tolbarAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(scrPanAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .add(50, 50, 50)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlertAna;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnRevAna;
     private javax.swing.JButton btnTBookAna;
     private javax.swing.JButton btnTBorAna;
     private javax.swing.JButton btnViewAna;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane scrPanAna;
     private javax.swing.JTable tblAna;
     private javax.swing.JToolBar tolbarAna;
+    private javax.swing.JLabel txtPage;
     // End of variables declaration//GEN-END:variables
 
     /**

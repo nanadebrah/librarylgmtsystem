@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import model.LibUtil;
 import view.AddEmpDialog;
 import view.EditEmpDialog;
 import view.PalEmployee;
@@ -33,6 +34,8 @@ public class EmployeeController {
     private EditEmployeeController editEmp;
     private ViewEmployeeController viewEmp;
     private ManageController parent;
+    private int page;
+    private int totalRow;
 
     /**
      * 
@@ -52,6 +55,9 @@ public class EmployeeController {
      *  initialize the controller.
      */
     private void initComponent() {
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Set selection mode
         view.getTblEmp().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //Add model to table
@@ -99,6 +105,7 @@ public class EmployeeController {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
+                page = 1;
                 searchEmp();
             }
         });
@@ -145,6 +152,42 @@ public class EmployeeController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    searchEmp();
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                searchEmp();
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                searchEmp();
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                searchEmp();
+            }
+        });
     }
 
     /**
@@ -162,7 +205,7 @@ public class EmployeeController {
                     view.getTblEmp().getSelectedRow(), 0).toString();
             if (!AccessEmp.getInstance().deleteEmp(Integer.parseInt(empID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "Because this employee is borrowing many book.", "Error!",
+                        + "May be this employee is borrowing many book.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -244,9 +287,11 @@ public class EmployeeController {
         new Thread(new Runnable() {
 
             public void run() {
-                AccessEmp.getInstance().searchEmp(
+                totalRow = AccessEmp.getInstance().searchEmp(
                         empModel, view.getTxtIdEmp().getText(),
-                        view.getTxtNameEmp().getText());
+                        view.getTxtNameEmp().getText(), (page - 1));
+                view.getTxtPage().setText("Page " + page + "/"
+                        + LibUtil.getInstance().getPage(totalRow));
             }
         }).start();
     }

@@ -73,6 +73,11 @@ public class AccessEmp {
         return null;
     }
 
+    /**
+     * 
+     * @param borModel
+     * @param empID
+     */
     public void getEmpBorInfo(DefaultTableModel borModel, int empID) {
         java.util.Vector vt;
         //Defined connection, rs and cs to connect and query database
@@ -157,44 +162,6 @@ public class AccessEmp {
     }
 
     /**
-     *
-     * @param empModel is Table model to get all data employee
-     */
-    public void getAllEmp(DefaultTableModel empModel) {
-        //Defined connection, rs and cs to connect and query database
-        cn = LibConnection.getConnection();
-        try {
-            csDetails = cn.prepareCall(LibProcedure.GET_ALL_EMP);
-            rsDetails = csDetails.executeQuery();
-            while (rsDetails.next()) {
-                Vector vt = new Vector();
-                vt.addElement(rsDetails.getInt(1));
-                vt.addElement(rsDetails.getString(2));
-                if (rsDetails.getInt(3) == 1) {
-                    vt.addElement("Male");
-                } else {
-                    vt.addElement("Female");
-                }
-                vt.addElement(rsDetails.getString(4));
-                vt.addElement(rsDetails.getString(5));
-                if (rsDetails.getInt(6) == 1) {
-                    vt.addElement("Librarian");
-                } else {
-                    vt.addElement("Employee");
-                }
-                empModel.addRow(vt);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-    }
-
-    /**
      * 
      * @param emp
      * @return
@@ -241,31 +208,33 @@ public class AccessEmp {
     }
 
     /**
-     *
-     * @param empModel is Table model to get all data employee
-     * @param EmpID is employee's ID to find
-     * @param Name is employee's name fo find
+     * 
+     * @param empModel
+     * @param EmpID
+     * @param Name
+     * @param page
+     * @param totalRow
+     * @return
      */
-    public void searchEmp(DefaultTableModel empModel, String EmpID, String Name) {
+    public int searchEmp(DefaultTableModel empModel, String EmpID,
+            String Name, int page) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            if (EmpID.length() == 0 && Name.length() != 0) {
+            if (EmpID.length() == 0) {
                 //Search Name only
                 csDetails = cn.prepareCall(LibProcedure.GET_EMP_BY_NAME);
                 csDetails.setString(1, Name);
-            } else if (EmpID.length() != 0 && Name.length() == 0) {
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
+            } else {
                 //Search EmpID only
                 csDetails = cn.prepareCall(LibProcedure.GET_EMP_BY_ID);
                 csDetails.setInt(1, new Integer(EmpID));
-            } else if (EmpID.length() != 0 && Name.length() != 0) {
-                //Search both ID & Name
-                csDetails = cn.prepareCall(LibProcedure.GET_EMP_BY_BOTH);
-                csDetails.setInt(1, new Integer(EmpID));
-                csDetails.setString(2, Name);
-            } else {
-                getAllEmp(empModel);
-                return;
+                csDetails.setInt(2, page);
+                csDetails.setInt(3, LibUtil.noRow);
+                csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             }
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
@@ -286,6 +255,7 @@ public class AccessEmp {
                 }
                 empModel.addRow(vt);
             }
+            return csDetails.getInt(4);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -294,6 +264,7 @@ public class AccessEmp {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
+        return 1;
     }
 
     /**

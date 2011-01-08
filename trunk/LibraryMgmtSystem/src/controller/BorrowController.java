@@ -13,6 +13,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBorrow;
 import model.AccessFee;
+import model.LibUtil;
 import view.CheckInDialog;
 import view.CheckOutDialog;
 import view.FeeRateDialog;
@@ -38,6 +39,8 @@ public class BorrowController {
     private DefaultTableModel outModel;
     private DefaultTableModel inModel;
     private DefaultTableModel searchModel;
+    private int page;
+    private Integer totalRow;
 
     /**
      * 
@@ -58,6 +61,9 @@ public class BorrowController {
      */
     private void initComponent() {
 
+        //Set default page
+        page = 1;
+        totalRow = 1;
         //Create book model
         searchModel = new DefaultTableModel() {
 
@@ -179,6 +185,7 @@ public class BorrowController {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
+                page = 1;
                 searchBorrow();
             }
         });
@@ -218,8 +225,47 @@ public class BorrowController {
                 }
             }
         });
+
+        //Add event navigation btn
+        view.getBtnNext().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                    return;
+                } else {
+                    page++;
+                    searchBorrow();
+                }
+            }
+        });
+        view.getBtnBack().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if (page != 1) {
+                    page--;
+                }
+                searchBorrow();
+            }
+        });
+        view.getBtnFirst().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = 1;
+                searchBorrow();
+            }
+        });
+        view.getBtnLast().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                page = LibUtil.getInstance().getPage(totalRow);
+                searchBorrow();
+            }
+        });
     }
 
+    /**
+     * 
+     */
     private void deleteBorrow() {
         parent.doBlur();
         int sure = JOptionPane.showConfirmDialog(parent.getView(),
@@ -234,7 +280,7 @@ public class BorrowController {
                     view.getTblBor().getSelectedRow(), 3).toString();
             if (!AccessBorrow.getInstance().deleteBorrow(Integer.parseInt(borID), callNo)) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "Because this borrow isn't checked-in.", "Error!",
+                        + "May be this borrow isn't checked-in.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -332,9 +378,11 @@ public class BorrowController {
      */
     public void searchBorrow() {
         parent.removeModel(borModel);
-        AccessBorrow.getInstance().searchBor(borModel,
+        totalRow = AccessBorrow.getInstance().searchBor(borModel,
                 view.getTxtEmpID().getText(),
-                view.getTxtCallNoBor().getText());
+                view.getTxtCallNoBor().getText(), (page - 1));
+        view.getTxtPage().setText("Page " + page + "/"
+                + LibUtil.getInstance().getPage(totalRow));
     }
 
     /**
