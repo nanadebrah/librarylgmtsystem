@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import model.LibPassword;
-import view.SettingDialog;
+import view.SettingConnection;
 
 /**
  *
@@ -24,9 +24,9 @@ import view.SettingDialog;
 public class SettingController {
 
     //Defined Setting Dialog
-    private SettingDialog view;
+    private SettingConnection view;
 
-    public SettingController(SettingDialog view) {
+    public SettingController(SettingConnection view) {
         this.view = view;
         initComponent();
         //invoked set default all field
@@ -203,7 +203,7 @@ public class SettingController {
     /**
      * @return the view
      */
-    public SettingDialog getView() {
+    public SettingConnection getView() {
         return view;
     }
 }

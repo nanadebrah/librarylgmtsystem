@@ -464,4 +464,18 @@ public class ManageFrm extends javax.swing.JFrame {
     public void setMnQuit(javax.swing.JMenuItem mnQuit) {
         this.mnQuit = mnQuit;
     }
+
+    /**
+     * @return the menuSetting
+     */
+    public javax.swing.JMenuItem getMenuSetting() {
+        return menuSetting;
+    }
+
+    /**
+     * @param menuSetting the menuSetting to set
+     */
+    public void setMenuSetting(javax.swing.JMenuItem menuSetting) {
+        this.menuSetting = menuSetting;
+    }
 }

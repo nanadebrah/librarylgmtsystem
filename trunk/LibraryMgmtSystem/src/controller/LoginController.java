@@ -28,8 +28,8 @@ import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
 import view.AboutWindow;
-import view.LoginFrm;
-import view.SettingDialog;
+import view.LoginDialog;
+import view.SettingConnection;
 
 /**
  *
@@ -41,7 +41,7 @@ public class LoginController {
     private ManageController manageControl;
     private AboutWindow about;
     //Defined Setting Dialog
-    private LoginFrm view;
+    private LoginDialog view;
     //Defined Jxlayer
     private JXLayer<JComponent> layer;
     //Defined blurUI
@@ -58,7 +58,7 @@ public class LoginController {
      * @param view
      * @param manageControl
      */
-    public LoginController(LoginFrm view, ManageController manageControl) {
+    public LoginController(LoginDialog view, ManageController manageControl) {
         this.view = view;
         this.manageControl = manageControl;
         initComponent();
@@ -84,13 +84,13 @@ public class LoginController {
         view.setContentPane(layer);
 
         //Add event to menu setting
-        view.getMenuSetting().addActionListener(new ActionListener() {
+        view.getMnSetConnection().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 //Blur layer
                 doBlur();
                 //Display setting dialog
-                new SettingController(new SettingDialog(
+                new SettingController(new SettingConnection(
                         view, true)).getView().setVisible(true);
                 //Blur layer
                 doBlur();
@@ -112,7 +112,7 @@ public class LoginController {
 
             public void actionPerformed(ActionEvent e) {
                 view.setVisible(false);//hidden current frame
-                about = new AboutWindow(view);
+                about = new AboutWindow(null,view);
             }
         });
 
@@ -124,6 +124,15 @@ public class LoginController {
                 doRemember();
                 //invoked login method
                 login();
+            }
+        });
+
+        //Add event windows closing
+        view.addWindowListener(new java.awt.event.WindowAdapter() {
+
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                view.dispose();
+                System.exit(0);
             }
         });
 
@@ -139,6 +148,7 @@ public class LoginController {
                 }
             }
         });
+
         view.getTxtPassword().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
@@ -313,14 +323,14 @@ public class LoginController {
     /**
      * @return the view
      */
-    public LoginFrm getView() {
+    public LoginDialog getView() {
         return view;
     }
 
     /**
      * @param view the view to set
      */
-    public void setView(LoginFrm view) {
+    public void setView(LoginDialog view) {
         this.view = view;
     }
 }

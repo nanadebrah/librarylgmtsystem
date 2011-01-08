@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.Dialog;
 import java.awt.Frame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,23 +27,29 @@ public class AboutWindow extends JWindow {
     //Defined image for splash screen
     ImageIcon image;
     //Defined label    
-    JLabel jlabel;
+    JLabel lblImage;
     //Defined btnClose
     JButton btnClose;
-    //Defined Jframe
-    Frame jframe;
+    //Defined frame
+    Frame frame;
+    //Defined dalog
+    Dialog dialog;
 
-    public AboutWindow(Frame j) {
+    public AboutWindow(Frame j,Dialog d) {
         //Create new instance of close button
         btnClose = new JButton("Close");
-        //Create new instance of current frame
-        this.jframe=j;
+        //Create new instance of current frame & dialog
+        this.frame=j;
+        this.dialog=d;
         //Add action close when click
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //Show current jframe
-                jframe.setVisible(true);
                 dispose();
+                if(frame!=null)
+                    frame.setVisible(true);
+                if(dialog!=null)
+                    dialog.setVisible(true);                
             }
         });
         //Create new instance of absolute layout
@@ -50,18 +57,18 @@ public class AboutWindow extends JWindow {
         //Create new instance of absolute image
         absimage = new AbsoluteConstraints(0, 0);
         absbutton = new AbsoluteConstraints(690, 250);
-        //Create new instance of jlabel
-        jlabel = new JLabel();
+        //Create new instance of lblImage
+        lblImage = new JLabel();
         //Create new instance of image
         image = new ImageIcon(getClass().getResource(LibImages.ABOUT));
-        //Set jlabel to display image
-        jlabel.setIcon(image);
+        //Set lblImage to display image
+        lblImage.setIcon(image);
         //Set this content pane absolute layout
         this.getContentPane().setLayout(absolute);
         //Add close button to this pane
         this.getContentPane().add(btnClose, absbutton);
         //Add image & absolute absolute image to this pane
-        this.getContentPane().add(jlabel, absimage);
+        this.getContentPane().add(lblImage, absimage);
         //Pack all component
         this.pack();
         //Set pane to center of monitor

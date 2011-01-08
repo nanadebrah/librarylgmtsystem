@@ -4,7 +4,7 @@
  */
 
 /*
- * SettingDialog.java
+ * SettingConnection.java
  *
  * Created on Dec 27, 2010, 4:55:14 PM
  */
@@ -17,10 +17,10 @@ import model.LibImages;
  *
  * @author CuongNQ
  */
-public class SettingDialog extends javax.swing.JDialog {
+public class SettingConnection extends javax.swing.JDialog {
 
-    /** Creates new form SettingDialog */
-    public SettingDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form SettingConnection */
+    public SettingConnection(java.awt.Dialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
         //Set dialog to center of screen
@@ -56,7 +56,7 @@ public class SettingDialog extends javax.swing.JDialog {
         lblCheck = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("System setting");
+        setTitle("Connection Setting");
         setResizable(false);
 
         conectSetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Connect Setting"));

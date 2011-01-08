@@ -7,7 +7,6 @@ package view;
 import controller.LoginController;
 import controller.ManageController;
 import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -28,33 +27,21 @@ public class SplashScreen extends JWindow {
     AbsoluteConstraints absimage, absprocess, abslbl;
     //Defined image label and image
     ImageIcon image;
-    JLabel jlabel;
-    JLabel jlabel2;
+    JLabel lblImage;
+    JLabel Lblstatus;
     JProgressBar process;
-    //Defined login frame
-    LoginController loginControl;
-    //Defined Management frame
+    //Defined login dialog
+    LoginDialog loginDialog;
+    //Defined Management controller
     ManageController manControl;
+    //Defined Management frame
+    ManageFrm manage;
 
+    /**
+     *
+     */
     public SplashScreen() {
-        //Create new instance of content
-        absolute = new AbsoluteLayout();
-        absimage = new AbsoluteConstraints(0, 0);
-        absprocess = new AbsoluteConstraints(0, 278);
-        abslbl = new AbsoluteConstraints(500, 250);
-        //Create new instance of label, image and process
-        jlabel = new JLabel();
-        jlabel2 = new JLabel("Loading..........");
-        process = new JProgressBar();
-        image = new ImageIcon(this.getClass().getResource(LibImages.SPLASH));
-        //Set jlabel to display image and prefersize of process bar
-        jlabel.setIcon(image);
-        process.setPreferredSize(new Dimension(768, 7));
-        //Set this content pane absolute layout and add process, label
-        this.getContentPane().setLayout(absolute);
-        this.getContentPane().add(process, absprocess);
-        this.getContentPane().add(jlabel2, abslbl);
-        this.getContentPane().add(jlabel, absimage);
+        initComponent();
         //Pack all component
         this.pack();
         //Set pane to center of monitor
@@ -65,8 +52,32 @@ public class SplashScreen extends JWindow {
         loadProcess();
     }
 
-    /*
-     *Functinon to excute processing bar
+    /**
+     *
+     */
+    private void initComponent() {
+        //Create new instance of content
+        absolute = new AbsoluteLayout();
+        absimage = new AbsoluteConstraints(0, 0);
+        absprocess = new AbsoluteConstraints(0, 278);
+        abslbl = new AbsoluteConstraints(500, 250);
+        //Create new instance of label, image and process
+        lblImage = new JLabel();
+        Lblstatus = new JLabel("Loading..........");
+        process = new JProgressBar();
+        image = new ImageIcon(this.getClass().getResource(LibImages.SPLASH));
+        //Set lblImage to display image and prefersize of process bar
+        lblImage.setIcon(image);
+        process.setPreferredSize(new Dimension(768, 7));
+        //Set this content pane absolute layout and add process, label
+        this.getContentPane().setLayout(absolute);
+        this.getContentPane().add(process, absprocess);
+        this.getContentPane().add(Lblstatus, abslbl);
+        this.getContentPane().add(lblImage, absimage);
+    }
+
+    /**
+     * Functinon to excute processing bar
      */
     private void loadProcess() {
         //Create new thread to run process bar
@@ -76,26 +87,24 @@ public class SplashScreen extends JWindow {
                 int i = 0;
                 while (i < 101) {
                     process.setValue(i);//Set value to process bar
-                    jlabel2.setText("Loading "+i+"%");
+                    Lblstatus.setText("Loading " + i + "%");
                     i++;
                     try {
                         switch (i) {
-                            case 30:
-                                jlabel2.setText("Loading Manager Controller");
-                                manControl = new ManageController(new ManageFrm());
+                            case 25:
+                                Lblstatus.setText("Loading Manager Frame");
+                                manage = new ManageFrm();
                                 break;
-                            case 60:
-                                jlabel2.setText("Loading Login Controller");
-                                loginControl = new LoginController(new LoginFrm(), manControl);
+                            case 50:
+                                Lblstatus.setText("Loading Login Controller");
+                                loginDialog = new LoginDialog(manage, true);
                                 break;
-                            case 65:
-                                break;
-                            case 70:
-                                break;
-                            case 75:
+                            case 80:
+                                Lblstatus.setText("Loading Manager Controller");
+                                manControl = new ManageController(manage, loginDialog);
                                 break;
                             default:
-                                sleep(10);//Sleep 70 minisecond
+                                sleep(10);//Sleep
                                 break;
                         }
                     } catch (InterruptedException ex) {
@@ -108,10 +117,18 @@ public class SplashScreen extends JWindow {
             t.start();//Start thread
             t.join();//Join thread
             dispose();//Disopse this splash screen when done
-            //Display login frame
-            loginControl.getView().setVisible(true);
+            //Display login dialog
+            manControl.Run();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+    }
+
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+        new SplashScreen();
     }
 }

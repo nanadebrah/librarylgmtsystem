@@ -15,7 +15,7 @@ import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
 import view.AboutWindow;
-import view.LoginFrm;
+import view.LoginDialog;
 import view.ManageFrm;
 import view.PalAnalytic;
 import view.PalBook;
@@ -29,6 +29,9 @@ import view.PalSubject;
  */
 public class ManageController {
 
+    //Defined LoginController & login view
+    private LoginController loginControl;
+    private LoginDialog loginDialog;
     //Defined cardlayout
     private CardLayout cardLayout;
     //Defined EmployeeController & employee model
@@ -56,14 +59,15 @@ public class ManageController {
     private LockableUI blurUI;
     //Defined Jcomponent
     private JComponent jc;
-    private LoginController loginConrol;
 
     /**
-     * 
+     *
      * @param view
+     * @param loginDialog
      */
-    public ManageController(ManageFrm view) {
+    public ManageController(ManageFrm view, LoginDialog loginDialog) {
         this.view = view;
+        this.loginDialog = loginDialog;
         initComponent();
     }
 
@@ -71,6 +75,9 @@ public class ManageController {
      *  initialize the controller.
      */
     private void initComponent() {
+
+        //Create new instance of login controllwe
+        loginControl = new LoginController(loginDialog, this);
 
         //Create instance of card layout
         cardLayout = (CardLayout) view.getPalMain().getLayout();
@@ -82,6 +89,7 @@ public class ManageController {
                 return false;
             }
         };
+
         //Create book model
         bookModel = new DefaultTableModel() {
 
@@ -182,7 +190,7 @@ public class ManageController {
                 setBorSelect(view.getBtnEmpMan());
                 empControl.searchEmp();
                 subControl.searchSubject();
-                bookControl.searchBook();                
+                bookControl.searchBook();
             }
         });
 
@@ -200,7 +208,7 @@ public class ManageController {
 
             public void actionPerformed(ActionEvent e) {
                 view.setVisible(false);//hidden current frame
-                about = new AboutWindow(view);
+                about = new AboutWindow(view, null);
             }
         });
 
@@ -209,9 +217,17 @@ public class ManageController {
 
             public void actionPerformed(ActionEvent e) {
                 view.dispose();
-                loginConrol = new LoginController(new LoginFrm(), getThis());
-                loginConrol.getView().setVisible(true);
+                loginControl.getView().setVisible(true);
+            }
+        });
 
+        //Add event menu setting
+        view.getMenuSetting().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                //
+                //
+                //
             }
         });
 
@@ -226,6 +242,13 @@ public class ManageController {
         blurUI.setLockedCursor(null);
         //set layer blur to pane
         view.setContentPane(layer);
+    }
+
+    /**
+     * Start program by run display login dialog
+     */
+    public void Run() {
+        loginControl.getView().setVisible(true);
     }
 
     /**
@@ -278,7 +301,7 @@ public class ManageController {
      * This method get instance of manage controller
      * @return ManageController
      */
-    private ManageController getThis(){
+    private ManageController getThis() {
         return this;
     }
 }

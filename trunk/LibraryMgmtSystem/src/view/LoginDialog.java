@@ -4,10 +4,11 @@
  */
 
 /*
- * LoginFrm.java
+ * LoginDialog.java
  *
- * Created on Jan 1, 2011, 2:29:26 PM
+ * Created on Jan 8, 2011, 8:37:09 AM
  */
+
 package view;
 
 import javax.swing.ImageIcon;
@@ -17,12 +18,12 @@ import model.LibImages;
  *
  * @author CuongNQ
  */
-public class LoginFrm extends javax.swing.JFrame {
+public class LoginDialog extends javax.swing.JDialog {
 
-    /** Creates new form LoginFrm */
-    public LoginFrm() {
+    /** Creates new form LoginDialog */
+    public LoginDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        //Set this frame to center of monitor
         setLocationRelativeTo(null);
     }
 
@@ -46,15 +47,14 @@ public class LoginFrm extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         mnSystem = new javax.swing.JMenu();
-        menuSetting = new javax.swing.JMenuItem();
+        mnSetConnection = new javax.swing.JMenuItem();
         separator = new javax.swing.JPopupMenu.Separator();
         mnQuit = new javax.swing.JMenuItem();
         mnHelp = new javax.swing.JMenu();
         mnSubHelp = new javax.swing.JMenuItem();
         mnAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("LOGIN");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));
@@ -118,9 +118,9 @@ public class LoginFrm extends javax.swing.JFrame {
 
         mnSystem.setText("System");
 
-        menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_SETTING)));
-        menuSetting.setText("Setting");
-        mnSystem.add(menuSetting);
+        mnSetConnection.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_SETTING)));
+        mnSetConnection.setText("Connection");
+        mnSystem.add(mnSetConnection);
         mnSystem.add(separator);
 
         mnQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.ALT_MASK));
@@ -170,7 +170,6 @@ public class LoginFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JCheckBox chBxRemember;
@@ -179,10 +178,10 @@ public class LoginFrm extends javax.swing.JFrame {
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menuSetting;
     private javax.swing.JMenuItem mnAbout;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnQuit;
+    private javax.swing.JMenuItem mnSetConnection;
     private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
     private javax.swing.JPanel panelLogin;
@@ -190,6 +189,20 @@ public class LoginFrm extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the btnLogin
+     */
+    public javax.swing.JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    /**
+     * @param btnLogin the btnLogin to set
+     */
+    public void setBtnLogin(javax.swing.JButton btnLogin) {
+        this.btnLogin = btnLogin;
+    }
 
     /**
      * @return the chBxRemember
@@ -203,20 +216,6 @@ public class LoginFrm extends javax.swing.JFrame {
      */
     public void setChBxRemember(javax.swing.JCheckBox chBxRemember) {
         this.chBxRemember = chBxRemember;
-    }
-
-    /**
-     * @return the menuSetting
-     */
-    public javax.swing.JMenuItem getMenuSetting() {
-        return menuSetting;
-    }
-
-    /**
-     * @param menuSetting the menuSetting to set
-     */
-    public void setMenuSetting(javax.swing.JMenuItem menuSetting) {
-        this.menuSetting = menuSetting;
     }
 
     /**
@@ -245,34 +244,6 @@ public class LoginFrm extends javax.swing.JFrame {
      */
     public void setMnQuit(javax.swing.JMenuItem mnQuit) {
         this.mnQuit = mnQuit;
-    }
-
-    /**
-     * @return the btnLogin
-     */
-    public javax.swing.JButton getBtnLogin() {
-        return btnLogin;
-    }
-
-    /**
-     * @param btnLogin the btnLogin to set
-     */
-    public void setBtnLogin(javax.swing.JButton btnLogin) {
-        this.btnLogin = btnLogin;
-    }
-
-    /**
-     * @return the lblUserName
-     */
-    public javax.swing.JLabel getLblUserName() {
-        return lblUserName;
-    }
-
-    /**
-     * @param lblUserName the lblUserName to set
-     */
-    public void setLblUserName(javax.swing.JLabel lblUserName) {
-        this.lblUserName = lblUserName;
     }
 
     /**
@@ -316,4 +287,19 @@ public class LoginFrm extends javax.swing.JFrame {
     public void setMnSubHelp(javax.swing.JMenuItem mnSubHelp) {
         this.mnSubHelp = mnSubHelp;
     }
+
+    /**
+     * @return the mnSetConnection
+     */
+    public javax.swing.JMenuItem getMnSetConnection() {
+        return mnSetConnection;
+    }
+
+    /**
+     * @param mnSetConnection the mnSetConnection to set
+     */
+    public void setMnSetConnection(javax.swing.JMenuItem mnSetConnection) {
+        this.mnSetConnection = mnSetConnection;
+    }
+
 }
