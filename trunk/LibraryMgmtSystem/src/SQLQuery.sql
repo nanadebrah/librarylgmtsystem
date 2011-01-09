@@ -157,7 +157,7 @@ AS
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) AS [No],
 			EmpID,[Name],Gender,Email,Department,Permission
 			FROM Employee WHERE [Name] LIKE '%'+@Name+'%'
 		)
@@ -186,7 +186,7 @@ AS
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) AS [No],
 			EmpID,[Name],Gender,Email,Department,Permission
 			FROM Employee WHERE EmpID=@EmpID
 		)
@@ -241,7 +241,7 @@ DECLARE @startRowIndex INT
 SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 WITH Temp AS
 	(
-		SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) as [No],
+		SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) AS [No],
 		EmpID,[Name],Gender,Email,Department,Permission FROM Employee
 	)
 SELECT EmpID,[Name],Gender,Email,Department,Permission
@@ -374,7 +374,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) AS [No],
 			* FROM Subject WHERE SubName LIKE '%'+@SubName+'%'
 		)
 	SELECT SubID,SubName,Description FROM Temp
@@ -401,7 +401,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) AS [No],
 			* FROM Subject WHERE SubID=@SubID
 		)
 	SELECT SubID,SubName,Description FROM Temp
@@ -548,7 +548,7 @@ AS
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY BookID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY BookID ASC) AS [No],
 			CallNumber,ISBN,Title,AuthName,Publisher,NoOfCopy,NoInLib
 			FROM Book WHERE
 			CallNumber LIKE '%'+@CallNumber+'%'	 
@@ -723,7 +723,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
 			B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
 			BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,
 			BD.TotalFee FROM Borrow B JOIN 
@@ -762,7 +762,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
 			B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
 			BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,
 			BD.TotalFee FROM Borrow B JOIN 
@@ -906,7 +906,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
 			B.BorID,E.EmpID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
 			BO.Publisher,BD.DueDate,BD.IssueDate
 			FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
@@ -947,7 +947,7 @@ BEGIN
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) as [No],
+			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
 			B.BorID,E.EmpID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
 			BO.Publisher,BD.DueDate,BD.IssueDate FROM Borrow B JOIN 
 			BorrowDetail BD ON B.BorID=BD.BorID
@@ -1046,6 +1046,112 @@ AS
 	UPDATE Fee SET BorFee=@BorFee,LateFee=@LateFee
 	WHERE Fee='Fee'
 -----------------------------
+/*------------------------------------------*/
+
+/*  ANALYTICS */
+
+--Get top book borrowed
+
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetTopBook' AND type = 'P')
+   DROP PROCEDURE sp_GetTopBook
+GO
+IF EXISTS (SELECT TOP 1 * FROM TopBook)
+DROP VIEW TopBook
+GO
+	CREATE VIEW TopBook AS
+	SELECT DISTINCT B.CallNumber,B.ISBN,B.Title,B.AuthName,
+	B.Publisher,S.SubName,C.NB FROM Book B JOIN Subject S
+	ON B.SubID=S.SubID JOIN BorrowDetail BD ON
+	B.CallNumber=BD.CallNumber JOIN 
+	(SELECT CallNumber,COUNT(CallNumber) AS NB
+	FROM BorrowDetail GROUP BY CallNumber) AS C
+	ON B.CallNumber=C.CallNumber
+GO
+CREATE PROC sp_GetTopBook
+(		
+	@PageIndex INT,
+	@NumRows INT,
+	@TotalPage INT OUTPUT
+)
+AS
+BEGIN
+	SELECT @TotalPage=COUNT(DISTINCT B.CallNumber) 
+	FROM Book B JOIN Subject S
+	ON B.SubID=S.SubID JOIN BorrowDetail BD ON
+	B.CallNumber=BD.CallNumber JOIN 
+	(SELECT CallNumber,COUNT(CallNumber) AS NB
+	FROM BorrowDetail GROUP BY CallNumber) AS C
+	ON B.CallNumber=C.CallNumber
+	DECLARE @startRowIndex INT
+	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
+	WITH Temp AS
+	(
+		SELECT ROW_NUMBER() OVER (ORDER BY NB DESC)
+		AS [No],* FROM TopBook
+	)
+	SELECT CallNumber,ISBN,Title,AuthName,
+	Publisher,SubName,NB
+	FROM Temp
+	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
+END
+
+--Get top employee borrowed
+
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetTopBorrower' AND type = 'P')
+   DROP PROCEDURE sp_GetTopBorrower
+GO
+IF EXISTS (SELECT TOP 1 * FROM TopBorrower)
+DROP VIEW TopBorrower
+GO
+CREATE VIEW TopBorrower AS
+SELECT E.EmpID,E.[Name],CASE E.Gender WHEN 1 THEN 'Male'
+	ELSE 'FEMALE' END AS 'Gender',E.Email,E.Department,E.Phone,
+	CASE Permission WHEN 1 THEN 'Librarin' ELSE
+	'Employee' END AS 'Permission',T.NB FROM Employee E JOIN
+	(	SELECT EmpID,SUM(NB) AS NB FROM
+		(
+			SELECT E.EmpID,COUNT(C.NB) AS NB FROM Employee E JOIN Borrow B
+			ON E.EmpID=B.EmpID JOIN BorrowDetail BD ON
+			B.BorID=BD.BorID JOIN 
+			(SELECT BorID,COUNT(BorID) AS NB
+			FROM BorrowDetail GROUP BY BorID) AS C
+			ON B.BorID=C.BorID GROUP BY E.EmpID,C.NB
+		) AS D GROUP BY EmpID
+	) AS T ON E.EmpID=T.EmpID
+GO
+CREATE PROC sp_GetTopBorrower
+(		
+	@PageIndex INT,
+	@NumRows INT,
+	@TotalPage INT OUTPUT
+)
+AS
+BEGIN
+	SELECT @TotalPage=COUNT(E.EmpID) FROM Employee E JOIN
+	(	SELECT EmpID,SUM(NB) AS NB FROM
+		(
+			SELECT E.EmpID,COUNT(C.NB) AS NB FROM Employee E JOIN Borrow B
+			ON E.EmpID=B.EmpID JOIN BorrowDetail BD ON
+			B.BorID=BD.BorID JOIN 
+			(SELECT BorID,COUNT(BorID) AS NB
+			FROM BorrowDetail GROUP BY BorID) AS C
+			ON B.BorID=C.BorID GROUP BY E.EmpID,C.NB
+		) AS D GROUP BY EmpID
+	) AS T ON E.EmpID=T.EmpID
+	DECLARE @startRowIndex INT
+	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
+	WITH Temp AS
+		(
+		SELECT ROW_NUMBER() OVER (ORDER BY NB DESC)
+		AS [No],* FROM TopBorrower
+		)
+	SELECT EmpID,[Name],Gender,Email,Department,Phone,Permission,NB
+	FROM Temp
+	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
+END
+/*****************************************************/
 
 /* DEFAULT VALUE */
 

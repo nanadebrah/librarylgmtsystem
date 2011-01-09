@@ -36,7 +36,6 @@ public class PalAnalytic extends javax.swing.JPanel {
         tolbarAna = new javax.swing.JToolBar();
         btnTBookAna = new javax.swing.JButton();
         btnTBorAna = new javax.swing.JButton();
-        btnViewAna = new javax.swing.JButton();
         btnAlertAna = new javax.swing.JButton();
         btnRevAna = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -51,8 +50,8 @@ public class PalAnalytic extends javax.swing.JPanel {
 
         setToolTipText("show details");
 
-        tolbarAna.setBorder(null);
         tolbarAna.setFloatable(false);
+        tolbarAna.setBorder(null);
         tolbarAna.setBorderPainted(false);
         tolbarAna.setOpaque(false);
 
@@ -73,16 +72,6 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBorAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTBorAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBorAna);
-
-        btnViewAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
-        btnViewAna.setMnemonic('v');
-        btnViewAna.setText("View");
-        btnViewAna.setBorderPainted(false);
-        btnViewAna.setEnabled(false);
-        btnViewAna.setFocusable(false);
-        btnViewAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnViewAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarAna.add(btnViewAna);
 
         btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
         btnAlertAna.setMnemonic('s');
@@ -167,7 +156,6 @@ public class PalAnalytic extends javax.swing.JPanel {
     private javax.swing.JButton btnRevAna;
     private javax.swing.JButton btnTBookAna;
     private javax.swing.JButton btnTBorAna;
-    private javax.swing.JButton btnViewAna;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane scrPanAna;
@@ -233,20 +221,6 @@ public class PalAnalytic extends javax.swing.JPanel {
     }
 
     /**
-     * @return the btnViewAna
-     */
-    public javax.swing.JButton getBtnViewAna() {
-        return btnViewAna;
-    }
-
-    /**
-     * @param btnViewAna the btnViewAna to set
-     */
-    public void setBtnViewAna(javax.swing.JButton btnViewAna) {
-        this.btnViewAna = btnViewAna;
-    }
-
-    /**
      * @return the tblAna
      */
     public javax.swing.JTable getTblAna() {
@@ -258,6 +232,76 @@ public class PalAnalytic extends javax.swing.JPanel {
      */
     public void setTblAna(javax.swing.JTable tblAna) {
         this.tblAna = tblAna;
+    }
+
+    /**
+     * @return the btnBack
+     */
+    public javax.swing.JButton getBtnBack() {
+        return btnBack;
+    }
+
+    /**
+     * @param btnBack the btnBack to set
+     */
+    public void setBtnBack(javax.swing.JButton btnBack) {
+        this.btnBack = btnBack;
+    }
+
+    /**
+     * @return the btnFirst
+     */
+    public javax.swing.JButton getBtnFirst() {
+        return btnFirst;
+    }
+
+    /**
+     * @param btnFirst the btnFirst to set
+     */
+    public void setBtnFirst(javax.swing.JButton btnFirst) {
+        this.btnFirst = btnFirst;
+    }
+
+    /**
+     * @return the btnLast
+     */
+    public javax.swing.JButton getBtnLast() {
+        return btnLast;
+    }
+
+    /**
+     * @param btnLast the btnLast to set
+     */
+    public void setBtnLast(javax.swing.JButton btnLast) {
+        this.btnLast = btnLast;
+    }
+
+    /**
+     * @return the btnNext
+     */
+    public javax.swing.JButton getBtnNext() {
+        return btnNext;
+    }
+
+    /**
+     * @param btnNext the btnNext to set
+     */
+    public void setBtnNext(javax.swing.JButton btnNext) {
+        this.btnNext = btnNext;
+    }
+
+    /**
+     * @return the txtPage
+     */
+    public javax.swing.JLabel getTxtPage() {
+        return txtPage;
+    }
+
+    /**
+     * @param txtPage the txtPage to set
+     */
+    public void setTxtPage(javax.swing.JLabel txtPage) {
+        this.txtPage = txtPage;
     }
 
 }

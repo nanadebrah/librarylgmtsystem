@@ -47,6 +47,7 @@ public class CheckOutController {
     private BorrowDetail borDetail;
     private int page;
     private Integer totalRow;
+    private boolean isSearchEmp;
 
     public CheckOutController(CheckOutDialog view, DefaultTableModel bookModel,
             DefaultTableModel empModel, DefaultTableModel outModel, ManageController parent) {
@@ -180,8 +181,7 @@ public class CheckOutController {
                     return;
                 } else {
                     page++;
-                    if (view.getTxtIdEmp().getText().length() > 0
-                            || view.getTxtNameEmp().getText().length() > 0) {
+                    if (isSearchEmp) {
                         searchEmp();
                     } else {
                         searchBook();
@@ -195,8 +195,7 @@ public class CheckOutController {
                 if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
                     page--;
                 }
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchEmp();
                 } else {
                     searchBook();
@@ -207,8 +206,7 @@ public class CheckOutController {
 
             public void actionPerformed(ActionEvent e) {
                 page = 1;
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchEmp();
                 } else {
                     searchBook();
@@ -219,8 +217,7 @@ public class CheckOutController {
 
             public void actionPerformed(ActionEvent e) {
                 page = LibUtil.getInstance().getPage(totalRow);
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchEmp();
                 } else {
                     searchBook();
@@ -329,6 +326,7 @@ public class CheckOutController {
      * Seacrch employee by Id or name
      */
     public void searchEmp() {
+        isSearchEmp=true;
         parent.removeModel(empModel);
         //Add employee model to table
         view.getTblBoth().setModel(empModel);
@@ -351,6 +349,7 @@ public class CheckOutController {
      * Method search Book
      */
     private void searchBook() {
+        isSearchEmp=false;
         parent.removeModel(bookModel);
         //Add book model to table
         view.getTblBoth().setModel(bookModel);

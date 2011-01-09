@@ -49,6 +49,7 @@ public class CheckInController {
     private float borFee, lateFee;
     private int page;
     private int totalRow;
+    private boolean isSearchEmp;
 
     public CheckInController(CheckInDialog view, DefaultTableModel searchModel,
             DefaultTableModel inModel, ManageController parent) {
@@ -195,8 +196,7 @@ public class CheckInController {
                     return;
                 } else {
                     page++;
-                    if (view.getTxtIdEmp().getText().length() > 0
-                            || view.getTxtNameEmp().getText().length() > 0) {
+                    if (isSearchEmp) {
                         searchByEmpInfo();
                     } else {
                         searchByBookInfo();
@@ -210,8 +210,7 @@ public class CheckInController {
                 if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
                     page--;
                 }
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchByEmpInfo();
                 } else {
                     searchByBookInfo();
@@ -222,8 +221,7 @@ public class CheckInController {
 
             public void actionPerformed(ActionEvent e) {
                 page = 1;
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchByEmpInfo();
                 } else {
                     searchByBookInfo();
@@ -234,8 +232,7 @@ public class CheckInController {
 
             public void actionPerformed(ActionEvent e) {
                 page = LibUtil.getInstance().getPage(totalRow);
-                if (view.getTxtIdEmp().getText().length() > 0
-                        || view.getTxtNameEmp().getText().length() > 0) {
+                if (isSearchEmp) {
                     searchByEmpInfo();
                 } else {
                     searchByBookInfo();
@@ -248,6 +245,7 @@ public class CheckInController {
      *
      */
     private void searchByEmpInfo() {
+        isSearchEmp=true;
         parent.removeModel(searchModel);
         map.clear();
         totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
@@ -262,6 +260,7 @@ public class CheckInController {
      * 
      */
     private void searchByBookInfo() {
+        isSearchEmp=false;
         parent.removeModel(searchModel);
         map.clear();
         totalRow = AccessBorrow.getInstance().searchCheckOutByBookInfo(map,

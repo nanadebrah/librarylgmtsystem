@@ -92,4 +92,9 @@ public class LibProcedure {
     //Check-in
     public static final String CHECK_IN = "{call sp_CheckIn(?,?,?,?)}";
     //-------------------------------------------------------
+    /**
+     * Analytic procedure
+     */
+    public static final String TOP_BOOK = "{call sp_GetTopBook(?,?,?)}";
+    public static final String TOP_BORROWER = "{call sp_GetTopBorrower(?,?,?)}";
 }
