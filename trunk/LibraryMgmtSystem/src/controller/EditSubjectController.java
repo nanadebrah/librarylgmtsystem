@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import entity.Subject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import model.LibValid;
 import view.EditSubDialog;
 
 /**
@@ -38,15 +39,16 @@ public class EditSubjectController {
         view.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                sub=null;
+                sub = null;
                 view.dispose();
             }
         });
 
         //Add event close window
         view.addWindowListener(new java.awt.event.WindowAdapter() {
+
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                sub=null;
+                sub = null;
                 view.dispose();
             }
         });
@@ -55,9 +57,14 @@ public class EditSubjectController {
         view.getBtnSave().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                sub.setSubName(view.getTxtName().getText());
-                sub.setDescription(view.getTxtDes().getText());
-                view.dispose();
+                if (LibValid.getInstance().Sub(view.getTxtName().getText())) {
+                    sub.setSubName(view.getTxtName().getText());
+                    sub.setDescription(view.getTxtDes().getText());
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "Subject name not valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
     }

@@ -64,7 +64,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUBID);
             csDetails.setString(1, subName);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -144,7 +144,7 @@ public class AccessSub {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
+            csDetails = cn.prepareCall(LibProcedure.GET_SUB);
             csDetails.setInt(1, SubID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
@@ -186,7 +186,7 @@ public class AccessSub {
                 csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             } else {
                 //Search EmpID only
-                csDetails = cn.prepareCall(LibProcedure.GET_SUB_WITH_ID);
+                csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
                 csDetails.setInt(1, new Integer(SubID));
                 csDetails.setInt(2, page);
                 csDetails.setInt(3, LibUtil.noRow);

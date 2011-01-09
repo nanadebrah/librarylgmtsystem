@@ -7,10 +7,12 @@ package controller;
 import entity.Book;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.AccessSub;
 import model.LibBook;
+import model.LibValid;
 import view.EditBokDialog;
 
 /**
@@ -41,8 +43,13 @@ public class EditBookController {
         view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                toObject();
-                view.dispose();
+                if (validBook()) {
+                    toObject();
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "All field must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
@@ -74,6 +81,26 @@ public class EditBookController {
     }
 
     /**
+     *
+     * @return
+     */
+    private boolean validBook() {
+        if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Transfer all field to object
      */
     private void toObject() {
@@ -96,7 +123,7 @@ public class EditBookController {
     private void balance() {
         //Defined new no of copies value
         int newNoC = Integer.parseInt(view.getTxtNoCop().getValue().toString());
-        
+
         //Neu so copy bang so trong kho
         if (noCopies == noInLib) {
             if (newNoC < 1) {

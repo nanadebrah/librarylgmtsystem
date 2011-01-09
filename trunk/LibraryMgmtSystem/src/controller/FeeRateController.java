@@ -7,7 +7,9 @@ package controller;
 import entity.Fee;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import model.AccessFee;
+import model.LibValid;
 import view.FeeRateDialog;
 
 /**
@@ -59,11 +61,19 @@ public class FeeRateController {
         view.getBtnChange().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                fee = new Fee();
-                fee.setFee("Fee");
-                fee.setBorFee(new Float(view.getTxtDayFee().getText().substring(1)));
-                fee.setLateFee(new Float(view.getTxtLateFee().getText().substring(1)));
-                view.dispose();
+
+                if (view.getTxtDayFee().getText().length() > 0
+                        && view.getTxtLateFee().getText().length() > 0) {
+                    fee = new Fee();
+                    fee.setFee("Fee");
+                    fee.setBorFee(new Float(view.getTxtDayFee().getText().substring(1)));
+                    fee.setLateFee(new Float(view.getTxtLateFee().getText().substring(1)));
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "All field must valid.\n"
+                            + "Example: $7.10",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
     }

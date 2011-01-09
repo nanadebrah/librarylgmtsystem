@@ -11,6 +11,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+import model.LibValid;
 import view.AddEmpDialog;
 
 /**
@@ -48,10 +50,15 @@ public class AddEmployeeController {
         view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                //set object
-                toObject();
-                //Dispose this dialog
-                view.dispose();
+                if (validEmp()) {
+                    //set object
+                    toObject();
+                    //Dispose this dialog
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "All field must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
@@ -80,7 +87,7 @@ public class AddEmployeeController {
         });
     }
 
-    /*
+    /**
      * Transfer all field to object
      */
     private void toObject() {
@@ -102,6 +109,38 @@ public class AddEmployeeController {
         } else {
             emp.setPermission(0);
         }
+    }
+
+    /**
+     * 
+     * @return
+     */
+    private boolean validEmp() {
+        if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
+            return false;
+        }
+        if (view.getCbxPermis().getSelectedItem().equals("Librarian")) {
+            if (!LibValid.getInstance().Password(
+                    new String(view.getTxtPass().getPassword()))) {
+                return false;
+            }
+        }
+        if (view.getTxtDOB().getDate() == null) {
+            return false;
+        }
+        if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
+            return false;
+        }
+        return true;
     }
 
     /**

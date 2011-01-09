@@ -109,7 +109,7 @@ public class BookController {
 
             public void actionPerformed(ActionEvent e) {
                 tableFocus();
-                page=1;
+                page = 1;
                 searchBook();
             }
         });
@@ -168,7 +168,8 @@ public class BookController {
         view.getBtnNext().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                if (page == LibUtil.getInstance().getPage(totalRow)
+                        || LibUtil.getInstance().getPage(totalRow) == 0) {
                     return;
                 } else {
                     page++;
@@ -179,7 +180,7 @@ public class BookController {
         view.getBtnBack().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page != 1) {
+                if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
                     page--;
                 }
                 searchBook();
@@ -251,6 +252,10 @@ public class BookController {
                 bookModel.removeRow(view.getTblBook().getSelectedRow());
                 //Add new row
                 bookModel.addRow(book.toVector());
+            } else {
+                JOptionPane.showMessageDialog(parent.getView(), "Edit failed!\n"
+                        + "May be ISBN isn't unique.", "Edit Book!",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
         tableFocus();
@@ -306,9 +311,13 @@ public class BookController {
             if (AccessBook.getInstance().addBook(addBook.getBook())) {
                 JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Add new row
+                bookModel.addRow(addBook.getBook().toVector());
+            } else {
+                JOptionPane.showMessageDialog(view, "Add failed!\n"
+                        + "May be this book have added or ISBN is duplicate.",
+                        "Update Book", JOptionPane.ERROR_MESSAGE);
             }
-            //Add new row
-            bookModel.addRow(addBook.getBook().toVector());
         }
         view.getTblBook().clearSelection();
         parent.doBlur();

@@ -157,7 +157,8 @@ public class EmployeeController {
         view.getBtnNext().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                if (page == LibUtil.getInstance().getPage(totalRow)
+                        || LibUtil.getInstance().getPage(totalRow) == 0) {
                     return;
                 } else {
                     page++;
@@ -168,7 +169,7 @@ public class EmployeeController {
         view.getBtnBack().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page != 1) {
+                if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
                     page--;
                 }
                 searchEmp();
@@ -251,6 +252,10 @@ public class EmployeeController {
                 empModel.removeRow(view.getTblEmp().getSelectedRow());
                 //Add new row
                 empModel.addRow(emp.toVector());
+            } else {
+                JOptionPane.showMessageDialog(view, "Edit failed!\n"
+                        + "May be username isn't unique.",
+                        "Edit Employee", JOptionPane.ERROR_MESSAGE);
             }
         }
         view.getTblEmp().clearSelection();
@@ -273,6 +278,10 @@ public class EmployeeController {
                 //Add new employee to table
                 addEmp.getEmp().setEmpID(AccessEmp.getInstance().getNewestEmp());
                 empModel.addRow(addEmp.getEmp().toVector());
+            } else {
+                JOptionPane.showMessageDialog(view, "Add failed!\n"
+                        + "May be this librarian have added.",
+                        "Add Employee", JOptionPane.ERROR_MESSAGE);
             }
         }
         view.getTblEmp().clearSelection();

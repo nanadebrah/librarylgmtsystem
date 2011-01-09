@@ -31,12 +31,19 @@ public class AccessBorrow {
     private static AccessBorrow instance = new AccessBorrow();
 
     /**
-     * Static method get instance of AccessBook
+     * 
+     * @return
      */
     public static AccessBorrow getInstance() {
         return instance;
     }
 
+    /**
+     *
+     * @param empID
+     * @param map
+     * @return
+     */
     public boolean checkOut(int empID, TreeMap map) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
@@ -68,6 +75,14 @@ public class AccessBorrow {
         return false;
     }
 
+    /**
+     *
+     * @param borModel
+     * @param EmpID
+     * @param CallNo
+     * @param page
+     * @return
+     */
     public int searchBor(DefaultTableModel borModel,
             String EmpID, String CallNo, int page) {
         //Defined connection, rs and cs to connect and query database
@@ -154,7 +169,7 @@ public class AccessBorrow {
 
     /**
      *
-     * @param searchModel
+     * @param map
      * @param borID
      */
     public void searchCheckOutByBorID(TreeMap map, int borID) {
@@ -288,6 +303,13 @@ public class AccessBorrow {
         return 1;
     }
 
+    /**
+     *
+     * @param arr
+     * @param borID
+     * @param empID
+     * @param CallNo
+     */
     public void getFullBorInfo(String[] arr, int borID, int empID, String CallNo) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
@@ -343,6 +365,12 @@ public class AccessBorrow {
         }
     }
 
+    /**
+     *
+     * @param borID
+     * @param CallNumber
+     * @return
+     */
     public boolean deleteBorrow(int borID, String CallNumber) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();

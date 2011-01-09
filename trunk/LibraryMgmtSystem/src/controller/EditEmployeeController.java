@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import javax.swing.JOptionPane;
+import model.LibValid;
 import view.EditEmpDialog;
 
 /**
@@ -65,8 +67,13 @@ public class EditEmployeeController {
         view.getBtnSave().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                toObject();
-                view.dispose();
+                if (validEmp()) {
+                    toObject();
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "All field must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
         //Add event windows closing
@@ -84,6 +91,38 @@ public class EditEmployeeController {
                 }
             }
         });
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean validEmp() {
+        if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
+            return false;
+        }
+        if (view.getCbxPermis().getSelectedItem().equals("Librarian")) {
+            if (!LibValid.getInstance().Password(
+                    new String(view.getTxtPass().getPassword()))) {
+                return false;
+            }
+        }
+        if (view.getTxtDOB().getDate() == null) {
+            return false;
+        }
+        if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -115,7 +154,7 @@ public class EditEmployeeController {
      * Transfer all field to object
      */
     private void toObject() {
-        emp.setName(view.getTxtName().getText());
+        emp.setFixName(view.getTxtName().getText());
         if (view.getRdbMale().isSelected()) {
             emp.setGender(1);
         } else {

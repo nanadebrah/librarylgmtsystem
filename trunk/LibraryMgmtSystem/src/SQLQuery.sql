@@ -108,7 +108,12 @@ AS
 	END
 
 --Create Procedure insert librarian
-CREATE PROC sp_InsLib(
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_InsLib' AND type = 'P')
+   DROP PROCEDURE sp_InsLib
+GO
+CREATE PROC sp_InsLib
+(
 	@Name VARCHAR(45),
 	@DOB SMALLDATETIME,
 	@Gender BIT,
@@ -120,11 +125,16 @@ CREATE PROC sp_InsLib(
 )
 AS
 	BEGIN
+	IF NOT EXISTS (SELECT [Name] FROM Employee
+		WHERE [Name]=@Name)
+
 		INSERT INTO Employee(
 		[Name],DOB,Gender,Email,Password,
 		Address,Phone,Permission,Department)
 		VALUES(@Name,@DOB,@Gender,@Email,@Password,
 		@Address,@Phone,1,@Department)
+	ELSE
+		SELECT 'ERROR'
 	END
 
 --get an employee with one parameter : name
@@ -260,9 +270,16 @@ AS
 	END
 
 --Create Procedure edit Librarian
-CREATE PROC sp_EditLib(
+
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_EditLib' AND type = 'P')
+   DROP PROCEDURE sp_EditLib
+GO
+CREATE PROC sp_EditLib
+(
 	@EmpID INT,
 	@Name VARCHAR(45),
+	@fixName VARCHAR(45),
 	@DOB SMALLDATETIME,
 	@Gender BIT,
 	@Email VARCHAR(45),
@@ -273,11 +290,15 @@ CREATE PROC sp_EditLib(
 )
 AS
 	BEGIN
+	IF NOT EXISTS (SELECT [Name] FROM Employee
+	WHERE [Name]=@fixName AND EmpID<>@EmpID)
 		UPDATE Employee SET
-		[Name]=@Name,DOB=@DOB,Gender=@Gender,Email=@Email,
+		[Name]=@fixName,DOB=@DOB,Gender=@Gender,Email=@Email,
 			Password=@Password,Address=@Address,
 				Phone=@Phone,Department=@Department
 		WHERE EmpID=@EmpID
+	ELSE
+		SELECT 'ERROR'
 	END
 
 -- delete an Employee 
@@ -356,16 +377,16 @@ BEGIN
 			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) as [No],
 			* FROM Subject WHERE SubName LIKE '%'+@SubName+'%'
 		)
-	SELECT * FROM Temp
+	SELECT SubID,SubName,Description FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
 
 --Create procedure to get subject ID by name
 IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubWithID' AND type = 'P')
-   DROP PROCEDURE sp_GetSubWithID
+         WHERE name = 'sp_GetSubByID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubByID
 GO
-CREATE PROC sp_GetSubWithID
+CREATE PROC sp_GetSubByID
 	(
 		@SubID INT,
 		@PageIndex INT,
@@ -383,7 +404,7 @@ BEGIN
 			SELECT ROW_NUMBER() OVER (ORDER BY SubID ASC) as [No],
 			* FROM Subject WHERE SubID=@SubID
 		)
-	SELECT * FROM Temp
+	SELECT SubID,SubName,Description FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
 
@@ -396,6 +417,26 @@ CREATE PROC sp_GetSubName
 	(@SubID INT)
 AS
 	SELECT SubName FROM Subject WHERE SubID=@SubID
+
+--Create procedure to get subject ID by Name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubName' AND type = 'P')
+   DROP PROCEDURE sp_GetSubName
+GO
+CREATE PROC sp_GetSubName
+	(@SubID INT)
+AS
+	SELECT SubName FROM Subject WHERE SubID=@SubID
+
+--Create procedure to get subject ID by Name
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_GetSubID' AND type = 'P')
+   DROP PROCEDURE sp_GetSubID
+GO
+CREATE PROC sp_GetSubID
+	(@SubName VARCHAR(45))
+AS
+	SELECT SubID FROM Subject WHERE SubName=@SubName
 
 --Create procedure to get all subject name
 IF EXISTS (SELECT name FROM sysobjects
@@ -450,10 +491,10 @@ AS
 
 --Create procedure to get Subject by SubId
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetSubByID' AND type = 'P')
-   DROP PROCEDURE sp_GetSubByID
+         WHERE name = 'sp_GetSub' AND type = 'P')
+   DROP PROCEDURE sp_GetSub
 GO
-CREATE PROC sp_GetSubByID
+CREATE PROC sp_GetSub
 	@SubID INT
 AS
 	SELECT * FROM Subject
@@ -547,11 +588,20 @@ CREATE PROC sp_AddBook
 	@NoInLib TINYINT
 )
 AS
+	IF NOT EXISTS
+	(
+		SELECT ISBN FROM Book
+		WHERE ISBN=@ISBN		
+	)	
+	BEGIN
 	INSERT INTO Book(
-		CallNumber,ISBN,SubID,Title,
-		AuthName,Publisher,NoOfCopy,NoInLib)
-		VALUES(@CallNumber,@ISBN,@SubID,@Title,
-		@Author,@Publisher,@NoOfCopy,@NoInLib) 
+	CallNumber,ISBN,SubID,Title,
+	AuthName,Publisher,NoOfCopy,NoInLib)
+	VALUES(@CallNumber,@ISBN,@SubID,@Title,
+	@Author,@Publisher,@NoOfCopy,@NoInLib)
+	END
+	ELSE
+		SELECT 'ERROR'	 
 	
 --Procedure to edit a book
 IF EXISTS (SELECT name FROM sysobjects 
@@ -572,13 +622,19 @@ CREATE PROC sp_EditBook
 )
 AS
 	BEGIN
-	UPDATE BorrowDetail SET CallNumber=@FixCallNumber
-		WHERE CallNumber=@CallNumber
-	UPDATE Book SET
-		CallNumber=@fixCallNumber,ISBN=@ISBN,SubID=@SubID,Title=@Title,
-		AuthName=@AuthName,Publisher=@Publisher,
-		NoOfCopy=@NoOfCopy,NoInLib=@NoInLib
-		WHERE CallNumber=@CallNumber
+	IF NOT EXISTS (SELECT ISBN FROM Book
+	WHERE ISBN=@ISBN)
+	BEGIN
+		UPDATE BorrowDetail SET CallNumber=@FixCallNumber
+			WHERE CallNumber=@CallNumber
+		UPDATE Book SET
+			CallNumber=@fixCallNumber,ISBN=@ISBN,SubID=@SubID,Title=@Title,
+			AuthName=@AuthName,Publisher=@Publisher,
+			NoOfCopy=@NoOfCopy,NoInLib=@NoInLib
+			WHERE CallNumber=@CallNumber
+	END
+	ELSE
+		SELECT 'ERROR'
 	END
 
 --Create procedure to get a book by call no
@@ -721,20 +777,6 @@ BEGIN
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
---Get all borrow to table
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAllBorrow' AND type = 'P')
-   DROP PROCEDURE sp_GetAllBorrow
-GO
-CREATE PROC sp_GetAllBorrow
-AS
-	SELECT B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
-	BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,BD.TotalFee
-	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
-	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber
-
 --View Borrow FULL information
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetFullBorrowInfo' AND type = 'P')
@@ -1017,28 +1059,4 @@ INSERT INTO Fee VALUES ('Fee',0,0.1)
 
 /*--------------------------------------------------------------*/
 
-sp_GetAllEmp
-
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_test' AND type = 'P')
-   DROP PROCEDURE sp_test
-GO
-CREATE PROC sp_test
-	(
-		@PageIndex INT,
-		@NumRows INT
-	)
-AS
-BEGIN
-DECLARE @startRowIndex INT
-SET @startRowIndex = (@PageIndex * @NumRows) + 1;
-WITH Temp AS
-(
-	SELECT ROW_NUMBER() OVER (ORDER BY EmpID ASC) as [No], * FROM Employee
-)
-SELECT *
-FROM Temp
-WHERE [No] between @startRowIndex and @StartRowIndex+@NumRows-1
-END
-
-sp_test 0,4
+							/*END*/

@@ -51,9 +51,9 @@ public class AccessBook {
             csDetails.setString(6, book.getPublisher());
             csDetails.setInt(7, book.getNoOfCopy());
             csDetails.setInt(8, book.getNoInLib());
-            csDetails.execute();
-            return true;
-
+            if (csDetails.execute()) {
+                return false;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -61,7 +61,7 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return false;
+        return true;
     }
 
     /**
@@ -84,8 +84,9 @@ public class AccessBook {
             csDetails.setString(7, book.getPublisher());
             csDetails.setInt(8, book.getNoOfCopy());
             csDetails.setInt(9, book.getNoInLib());
-            csDetails.execute();
-            return true;
+            if (csDetails.execute()) {
+                return false;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -93,7 +94,7 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return false;
+        return true;
     }
 
     /**
@@ -249,7 +250,7 @@ public class AccessBook {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return 0;
+        return 1;
     }
 
     /**

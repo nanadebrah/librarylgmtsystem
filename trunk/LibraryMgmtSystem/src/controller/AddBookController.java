@@ -14,6 +14,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.AccessSub;
 import model.LibBook;
+import model.LibValid;
 import view.AddBokDialog;
 
 /**
@@ -76,7 +77,7 @@ public class AddBookController {
                             JOptionPane.showMessageDialog(view,
                                     "You need add minimum 1 subject!", "Error!",
                                     JOptionPane.ERROR_MESSAGE);
-                            book=null;
+                            book = null;
                             view.dispose();
                         }
 
@@ -89,10 +90,15 @@ public class AddBookController {
         view.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                //set object
-                toObject();
-                //Dispose this dialog
-                view.dispose();
+                if (validBook()) {
+                    //set object
+                    toObject();
+                    //Dispose this dialog
+                    view.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(view, "All field must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
 
@@ -112,7 +118,27 @@ public class AddBookController {
         });
     }
 
-    /*
+    /**
+     * 
+     * @return
+     */
+    private boolean validBook() {
+        if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+            return false;
+        }
+        if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * get all field to object
      */
     private void toObject() {

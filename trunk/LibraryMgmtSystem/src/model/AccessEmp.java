@@ -137,8 +137,9 @@ public class AccessEmp {
                 csDetails.setString(6, emp.getAddress());
                 csDetails.setString(7, emp.getPhone());
                 csDetails.setString(8, emp.getDepartment());
-                csDetails.execute();
-                return true;
+                if (!csDetails.execute()) {
+                    return true;
+                }
             } else {
                 csDetails = cn.prepareCall(LibProcedure.ADD_EMP);
                 csDetails.setString(1, emp.getName());
@@ -174,16 +175,18 @@ public class AccessEmp {
                 csDetails = cn.prepareCall(LibProcedure.EDIT_LIB);
                 csDetails.setInt(1, emp.getEmpID());
                 csDetails.setString(2, emp.getName());
-                csDetails.setDate(3, new Date(emp.getDOB()));
-                csDetails.setInt(4, emp.getGender());
-                csDetails.setString(5, emp.getEmail());
-                csDetails.setString(6, LibPassword.getInstance().encryptMD5(
+                csDetails.setString(3, emp.getFixName());
+                csDetails.setDate(4, new Date(emp.getDOB()));
+                csDetails.setInt(5, emp.getGender());
+                csDetails.setString(6, emp.getEmail());
+                csDetails.setString(7, LibPassword.getInstance().encryptMD5(
                         emp.getPassword()));
-                csDetails.setString(7, emp.getAddress());
-                csDetails.setString(8, emp.getPhone());
-                csDetails.setString(9, emp.getDepartment());
-                csDetails.execute();
-                return true;
+                csDetails.setString(8, emp.getAddress());
+                csDetails.setString(9, emp.getPhone());
+                csDetails.setString(10, emp.getDepartment());
+                if (!csDetails.execute()) {
+                    return true;
+                }
             } else {
                 csDetails = cn.prepareCall(LibProcedure.EDIT_EMP);
                 csDetails.setInt(1, emp.getEmpID());
@@ -292,7 +295,7 @@ public class AccessEmp {
             LibConnection.close(csDetails);
             LibConnection.close(cn);
         }
-        return 0;
+        return 1;
     }
 
     /**

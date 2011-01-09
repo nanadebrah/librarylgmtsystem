@@ -20,6 +20,10 @@ public class LibProcedure {
         return instance;
     }
     /**
+     * Login procedure
+     */
+    public static final String LOGIN = "{call sp_Login(?,?)}";
+    /**
      * Fee procedure
      */
     public static final String GET_FEE = "{call sp_GetFee}";
@@ -41,9 +45,8 @@ public class LibProcedure {
     public static final String GET_EMP_BOR_INFO = "{call sp_GetEmpBorowInfo(?)}";
     public static final String ADD_LIB = "{call sp_InsLib(?,?,?,?,?,?,?,?)}";
     public static final String ADD_EMP = "{call sp_InsEmp(?,?,?,?,?,?,?)}";
-    public static final String EDIT_LIB = "{call sp_EditLib(?,?,?,?,?,?,?,?,?)}";
+    public static final String EDIT_LIB = "{call sp_EditLib(?,?,?,?,?,?,?,?,?,?)}";
     public static final String EDIT_EMP = "{call sp_EditEmp(?,?,?,?,?,?,?,?)}";
-    public static final String GET_ALL_EMP = "{call sp_GetAllEmp(?,?,?)}";
     public static final String GET_EMP_BY_NAME =
             "{call sp_GetAnEmpWithName(?,?,?,?)}";
     public static final String GET_EMP_BY_ID =
@@ -53,12 +56,13 @@ public class LibProcedure {
     /**
      * Subject procedure
      */
-    public static final String ADD_SUB = "{call sp_AddSub(?,?)}";    
+    public static final String ADD_SUB = "{call sp_AddSub(?,?)}";
     public static final String GET_SUBNAME = "{call sp_GetSubName(?)}";
+    public static final String GET_SUBID = "{call sp_GetSubID(?)}";
     public static final String GET_ALL_SUBNAME = "{call sp_GetAllSubName}";
     public static final String GET_SUB_BY_NAME = "{call sp_GetSubByName(?,?,?,?)}";
-    public static final String GET_SUB_WITH_ID = "{call sp_GetSubWithID(?,?,?,?)}";
-    public static final String GET_SUB_BY_ID = "{call sp_GetSubByID(?)}";
+    public static final String GET_SUB_BY_ID = "{call sp_GetSubByID(?,?,?,?)}";
+    public static final String GET_SUB = "{call sp_GetSub(?)}";
     public static final String EDIT_SUB = "{call sp_EditSub(?,?,?)}";
     public static final String GET_NEWEST_SUB = "{call sp_GetNewestSub}";
     public static final String DETELE_SUB = "{call sp_DelSub(?)}";
@@ -72,7 +76,6 @@ public class LibProcedure {
     //Borrow Manage
     public static final String GET_BOR_BY_CALLNO = "{call sp_GetBorrowByCalNo(?,?,?,?)}";
     public static final String GET_BOR_BY_EMPID = "{call sp_GetBorrowByEmpID(?,?,?,?)}";
-    public static final String GET_ALL_BORROW = "{call sp_GetAllBorrow}";
     public static final String GET_FULL_BOR_INFO = "{call sp_GetFullBorrowInfo(?,?,?)}";
     public static final String DETELE_BORROW = "{call sp_DelBorrow(?,?)}";
     //-------------------------------------------------------

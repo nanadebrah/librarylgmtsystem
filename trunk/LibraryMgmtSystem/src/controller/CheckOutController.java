@@ -175,7 +175,8 @@ public class CheckOutController {
         view.getBtnNext().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page == LibUtil.getInstance().getPage(totalRow)) {
+                if (page == LibUtil.getInstance().getPage(totalRow)
+                        || LibUtil.getInstance().getPage(totalRow) == 0) {
                     return;
                 } else {
                     page++;
@@ -191,7 +192,7 @@ public class CheckOutController {
         view.getBtnBack().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if (page != 1) {
+                if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
                     page--;
                 }
                 if (view.getTxtIdEmp().getText().length() > 0

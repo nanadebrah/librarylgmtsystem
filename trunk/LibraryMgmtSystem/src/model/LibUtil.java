@@ -18,6 +18,7 @@ public class LibUtil {
     //Defined
     private Pattern pt;
     private Matcher ma;
+    //This setting no of row display on a page
     public static int noRow = 3;
 
     /*
@@ -52,6 +53,11 @@ public class LibUtil {
         return m + "/" + d + "/" + y;
     }
 
+    /**
+     * 
+     * @param totalRow
+     * @return
+     */
     public int getPage(int totalRow) {
         return (int) Math.ceil((float) totalRow / noRow);
     }

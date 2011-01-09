@@ -14,6 +14,7 @@ public class Employee {
 
     private int EmpID;
     private String Name;
+    private String fixName;
     private long DOB;
     private int Gender;
     private String Email;
@@ -214,5 +215,19 @@ public class Employee {
             vt.addElement("Employee");
         }
         return vt;
+    }
+
+    /**
+     * @return the fixName
+     */
+    public String getFixName() {
+        return fixName;
+    }
+
+    /**
+     * @param fixName the fixName to set
+     */
+    public void setFixName(String fixName) {
+        this.fixName = fixName;
     }
 }

@@ -5,24 +5,17 @@
 package controller;
 
 import com.jhlabs.image.BlurFilter;
-import model.LibConnection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import model.LibConfig;
+import model.AccessLogin;
 import model.LibPassword;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
@@ -62,8 +55,6 @@ public class LoginController {
         this.view = view;
         this.manageControl = manageControl;
         initComponent();
-        //Load user & pass from config file
-        loadConfig();
     }
 
     /**
@@ -71,6 +62,9 @@ public class LoginController {
      */
     private void initComponent() {
 
+        //Load user & pass from config file
+        LibConfig.getInstance().loadConfig(view.getTxtUsername(),
+                view.getTxtPassword(), view.getChBxRemember());
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent
@@ -112,7 +106,7 @@ public class LoginController {
 
             public void actionPerformed(ActionEvent e) {
                 view.setVisible(false);//hidden current frame
-                about = new AboutWindow(null,view);
+                about = new AboutWindow(null, view);
             }
         });
 
@@ -172,104 +166,14 @@ public class LoginController {
     }
 
     /**
-     * Load config file
-     */
-    private boolean loadConfig() {
-        //Defined object
-        FileInputStream in = null;
-        Properties pro;
-        try {
-            //Create instane of object
-            pro = new Properties();
-            File f = new File(System.getProperty("user.dir")
-                    + File.separator + "Config.properties");
-            //Check file exist
-            if (!f.exists()) {
-                //If it doesn't exist, create it
-                LibConfig.getInstance().createConfig();
-            } else {
-                in = new FileInputStream(f);
-            }
-            //load property file
-            pro.load(in);
-
-            //set all field
-            view.getTxtUsername().setText(pro.getProperty("loginUser"));
-            //get pass from config and depass
-            view.getTxtPassword().setText(
-                    LibPassword.getInstance().decryptPass(
-                    pro.getProperty("loginPass")));
-            //Check remmeber check
-            if (view.getTxtUsername().getText().length() > 0
-                    && view.getTxtPassword().getPassword().length > 0) {
-                view.getChBxRemember().setSelected(true);
-            }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Save user and pass to property file
-     */
-    private void saveConfig(String user, String pass) {
-        //Defined object
-        FileInputStream in = null;
-        Properties pro;
-        try {
-            //Create instane of object
-            pro = new Properties();
-            File f = new File(System.getProperty("user.dir")
-                    + File.separator + "Config.properties");
-            //Check file exist, if not, create new property file to store
-            if (!f.exists()) {
-                f.createNewFile();
-            }
-            //load property file
-            in = new FileInputStream(f);
-            pro.load(in);
-
-            //Save all config to file
-            pro.setProperty("loginUser", user);
-            //Encrypt pass and save to file config
-            pro.setProperty("loginPass", LibPassword.getInstance().encryptPass(pass));
-            pro.store(new FileOutputStream(f), null);
-
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-
-    /**
      * Remember account entered
      */
     private void doRemember() {
         if (view.getChBxRemember().isSelected()) {
-            saveConfig(view.getTxtUsername().getText(),
+            LibConfig.getInstance().saveConfig(view.getTxtUsername().getText(),
                     new String(view.getTxtPassword().getPassword()));
         } else {
-            saveConfig("", "");
+            LibConfig.getInstance().saveConfig("", "");
         }
     }
 
@@ -280,41 +184,24 @@ public class LoginController {
         new Thread(new Runnable() {
 
             public void run() {
-                try {
-                    //invoked static method to get connection
-                    cn = LibConnection.getConnection();
+                if (AccessLogin.getInstance().login(view.getTxtUsername().getText(),
+                        LibPassword.getInstance().encryptMD5(
+                        new String(view.getTxtPassword().getPassword())))) {
+                    view.dispose();
+                    //Display manage frame
+                    manageControl.getView().setVisible(true);
+                } else {
+                    doBlur();
+                    JOptionPane.showMessageDialog(view,
+                            "Wrong username or password.",
+                            "Login Failed", JOptionPane.WARNING_MESSAGE);
                     try {
-                        //invoked store procedure login and get resultset
-                        csDetails = cn.prepareCall("{call sp_Login(?,?)}");
-                        csDetails.setString(1, view.getTxtUsername().getText());
-                        //Encrypt to MD5 and set
-                        csDetails.setString(2, LibPassword.getInstance().encryptMD5(
-                                new String(view.getTxtPassword().getPassword())));
-                        rsDetails = csDetails.executeQuery();
-                        //login successful, display manage frame and dispose this frame
-                        if (rsDetails.next()) {
-                            view.dispose();
-                            //Display manage frame
-                            manageControl.getView().setVisible(true);
-                        } else {//display error
-                            doBlur();
-                            JOptionPane.showMessageDialog(view,
-                                    "Wrong username or password.",
-                                    "Login Failed", JOptionPane.WARNING_MESSAGE);
-                            //Sleep 1 minisecond/ otherwise can't doBlur again
-                            Thread.sleep(1);
-                            doBlur();
-                        }
-                    } catch (SQLException ex) {
+                        //Sleep 1 minisecond/ otherwise can't doBlur again
+                        Thread.sleep(1);
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                } finally {
-                    //close all connect
-                    LibConnection.close(rsDetails);
-                    LibConnection.close(csDetails);
-                    LibConnection.close(cn);
+                    doBlur();
                 }
             }
         }).start();
