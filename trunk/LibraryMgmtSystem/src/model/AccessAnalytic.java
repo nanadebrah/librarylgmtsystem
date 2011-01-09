@@ -49,13 +49,14 @@ public class AccessAnalytic {
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 vt = new java.util.Vector();
-                vt.addElement(rsDetails.getString(1));
+                vt.addElement(rsDetails.getInt(1));
                 vt.addElement(rsDetails.getString(2));
                 vt.addElement(rsDetails.getString(3));
                 vt.addElement(rsDetails.getString(4));
                 vt.addElement(rsDetails.getString(5));
                 vt.addElement(rsDetails.getString(6));
-                vt.addElement(rsDetails.getInt(7));
+                vt.addElement(rsDetails.getString(7));
+                vt.addElement(rsDetails.getInt(8));
                 anaModel.addRow(vt);
             }
             return csDetails.getInt(3);

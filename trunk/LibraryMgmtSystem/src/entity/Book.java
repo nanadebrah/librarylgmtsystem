@@ -12,9 +12,10 @@ import java.util.Vector;
  */
 public class Book {
 
+    private int bookID;
     private String CallNumber;
-    private String fixCallNumber;
     private int subID;
+    private String subName;
     private String ISBN;
     private String Title;
     private String AuthName;
@@ -23,29 +24,6 @@ public class Book {
     private int noInLib;
 
     public Book() {
-    }
-
-    /**
-     * 
-     * @param CallNumber
-     * @param subID
-     * @param ISBN
-     * @param Title
-     * @param AuthName
-     * @param Publisher
-     * @param noCopy
-     * @param noLib
-     */
-    public Book(String CallNumber, int subID, String ISBN,
-            String Title, String AuthName, String Publisher, int noCopy, int noLib) {
-        this.CallNumber = CallNumber;
-        this.subID = subID;
-        this.ISBN = ISBN;
-        this.Title = Title;
-        this.AuthName = AuthName;
-        this.Publisher = Publisher;
-        this.noOfCopy = noCopy;
-        this.noInLib = noLib;
     }
 
     /**
@@ -161,31 +139,46 @@ public class Book {
     }
 
     /**
-     * @return the fixCallNumber
-     */
-    public String getFixCallNumber() {
-        return fixCallNumber;
-    }
-
-    /**
-     * @param fixCallNumber the fixCallNumber to set
-     */
-    public void setFixCallNumber(String fixCallNumber) {
-        this.fixCallNumber = fixCallNumber;
-    }
-
-    /**
      * @return Vector ob book
      */
     public Vector toVector() {
         //Defined vector
         Vector vt = new Vector();
-        vt.addElement(fixCallNumber);
+        vt.addElement(bookID);
+        vt.addElement(CallNumber);
         vt.addElement(ISBN);
         vt.addElement(Title);
         vt.addElement(AuthName);
         vt.addElement(Publisher);
         vt.addElement(noOfCopy+"/"+noInLib);
         return vt;
+    }
+
+    /**
+     * @return the subName
+     */
+    public String getSubName() {
+        return subName;
+    }
+
+    /**
+     * @param subName the subName to set
+     */
+    public void setSubName(String subName) {
+        this.subName = subName;
+    }
+
+    /**
+     * @return the bookID
+     */
+    public int getBookID() {
+        return bookID;
+    }
+
+    /**
+     * @param bookID the bookID to set
+     */
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 }

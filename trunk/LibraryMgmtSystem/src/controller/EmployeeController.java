@@ -76,7 +76,6 @@ public class EmployeeController {
                 tableFocus();
             }
         });
-
         view.getTblEmp().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -275,9 +274,6 @@ public class EmployeeController {
             if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
                 JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
-                //Add new employee to table
-                addEmp.getEmp().setEmpID(AccessEmp.getInstance().getNewestEmp());
-                empModel.addRow(addEmp.getEmp().toVector());
             } else {
                 JOptionPane.showMessageDialog(view, "Add failed!\n"
                         + "May be this librarian have added.",

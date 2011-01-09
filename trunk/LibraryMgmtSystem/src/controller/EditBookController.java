@@ -103,18 +103,18 @@ public class EditBookController {
     /**
      * Transfer all field to object
      */
-    private void toObject() {
-        getBook().setISBN(view.getTxtISBN().getText());
-        getBook().setTitle(view.getTxtTitle().getText());
-        getBook().setAuthName(view.getTxtAuthor().getText());
-        getBook().setPublisher(view.getTxtPublish().getText());
-        getBook().setNoOfCopy(Integer.parseInt(
+    private void toObject() {        
+        book.setISBN(view.getTxtISBN().getText());
+        book.setTitle(view.getTxtTitle().getText());
+        book.setAuthName(view.getTxtAuthor().getText());
+        book.setPublisher(view.getTxtPublish().getText());
+        book.setNoOfCopy(Integer.parseInt(
                 view.getTxtNoCop().getValue().toString()));
-        getBook().setNoInLib(Integer.parseInt(
+        book.setNoInLib(Integer.parseInt(
                 view.getTxtNoInLib().getValue().toString()));
-        getBook().setSubID(AccessSub.getInstance().getSubjectID(
+        book.setSubID(AccessSub.getInstance().getSubjectID(
                 view.getCbxSub().getSelectedItem().toString()));
-        getBook().setFixCallNumber(LibBook.getInstance().fixCallNo(getBook()));
+        book.setCallNumber(LibBook.getInstance().fixCallNo(book));
     }
 
     /**
@@ -153,13 +153,13 @@ public class EditBookController {
      * Set all info to field
      */
     private void setField() {
-        if (getBook() != null) {
-            noCopies = getBook().getNoOfCopy();
-            noInLib = getBook().getNoInLib();
-            view.getTxtISBN().setText(getBook().getISBN());
-            view.getTxtTitle().setText(getBook().getTitle());
-            view.getTxtAuthor().setText(getBook().getAuthName());
-            view.getTxtPublish().setText(getBook().getPublisher());
+        if (book != null) {
+            noCopies = book.getNoOfCopy();
+            noInLib = book.getNoInLib();
+            view.getTxtISBN().setText(book.getISBN());
+            view.getTxtTitle().setText(book.getTitle());
+            view.getTxtAuthor().setText(book.getAuthName());
+            view.getTxtPublish().setText(book.getPublisher());
             view.getTxtNoCop().setValue(noCopies);
             view.getTxtNoInLib().setValue(noInLib);
 
@@ -167,7 +167,7 @@ public class EditBookController {
             String[] subList = AccessSub.getInstance().getAllSubjectName().split(",");
             for (String subName : subList) {
                 view.getCbxSub().addItem(subName);
-                if (subName.equals(AccessSub.getInstance().getSubjectName(getBook().getSubID()))) {
+                if (subName.equals(book.getSubName())) {
                     view.getCbxSub().setSelectedItem(subName);
                 }
             }

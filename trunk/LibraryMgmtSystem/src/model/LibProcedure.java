@@ -35,36 +35,33 @@ public class LibProcedure {
     public static final String EDIT_BOOK = "{call sp_EditBook(?,?,?,?,?,?,?,?,?)}";
     public static final String GET_BOOK_INFO = "{call sp_GetBookInfo(?)}";
     public static final String GET_BOOK_BOR_INFO = "{call sp_GetBookBorInfo(?)}";
-    public static final String SEARCH_BOOK = "{call sp_GetAllBook(?,?,?,?,?,?,?)}";
-    public static final String GET_NEWEST_BOOK = "{call sp_GetNewestBook}";
+    public static final String SEARCH_BOOK = "{call sp_SearchBook(?,?,?,?,?,?,?)}";
+    public static final String GET_NEWEST_BOOKID = "{call sp_GetNewestBookID}";
     public static final String DETELE_BOOK = "{call sp_DelBook(?)}";
     /**
      * Employee procedure
      */
     public static final String GET_EMP_INFO = "{call sp_GetEmpInfo(?)}";
     public static final String GET_EMP_BOR_INFO = "{call sp_GetEmpBorowInfo(?)}";
-    public static final String ADD_LIB = "{call sp_InsLib(?,?,?,?,?,?,?,?)}";
-    public static final String ADD_EMP = "{call sp_InsEmp(?,?,?,?,?,?,?)}";
+    public static final String ADD_LIB = "{call sp_AddLib(?,?,?,?,?,?,?,?)}";
+    public static final String ADD_EMP = "{call sp_AddEmp(?,?,?,?,?,?,?)}";
     public static final String EDIT_LIB = "{call sp_EditLib(?,?,?,?,?,?,?,?,?,?)}";
     public static final String EDIT_EMP = "{call sp_EditEmp(?,?,?,?,?,?,?,?)}";
     public static final String GET_EMP_BY_NAME =
             "{call sp_GetAnEmpWithName(?,?,?,?)}";
     public static final String GET_EMP_BY_ID =
             "{call sp_GetAnEmpWithEmpID(?,?,?,?)}";
-    public static final String GET_NEWEST_EMP = "{call sp_GetNewestEmp}";
     public static final String DETELE_EMP = "{call sp_DelEmp(?)}";
     /**
      * Subject procedure
      */
     public static final String ADD_SUB = "{call sp_AddSub(?,?)}";
-    public static final String GET_SUBNAME = "{call sp_GetSubName(?)}";
     public static final String GET_SUBID = "{call sp_GetSubID(?)}";
     public static final String GET_ALL_SUBNAME = "{call sp_GetAllSubName}";
     public static final String GET_SUB_BY_NAME = "{call sp_GetSubByName(?,?,?,?)}";
     public static final String GET_SUB_BY_ID = "{call sp_GetSubByID(?,?,?,?)}";
     public static final String GET_SUB = "{call sp_GetSub(?)}";
     public static final String EDIT_SUB = "{call sp_EditSub(?,?,?)}";
-    public static final String GET_NEWEST_SUB = "{call sp_GetNewestSub}";
     public static final String DETELE_SUB = "{call sp_DelSub(?)}";
     /**
      * Borrow procedure

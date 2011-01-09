@@ -29,9 +29,9 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="lblImage" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="bookInfoPal" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -47,12 +47,12 @@
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="lblImage" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="bookInfoPal" min="-2" pref="247" max="-2" attributes="0"/>
+                      <Component id="bookInfoPal" min="-2" pref="270" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -81,27 +81,29 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAth" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblPub" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblSub" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNoC" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBookID" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoInL" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblWho" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSub" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoC" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPub" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAth" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblAth1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNoInL1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblWho1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPub1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSub1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoC1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblNoInL1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblWho1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBookID1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="354" max="32767" attributes="0"/>
               </Group>
@@ -110,6 +112,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblBookID1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBookID" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblCallNo1" min="-2" max="-2" attributes="0"/>
@@ -150,7 +157,7 @@
                           <Component id="lblWho" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -246,6 +253,16 @@
             <Property name="text" type="java.lang.String" value="Empty"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="lblBookID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="BookID:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblBookID1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -263,7 +280,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="scrPanBorBook" pref="239" max="32767" attributes="0"/>
+                  <Component id="scrPanBorBook" pref="287" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>

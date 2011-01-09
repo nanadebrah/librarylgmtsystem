@@ -45,40 +45,42 @@ CREATE TABLE Book(
 	NoOfCopy TINYINT NOT NULL,
 	NoInLib TINYINT NOT NULL,
 	CONSTRAINT pk_BookID PRIMARY KEY (BookID),
-	CONSTRAINT uq_CallNumber UNIQUE (CallNumber),
+	CONSTRAINT uq_CallNumber UNIQUE (CallNumber,ISBN),
 	CONSTRAINT fk_SubID FOREIGN KEY (SubID)
 		REFERENCES Subject(SubID),
 )
 go
 
 --Create Borrow table
-CREATE TABLE Borrow(
+CREATE TABLE Borrow
+	(
 	BorID INT NOT NULL IDENTITY,
 	EmpID INT NOT NULL,
 	
 	CONSTRAINT pk_BorID PRIMARY KEY (BorID),
 	CONSTRAINT fk_EmpID FOREIGN KEY (EmpID)
-		REFERENCES Employee(EmpID),
-	
-)
+		REFERENCES Employee(EmpID)
+	)
 go
 
 --Create BorrowDetail table
 CREATE TABLE BorrowDetail
 (	
 	BorID INT NOT NULL REFERENCES Borrow(BorID),
-	CallNumber VARCHAR(9) NOT NULL REFERENCES Book(CallNumber),
-	IssueStatus BIT NOT NULL,--1 = checked out ,0 = checked in
+	BookID INT NOT NULL,
+	IssueStatus BIT NOT NULL,
 	IssueDate DATETIME NOT NULL,
 	DueDate DATETIME NOT NULL,
 	ReturnDate DATETIME,
 	TotalFee FLOAT,
+	CONSTRAINT fk_BookID FOREIGN KEY (BookID)
+		REFERENCES Book(BookID)
 )
 go
 
 --Create Fee table
 CREATE TABLE Fee(
-	Fee VARCHAR(10) NOT NULL,
+	Fee VARCHAR(10) NOT NULL PRIMARY KEY,
 	BorFee FLOAT NOT NULL,
 	LateFee FLOAT NOT NULL
 )
@@ -89,7 +91,12 @@ CREATE TABLE Fee(
 -----------------------------------
 -----------------------------------
 --Create Procedure insert employee
-CREATE PROC sp_InsEmp(
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_AddEmp' AND type = 'P')
+   DROP PROCEDURE sp_AddEmp
+GO
+CREATE PROC sp_AddEmp
+(
 	@Name VARCHAR(45),
 	@DOB SMALLDATETIME,
 	@Gender BIT,
@@ -106,13 +113,13 @@ AS
 		VALUES(@Name,@DOB,@Gender,@Email,
 		@Address,@Phone,0,@Department)
 	END
-
+GO
 --Create Procedure insert librarian
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_InsLib' AND type = 'P')
-   DROP PROCEDURE sp_InsLib
+         WHERE name = 'sp_AddLib' AND type = 'P')
+   DROP PROCEDURE sp_AddLib
 GO
-CREATE PROC sp_InsLib
+CREATE PROC sp_AddLib
 (
 	@Name VARCHAR(45),
 	@DOB SMALLDATETIME,
@@ -136,7 +143,7 @@ AS
 	ELSE
 		SELECT 'ERROR'
 	END
-
+GO
 --get an employee with one parameter : name
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetAnEmpWithName' AND type = 'P')
@@ -161,11 +168,14 @@ AS
 			EmpID,[Name],Gender,Email,Department,Permission
 			FROM Employee WHERE [Name] LIKE '%'+@Name+'%'
 		)
-	SELECT EmpID,[Name],Gender,Email,Department,Permission
+	SELECT EmpID,[Name],CASE Gender WHEN 1 THEN 'Male'
+	ELSE 'FEMALE' END AS 'Gender',Email,Department,
+	CASE Permission WHEN 1 THEN 'Librarin' ELSE
+	'Employee' END AS 'Permission'
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 	END
-
+GO
 --get an employee with one parameter : EmpID
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetAnEmpWithEmpID' AND type = 'P')
@@ -190,11 +200,14 @@ AS
 			EmpID,[Name],Gender,Email,Department,Permission
 			FROM Employee WHERE EmpID=@EmpID
 		)
-	SELECT EmpID,[Name],Gender,Email,Department,Permission
+	SELECT EmpID,[Name],CASE Gender WHEN 1 THEN 'Male'
+	ELSE 'FEMALE' END AS 'Gender',Email,Department,
+	CASE Permission WHEN 1 THEN 'Librarin' ELSE
+	'Employee' END AS 'Permission'
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 	END
-
+GO
 --Create Procedure get all field of a Employee
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetEmpInfo' AND type = 'P')
@@ -207,7 +220,7 @@ AS
 		SELECT * FROM Employee
 		WHERE EmpID=@EmpID
 	END
-
+GO
 --Create Procedure get all borrow info of Employee
 
 IF EXISTS (SELECT name FROM sysobjects 
@@ -217,12 +230,13 @@ GO
 CREATE PROC sp_GetEmpBorowInfo
 	(@EmpID INT)
 AS
-	SELECT B.BorID, BO.CallNumber,BO.Title,BD.IssueDate,
-	BD.DueDate,BD.IssueStatus,BD.ReturnDate,BD.TotalFee
+	SELECT B.BorID, BO.BookID,BO.CallNumber,BO.Title,BD.IssueDate,
+	BD.DueDate,CASE BD.IssueStatus WHEN 1 THEN 'Checked-In'
+	ELSE 'Checked-Out' END AS 'IssueStatus',BD.ReturnDate,BD.TotalFee
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
-	JOIN Book BO ON BD.CallNumber=BO.CallNumber
+	JOIN Book BO ON BD.BookID=BO.BookID
 	WHERE B.EmpID=@EmpID
-
+GO
 --Create Procedure get all field of all Employee (Pages)
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetAllEmp' AND type = 'P')
@@ -251,7 +265,12 @@ END
 GO
 
 --Create Procedure edit Employee
-CREATE PROC sp_EditEmp(
+IF EXISTS (SELECT name FROM sysobjects
+         WHERE name = 'sp_EditEmp' AND type = 'P')
+   DROP PROCEDURE sp_EditEmp
+GO
+CREATE PROC sp_EditEmp
+(
 	@EmpID INT,
 	@Name VARCHAR(45),
 	@DOB SMALLDATETIME,
@@ -268,7 +287,7 @@ AS
 		Address=@Address,Phone=@Phone,Department=@Department
 		WHERE EmpID=@EmpID
 	END
-
+GO
 --Create Procedure edit Librarian
 
 IF EXISTS (SELECT name FROM sysobjects 
@@ -300,7 +319,7 @@ AS
 	ELSE
 		SELECT 'ERROR'
 	END
-
+GO
 -- delete an Employee 
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_DelEmp' AND type = 'P')
@@ -327,29 +346,28 @@ AS
 		ELSE
 			SELECT 'ERROR'
 	END
-
---Procedure get newest EMP
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetNewestEmp' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestEmp
 GO
-CREATE PROC sp_GetNewestEmp
-AS
-	SELECT TOP 1 EmpID FROM Employee ORDER BY EmpID DESC
 /*-------------------------------------------------------------------*/
 
 
 /* LOGIN */
 --Create Procedure Login
-CREATE PROC sp_Login(
+IF EXISTS (SELECT name FROM sysobjects 
+         WHERE name = 'sp_Login' AND type = 'P')
+   DROP PROCEDURE sp_Login
+GO
+CREATE PROC sp_Login
+(
 	@Name VARCHAR(45),
-	@Password VARCHAR(32))
+	@Password VARCHAR(32)
+)
 AS
 	BEGIN
 		SELECT EmpID FROM Employee
 		WHERE [Name]=@Name AND Password=@Password
 			AND Permission=1
 	END
+GO
 /*--------------------------------------------------------------------*/
 
 
@@ -407,16 +425,7 @@ BEGIN
 	SELECT SubID,SubName,Description FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
---Create procedure to get subject Name by ID
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubName' AND type = 'P')
-   DROP PROCEDURE sp_GetSubName
 GO
-CREATE PROC sp_GetSubName
-	(@SubID INT)
-AS
-	SELECT SubName FROM Subject WHERE SubID=@SubID
 
 --Create procedure to get subject ID by Name
 IF EXISTS (SELECT name FROM sysobjects
@@ -427,7 +436,7 @@ CREATE PROC sp_GetSubName
 	(@SubID INT)
 AS
 	SELECT SubName FROM Subject WHERE SubID=@SubID
-
+GO
 --Create procedure to get subject ID by Name
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetSubID' AND type = 'P')
@@ -437,7 +446,7 @@ CREATE PROC sp_GetSubID
 	(@SubName VARCHAR(45))
 AS
 	SELECT SubID FROM Subject WHERE SubName=@SubName
-
+GO
 --Create procedure to get all subject name
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetAllSubName' AND type = 'P')
@@ -446,7 +455,7 @@ GO
 CREATE PROC sp_GetAllSubName
 AS
 	SELECT SubName FROM Subject
-
+GO
 --Create procedure to insert Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddSub' AND type = 'P')
@@ -461,7 +470,7 @@ AS
 	INSERT INTO Subject(
 		SubName,Description)
 		VALUES(@SubName,@Description)
-
+GO
 --procedure to edit Subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_EditSub' AND type = 'P')
@@ -479,16 +488,7 @@ AS
 		Description=@Description
 		WHERE SubID=@SubID
 	END
-
---Procedure get newest SUBJECT
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetNewestSub' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestSub
 GO
-CREATE PROC sp_GetNewestSub
-AS
-	SELECT TOP 1 SubID FROM Subject ORDER BY SubID DESC
-
 --Create procedure to get Subject by SubId
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetSub' AND type = 'P')
@@ -499,7 +499,7 @@ CREATE PROC sp_GetSub
 AS
 	SELECT * FROM Subject
 	WHERE  SubID = @SubID
-
+GO
 -- DELETE subject
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_DelSub' AND type = 'P')
@@ -518,16 +518,16 @@ AS
 		ELSE
 			SELECT 'ERROR'
 	END
-
+GO
 /*-----------------------------------------------------*/
 
 /* BOOK */
 --Create procedure to get Book 
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAllBook' AND type = 'P')
-   DROP PROCEDURE sp_GetAllBook
+         WHERE name = 'sp_SearchBook' AND type = 'P')
+   DROP PROCEDURE sp_SearchBook
 GO
-CREATE PROC sp_GetAllBook
+CREATE PROC sp_SearchBook
 (
 	@CallNumber VARCHAR(9),
 	@ISBN VARCHAR(8),
@@ -539,7 +539,7 @@ CREATE PROC sp_GetAllBook
 )
 AS
 	BEGIN
-	SELECT @TotalPage=COUNT(*) FROM Book  WHERE
+	SELECT @TotalPage=COUNT(BookID) FROM Book WHERE
 			CallNumber LIKE '%'+@CallNumber+'%'	 
 			AND ISBN LIKE '%'+@ISBN+'%'  
 			AND Title LIKE '%'+@Title+'%' 
@@ -548,29 +548,29 @@ AS
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
-			SELECT ROW_NUMBER() OVER (ORDER BY BookID ASC) AS [No],
-			CallNumber,ISBN,Title,AuthName,Publisher,NoOfCopy,NoInLib
-			FROM Book WHERE
+			SELECT ROW_NUMBER() OVER (ORDER BY BookID ASC) AS [No],BookID,
+			CallNumber,ISBN,Title,AuthName,Publisher,S.SubName,NoOfCopy,
+			NoInLib FROM Book B JOIN Subject S ON B.SubID=S.SubID WHERE
 			CallNumber LIKE '%'+@CallNumber+'%'	 
 			AND ISBN LIKE '%'+@ISBN+'%'  
 			AND Title LIKE '%'+@Title+'%' 
 			AND AuthName LIKE '%'+@AuthName+'%'
 		)
-	SELECT CallNumber,ISBN,Title,AuthName,Publisher,NoOfCopy,NoInLib
-	FROM Temp
+	SELECT BookID,CallNumber,ISBN,Title,AuthName,Publisher,SubName,
+	NoOfCopy,NoInLib FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 	END
 GO
 --procedure to get newest book added
 IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetNewestBook' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestBook
+         WHERE name = 'sp_GetNewestBookID' AND type = 'P')
+   DROP PROCEDURE sp_GetNewestBookID
 GO
-CREATE PROC sp_GetNewestBook
+CREATE PROC sp_GetNewestBookID
 AS
 	SELECT TOP 1 BookID FROM BOOK
 	ORDER BY BookID DESC
-
+GO
 --procedure to insert a book 
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_AddBook' AND type = 'P')
@@ -602,7 +602,7 @@ AS
 	END
 	ELSE
 		SELECT 'ERROR'	 
-	
+GO
 --Procedure to edit a book
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_EditBook' AND type = 'P')
@@ -610,8 +610,8 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_EditBook
 (
+	@BookID INT,
 	@CallNumber VARCHAR(9),
-	@fixCallNumber VARCHAR(9),
 	@ISBN VARCHAR(8),
 	@SubID INT,
 	@Title VARCHAR(100),
@@ -623,32 +623,31 @@ CREATE PROC sp_EditBook
 AS
 	BEGIN
 	IF NOT EXISTS (SELECT ISBN FROM Book
-	WHERE ISBN=@ISBN)
+	WHERE ISBN=@ISBN AND BookID<>@BookID)
 	BEGIN
-		UPDATE BorrowDetail SET CallNumber=@FixCallNumber
-			WHERE CallNumber=@CallNumber
 		UPDATE Book SET
-			CallNumber=@fixCallNumber,ISBN=@ISBN,SubID=@SubID,Title=@Title,
+			CallNumber=@CallNumber,ISBN=@ISBN,SubID=@SubID,Title=@Title,
 			AuthName=@AuthName,Publisher=@Publisher,
 			NoOfCopy=@NoOfCopy,NoInLib=@NoInLib
-			WHERE CallNumber=@CallNumber
+			WHERE BookID=@BookID
 	END
 	ELSE
 		SELECT 'ERROR'
 	END
-
+GO
 --Create procedure to get a book by call no
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetBookInfo' AND type = 'P')
    DROP PROCEDURE sp_GetBookInfo
 GO
 CREATE PROC sp_GetBookInfo
-	(@CallNumber VARCHAR(9))
+	(@BookID INT)
 AS
-	SELECT CallNumber,ISBN,SubID,
+	SELECT BookID,CallNumber,ISBN,S.SubName,
 	Title,AuthName,Publisher,NoOfCopy,NoInLib
-	FROM Book WHERE CallNumber=@CallNumber
-
+	FROM Book B JOIN Subject S ON B.SubID=S.SubID
+	WHERE BookID=@BookID
+GO
 --Create Procedure get book's borrow info
 
 IF EXISTS (SELECT name FROM sysobjects 
@@ -656,47 +655,49 @@ IF EXISTS (SELECT name FROM sysobjects
    DROP PROCEDURE sp_GetBookBorInfo
 GO
 CREATE PROC sp_GetBookBorInfo
-	(@CallNumber VARCHAR(9))
+	(@BookID INT)
 AS
-	SELECT B.BorID, E.EmpID, E.[Name],E.Department, BD.IssueDate,
-	BD.DueDate,BD.IssueStatus,BD.ReturnDate,BD.TotalFee
+	SELECT B.BorID, E.EmpID, E.[Name],E.Department,BD.IssueDate,
+	BD.DueDate,CASE BD.IssueStatus WHEN 1 THEN 'Checked-In' 
+	ELSE 'Checked-Out' END AS 'IssueStatus',BD.ReturnDate,BD.TotalFee
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON E.EmpID=B.EmpID
-	WHERE BD.CallNumber=@CallNumber
+	WHERE BookID=@BookID
 
-
+GO
 --- DELETE BOOK
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_DelBook' AND type = 'P')
    DROP PROCEDURE sp_DelBook
 GO
 CREATE PROC sp_DelBook
-	(@CallNumber VARCHAR(9))
+	(@BookID INT)
 AS
 	BEGIN		
 		IF NOT EXISTS
 		(
-			SELECT TOP 1 CallNumber FROM BorrowDetail
-			WHERE CallNumber=@CallNumber AND IssueStatus=0
+			SELECT TOP 1 BookID FROM BorrowDetail
+			WHERE BookID=@BookID AND IssueStatus=0
 		)
 		BEGIN
-		DELETE FROM BorrowDetail WHERE CallNumber=@CallNumber
-		DELETE FROM Book WHERE CallNumber=@CallNumber
+		DELETE FROM BorrowDetail WHERE BookID=@BookID
+		DELETE FROM Book WHERE BookID=@BookID
 		END
 		ELSE
 			SELECT 'ERROR'
 	END
+GO
 /*-------------------------------------------------------*/
 
 --Create procedure get newest borrow
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetNewestBorrowID' AND type = 'P')
-   DROP PROCEDURE sp_GetNewestBorrowID
-GO
-CREATE PROC sp_GetNewestBorrowID
-AS
-	SELECT TOP 1 BorID FROM Borrow ORDER BY BorID DESC
-
+--IF EXISTS (SELECT name FROM sysobjects 
+--         WHERE name = 'sp_GetNewestBorrowID' AND type = 'P')
+--   DROP PROCEDURE sp_GetNewestBorrowID
+--GO
+--CREATE PROC sp_GetNewestBorrowID
+--AS
+--	SELECT TOP 1 BorID FROM Borrow ORDER BY BorID DESC
+--GO
 /*---------------------------------------------------------*/
 
 /* Borrow  Manage*/
@@ -714,31 +715,31 @@ CREATE PROC sp_GetBorrowByCalNo
 	)
 AS
 BEGIN
-	SELECT @TotalPage=COUNT(*) FROM Borrow B JOIN 
+	SELECT @TotalPage=COUNT(B.BorID) FROM Borrow B JOIN 
 	BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber 
+	ON BD.BookID=BO.BookID 
 	WHERE BO.CallNumber LIKE '%'+@CallNumber+'%'
 	DECLARE @startRowIndex INT
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
 			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
-			B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+			B.BorID,E.EmpID,BO.BookID,E.[Name],BO.CallNumber,BO.Title,
 			BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,
 			BD.TotalFee FROM Borrow B JOIN 
 			BorrowDetail BD ON B.BorID=BD.BorID
 			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-			ON BD.CallNumber=BO.CallNumber  WHERE
+			ON BD.BookID=BO.BookID  WHERE
 			BO.CallNumber LIKE '%'+@CallNumber+'%'
 		)
-	SELECT	BorID,EmpID,[Name],CallNumber,Title,
+	SELECT	BorID,EmpID,BookID,[Name],CallNumber,Title,
 			IssueDate, DueDate, IssueStatus,
 			ReturnDate, TotalFee
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
+GO
 --Get a borrow by emp id
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetBorrowByEmpID' AND type = 'P')
@@ -756,27 +757,28 @@ BEGIN
 	SELECT @TotalPage=COUNT(*) FROM Borrow B JOIN 
 	BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber 
+	ON BD.BookID=BO.BookID 
 	WHERE E.EmpID=@EmpID
 	DECLARE @startRowIndex INT
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
 			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
-			B.BorID,E.EmpID,E.[Name],BO.CallNumber,BO.Title,
+			B.BorID,E.EmpID,BO.BookID,E.[Name],BO.CallNumber,BO.Title,
 			BD.IssueDate, BD.DueDate, BD.IssueStatus, BD.ReturnDate,
 			BD.TotalFee FROM Borrow B JOIN 
 			BorrowDetail BD ON B.BorID=BD.BorID
 			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-			ON BD.CallNumber=BO.CallNumber  WHERE
+			ON BD.BookID=BO.BookID  WHERE
 			E.EmpID=@EmpID
 		)
-	SELECT	BorID,EmpID,[Name],CallNumber,Title,
+	SELECT	BorID,EmpID,BookID,[Name],CallNumber,Title,
 			IssueDate, DueDate, IssueStatus,
 			ReturnDate, TotalFee
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
+GO
 --View Borrow FULL information
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_GetFullBorrowInfo' AND type = 'P')
@@ -786,7 +788,7 @@ CREATE PROC sp_GetFullBorrowInfo
 	(
 		@BorID INT,
 		@EmpID INT,
-		@CallNumber VARCHAR(9)
+		@BookID INT
 	)
 AS
 	SELECT E.EmpID,E.[Name],E.DOB,E.Gender,E.Email,E.Department,
@@ -795,9 +797,9 @@ AS
 	BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber WHERE BD.BorID=@BorID
-	AND E.EmpID=@EmpID AND BO.CallNumber=@CallNumber
-
+	ON BD.BookID=BO.BookID WHERE BD.BorID=@BorID
+	AND E.EmpID=@EmpID AND BO.BookID=@BookID
+GO
 -- DELETE BORROW
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_DelBorrow' AND type = 'P')
@@ -806,23 +808,24 @@ GO
 CREATE PROC sp_DelBorrow
 	(
 		@BorID INT,
-		@CallNumber VARCHAR(45)
+		@BookID INT
 	)
 AS
 	BEGIN		
 		IF NOT EXISTS
 		(
-			SELECT TOP 1 CallNumber FROM BorrowDetail
-			WHERE CallNumber=@CallNumber AND BorID=@BorID
+			SELECT TOP 1 BookID FROM BorrowDetail
+			WHERE BookID=BookID AND BorID=@BorID
 			AND IssueStatus=0
 		)
 		BEGIN
-		DELETE FROM BorrowDetail WHERE CallNumber=@CallNumber
+		DELETE FROM BorrowDetail WHERE BookID=BookID
 		AND BorID=@BorID
 		END
 		ELSE
 			SELECT 'ERROR'
 	END
+GO
 /* ---------------------------------------------------------------- */
 
 
@@ -836,7 +839,7 @@ CREATE PROC sp_PrepareCheckOut
 	(@EmpID INT)
 AS
 	INSERT INTO Borrow(EmpID) VALUES (@EmpID)
-
+GO
 --Check out, add new check out to borrow and borrow detail
 IF EXISTS (SELECT name FROM sysobjects 
          WHERE name = 'sp_CheckOut' AND type = 'P')
@@ -844,7 +847,7 @@ IF EXISTS (SELECT name FROM sysobjects
 GO
 CREATE PROC sp_CheckOut
 	(
-		@CallNumber VARCHAR(9),
+		@BookID INT,
 		@IssueDate DATETIME,
 		@DueDate DATETIME
 	)
@@ -853,11 +856,12 @@ AS
 	DECLARE @BorID INT
 	SELECT TOP 1 @BorID=BorID FROM Borrow ORDER BY BorID DESC	
 
-	INSERT INTO BorrowDetail(BorID,CallNumber,IssueStatus,IssueDate,DueDate)
-	VALUES(@BorID,@CallNumber,0,@IssueDate,@DueDate)
+	INSERT INTO BorrowDetail(BorID,BookID,IssueStatus,IssueDate,DueDate)
+	VALUES(@BorID,@BookID,0,@IssueDate,@DueDate)
 
-	UPDATE Book SET NoInLib=NoInLib-1 WHERE CallNumber=@CallNumber
+	UPDATE Book SET NoInLib=NoInLib-1 WHERE BookID=@BookID
 	END
+GO
 /*------------------------------------------------------------------*/
 
 /* SEARCH CHECK-OUT */ 
@@ -873,9 +877,9 @@ AS
 	BO.Publisher,BD.DueDate,BD.IssueDate
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber WHERE B.BorID=@BorID
+	ON BD.BookID=BO.BookID WHERE B.BorID=@BorID
 	AND BD.IssueStatus=0
-
+GO
 --Search Check out information by book information
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_SearhCheckOutByBookInfo' AND type = 'P')
@@ -893,10 +897,10 @@ CREATE PROC sp_SearhCheckOutByBookInfo
 	)
 AS
 BEGIN
-	SELECT @TotalPage=COUNT(*) FROM 
+	SELECT @TotalPage=COUNT(B.BorID) FROM 
 	Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber WHERE
+	ON BD.BookID=BO.BookID WHERE
 	BO.CallNumber LIKE '%'+@CallNumber+'%'
 	AND BO.ISBN LIKE '%'+@ISBN+'%'
 	AND BO.Title LIKE '%'+@Title+'%'
@@ -907,22 +911,23 @@ BEGIN
 	WITH Temp AS
 		(
 			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
-			B.BorID,E.EmpID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
+			B.BorID,E.EmpID,BO.BookID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
 			BO.Publisher,BD.DueDate,BD.IssueDate
 			FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-			ON BD.CallNumber=BO.CallNumber WHERE
+			ON BD.BookID=BO.BookID WHERE
 			BO.CallNumber LIKE '%'+@CallNumber+'%'
 			AND BO.ISBN LIKE '%'+@ISBN+'%'
 			AND BO.Title LIKE '%'+@Title+'%'
 			AND BO.AuthName LIKE '%'+@AuthName+'%'
 			AND BD.IssueStatus=0
 		)
-	SELECT BorID,EmpID,CallNumber,ISBN,Title,AuthName,
+	SELECT BorID,EmpID,BookID,CallNumber,ISBN,Title,AuthName,
 	Publisher,DueDate,IssueDate
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
+GO
 --Search Check out information by employee information
 --By EmpID
 IF EXISTS (SELECT name FROM sysobjects
@@ -938,29 +943,29 @@ CREATE PROC sp_SearhCheckOutByEmpID
 	)
 AS
 BEGIN
-	SELECT @TotalPage=COUNT(*) FROM Borrow B JOIN
+	SELECT @TotalPage=COUNT(B.BorID) FROM Borrow B JOIN
 	BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber WHERE E.EmpID=@EmpID
+	ON BD.BookID=BO.BookID WHERE E.EmpID=@EmpID
 	AND BD.IssueStatus=0
 	DECLARE @startRowIndex INT
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
 			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
-			B.BorID,E.EmpID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
-			BO.Publisher,BD.DueDate,BD.IssueDate FROM Borrow B JOIN 
+			B.BorID,E.EmpID,BO.BookID,BO.CallNumber,BO.ISBN,BO.Title,
+			BO.AuthName,BO.Publisher,BD.DueDate,BD.IssueDate FROM Borrow B JOIN 
 			BorrowDetail BD ON B.BorID=BD.BorID
 			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-			ON BD.CallNumber=BO.CallNumber WHERE E.EmpID=@EmpID
+			ON BD.BookID=BO.BookID WHERE E.EmpID=@EmpID
 			AND BD.IssueStatus=0
 		)
-	SELECT BorID,EmpID,CallNumber,ISBN,Title,AuthName,
+	SELECT BorID,EmpID,BookID,CallNumber,ISBN,Title,AuthName,
 	Publisher,DueDate,IssueDate
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
+GO
 --By EmpName
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_SearhCheckOutByEmpName' AND type = 'P')
@@ -975,29 +980,29 @@ CREATE PROC sp_SearhCheckOutByEmpName
 	)
 AS
 BEGIN
-	SELECT @TotalPage=COUNT(*) FROM Borrow B JOIN
+	SELECT @TotalPage=COUNT(B.BorID) FROM Borrow B JOIN
 	BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.CallNumber=BO.CallNumber WHERE E.[Name] LIKE '%'+@Name+'%'
+	ON BD.BookID=BO.BookID WHERE E.[Name] LIKE '%'+@Name+'%'
 	AND BD.IssueStatus=0
 	DECLARE @startRowIndex INT
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
 		(
 			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) as [No],
-			B.BorID,E.EmpID,BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,
-			BO.Publisher,BD.DueDate,BD.IssueDate FROM Borrow B JOIN 
+			B.BorID,E.EmpID,BO.BookID,BO.CallNumber,BO.ISBN,BO.Title,
+			BO.AuthName, BO.Publisher,BD.DueDate,BD.IssueDate FROM Borrow B JOIN 
 			BorrowDetail BD ON B.BorID=BD.BorID
 			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-			ON BD.CallNumber=BO.CallNumber WHERE E.[Name] LIKE '%'+@Name+'%'
+			ON BD.BookID=BO.BookID WHERE E.[Name] LIKE '%'+@Name+'%'
 			AND BD.IssueStatus=0
 		)
-	SELECT BorID,EmpID,CallNumber,ISBN,Title,AuthName,
+	SELECT BorID,EmpID,BookID,CallNumber,ISBN,Title,AuthName,
 	Publisher,DueDate,IssueDate
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
+GO
 /*----------------------------------------------------------------*/
 
 /*CHECK IN*/
@@ -1009,7 +1014,7 @@ GO
 CREATE PROC sp_CheckIn
 	(
 		@BorID INT,
-		@CallNumber VARCHAR(9),
+		@BookID INT,
 		@ReturnDate DATETIME,
 		@TotalFee FLOAT		
 	)
@@ -1017,11 +1022,12 @@ AS
 	BEGIN
 		UPDATE BorrowDetail SET ReturnDate=@ReturnDate,
 		TotalFee=@TotalFee,IssueStatus=1 WHERE
-		BorID=@BorID AND CallNumber=@CallNumber
+		BorID=@BorID AND BookID=@BookID
 
 		UPDATE Book SET NoInLib=NoInLib+1 WHERE
-		CallNumber=@CallNumber
+		BookID=@BookID
 	END
+GO
 /*------------------------------------------------------*/
 
 /* FEE */
@@ -1033,7 +1039,7 @@ GO
 CREATE PROC sp_GetFee
 AS
 	SELECT * FROM Fee WHERE Fee='Fee'
-
+GO
 --Procedure edit fee
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_EditFee' AND type = 'P')
@@ -1045,6 +1051,7 @@ CREATE PROC sp_EditFee
 AS
 	UPDATE Fee SET BorFee=@BorFee,LateFee=@LateFee
 	WHERE Fee='Fee'
+GO
 -----------------------------
 /*------------------------------------------*/
 
@@ -1056,17 +1063,17 @@ IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetTopBook' AND type = 'P')
    DROP PROCEDURE sp_GetTopBook
 GO
-IF EXISTS (SELECT TOP 1 * FROM TopBook)
+IF EXISTS (SELECT NAME FROM sys.views WHERE NAME='TopBook')
 DROP VIEW TopBook
 GO
 	CREATE VIEW TopBook AS
-	SELECT DISTINCT B.CallNumber,B.ISBN,B.Title,B.AuthName,
+	SELECT DISTINCT B.BookID, B.CallNumber,B.ISBN,B.Title,B.AuthName,
 	B.Publisher,S.SubName,C.NB FROM Book B JOIN Subject S
 	ON B.SubID=S.SubID JOIN BorrowDetail BD ON
-	B.CallNumber=BD.CallNumber JOIN 
-	(SELECT CallNumber,COUNT(CallNumber) AS NB
-	FROM BorrowDetail GROUP BY CallNumber) AS C
-	ON B.CallNumber=C.CallNumber
+	B.BookID=BD.BookID JOIN 
+	(SELECT BookID,COUNT(BookID) AS NB
+	FROM BorrowDetail GROUP BY BookID) AS C
+	ON B.BookID=C.BookID
 GO
 CREATE PROC sp_GetTopBook
 (		
@@ -1076,13 +1083,13 @@ CREATE PROC sp_GetTopBook
 )
 AS
 BEGIN
-	SELECT @TotalPage=COUNT(DISTINCT B.CallNumber) 
+	SELECT @TotalPage=COUNT(DISTINCT B.BookID) 
 	FROM Book B JOIN Subject S
 	ON B.SubID=S.SubID JOIN BorrowDetail BD ON
-	B.CallNumber=BD.CallNumber JOIN 
-	(SELECT CallNumber,COUNT(CallNumber) AS NB
-	FROM BorrowDetail GROUP BY CallNumber) AS C
-	ON B.CallNumber=C.CallNumber
+	B.BookID=BD.BookID JOIN 
+	(SELECT BookID,COUNT(BookID) AS NB
+	FROM BorrowDetail GROUP BY BookID) AS C
+	ON B.BookID=C.BookID
 	DECLARE @startRowIndex INT
 	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
 	WITH Temp AS
@@ -1090,19 +1097,19 @@ BEGIN
 		SELECT ROW_NUMBER() OVER (ORDER BY NB DESC)
 		AS [No],* FROM TopBook
 	)
-	SELECT CallNumber,ISBN,Title,AuthName,
+	SELECT BookID,CallNumber,ISBN,Title,AuthName,
 	Publisher,SubName,NB
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
-
+GO
 --Get top employee borrowed
 
 IF EXISTS (SELECT name FROM sysobjects
          WHERE name = 'sp_GetTopBorrower' AND type = 'P')
    DROP PROCEDURE sp_GetTopBorrower
 GO
-IF EXISTS (SELECT TOP 1 * FROM TopBorrower)
+IF EXISTS (SELECT NAME FROM sys.views WHERE NAME='TopBorrower')
 DROP VIEW TopBorrower
 GO
 CREATE VIEW TopBorrower AS
@@ -1151,12 +1158,13 @@ BEGIN
 	FROM Temp
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
+GO
 /*****************************************************/
 
 /* DEFAULT VALUE */
 
 --Insert default user with User&Pass [root|root]
-sp_InsLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
+sp_AddLib 'root','07/27/1991',1,'cuongnqgc00033@fpt.edu.vn',
 '63a9f0ea7bb98050796b649e85481845','Ha Noi','0986948677','GC0502'
 GO
 
@@ -1166,3 +1174,5 @@ INSERT INTO Fee VALUES ('Fee',0,0.1)
 /*--------------------------------------------------------------*/
 
 							/*END*/
+
+select * from book

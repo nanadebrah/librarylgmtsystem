@@ -19,15 +19,15 @@ public class ViewBorrowController {
     private ViewBorrowDialog view;
     private int borID;
     private int empID;
-    private String CallNo;
+    private int bookID;
     private String[] arr;
 
     public ViewBorrowController(ViewBorrowDialog view, int borID,
-            int empID, String CallNo) {
+            int empID, int bookID) {
         this.view = view;
         this.borID=borID;
         this.empID=empID;
-        this.CallNo=CallNo;
+        this.bookID=bookID;
         initComponent();
     }
 
@@ -36,7 +36,7 @@ public class ViewBorrowController {
      */
     private void initComponent() {
         arr=new String[20];
-        AccessBorrow.getInstance().getFullBorInfo(arr, borID, empID, CallNo);
+        AccessBorrow.getInstance().getFullBorInfo(arr, borID, empID, bookID);
         view.getLblID1().setText(arr[0]);
         view.getLblName1().setText(arr[1]);
         view.getLblDOB1().setText(arr[2]);

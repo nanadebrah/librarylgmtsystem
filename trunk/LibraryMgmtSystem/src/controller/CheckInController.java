@@ -289,16 +289,16 @@ public class CheckInController {
             //Get field borID selected
             int borID = Integer.parseInt(
                     view.getTblCheckIn().getValueAt(i, 0).toString());
-            //Get field CallNo selected
-            String callNo = view.getTblCheckIn().getValueAt(i, 1).toString();
+            //Get field bookID selected
+            String bookID = view.getTblCheckIn().getValueAt(i, 1).toString();
             //Get return date
             long returnDate = view.getTxtReDate().getDate().getTime();
             //Get total fee
             float totalFee = Float.parseFloat(
-                    view.getTblCheckIn().getValueAt(i, 5).toString());
+                    view.getTblCheckIn().getValueAt(i, 6).toString());
             //Update on database
             AccessBorrow.getInstance().checkIn(borID,
-                    callNo, returnDate, totalFee);
+                    Integer.parseInt(bookID), returnDate, totalFee);
         }
     }
 
@@ -313,6 +313,7 @@ public class CheckInController {
             vt = new Vector();
             vt.add(checkin.getBorID());
             vt.add(checkin.getEmpID());
+            vt.add(checkin.getBookID());
             vt.add(checkin.getCallNumber());
             vt.add(checkin.getTitle());
             vt.add(checkin.getAuth());
@@ -327,12 +328,12 @@ public class CheckInController {
      * Remove book for check in
      */
     private void deselectBook() {
-        String callNo = view.getTblCheckIn().getValueAt(
+        String bookID = view.getTblCheckIn().getValueAt(
                 view.getTblCheckIn().getSelectedRow(), 1).toString();
         String borId = view.getTblCheckIn().getValueAt(
                 view.getTblCheckIn().getSelectedRow(), 0).toString();
         inModel.removeRow(view.getTblCheckIn().getSelectedRow());
-        set.remove(borId + "," + callNo);
+        set.remove(borId + "," + bookID);
     }
 
     /**
@@ -342,21 +343,22 @@ public class CheckInController {
         //Get field borID selected
         String borID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 0).toString();
-        //Get field CallNo selected
-        String callNo = view.getTblBoth().getValueAt(
+        //Get field bookID selected
+        String bookID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 2).toString();
         //If this book is'n selected
-        if (set.add(borID + "," + callNo)) {
+        if (set.add(borID + "," + bookID)) {
             //Set all check-in information
-            checkin = (CheckIn) map.get(borID + "," + callNo);
+            checkin = (CheckIn) map.get(borID + "," + bookID);
             //Set issue date
             view.getTxtIssueDate().setDate(
                     new java.util.Date(checkin.getIssueDate()));
             //Create a new vector to add checkin info from checkin object
             vt = new Vector();
             vt.add(checkin.getBorID());
-            vt.add(checkin.getCallNumber());
-            vt.add(checkin.getISBN());
+            vt.add(checkin.getBookID());
+            vt.add(checkin.getCallNumber());            
+            vt.add(checkin.getTitle());
             //Calculate Borrow infomation
             int DueDay = (int) ((checkin.getDueDate() - checkin.getIssueDate())
                     / (24 * 60 * 60 * 1000));
@@ -414,11 +416,11 @@ public class CheckInController {
         //Get field borID selected
         String borID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 0).toString();
-        //Get field CallNo selected
-        String callNo = view.getTblBoth().getValueAt(
+        //Get field bookID selected
+        String bookID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 2).toString();
         //Set all check-in information
-        checkin = (CheckIn) map.get(borID + "," + callNo);
+        checkin = (CheckIn) map.get(borID + "," + bookID);
         view.getTxtIssueDate().setDate(
                 new java.util.Date(checkin.getIssueDate()));
     }

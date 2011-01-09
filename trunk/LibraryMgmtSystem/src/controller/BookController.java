@@ -58,11 +58,13 @@ public class BookController {
         //Add model to table
         view.getTblBook().setModel(bookModel);
         //Set model
+        bookModel.addColumn("ID");
         bookModel.addColumn("Call Number");
         bookModel.addColumn("ISBN");
         bookModel.addColumn("Title");
         bookModel.addColumn("Author");
         bookModel.addColumn("Publisher");
+        bookModel.addColumn("Subject");
         bookModel.addColumn("Copies/Store");
 
         //Add event to book table
@@ -213,9 +215,9 @@ public class BookController {
                 JOptionPane.INFORMATION_MESSAGE);
         if (sure == JOptionPane.OK_OPTION) {
             //Get book id selected
-            String callNumber = view.getTblBook().getValueAt(
+            String bookID = view.getTblBook().getValueAt(
                     view.getTblBook().getSelectedRow(), 0).toString();
-            if (!AccessBook.getInstance().deleteBook(callNumber)) {
+            if (!AccessBook.getInstance().deleteBook(Integer.parseInt(bookID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
                         + "May be this book is borrowing by some one!", "Error!",
                         JOptionPane.ERROR_MESSAGE);
@@ -235,10 +237,10 @@ public class BookController {
     private void editBook() {
         parent.doBlur();
         //Get call no of book selected
-        String callNo = view.getTblBook().getValueAt(
+        String bookID = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getBookInfo(callNo);
+        Book book = AccessBook.getInstance().getBookInfo(new Integer(bookID));
         //Create instance of book edit dialog and display it
         editBook = new EditBookController(
                 new EditBokDialog(parent.getView(), true), book);
@@ -248,10 +250,6 @@ public class BookController {
             if (AccessBook.getInstance().editBook(editBook.getBook())) {
                 JOptionPane.showMessageDialog(view, "Update successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
-                //Remove old data on table model
-                bookModel.removeRow(view.getTblBook().getSelectedRow());
-                //Add new row
-                bookModel.addRow(book.toVector());
             } else {
                 JOptionPane.showMessageDialog(parent.getView(), "Edit failed!\n"
                         + "May be ISBN isn't unique.", "Edit Book!",
@@ -267,10 +265,10 @@ public class BookController {
      */
     private void viewBook() {
         //Get Id employee selected
-        String callNo = view.getTblBook().getValueAt(
+        String bookID = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
         //Get employee from database
-        Book book = AccessBook.getInstance().getBookInfo(callNo);
+        Book book = AccessBook.getInstance().getBookInfo(new Integer(bookID));
         parent.doBlur();
         //Create instance of Employee edit dialog and display it
         viewBook = new ViewBookController(new ViewBookDialog(parent.getView(), true), book);
@@ -311,8 +309,6 @@ public class BookController {
             if (AccessBook.getInstance().addBook(addBook.getBook())) {
                 JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
-                //Add new row
-                bookModel.addRow(addBook.getBook().toVector());
             } else {
                 JOptionPane.showMessageDialog(view, "Add failed!\n"
                         + "May be this book have added or ISBN is duplicate.",

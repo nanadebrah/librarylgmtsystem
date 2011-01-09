@@ -12,9 +12,8 @@ public class LibValid {
 
     private static LibValid instance = new LibValid();
     private String ISBNRegex = "\\d{3}-\\d{4}";
-    private String UserIDRegex = "^[a-zA-Z][a-zA-Z0-9_-]{4,9}";
     private String PasswordRegex = "[a-zA-Z0-9]{4,12}";
-    private String NameRegex = "^[a-zA-Z][a-zA-Z'_ -]{1,99}";
+    private String NameRegex = "^[a-zA-Z][a-zA-Z'_0-9-]{1,99}";
     private String AddressRegex = "[a-zA-Z_0-9-' ]{2,100}";
     private String EmailRegex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -40,15 +39,6 @@ public class LibValid {
      */
     public boolean ISBN(String ISBN) {
         return ISBN.matches(ISBNRegex);
-    }
-
-    /**
-     *
-     * @param UserID
-     * @return
-     */
-    public boolean UserID(String UserID) {
-        return UserID.matches(UserIDRegex);
     }
 
     /**

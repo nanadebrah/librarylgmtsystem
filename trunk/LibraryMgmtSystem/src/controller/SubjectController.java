@@ -211,6 +211,7 @@ public class SubjectController {
                 subModel.removeRow(view.getTblSub().getSelectedRow());
             }
         }
+        tableFocus();
         parent.doBlur();
     }
 
@@ -256,7 +257,7 @@ public class SubjectController {
                 subModel.addRow(sub.toVector());
             }
         }
-        view.getTblSub().clearSelection();
+        tableFocus();
         parent.doBlur();
     }
 
@@ -269,6 +270,7 @@ public class SubjectController {
         view.getBtnDelSub().setEnabled(false);
         view.getBtnViewSub().setEnabled(false);
         view.getTblSub().setFocusable(false);
+        view.getTblSub().clearSelection();
     }
 
     /**
@@ -297,12 +299,9 @@ public class SubjectController {
             if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
                 JOptionPane.showMessageDialog(getView(), "Add subject successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
-                //Add subject to table
-                addSubject.getSub().setSubID(AccessSub.getInstance().getNewestSub());
-                subModel.addRow(addSubject.getSub().toVector());
             }
         }
-        view.getTblSub().clearSelection();
+        tableFocus();
         parent.doBlur();
     }
 

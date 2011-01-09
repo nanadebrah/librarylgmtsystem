@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import model.AccessBook;
-import model.AccessSub;
 import view.ViewBookDialog;
 
 /**
@@ -40,13 +39,13 @@ public class ViewBookController {
      */
     private void initComponent() {
         //Set all information
+        view.getLblBookID1().setText(Integer.toString(book.getBookID()));
         view.getLblCallNo1().setText(book.getCallNumber());
         view.getLblISBN1().setText(book.getISBN());
         view.getLblTitle1().setText(book.getTitle());
         view.getLblAth1().setText(book.getAuthName());
         view.getLblPub1().setText(book.getPublisher());
-        view.getLblSub1().setText(
-                AccessSub.getInstance().getSubjectName(book.getSubID()));
+        view.getLblSub1().setText(book.getSubName());
         view.getLblNoC1().setText(String.valueOf(book.getNoOfCopy()));
         view.getLblNoInL1().setText(String.valueOf(book.getNoInLib()));
 
@@ -83,7 +82,7 @@ public class ViewBookController {
      *
      */
     private void getBookBorDetail() {
-        AccessBook.getInstance().getBookBorInfo(borModel, book.getCallNumber());
+        AccessBook.getInstance().getBookBorInfo(borModel, book.getBookID());
     }
 
     /**

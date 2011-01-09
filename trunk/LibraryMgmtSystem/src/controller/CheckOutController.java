@@ -34,8 +34,7 @@ public class CheckOutController {
 
     //Defined
     private CheckOutDialog view;
-    private DefaultTableModel bookModel;
-    private DefaultTableModel empModel;
+    private DefaultTableModel bothModel;
     private DefaultTableModel outModel;
     private ManageController parent;
     private Vector vt;
@@ -49,11 +48,10 @@ public class CheckOutController {
     private Integer totalRow;
     private boolean isSearchEmp;
 
-    public CheckOutController(CheckOutDialog view, DefaultTableModel bookModel,
-            DefaultTableModel empModel, DefaultTableModel outModel, ManageController parent) {
+    public CheckOutController(CheckOutDialog view, DefaultTableModel bothModel,
+            DefaultTableModel outModel, ManageController parent) {
         this.view = view;
-        this.bookModel = bookModel;
-        this.empModel = empModel;
+        this.bothModel = bothModel;
         this.outModel = outModel;
         this.parent = parent;
         initComponent();
@@ -152,7 +150,7 @@ public class CheckOutController {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 //If double click display edit employee dialog
                 if (evt.getClickCount() == 2) {
-                    if (view.getTblBoth().getModel() == bookModel) {
+                    if (!isSearchEmp) {
                         selectBook();
                     } else {
                         selectEmployee();
@@ -234,10 +232,10 @@ public class CheckOutController {
         java.util.Iterator it = set.iterator();
         while (it.hasNext()) {
             borDetail = new BorrowDetail();
-            borDetail.setCallNumber(it.next().toString());
+            borDetail.setBookID(Integer.parseInt(it.next().toString()));
             borDetail.setIssueDate(view.getTxtIssueDate().getDate().getTime());
             borDetail.setDueDate(view.getTxtDueDate().getDate().getTime());
-            map.put(borDetail.getCallNumber(), borDetail);
+            map.put(borDetail.getBookID(), borDetail);
         }
         AccessBorrow.getInstance().checkOut(empID, map);
     }
@@ -291,12 +289,12 @@ public class CheckOutController {
         vt = new Vector();
         Integer noInLib;
         //Add info book to checkout table
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             //Get field book selected
             String field = view.getTblBoth().getValueAt(
                     view.getTblBoth().getSelectedRow(), i).toString();
             //if it field is no in copy, get it
-            if (i == 5) {
+            if (i == 7) {
                 String[] temp = field.split("/");
                 noInLib = Integer.parseInt(temp[1]);
                 //If of store book
@@ -308,7 +306,7 @@ public class CheckOutController {
                             view.getTblBoth().getSelectedRow(), 0).toString());
                     return;
                 }
-            } else if (i == 0) {//get callnumber
+            } else if (i == 0) {//get bookID
                 //if it have added return
                 if (!set.add(field)) {
                     return;
@@ -326,10 +324,21 @@ public class CheckOutController {
      * Seacrch employee by Id or name
      */
     public void searchEmp() {
-        isSearchEmp=true;
-        parent.removeModel(empModel);
+
+        isSearchEmp = true;
+        //Clear column
+        bothModel.setColumnCount(0);
+        parent.removeModel(bothModel);
+        //Set employee model
+        bothModel.addColumn("ID");
+        bothModel.addColumn("Name");
+        bothModel.addColumn("Gender");
+        bothModel.addColumn("Email");
+        bothModel.addColumn("Department");
+        bothModel.addColumn("Permission");
+
         //Add employee model to table
-        view.getTblBoth().setModel(empModel);
+        view.getTblBoth().setModel(bothModel);
         //Change title
         view.getScrPanBoth().setBorder(
                 javax.swing.BorderFactory.createTitledBorder("Employee Information"));
@@ -337,7 +346,7 @@ public class CheckOutController {
 
             public void run() {
                 totalRow = AccessEmp.getInstance().searchEmp(
-                        empModel, view.getTxtIdEmp().getText(),
+                        bothModel, view.getTxtIdEmp().getText(),
                         view.getTxtNameEmp().getText(), (page - 1));
                 view.getLblPage().setText("Page " + page + "/"
                         + LibUtil.getInstance().getPage(totalRow));
@@ -349,17 +358,29 @@ public class CheckOutController {
      * Method search Book
      */
     private void searchBook() {
-        isSearchEmp=false;
-        parent.removeModel(bookModel);
+
+        isSearchEmp = false;
+        //Clear column
+        bothModel.setColumnCount(0);
+        parent.removeModel(bothModel);
+        //Set book model
+        bothModel.addColumn("ID");
+        bothModel.addColumn("Call Number");
+        bothModel.addColumn("ISBN");
+        bothModel.addColumn("Title");
+        bothModel.addColumn("Author");
+        bothModel.addColumn("Publisher");
+        bothModel.addColumn("Subject");
+        bothModel.addColumn("Copies/Store");
         //Add book model to table
-        view.getTblBoth().setModel(bookModel);
+        view.getTblBoth().setModel(bothModel);
         //Change title
         view.getScrPanBoth().setBorder(
                 javax.swing.BorderFactory.createTitledBorder("Book Information"));
         new Thread(new Runnable() {
 
             public void run() {
-                totalRow = AccessBook.getInstance().searchBook(bookModel,
+                totalRow = AccessBook.getInstance().searchBook(bothModel,
                         view.getTxtCallNoBook().getText(),
                         view.getTxtISBNBook().getText(),
                         view.getTxtTitlBook().getText(),

@@ -69,18 +69,9 @@ public class AddBookController {
                     public void run() {
                         //Load subject list
                         String[] subList = AccessSub.getInstance().getAllSubjectName().split(",");
-                        if (subList.length > 1) {
-                            for (String subName : subList) {
-                                view.getCbxSub().addItem(subName);
-                            }
-                        } else {
-                            JOptionPane.showMessageDialog(view,
-                                    "You need add minimum 1 subject!", "Error!",
-                                    JOptionPane.ERROR_MESSAGE);
-                            book = null;
-                            view.dispose();
+                        for (String subName : subList) {
+                            view.getCbxSub().addItem(subName);
                         }
-
                     }
                 }).start();
             }
@@ -95,9 +86,6 @@ public class AddBookController {
                     toObject();
                     //Dispose this dialog
                     view.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(view, "All field must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -123,16 +111,30 @@ public class AddBookController {
      * @return
      */
     private boolean validBook() {
+        if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
+            JOptionPane.showMessageDialog(view,
+                    "You need add minimum 1 subject!", "Error!",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+            JOptionPane.showMessageDialog(view, "ISBN must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+            JOptionPane.showMessageDialog(view, "Title must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+            JOptionPane.showMessageDialog(view, "Author must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
+            JOptionPane.showMessageDialog(view, "Publisher must valid.",
+                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         return true;
@@ -142,6 +144,7 @@ public class AddBookController {
      * get all field to object
      */
     private void toObject() {
+        book.setCallNumber(LibBook.getInstance().generateCallNo(book));
         book.setISBN(view.getTxtISBN().getText());
         book.setTitle(view.getTxtTitle().getText());
         book.setAuthName(view.getTxtAuthor().getText());
@@ -151,9 +154,7 @@ public class AddBookController {
         book.setNoInLib(new Integer(
                 view.getTxtNoInLib().getValue().toString()));
         book.setSubID(AccessSub.getInstance().getSubjectID(
-                view.getCbxSub().getSelectedItem().toString()));
-        book.setCallNumber(LibBook.getInstance().generateCallNo(book));
-        book.setFixCallNumber(book.getCallNumber());
+                view.getCbxSub().getSelectedItem().toString()));        
     }
 
     /**

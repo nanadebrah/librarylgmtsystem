@@ -169,6 +169,7 @@ public class EditEmployeeController {
         if (view.getCbxPermis().getSelectedItem().toString().equals("Librarian")) {
             emp.setPermission(1);
         } else {
+            emp.setName(view.getTxtName().getText());
             emp.setPermission(0);
         }
     }

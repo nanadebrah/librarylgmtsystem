@@ -59,7 +59,7 @@ public class AccessBorrow {
             while (it.hasNext()) {
                 borDetail = (BorrowDetail) map.get(it.next());
                 csDetails = cn.prepareCall(LibProcedure.CHECK_OUT);
-                csDetails.setString(1, borDetail.getCallNumber());
+                csDetails.setInt(1, borDetail.getBookID());
                 csDetails.setDate(2, new Date(borDetail.getIssueDate()));
                 csDetails.setDate(3, new Date(borDetail.getDueDate()));
                 csDetails.execute();
@@ -108,19 +108,20 @@ public class AccessBorrow {
                 vt = new Vector();
                 vt.add(rsDetails.getInt(1));
                 vt.add(rsDetails.getInt(2));
-                vt.add(rsDetails.getString(3));
+                vt.add(rsDetails.getInt(3));
                 vt.add(rsDetails.getString(4));
                 vt.add(rsDetails.getString(5));
-                vt.add(LibUtil.getInstance().convertDate(rsDetails.getDate(6).toString()));
+                vt.add(rsDetails.getString(6));
                 vt.add(LibUtil.getInstance().convertDate(rsDetails.getDate(7).toString()));
-                if (rsDetails.getInt(8) == 0) {
+                vt.add(LibUtil.getInstance().convertDate(rsDetails.getDate(8).toString()));
+                if (rsDetails.getInt(9) == 0) {
                     vt.add("Checked-Out");
                     vt.add("--");
                     vt.add("--");
                 } else {
                     vt.add("Checked-In");
-                    vt.add(rsDetails.getDate(9));
-                    vt.add(rsDetails.getFloat(10));
+                    vt.add(rsDetails.getDate(10));
+                    vt.add(rsDetails.getFloat(11));
                 }
                 borModel.addRow(vt);
             }
@@ -137,14 +138,14 @@ public class AccessBorrow {
     }
 
     /**
-     * 
+     *
      * @param borID
-     * @param CallNo
+     * @param bookID
      * @param returnDate
      * @param totalfee
      * @return
      */
-    public boolean checkIn(int borID, String CallNo,
+    public boolean checkIn(int borID, int bookID,
             long returnDate, float totalfee) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
@@ -152,7 +153,7 @@ public class AccessBorrow {
         try {
             csDetails = cn.prepareCall(LibProcedure.CHECK_IN);
             csDetails.setInt(1, borID);
-            csDetails.setString(2, CallNo);
+            csDetails.setInt(2, bookID);
             csDetails.setDate(3, new Date(returnDate));
             csDetails.setFloat(4, totalfee);
             csDetails.execute();
@@ -230,14 +231,15 @@ public class AccessBorrow {
                 checkin = new CheckIn();
                 checkin.setBorID(rsDetails.getInt(1));
                 checkin.setEmpID(rsDetails.getInt(2));
-                checkin.setCallNumber(rsDetails.getString(3));
-                checkin.setISBN(rsDetails.getString(4));
-                checkin.setTitle(rsDetails.getString(5));
-                checkin.setAuth(rsDetails.getString(6));
-                checkin.setPublisher(rsDetails.getString(7));
-                checkin.setDueDate(rsDetails.getDate(8).getTime());
-                checkin.setIssueDate(rsDetails.getDate(9).getTime());
-                map.put(checkin.getBorID() + "," + checkin.getCallNumber(), checkin);
+                checkin.setBookID(rsDetails.getInt(3));
+                checkin.setCallNumber(rsDetails.getString(4));
+                checkin.setISBN(rsDetails.getString(5));
+                checkin.setTitle(rsDetails.getString(6));
+                checkin.setAuth(rsDetails.getString(7));
+                checkin.setPublisher(rsDetails.getString(8));
+                checkin.setDueDate(rsDetails.getDate(9).getTime());
+                checkin.setIssueDate(rsDetails.getDate(10).getTime());
+                map.put(checkin.getBorID() + "," + checkin.getBookID(), checkin);
             }
             return csDetails.getInt(7);
         } catch (SQLException ex) {
@@ -282,14 +284,15 @@ public class AccessBorrow {
                 checkin = new CheckIn();
                 checkin.setBorID(rsDetails.getInt(1));
                 checkin.setEmpID(rsDetails.getInt(2));
-                checkin.setCallNumber(rsDetails.getString(3));
-                checkin.setISBN(rsDetails.getString(4));
-                checkin.setTitle(rsDetails.getString(5));
-                checkin.setAuth(rsDetails.getString(6));
-                checkin.setPublisher(rsDetails.getString(7));
-                checkin.setDueDate(rsDetails.getDate(8).getTime());
-                checkin.setIssueDate(rsDetails.getDate(9).getTime());
-                map.put(checkin.getBorID() + "," + checkin.getCallNumber(), checkin);
+                checkin.setBookID(rsDetails.getInt(3));
+                checkin.setCallNumber(rsDetails.getString(4));
+                checkin.setISBN(rsDetails.getString(5));
+                checkin.setTitle(rsDetails.getString(6));
+                checkin.setAuth(rsDetails.getString(7));
+                checkin.setPublisher(rsDetails.getString(8));
+                checkin.setDueDate(rsDetails.getDate(9).getTime());
+                checkin.setIssueDate(rsDetails.getDate(10).getTime());
+                map.put(checkin.getBorID() + "," + checkin.getBookID(), checkin);
             }
             return csDetails.getInt(4);
         } catch (SQLException ex) {
@@ -304,20 +307,20 @@ public class AccessBorrow {
     }
 
     /**
-     *
+     * 
      * @param arr
      * @param borID
      * @param empID
-     * @param CallNo
+     * @param bookID
      */
-    public void getFullBorInfo(String[] arr, int borID, int empID, String CallNo) {
+    public void getFullBorInfo(String[] arr, int borID, int empID, int bookID) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.GET_FULL_BOR_INFO);
             csDetails.setInt(1, borID);
             csDetails.setInt(2, empID);
-            csDetails.setString(3, CallNo);
+            csDetails.setInt(3, bookID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 arr[0] = String.valueOf(rsDetails.getInt(1));
@@ -371,13 +374,13 @@ public class AccessBorrow {
      * @param CallNumber
      * @return
      */
-    public boolean deleteBorrow(int borID, String CallNumber) {
+    public boolean deleteBorrow(int borID, int bookID) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.DETELE_BORROW);
             csDetails.setInt(1, borID);
-            csDetails.setString(2, CallNumber);
+            csDetails.setInt(2, bookID);
             if (csDetails.execute()) {
                 return false;
             }

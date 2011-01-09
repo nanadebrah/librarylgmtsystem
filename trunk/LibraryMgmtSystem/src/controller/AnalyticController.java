@@ -149,6 +149,7 @@ public class AnalyticController {
         anaModel.setColumnCount(0);
         parent.removeModel(anaModel);
         //Set model
+        anaModel.addColumn("Book ID");
         anaModel.addColumn("Call Number");
         anaModel.addColumn("ISBN");
         anaModel.addColumn("Title");

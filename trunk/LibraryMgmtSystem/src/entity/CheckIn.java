@@ -16,6 +16,7 @@ import model.LibUtil;
 public class CheckIn {
     private int borID;
     private int empID;
+    private int bookID;
     private String callNumber;
     private String ISBN;
     private String title;
@@ -148,5 +149,19 @@ public class CheckIn {
      */
     public void setIssueDate(long issueDate) {
         this.issueDate = issueDate;
+    }
+
+    /**
+     * @return the bookID
+     */
+    public int getBookID() {
+        return bookID;
+    }
+
+    /**
+     * @param bookID the bookID to set
+     */
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 }

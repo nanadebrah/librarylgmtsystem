@@ -80,33 +80,7 @@ public class AccessSub {
         }
         return 0;
     }
-
-    /**
-     * 
-     * @param subID
-     * @return
-     */
-    public String getSubjectName(int subID) {
-        //Defined connection, rs and cs to connect and query database
-        cn = LibConnection.getConnection();
-        try {
-            csDetails = cn.prepareCall(LibProcedure.GET_SUBNAME);
-            csDetails.setInt(1, subID);
-            rsDetails = csDetails.executeQuery();
-            if (rsDetails.next()) {
-                return rsDetails.getString(1);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-        return "";
-    }
-
+    
     /**
      * 
      * @return
@@ -236,34 +210,6 @@ public class AccessSub {
             LibConnection.close(cn);
         }
         return false;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNewestSub() {
-        //Defined connection, rs and cs to connect and query database
-        cn = LibConnection.getConnection();
-        //Defined book
-
-        try {
-            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_SUB);
-            rsDetails = csDetails.executeQuery();
-            if (rsDetails.next()) {
-                return rsDetails.getInt(1);
-            } else {
-                return 0;
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-        return 0;
     }
 
     /**

@@ -89,21 +89,22 @@ public class AccessEmp {
             while (rsDetails.next()) {
                 vt = new java.util.Vector();
                 vt.addElement(rsDetails.getInt(1));
-                vt.addElement(rsDetails.getString(2));
+                vt.addElement(rsDetails.getInt(2));
                 vt.addElement(rsDetails.getString(3));
-                vt.addElement(LibUtil.getInstance().convertDate(
-                        rsDetails.getDate(4).toString()));
+                vt.addElement(rsDetails.getString(4));
                 vt.addElement(LibUtil.getInstance().convertDate(
                         rsDetails.getDate(5).toString()));
-                if (rsDetails.getInt(6) == 0) {
-                    vt.addElement("Checked-Out");
+                vt.addElement(LibUtil.getInstance().convertDate(
+                        rsDetails.getDate(6).toString()));
+                if (rsDetails.getString(7).equals("Checked-Out")) {
+                    vt.addElement(rsDetails.getString(7));
                     vt.addElement("--");
                     vt.addElement("--");
                 } else {
-                    vt.addElement("Checked-In");
+                    vt.addElement(rsDetails.getString(7));
                     vt.addElement(LibUtil.getInstance().convertDate(
-                            rsDetails.getDate(7).toString()));
-                    vt.addElement(rsDetails.getFloat(8));
+                            rsDetails.getDate(8).toString()));
+                    vt.addElement(rsDetails.getFloat(9));
                 }
                 borModel.addRow(vt);
             }
@@ -244,49 +245,13 @@ public class AccessEmp {
                 Vector vt = new Vector();
                 vt.addElement(rsDetails.getInt(1));
                 vt.addElement(rsDetails.getString(2));
-                if (rsDetails.getInt(3) == 1) {
-                    vt.addElement("Male");
-                } else {
-                    vt.addElement("Female");
-                }
+                vt.addElement(rsDetails.getString(3));
                 vt.addElement(rsDetails.getString(4));
                 vt.addElement(rsDetails.getString(5));
-                if (rsDetails.getInt(6) == 1) {
-                    vt.addElement("Librarian");
-                } else {
-                    vt.addElement("Employee");
-                }
+                vt.addElement(rsDetails.getString(6));
                 empModel.addRow(vt);
             }
             return csDetails.getInt(4);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            //close all connect
-            LibConnection.close(rsDetails);
-            LibConnection.close(csDetails);
-            LibConnection.close(cn);
-        }
-        return 1;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNewestEmp() {
-        //Defined connection, rs and cs to connect and query database
-        cn = LibConnection.getConnection();
-        //Defined book
-
-        try {
-            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_EMP);
-            rsDetails = csDetails.executeQuery();
-            if (rsDetails.next()) {
-                return rsDetails.getInt(1);
-            } else {
-                return 0;
-            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {

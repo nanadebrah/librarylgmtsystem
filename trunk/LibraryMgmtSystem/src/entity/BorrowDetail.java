@@ -17,7 +17,7 @@ public class BorrowDetail {
 
     private int empID;
     private int borID;
-    private String callNumber;
+    private int bookID;
     private int IssueStatus;
     private long IssueDate;
     private long DueDate;
@@ -36,20 +36,6 @@ public class BorrowDetail {
      */
     public void setBorID(int borID) {
         this.borID = borID;
-    }
-
-    /**
-     * @return the callNumber
-     */
-    public String getCallNumber() {
-        return callNumber;
-    }
-
-    /**
-     * @param callNumber the callNumber to set
-     */
-    public void setCallNumber(String callNumber) {
-        this.callNumber = callNumber;
     }
 
     /**
@@ -126,7 +112,7 @@ public class BorrowDetail {
         Vector vt = new Vector();
         vt.add(borID);
         vt.add(empID);
-        vt.addElement(callNumber);
+        vt.addElement(getBookID());
         vt.add(LibUtil.getInstance().convertDate(new java.sql.Date(IssueDate).toString()));
         vt.add(LibUtil.getInstance().convertDate(new java.sql.Date(DueDate).toString()));
         if (IssueStatus==0) {
@@ -149,5 +135,19 @@ public class BorrowDetail {
      */
     public void setEmpID(int empID) {
         this.empID = empID;
+    }
+
+    /**
+     * @return the bookID
+     */
+    public int getBookID() {
+        return bookID;
+    }
+
+    /**
+     * @param bookID the bookID to set
+     */
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 }

@@ -76,6 +76,7 @@ public class ViewEmployeeController {
             }
         };
         borModel.addColumn("Borrow ID");
+        borModel.addColumn("Book ID");
         borModel.addColumn("Call Number");
         borModel.addColumn("Title");
         borModel.addColumn("Issue Date");

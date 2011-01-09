@@ -34,8 +34,7 @@ public class BorrowController {
     private CheckInController checkIn;
     private FeeRateController feeControl;
     private ViewBorrowController viewControl;
-    private DefaultTableModel bookModel;
-    private DefaultTableModel empModel;
+    private DefaultTableModel bothModel;
     private DefaultTableModel outModel;
     private DefaultTableModel inModel;
     private DefaultTableModel searchModel;
@@ -72,14 +71,7 @@ public class BorrowController {
             }
         };
         //Create book model
-        bookModel = new DefaultTableModel() {
-
-            public boolean isCellEditable(int column, int row) {
-                return false;
-            }
-        };
-        //Create employee model
-        empModel = new DefaultTableModel() {
+        bothModel = new DefaultTableModel() {
 
             public boolean isCellEditable(int column, int row) {
                 return false;
@@ -109,21 +101,26 @@ public class BorrowController {
         //Set searchModel
         searchModel.addColumn("Borrow ID");
         searchModel.addColumn("Employee ID");
+        searchModel.addColumn("Book ID");
         searchModel.addColumn("Call Number");
         searchModel.addColumn("Title");
         searchModel.addColumn("Auth");
         searchModel.addColumn("Publisher");
         searchModel.addColumn("Due Date");
+
         //Set int model
         inModel.addColumn("Borrow ID");
+        inModel.addColumn("Book ID");
         inModel.addColumn("Call Number");
-        inModel.addColumn("ISBN");
+        inModel.addColumn("Title");
         inModel.addColumn("Day Borrow/Fee");
         inModel.addColumn("Day Late/Fine");
         inModel.addColumn("Total Fee");
+
         //Set bor model
         borModel.addColumn("Borrow ID");
         borModel.addColumn("Employee ID");
+        borModel.addColumn("Book ID");
         borModel.addColumn("Employee Name");
         borModel.addColumn("Call Number");
         borModel.addColumn("Title");
@@ -132,26 +129,14 @@ public class BorrowController {
         borModel.addColumn("Issue Status");
         borModel.addColumn("Return Date");
         borModel.addColumn("Total Fee");
-        //Set book model
-        bookModel.addColumn("Call Number");
-        bookModel.addColumn("ISBN");
-        bookModel.addColumn("Title");
-        bookModel.addColumn("Author");
-        bookModel.addColumn("Publisher");
-        bookModel.addColumn("Copies/Store");
+
         //Set out model
+        outModel.addColumn("Book ID");
         outModel.addColumn("Call Number");
         outModel.addColumn("ISBN");
         outModel.addColumn("Title");
         outModel.addColumn("Author");
         outModel.addColumn("Publisher");
-        //Set employee model
-        empModel.addColumn("ID");
-        empModel.addColumn("Name");
-        empModel.addColumn("Gender");
-        empModel.addColumn("Email");
-        empModel.addColumn("Department");
-        empModel.addColumn("Permission");
 
         //Add event fee rate btn
         view.getBtnFee().addActionListener(new ActionListener() {
@@ -274,12 +259,13 @@ public class BorrowController {
                 "Delete borrow", JOptionPane.YES_NO_OPTION,
                 JOptionPane.INFORMATION_MESSAGE);
         if (sure == JOptionPane.OK_OPTION) {
-            //Get borID and CallNo selected
+            //Get borID and bookID selected
             String borID = view.getTblBor().getValueAt(
                     view.getTblBor().getSelectedRow(), 0).toString();
-            String callNo = view.getTblBor().getValueAt(
-                    view.getTblBor().getSelectedRow(), 3).toString();
-            if (!AccessBorrow.getInstance().deleteBorrow(Integer.parseInt(borID), callNo)) {
+            String bookID = view.getTblBor().getValueAt(
+                    view.getTblBor().getSelectedRow(), 2).toString();
+            if (!AccessBorrow.getInstance().deleteBorrow(Integer.parseInt(borID),
+                    Integer.parseInt(bookID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
                         + "May be this borrow isn't checked-in.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
@@ -304,11 +290,11 @@ public class BorrowController {
         //Get field empID selected
         int empID = Integer.parseInt(view.getTblBor().getValueAt(
                 view.getTblBor().getSelectedRow(), 1).toString());
-        //Get field CallNo selected
-        String callNo = view.getTblBor().getValueAt(
-                view.getTblBor().getSelectedRow(), 3).toString();
+        //Get field bookID selected
+        String bookID = view.getTblBor().getValueAt(
+                view.getTblBor().getSelectedRow(), 2).toString();
         viewControl = new ViewBorrowController(new ViewBorrowDialog(
-                parent.getView(), true), borID, empID, callNo);
+                parent.getView(), true), borID, empID, Integer.parseInt(bookID));
         viewControl.getView().setVisible(true);
         parent.doBlur();
     }
@@ -347,7 +333,7 @@ public class BorrowController {
         parent.doBlur();
         checkOut = new CheckOutController(
                 new CheckOutDialog(parent.getView(), true),
-                bookModel, empModel, outModel, parent);
+                bothModel, outModel, parent);
         checkOut.getView().setVisible(true);
 
         if (checkOut.getBorDetail() != null) {

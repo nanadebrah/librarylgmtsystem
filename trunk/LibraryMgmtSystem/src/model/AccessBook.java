@@ -75,8 +75,8 @@ public class AccessBook {
 
         try {
             csDetails = cn.prepareCall(LibProcedure.EDIT_BOOK);
-            csDetails.setString(1, book.getCallNumber());
-            csDetails.setString(2, book.getFixCallNumber());
+            csDetails.setInt(1, book.getBookID());
+            csDetails.setString(2, book.getCallNumber());
             csDetails.setString(3, book.getISBN());
             csDetails.setInt(4, book.getSubID());
             csDetails.setString(5, book.getTitle());
@@ -97,31 +97,28 @@ public class AccessBook {
         return true;
     }
 
-    /**
-     *
-     * @param callNo
-     * @return
-     */
-    public Book getBookInfo(String callNo) {
+   
+    public Book getBookInfo(int bookID) {
         //Defined Object
         Book book = null;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.GET_BOOK_INFO);
-            csDetails.setString(1, callNo);
+            csDetails.setInt(1, bookID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 book = new Book();
                 //Set all field on database to book object
-                book.setCallNumber(rsDetails.getString(1));
-                book.setISBN(rsDetails.getString(2));
-                book.setSubID(rsDetails.getInt(3));
-                book.setTitle(rsDetails.getString(4));
-                book.setAuthName(rsDetails.getString(5));
-                book.setPublisher(rsDetails.getString(6));
-                book.setNoOfCopy(rsDetails.getInt(7));
-                book.setNoInLib(rsDetails.getInt(8));
+                book.setBookID(rsDetails.getInt(1));
+                book.setCallNumber(rsDetails.getString(2));
+                book.setISBN(rsDetails.getString(3));
+                book.setSubName(rsDetails.getString(4));
+                book.setTitle(rsDetails.getString(5));
+                book.setAuthName(rsDetails.getString(6));
+                book.setPublisher(rsDetails.getString(7));
+                book.setNoOfCopy(rsDetails.getInt(8));
+                book.setNoInLib(rsDetails.getInt(9));
                 //return employee object
                 return book;
             }
@@ -136,18 +133,13 @@ public class AccessBook {
         return null;
     }
 
-    /**
-     *
-     * @param borModel
-     * @param callNo
-     */
-    public void getBookBorInfo(DefaultTableModel borModel, String callNo) {
+    public void getBookBorInfo(DefaultTableModel borModel, int bookID) {
         java.util.Vector vt;
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.GET_BOOK_BOR_INFO);
-            csDetails.setString(1, callNo);
+            csDetails.setInt(1, bookID);
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 vt = new java.util.Vector();
@@ -159,12 +151,12 @@ public class AccessBook {
                         rsDetails.getDate(5).toString()));
                 vt.addElement(LibUtil.getInstance().convertDate(
                         rsDetails.getDate(6).toString()));
-                if (rsDetails.getInt(7) == 0) {
-                    vt.addElement("Checked-Out");
+                if (rsDetails.getString(7).equals("Checked-Out")) {
+                    vt.addElement(rsDetails.getString(7));
                     vt.addElement("--");
                     vt.addElement("--");
                 } else {
-                    vt.addElement("Checked-In");
+                    vt.addElement(rsDetails.getString(7));
                     vt.addElement(LibUtil.getInstance().convertDate(
                             rsDetails.getDate(8).toString()));
                     vt.addElement(rsDetails.getFloat(9));
@@ -208,12 +200,14 @@ public class AccessBook {
             rsDetails = csDetails.executeQuery();
             while (rsDetails.next()) {
                 Vector vt = new Vector();
-                vt.addElement(rsDetails.getString(1));
+                vt.addElement(rsDetails.getInt(1));
                 vt.addElement(rsDetails.getString(2));
                 vt.addElement(rsDetails.getString(3));
                 vt.addElement(rsDetails.getString(4));
                 vt.addElement(rsDetails.getString(5));
-                vt.addElement(rsDetails.getInt(6) + "/" + rsDetails.getInt(7));
+                vt.addElement(rsDetails.getString(6));
+                vt.addElement(rsDetails.getString(7));
+                vt.addElement(rsDetails.getInt(8) + "/" + rsDetails.getInt(9));
                 bookModel.addRow(vt);
             }
             return csDetails.getInt(7);
@@ -229,7 +223,7 @@ public class AccessBook {
     }
 
     /**
-     *
+     * 
      * @return
      */
     public int getNewestBook() {
@@ -237,7 +231,7 @@ public class AccessBook {
         cn = LibConnection.getConnection();
 
         try {
-            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_BOOK);
+            csDetails = cn.prepareCall(LibProcedure.GET_NEWEST_BOOKID);
             rsDetails = csDetails.executeQuery();
             if (rsDetails.next()) {
                 return rsDetails.getInt(1);
@@ -254,16 +248,16 @@ public class AccessBook {
     }
 
     /**
-     * 
+     *
      * @param CallNumber
      * @return
      */
-    public boolean deleteBook(String CallNumber) {
+    public boolean deleteBook(int bookID) {
         //Defined connection, rs and cs to connect and query database
         cn = LibConnection.getConnection();
         try {
             csDetails = cn.prepareCall(LibProcedure.DETELE_BOOK);
-            csDetails.setString(1, CallNumber);
+            csDetails.setInt(1, bookID);
             if (csDetails.execute()) {
                 return false;
             }
