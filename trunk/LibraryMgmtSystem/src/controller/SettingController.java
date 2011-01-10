@@ -8,12 +8,7 @@ import model.LibConnection;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Properties;
+import model.LibConfig;
 import model.LibPassword;
 import view.SettingConnection;
 
@@ -30,7 +25,7 @@ public class SettingController {
         this.view = view;
         initComponent();
         //invoked set default all field
-        if (!loadConfig()) {
+        if (!LibConfig.getInstance().loadConnectConfig(view)) {
             setField();
         }
     }
@@ -87,90 +82,14 @@ public class SettingController {
      * Save config to property file
      */
     private void saveConfig() {
-        //Defined object
-        FileInputStream in = null;
-        Properties pro;
-        try {
-            //Create instane of object
-            pro = new Properties();
-            File f = new File(System.getProperty("user.dir")
-                    + File.separator + "Config.properties");
-            //Check file exist, if not, create new property file to store
-            if (!f.exists()) {
-                f.createNewFile();
-            }
-            //load property file
-            in = new FileInputStream(f);
-            pro.load(in);
-
-            //Save all config to file
-            pro.setProperty("host", view.getTxtHost().getText());
-            pro.setProperty("port", view.getTxtPort().getText());
-            pro.setProperty("database", view.getTxtDatabase().getText());
-            pro.setProperty("username", view.getTxtUser().getText());
-            pro.setProperty("password", LibPassword.getInstance().encryptPass(
-                    new String(view.getTxtPass().getPassword())));
-            pro.store(new FileOutputStream(f), null);
+        if (LibConfig.getInstance().saveConnectConfig(view.getTxtHost().getText(),
+                view.getTxtPort().getText(), view.getTxtDatabase().getText(),
+                view.getTxtUser().getText(), LibPassword.getInstance()
+                .encryptPass(new String(view.getTxtPass().getPassword())))) {
             view.getLblCheck().setText("Saved!");
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        } else {
+            view.getLblCheck().setText("Error!");
         }
-    }
-
-    /**
-     * Load config file
-     * @return
-     */
-    private boolean loadConfig() {
-        //Defined object
-        FileInputStream in = null;
-        Properties pro;
-        try {
-            //Create instane of object
-            pro = new Properties();
-            File f = new File(System.getProperty("user.dir")
-                    + File.separator + "Config.properties");
-            //Check file exist
-            if (!f.exists()) {
-                System.out.println("File not found!");
-                return false;
-            } else {
-                in = new FileInputStream(f);
-            }
-            //load property file
-            pro.load(in);
-
-            //set all field
-            view.getTxtHost().setText(pro.getProperty("host"));
-            view.getTxtPort().setText(pro.getProperty("port"));
-            view.getTxtDatabase().setText(pro.getProperty("database"));
-            view.getTxtUser().setText(pro.getProperty("username"));
-            view.getTxtPass().setText(LibPassword.getInstance().decryptPass(
-                    pro.getProperty("password")));
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return true;
     }
 
     /**

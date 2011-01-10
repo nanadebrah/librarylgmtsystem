@@ -63,7 +63,7 @@ public class LoginController {
     private void initComponent() {
 
         //Load user & pass from config file
-        LibConfig.getInstance().loadConfig(view.getTxtUsername(),
+        LibConfig.getInstance().loadLoginConfig(view.getTxtUsername(),
                 view.getTxtPassword(), view.getChBxRemember());
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
@@ -170,10 +170,10 @@ public class LoginController {
      */
     private void doRemember() {
         if (view.getChBxRemember().isSelected()) {
-            LibConfig.getInstance().saveConfig(view.getTxtUsername().getText(),
+            LibConfig.getInstance().saveLoginConfig(view.getTxtUsername().getText(),
                     new String(view.getTxtPassword().getPassword()));
         } else {
-            LibConfig.getInstance().saveConfig("", "");
+            LibConfig.getInstance().saveLoginConfig("", "");
         }
     }
 

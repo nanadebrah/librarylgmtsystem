@@ -10,12 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
-import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import view.AboutWindow;
 import view.LoginDialog;
 import view.ManageFrm;
@@ -24,6 +22,7 @@ import view.PalBook;
 import view.PalBorrow;
 import view.PalEmployee;
 import view.PalSubject;
+import view.ProgramSettingDialog;
 
 /**
  *
@@ -51,6 +50,8 @@ public class ManageController {
     //Defined SubjectController & subject model
     private AnalyticController anaControl;
     private DefaultTableModel anaModel;
+    //Defined program setting
+    private ProSettingController proControl;
     //Defined about window
     private AboutWindow about;
     //Defined Setting Dialog
@@ -77,6 +78,9 @@ public class ManageController {
      *  initialize the controller.
      */
     private void initComponent() {
+
+        proControl = new ProSettingController(
+                        new ProgramSettingDialog(view, true), this);
 
         //Create new instance of login controllwe
         loginControl = new LoginController(loginDialog, this);
@@ -228,12 +232,9 @@ public class ManageController {
         view.getMenuSetting().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                //
-                //
-                //
-                SubstanceLookAndFeel.setSkin("org.pushingpixels.substance.api.skin.OfficeBlue2007Skin");
-                SwingUtilities.updateComponentTreeUI(view);
-                view.pack();
+                doBlur();
+                proControl.getView().setVisible(true);
+                doBlur();
             }
         });
 
@@ -301,13 +302,5 @@ public class ManageController {
      */
     public void setView(ManageFrm view) {
         this.view = view;
-    }
-
-    /**
-     * This method get instance of manage controller
-     * @return ManageController
-     */
-    private ManageController getThis() {
-        return this;
     }
 }

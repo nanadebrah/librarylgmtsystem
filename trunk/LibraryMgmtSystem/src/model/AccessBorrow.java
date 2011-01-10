@@ -27,19 +27,19 @@ public class AccessBorrow {
     private CallableStatement csDetails = null;
     private CheckIn checkin;
     private Vector vt;
-    //Defined instance of AccessBook
+    //Defined instance of AccessBorrow
     private static AccessBorrow instance = new AccessBorrow();
 
     /**
-     * 
-     * @return
+     * Static method get instance of AccessBook
+     * @return instance of acessborrow
      */
     public static AccessBorrow getInstance() {
         return instance;
     }
 
     /**
-     *
+     * 
      * @param empID
      * @param map
      * @return

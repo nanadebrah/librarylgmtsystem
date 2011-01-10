@@ -47,8 +47,6 @@ public class SplashScreen extends JWindow {
         this.setLocationRelativeTo(null);
         //Setvisibe to display this pane
         this.setVisible(true);
-        //Do splashscreen
-        loadProcess();
     }
 
     /**
@@ -128,6 +126,8 @@ public class SplashScreen extends JWindow {
      * @param args START LIBRARY MANAGEMENT SYSTEM
      */
     public static void main(String[] args) {
-        new SplashScreen();
+        javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
+        javax.swing.JDialog.setDefaultLookAndFeelDecorated(true);
+        new SplashScreen().loadProcess();
     }
 }

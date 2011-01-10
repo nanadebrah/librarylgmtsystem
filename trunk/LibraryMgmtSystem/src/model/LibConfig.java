@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import view.SettingConnection;
 
 /**
  *
@@ -30,7 +31,7 @@ public class LibConfig {
     /**
      * 
      */
-    public void createConfig() {
+    public void createLoginConfig() {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -54,9 +55,10 @@ public class LibConfig {
             pro.setProperty("port", "1433");
             pro.setProperty("database", "Library");
             pro.setProperty("username", "sa");
-            pro.setProperty("password", "9988776655");
+            pro.setProperty("password", "");
 
-            pro.store(new FileOutputStream(f), null);
+            pro.store(new FileOutputStream(f),
+                    "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -78,7 +80,7 @@ public class LibConfig {
      * @param user
      * @param pass
      */
-    public void saveConfig(String user, String pass) {
+    public void saveLoginConfig(String user, String pass) {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -99,7 +101,8 @@ public class LibConfig {
             pro.setProperty("loginUser", user);
             //Encrypt pass and save to file config
             pro.setProperty("loginPass", LibPassword.getInstance().encryptPass(pass));
-            pro.store(new FileOutputStream(f), null);
+            pro.store(new FileOutputStream(f),
+                    "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -123,8 +126,8 @@ public class LibConfig {
      * @param jcheck
      * @return
      */
-    public boolean loadConfig(javax.swing.JTextField jtxt,
-            javax.swing.JPasswordField jpass,javax.swing.JCheckBox jcheck) {
+    public boolean loadLoginConfig(javax.swing.JTextField jtxt,
+            javax.swing.JPasswordField jpass, javax.swing.JCheckBox jcheck) {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -136,7 +139,8 @@ public class LibConfig {
             //Check file exist
             if (!f.exists()) {
                 //If it doesn't exist, create it
-                LibConfig.getInstance().createConfig();
+                createLoginConfig();
+                return false;
             } else {
                 in = new FileInputStream(f);
             }
@@ -154,6 +158,104 @@ public class LibConfig {
                     && jpass.getPassword().length > 0) {
                 jcheck.setSelected(true);
             }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Save config to property file
+     * @param host
+     * @param port
+     * @param data
+     * @param use
+     * @param pass
+     * @return
+     */
+    public boolean saveConnectConfig(String host, String port, String data,
+            String use, String pass) {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist, if not, create new property file to store
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            //load property file
+            in = new FileInputStream(f);
+            pro.load(in);
+
+            //Save all config to file
+            pro.setProperty("host", host);
+            pro.setProperty("port", port);
+            pro.setProperty("database", data);
+            pro.setProperty("username", use);
+            pro.setProperty("password", pass);
+            pro.store(new FileOutputStream(f), null);
+            return true;
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param view
+     * @return
+     */
+    public boolean loadConnectConfig(SettingConnection view) {
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist
+            if (!f.exists()) {
+                System.out.println("File not found!");
+                return false;
+            } else {
+                in = new FileInputStream(f);
+            }
+            //load property file
+            pro.load(in);
+
+            //set all field
+            view.getTxtHost().setText(pro.getProperty("host"));
+            view.getTxtPort().setText(pro.getProperty("port"));
+            view.getTxtDatabase().setText(pro.getProperty("database"));
+            view.getTxtUser().setText(pro.getProperty("username"));
+            view.getTxtPass().setText(LibPassword.getInstance().decryptPass(
+                    pro.getProperty("password")));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

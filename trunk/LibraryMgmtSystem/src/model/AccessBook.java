@@ -27,15 +27,16 @@ public class AccessBook {
 
     /**
      * Static method get instance of AccessBook
+     * @return inctance of accessbook
      */
     public static AccessBook getInstance() {
         return instance;
     }
 
     /**
-     * 
-     * @param book
-     * @return
+     * Add book to databse
+     * @param book is entity
+     * @return true if add succsessful, otherwise false
      */
     public boolean addBook(Book book) {
         //Defined connection, rs and cs to connect and query database
@@ -65,9 +66,9 @@ public class AccessBook {
     }
 
     /**
-     * 
-     * @param book
-     * @return
+     * Edit book from database
+     * @param book is entity of book
+     * @return true if edit successful, otherwise false
      */
     public boolean editBook(Book book) {
         //Defined connection, rs and cs to connect and query database
@@ -97,7 +98,11 @@ public class AccessBook {
         return true;
     }
 
-   
+   /**
+    * Get book information to show
+    * @param bookID id of book want to get
+    * @return book entity
+    */
     public Book getBookInfo(int bookID) {
         //Defined Object
         Book book = null;
@@ -133,6 +138,11 @@ public class AccessBook {
         return null;
     }
 
+    /**
+     * Get book borrow information, full borrow info
+     * @param borModel is default table model
+     * @param bookID is id of book want get
+     */
     public void getBookBorInfo(DefaultTableModel borModel, int bookID) {
         java.util.Vector vt;
         //Defined connection, rs and cs to connect and query database
@@ -174,14 +184,14 @@ public class AccessBook {
     }
 
     /**
-     * 
-     * @param bookModel
-     * @param CallNo
-     * @param ISBN
-     * @param Title
-     * @param Auth
-     * @param page
-     * @return
+     * Search book information by callno, isbn, title or author
+     * @param bookModel is model to get and add to it
+     * @param CallNo is callnumber of book
+     * @param ISBN is isbn of book
+     * @param Title is title of book
+     * @param Auth is authname of book
+     * @param page is page want get from nagation bar
+     * @return total row number form database to count page
      */
     public int searchBook(DefaultTableModel bookModel, String CallNo, String ISBN,
             String Title, String Auth, int page) {
@@ -223,8 +233,8 @@ public class AccessBook {
     }
 
     /**
-     * 
-     * @return
+     * Get bookID of newest book
+     * @return bookID of newest book
      */
     public int getNewestBook() {
         //Defined connection, rs and cs to connect and query database
@@ -248,9 +258,9 @@ public class AccessBook {
     }
 
     /**
-     *
-     * @param CallNumber
-     * @return
+     * Detele book from database
+     * @param bookID to delete book
+     * @return true if successful, otherwise false
      */
     public boolean deleteBook(int bookID) {
         //Defined connection, rs and cs to connect and query database
