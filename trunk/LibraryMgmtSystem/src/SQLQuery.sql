@@ -169,7 +169,7 @@ AS
 			FROM Employee WHERE [Name] LIKE '%'+@Name+'%'
 		)
 	SELECT EmpID,[Name],CASE Gender WHEN 1 THEN 'Male'
-	ELSE 'FEMALE' END AS 'Gender',Email,Department,
+	ELSE 'Female' END AS 'Gender',Email,Department,
 	CASE Permission WHEN 1 THEN 'Librarin' ELSE
 	'Employee' END AS 'Permission'
 	FROM Temp
@@ -201,7 +201,7 @@ AS
 			FROM Employee WHERE EmpID=@EmpID
 		)
 	SELECT EmpID,[Name],CASE Gender WHEN 1 THEN 'Male'
-	ELSE 'FEMALE' END AS 'Gender',Email,Department,
+	ELSE 'Female' END AS 'Gender',Email,Department,
 	CASE Permission WHEN 1 THEN 'Librarin' ELSE
 	'Employee' END AS 'Permission'
 	FROM Temp
@@ -1114,7 +1114,7 @@ DROP VIEW TopBorrower
 GO
 CREATE VIEW TopBorrower AS
 SELECT E.EmpID,E.[Name],CASE E.Gender WHEN 1 THEN 'Male'
-	ELSE 'FEMALE' END AS 'Gender',E.Email,E.Department,E.Phone,
+	ELSE 'Female' END AS 'Gender',E.Email,E.Department,E.Phone,
 	CASE Permission WHEN 1 THEN 'Librarin' ELSE
 	'Employee' END AS 'Permission',T.NB FROM Employee E JOIN
 	(	SELECT EmpID,SUM(NB) AS NB FROM
