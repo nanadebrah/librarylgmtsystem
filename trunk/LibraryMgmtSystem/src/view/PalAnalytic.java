@@ -36,8 +36,8 @@ public class PalAnalytic extends javax.swing.JPanel {
         tolbarAna = new javax.swing.JToolBar();
         btnTBookAna = new javax.swing.JButton();
         btnTBorAna = new javax.swing.JButton();
-        btnAlertAna = new javax.swing.JButton();
         btnRevAna = new javax.swing.JButton();
+        btnAlertAna = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         scrPanAna = new javax.swing.JScrollPane();
         tblAna = new javax.swing.JTable();
@@ -50,8 +50,8 @@ public class PalAnalytic extends javax.swing.JPanel {
 
         setToolTipText("show details");
 
-        tolbarAna.setFloatable(false);
         tolbarAna.setBorder(null);
+        tolbarAna.setFloatable(false);
         tolbarAna.setBorderPainted(false);
         tolbarAna.setOpaque(false);
 
@@ -73,6 +73,14 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBorAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBorAna);
 
+        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE)));
+        btnRevAna.setText("Revenue");
+        btnRevAna.setBorderPainted(false);
+        btnRevAna.setFocusable(false);
+        btnRevAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRevAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarAna.add(btnRevAna);
+
         btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
         btnAlertAna.setMnemonic('s');
         btnAlertAna.setText("Overdue Alert");
@@ -82,14 +90,6 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnAlertAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlertAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnAlertAna);
-
-        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE)));
-        btnRevAna.setText("Revenue");
-        btnRevAna.setBorderPainted(false);
-        btnRevAna.setFocusable(false);
-        btnRevAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRevAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarAna.add(btnRevAna);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -105,22 +105,22 @@ public class PalAnalytic extends javax.swing.JPanel {
 
         jPanel1.add(scrPanAna, java.awt.BorderLayout.CENTER);
 
-        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
         btnFirst.setBorderPainted(false);
         jPanel2.add(btnFirst);
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
         btnBack.setBorderPainted(false);
         jPanel2.add(btnBack);
 
         txtPage.setText("Pages");
         jPanel2.add(txtPage);
 
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
         btnNext.setBorderPainted(false);
         jPanel2.add(btnNext);
 
-        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
         btnLast.setBorderPainted(false);
         jPanel2.add(btnLast);
 

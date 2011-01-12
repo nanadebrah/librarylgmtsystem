@@ -238,6 +238,58 @@ public class ManageController {
             }
         });
 
+        //Add event all menu
+        view.getMnAna().addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                cardLayout.show(view.getPalMain(), "PalAnalytic");
+                setBorSelect(view.getBtnAnaMan());
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+        view.getMnSub().addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                cardLayout.show(view.getPalMain(), "PalSubject");
+                setBorSelect(view.getBtnSubMan());
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+        view.getMnBook().addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                cardLayout.show(view.getPalMain(), "PalBook");
+                setBorSelect(view.getBtnBookMan());
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+        view.getMnBor().addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                cardLayout.show(view.getPalMain(), "PalBorrow");
+                setBorSelect(view.getBtnBorMan());
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+        view.getMnEmp().addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                cardLayout.show(view.getPalMain(), "PalEmployee");
+                setBorSelect(view.getBtnEmpMan());
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+
         //Create new instance of blurUI
         blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
         //Create new instance of Jcomponent

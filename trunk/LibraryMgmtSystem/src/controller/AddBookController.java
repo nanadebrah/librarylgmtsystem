@@ -119,22 +119,22 @@ public class AddBookController {
         }
         if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
             JOptionPane.showMessageDialog(view, "ISBN must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
             JOptionPane.showMessageDialog(view, "Title must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
             JOptionPane.showMessageDialog(view, "Author must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
             JOptionPane.showMessageDialog(view, "Publisher must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         return true;
@@ -144,7 +144,6 @@ public class AddBookController {
      * get all field to object
      */
     private void toObject() {
-        book.setCallNumber(LibBook.getInstance().generateCallNo(book));
         book.setISBN(view.getTxtISBN().getText());
         book.setTitle(view.getTxtTitle().getText());
         book.setAuthName(view.getTxtAuthor().getText());
@@ -154,7 +153,8 @@ public class AddBookController {
         book.setNoInLib(new Integer(
                 view.getTxtNoInLib().getValue().toString()));
         book.setSubID(AccessSub.getInstance().getSubjectID(
-                view.getCbxSub().getSelectedItem().toString()));        
+                view.getCbxSub().getSelectedItem().toString()));
+        book.setCallNumber(LibBook.getInstance().generateCallNo(book));
     }
 
     /**

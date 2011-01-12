@@ -8,11 +8,12 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JList;
-import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.LibConfig;
+import model.LibUtil;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.renderers.SubstanceDefaultComboBoxRenderer;
 import org.pushingpixels.substance.api.skin.SkinInfo;
@@ -36,6 +37,9 @@ public class ProSettingController {
     }
 
     private void initComponent() {
+        //Load config
+        LibConfig.getInstance().loadProConfig(view.getTxtRow());
+
         //Fill value to combobox theme
         view.getCbxTheme().setRenderer(new SubstanceDefaultComboBoxRenderer(
                 view.getCbxTheme()) {
@@ -58,7 +62,9 @@ public class ProSettingController {
 
                     @Override
                     public void run() {
-                        SubstanceLookAndFeel.setSkin(((SkinInfo) view.getCbxTheme().getSelectedItem()).getClassName());
+                        SubstanceLookAndFeel.setSkin(((SkinInfo)
+                                view.getCbxTheme()
+                                .getSelectedItem()).getClassName());
                     }
                 });
                 SwingUtilities.updateComponentTreeUI(parent.getView());
@@ -81,6 +87,7 @@ public class ProSettingController {
                 view.pack();
                 SwingUtilities.updateComponentTreeUI(parent.getView());
                 parent.getView().pack();
+                LibConfig.getInstance().loadProConfig(view.getTxtRow());
             }
         });
 
@@ -96,7 +103,11 @@ public class ProSettingController {
         view.getBtnSave().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                //doing some thing here
+                LibConfig.getInstance().saveProConfig(
+                        view.getTxtRow().getValue().toString());
+                LibUtil.noRow=Integer.parseInt(
+                        view.getTxtRow().getValue().toString());
+                view.dispose();
             }
         });
 

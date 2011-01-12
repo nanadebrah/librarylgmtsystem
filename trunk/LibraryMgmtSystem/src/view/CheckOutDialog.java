@@ -261,22 +261,22 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         jSplitPane1.setRightComponent(palBorrowInfo);
 
-        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
         btnFirst.setBorderPainted(false);
         jPanel6.add(btnFirst);
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
         btnBack.setBorderPainted(false);
         jPanel6.add(btnBack);
 
         lblPage.setText("Page 1/1");
         jPanel6.add(lblPage);
 
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
         btnNext.setBorderPainted(false);
         jPanel6.add(btnNext);
 
-        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
         btnLast.setBorderPainted(false);
         jPanel6.add(btnLast);
 

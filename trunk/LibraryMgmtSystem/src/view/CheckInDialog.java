@@ -110,8 +110,8 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Infomation"));
 
-        tolbarEmp.setBorder(null);
         tolbarEmp.setFloatable(false);
+        tolbarEmp.setBorder(null);
         tolbarEmp.setBorderPainted(false);
         tolbarEmp.setOpaque(false);
 
@@ -267,22 +267,22 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jSplitPane2.setRightComponent(palBorrowInfo1);
 
-        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
         btnFirst.setBorderPainted(false);
         jPanel6.add(btnFirst);
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
         btnBack.setBorderPainted(false);
         jPanel6.add(btnBack);
 
         lblPage.setText("Page 1/1");
         jPanel6.add(lblPage);
 
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
         btnNext.setBorderPainted(false);
         jPanel6.add(btnNext);
 
-        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
         btnLast.setBorderPainted(false);
         jPanel6.add(btnLast);
 
@@ -432,8 +432,8 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Search"));
 
-        tolbarBook.setBorder(null);
         tolbarBook.setFloatable(false);
+        tolbarBook.setBorder(null);
         tolbarBook.setBorderPainted(false);
         tolbarBook.setOpaque(false);
 
@@ -505,8 +505,8 @@ public class CheckInDialog extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Borrow Search"));
 
-        tolbarBor.setBorder(null);
         tolbarBor.setFloatable(false);
+        tolbarBor.setBorder(null);
         tolbarBor.setBorderPainted(false);
         tolbarBor.setOpaque(false);
 

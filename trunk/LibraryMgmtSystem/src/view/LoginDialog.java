@@ -133,6 +133,7 @@ public class LoginDialog extends javax.swing.JDialog {
         mnHelp.setText("Help");
 
         mnSubHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        mnSubHelp.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_HELP)));
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 

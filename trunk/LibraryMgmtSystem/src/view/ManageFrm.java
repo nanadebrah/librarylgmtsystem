@@ -53,6 +53,11 @@ public class ManageFrm extends javax.swing.JFrame {
         separator = new javax.swing.JPopupMenu.Separator();
         mnLogout = new javax.swing.JMenuItem();
         mnQuit = new javax.swing.JMenuItem();
+        mnEmp = new javax.swing.JMenu();
+        mnBook = new javax.swing.JMenu();
+        mnSub = new javax.swing.JMenu();
+        mnBor = new javax.swing.JMenu();
+        mnAna = new javax.swing.JMenu();
         mnHelp = new javax.swing.JMenu();
         mnSubHelp = new javax.swing.JMenuItem();
         mnAbout = new javax.swing.JMenuItem();
@@ -80,7 +85,7 @@ public class ManageFrm extends javax.swing.JFrame {
         taskPalManage.getContentPane().add(btnBookMan);
 
         btnSubMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SUB)));
-        btnSubMan.setMnemonic('j');
+        btnSubMan.setMnemonic('u');
         btnSubMan.setText("Subject");
         btnSubMan.setBorderPainted(false);
         btnSubMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -96,14 +101,14 @@ public class ManageFrm extends javax.swing.JFrame {
         btnAnaMan.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
 
         btnBorMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BORROW)));
-        btnBorMan.setMnemonic('b');
+        btnBorMan.setMnemonic('r');
         btnBorMan.setText("Borrow");
         btnBorMan.setBorderPainted(false);
         btnBorMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         taskPalBorAna.getContentPane().add(btnBorMan);
 
         btnAnaMan.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ANALYTIC)));
-        btnAnaMan.setMnemonic('l');
+        btnAnaMan.setMnemonic('n');
         btnAnaMan.setText("Analytic");
         btnAnaMan.setBorderPainted(false);
         btnAnaMan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -111,6 +116,7 @@ public class ManageFrm extends javax.swing.JFrame {
 
         palMain.setLayout(new java.awt.CardLayout());
 
+        mnSystem.setMnemonic('m');
         mnSystem.setText("System");
 
         menuSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_SETTING)));
@@ -130,9 +136,31 @@ public class ManageFrm extends javax.swing.JFrame {
 
         menuBar.add(mnSystem);
 
+        mnEmp.setMnemonic('e');
+        mnEmp.setText("Employee");
+        menuBar.add(mnEmp);
+
+        mnBook.setMnemonic('b');
+        mnBook.setText("Book");
+        menuBar.add(mnBook);
+
+        mnSub.setMnemonic('u');
+        mnSub.setText("Subject");
+        menuBar.add(mnSub);
+
+        mnBor.setMnemonic('r');
+        mnBor.setText("Borrow");
+        menuBar.add(mnBor);
+
+        mnAna.setMnemonic('n');
+        mnAna.setText("Analytic");
+        menuBar.add(mnAna);
+
+        mnHelp.setMnemonic('p');
         mnHelp.setText("Help");
 
         mnSubHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK));
+        mnSubHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_HELP)));
         mnSubHelp.setText("Help");
         mnHelp.add(mnSubHelp);
 
@@ -176,9 +204,14 @@ public class ManageFrm extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuSetting;
     private javax.swing.JMenuItem mnAbout;
+    private javax.swing.JMenu mnAna;
+    private javax.swing.JMenu mnBook;
+    private javax.swing.JMenu mnBor;
+    private javax.swing.JMenu mnEmp;
     private javax.swing.JMenu mnHelp;
     private javax.swing.JMenuItem mnLogout;
     private javax.swing.JMenuItem mnQuit;
+    private javax.swing.JMenu mnSub;
     private javax.swing.JMenuItem mnSubHelp;
     private javax.swing.JMenu mnSystem;
     private javax.swing.JPanel palMain;
@@ -325,5 +358,75 @@ public class ManageFrm extends javax.swing.JFrame {
      */
     public void setMenuSetting(javax.swing.JMenuItem menuSetting) {
         this.menuSetting = menuSetting;
+    }
+
+    /**
+     * @return the mnAna
+     */
+    public javax.swing.JMenu getMnAna() {
+        return mnAna;
+    }
+
+    /**
+     * @param mnAna the mnAna to set
+     */
+    public void setMnAna(javax.swing.JMenu mnAna) {
+        this.mnAna = mnAna;
+    }
+
+    /**
+     * @return the mnBook
+     */
+    public javax.swing.JMenu getMnBook() {
+        return mnBook;
+    }
+
+    /**
+     * @param mnBook the mnBook to set
+     */
+    public void setMnBook(javax.swing.JMenu mnBook) {
+        this.mnBook = mnBook;
+    }
+
+    /**
+     * @return the mnBor
+     */
+    public javax.swing.JMenu getMnBor() {
+        return mnBor;
+    }
+
+    /**
+     * @param mnBor the mnBor to set
+     */
+    public void setMnBor(javax.swing.JMenu mnBor) {
+        this.mnBor = mnBor;
+    }
+
+    /**
+     * @return the mnEmp
+     */
+    public javax.swing.JMenu getMnEmp() {
+        return mnEmp;
+    }
+
+    /**
+     * @param mnEmp the mnEmp to set
+     */
+    public void setMnEmp(javax.swing.JMenu mnEmp) {
+        this.mnEmp = mnEmp;
+    }
+
+    /**
+     * @return the mnSub
+     */
+    public javax.swing.JMenu getMnSub() {
+        return mnSub;
+    }
+
+    /**
+     * @param mnSub the mnSub to set
+     */
+    public void setMnSub(javax.swing.JMenu mnSub) {
+        this.mnSub = mnSub;
     }
 }

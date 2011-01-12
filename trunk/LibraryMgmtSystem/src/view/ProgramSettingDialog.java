@@ -11,6 +11,7 @@
 package view;
 
 import java.util.Vector;
+import model.LibImages;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
@@ -106,7 +107,7 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
             .addContainerGap())
     );
 
-    lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/labelImages/Setting.png"))); // NOI18N
+    lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_SETTING)));
 
     org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);

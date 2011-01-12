@@ -30,6 +30,8 @@ public class LibImages {
     public static final String ABOUT =
             "images" + File.separator + "other" + File.separator + "About.png";
     //Label image
+    public static final String LABEL_SETTING = "images" + File.separator
+            + "labelImages" + File.separator + "Setting.png";
     public static final String LABEL_LOGIN = "images" + File.separator
             + "labelImages" + File.separator + "Login.png";
     public static final String LABEL_INFOSUB = "images" + File.separator
@@ -75,15 +77,17 @@ public class LibImages {
             + "menuImages" + File.separator + "View.png";
     public static final String MENU_ABOUT = "images" + File.separator
             + "menuImages" + File.separator + "About.png";
+    public static final String MENU_HELP = "images" + File.separator
+            + "menuImages" + File.separator + "Help.png";
     //navigation bar
-    public static final String MENU_FIRST = "images" + File.separator
-            + "menuImages" + File.separator + "First.png";
-    public static final String MENU_LAST = "images" + File.separator
-            + "menuImages" + File.separator + "Last.png";
-    public static final String MENU_NEXT = "images" + File.separator
-            + "menuImages" + File.separator + "Next.png";
-    public static final String MENU_BACK = "images" + File.separator
-            + "menuImages" + File.separator + "Back.png";
+    public static final String TASKBAR_FIRST = "images" + File.separator
+            + "taskbarImages" + File.separator + "First.png";
+    public static final String TASKBAR_LAST = "images" + File.separator
+            + "taskbarImages" + File.separator + "Last.png";
+    public static final String TASKBAR_NEXT = "images" + File.separator
+            + "taskbarImages" + File.separator + "Next.png";
+    public static final String TASKBAR_BACK = "images" + File.separator
+            + "taskbarImages" + File.separator + "Back.png";
     //Taskbar image
     public static final String TASKBAR_ADD = "images" + File.separator
             + "taskbarImages" + File.separator + "Add.png";

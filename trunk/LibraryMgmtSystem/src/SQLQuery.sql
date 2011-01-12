@@ -687,17 +687,6 @@ AS
 			SELECT 'ERROR'
 	END
 GO
-/*-------------------------------------------------------*/
-
---Create procedure get newest borrow
---IF EXISTS (SELECT name FROM sysobjects 
---         WHERE name = 'sp_GetNewestBorrowID' AND type = 'P')
---   DROP PROCEDURE sp_GetNewestBorrowID
---GO
---CREATE PROC sp_GetNewestBorrowID
---AS
---	SELECT TOP 1 BorID FROM Borrow ORDER BY BorID DESC
---GO
 /*---------------------------------------------------------*/
 
 /* Borrow  Manage*/

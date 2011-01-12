@@ -31,7 +31,7 @@ public class LibConfig {
     /**
      * 
      */
-    public void createLoginConfig() {
+    public void createConfig() {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -56,7 +56,89 @@ public class LibConfig {
             pro.setProperty("database", "Library");
             pro.setProperty("username", "sa");
             pro.setProperty("password", "");
+            pro.setProperty("nopage", "20");
 
+            pro.store(new FileOutputStream(f),
+                    "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
+
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Load program config
+     * @param txtRow
+     */
+    public void loadProConfig(javax.swing.JSpinner txtRow){
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist
+            if (!f.exists()) {
+                //If it doesn't exist, create it
+                createConfig();
+            } else {
+                in = new FileInputStream(f);
+            }
+            //load property file
+            pro.load(in);
+
+            //set field
+            txtRow.setValue(Integer.parseInt(pro.getProperty("nopage")));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Save program config to property file
+     * @param noRow
+     */
+    public void saveProConfig(String noRow){
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist, if not, create new property file to store
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            //load property file
+            in = new FileInputStream(f);
+            pro.load(in);
+
+            //Save all config to file
+            pro.setProperty("nopage", noRow);
             pro.store(new FileOutputStream(f),
                     "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
 
@@ -139,7 +221,7 @@ public class LibConfig {
             //Check file exist
             if (!f.exists()) {
                 //If it doesn't exist, create it
-                createLoginConfig();
+                createConfig();
                 return false;
             } else {
                 in = new FileInputStream(f);
@@ -153,6 +235,8 @@ public class LibConfig {
             jpass.setText(
                     LibPassword.getInstance().decryptPass(
                     pro.getProperty("loginPass")));
+            //load page config
+            LibUtil.noRow=Integer.parseInt(pro.getProperty("nopage"));
             //Check remmeber check
             if (jtxt.getText().length() > 0
                     && jpass.getPassword().length > 0) {

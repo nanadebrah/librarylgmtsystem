@@ -133,22 +133,22 @@ public class PalEmployee extends javax.swing.JPanel {
 
         jPanel1.add(scrPanEmp, java.awt.BorderLayout.CENTER);
 
-        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST)));
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
         btnFirst.setBorderPainted(false);
         jPanel2.add(btnFirst);
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK)));
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
         btnBack.setBorderPainted(false);
         jPanel2.add(btnBack);
 
         txtPage.setText("Pages");
         jPanel2.add(txtPage);
 
-        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT)));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
         btnNext.setBorderPainted(false);
         jPanel2.add(btnNext);
 
-        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST)));
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
         btnLast.setBorderPainted(false);
         jPanel2.add(btnLast);
 

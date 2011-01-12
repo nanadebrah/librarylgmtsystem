@@ -43,10 +43,10 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="tolbarAna">
       <Properties>
-        <Property name="floatable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
+        <Property name="floatable" type="boolean" value="false"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
@@ -79,6 +79,18 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JButton" name="btnRevAna">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE))" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Revenue"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JButton" name="btnAlertAna">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -88,18 +100,6 @@
             <Property name="text" type="java.lang.String" value="Overdue Alert"/>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnRevAna">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Revenue"/>
-            <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -144,7 +144,7 @@
             <Component class="javax.swing.JButton" name="btnFirst">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_FIRST))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST))" type="code"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
@@ -152,7 +152,7 @@
             <Component class="javax.swing.JButton" name="btnBack">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_BACK))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK))" type="code"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
@@ -165,7 +165,7 @@
             <Component class="javax.swing.JButton" name="btnNext">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_NEXT))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT))" type="code"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
@@ -173,7 +173,7 @@
             <Component class="javax.swing.JButton" name="btnLast">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.MENU_LAST))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST))" type="code"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
