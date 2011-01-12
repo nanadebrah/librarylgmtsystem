@@ -55,6 +55,7 @@ public class LoginDialog extends javax.swing.JDialog {
         mnAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login - Library Management System");
         setResizable(false);
 
         lblAbout.setFont(new java.awt.Font("Lucida Grande", 2, 12));

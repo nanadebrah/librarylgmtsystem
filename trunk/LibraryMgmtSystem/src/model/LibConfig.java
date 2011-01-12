@@ -98,7 +98,6 @@ public class LibConfig {
             }
             //load property file
             pro.load(in);
-
             //set field
             txtRow.setValue(Integer.parseInt(pro.getProperty("nopage")));
         } catch (FileNotFoundException ex) {

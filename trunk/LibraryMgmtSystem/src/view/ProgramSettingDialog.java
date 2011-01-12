@@ -49,6 +49,7 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
     lblImage = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setTitle("Program Setting");
     setResizable(false);
 
     palSetting.setBorder(javax.swing.BorderFactory.createTitledBorder("Program Setting"));

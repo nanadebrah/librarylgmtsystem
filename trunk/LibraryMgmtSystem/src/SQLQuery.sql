@@ -1161,7 +1161,84 @@ GO
 INSERT INTO Fee VALUES ('Fee',0,0.1)
 
 /*--------------------------------------------------------------*/
+GO
+/*		EXAMPLE DATA		*/
+/****** Object:  Table [dbo].[Employee]    Script Date: 01/12/2011 18:26:58 ******/
+SET IDENTITY_INSERT [dbo].[Employee] ON
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (2, N'Gilbert', CAST(0x67400000 AS SmallDateTime), 1, N'guy1@adventure-works.com', NULL, N'Mozambique', N'3205550195', 0, N'Engineering')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (3, N'Brown', CAST(0x6E750000 AS SmallDateTime), 1, N'kevin0@adventure-works.com', NULL, N'UnitedStates', N'1505550189', 0, N'Tool Design')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (4, N'Tamburello', CAST(0x5CAA0000 AS SmallDateTime), 0, N'roberto0@adventure-works.com', NULL, N'Uruguay', N'2125550187', 0, N'Sales')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (5, N'Walters', CAST(0x5CD30000 AS SmallDateTime), 1, N'rob0@adventure-works.com', NULL, N'Romania', N'6125550100', 0, N'Production')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (6, N'D''Hers', CAST(0x46D90000 AS SmallDateTime), 0, N'thierry0@adventure-works.com', NULL, N'Mozambique', N'1685550183', 0, N'Finance')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (7, N'Bradley', CAST(0x5D290000 AS SmallDateTime), 1, N'david0@adventure-works.com', NULL, N'Malaysia', N'9135550172', 0, N'Executive')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (8, N'Dobney', CAST(0x41CF0000 AS SmallDateTime), 0, N'jolynn0@adventure-works.com', NULL, N'Romania', N'9035550145', 0, N'Executive')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (9, N'Ellerbrock', CAST(0x425B0000 AS SmallDateTime), 1, N'ruth0@adventure-works.com', NULL, N'Italy', N'1455550130', 0, N'Human Resources')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (10, N'Erickson', CAST(0x3D190000 AS SmallDateTime), 0, N'ruth0@adventure-works.com', NULL, N'Italy', N'1455550130', 0, N'Development')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (11, N'Johnson', CAST(0x42150000 AS SmallDateTime), 1, N'barry0@adventure-works.com', NULL, N'Jordan', N'2065550180', 0, N'Executive')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (12, N'Goldberg', CAST(0x464D0000 AS SmallDateTime), 1, N'jossef0@adventure-works.com', NULL, N'UnitedStates', N'1225550189', 0, N'Executive')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (13, N'Duffy', CAST(0x57FB0000 AS SmallDateTime), 0, N'terri0@adventure-works.com', NULL, N'Romania', N'8195550175', 0, N'Sales')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (14, N'Higa', CAST(0x42B20000 AS SmallDateTime), 1, N'sidney0@adventure-works.com', NULL, N'Japan', N'4245550189', 0, N'Engineering')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (15, N'Maxwell', CAST(0x421B0000 AS SmallDateTime), 1, N'taylor0@adventure-works.com', NULL, N'UnitedStates', N'5085550165', 0, N'Development')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (16, N'Ford', CAST(0x42800000 AS SmallDateTime), 1, N'jeffrey0@adventure-works.com', NULL, N'UnitedStates', N'9845550185', 0, N'Research')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (17, N'Hartwig', CAST(0x421E0000 AS SmallDateTime), 0, N'doris0@adventure-works.com', NULL, N'UnitedStates', N'3285550150', 0, N'Purchasing')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (18, N'Campbell', CAST(0x429B0000 AS SmallDateTime), 1, N'john0@adventure-works.com', NULL, N'Nigeria', N'4355550113', 0, N'Finance')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (19, N'Glimp', CAST(0x42180000 AS SmallDateTime), 1, N'diane0@adventure-works.com', NULL, N'Norway', N'2025550151', 0, N'Executive')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (20, N'Selikoff', CAST(0x603C0000 AS SmallDateTime), 1, N'steven0@adventure-works.com', NULL, N'Japan', N'9255550114', 0, N'Production')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (22, N'Krebs', CAST(0x680B0000 AS SmallDateTime), 1, N'peter0@adventure-works.com', NULL, N'Jordan', N'9135550196', 0, N'Research')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (23, N'Munson', CAST(0x4B4F0000 AS SmallDateTime), 0, N'stuart0@adventure-works.com', NULL, N'Nigeria', N'4135550136', 0, N'Purchasing')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (24, N'Alderson', CAST(0x56DC0000 AS SmallDateTime), 1, N'greg0@adventure-works.com', NULL, N'UnitedStates', N'3325550150', 0, N'Sales')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (25, N'Johnson', CAST(0x63C20000 AS SmallDateTime), 1, N'david1@adventure-works.com', NULL, N'UnitedStates', N'1665550162', 0, N'Tool Design')
+INSERT [dbo].[Employee] ([EmpID], [Name], [DOB], [Gender], [Email], [Password], [Address], [Phone], [Permission], [Department]) VALUES (26, N'Mu', CAST(0x69700000 AS SmallDateTime), 0, N'zheng0@adventure-works.com', NULL, N'Malaysia', N'1135550173', 0, N'Marketing')
+SET IDENTITY_INSERT [dbo].[Employee] OFF
+GO
+/****** Object:  Table [dbo].[Subject]    Script Date: 01/12/2011 18:26:58 ******/
+SET IDENTITY_INSERT [dbo].[Subject] ON
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (1, N'Horror', N'The books in this category include classic horror stories, such as Frankenstein and Dracula, as well as thrillers with a supernatural theme.')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (2, N'Romance', N'This category includes books, plays, and poems with a romantic theme.')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (3, N'Mystery & Crime', N'This category includes mystery books and plays, and anything where crime is a central theme.')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (6, N'Science Fiction & Fantasy', N'This category includes many early examples of science fiction')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (7, N'History', N'Books in this category focus on the history of a country or a people')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (8, N'Poetry', N'Poetry Books')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (9, N'Children', N'Childrens books kids books')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (10, N'Travel', N'Travel books, travel guide,travel writing')
+INSERT [dbo].[Subject] ([SubID], [SubName], [Description]) VALUES (11, N'Entertainment', N'Movie books, music, celebrities ,film ,guides')
+SET IDENTITY_INSERT [dbo].[Subject] OFF
+GO
+/****** Object:  Table [dbo].[Borrow]    Script Date: 01/12/2011 18:26:58 ******/
+/****** Object:  Table [dbo].[Book]    Script Date: 01/12/2011 18:26:58 ******/
+SET IDENTITY_INSERT [dbo].[Book] ON
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (1, N'FU-SI-001', N'001-0001', 1, N'Full Dark, No Stars', N'Stephen King', N'Simon & Schuster Adult Publishing Group', 68, 68)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (2, N'FR-MA-002', N'001-0002', 1, N'Frankenstein', N'Mary Shelley', N'over Publications', 76, 76)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (3, N'WO-Ma-003', N'001-0003', 1, N'World War Z: An Oral History of the Zombie War', N'Max Brooks', N'Crown Publishing Group', 42, 42)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (4, N'GH-CA-004', N'001-0004', 1, N'Ghost at Work', N'Carolyn G. Hart', N'HarperCollins Publishers', 89, 89)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (5, N'SH-KA-005', N'002-0005', 2, N'Shadowfever ', N'Karen Marie Moning', N'Random House Publishing Group', 19, 19)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (6, N'TH-JE-006', N'002-0006', 2, N'The Land of Painted Caves', N'Jean M. Auel', N'# Crown Publishing Group', 89, 89)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (7, N'AR-NA-007', N'002-0007', 2, N'Archangel''s Consort', N'Nalini Singh', N'Penguin Group', 109, 109)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (8, N'FA-DE-008', N'002-0008', 2, N'Family Affair ', N'Debbie Macomber', N'HarperCollins Publishers', 102, 102)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (9, N'TH-RO-009', N'003-0009', 3, N'The Sentry', N'Robert Crais', N'Penguin Group', 20, 20)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (10, N'TH-ST-010', N'003-0010', 3, N'The Girl with the Dragon Tattoo', N'Stieg Larsson, Reg Keeland', N'Knopf Doubleday Publishing Group', 90, 90)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (11, N'TH-AN-011', N'003-0011', 3, N'Three Seconds', N'Anders Roslund', N'SilverOak', 96, 96)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (12, N'TH-ST-012', N'003-0012', 3, N'The Girl Who Kicked the Hornet''s Nest', N'Stieg Larsson', N'Knopf Doubleday Publishing Group', 63, 63)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (13, N'AR-RO-013', N'006-0013', 6, N'Archibald Zwick And The Eight Towers', N'Robert Leslie Palmer', N'CrossBooks Publishing', 64, 64)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (14, N'TH-NE-014', N'006-0014', 6, N'The Gift', N'Ned Rust', N'Little, Brown Books for Young Readers', 30, 30)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (15, N'TO-BR-015', N'006-0015', 6, N'Towers of Midnight', N'Brandon Sanderson', N'Doherty, Tom Associates, LLC', 16, 16)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (16, N'UN-LN-016', N'007-0016', 7, N'Unbroken: A World War II Story of Survival, Resilience, and Redemption', N'Laura Hillenbrand', N'Random House Publishing Group', 73, 73)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (17, N'CL-ST-017', N'007-0017', 7, N'Cleopatra: A Life', N'Stacy Schiff', N'Little, Brown & Company', 36, 36)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (18, N'TH-RE-018', N'007-0018', 7, N'The Immortal Life of Henrietta Lacks ', N'Rebecca Skloot', N'Crown Publishing Group', 34, 34)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (19, N'TH-HO-019', N'008-0019', 8, N'The Iliad ', N'Homer', N'Penguin Group (USA)', 58, 58)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (20, N'TH-HO-020', N'008-0020', 8, N'The Odyssey', N'Homer', N'Penguin Group (USA', 82, 82)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (21, N'AS-PH-021', N'009-0021', 9, N'A Sick Day for Amos McGee ', N'Philip C. Stead', N'Roaring Brook Press', 76, 76)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (22, N'MO-CL-022', N'009-0022', 9, N'Moon Over Manifest', N'Clare Vanderpool', N'Random House Children''s Books', 12, 12)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (23, N'TH-DA-023', N'010-0023', 10, N'The Lost City of Z: A Tale of Deadly Obsession in the Amazon ', N'David Grann', N'Knopf Doubleday Publishing Group', 52, 52)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (24, N'AM-ST-024', N'010-0024', 10, N'American Casino Guide 2011 Edition', N'Steve Bourie', N'Casino Vacations Press, Inc', 96, 96)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (25, N'IN-HO-025', N'010-0025', 10, N'Into the Wild ', N'Jon Krakauer', N'Knopf Doubleday Publishing Group', 50, 50)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (26, N'LO-JE-026', N'011-0026', 11, N'Love, Lust and Faking It: The Naked Truth About Sex, Lies, and True Romance ', N'Jenny McCarthy', N'HarperCollins Publishers', 44, 44)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (27, N'KA-KO-027', N'011-0027', 11, N'Kardashian Konfidential ', N'Kourtney Kardashian', N'St. Martin''s Press', 56, 56)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (28, N'SH-JU-028', N'011-0028', 11, N'Shit My Dad Says ', N'Justin Halpern', N'HarperCollins Publishers', 24, 24)
+INSERT [dbo].[Book] ([BookID], [CallNumber], [ISBN], [SubID], [Title], [AuthName], [Publisher], [NoOfCopy], [NoInLib]) VALUES (29, N'TH-BA-029', N'011-0029', 11, N'The Bro Code', N'Barney Stinson, Matt Kuhn', N'Simon & Schuster Adult Publishing Group', 8, 8)
+SET IDENTITY_INSERT [dbo].[Book] OFF
+/****** Object:  Table [dbo].[BorrowDetail]    Script Date: 01/12/2011 18:26:58 ******/
+
+/*********************************************************************/
 
 							/*END*/
-
-select * from book

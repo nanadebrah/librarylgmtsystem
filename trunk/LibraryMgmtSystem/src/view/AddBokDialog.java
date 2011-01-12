@@ -55,7 +55,7 @@ public class AddBokDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add a book");
+        setTitle("Add A Book");
         setResizable(false);
 
         palAddBok.setBorder(javax.swing.BorderFactory.createTitledBorder("Book Information"));
@@ -84,8 +84,8 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
-        txtNoInLib.setToolTipText("Copies of this book");
         txtNoInLib.setEnabled(false);
+        txtNoInLib.setToolTipText("Copies of this book");
 
         lblTitle1.setText("ISBN:");
 

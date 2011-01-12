@@ -47,6 +47,7 @@ public class ViewSubDialog extends javax.swing.JDialog {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Show Details Of Subject");
         setResizable(false);
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_INFOSUB)));

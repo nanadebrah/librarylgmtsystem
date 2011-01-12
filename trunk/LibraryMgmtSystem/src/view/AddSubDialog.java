@@ -46,7 +46,7 @@ public class AddSubDialog extends javax.swing.JDialog {
         txtDes = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add information for subject");
+        setTitle("Add Information For Subject");
         setResizable(false);
 
         lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_ADDSUB)));

@@ -66,6 +66,8 @@ public class ManageFrm extends javax.swing.JFrame {
         setTitle("Library Management System");
         setMinimumSize(new java.awt.Dimension(700, 360));
         setName("manageFrm"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(862, 469));
+        setSize(new java.awt.Dimension(850, 430));
 
         taskPalManage.setTitle("Management");
         taskPalManage.setFocusable(false);
@@ -181,7 +183,7 @@ public class ManageFrm extends javax.swing.JFrame {
                     .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalManage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, taskPalBorAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE))
+                .add(palMain, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

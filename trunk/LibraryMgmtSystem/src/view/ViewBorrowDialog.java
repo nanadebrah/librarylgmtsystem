@@ -80,6 +80,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Show details of borrow");
         setMinimumSize(new java.awt.Dimension(632, 540));
 
         palInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Infomation"));

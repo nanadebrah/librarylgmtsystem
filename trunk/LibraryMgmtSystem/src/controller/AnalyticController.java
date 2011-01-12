@@ -127,7 +127,7 @@ public class AnalyticController {
         anaModel.setColumnCount(0);
         parent.removeModel(anaModel);
         //Set model
-        anaModel.addColumn("Employee ID");
+        anaModel.addColumn("Employee No");
         anaModel.addColumn("Name");
         anaModel.addColumn("Gender");
         anaModel.addColumn("Email");
@@ -149,7 +149,7 @@ public class AnalyticController {
         anaModel.setColumnCount(0);
         parent.removeModel(anaModel);
         //Set model
-        anaModel.addColumn("Book ID");
+        anaModel.addColumn("Book No");
         anaModel.addColumn("Call Number");
         anaModel.addColumn("ISBN");
         anaModel.addColumn("Title");

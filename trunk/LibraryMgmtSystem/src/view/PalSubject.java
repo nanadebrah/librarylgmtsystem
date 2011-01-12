@@ -56,6 +56,8 @@ public class PalSubject extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
 
+        setToolTipText("null");
+
         tolbarSub.setBorder(null);
         tolbarSub.setFloatable(false);
         tolbarSub.setBorderPainted(false);

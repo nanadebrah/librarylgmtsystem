@@ -58,7 +58,7 @@ public class BookController {
         //Add model to table
         view.getTblBook().setModel(bookModel);
         //Set model
-        bookModel.addColumn("ID");
+        bookModel.addColumn("No");
         bookModel.addColumn("Call Number");
         bookModel.addColumn("ISBN");
         bookModel.addColumn("Title");

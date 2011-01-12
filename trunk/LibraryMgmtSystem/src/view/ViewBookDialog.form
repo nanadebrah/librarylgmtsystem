@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Show Details Of Book"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[774, 560]"/>
     </Property>
@@ -49,10 +50,10 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="bookInfoPal" min="-2" pref="270" max="-2" attributes="0"/>
+                      <Component id="bookInfoPal" min="-2" pref="243" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -83,7 +84,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblBookID" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoInL" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblWho" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSub" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoC" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPub" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -92,14 +92,13 @@
                       <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblAth1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoInL1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblWho1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPub1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSub1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblNoC1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -134,8 +133,7 @@
                           <Component id="lblNoC1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblNoInL1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblWho1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="lblCallNo" min="-2" max="-2" attributes="0"/>
@@ -153,8 +151,7 @@
                           <Component id="lblNoC" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblNoInL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblWho" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
@@ -203,11 +200,6 @@
             <Property name="text" type="java.lang.String" value="No in library:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblWho">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="New borrowed by:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblCallNo1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Empty"/>
@@ -248,11 +240,6 @@
             <Property name="text" type="java.lang.String" value="Empty"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblWho1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Empty"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblBookID">
           <Properties>
             <Property name="text" type="java.lang.String" value="BookID:"/>
@@ -270,18 +257,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="scrPanBorBook" alignment="0" pref="734" max="32767" attributes="2"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnClose" min="-2" max="-2" attributes="0"/>
               </Group>
+              <Component id="scrPanBorBook" alignment="0" pref="734" max="32767" attributes="2"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="scrPanBorBook" pref="287" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="scrPanBorBook" pref="300" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

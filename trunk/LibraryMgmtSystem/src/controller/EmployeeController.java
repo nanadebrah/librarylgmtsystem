@@ -63,7 +63,7 @@ public class EmployeeController {
         //Add model to table
         view.getTblEmp().setModel(empModel);
         //Set model
-        empModel.addColumn("ID");
+        empModel.addColumn("No");
         empModel.addColumn("Name");
         empModel.addColumn("Gender");
         empModel.addColumn("Email");

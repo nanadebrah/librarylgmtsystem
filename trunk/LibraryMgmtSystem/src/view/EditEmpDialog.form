@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Edit information for employee"/>
+    <Property name="title" type="java.lang.String" value="Edit Information For Employee"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -69,48 +69,50 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblGender" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDOB" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAdd" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPass" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDepar" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPermis" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbxPermis" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtDepart" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtPhone" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtEmail" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtPass" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtAdd" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtDOB" alignment="0" pref="221" max="32767" attributes="0"/>
-                              <Component id="txtName" alignment="0" pref="221" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblGender" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblDOB" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPass" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblDepar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPermis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbxPermis" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtDepart" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtPhone" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtEmail" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtPass" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtAdd" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtDOB" alignment="0" pref="221" max="32767" attributes="0"/>
+                                      <Component id="txtName" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="94" pref="94" max="94" attributes="0"/>
+                                  <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="94" pref="94" max="94" attributes="0"/>
-                          <Component id="rdbMale" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="rdbFemale" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="86" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                  <Component id="btnSave" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="97" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

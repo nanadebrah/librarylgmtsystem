@@ -64,8 +64,8 @@ public class ViewBookController {
                 return false;
             }
         };
-        borModel.addColumn("Borrow ID");
-        borModel.addColumn("Employee ID");
+        borModel.addColumn("Borrow No");
+        borModel.addColumn("Employee No");
         borModel.addColumn("Name");
         borModel.addColumn("Department");
         borModel.addColumn("Issue Date");

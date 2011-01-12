@@ -128,6 +128,7 @@ public class SplashScreen extends JWindow {
     public static void main(String[] args) {
         javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
         javax.swing.JDialog.setDefaultLookAndFeelDecorated(true);
+               System.out.println(LibImages.SPLASH);
         new SplashScreen().loadProcess();
     }
 }

@@ -13,15 +13,15 @@ public class LibValid {
     private static LibValid instance = new LibValid();
     private String ISBNRegex = "\\d{3}-\\d{4}";
     private String PasswordRegex = "[a-zA-Z0-9]{4,12}";
-    private String NameRegex = "^[a-zA-Z][a-zA-Z'_0-9-]{1,99}";
-    private String AddressRegex = "[a-zA-Z_0-9-' ]{2,100}";
+    private String NameRegex = "^[a-zA-Z][a-zA-Z.'_0-9-]{1,99}";
+    private String AddressRegex = "[a-zA-Z_0-9-.' ]{2,100}";
     private String EmailRegex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private String TitleRegex = "[a-zA-Z_0-9-' ]{2,100}";
-    private String AuthRegex = "[a-zA-Z_0-9-' ]{2,30}";
-    private String SubRegex = "[a-zA-Z_0-9-' ]{2,30}";
-    private String DepartRegex = "[a-zA-Z_0-9-' ]{2,50}";
-    private String PublishRegex = "[a-zA-Z_0-9-' ]{2,50}";
+            + "[A-Za-z0-9_-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private String TitleRegex = "[a-zA-Z_0-9-.' ]{2,100}";
+    private String AuthRegex = "[a-zA-Z_0-9-.' ]{2,30}";
+    private String SubRegex = "[a-zA-Z_0-9-.' ]{2,30}";
+    private String DepartRegex = "[a-zA-Z_0-9-.' ]{2,50}";
+    private String PublishRegex = "[a-zA-Z_0-9-.' ]{2,150}";
     private String PhoneNumberRegex = "\\d{5,20}";
 
     /**

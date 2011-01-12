@@ -99,8 +99,8 @@ public class BorrowController {
         view.getTblBor().setModel(borModel);
 
         //Set searchModel
-        searchModel.addColumn("Borrow ID");
-        searchModel.addColumn("Employee ID");
+        searchModel.addColumn("Borrow No");
+        searchModel.addColumn("Employee No");
         searchModel.addColumn("Book ID");
         searchModel.addColumn("Call Number");
         searchModel.addColumn("Title");
@@ -109,8 +109,8 @@ public class BorrowController {
         searchModel.addColumn("Due Date");
 
         //Set int model
-        inModel.addColumn("Borrow ID");
-        inModel.addColumn("Book ID");
+        inModel.addColumn("Borrow No");
+        inModel.addColumn("Book No");
         inModel.addColumn("Call Number");
         inModel.addColumn("Title");
         inModel.addColumn("Day Borrow/Fee");
@@ -118,9 +118,9 @@ public class BorrowController {
         inModel.addColumn("Total Fee");
 
         //Set bor model
-        borModel.addColumn("Borrow ID");
-        borModel.addColumn("Employee ID");
-        borModel.addColumn("Book ID");
+        borModel.addColumn("Borrow No");
+        borModel.addColumn("Employee No");
+        borModel.addColumn("Book No");
         borModel.addColumn("Employee Name");
         borModel.addColumn("Call Number");
         borModel.addColumn("Title");
@@ -131,7 +131,7 @@ public class BorrowController {
         borModel.addColumn("Total Fee");
 
         //Set out model
-        outModel.addColumn("Book ID");
+        outModel.addColumn("Book No");
         outModel.addColumn("Call Number");
         outModel.addColumn("ISBN");
         outModel.addColumn("Title");

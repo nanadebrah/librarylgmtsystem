@@ -19,7 +19,7 @@ public class LibUtil {
     private Pattern pt;
     private Matcher ma;
     //This setting no of row display on a page
-    public static int noRow = 3;
+    public static int noRow = 20;
 
     /*
      * Static method get instance of Libook

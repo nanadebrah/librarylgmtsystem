@@ -61,7 +61,7 @@ public class AddEmpDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add a employee or librarian");
+        setTitle("Add A Employee Or Librarian");
         setResizable(false);
 
         palAddEmp.setBorder(javax.swing.BorderFactory.createTitledBorder("Employee Information"));

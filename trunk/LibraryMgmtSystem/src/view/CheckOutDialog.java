@@ -98,6 +98,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
         txtTitlBook = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Check-Out Book For Employee");
         setResizable(false);
 
         jSplitPane1.setDividerLocation(500);

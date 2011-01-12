@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Edit details for book"/>
+    <Property name="title" type="java.lang.String" value="Edit Details For Book"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -218,8 +218,8 @@
         </Component>
         <Component class="javax.swing.JSpinner" name="txtNoInLib">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
             <Property name="enabled" type="boolean" value="false"/>
+            <Property name="toolTipText" type="java.lang.String" value="Copies of this book"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTitle1">

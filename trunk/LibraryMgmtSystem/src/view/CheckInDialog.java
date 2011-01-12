@@ -103,6 +103,7 @@ public class CheckInDialog extends javax.swing.JDialog {
         txtBorID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Check-In Book For Employee");
         setResizable(false);
 
         jSplitPane2.setDividerLocation(500);

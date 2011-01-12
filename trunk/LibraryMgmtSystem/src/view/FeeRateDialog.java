@@ -45,6 +45,7 @@ public class FeeRateDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Fee & Fine Rate");
         setResizable(false);
 
         FeePal.setBorder(javax.swing.BorderFactory.createTitledBorder("Fee Information"));
