@@ -24,23 +24,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblImage" pref="210" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="conectSetPanel" alignment="0" max="32767" attributes="1"/>
+                          <Component id="palSetting" alignment="1" max="32767" attributes="1"/>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnSave" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnDefault" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblImage" pref="210" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="conectSetPanel" max="32767" attributes="1"/>
-                          <Component id="palSetting" alignment="0" max="32767" attributes="1"/>
-                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -55,18 +55,18 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="palSetting" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="conectSetPanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="btnClose" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnDefault" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSave" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="conectSetPanel" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Component id="lblImage" min="-2" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="btnClose" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDefault" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -170,17 +170,26 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblHost" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblPort" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtPort" alignment="0" pref="180" max="32767" attributes="1"/>
-                      <Component id="txtEmail" alignment="0" pref="180" max="32767" attributes="1"/>
-                      <Component id="txtPass" alignment="0" pref="180" max="32767" attributes="0"/>
-                      <Component id="txtSMTP" alignment="0" pref="180" max="32767" attributes="1"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblHost" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPort" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPassword" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtPort" alignment="0" pref="180" max="32767" attributes="1"/>
+                              <Component id="txtEmail" alignment="0" pref="180" max="32767" attributes="1"/>
+                              <Component id="txtPass" alignment="0" pref="180" max="32767" attributes="0"/>
+                              <Component id="txtSMTP" alignment="0" pref="180" max="32767" attributes="1"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btnCheckEmail" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -208,7 +217,12 @@
                       <Component id="lblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtPass" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnCheckEmail" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -252,6 +266,16 @@
         <Component class="javax.swing.JPasswordField" name="txtPass">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Your email&apos;s password"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnCheckEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Check Email"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblStatus">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
         </Component>
       </SubComponents>

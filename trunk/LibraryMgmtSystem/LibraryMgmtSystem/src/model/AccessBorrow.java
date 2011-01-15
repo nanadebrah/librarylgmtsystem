@@ -138,6 +138,53 @@ public class AccessBorrow {
     }
 
     /**
+     * Search checking out borrow to send alert
+     * @param anaModel
+     * @param dueDate
+     * @param page
+     * @return total row in database
+     */
+    public int searchCheckingOut(DefaultTableModel anaModel,
+            java.util.Date dueDate, int page) {
+        //Defined connection, rs and cs to connect and query database
+        cn = LibConnection.getConnection();
+
+        try {
+            if (dueDate == null) {
+                dueDate = new java.util.Date(2030, 1, 1);
+            }
+            //Search
+            csDetails = cn.prepareCall(LibProcedure.GET_CHECKING_OUT);
+            csDetails.setDate(1, new Date(dueDate.getTime()));
+            csDetails.setInt(2, page);
+            csDetails.setInt(3, LibUtil.noRow);
+            csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
+            rsDetails = csDetails.executeQuery();
+            while (rsDetails.next()) {
+                vt = new Vector();
+                vt.add(rsDetails.getInt(1));
+                vt.add(rsDetails.getInt(2));
+                vt.add(rsDetails.getInt(3));
+                vt.add(rsDetails.getString(4));
+                vt.add(rsDetails.getString(5));
+                vt.add(rsDetails.getString(6));
+                vt.add(LibUtil.getInstance().convertDate(rsDetails.getDate(7).toString()));
+                vt.add(LibUtil.getInstance().convertDate(rsDetails.getDate(8).toString()));
+                anaModel.addRow(vt);
+            }
+            return csDetails.getInt(4);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            //close all connect
+            LibConnection.close(rsDetails);
+            LibConnection.close(csDetails);
+            LibConnection.close(cn);
+        }
+        return 1;
+    }
+
+    /**
      * Check in borrow had checked-out, return book
      * @param borID
      * @param bookID

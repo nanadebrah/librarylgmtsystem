@@ -59,6 +59,8 @@ public class SendAlertDialog extends javax.swing.JDialog {
 
         lblContent.setText("Content:");
 
+        txtForm.setEditable(false);
+
         jScrollPane1.setViewportView(txtContent);
 
         btnSend.setText("Send");

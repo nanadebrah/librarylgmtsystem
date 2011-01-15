@@ -25,7 +25,7 @@ import javax.mail.internet.MimeMultipart;
  */
 public class LibEmailSender {
 
-    //Defined instance of LibProcedure
+    //Defined instance of LibEmailSender
     private static LibEmailSender instance = new LibEmailSender();
 
     /**
@@ -65,7 +65,7 @@ public class LibEmailSender {
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", smtpPort);
-        props.put("mail.debug", "true");
+        //props.put("mail.debug", "true");
         props.put("mail.smtp.starttls.enable", "true");
 
         Session session = null;
@@ -90,7 +90,7 @@ public class LibEmailSender {
                 new MimeBodyPart();
 
         //fill message
-        messageBodyPart.setContent(body,"text/plain");
+        messageBodyPart.setContent(body, "text/plain");
 
         Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(messageBodyPart);
@@ -113,6 +113,49 @@ public class LibEmailSender {
         // send the message
         Transport.send(message);
 
+    }
+
+    /**
+     * Test connection to send email
+     * @param host
+     * @param smtpPort
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public boolean testEmail(
+            String host,
+            String smtpPort,
+            String username,
+            String password)
+            throws Exception {
+
+        // create some properties and get the default Session
+        Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", smtpPort);
+        //props.put("mail.debug", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        Session session = null;
+        if (username != null && password != null) {
+            props.put("mail.smtp.auth", "true");
+            session = Session.getInstance(props,
+                    new MyPasswordAuthenticator(username, password));
+        } else {
+            session = Session.getDefaultInstance(props, null);
+        }
+        Transport transport = session.getTransport("smtp");
+        try {
+            transport.connect();
+            return transport.isConnected();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            transport.close();
+        }
+        return false;
     }
 }
 

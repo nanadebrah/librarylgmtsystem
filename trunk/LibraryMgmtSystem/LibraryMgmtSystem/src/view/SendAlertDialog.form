@@ -116,6 +116,9 @@
     <Component class="javax.swing.JTextField" name="txtTo">
     </Component>
     <Component class="javax.swing.JTextField" name="txtForm">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSubject">
     </Component>
