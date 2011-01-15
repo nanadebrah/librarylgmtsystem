@@ -22,7 +22,7 @@ import view.PalSubject;
 import view.ViewSubDialog;
 
 /**
- *
+ * Subject controller, control subject panel
  * @author CuongNQ
  */
 public class SubjectController {
@@ -38,7 +38,7 @@ public class SubjectController {
     private int totalRow;
 
     /**
-     * 
+     * Default constrcuter
      * @param view
      * @param subModel
      * @param manage
@@ -52,7 +52,7 @@ public class SubjectController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -64,7 +64,7 @@ public class SubjectController {
         //Add model to table
         getView().getTblSub().setModel(subModel);
         //Set model
-        subModel.addColumn("Subject ID");
+        subModel.addColumn("Subject No");
         subModel.addColumn("Subject Name");
         subModel.addColumn("Description");
 
@@ -124,7 +124,7 @@ public class SubjectController {
                 view.getBtnDelSub().setEnabled(true);
                 view.getBtnEditSub().setEnabled(true);
                 view.getBtnViewSub().setEnabled(true);
-                //If double click display edit employee dialog
+                //If double click display edit subject dialog
                 if (evt.getClickCount() == 2) {
                     viewSubject();
                 }
@@ -188,7 +188,7 @@ public class SubjectController {
     }
 
     /**
-     * 
+     * Delete a subject
      */
     private void deleteSub() {
         parent.doBlur();
@@ -202,7 +202,7 @@ public class SubjectController {
                     view.getTblSub().getSelectedRow(), 0).toString();
             if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "May be many book is using this subject.", "Error!",
+                        + "May be many books is using this subject.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -219,13 +219,13 @@ public class SubjectController {
      * View subject
      */
     private void viewSubject() {
-        //Get Id employee selected
+        //Get Id subject selected
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
-        //Get employee from database
+        //Get subject from database
         Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
         parent.doBlur();
-        //Create instance of Employee edit dialog and display it
+        //Create instance of subject edit dialog and display it
         viewSubject = new ViewSubjectController(new ViewSubDialog(parent.getView(), true), sub);
         viewSubject.getView().setVisible(true);
         tableFocus();
@@ -237,12 +237,12 @@ public class SubjectController {
      */
     private void editSubject() {
         parent.doBlur();
-        //Get Id employee selected
+        //Get Id subject selected
         String subID = view.getTblSub().getValueAt(
                 view.getTblSub().getSelectedRow(), 0).toString();
-        //Get employee from database
+        //Get subject from database
         Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
-        //Create instance of Employee edit dialog and display it
+        //Create instance of subject edit dialog and display it
         editSubject = new EditSubjectController(
                 new EditSubDialog(parent.getView(), true), sub);
         editSubject.getView().setVisible(true);
@@ -270,7 +270,6 @@ public class SubjectController {
         view.getBtnDelSub().setEnabled(false);
         view.getBtnViewSub().setEnabled(false);
         view.getTblSub().setFocusable(false);
-        view.getTblSub().clearSelection();
     }
 
     /**
@@ -291,14 +290,17 @@ public class SubjectController {
      */
     private void addSubject() {
         parent.doBlur();
-        //Display Add employee dialog
+        //Display Add subject dialog
         addSubject = new AddSubjectController(new AddSubDialog(parent.getView(), true));
         addSubject.getView().setVisible(true);
-        //invoked method add employee
+        //invoked method add subject
         if (addSubject.getSub() != null) {
             if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
                 JOptionPane.showMessageDialog(getView(), "Add subject successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                view.getTxtIdSub().setText("");
+                view.getTxtNameSub().setText("");
+                view.getBtnLast().doClick();
             }
         }
         tableFocus();

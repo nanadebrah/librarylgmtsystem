@@ -16,7 +16,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Access borrow table
  * @author CuongNQ
  */
 public class AccessBorrow {
@@ -31,7 +31,7 @@ public class AccessBorrow {
     private static AccessBorrow instance = new AccessBorrow();
 
     /**
-     * Static method get instance of AccessBook
+     * Static method get instance of AccessBorrow
      * @return instance of acessborrow
      */
     public static AccessBorrow getInstance() {
@@ -39,10 +39,10 @@ public class AccessBorrow {
     }
 
     /**
-     * 
+     * Add a checkout information to table
      * @param empID
      * @param map
-     * @return
+     * @return true if add successful, otherwise false
      */
     public boolean checkOut(int empID, TreeMap map) {
         //Defined connection, rs and cs to connect and query database
@@ -76,12 +76,12 @@ public class AccessBorrow {
     }
 
     /**
-     *
+     * Search borrow information
      * @param borModel
      * @param EmpID
      * @param CallNo
      * @param page
-     * @return
+     * @return total row in database
      */
     public int searchBor(DefaultTableModel borModel,
             String EmpID, String CallNo, int page) {
@@ -138,12 +138,12 @@ public class AccessBorrow {
     }
 
     /**
-     *
+     * Check in borrow had checked-out, return book
      * @param borID
      * @param bookID
      * @param returnDate
      * @param totalfee
-     * @return
+     * @return true if successful, otherwise false
      */
     public boolean checkIn(int borID, int bookID,
             long returnDate, float totalfee) {
@@ -169,7 +169,7 @@ public class AccessBorrow {
     }
 
     /**
-     *
+     * Search checkout information by borrow id
      * @param map
      * @param borID
      */
@@ -204,14 +204,14 @@ public class AccessBorrow {
     }
 
     /**
-     * 
+     * Search checkout information by book info
      * @param map
      * @param CallNo
      * @param ISBN
      * @param Title
      * @param Auth
      * @param page
-     * @return
+     * @return total row in database
      */
     public int searchCheckOutByBookInfo(TreeMap map, String CallNo, String ISBN,
             String Title, String Auth, int page) {
@@ -254,12 +254,12 @@ public class AccessBorrow {
     }
 
     /**
-     * 
+     * Search checkout information by employee infomation
      * @param map
      * @param EmpID
      * @param Name
      * @param page
-     * @return
+     * @return total row in database
      */
     public int searchCheckOutByEmpInfo(TreeMap map, String EmpID,
             String Name, int page) {
@@ -307,7 +307,7 @@ public class AccessBorrow {
     }
 
     /**
-     * 
+     * Get full borrow details information
      * @param arr
      * @param borID
      * @param empID
@@ -357,6 +357,7 @@ public class AccessBorrow {
                 arr[17] = rsDetails.getString(18);
                 arr[18] = rsDetails.getString(19);
                 arr[19] = rsDetails.getString(20);
+                arr[20] = rsDetails.getString(21);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -369,10 +370,10 @@ public class AccessBorrow {
     }
 
     /**
-     *
+     * Delete borrow (All borrow details and borrow)
      * @param borID
-     * @param CallNumber
-     * @return
+     * @param bookID
+     * @return true if delete successful, otherwise false
      */
     public boolean deleteBorrow(int borID, int bookID) {
         //Defined connection, rs and cs to connect and query database

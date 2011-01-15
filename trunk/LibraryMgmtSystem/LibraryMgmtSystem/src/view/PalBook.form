@@ -79,10 +79,10 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="tolbarBook">
       <Properties>
+        <Property name="floatable" type="boolean" value="false"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
-        <Property name="floatable" type="boolean" value="false"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
@@ -175,12 +175,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtAthBook">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="search book by author"/>
+        <Property name="toolTipText" type="java.lang.String" value="Search book by author name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTitlBook">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="search book by title"/>
+        <Property name="toolTipText" type="java.lang.String" value="Search book by title"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCallNo">
@@ -195,12 +195,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCallNoBook">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="search book by order"/>
+        <Property name="toolTipText" type="java.lang.String" value="Search book by call number"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtISBNBook">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="search book by ISBN"/>
+        <Property name="toolTipText" type="java.lang.String" value="Search book by ISBN"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

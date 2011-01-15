@@ -15,7 +15,7 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
- *
+ * About us window
  * @author CuongNQ
  */
 public class AboutWindow extends JWindow {

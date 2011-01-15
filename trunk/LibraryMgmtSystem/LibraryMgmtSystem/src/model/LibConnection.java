@@ -18,19 +18,14 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Connection management class
  * @author CuongNQ
  */
 public class LibConnection {
 
     /**
      * Method is used to return one connection if connecting successfully.
-     *
      * @return returns one connection.
-     *
-     * @exception SQLException is made when there is one error when connecting to database.
-     * @exception IOException is made if acessing to stream fails.
-     * @exception ClassNotFoundException
      */
     public static Connection getConnection() {
         //Defined Connection and field to connect
@@ -100,7 +95,7 @@ public class LibConnection {
     }
 
     /**
-     *
+     * Test connection to server with all field config
      * @param host of server
      * @param port of server
      * @param database of server
@@ -135,7 +130,6 @@ public class LibConnection {
     /**
      * Method is used to close open objects when connecting to database.
      * @param obj is object which will be opened when connecting.
-     * @exception SQLException is made when there is one error when closing to database.
      */
     public static void close(Object obj) {
         try {

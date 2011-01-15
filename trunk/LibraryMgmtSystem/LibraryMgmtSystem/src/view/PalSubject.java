@@ -56,8 +56,6 @@ public class PalSubject extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
 
-        setToolTipText("null");
-
         tolbarSub.setBorder(null);
         tolbarSub.setFloatable(false);
         tolbarSub.setBorderPainted(false);
@@ -117,9 +115,9 @@ public class PalSubject extends javax.swing.JPanel {
 
         lblNameSub.setText("Subject Name:");
 
-        txtNameSub.setToolTipText("Subject's username");
+        txtNameSub.setToolTipText("Search subject by subject name");
 
-        txtIdSub.setToolTipText("Subject's ID");
+        txtIdSub.setToolTipText("Search subject by subject id");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

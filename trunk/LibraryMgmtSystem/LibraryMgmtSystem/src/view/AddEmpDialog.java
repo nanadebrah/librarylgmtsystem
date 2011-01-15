@@ -93,19 +93,20 @@ public class AddEmpDialog extends javax.swing.JDialog {
         btgrGender.add(rdbFemale);
         rdbFemale.setText("Female");
 
-        txtDOB.setToolTipText("His ( her ) date of birth");
+        txtDOB.setToolTipText("Employee's date of birth");
 
-        txtAdd.setToolTipText("His( her ) address");
+        txtAdd.setToolTipText("Employee's address");
 
-        txtPass.setToolTipText("His( her ) password");
+        txtPass.setToolTipText("Employee's password");
 
-        txtEmail.setToolTipText("His( her ) email");
+        txtEmail.setToolTipText("Employee's email");
 
-        txtPhone.setToolTipText("His( her ) phone number");
+        txtPhone.setToolTipText("Employee's phone number");
 
-        txtDepart.setToolTipText("His( her ) department");
+        txtDepart.setToolTipText("Employee's department");
 
         cbxPermis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Librarian", "Employee" }));
+        cbxPermis.setToolTipText("Employee's permission");
 
         btnAdd.setText("Add");
 

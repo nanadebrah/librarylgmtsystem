@@ -13,7 +13,7 @@ import model.LibPassword;
 import view.SettingConnection;
 
 /**
- *
+ * Setting controller, control setting dialog
  * @author CuongNQ
  */
 public class SettingController {
@@ -21,6 +21,10 @@ public class SettingController {
     //Defined Setting Dialog
     private SettingConnection view;
 
+    /**
+     * Default constructor
+     * @param view
+     */
     public SettingController(SettingConnection view) {
         this.view = view;
         initComponent();
@@ -31,7 +35,7 @@ public class SettingController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
         //Add event for btnTest
@@ -71,7 +75,7 @@ public class SettingController {
      * Default all field text
      */
     private void setField() {
-        view.getTxtHost().setText("10.211.55.3");
+        view.getTxtHost().setText("localhost");
         view.getTxtPort().setText("1433");
         view.getTxtDatabase().setText("Library");
         view.getTxtUser().setText("sa");
@@ -84,8 +88,8 @@ public class SettingController {
     private void saveConfig() {
         if (LibConfig.getInstance().saveConnectConfig(view.getTxtHost().getText(),
                 view.getTxtPort().getText(), view.getTxtDatabase().getText(),
-                view.getTxtUser().getText(), LibPassword.getInstance()
-                .encryptPass(new String(view.getTxtPass().getPassword())))) {
+                view.getTxtUser().getText(), LibPassword.getInstance().encryptPass(
+                new String(view.getTxtPass().getPassword())))) {
             view.getLblCheck().setText("Saved!");
         } else {
             view.getLblCheck().setText("Error!");
@@ -93,7 +97,7 @@ public class SettingController {
     }
 
     /**
-     *Check connection using JDBC 4
+     * Check connection using JDBC 4
      */
     private void checkConnection() {
         new Thread(new Runnable() {

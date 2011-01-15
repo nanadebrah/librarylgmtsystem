@@ -5,7 +5,7 @@
 package entity;
 
 /**
- *
+ * Fee entiy
  * @author dinh manh hai
  */
 public class Fee {
@@ -13,22 +13,7 @@ public class Fee {
     private String Fee;
     private float BorFee;
     private float LateFee;
-
-    public Fee() {
-    }
-
-    /**
-     * 
-     * @param Fee
-     * @param BorFee
-     * @param LateFee
-     */
-    public Fee(String Fee, float BorFee, float LateFee) {
-        this.BorFee = BorFee;
-        this.Fee = Fee;
-        this.LateFee = LateFee;
-    }
-
+    
     /**
      * @return the Fee
      */

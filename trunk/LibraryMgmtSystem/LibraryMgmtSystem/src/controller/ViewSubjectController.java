@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import entity.Subject;
@@ -11,7 +10,7 @@ import java.awt.event.ActionListener;
 import view.ViewSubDialog;
 
 /**
- *
+ * View subject controller, control view subject dialog
  * @author CuongNQ
  */
 public class ViewSubjectController {
@@ -21,7 +20,7 @@ public class ViewSubjectController {
     private ViewSubDialog view;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param sub
      */

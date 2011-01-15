@@ -14,7 +14,7 @@ import model.LibUtil;
 import view.ViewEmpDialog;
 
 /**
- *
+ * View employee controller, control view employee dialog
  * @author CuongNQ
  */
 public class ViewEmployeeController {
@@ -25,7 +25,7 @@ public class ViewEmployeeController {
     private DefaultTableModel borModel;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param emp
      */
@@ -90,7 +90,7 @@ public class ViewEmployeeController {
     }
 
     /**
-     * 
+     * Get full borrow information of employee
      */
     private void getEmpBorDetail() {
         AccessEmp.getInstance().getEmpBorInfo(borModel, emp.getEmpID());

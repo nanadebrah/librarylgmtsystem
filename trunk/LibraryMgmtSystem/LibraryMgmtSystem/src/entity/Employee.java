@@ -7,7 +7,7 @@ package entity;
 import java.util.Vector;
 
 /**
- *
+ * Employee entity
  * @author CuongNQ
  */
 public class Employee {
@@ -23,37 +23,6 @@ public class Employee {
     private String Address;
     private int Permission;
     private String Department;
-
-    //Default constructor
-    public Employee() {
-    }
-
-    /**
-     * 
-     * @param EmpID
-     * @param Name
-     * @param DOB
-     * @param Gender
-     * @param Email
-     * @param Password
-     * @param Address
-     * @param Permission
-     * @param Department
-     * @param Phone
-     */
-    public Employee(int EmpID, String Name, long DOB, int Gender,
-            String Email, String Password, String Address,
-            int Permission, String Department, String Phone) {
-        this.EmpID = EmpID;
-        this.DOB = DOB;
-        this.Gender = Gender;
-        this.Email = Email;
-        this.Password = Password;
-        this.Address = Address;
-        this.Permission = Permission;
-        this.Department = Department;
-        this.Phone = Phone;
-    }
 
     /**
      * @return the EmpID

@@ -22,7 +22,7 @@ import view.PalBook;
 import view.ViewBookDialog;
 
 /**
- *
+ * Book controller, control book panel
  * @author CuongNQ
  */
 public class BookController {
@@ -37,6 +37,12 @@ public class BookController {
     private int page;
     private int totalRow;
 
+    /**
+     * Default constructer
+     * @param view
+     * @param bokModel
+     * @param parent
+     */
     public BookController(PalBook view,
             DefaultTableModel bokModel, ManageController parent) {
         this.view = view;
@@ -46,7 +52,7 @@ public class BookController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -82,7 +88,7 @@ public class BookController {
                 view.getBtnEditBook().setEnabled(true);
                 view.getBtnDelBook().setEnabled(true);
                 view.getBtnViewBook().setEnabled(true);
-                //If double click display edit employee dialog
+                //If double click display edit book dialog
                 if (evt.getClickCount() == 2) {
                     viewBook();
                 }
@@ -205,7 +211,7 @@ public class BookController {
     }
 
     /**
-     * 
+     * Delete a book selected
      */
     private void deleteBook() {
         parent.doBlur();
@@ -232,14 +238,14 @@ public class BookController {
     }
 
     /**
-     *Method edit book on databse and edit on book table
+     * Method edit book on databse and edit on book table
      */
     private void editBook() {
         parent.doBlur();
         //Get call no of book selected
         String bookID = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
-        //Get employee from database
+        //Get book from database
         Book book = AccessBook.getInstance().getBookInfo(new Integer(bookID));
         //Create instance of book edit dialog and display it
         editBook = new EditBookController(
@@ -250,6 +256,10 @@ public class BookController {
             if (AccessBook.getInstance().editBook(editBook.getBook())) {
                 JOptionPane.showMessageDialog(view, "Update successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Remove old data on table model
+                bookModel.removeRow(view.getTblBook().getSelectedRow());
+                //Add new row
+                bookModel.addRow(book.toVector());
             } else {
                 JOptionPane.showMessageDialog(parent.getView(), "Edit failed!\n"
                         + "May be ISBN isn't unique.", "Edit Book!",
@@ -264,14 +274,15 @@ public class BookController {
      * View a book
      */
     private void viewBook() {
-        //Get Id employee selected
+        //Get Id book selected
         String bookID = view.getTblBook().getValueAt(
                 view.getTblBook().getSelectedRow(), 0).toString();
-        //Get employee from database
+        //Get book from database
         Book book = AccessBook.getInstance().getBookInfo(new Integer(bookID));
         parent.doBlur();
-        //Create instance of Employee edit dialog and display it
-        viewBook = new ViewBookController(new ViewBookDialog(parent.getView(), true), book);
+        //Create instance of book edit dialog and display it
+        viewBook = new ViewBookController(
+                new ViewBookDialog(parent.getView(), true), book);
         viewBook.getView().setVisible(true);
         tableFocus();
         parent.doBlur();
@@ -297,25 +308,30 @@ public class BookController {
     }
 
     /**
-     *Method add employee on database
+     * Method add a book on database
      */
     private void addBook() {
         parent.doBlur();
-        //Display Add employee dialog
+        //Display Add book dialog
         addBook = new AddBookController(new AddBokDialog(parent.getView(), true));
         addBook.getView().setVisible(true);
-        //invoked method add employee
+        //invoked method add book
         if (addBook.getBook() != null) {
             if (AccessBook.getInstance().addBook(addBook.getBook())) {
                 JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Move to last page, show newestbook
+                view.getTxtAthBook().setText("");
+                view.getTxtCallNoBook().setText("");
+                view.getTxtISBNBook().setText("");
+                view.getTxtTitlBook().setText("");
+                view.getBtnLast().doClick();
             } else {
                 JOptionPane.showMessageDialog(view, "Add failed!\n"
                         + "May be this book have added or ISBN is duplicate.",
                         "Update Book", JOptionPane.ERROR_MESSAGE);
             }
         }
-        view.getTblBook().clearSelection();
         parent.doBlur();
     }
 

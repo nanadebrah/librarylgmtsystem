@@ -29,7 +29,7 @@ import model.LibUtil;
 import view.CheckInDialog;
 
 /**
- *
+ * Check in controller, control checkin dialog
  * @author CuongNQ
  */
 public class CheckInController {
@@ -51,6 +51,13 @@ public class CheckInController {
     private int totalRow;
     private boolean isSearchEmp;
 
+    /**
+     * Default constructor
+     * @param view
+     * @param searchModel
+     * @param inModel
+     * @param parent
+     */
     public CheckInController(CheckInDialog view, DefaultTableModel searchModel,
             DefaultTableModel inModel, ManageController parent) {
         this.view = view;
@@ -61,7 +68,7 @@ public class CheckInController {
     }
 
     /**
-     *
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -242,10 +249,10 @@ public class CheckInController {
     }
 
     /**
-     *
+     * Search emplooyee
      */
     private void searchByEmpInfo() {
-        isSearchEmp=true;
+        isSearchEmp = true;
         parent.removeModel(searchModel);
         map.clear();
         totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
@@ -257,10 +264,10 @@ public class CheckInController {
     }
 
     /**
-     * 
+     * Search book
      */
     private void searchByBookInfo() {
-        isSearchEmp=false;
+        isSearchEmp = false;
         parent.removeModel(searchModel);
         map.clear();
         totalRow = AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
@@ -282,7 +289,7 @@ public class CheckInController {
     }
 
     /**
-     *  
+     *  Check in process
      */
     private void checkIn() {
         for (int i = 0; i < inModel.getRowCount(); i++) {
@@ -357,7 +364,7 @@ public class CheckInController {
             vt = new Vector();
             vt.add(checkin.getBorID());
             vt.add(checkin.getBookID());
-            vt.add(checkin.getCallNumber());            
+            vt.add(checkin.getCallNumber());
             vt.add(checkin.getTitle());
             //Calculate Borrow infomation
             int DueDay = (int) ((checkin.getDueDate() - checkin.getIssueDate())
@@ -393,7 +400,8 @@ public class CheckInController {
         //Get field employee selected
         String empID = view.getTblBoth().getValueAt(
                 view.getTblBoth().getSelectedRow(), 1).toString();
-        Employee emp = AccessEmp.getInstance().getEmpInfo(Integer.parseInt(empID));
+        Employee emp = AccessEmp.getInstance()
+                .getEmpInfo(Integer.parseInt(empID));
         //Set all employee information
         view.getLblID1().setText(new Integer(emp.getEmpID()).toString());
         view.getLblName1().setText(emp.getName());

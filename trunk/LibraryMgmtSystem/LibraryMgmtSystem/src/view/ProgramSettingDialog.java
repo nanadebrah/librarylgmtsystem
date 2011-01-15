@@ -38,15 +38,24 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         palSetting = new javax.swing.JPanel();
-        btnSave = new javax.swing.JButton();
-        btnDefault = new javax.swing.JButton();
         lblNoRow = new javax.swing.JLabel();
         lblTheme = new javax.swing.JLabel();
         txtRow = new javax.swing.JSpinner();
         cbxTheme = new javax.swing.JComboBox(new Vector<SkinInfo>(
             SubstanceLookAndFeel.getAllSkins().values()));
-    btnClose = new javax.swing.JButton();
     lblImage = new javax.swing.JLabel();
+    conectSetPanel = new javax.swing.JPanel();
+    lblHost = new javax.swing.JLabel();
+    lblPort = new javax.swing.JLabel();
+    lblEmail = new javax.swing.JLabel();
+    lblPassword = new javax.swing.JLabel();
+    txtSMTP = new javax.swing.JTextField();
+    txtPort = new javax.swing.JTextField();
+    txtEmail = new javax.swing.JTextField();
+    txtPass = new javax.swing.JPasswordField();
+    btnSave = new javax.swing.JButton();
+    btnClose = new javax.swing.JButton();
+    btnDefault = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Program Setting");
@@ -54,17 +63,14 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
 
     palSetting.setBorder(javax.swing.BorderFactory.createTitledBorder("Program Setting"));
 
-    btnSave.setText("Save");
-
-    btnDefault.setText("Default");
-
     lblNoRow.setText("No row a page:");
 
     lblTheme.setText("Themes:");
 
+    txtRow.setToolTipText("Number row will display on a page in table");
     txtRow.setValue(1);
 
-    btnClose.setText("Close");
+    cbxTheme.setToolTipText("Theme for system");
 
     org.jdesktop.layout.GroupLayout palSettingLayout = new org.jdesktop.layout.GroupLayout(palSetting);
     palSetting.setLayout(palSettingLayout);
@@ -73,20 +79,12 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
         .add(palSettingLayout.createSequentialGroup()
             .addContainerGap()
             .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(palSettingLayout.createSequentialGroup()
-                    .add(btnSave)
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(btnDefault)
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(btnClose))
-                .add(palSettingLayout.createSequentialGroup()
-                    .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(lblTheme)
-                        .add(lblNoRow))
-                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                    .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(txtRow, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                        .add(cbxTheme, 0, 152, Short.MAX_VALUE))))
+                .add(lblTheme)
+                .add(lblNoRow))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(txtRow, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .add(cbxTheme, 0, 155, Short.MAX_VALUE))
             .addContainerGap())
     );
     palSettingLayout.setVerticalGroup(
@@ -100,34 +98,113 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
             .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                 .add(cbxTheme, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(lblTheme))
-            .add(18, 18, 18)
-            .add(palSettingLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                .add(btnClose)
-                .add(btnDefault)
-                .add(btnSave))
-            .addContainerGap())
+            .add(64, 64, 64))
     );
 
     lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.LABEL_SETTING)));
+
+    conectSetPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Email Setting"));
+
+    lblHost.setText("SMTP host:");
+
+    lblPort.setText("Port:");
+
+    lblEmail.setText("Email:");
+
+    lblPassword.setText("Password:");
+
+    txtSMTP.setToolTipText("SMTP email host");
+
+    txtPort.setToolTipText("SMTP port");
+
+    txtEmail.setToolTipText("Your email");
+
+    txtPass.setToolTipText("Your email's password");
+
+    org.jdesktop.layout.GroupLayout conectSetPanelLayout = new org.jdesktop.layout.GroupLayout(conectSetPanel);
+    conectSetPanel.setLayout(conectSetPanelLayout);
+    conectSetPanelLayout.setHorizontalGroup(
+        conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        .add(conectSetPanelLayout.createSequentialGroup()
+            .addContainerGap()
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(lblHost)
+                .add(lblPort)
+                .add(lblPassword)
+                .add(lblEmail))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(txtPort, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .add(txtEmail, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .add(txtPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .add(txtSMTP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+            .addContainerGap())
+    );
+    conectSetPanelLayout.setVerticalGroup(
+        conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+        .add(conectSetPanelLayout.createSequentialGroup()
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(lblHost)
+                .add(txtSMTP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(lblPort)
+                .add(txtPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(lblEmail)
+                .add(txtEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+            .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(lblPassword)
+                .add(txtPass, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    btnSave.setText("Save");
+
+    btnClose.setText("Close");
+
+    btnDefault.setText("Default");
 
     org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-        .add(layout.createSequentialGroup()
+        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
             .addContainerGap()
-            .add(lblImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .add(18, 18, 18)
-            .add(palSetting, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                .add(layout.createSequentialGroup()
+                    .add(btnSave)
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(btnDefault)
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                    .add(btnClose))
+                .add(layout.createSequentialGroup()
+                    .add(lblImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .add(18, 18, 18)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(conectSetPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(palSetting, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap())
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
         .add(layout.createSequentialGroup()
-            .addContainerGap()
-            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
-                .add(lblImage)
-                .add(palSetting, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .add(palSetting, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                    .add(conectSetPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(18, 18, 18)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
+                        .add(btnClose)
+                        .add(btnDefault)
+                        .add(btnSave)))
+                .add(layout.createSequentialGroup()
+                    .add(97, 97, 97)
+                    .add(lblImage)))
             .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -139,11 +216,20 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnDefault;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cbxTheme;
+    private javax.swing.JPanel conectSetPanel;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblHost;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblNoRow;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPort;
     private javax.swing.JLabel lblTheme;
     private javax.swing.JPanel palSetting;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JTextField txtPort;
     private javax.swing.JSpinner txtRow;
+    private javax.swing.JTextField txtSMTP;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -214,6 +300,62 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
      */
     public void setTxtRow(javax.swing.JSpinner txtRow) {
         this.txtRow = txtRow;
+    }
+
+    /**
+     * @return the txtEmail
+     */
+    public javax.swing.JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    /**
+     * @param txtEmail the txtEmail to set
+     */
+    public void setTxtEmail(javax.swing.JTextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    /**
+     * @return the txtPass
+     */
+    public javax.swing.JPasswordField getTxtPass() {
+        return txtPass;
+    }
+
+    /**
+     * @param txtPass the txtPass to set
+     */
+    public void setTxtPass(javax.swing.JPasswordField txtPass) {
+        this.txtPass = txtPass;
+    }
+
+    /**
+     * @return the txtPort
+     */
+    public javax.swing.JTextField getTxtPort() {
+        return txtPort;
+    }
+
+    /**
+     * @param txtPort the txtPort to set
+     */
+    public void setTxtPort(javax.swing.JTextField txtPort) {
+        this.txtPort = txtPort;
+    }
+
+    /**
+     * @return the txtSMTP
+     */
+    public javax.swing.JTextField getTxtSMTP() {
+        return txtSMTP;
+    }
+
+    /**
+     * @param txtSMTP the txtSMTP to set
+     */
+    public void setTxtSMTP(javax.swing.JTextField txtSMTP) {
+        this.txtSMTP = txtSMTP;
     }
 
 }

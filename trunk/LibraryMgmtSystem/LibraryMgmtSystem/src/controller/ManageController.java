@@ -25,7 +25,7 @@ import view.PalSubject;
 import view.ProgramSettingDialog;
 
 /**
- *
+ * Main program, manage controller, control manage frame
  * @author CuongNQ
  */
 public class ManageController {
@@ -64,7 +64,7 @@ public class ManageController {
     private JComponent jc;
 
     /**
-     *
+     * Default constructor
      * @param view
      * @param loginDialog
      */
@@ -75,12 +75,12 @@ public class ManageController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
         proControl = new ProSettingController(
-                        new ProgramSettingDialog(view, true), this);
+                new ProgramSettingDialog(view, true), this);
 
         //Create new instance of login controllwe
         loginControl = new LoginController(loginDialog, this);
@@ -240,52 +240,67 @@ public class ManageController {
 
         //Add event all menu
         view.getMnAna().addMenuListener(new javax.swing.event.MenuListener() {
+
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 cardLayout.show(view.getPalMain(), "PalAnalytic");
                 setBorSelect(view.getBtnAnaMan());
             }
+
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
+
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         view.getMnSub().addMenuListener(new javax.swing.event.MenuListener() {
+
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 cardLayout.show(view.getPalMain(), "PalSubject");
                 setBorSelect(view.getBtnSubMan());
             }
+
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
+
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         view.getMnBook().addMenuListener(new javax.swing.event.MenuListener() {
+
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 cardLayout.show(view.getPalMain(), "PalBook");
                 setBorSelect(view.getBtnBookMan());
             }
+
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
+
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         view.getMnBor().addMenuListener(new javax.swing.event.MenuListener() {
+
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 cardLayout.show(view.getPalMain(), "PalBorrow");
                 setBorSelect(view.getBtnBorMan());
             }
+
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
+
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         view.getMnEmp().addMenuListener(new javax.swing.event.MenuListener() {
+
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 cardLayout.show(view.getPalMain(), "PalEmployee");
                 setBorSelect(view.getBtnEmpMan());
             }
+
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
+
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
@@ -323,7 +338,7 @@ public class ManageController {
     }
 
     /**
-     * 
+     * Removel all row on table model
      * @param model
      */
     public void removeModel(DefaultTableModel model) {

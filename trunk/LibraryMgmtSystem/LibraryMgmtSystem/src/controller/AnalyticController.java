@@ -13,7 +13,7 @@ import model.LibUtil;
 import view.PalAnalytic;
 
 /**
- *
+ * Analytic controller, control analytic panel
  * @author CuongNQ
  */
 public class AnalyticController {
@@ -26,6 +26,12 @@ public class AnalyticController {
     private int totalRow;
     private boolean isTopBook;
 
+    /**
+     * Default constructer
+     * @param view
+     * @param anaModel
+     * @param parent
+     */
     public AnalyticController(PalAnalytic view,
             DefaultTableModel anaModel, ManageController parent) {
         this.view = view;
@@ -34,7 +40,7 @@ public class AnalyticController {
         initComponent();
     }
 
-    /*
+    /**
      *  initialize the controller.
      */
     private void initComponent() {
@@ -119,7 +125,7 @@ public class AnalyticController {
     }
 
     /**
-     * 
+     * Get top brrower
      */
     private void getTopBorrower() {
         isTopBook = false;
@@ -135,13 +141,14 @@ public class AnalyticController {
         anaModel.addColumn("Phone");
         anaModel.addColumn("Permission");
         anaModel.addColumn("No borrowed");
-        totalRow = AccessAnalytic.getInstance().getTopBorrower(anaModel, (page - 1));
+        totalRow = AccessAnalytic.getInstance()
+                .getTopBorrower(anaModel, (page - 1));
         view.getTxtPage().setText("Page " + page + "/"
                 + LibUtil.getInstance().getPage(totalRow));
     }
 
     /**
-     *
+     * Get top book borrowed by employee
      */
     private void getTopBook() {
         isTopBook = true;
@@ -157,7 +164,8 @@ public class AnalyticController {
         anaModel.addColumn("Publisher");
         anaModel.addColumn("Subject");
         anaModel.addColumn("No of borrowed");
-        totalRow = AccessAnalytic.getInstance().getTopBook(anaModel, (page - 1));
+        totalRow = AccessAnalytic.getInstance()
+                .getTopBook(anaModel, (page - 1));
         view.getTxtPage().setText("Page " + page + "/"
                 + LibUtil.getInstance().getPage(totalRow));
     }

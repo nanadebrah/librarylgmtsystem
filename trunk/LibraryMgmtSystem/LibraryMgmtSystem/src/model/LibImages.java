@@ -7,7 +7,7 @@ package model;
 import java.io.File;
 
 /**
- *
+ * Store path to imageicon
  * @author CuongNQ
  */
 public class LibImages {
@@ -22,14 +22,18 @@ public class LibImages {
         return instance;
     }
     /**
-     *
+     * Other image
      */
-    //Other image
     public static final String SPLASH =
             "images" + File.separator + "other" + File.separator + "Splash.png";
     public static final String ABOUT =
             "images" + File.separator + "other" + File.separator + "About.png";
-    //Label image
+
+    /**
+     * Label image
+     */
+    public static final String LABEL_EMAIL = "images" + File.separator
+            + "labelImages" + File.separator + "Email.png";
     public static final String LABEL_SETTING = "images" + File.separator
             + "labelImages" + File.separator + "Setting.png";
     public static final String LABEL_LOGIN = "images" + File.separator
@@ -60,7 +64,10 @@ public class LibImages {
             + "labelImages" + File.separator + "FeeRate.png";
     public static final String LABEL_INFOBOR = "images" + File.separator
             + "labelImages" + File.separator + "InfoBorrow.png";
-    //Menu image
+
+    /**
+     * Menu image
+     */
     public static final String MENU_ADD = "images" + File.separator
             + "menuImages" + File.separator + "Add.png";
     public static final String MENU_DELETE = "images" + File.separator
@@ -79,7 +86,10 @@ public class LibImages {
             + "menuImages" + File.separator + "About.png";
     public static final String MENU_HELP = "images" + File.separator
             + "menuImages" + File.separator + "Help.png";
-    //navigation bar
+
+    /**
+     * navigation bar
+     */
     public static final String TASKBAR_FIRST = "images" + File.separator
             + "taskbarImages" + File.separator + "First.png";
     public static final String TASKBAR_LAST = "images" + File.separator
@@ -88,7 +98,9 @@ public class LibImages {
             + "taskbarImages" + File.separator + "Next.png";
     public static final String TASKBAR_BACK = "images" + File.separator
             + "taskbarImages" + File.separator + "Back.png";
-    //Taskbar image
+    /**
+     * Taskbar image
+     */
     public static final String TASKBAR_ADD = "images" + File.separator
             + "taskbarImages" + File.separator + "Add.png";
     public static final String TASKBAR_ANALYTIC = "images" + File.separator

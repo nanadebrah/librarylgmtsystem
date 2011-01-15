@@ -18,7 +18,7 @@ import model.LibValid;
 import view.AddBokDialog;
 
 /**
- *
+ * Add a boook controller, control add book dialog
  * @author CuongNQ
  */
 public class AddBookController {
@@ -68,7 +68,8 @@ public class AddBookController {
 
                     public void run() {
                         //Load subject list
-                        String[] subList = AccessSub.getInstance().getAllSubjectName().split(",");
+                        String[] subList = AccessSub.getInstance()
+                                .getAllSubjectName().split(",");
                         for (String subName : subList) {
                             view.getCbxSub().addItem(subName);
                         }
@@ -107,7 +108,7 @@ public class AddBookController {
     }
 
     /**
-     * 
+     * Valid all field display appropriate message
      * @return
      */
     private boolean validBook() {
@@ -120,28 +121,32 @@ public class AddBookController {
         if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
             JOptionPane.showMessageDialog(view, "ISBN must valid.",
                     "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtISBN().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
             JOptionPane.showMessageDialog(view, "Title must valid.",
                     "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtTitle().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
             JOptionPane.showMessageDialog(view, "Author must valid.",
                     "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtAuthor().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
             JOptionPane.showMessageDialog(view, "Publisher must valid.",
                     "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtPublish().requestFocus();
             return false;
         }
         return true;
     }
 
     /**
-     * get all field to object
+     * Set all field to object
      */
     private void toObject() {
         book.setISBN(view.getTxtISBN().getText());

@@ -14,7 +14,7 @@ import model.LibValid;
 import view.AddSubDialog;
 
 /**
- *
+ * Add subject controller, control add subject dialog
  * @author CuongNQ
  */
 public class AddSubjectController {
@@ -56,6 +56,7 @@ public class AddSubjectController {
                 } else {
                     JOptionPane.showMessageDialog(view, "Subject name not valid.",
                             "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                    view.getTxtName().requestFocus();
                 }
             }
         });

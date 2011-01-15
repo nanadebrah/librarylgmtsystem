@@ -78,6 +78,8 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
         lblAuth1 = new javax.swing.JLabel();
         lblPublisher1 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        lblSubject1 = new javax.swing.JLabel();
+        lblSubject = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Show details of borrow");
@@ -148,7 +150,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
                     .add(lblPhone1)
                     .add(lblPermission1)
                     .add(lblDepart1))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
         palInfoLayout.setVerticalGroup(
             palInfoLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -244,6 +246,10 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
 
         btnClose.setText("Close");
 
+        lblSubject1.setText("Empty");
+
+        lblSubject.setText("Subject:");
+
         org.jdesktop.layout.GroupLayout palInfo1Layout = new org.jdesktop.layout.GroupLayout(palInfo1);
         palInfo1.setLayout(palInfo1Layout);
         palInfo1Layout.setHorizontalGroup(
@@ -251,45 +257,47 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
             .add(palInfo1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblBorID)
-                    .add(lblDueDate)
-                    .add(lblReDate)
-                    .add(lblIssueStatus)
-                    .add(lblIssueDate)
-                    .add(lblTolFee))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(lblBorID1)
-                    .add(lblIssueDate1)
-                    .add(lblIssueStatus1)
-                    .add(lblDueDate1)
-                    .add(lblReDate1)
-                    .add(lblTolFee1))
-                .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(palInfo1Layout.createSequentialGroup()
-                        .add(56, 56, 56)
                         .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblCallNo)
-                            .add(lblAuth)
-                            .add(lblTitle)
-                            .add(lblPublisher)
-                            .add(lblISBN))
+                            .add(lblBorID)
+                            .add(lblDueDate)
+                            .add(lblReDate)
+                            .add(lblIssueStatus)
+                            .add(lblIssueDate)
+                            .add(lblTolFee))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(lblCallNo1)
-                            .add(lblTitle1)
-                            .add(lblISBN1)
+                            .add(lblBorID1)
+                            .add(lblIssueDate1)
+                            .add(lblIssueStatus1)
+                            .add(lblDueDate1)
+                            .add(lblReDate1)
+                            .add(lblTolFee1))
+                        .add(56, 56, 56)
+                        .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblSubject)
+                            .add(lblPublisher)
+                            .add(lblAuth)
+                            .add(lblISBN)
+                            .add(lblTitle)
+                            .add(lblCallNo))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(lblSubject1)
                             .add(lblPublisher1)
-                            .add(lblAuth1))
-                        .addContainerGap(242, Short.MAX_VALUE))
-                    .add(palInfo1Layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btnClose))))
+                            .add(palInfo1Layout.createSequentialGroup()
+                                .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(lblAuth1)
+                                    .add(lblISBN1)
+                                    .add(lblCallNo1)
+                                    .add(lblTitle1))
+                                .addContainerGap(348, Short.MAX_VALUE))))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, btnClose)))
         );
         palInfo1Layout.setVerticalGroup(
             palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(palInfo1Layout.createSequentialGroup()
-                .add(40, 40, 40)
+                .add(20, 20, 20)
                 .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(lblBorID1)
                     .add(lblBorID)
@@ -322,10 +330,12 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(palInfo1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.CENTER)
                     .add(lblTolFee1)
-                    .add(lblTolFee))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(lblTolFee)
+                    .add(lblSubject)
+                    .add(lblSubject1))
+                .addContainerGap())
             .add(org.jdesktop.layout.GroupLayout.TRAILING, palInfo1Layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .add(btnClose))
         );
 
@@ -359,6 +369,7 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JLabel lblAddress;
@@ -398,6 +409,8 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblPublisher1;
     private javax.swing.JLabel lblReDate;
     private javax.swing.JLabel lblReDate1;
+    private javax.swing.JLabel lblSubject;
+    private javax.swing.JLabel lblSubject1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitle1;
     private javax.swing.JLabel lblTolFee;
@@ -712,6 +725,20 @@ public class ViewBorrowDialog extends javax.swing.JDialog {
      */
     public void setBtnClose(javax.swing.JButton btnClose) {
         this.btnClose = btnClose;
+    }
+
+    /**
+     * @return the lblSubject1
+     */
+    public javax.swing.JLabel getLblSubject1() {
+        return lblSubject1;
+    }
+
+    /**
+     * @param lblSubject1 the lblSubject1 to set
+     */
+    public void setLblSubject1(javax.swing.JLabel lblSubject1) {
+        this.lblSubject1 = lblSubject1;
     }
 
 }

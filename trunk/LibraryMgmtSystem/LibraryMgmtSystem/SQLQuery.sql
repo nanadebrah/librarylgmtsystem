@@ -1,10 +1,16 @@
 --Create database
+USE master
+GO
+IF EXISTS (SELECT NAME FROM sys.databases
+         WHERE NAME = 'Library')
+   DROP DATABASE Library
+GO
 CREATE DATABASE Library
-go
+GO
 
 --Use database
 USE Library
-go
+GO
 
 /* CREATE TABLE */
 --------------------------------------------
@@ -22,7 +28,7 @@ CREATE TABLE Employee(
 	Department VARCHAR(45) NOT NULL,
 	CONSTRAINT pk_EmpID PRIMARY KEY (EmpID)
 )
-go
+GO
 
 --Create Subject table
 CREATE TABLE Subject(
@@ -31,7 +37,7 @@ CREATE TABLE Subject(
 	Description VARCHAR(200),
 	CONSTRAINT pk_SubID PRIMARY KEY (SubID)
 )
-go
+GO
 
 --Create Book table
 CREATE TABLE Book(
@@ -49,7 +55,7 @@ CREATE TABLE Book(
 	CONSTRAINT fk_SubID FOREIGN KEY (SubID)
 		REFERENCES Subject(SubID),
 )
-go
+GO
 
 --Create Borrow table
 CREATE TABLE Borrow
@@ -61,7 +67,7 @@ CREATE TABLE Borrow
 	CONSTRAINT fk_EmpID FOREIGN KEY (EmpID)
 		REFERENCES Employee(EmpID)
 	)
-go
+GO
 
 --Create BorrowDetail table
 CREATE TABLE BorrowDetail
@@ -76,7 +82,7 @@ CREATE TABLE BorrowDetail
 	CONSTRAINT fk_BookID FOREIGN KEY (BookID)
 		REFERENCES Book(BookID)
 )
-go
+GO
 
 --Create Fee table
 CREATE TABLE Fee(
@@ -91,8 +97,8 @@ CREATE TABLE Fee(
 -----------------------------------
 -----------------------------------
 --Create Procedure insert employee
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddEmp' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_AddEmp' AND TYPE = 'P')
    DROP PROCEDURE sp_AddEmp
 GO
 CREATE PROC sp_AddEmp
@@ -115,8 +121,8 @@ AS
 	END
 GO
 --Create Procedure insert librarian
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddLib' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_AddLib' AND TYPE = 'P')
    DROP PROCEDURE sp_AddLib
 GO
 CREATE PROC sp_AddLib
@@ -144,9 +150,9 @@ AS
 		SELECT 'ERROR'
 	END
 GO
---get an employee with one parameter : name
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAnEmpWithName' AND type = 'P')
+--get an employee with one parameter : NAME
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetAnEmpWithName' AND TYPE = 'P')
    DROP PROCEDURE sp_GetAnEmpWithName
 GO
 CREATE PROC sp_GetAnEmpWithName
@@ -177,8 +183,8 @@ AS
 	END
 GO
 --get an employee with one parameter : EmpID
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetAnEmpWithEmpID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetAnEmpWithEmpID' AND TYPE = 'P')
    DROP PROCEDURE sp_GetAnEmpWithEmpID
 GO
 CREATE PROC sp_GetAnEmpWithEmpID
@@ -209,8 +215,8 @@ AS
 	END
 GO
 --Create Procedure get all field of a Employee
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetEmpInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetEmpInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetEmpInfo
 GO
 CREATE PROC sp_GetEmpInfo
@@ -223,8 +229,8 @@ AS
 GO
 --Create Procedure get all borrow info of Employee
 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetEmpBorowInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetEmpBorowInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetEmpBorowInfo
 GO
 CREATE PROC sp_GetEmpBorowInfo
@@ -238,8 +244,8 @@ AS
 	WHERE B.EmpID=@EmpID
 GO
 --Create Procedure get all field of all Employee (Pages)
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetAllEmp' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetAllEmp' AND TYPE = 'P')
    DROP PROCEDURE sp_GetAllEmp
 GO
 CREATE PROC sp_GetAllEmp
@@ -265,8 +271,8 @@ END
 GO
 
 --Create Procedure edit Employee
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_EditEmp' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_EditEmp' AND TYPE = 'P')
    DROP PROCEDURE sp_EditEmp
 GO
 CREATE PROC sp_EditEmp
@@ -290,8 +296,8 @@ AS
 GO
 --Create Procedure edit Librarian
 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_EditLib' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_EditLib' AND TYPE = 'P')
    DROP PROCEDURE sp_EditLib
 GO
 CREATE PROC sp_EditLib
@@ -321,8 +327,8 @@ AS
 	END
 GO
 -- delete an Employee 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_DelEmp' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_DelEmp' AND TYPE = 'P')
    DROP PROCEDURE sp_DelEmp
 GO
 CREATE PROC sp_DelEmp
@@ -352,8 +358,8 @@ GO
 
 /* LOGIN */
 --Create Procedure Login
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_Login' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_Login' AND TYPE = 'P')
    DROP PROCEDURE sp_Login
 GO
 CREATE PROC sp_Login
@@ -373,8 +379,8 @@ GO
 
 /* SUBJECT */
 --Create procedure to get Subject by SubName
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubByName' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetSubByName' AND TYPE = 'P')
    DROP PROCEDURE sp_GetSubByName
 GO
 CREATE PROC sp_GetSubByName
@@ -399,9 +405,9 @@ BEGIN
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
 
---Create procedure to get subject ID by name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubByID' AND type = 'P')
+--Create procedure to get subject ID by NAME
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetSubByID' AND TYPE = 'P')
    DROP PROCEDURE sp_GetSubByID
 GO
 CREATE PROC sp_GetSubByID
@@ -428,8 +434,8 @@ END
 GO
 
 --Create procedure to get subject ID by Name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubName' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetSubName' AND TYPE = 'P')
    DROP PROCEDURE sp_GetSubName
 GO
 CREATE PROC sp_GetSubName
@@ -438,8 +444,8 @@ AS
 	SELECT SubName FROM Subject WHERE SubID=@SubID
 GO
 --Create procedure to get subject ID by Name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetSubID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetSubID' AND TYPE = 'P')
    DROP PROCEDURE sp_GetSubID
 GO
 CREATE PROC sp_GetSubID
@@ -447,9 +453,9 @@ CREATE PROC sp_GetSubID
 AS
 	SELECT SubID FROM Subject WHERE SubName=@SubName
 GO
---Create procedure to get all subject name
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetAllSubName' AND type = 'P')
+--Create procedure to get all subject NAME
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetAllSubName' AND TYPE = 'P')
    DROP PROCEDURE sp_GetAllSubName
 GO
 CREATE PROC sp_GetAllSubName
@@ -457,8 +463,8 @@ AS
 	SELECT SubName FROM Subject
 GO
 --Create procedure to insert Subject
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddSub' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_AddSub' AND TYPE = 'P')
    DROP PROCEDURE sp_AddSub
 GO
 CREATE PROC sp_AddSub
@@ -472,8 +478,8 @@ AS
 		VALUES(@SubName,@Description)
 GO
 --procedure to edit Subject
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_EditSub' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_EditSub' AND TYPE = 'P')
    DROP PROCEDURE sp_EditSub
 GO
 CREATE PROC sp_EditSub
@@ -490,8 +496,8 @@ AS
 	END
 GO
 --Create procedure to get Subject by SubId
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetSub' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetSub' AND TYPE = 'P')
    DROP PROCEDURE sp_GetSub
 GO
 CREATE PROC sp_GetSub
@@ -501,8 +507,8 @@ AS
 	WHERE  SubID = @SubID
 GO
 -- DELETE subject
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_DelSub' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_DelSub' AND TYPE = 'P')
    DROP PROCEDURE sp_DelSub
 GO
 CREATE PROC sp_DelSub
@@ -523,8 +529,8 @@ GO
 
 /* BOOK */
 --Create procedure to get Book 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_SearchBook' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_SearchBook' AND TYPE = 'P')
    DROP PROCEDURE sp_SearchBook
 GO
 CREATE PROC sp_SearchBook
@@ -562,8 +568,8 @@ AS
 	END
 GO
 --procedure to get newest book added
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetNewestBookID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetNewestBookID' AND TYPE = 'P')
    DROP PROCEDURE sp_GetNewestBookID
 GO
 CREATE PROC sp_GetNewestBookID
@@ -572,8 +578,8 @@ AS
 	ORDER BY BookID DESC
 GO
 --procedure to insert a book 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_AddBook' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_AddBook' AND TYPE = 'P')
    DROP PROCEDURE sp_AddBook
 GO
 CREATE PROC sp_AddBook
@@ -604,8 +610,8 @@ AS
 		SELECT 'ERROR'	 
 GO
 --Procedure to edit a book
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_EditBook' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_EditBook' AND TYPE = 'P')
    DROP PROCEDURE sp_EditBook
 GO
 CREATE PROC sp_EditBook
@@ -636,8 +642,8 @@ AS
 	END
 GO
 --Create procedure to get a book by call no
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBookInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetBookInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetBookInfo
 GO
 CREATE PROC sp_GetBookInfo
@@ -650,8 +656,8 @@ AS
 GO
 --Create Procedure get book's borrow info
 
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBookBorInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetBookBorInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetBookBorInfo
 GO
 CREATE PROC sp_GetBookBorInfo
@@ -666,8 +672,8 @@ AS
 
 GO
 --- DELETE BOOK
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_DelBook' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_DelBook' AND TYPE = 'P')
    DROP PROCEDURE sp_DelBook
 GO
 CREATE PROC sp_DelBook
@@ -691,8 +697,8 @@ GO
 
 /* Borrow  Manage*/
 --get a borrow by CallNumber
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBorrowByCalNo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetBorrowByCalNo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetBorrowByCalNo
 GO
 CREATE PROC sp_GetBorrowByCalNo
@@ -730,8 +736,8 @@ BEGIN
 END
 GO
 --Get a borrow by emp id
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetBorrowByEmpID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetBorrowByEmpID' AND TYPE = 'P')
    DROP PROCEDURE sp_GetBorrowByEmpID
 GO
 CREATE PROC sp_GetBorrowByEmpID
@@ -769,8 +775,8 @@ BEGIN
 END
 GO
 --View Borrow FULL information
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_GetFullBorrowInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetFullBorrowInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_GetFullBorrowInfo
 GO
 CREATE PROC sp_GetFullBorrowInfo
@@ -783,15 +789,15 @@ AS
 	SELECT E.EmpID,E.[Name],E.DOB,E.Gender,E.Email,E.Department,
 	E.Address,E.Phone,E.Permission,BD.BorID,BD.IssueStatus,
 	BD.IssueDate,BD.DueDate,BD.ReturnDate,BD.TotalFee,
-	BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher
+	BO.CallNumber,BO.ISBN,BO.Title,BO.AuthName,BO.Publisher,S.SubName
 	FROM Borrow B JOIN BorrowDetail BD ON B.BorID=BD.BorID
 	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-	ON BD.BookID=BO.BookID WHERE BD.BorID=@BorID
-	AND E.EmpID=@EmpID AND BO.BookID=@BookID
+	ON BD.BookID=BO.BookID JOIN Subject S ON S.SubID=BO.SubID
+	WHERE BD.BorID=@BorID AND E.EmpID=@EmpID AND BO.BookID=@BookID
 GO
 -- DELETE BORROW
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_DelBorrow' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_DelBorrow' AND TYPE = 'P')
    DROP PROCEDURE sp_DelBorrow
 GO
 CREATE PROC sp_DelBorrow
@@ -820,8 +826,8 @@ GO
 
 /* CHECK OUT */
 -- Prepare check out. Create new new Order ID and Employee check out
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_PrepareCheckOut' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_PrepareCheckOut' AND TYPE = 'P')
    DROP PROCEDURE sp_PrepareCheckOut
 GO
 CREATE PROC sp_PrepareCheckOut
@@ -830,8 +836,8 @@ AS
 	INSERT INTO Borrow(EmpID) VALUES (@EmpID)
 GO
 --Check out, add new check out to borrow and borrow detail
-IF EXISTS (SELECT name FROM sysobjects 
-         WHERE name = 'sp_CheckOut' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_CheckOut' AND TYPE = 'P')
    DROP PROCEDURE sp_CheckOut
 GO
 CREATE PROC sp_CheckOut
@@ -855,8 +861,8 @@ GO
 
 /* SEARCH CHECK-OUT */ 
 --Search Check out information by borrow id
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_SearhCheckOutByBorID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_SearhCheckOutByBorID' AND TYPE = 'P')
    DROP PROCEDURE sp_SearhCheckOutByBorID
 GO
 CREATE PROC sp_SearhCheckOutByBorID
@@ -870,8 +876,8 @@ AS
 	AND BD.IssueStatus=0
 GO
 --Search Check out information by book information
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_SearhCheckOutByBookInfo' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_SearhCheckOutByBookInfo' AND TYPE = 'P')
    DROP PROCEDURE sp_SearhCheckOutByBookInfo
 GO
 CREATE PROC sp_SearhCheckOutByBookInfo
@@ -919,8 +925,8 @@ END
 GO
 --Search Check out information by employee information
 --By EmpID
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_SearhCheckOutByEmpID' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_SearhCheckOutByEmpID' AND TYPE = 'P')
    DROP PROCEDURE sp_SearhCheckOutByEmpID
 GO
 CREATE PROC sp_SearhCheckOutByEmpID
@@ -956,8 +962,8 @@ BEGIN
 END
 GO
 --By EmpName
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_SearhCheckOutByEmpName' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_SearhCheckOutByEmpName' AND TYPE = 'P')
    DROP PROCEDURE sp_SearhCheckOutByEmpName
 GO
 CREATE PROC sp_SearhCheckOutByEmpName
@@ -996,8 +1002,8 @@ GO
 
 /*CHECK IN*/
 ---------------------------------------------------------------
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_CheckIn' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_CheckIn' AND TYPE = 'P')
    DROP PROCEDURE sp_CheckIn
 GO
 CREATE PROC sp_CheckIn
@@ -1021,8 +1027,8 @@ GO
 
 /* FEE */
 --Procedure get fee
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetFee' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetFee' AND TYPE = 'P')
    DROP PROCEDURE sp_GetFee
 GO
 CREATE PROC sp_GetFee
@@ -1030,8 +1036,8 @@ AS
 	SELECT * FROM Fee WHERE Fee='Fee'
 GO
 --Procedure edit fee
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_EditFee' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_EditFee' AND TYPE = 'P')
    DROP PROCEDURE sp_EditFee
 GO
 CREATE PROC sp_EditFee
@@ -1048,8 +1054,8 @@ GO
 
 --Get top book borrowed
 
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetTopBook' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetTopBook' AND TYPE = 'P')
    DROP PROCEDURE sp_GetTopBook
 GO
 IF EXISTS (SELECT NAME FROM sys.views WHERE NAME='TopBook')
@@ -1094,8 +1100,8 @@ END
 GO
 --Get top employee borrowed
 
-IF EXISTS (SELECT name FROM sysobjects
-         WHERE name = 'sp_GetTopBorrower' AND type = 'P')
+IF EXISTS (SELECT NAME FROM sys.objects
+         WHERE NAME = 'sp_GetTopBorrower' AND TYPE = 'P')
    DROP PROCEDURE sp_GetTopBorrower
 GO
 IF EXISTS (SELECT NAME FROM sys.views WHERE NAME='TopBorrower')

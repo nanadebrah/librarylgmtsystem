@@ -5,7 +5,7 @@
 package model;
 
 /**
- *
+ * Valid all field
  * @author CuongNQ
  */
 public class LibValid {
@@ -13,7 +13,7 @@ public class LibValid {
     private static LibValid instance = new LibValid();
     private String ISBNRegex = "\\d{3}-\\d{4}";
     private String PasswordRegex = "[a-zA-Z0-9]{4,12}";
-    private String NameRegex = "^[a-zA-Z][a-zA-Z.'_0-9-]{1,99}";
+    private String NameRegex = "^[a-zA-Z][a-zA-Z.'_0-9- ]{1,99}";
     private String AddressRegex = "[a-zA-Z_0-9-.' ]{2,100}";
     private String EmailRegex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9_-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -25,107 +25,107 @@ public class LibValid {
     private String PhoneNumberRegex = "\\d{5,20}";
 
     /**
-     *
-     * @return
+     * Create instane of LibValid
+     * @return instance
      */
     public static LibValid getInstance() {
         return instance;
     }
 
     /**
-     * 
+     * Valid ISBN
      * @param ISBN
-     * @return
+     * @return true,false
      */
     public boolean ISBN(String ISBN) {
         return ISBN.matches(ISBNRegex);
     }
 
     /**
-     * 
+     * Valid Name
      * @param Name
-     * @return
+     * @return true,false
      */
     public boolean Name(String Name) {
         return Name.matches(NameRegex);
     }
 
     /**
-     * 
+     * Valid Address
      * @param Address
-     * @return
+     * @return true,false
      */
     public boolean Address(String Address) {
         return Address.matches(AddressRegex);
     }
 
     /**
-     * 
+     * Valid Password
      * @param Pass
-     * @return
+     * @return true,false
      */
     public boolean Password(String Pass) {
         return Pass.matches(PasswordRegex);
     }
 
     /**
-     *
+     * Valid Title
      * @param Title
-     * @return
+     * @return true,false
      */
     public boolean Title(String Title) {
         return Title.matches(TitleRegex);
     }
 
     /**
-     * 
+     * Valid Phone
      * @param Phone
-     * @return
+     * @return true,false
      */
     public boolean Phone(String Phone) {
         return Phone.matches(PhoneNumberRegex);
     }
 
     /**
-     * 
+     * Valid Email
      * @param Email
-     * @return
+     * @return true,false
      */
     public boolean Email(String Email) {
         return Email.matches(EmailRegex);
     }
 
     /**
-     * 
+     * Valid Department
      * @param Depart
-     * @return
+     * @return true,false
      */
     public boolean Depart(String Depart) {
         return Depart.matches(DepartRegex);
     }
 
     /**
-     *
+     * Valid AuthorName
      * @param Auth
-     * @return
+     * @return true,false
      */
     public boolean Auth(String Auth) {
         return Auth.matches(AuthRegex);
     }
 
     /**
-     *
-     * @param Auth
-     * @return
+     * Valid Puslisher
+     * @param Publish
+     * @return true,flase
      */
     public boolean Publish(String Publish) {
         return Publish.matches(PublishRegex);
     }
 
     /**
-     * 
+     *  Valid Subject
      * @param Sub
-     * @return
+     * @return true,false
      */
     public boolean Sub(String Sub) {
         return Sub.matches(SubRegex);

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Access analytic class
  * @author CuongNQ
  */
 public class AccessAnalytic {
@@ -24,7 +24,7 @@ public class AccessAnalytic {
     private static AccessAnalytic instance = new AccessAnalytic();
 
     /**
-     *  Create instance of AccessAnalytic
+     * Create instance of AccessAnalytic
      * @return instance of AccessAnalytic
      */
     public static AccessAnalytic getInstance() {
@@ -32,7 +32,7 @@ public class AccessAnalytic {
     }
 
     /**
-     *  Acess to database to get top book brrowed
+     * Acess to database to get top book brrowed
      * @param anaModel is model to add book infomation get from database
      * @param page is nevagation bar proces
      * @return total row from database to calculate page
@@ -72,7 +72,7 @@ public class AccessAnalytic {
     }
 
     /**
-     *  Acess to database to get top book brrowed
+     * Acess to database to get top book brrowed
      * @param anaModel is model to add brrower infomation get from database
      * @param page is nevagation bar proces
      * @return total row from database to calculate page 

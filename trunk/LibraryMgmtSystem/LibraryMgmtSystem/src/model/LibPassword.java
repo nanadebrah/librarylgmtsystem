@@ -13,7 +13,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
 
 /**
- *
+ * System password function
  * @author CuongNQ
  */
 public class LibPassword {
@@ -69,9 +69,9 @@ public class LibPassword {
     }
 
     /**
-     * 
-     * @param ePass
-     * @return
+     * Decrypt pass to raw pass
+     * @param ePass is password crypted
+     * @return raw password
      */
     public String decryptPass(String ePass) {
         // Defined
@@ -108,7 +108,7 @@ public class LibPassword {
     }
 
     /**
-     *
+     * Encrypt MD5 password
      * @param rawPass is password unencrypt
      * @return Password encrypted
      */

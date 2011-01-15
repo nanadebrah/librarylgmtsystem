@@ -36,8 +36,11 @@ public class PalAnalytic extends javax.swing.JPanel {
         tolbarAna = new javax.swing.JToolBar();
         btnTBookAna = new javax.swing.JButton();
         btnTBorAna = new javax.swing.JButton();
-        btnRevAna = new javax.swing.JButton();
         btnAlertAna = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
+        lblISBNBook = new javax.swing.JLabel();
+        txtIssueDate = new org.jdesktop.swingx.JXDatePicker();
+        txtDueDate = new org.jdesktop.swingx.JXDatePicker();
         jPanel1 = new javax.swing.JPanel();
         scrPanAna = new javax.swing.JScrollPane();
         tblAna = new javax.swing.JTable();
@@ -73,14 +76,6 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBorAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnTBorAna);
 
-        btnRevAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE)));
-        btnRevAna.setText("Revenue");
-        btnRevAna.setBorderPainted(false);
-        btnRevAna.setFocusable(false);
-        btnRevAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRevAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tolbarAna.add(btnRevAna);
-
         btnAlertAna.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
         btnAlertAna.setMnemonic('s');
         btnAlertAna.setText("Overdue Alert");
@@ -90,6 +85,19 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnAlertAna.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlertAna.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnAlertAna);
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+        btnSearch.setText("Search");
+        btnSearch.setBorderPainted(false);
+        btnSearch.setFocusable(false);
+        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tolbarAna.add(btnSearch);
+
+        lblISBNBook.setText("Issue | Due Date:");
+        tolbarAna.add(lblISBNBook);
+        tolbarAna.add(txtIssueDate);
+        tolbarAna.add(txtDueDate);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -130,15 +138,15 @@ public class PalAnalytic extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .add(tolbarAna, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(tolbarAna, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(layout.createSequentialGroup()
                     .add(50, 50, 50)
@@ -153,14 +161,17 @@ public class PalAnalytic extends javax.swing.JPanel {
     private javax.swing.JButton btnFirst;
     private javax.swing.JButton btnLast;
     private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnRevAna;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnTBookAna;
     private javax.swing.JButton btnTBorAna;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblISBNBook;
     private javax.swing.JScrollPane scrPanAna;
     private javax.swing.JTable tblAna;
     private javax.swing.JToolBar tolbarAna;
+    private org.jdesktop.swingx.JXDatePicker txtDueDate;
+    private org.jdesktop.swingx.JXDatePicker txtIssueDate;
     private javax.swing.JLabel txtPage;
     // End of variables declaration//GEN-END:variables
 
@@ -176,20 +187,6 @@ public class PalAnalytic extends javax.swing.JPanel {
      */
     public void setBtnAlertAna(javax.swing.JButton btnAlertAna) {
         this.btnAlertAna = btnAlertAna;
-    }
-
-    /**
-     * @return the btnRevAna
-     */
-    public javax.swing.JButton getBtnRevAna() {
-        return btnRevAna;
-    }
-
-    /**
-     * @param btnRevAna the btnRevAna to set
-     */
-    public void setBtnRevAna(javax.swing.JButton btnRevAna) {
-        this.btnRevAna = btnRevAna;
     }
 
     /**
@@ -302,6 +299,48 @@ public class PalAnalytic extends javax.swing.JPanel {
      */
     public void setTxtPage(javax.swing.JLabel txtPage) {
         this.txtPage = txtPage;
+    }
+
+    /**
+     * @return the btnSearch
+     */
+    public javax.swing.JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    /**
+     * @param btnSearch the btnSearch to set
+     */
+    public void setBtnSearch(javax.swing.JButton btnSearch) {
+        this.btnSearch = btnSearch;
+    }
+
+    /**
+     * @return the txtIssueDate
+     */
+    public org.jdesktop.swingx.JXDatePicker getTxtIssueDate() {
+        return txtIssueDate;
+    }
+
+    /**
+     * @param txtIssueDate the txtIssueDate to set
+     */
+    public void setTxtIssueDate(org.jdesktop.swingx.JXDatePicker txtIssueDate) {
+        this.txtIssueDate = txtIssueDate;
+    }
+
+    /**
+     * @return the txtDueDate
+     */
+    public org.jdesktop.swingx.JXDatePicker getTxtDueDate() {
+        return txtDueDate;
+    }
+
+    /**
+     * @param txtDueDate the txtDueDate to set
+     */
+    public void setTxtDueDate(org.jdesktop.swingx.JXDatePicker txtDueDate) {
+        this.txtDueDate = txtDueDate;
     }
 
 }

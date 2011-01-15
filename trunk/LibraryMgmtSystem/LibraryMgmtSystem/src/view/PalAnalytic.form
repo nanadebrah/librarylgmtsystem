@@ -19,9 +19,9 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tolbarAna" alignment="0" pref="656" max="32767" attributes="0"/>
+          <Component id="tolbarAna" alignment="0" pref="693" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="jPanel1" alignment="1" pref="656" max="32767" attributes="0"/>
+              <Component id="jPanel1" alignment="1" pref="693" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -29,7 +29,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="tolbarAna" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="333" max="32767" attributes="0"/>
+              <EmptySpace pref="323" max="32767" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
@@ -79,18 +79,6 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRevAna">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_REVENUE))" type="code"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Revenue"/>
-            <Property name="borderPainted" type="boolean" value="false"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnAlertAna">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -104,6 +92,27 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnSearch">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH))" type="code"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Search"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblISBNBook">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Issue | Due Date:"/>
+          </Properties>
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="txtDueDate">
         </Component>
       </SubComponents>
     </Container>

@@ -84,8 +84,8 @@ public class EditBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
+        txtNoInLib.setToolTipText("Number copies on librarry");
         txtNoInLib.setEnabled(false);
-        txtNoInLib.setToolTipText("Copies of this book");
 
         lblTitle1.setText("ISBN:");
 
@@ -94,6 +94,9 @@ public class EditBokDialog extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtISBN.setToolTipText("ISBN of this book");
+
+        txtTitle.setToolTipText("Title of this book");
 
         org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
         palAddBok.setLayout(palAddBokLayout);

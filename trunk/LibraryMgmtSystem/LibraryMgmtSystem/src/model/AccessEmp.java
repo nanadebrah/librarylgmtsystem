@@ -14,7 +14,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Access employee table
  * @author CuongNQ
  */
 public class AccessEmp {
@@ -26,7 +26,7 @@ public class AccessEmp {
     private CallableStatement csDetails = null;
 
     /**
-     * 
+     * Static method get instance of AccessEmp
      * @return
      */
     public static AccessEmp getInstance() {
@@ -34,7 +34,7 @@ public class AccessEmp {
     }
 
     /**
-     *
+     * Get a info employee to employee object
      * @param EmpID is ID to query on database
      * @return Employee queried
      */
@@ -74,7 +74,7 @@ public class AccessEmp {
     }
 
     /**
-     * 
+     * Get borrow details of employee
      * @param borModel
      * @param empID
      */
@@ -119,7 +119,7 @@ public class AccessEmp {
     }
 
     /**
-     *
+     * Add employee to databse
      * @param emp
      * @return
      */
@@ -164,9 +164,9 @@ public class AccessEmp {
     }
 
     /**
-     * 
+     * Edit employee
      * @param emp
-     * @return
+     * @return true if successful, otherwise false
      */
     public boolean editEmp(Employee emp) {
         //Defined connection, rs and cs to connect and query database
@@ -212,13 +212,12 @@ public class AccessEmp {
     }
 
     /**
-     * 
+     * Search employee from employee database
      * @param empModel
      * @param EmpID
      * @param Name
      * @param page
-     * @param totalRow
-     * @return
+     * @return total row in database
      */
     public int searchEmp(DefaultTableModel empModel, String EmpID,
             String Name, int page) {
@@ -264,9 +263,9 @@ public class AccessEmp {
     }
 
     /**
-     * 
+     * Delete employee
      * @param empID
-     * @return
+     * @return true if delete successful, otherwise false
      */
     public boolean deleteEmp(int empID) {
         //If root, return it

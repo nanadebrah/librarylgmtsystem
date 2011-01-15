@@ -12,7 +12,7 @@ import model.AccessBook;
 import view.ViewBookDialog;
 
 /**
- *
+ * View book controller, control view book dialog
  * @author CuongNQ
  */
 public class ViewBookController {
@@ -23,7 +23,7 @@ public class ViewBookController {
     private DefaultTableModel borModel;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param book
      */
@@ -79,7 +79,7 @@ public class ViewBookController {
     }
 
     /**
-     *
+     * Get borrow information of book
      */
     private void getBookBorDetail() {
         AccessBook.getInstance().getBookBorInfo(borModel, book.getBookID());

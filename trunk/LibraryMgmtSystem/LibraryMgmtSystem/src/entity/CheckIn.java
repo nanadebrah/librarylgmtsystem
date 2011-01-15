@@ -5,12 +5,8 @@
 
 package entity;
 
-import java.sql.Date;
-import java.util.Vector;
-import model.LibUtil;
-
 /**
- *
+ * Check in entity
  * @author CuongNQ
  */
 public class CheckIn {

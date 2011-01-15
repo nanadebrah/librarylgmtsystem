@@ -7,7 +7,7 @@ package entity;
 import java.util.Vector;
 
 /**
- *
+ * Subject entity
  * @author dinh manh hai
  */
 public class Subject {
@@ -16,11 +16,14 @@ public class Subject {
     private String SubName;
     private String Description;
 
+    /**
+     * Default constructor
+     */
     public Subject() {
     }
 
     /**
-     * 
+     * Constructor with param
      * @param SubID
      * @param SubName
      * @param Description

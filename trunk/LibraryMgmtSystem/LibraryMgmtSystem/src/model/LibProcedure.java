@@ -10,24 +10,27 @@ package model;
  */
 public class LibProcedure {
 
-    //Defined instance of LibBook
+    //Defined instance of LibProcedure
     private static LibProcedure instance = new LibProcedure();
 
-    /*
-     * Static method get instance of Libook
+    /**
+     * Static method get instance of LibProcedure
      */
     public static LibProcedure getInstance() {
         return instance;
     }
+    
     /**
      * Login procedure
      */
     public static final String LOGIN = "{call sp_Login(?,?)}";
+
     /**
      * Fee procedure
      */
     public static final String GET_FEE = "{call sp_GetFee}";
     public static final String EDIT_FEE = "{call sp_EditFee(?,?)}";
+
     /**
      * Book procedure
      */
@@ -38,6 +41,7 @@ public class LibProcedure {
     public static final String SEARCH_BOOK = "{call sp_SearchBook(?,?,?,?,?,?,?)}";
     public static final String GET_NEWEST_BOOKID = "{call sp_GetNewestBookID}";
     public static final String DETELE_BOOK = "{call sp_DelBook(?)}";
+    
     /**
      * Employee procedure
      */
@@ -52,6 +56,7 @@ public class LibProcedure {
     public static final String GET_EMP_BY_ID =
             "{call sp_GetAnEmpWithEmpID(?,?,?,?)}";
     public static final String DETELE_EMP = "{call sp_DelEmp(?)}";
+
     /**
      * Subject procedure
      */
@@ -63,20 +68,24 @@ public class LibProcedure {
     public static final String GET_SUB = "{call sp_GetSub(?)}";
     public static final String EDIT_SUB = "{call sp_EditSub(?,?,?)}";
     public static final String DETELE_SUB = "{call sp_DelSub(?)}";
+
     /**
-     * Borrow procedure
+     * Check out
      */
-    //Check out
     public static final String PREPARE_CHECKOUT = "{call sp_PrepareCheckOut(?)}";
     public static final String CHECK_OUT = "{call sp_CheckOut(?,?,?)}";
-    //-------------------------------------------------------
-    //Borrow Manage
+    
+    /**
+     * Borrow Manage
+     */
     public static final String GET_BOR_BY_CALLNO = "{call sp_GetBorrowByCalNo(?,?,?,?)}";
     public static final String GET_BOR_BY_EMPID = "{call sp_GetBorrowByEmpID(?,?,?,?)}";
     public static final String GET_FULL_BOR_INFO = "{call sp_GetFullBorrowInfo(?,?,?)}";
     public static final String DETELE_BORROW = "{call sp_DelBorrow(?,?)}";
-    //-------------------------------------------------------
-    //Searching to check=in
+
+    /**
+     * Searching to check-in
+     */
     public static final String SEARCH_CHECKOUT_BY_BORID =
             "{call sp_SearhCheckOutByBorID(?)}";
     public static final String SEARCH_CHECKOUT_BY_BOOK_INFO =
@@ -85,10 +94,12 @@ public class LibProcedure {
             "{call sp_SearhCheckOutByEmpID(?,?,?,?)}";
     public static final String SEARCH_CHECKOUT_BY_EMPNAME =
             "{call sp_SearhCheckOutByEmpName(?,?,?,?)}";
-    //-------------------------------------------------------
-    //Check-in
+    
+    /**
+     * Check-in
+     */
     public static final String CHECK_IN = "{call sp_CheckIn(?,?,?,?)}";
-    //-------------------------------------------------------
+    
     /**
      * Analytic procedure
      */

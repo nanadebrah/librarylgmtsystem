@@ -10,10 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import view.ProgramSettingDialog;
 import view.SettingConnection;
 
 /**
- *
+ * Config system class
  * @author CuongNQ
  */
 public class LibConfig {
@@ -29,7 +30,7 @@ public class LibConfig {
     }
 
     /**
-     * 
+     * Create new config file
      */
     public void createConfig() {
         //Defined object
@@ -57,6 +58,10 @@ public class LibConfig {
             pro.setProperty("username", "sa");
             pro.setProperty("password", "");
             pro.setProperty("nopage", "20");
+            pro.setProperty("emailHost", "smtp.gmail.com");
+            pro.setProperty("emailPort", "587");
+            pro.setProperty("emailUser", "Lib.Mgmt.Sys@gmail.com");
+            pro.setProperty("emailPass", "");
 
             pro.store(new FileOutputStream(f),
                     "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
@@ -78,9 +83,9 @@ public class LibConfig {
 
     /**
      * Load program config
-     * @param txtRow
+     * @param view
      */
-    public void loadProConfig(javax.swing.JSpinner txtRow){
+    public void loadProConfig(ProgramSettingDialog view) {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -100,7 +105,13 @@ public class LibConfig {
             //load property file
             pro.load(in);
             //set field
-            txtRow.setValue(Integer.parseInt(pro.getProperty("nopage")));
+            view.getTxtRow().setValue(
+                    Integer.parseInt(pro.getProperty("nopage")));
+            view.getTxtEmail().setText(pro.getProperty("emailUser"));
+            view.getTxtPass().setText(
+                    LibPassword.getInstance().decryptPass(pro.getProperty("emailPass")));
+            view.getTxtSMTP().setText(pro.getProperty("emailHost"));
+            view.getTxtPort().setText(pro.getProperty("emailPort"));
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -120,7 +131,9 @@ public class LibConfig {
      * Save program config to property file
      * @param noRow
      */
-    public void saveProConfig(String noRow){
+    public void saveProConfig(String noRow,
+            String Host, String Port,
+            String Email, String Pass) {
         //Defined object
         FileInputStream in = null;
         Properties pro;
@@ -139,6 +152,10 @@ public class LibConfig {
 
             //Save all config to file
             pro.setProperty("nopage", noRow);
+            pro.setProperty("emailHost", Host);
+            pro.setProperty("emailPort", Port);
+            pro.setProperty("emailUser", Email);
+            pro.setProperty("emailPass", LibPassword.getInstance().encryptPass(Pass));
             pro.store(new FileOutputStream(f),
                     "Cuongnqgc00033@fpt.edu.vn | FPT-Greenwich");
 
@@ -158,7 +175,7 @@ public class LibConfig {
     }
 
     /**
-     * 
+     * Save login config to property files
      * @param user
      * @param pass
      */
@@ -202,11 +219,11 @@ public class LibConfig {
     }
 
     /**
-     * 
+     * Load login config to username & password field
      * @param jtxt
      * @param jpass
      * @param jcheck
-     * @return
+     * @return true if ok, else false
      */
     public boolean loadLoginConfig(javax.swing.JTextField jtxt,
             javax.swing.JPasswordField jpass, javax.swing.JCheckBox jcheck) {
@@ -236,7 +253,7 @@ public class LibConfig {
                     LibPassword.getInstance().decryptPass(
                     pro.getProperty("loginPass")));
             //load page config
-            LibUtil.noRow=Integer.parseInt(pro.getProperty("nopage"));
+            LibUtil.noRow = Integer.parseInt(pro.getProperty("nopage"));
             //Check remmeber check
             if (jtxt.getText().length() > 0
                     && jpass.getPassword().length > 0) {
@@ -310,9 +327,9 @@ public class LibConfig {
     }
 
     /**
-     *
+     * Load connection config to config object
      * @param view
-     * @return
+     * @return true if load successful, otherwise false
      */
     public boolean loadConnectConfig(SettingConnection view) {
         //Defined object

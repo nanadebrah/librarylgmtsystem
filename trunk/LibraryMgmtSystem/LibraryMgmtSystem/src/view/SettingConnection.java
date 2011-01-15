@@ -75,9 +75,9 @@ public class SettingConnection extends javax.swing.JDialog {
 
         txtPort.setToolTipText("Example: 1443");
 
-        txtDatabase.setToolTipText("database's name");
+        txtDatabase.setToolTipText("Database library's name");
 
-        txtUser.setToolTipText("Your account");
+        txtUser.setToolTipText("Username use to login to database");
 
         btnDefault.setText("Default");
 
@@ -85,7 +85,7 @@ public class SettingConnection extends javax.swing.JDialog {
 
         btnClose.setText("Close");
 
-        txtPass.setToolTipText("Your password");
+        txtPass.setToolTipText("Password to login to database");
 
         org.jdesktop.layout.GroupLayout conectSetPanelLayout = new org.jdesktop.layout.GroupLayout(conectSetPanel);
         conectSetPanel.setLayout(conectSetPanelLayout);

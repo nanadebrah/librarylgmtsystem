@@ -16,7 +16,7 @@ import model.LibValid;
 import view.EditBokDialog;
 
 /**
- *
+ * Edit book controller, control edit book dialog
  * @author CuongNQ
  */
 public class EditBookController {
@@ -26,6 +26,11 @@ public class EditBookController {
     private EditBokDialog view;
     private int noCopies, noInLib;
 
+    /**
+     * Default constructor
+     * @param view
+     * @param book
+     */
     public EditBookController(EditBokDialog view, Book book) {
         this.view = view;
         this.book = book;
@@ -33,7 +38,7 @@ public class EditBookController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
         //Set all field of form
@@ -46,9 +51,6 @@ public class EditBookController {
                 if (validBook()) {
                     toObject();
                     view.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(view, "All field must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -81,20 +83,38 @@ public class EditBookController {
     }
 
     /**
-     *
+     * Valid all field display appropriate message
      * @return
      */
     private boolean validBook() {
+        if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
+            JOptionPane.showMessageDialog(view,
+                    "You need add minimum 1 subject!", "Error!",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
         if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+            JOptionPane.showMessageDialog(view, "ISBN must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtISBN().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+            JOptionPane.showMessageDialog(view, "Title must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtTitle().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+            JOptionPane.showMessageDialog(view, "Author must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtAuthor().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Publish(view.getTxtPublish().getText())) {
+            JOptionPane.showMessageDialog(view, "Publisher must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtPublish().requestFocus();
             return false;
         }
         return true;
@@ -103,7 +123,7 @@ public class EditBookController {
     /**
      * Transfer all field to object
      */
-    private void toObject() {        
+    private void toObject() {
         book.setISBN(view.getTxtISBN().getText());
         book.setTitle(view.getTxtTitle().getText());
         book.setAuthName(view.getTxtAuthor().getText());
@@ -114,6 +134,7 @@ public class EditBookController {
                 view.getTxtNoInLib().getValue().toString()));
         book.setSubID(AccessSub.getInstance().getSubjectID(
                 view.getCbxSub().getSelectedItem().toString()));
+        book.setSubName(view.getCbxSub().getSelectedItem().toString());
         book.setCallNumber(LibBook.getInstance().fixCallNo(book));
     }
 
