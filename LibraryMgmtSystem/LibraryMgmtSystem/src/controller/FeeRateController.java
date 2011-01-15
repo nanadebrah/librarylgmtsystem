@@ -12,7 +12,7 @@ import model.AccessFee;
 import view.FeeRateDialog;
 
 /**
- *
+ * Fee rate change controller, control fee rate dialog
  * @author CuongNQ
  */
 public class FeeRateController {
@@ -22,7 +22,7 @@ public class FeeRateController {
     private FeeRateDialog view;
 
     /**
-     * 
+     * Default constructor
      * @param view
      */
     public FeeRateController(FeeRateDialog view) {
@@ -31,7 +31,7 @@ public class FeeRateController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -78,7 +78,7 @@ public class FeeRateController {
     }
 
     /**
-     * 
+     * Get current setting on database
      */
     private void getCurrentSetting() {
         fee = AccessFee.getInstance().getFee();

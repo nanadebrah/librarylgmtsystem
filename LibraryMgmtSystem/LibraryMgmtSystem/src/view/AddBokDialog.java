@@ -84,16 +84,19 @@ public class AddBokDialog extends javax.swing.JDialog {
 
         lblNoInLib.setText("No in library:");
 
+        txtNoInLib.setToolTipText("Number in library of this book");
         txtNoInLib.setEnabled(false);
-        txtNoInLib.setToolTipText("Copies of this book");
 
         lblTitle1.setText("ISBN:");
+
+        txtTitle.setToolTipText("Title of this book");
 
         try {
             txtISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtISBN.setToolTipText("ISBN of this book");
 
         org.jdesktop.layout.GroupLayout palAddBokLayout = new org.jdesktop.layout.GroupLayout(palAddBok);
         palAddBok.setLayout(palAddBokLayout);

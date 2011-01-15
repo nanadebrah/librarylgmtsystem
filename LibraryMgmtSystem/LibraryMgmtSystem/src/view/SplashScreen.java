@@ -15,9 +15,9 @@ import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
- *
+ * Main class to run program
  * @author CuongNQ
- * This class contant funcition to display splash screeen
+ * This class contant function to display splash screeen
  */
 public class SplashScreen extends JWindow {
 
@@ -37,7 +37,7 @@ public class SplashScreen extends JWindow {
     ManageFrm manage;
 
     /**
-     *
+     * Default consttuctor
      */
     public SplashScreen() {
         initComponent();
@@ -50,7 +50,7 @@ public class SplashScreen extends JWindow {
     }
 
     /**
-     *
+     * initialize the controller.
      */
     private void initComponent() {
         //Create new instance of content
@@ -122,7 +122,7 @@ public class SplashScreen extends JWindow {
     }
 
     /**
-     * 
+     * START PROGRAM
      * @param args START LIBRARY MANAGEMENT SYSTEM
      */
     public static void main(String[] args) {

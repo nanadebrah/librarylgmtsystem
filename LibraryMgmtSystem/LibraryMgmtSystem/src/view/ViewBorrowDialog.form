@@ -96,7 +96,7 @@
                       <Component id="lblPermission1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDepart1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="255" max="32767" attributes="0"/>
+                  <EmptySpace pref="361" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -267,49 +267,52 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblBorID" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDueDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblReDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblIssueStatus" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblIssueDate" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTolFee" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblBorID1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblIssueDate1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblIssueStatus1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDueDate1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblReDate1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblTolFee1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPublisher" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBorID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDueDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblReDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIssueStatus" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIssueDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTolFee" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPublisher1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAuth1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBorID1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIssueDate1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIssueStatus1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDueDate1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblReDate1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTolFee1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="242" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblSubject" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPublisher" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblAuth" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblISBN" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCallNo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblSubject1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPublisher1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblAuth1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblISBN1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCallNo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblTitle1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="348" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnClose" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -317,7 +320,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="lblBorID1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblBorID" alignment="2" min="-2" max="-2" attributes="0"/>
@@ -356,11 +359,13 @@
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="lblTolFee1" alignment="2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTolFee" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSubject" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblSubject1" alignment="2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="167" max="32767" attributes="0"/>
+                  <EmptySpace pref="147" max="32767" attributes="0"/>
                   <Component id="btnClose" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -480,6 +485,16 @@
         <Component class="javax.swing.JButton" name="btnClose">
           <Properties>
             <Property name="text" type="java.lang.String" value="Close"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSubject1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Empty"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSubject">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Subject:"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -16,7 +16,7 @@ import model.LibValid;
 import view.AddEmpDialog;
 
 /**
- *
+ * Add employee controller, control add employee dialog
  * @author CuongNQ
  */
 public class AddEmployeeController {
@@ -55,9 +55,6 @@ public class AddEmployeeController {
                     toObject();
                     //Dispose this dialog
                     view.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(view, "All field must valid.",
-                            "Valid!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -112,32 +109,53 @@ public class AddEmployeeController {
     }
 
     /**
-     * 
+     * Valid all field of form
      * @return
      */
     private boolean validEmp() {
         if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
+            JOptionPane.showMessageDialog(view, "Name must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtName().requestFocus();
+            return false;
+        }
+        if (view.getTxtDOB().getDate() == null) {
+            JOptionPane.showMessageDialog(view, "Date of bith must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtDOB().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
+            JOptionPane.showMessageDialog(view, "Address must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtAdd().requestFocus();
             return false;
         }
         if (view.getCbxPermis().getSelectedItem().equals("Librarian")) {
             if (!LibValid.getInstance().Password(
                     new String(view.getTxtPass().getPassword()))) {
+                JOptionPane.showMessageDialog(view, "Password must valid.",
+                        "Valid!", JOptionPane.INFORMATION_MESSAGE);
+                view.getTxtPass().requestFocus();
                 return false;
             }
         }
-        if (view.getTxtDOB().getDate() == null) {
-            return false;
-        }
         if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
+            JOptionPane.showMessageDialog(view, "Email must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtEmail().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
+            JOptionPane.showMessageDialog(view, "Phone must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtPhone().requestFocus();
             return false;
         }
         if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
+            JOptionPane.showMessageDialog(view, "Department must valid.",
+                    "Valid!", JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtDepart().requestFocus();
             return false;
         }
         return true;

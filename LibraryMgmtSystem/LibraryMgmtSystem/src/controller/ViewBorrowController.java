@@ -10,7 +10,7 @@ import model.AccessBorrow;
 import view.ViewBorrowDialog;
 
 /**
- *
+ * View borrow controller, control view borrow dialog
  * @author CuongNQ
  */
 public class ViewBorrowController {
@@ -22,12 +22,21 @@ public class ViewBorrowController {
     private int bookID;
     private String[] arr;
 
-    public ViewBorrowController(ViewBorrowDialog view, int borID,
-            int empID, int bookID) {
+    /**
+     * Default constructor
+     * @param view
+     * @param borID
+     * @param empID
+     * @param bookID
+     */
+    public ViewBorrowController(ViewBorrowDialog view,
+            int borID,
+            int empID,
+            int bookID) {
         this.view = view;
-        this.borID=borID;
-        this.empID=empID;
-        this.bookID=bookID;
+        this.borID = borID;
+        this.empID = empID;
+        this.bookID = bookID;
         initComponent();
     }
 
@@ -35,7 +44,7 @@ public class ViewBorrowController {
      * initialize the controller.
      */
     private void initComponent() {
-        arr=new String[20];
+        arr = new String[21];
         AccessBorrow.getInstance().getFullBorInfo(arr, borID, empID, bookID);
         view.getLblID1().setText(arr[0]);
         view.getLblName1().setText(arr[1]);
@@ -55,8 +64,9 @@ public class ViewBorrowController {
         view.getLblCallNo1().setText(arr[15]);
         view.getLblISBN1().setText(arr[16]);
         view.getLblTitle1().setText(arr[17]);
-        view.getLblAuth1().setText(arr[18]);
+        view.getLblAuth1().setText(arr[18]);        
         view.getLblPublisher1().setText(arr[19]);
+        view.getLblSubject1().setText(arr[20]);
 
         //Add event close btn
         view.getBtnClose().addActionListener(new ActionListener() {

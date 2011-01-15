@@ -115,9 +115,9 @@ public class PalEmployee extends javax.swing.JPanel {
 
         lblNameEmp.setText("Employee Name:");
 
-        txtNameEmp.setToolTipText("Employee's Username");
+        txtNameEmp.setToolTipText("Search employee by employee name");
 
-        txtIdEmp.setToolTipText("Employee's ID");
+        txtIdEmp.setToolTipText("Search employee by employee id");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

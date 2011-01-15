@@ -13,26 +13,26 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Access to subject table
  * @author CuongNQ
  */
 public class AccessSub {
 
-    //Defined instance of AccessEmp
+    //Defined instance of AccessSub
     private static AccessSub instance = new AccessSub();
     private Connection cn = null;
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
 
     /**
-     * Static method get instance of AccessEmp
+     * Static method get instance of AccessSub
      */
     public static AccessSub getInstance() {
         return instance;
     }
 
     /**
-     * 
+     * Add a subject method
      * @param sub is subject object
      * @return true if add successful, otherwise false
      */
@@ -56,7 +56,7 @@ public class AccessSub {
     }
 
     /**
-     * 
+     * Get subject id method
      * @param subName
      * @return
      */
@@ -82,8 +82,8 @@ public class AccessSub {
     }
     
     /**
-     * 
-     * @return
+     * Get a;; subject name and fill to add book form
+     * @return subject name, will be split by "," char
      */
     public String getAllSubjectName() {
         String sub = "";
@@ -108,9 +108,9 @@ public class AccessSub {
     }
 
     /**
-     * 
+     * Get subject object by subID
      * @param SubID
-     * @return
+     * @return subject object
      */
     public Subject getSubject(int SubID) {
         //Defined Object
@@ -124,7 +124,7 @@ public class AccessSub {
             if (rsDetails.next()) {
                 sub = new Subject(rsDetails.getInt(1), rsDetails.getString(2),
                         rsDetails.getString(3));
-                //return employee object
+                //return subject object
                 return sub;
             }
         } catch (SQLException ex) {
@@ -139,12 +139,12 @@ public class AccessSub {
     }
 
     /**
-     * 
+     * Search subject from subject table
      * @param subModel
      * @param SubID
      * @param SubName
      * @param page
-     * @return
+     * @return subject object found and total row in database
      */
     public int searchSubject(DefaultTableModel subModel,
             String SubID, String SubName, int page) {
@@ -159,7 +159,7 @@ public class AccessSub {
                 csDetails.setInt(3, LibUtil.noRow);
                 csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
             } else {
-                //Search EmpID only
+                //Search subID only
                 csDetails = cn.prepareCall(LibProcedure.GET_SUB_BY_ID);
                 csDetails.setInt(1, new Integer(SubID));
                 csDetails.setInt(2, page);
@@ -187,7 +187,7 @@ public class AccessSub {
     }
 
     /**
-     * 
+     * Edit subject
      * @param sub is subject object
      * @return true if edit successful, otherwise false
      */
@@ -213,9 +213,9 @@ public class AccessSub {
     }
 
     /**
-     * 
+     * Delete subject
      * @param subID
-     * @return
+     * @return true if delete successful, otherwise false
      */
     public boolean deleteSub(int subID) {
         //Defined connection, rs and cs to connect and query database

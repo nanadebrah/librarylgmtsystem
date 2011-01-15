@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * Access to login with data on employee table
  * @author CuongNQ
  */
 public class AccessLogin {
@@ -19,16 +19,22 @@ public class AccessLogin {
     private Connection cn = null;
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
-    //Defined instance of AccessBook
+    //Defined instance of Login
     private static AccessLogin instance = new AccessLogin();
 
     /**
-     * Static method get instance of AccessBook
+     * Static method get instance of AccessLogin
      */
     public static AccessLogin getInstance() {
         return instance;
     }
 
+    /**
+     * Login to system method
+     * @param user
+     * @param pass
+     * @return if login successful return true, otherwise false will return
+     */
     public boolean login(String user, String pass) {
         try {
             //invoked static method to get connection

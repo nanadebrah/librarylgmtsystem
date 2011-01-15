@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * Access to fee table
  * @author CuongNQ
  */
 public class AccessFee {
@@ -20,19 +20,19 @@ public class AccessFee {
     private Connection cn = null;
     private ResultSet rsDetails = null;
     private CallableStatement csDetails = null;
-    //Defined instance of AccessBook
+    //Defined instance of AccessFee
     private static AccessFee instance = new AccessFee();
 
     /**
-     * Static method get instance of AccessBook
+     * Static method get instance of AccessFee
      */
     public static AccessFee getInstance() {
         return instance;
     }
 
     /**
-     * 
-     * @return
+     * Get fee and fine rate
+     * @return fee object
      */
     public Fee getFee() {
         //Defined Object
@@ -62,6 +62,11 @@ public class AccessFee {
         return null;
     }
 
+    /**
+     * Edit fee and fine setting
+     * @param fee
+     * @return true if successful, otherwise false
+     */
     public boolean editFee(Fee fee) {
         //Defined connection, rs and cs to connect and query database
         Connection cn = LibConnection.getConnection();

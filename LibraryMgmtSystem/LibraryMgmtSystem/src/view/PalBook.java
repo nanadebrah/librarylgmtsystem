@@ -60,8 +60,8 @@ public class PalBook extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
 
-        tolbarBook.setBorder(null);
         tolbarBook.setFloatable(false);
+        tolbarBook.setBorder(null);
         tolbarBook.setBorderPainted(false);
         tolbarBook.setOpaque(false);
 
@@ -119,17 +119,17 @@ public class PalBook extends javax.swing.JPanel {
 
         lblAthBook.setText("Author:");
 
-        txtAthBook.setToolTipText("search book by author");
+        txtAthBook.setToolTipText("Search book by author name");
 
-        txtTitlBook.setToolTipText("search book by title");
+        txtTitlBook.setToolTipText("Search book by title");
 
         lblCallNo.setText("CallNo:");
 
         lblISBNBook.setText("ISBN:");
 
-        txtCallNoBook.setToolTipText("search book by order");
+        txtCallNoBook.setToolTipText("Search book by call number");
 
-        txtISBNBook.setToolTipText("search book by ISBN");
+        txtISBNBook.setToolTipText("Search book by ISBN");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

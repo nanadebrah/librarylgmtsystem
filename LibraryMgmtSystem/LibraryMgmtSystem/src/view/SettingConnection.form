@@ -190,12 +190,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDatabase">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="database&apos;s name"/>
+            <Property name="toolTipText" type="java.lang.String" value="Database library&apos;s name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUser">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Your account"/>
+            <Property name="toolTipText" type="java.lang.String" value="Username use to login to database"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnDefault">
@@ -215,7 +215,7 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtPass">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Your password"/>
+            <Property name="toolTipText" type="java.lang.String" value="Password to login to database"/>
           </Properties>
         </Component>
       </SubComponents>

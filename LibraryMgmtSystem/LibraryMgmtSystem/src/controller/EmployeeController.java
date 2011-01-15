@@ -22,7 +22,7 @@ import view.PalEmployee;
 import view.ViewEmpDialog;
 
 /**
- *
+ * Employee controller, control employee panel
  * @author CuongNQ
  */
 public class EmployeeController {
@@ -38,12 +38,13 @@ public class EmployeeController {
     private int totalRow;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param empModel
      * @param manage
      */
-    public EmployeeController(PalEmployee view, DefaultTableModel empModel,
+    public EmployeeController(PalEmployee view,
+            DefaultTableModel empModel,
             ManageController manage) {
         this.view = view;
         this.empModel = empModel;
@@ -191,7 +192,7 @@ public class EmployeeController {
     }
 
     /**
-     * 
+     * Delete a employee
      */
     private void deleteEmp() {
         parent.doBlur();
@@ -205,7 +206,7 @@ public class EmployeeController {
                     view.getTblEmp().getSelectedRow(), 0).toString();
             if (!AccessEmp.getInstance().deleteEmp(Integer.parseInt(empID))) {
                 JOptionPane.showMessageDialog(parent.getView(), "Delete failed!\n"
-                        + "May be this employee is borrowing many book.", "Error!",
+                        + "May be this employee is borrowing many books.", "Error!",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(parent.getView(),
@@ -214,6 +215,7 @@ public class EmployeeController {
                 empModel.removeRow(view.getTblEmp().getSelectedRow());
             }
         }
+        tableFocus();
         parent.doBlur();
     }
 
@@ -229,7 +231,7 @@ public class EmployeeController {
     }
 
     /**
-     *Method edit employee on databse and edit on employee table
+     * Method edit employee on databse and edit on employee table
      */
     private void editEmp() {
         parent.doBlur();
@@ -257,12 +259,13 @@ public class EmployeeController {
                         "Edit Employee", JOptionPane.ERROR_MESSAGE);
             }
         }
+        tableFocus();
         view.getTblEmp().clearSelection();
         parent.doBlur();
     }
 
     /**
-     *Method add employee on databse
+     * Method add employee on databse
      */
     private void addEmp() {
         parent.doBlur();
@@ -274,13 +277,16 @@ public class EmployeeController {
             if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
                 JOptionPane.showMessageDialog(view, "Add successful",
                         "Successful!", JOptionPane.INFORMATION_MESSAGE);
+                //Move last page and show newest employee
+                view.getTxtIdEmp().setText("");
+                view.getTxtNameEmp().setText("");
+                view.getBtnLast().doClick();
             } else {
                 JOptionPane.showMessageDialog(view, "Add failed!\n"
                         + "May be this librarian have added.",
                         "Add Employee", JOptionPane.ERROR_MESSAGE);
             }
         }
-        view.getTblEmp().clearSelection();
         parent.doBlur();
     }
 

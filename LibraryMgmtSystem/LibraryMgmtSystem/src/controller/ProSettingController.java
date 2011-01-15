@@ -27,7 +27,7 @@ public class ProSettingController {
 
     //Defined
     private ProgramSettingDialog view;
-    private ManageController parent;    
+    private ManageController parent;
 
     public ProSettingController(ProgramSettingDialog view,
             ManageController parent) {
@@ -38,7 +38,7 @@ public class ProSettingController {
 
     private void initComponent() {
         //Load config
-        LibConfig.getInstance().loadProConfig(view.getTxtRow());
+        LibConfig.getInstance().loadProConfig(view);
 
         //Fill value to combobox theme
         view.getCbxTheme().setRenderer(new SubstanceDefaultComboBoxRenderer(
@@ -62,9 +62,8 @@ public class ProSettingController {
 
                     @Override
                     public void run() {
-                        SubstanceLookAndFeel.setSkin(((SkinInfo)
-                                view.getCbxTheme()
-                                .getSelectedItem()).getClassName());
+                        SubstanceLookAndFeel.setSkin(((SkinInfo) view
+                                .getCbxTheme().getSelectedItem()).getClassName());
                     }
                 });
                 SwingUtilities.updateComponentTreeUI(parent.getView());
@@ -87,7 +86,11 @@ public class ProSettingController {
                 view.pack();
                 SwingUtilities.updateComponentTreeUI(parent.getView());
                 parent.getView().pack();
-                LibConfig.getInstance().loadProConfig(view.getTxtRow());
+                view.getTxtRow().setValue(20);
+                view.getTxtEmail().setText("Lib.Mgmt.Sys@gmail.com");
+                view.getTxtSMTP().setText("smtp.gmail.com");
+                view.getTxtPort().setText("587");
+                view.getTxtPass().setText("9988776655");
             }
         });
 
@@ -104,8 +107,12 @@ public class ProSettingController {
 
             public void actionPerformed(ActionEvent e) {
                 LibConfig.getInstance().saveProConfig(
-                        view.getTxtRow().getValue().toString());
-                LibUtil.noRow=Integer.parseInt(
+                        view.getTxtRow().getValue().toString(),
+                        view.getTxtSMTP().getText(),
+                        view.getTxtPort().getText(),
+                        view.getTxtEmail().getText(),
+                        new String(view.getTxtPass().getPassword()));
+                LibUtil.noRow = Integer.parseInt(
                         view.getTxtRow().getValue().toString());
                 view.dispose();
             }
@@ -115,7 +122,7 @@ public class ProSettingController {
         view.getTxtRow().addChangeListener(new ChangeListener() {
 
             public void stateChanged(ChangeEvent e) {
-                if (Integer.parseInt(view.getTxtRow().getValue().toString())<1) {
+                if (Integer.parseInt(view.getTxtRow().getValue().toString()) < 1) {
                     view.getTxtRow().setValue(1);
                 }
             }

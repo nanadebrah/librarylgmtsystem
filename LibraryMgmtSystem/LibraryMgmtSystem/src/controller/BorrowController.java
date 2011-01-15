@@ -7,6 +7,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -21,7 +23,7 @@ import view.PalBorrow;
 import view.ViewBorrowDialog;
 
 /**
- *
+ * Borrow controller, control borrow panel
  * @author CuongNQ
  */
 public class BorrowController {
@@ -42,7 +44,7 @@ public class BorrowController {
     private Integer totalRow;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param borModel
      * @param parent
@@ -56,7 +58,7 @@ public class BorrowController {
     }
 
     /**
-     *  initialize the controller.
+     * initialize the controller.
      */
     private void initComponent() {
 
@@ -211,6 +213,24 @@ public class BorrowController {
             }
         });
 
+        //Add event enter key
+        view.getTxtEmpID().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBorrow();
+                }
+            }
+        });
+        view.getTxtCallNoBor().addKeyListener(new KeyAdapter() {
+
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    searchBorrow();
+                }
+            }
+        });
+
         //Add event navigation btn
         view.getBtnNext().addActionListener(new ActionListener() {
 
@@ -250,7 +270,7 @@ public class BorrowController {
     }
 
     /**
-     * 
+     * Delete a borrow, it must checked in
      */
     private void deleteBorrow() {
         parent.doBlur();
@@ -280,7 +300,7 @@ public class BorrowController {
     }
 
     /**
-     *
+     * View full information of borrow
      */
     private void viewBorrowInfo() {
         parent.doBlur();
@@ -310,7 +330,7 @@ public class BorrowController {
     }
 
     /**
-     *
+     * Check in dialog
      */
     private void checkIn() {
         parent.doBlur();
@@ -322,12 +342,15 @@ public class BorrowController {
             JOptionPane.showMessageDialog(view,
                     "Check-in successful!", "Check-in",
                     JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtCallNoBor().setText("");
+            view.getTxtEmpID().setText("");
+            view.getBtnLast().doClick();
         }
         parent.doBlur();
     }
 
     /**
-     *
+     * Check out dialog
      */
     private void checkOut() {
         parent.doBlur();
@@ -340,12 +363,15 @@ public class BorrowController {
             JOptionPane.showMessageDialog(view,
                     "Check-out successful!", "Check-out",
                     JOptionPane.INFORMATION_MESSAGE);
+            view.getTxtCallNoBor().setText("");
+            view.getTxtEmpID().setText("");
+            view.getBtnLast().doClick();
         }
         parent.doBlur();
     }
 
     /**
-     *
+     * Edit fee dialog
      */
     private void editFee() {
         parent.doBlur();

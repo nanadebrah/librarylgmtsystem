@@ -226,7 +226,6 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH))" type="code"/>
                             </Property>
-                            <Property name="mnemonic" type="int" value="115"/>
                             <Property name="text" type="java.lang.String" value="Search"/>
                             <Property name="borderPainted" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -248,7 +247,7 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtNameEmp">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value="Employee&apos;s Username"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Employee&apos;s name"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtIdEmp">
@@ -561,9 +560,13 @@
                 <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Issue date of borrow"/>
                   </Properties>
                 </Component>
                 <Component class="org.jdesktop.swingx.JXDatePicker" name="txtReDate">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="Return date of borrow"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -720,7 +723,6 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH))" type="code"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="115"/>
                     <Property name="text" type="java.lang.String" value="Search"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -732,7 +734,7 @@
             </Container>
             <Component class="javax.swing.JTextField" name="txtAthBook">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="search book by author"/>
+                <Property name="toolTipText" type="java.lang.String" value="Search book by author name"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTitlBook">
@@ -747,7 +749,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtISBNBook">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="search book by ISBN"/>
+                <Property name="toolTipText" type="java.lang.String" value="Search book by ISBN"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCallNo">
@@ -757,7 +759,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCallNoBook">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="search book by order"/>
+                <Property name="toolTipText" type="java.lang.String" value="Search book by call number"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblISBNBook">
@@ -767,7 +769,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtTitlBook">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="search book by title"/>
+                <Property name="toolTipText" type="java.lang.String" value="Search book by title"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -832,7 +834,6 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH))" type="code"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="115"/>
                     <Property name="text" type="java.lang.String" value="Search"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="focusable" type="boolean" value="false"/>
@@ -849,7 +850,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtBorID">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="search book by order"/>
+                <Property name="toolTipText" type="java.lang.String" value="Search borrow by borrow id"/>
               </Properties>
             </Component>
           </SubComponents>

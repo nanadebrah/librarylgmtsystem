@@ -123,9 +123,9 @@ public class PalBorrow extends javax.swing.JPanel {
 
         lblEmpID.setText("Employee ID");
 
-        txtEmpID.setToolTipText("Username of employee");
+        txtEmpID.setToolTipText("Search borrow by employee id");
 
-        txtCallNoBor.setToolTipText("order of book");
+        txtCallNoBor.setToolTipText("Search borrow by call number of book");
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 

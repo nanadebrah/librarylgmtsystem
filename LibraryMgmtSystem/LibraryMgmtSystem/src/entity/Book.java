@@ -7,7 +7,7 @@ package entity;
 import java.util.Vector;
 
 /**
- *
+ * Book entity
  * @author dinh manh hai
  */
 public class Book {
@@ -22,9 +22,6 @@ public class Book {
     private String Publisher;
     private int noOfCopy;
     private int noInLib;
-
-    public Book() {
-    }
 
     /**
      * @return the CallNumber
@@ -150,7 +147,8 @@ public class Book {
         vt.addElement(Title);
         vt.addElement(AuthName);
         vt.addElement(Publisher);
-        vt.addElement(noOfCopy+"/"+noInLib);
+        vt.addElement(subName);
+        vt.addElement(noOfCopy + "/" + noInLib);
         return vt;
     }
 

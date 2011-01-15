@@ -25,12 +25,12 @@ import view.LoginDialog;
 import view.SettingConnection;
 
 /**
- *
+ * Login controller, control login dialog
  * @author CuongNQ
  */
 public class LoginController {
 
-    //
+    //Defined
     private ManageController manageControl;
     private AboutWindow about;
     //Defined Setting Dialog
@@ -47,7 +47,7 @@ public class LoginController {
     private CallableStatement csDetails = null;
 
     /**
-     * 
+     * Default constructor
      * @param view
      * @param manageControl
      */

@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Utility Class
  * @author CuongNQ
  */
 public class LibUtil {
@@ -29,9 +29,9 @@ public class LibUtil {
     }
 
     /**
-     * 
+     * Convert date to format mm/dd/yyyy
      * @param date
-     * @return
+     * @return date converted
      */
     public String convertDate(String date) {
         //Get year
@@ -54,9 +54,9 @@ public class LibUtil {
     }
 
     /**
-     * 
+     * Calculate page with total row and no. row of a page
      * @param totalRow
-     * @return
+     * @return total page
      */
     public int getPage(int totalRow) {
         return (int) Math.ceil((float) totalRow / noRow);

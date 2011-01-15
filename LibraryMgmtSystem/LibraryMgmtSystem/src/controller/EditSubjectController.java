@@ -12,7 +12,7 @@ import model.LibValid;
 import view.EditSubDialog;
 
 /**
- *
+ * Edit subject controller, control edit subject dialog
  * @author CuongNQ
  */
 public class EditSubjectController {
@@ -21,14 +21,19 @@ public class EditSubjectController {
     private Subject sub = null;
     private EditSubDialog view;
 
+    /**
+     * Default constructor
+     * @param view
+     * @param sub
+     */
     public EditSubjectController(EditSubDialog view, Subject sub) {
         this.view = view;
         this.sub = sub;
         initComponent();
     }
 
-    /*
-     *  initialize the controller.
+    /**
+     * initialize the controller.
      */
     private void initComponent() {
         //Set field

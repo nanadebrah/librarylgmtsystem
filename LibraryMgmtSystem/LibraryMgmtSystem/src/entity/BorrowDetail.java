@@ -4,13 +4,11 @@
  */
 package entity;
 
-import java.sql.SQLClientInfoException;
 import java.util.Vector;
-import model.AccessBorrow;
 import model.LibUtil;
 
 /**
- *
+ * Borrow detail entity
  * @author CuongNQ
  */
 public class BorrowDetail {
@@ -113,11 +111,13 @@ public class BorrowDetail {
         vt.add(borID);
         vt.add(empID);
         vt.addElement(getBookID());
-        vt.add(LibUtil.getInstance().convertDate(new java.sql.Date(IssueDate).toString()));
-        vt.add(LibUtil.getInstance().convertDate(new java.sql.Date(DueDate).toString()));
-        if (IssueStatus==0) {
+        vt.add(LibUtil.getInstance()
+                .convertDate(new java.sql.Date(IssueDate).toString()));
+        vt.add(LibUtil.getInstance()
+                .convertDate(new java.sql.Date(DueDate).toString()));
+        if (IssueStatus == 0) {
             vt.addElement("Check-out");
-        }else{
+        } else {
             vt.addElement("Check-in");
         }
         return vt;

@@ -27,7 +27,7 @@ import model.LibUtil;
 import view.CheckOutDialog;
 
 /**
- *
+ * Check out controllder, control check out dialog
  * @author CuongNQ
  */
 public class CheckOutController {
@@ -48,6 +48,13 @@ public class CheckOutController {
     private Integer totalRow;
     private boolean isSearchEmp;
 
+    /**
+     * Default constructor
+     * @param view
+     * @param bothModel
+     * @param outModel
+     * @param parent
+     */
     public CheckOutController(CheckOutDialog view, DefaultTableModel bothModel,
             DefaultTableModel outModel, ManageController parent) {
         this.view = view;
@@ -57,6 +64,9 @@ public class CheckOutController {
         initComponent();
     }
 
+    /**
+     * initialize the controller.
+     */
     private void initComponent() {
 
         //Set default page
@@ -225,7 +235,7 @@ public class CheckOutController {
     }
 
     /**
-     * 
+     * Check out process
      */
     private void checkOut() {
         //Add borrow details for earch book
@@ -241,7 +251,7 @@ public class CheckOutController {
     }
 
     /**
-     * 
+     * Select employee to check out
      */
     private void selectEmployee() {
         //Get field employee selected
@@ -271,7 +281,7 @@ public class CheckOutController {
     }
 
     /**
-     *
+     * Deselect book
      */
     private void deselectBook() {
         //Get field book selected
@@ -283,7 +293,7 @@ public class CheckOutController {
     }
 
     /**
-     * 
+     * Select a book to check out
      */
     private void selectBook() {
         vt = new Vector();
@@ -341,7 +351,8 @@ public class CheckOutController {
         view.getTblBoth().setModel(bothModel);
         //Change title
         view.getScrPanBoth().setBorder(
-                javax.swing.BorderFactory.createTitledBorder("Employee Information"));
+                javax.swing.BorderFactory
+                .createTitledBorder("Employee Information"));
         new Thread(new Runnable() {
 
             public void run() {

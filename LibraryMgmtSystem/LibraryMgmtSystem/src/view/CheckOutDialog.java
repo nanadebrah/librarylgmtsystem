@@ -112,7 +112,6 @@ public class CheckOutDialog extends javax.swing.JDialog {
         tolbarEmp.setOpaque(false);
 
         btnSearchEmp.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
-        btnSearchEmp.setMnemonic('s');
         btnSearchEmp.setText("Search");
         btnSearchEmp.setBorderPainted(false);
         btnSearchEmp.setFocusable(false);
@@ -124,7 +123,7 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         lblNameEmp.setText("Emp Name:");
 
-        txtNameEmp.setToolTipText("Employee's Username");
+        txtNameEmp.setToolTipText("Employee's name");
 
         txtIdEmp.setToolTipText("Employee's ID");
 
@@ -329,6 +328,10 @@ public class CheckOutDialog extends javax.swing.JDialog {
 
         lblFee1.setText("Fee");
 
+        txtIssueDate.setToolTipText("Issue date of borrow");
+
+        txtDueDate.setToolTipText("Due date of borrow");
+
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -430,7 +433,6 @@ public class CheckOutDialog extends javax.swing.JDialog {
         tolbarBook.setOpaque(false);
 
         btnSearchBook.setIcon(new javax.swing.ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
-        btnSearchBook.setMnemonic('s');
         btnSearchBook.setText("Search");
         btnSearchBook.setBorderPainted(false);
         btnSearchBook.setFocusable(false);
@@ -438,21 +440,21 @@ public class CheckOutDialog extends javax.swing.JDialog {
         btnSearchBook.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarBook.add(btnSearchBook);
 
-        txtAthBook.setToolTipText("search book by author");
+        txtAthBook.setToolTipText("Search book by author name");
 
         lblTitlBook.setText("Title:");
 
         lblAthBook.setText("Author:");
 
-        txtISBNBook.setToolTipText("search book by ISBN");
+        txtISBNBook.setToolTipText("Search book by ISBN");
 
         lblCallNo.setText("CallNo:");
 
-        txtCallNoBook.setToolTipText("search book by order");
+        txtCallNoBook.setToolTipText("Search book by call number");
 
         lblISBNBook.setText("ISBN:");
 
-        txtTitlBook.setToolTipText("search book by title");
+        txtTitlBook.setToolTipText("Search book by title");
 
         org.jdesktop.layout.GroupLayout palSearchBookLayout = new org.jdesktop.layout.GroupLayout(palSearchBook);
         palSearchBook.setLayout(palSearchBookLayout);

@@ -13,7 +13,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Access book class
  * @author CuongNQ
  */
 public class AccessBook {

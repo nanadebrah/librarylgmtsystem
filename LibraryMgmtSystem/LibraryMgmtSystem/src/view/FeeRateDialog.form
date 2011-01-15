@@ -137,6 +137,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="&#xa4;###0.00;(&#xa4;###0.00)" subtype="-1" type="4"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Day borrow fee"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="txtLateFee">
@@ -144,6 +145,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="&#xa4;###0.00;(&#xa4;###0.00)" subtype="-1" type="4"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Day fine fee"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Process book's callnumber class
  * @author CuongNQ
  */
 public class LibBook {
@@ -22,7 +22,7 @@ public class LibBook {
     private Pattern pt;
     private Matcher ma;
 
-    /*
+    /**
      * Static method get instance of Libook
      */
     public static LibBook getInstance() {
@@ -30,7 +30,7 @@ public class LibBook {
     }
 
     /**
-     *
+     * Generate callnumber base on title and author name
      * @param book is Book added from dialog
      * @return Callnumber generated
      */
@@ -62,6 +62,11 @@ public class LibBook {
         return callNumber;
     }
 
+    /**
+     * Edit callnumber, fix it base on new title and author name
+     * @param book
+     * @return fixed call number
+     */
     public String fixCallNo(Book book) {
         //First 2 alphabets of title
         pt = Pattern.compile("^\\w{2}");
