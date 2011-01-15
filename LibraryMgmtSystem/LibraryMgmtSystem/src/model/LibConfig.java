@@ -128,6 +128,52 @@ public class LibConfig {
     }
 
     /**
+     * Load email config to process send email
+     * @return
+     */
+    public String[] loadEmailConfig() {
+        String[] arr = new String[4];
+        //Defined object
+        FileInputStream in = null;
+        Properties pro;
+        try {
+            //Create instane of object
+            pro = new Properties();
+            File f = new File(System.getProperty("user.dir")
+                    + File.separator + "Config.properties");
+            //Check file exist
+            if (!f.exists()) {
+                //If it doesn't exist, create it
+                createConfig();
+                return null;
+            } else {
+                in = new FileInputStream(f);
+            }
+            //load property file
+            pro.load(in);
+            //set field
+            arr[0] = pro.getProperty("emailHost");
+            arr[1] = pro.getProperty("emailPort");
+            arr[2] = pro.getProperty("emailUser");
+            arr[3] = LibPassword.getInstance()
+                    .decryptPass(pro.getProperty("emailPass"));            
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return arr;
+    }
+
+    /**
      * Save program config to property file
      * @param noRow
      */

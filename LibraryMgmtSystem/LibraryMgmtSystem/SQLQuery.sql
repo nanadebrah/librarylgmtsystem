@@ -1154,6 +1154,46 @@ BEGIN
 	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
 END
 GO
+
+--Get checking out borrow to send alert
+IF EXISTS (SELECT NAME FROM sys.objects 
+         WHERE NAME = 'sp_GetCheckingOutByDate' AND TYPE = 'P')
+   DROP PROCEDURE sp_GetCheckingOutByDate
+GO
+CREATE PROC sp_GetCheckingOutByDate
+	(
+		@DueDate DATETIME,
+		@PageIndex INT,
+		@NumRows INT,
+		@TotalPage INT OUTPUT
+	)
+AS
+BEGIN
+	SELECT @TotalPage=COUNT(B.BorID) FROM Borrow B JOIN 
+	BorrowDetail BD ON B.BorID=BD.BorID
+	JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+	ON BD.BookID=BO.BookID 
+	WHERE BD.IssueStatus=0
+	AND CAST(BD.DueDate AS FLOAT) BETWEEN 1 AND CAST(@DueDate AS FLOAT)
+	DECLARE @startRowIndex INT
+	SET @startRowIndex = (@PageIndex * @NumRows) + 1;
+	WITH Temp AS
+		(
+			SELECT ROW_NUMBER() OVER (ORDER BY B.BorID ASC) AS [No],
+			B.BorID,E.EmpID,BO.BookID,E.[Name],BO.CallNumber,BO.Title,
+			BD.IssueDate, BD.DueDate FROM Borrow B JOIN 
+			BorrowDetail BD ON B.BorID=BD.BorID
+			JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+			ON BD.BookID=BO.BookID WHERE BD.IssueStatus=0
+			AND CAST(BD.DueDate AS FLOAT)
+			BETWEEN 1 AND CAST(@DueDate AS FLOAT)
+		)
+	SELECT	BorID,EmpID,BookID,[Name],CallNumber,Title,
+			IssueDate, DueDate
+	FROM Temp
+	WHERE [No] BETWEEN @startRowIndex AND @StartRowIndex+@NumRows-1
+END
+GO
 /*****************************************************/
 
 /* DEFAULT VALUE */
@@ -1248,3 +1288,14 @@ SET IDENTITY_INSERT [dbo].[Book] OFF
 /*********************************************************************/
 
 							/*END*/
+
+SELECT  CAST(IssueDate AS FLOAT) AS DueDate FROM BorrowDetail
+
+SELECT B.BorID,E.EmpID,BO.BookID,E.[Name],BO.CallNumber,BO.Title,
+BD.IssueDate, BD.DueDate FROM Borrow B JOIN 
+BorrowDetail BD ON B.BorID=BD.BorID
+JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
+ON BD.BookID=BO.BookID WHERE BD.IssueStatus=0
+AND CAST(BD.IssueDate AS FLOAT) BETWEEN 1 and 60000
+AND CAST(BD.DueDate AS FLOAT) BETWEEN 1 and 99999
+

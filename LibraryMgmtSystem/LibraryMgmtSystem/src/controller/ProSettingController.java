@@ -5,6 +5,7 @@
 package controller;
 
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JList;
@@ -13,6 +14,7 @@ import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.LibConfig;
+import model.LibEmailSender;
 import model.LibUtil;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.renderers.SubstanceDefaultComboBoxRenderer;
@@ -62,8 +64,7 @@ public class ProSettingController {
 
                     @Override
                     public void run() {
-                        SubstanceLookAndFeel.setSkin(((SkinInfo) view
-                                .getCbxTheme().getSelectedItem()).getClassName());
+                        SubstanceLookAndFeel.setSkin(((SkinInfo) view.getCbxTheme().getSelectedItem()).getClassName());
                     }
                 });
                 SwingUtilities.updateComponentTreeUI(parent.getView());
@@ -127,6 +128,46 @@ public class ProSettingController {
                 }
             }
         });
+
+        //Add event btn Check email
+        view.getBtnCheckEmail().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+                try {
+                    Thread t = new Thread(new Runnable() {
+
+                        public void run() {
+                            checkConnection();
+                        }
+                    });
+                    t.start();
+                    t.join();
+                    view.setCursor(null);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Check email connection
+     */
+    private void checkConnection() {
+        try {
+            if (LibEmailSender.getInstance().testEmail(
+                    view.getTxtSMTP().getText(),
+                    view.getTxtPort().getText(),
+                    view.getTxtEmail().getText(),
+                    new String(view.getTxtPass().getPassword()))) {
+                view.getLblStatus().setText("Successful!");
+            } else {
+                view.getLblStatus().setText("Failed!");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**

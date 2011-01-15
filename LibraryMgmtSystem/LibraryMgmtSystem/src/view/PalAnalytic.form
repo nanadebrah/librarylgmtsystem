@@ -105,12 +105,10 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblISBNBook">
+        <Component class="javax.swing.JLabel" name="lblDueDate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Issue | Due Date:"/>
+            <Property name="text" type="java.lang.String" value="Due Date:"/>
           </Properties>
-        </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="txtIssueDate">
         </Component>
         <Component class="org.jdesktop.swingx.JXDatePicker" name="txtDueDate">
         </Component>

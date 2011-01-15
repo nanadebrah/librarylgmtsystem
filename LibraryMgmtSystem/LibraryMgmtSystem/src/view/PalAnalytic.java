@@ -38,8 +38,7 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnTBorAna = new javax.swing.JButton();
         btnAlertAna = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
-        lblISBNBook = new javax.swing.JLabel();
-        txtIssueDate = new org.jdesktop.swingx.JXDatePicker();
+        lblDueDate = new javax.swing.JLabel();
         txtDueDate = new org.jdesktop.swingx.JXDatePicker();
         jPanel1 = new javax.swing.JPanel();
         scrPanAna = new javax.swing.JScrollPane();
@@ -94,9 +93,8 @@ public class PalAnalytic extends javax.swing.JPanel {
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tolbarAna.add(btnSearch);
 
-        lblISBNBook.setText("Issue | Due Date:");
-        tolbarAna.add(lblISBNBook);
-        tolbarAna.add(txtIssueDate);
+        lblDueDate.setText("Due Date:");
+        tolbarAna.add(lblDueDate);
         tolbarAna.add(txtDueDate);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -166,12 +164,11 @@ public class PalAnalytic extends javax.swing.JPanel {
     private javax.swing.JButton btnTBorAna;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblISBNBook;
+    private javax.swing.JLabel lblDueDate;
     private javax.swing.JScrollPane scrPanAna;
     private javax.swing.JTable tblAna;
     private javax.swing.JToolBar tolbarAna;
     private org.jdesktop.swingx.JXDatePicker txtDueDate;
-    private org.jdesktop.swingx.JXDatePicker txtIssueDate;
     private javax.swing.JLabel txtPage;
     // End of variables declaration//GEN-END:variables
 
@@ -316,20 +313,6 @@ public class PalAnalytic extends javax.swing.JPanel {
     }
 
     /**
-     * @return the txtIssueDate
-     */
-    public org.jdesktop.swingx.JXDatePicker getTxtIssueDate() {
-        return txtIssueDate;
-    }
-
-    /**
-     * @param txtIssueDate the txtIssueDate to set
-     */
-    public void setTxtIssueDate(org.jdesktop.swingx.JXDatePicker txtIssueDate) {
-        this.txtIssueDate = txtIssueDate;
-    }
-
-    /**
      * @return the txtDueDate
      */
     public org.jdesktop.swingx.JXDatePicker getTxtDueDate() {
@@ -342,5 +325,4 @@ public class PalAnalytic extends javax.swing.JPanel {
     public void setTxtDueDate(org.jdesktop.swingx.JXDatePicker txtDueDate) {
         this.txtDueDate = txtDueDate;
     }
-
 }
