@@ -80,6 +80,8 @@ public class EditBookController {
                 view.dispose();
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

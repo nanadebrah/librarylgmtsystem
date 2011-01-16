@@ -105,6 +105,8 @@ public class AddBookController {
                         view.getTxtNoCop().getValue());
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

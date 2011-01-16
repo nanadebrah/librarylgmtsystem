@@ -50,6 +50,9 @@ public class SendAlertDialog extends javax.swing.JDialog {
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Send Alert To Borrower");
+        setMinimumSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         lblTo.setText("To:");
 
@@ -59,8 +62,14 @@ public class SendAlertDialog extends javax.swing.JDialog {
 
         lblContent.setText("Content:");
 
-        txtForm.setEditable(false);
+        txtTo.setToolTipText("Borrower email");
 
+        txtForm.setEditable(false);
+        txtForm.setToolTipText("Librarian email");
+
+        txtSubject.setToolTipText("Subject's email");
+
+        txtContent.setToolTipText("Mail content");
         jScrollPane1.setViewportView(txtContent);
 
         btnSend.setText("Send");

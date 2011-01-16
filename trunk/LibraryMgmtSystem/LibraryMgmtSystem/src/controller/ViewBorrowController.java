@@ -75,6 +75,8 @@ public class ViewBorrowController {
                 view.dispose();
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

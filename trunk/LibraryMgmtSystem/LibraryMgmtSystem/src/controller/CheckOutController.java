@@ -232,6 +232,8 @@ public class CheckOutController {
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

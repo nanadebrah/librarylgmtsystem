@@ -72,6 +72,8 @@ public class EditSubjectController {
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

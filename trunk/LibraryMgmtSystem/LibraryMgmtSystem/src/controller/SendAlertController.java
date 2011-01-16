@@ -62,6 +62,8 @@ public class SendAlertController {
                 view.dispose();
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

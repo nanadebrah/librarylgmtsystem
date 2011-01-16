@@ -76,6 +76,8 @@ public class ViewBookController {
 
         //Add model to table
         view.getTblBor().setModel(borModel);
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

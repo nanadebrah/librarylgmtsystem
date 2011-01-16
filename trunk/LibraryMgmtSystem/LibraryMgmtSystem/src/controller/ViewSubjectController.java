@@ -45,6 +45,8 @@ public class ViewSubjectController {
                 view.dispose();
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

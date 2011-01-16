@@ -68,6 +68,8 @@ public class AddSubjectController {
                 sub = null;
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /*

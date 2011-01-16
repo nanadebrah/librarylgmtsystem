@@ -29,7 +29,7 @@ public class LibEmailSender {
     private static LibEmailSender instance = new LibEmailSender();
 
     /**
-     * Static method get instance of LibProcedure
+     * Static method get instance of LibEmailSender
      */
     public static LibEmailSender getInstance() {
         return instance;
@@ -164,15 +164,27 @@ public class LibEmailSender {
  */
 class MyPasswordAuthenticator extends Authenticator {
 
+    /**
+     * Defined
+     */
     String user;
     String pw;
 
+    /**
+     * Default constructor
+     * @param username
+     * @param password
+     */
     public MyPasswordAuthenticator(String username, String password) {
         super();
         this.user = username;
         this.pw = password;
     }
 
+    /**
+     * Create PasswordAuthentication
+     * @return
+     */
     public PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(user, pw);
     }

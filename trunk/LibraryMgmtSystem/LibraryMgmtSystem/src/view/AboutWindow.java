@@ -35,21 +35,24 @@ public class AboutWindow extends JWindow {
     //Defined dalog
     Dialog dialog;
 
-    public AboutWindow(Frame j,Dialog d) {
+    public AboutWindow(Frame j, Dialog d) {
         //Create new instance of close button
         btnClose = new JButton("Close");
         //Create new instance of current frame & dialog
-        this.frame=j;
-        this.dialog=d;
+        this.frame = j;
+        this.dialog = d;
         //Add action close when click
         btnClose.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 //Show current jframe
                 dispose();
-                if(frame!=null)
+                if (frame != null) {
                     frame.setVisible(true);
-                if(dialog!=null)
-                    dialog.setVisible(true);                
+                }
+                if (dialog != null) {
+                    dialog.setVisible(true);
+                }
             }
         });
         //Create new instance of absolute layout
@@ -74,6 +77,6 @@ public class AboutWindow extends JWindow {
         //Set pane to center of monitor
         this.setLocationRelativeTo(null);
         //Setvisibe to display this pane
-        this.setVisible(true);     
+        this.setVisible(true);
     }
 }

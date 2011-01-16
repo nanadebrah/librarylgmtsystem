@@ -78,7 +78,7 @@ public class ManageController {
      * initialize the controller.
      */
     private void initComponent() {
-
+        //Create new instance of program setting
         proControl = new ProSettingController(
                 new ProgramSettingDialog(view, true), this);
 

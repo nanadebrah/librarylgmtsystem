@@ -88,6 +88,8 @@ public class EditEmployeeController {
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

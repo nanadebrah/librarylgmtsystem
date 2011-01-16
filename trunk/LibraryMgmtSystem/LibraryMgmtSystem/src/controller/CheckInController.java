@@ -246,6 +246,8 @@ public class CheckInController {
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**
