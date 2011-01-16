@@ -75,6 +75,8 @@ public class FeeRateController {
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

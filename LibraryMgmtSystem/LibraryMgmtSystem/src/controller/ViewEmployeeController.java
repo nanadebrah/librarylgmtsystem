@@ -87,6 +87,9 @@ public class ViewEmployeeController {
 
         //Add model to table
         view.getTblBor().setModel(borModel);
+        
+        //Escape dialog by key
+        LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

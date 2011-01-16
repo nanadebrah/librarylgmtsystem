@@ -97,7 +97,7 @@ public class AnalyticController {
 
             public void focusLost(java.awt.event.FocusEvent evt) {
                 //Set disable acction button
-                    view.getBtnAlertAna().setEnabled(false);
+                view.getBtnAlertAna().setEnabled(false);
             }
         });
         view.getTblAna().addMouseListener(new MouseAdapter() {
@@ -106,13 +106,15 @@ public class AnalyticController {
                 if (isSearch) {
                     //Set enable acction button
                     view.getBtnAlertAna().setEnabled(true);
-                }else{
+                } else {
                     //Set disable acction button
                     view.getBtnAlertAna().setEnabled(false);
                 }
                 //If double click display edit subject dialog
                 if (evt.getClickCount() == 2) {
-                    sendEmail();
+                    if (isSearch) {
+                        sendEmail();
+                    }
                 }
             }
         });
@@ -190,7 +192,7 @@ public class AnalyticController {
     /**
      * Display dialog to send email
      */
-    private void sendEmail(){
+    private void sendEmail() {
         parent.doBlur();
         //Get field borID selected
         int borID = Integer.parseInt(view.getTblAna().getValueAt(

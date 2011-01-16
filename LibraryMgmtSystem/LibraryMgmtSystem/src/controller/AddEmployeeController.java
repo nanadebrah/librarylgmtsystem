@@ -82,6 +82,8 @@ public class AddEmployeeController {
                 emp = null;
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

@@ -64,7 +64,9 @@ public class ProSettingController {
 
                     @Override
                     public void run() {
-                        SubstanceLookAndFeel.setSkin(((SkinInfo) view.getCbxTheme().getSelectedItem()).getClassName());
+                        SubstanceLookAndFeel.setSkin(((SkinInfo) view
+                                .getCbxTheme().getSelectedItem())
+                                .getClassName());
                     }
                 });
                 SwingUtilities.updateComponentTreeUI(parent.getView());
@@ -139,16 +141,17 @@ public class ProSettingController {
 
                         public void run() {
                             checkConnection();
+                            view.setCursor(null);
                         }
                     });
-                    t.start();
-                    t.join();
-                    view.setCursor(null);
+                    t.start();                    
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+        //Escape dialog by key
+        model.LibUtil.installEscapeCloseOperation(view);
     }
 
     /**

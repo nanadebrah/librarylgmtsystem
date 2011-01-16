@@ -125,8 +125,6 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
 
     btnCheckEmail.setText("Check Email");
 
-    lblStatus.setText("Status");
-
     org.jdesktop.layout.GroupLayout conectSetPanelLayout = new org.jdesktop.layout.GroupLayout(conectSetPanel);
     conectSetPanel.setLayout(conectSetPanelLayout);
     conectSetPanelLayout.setHorizontalGroup(
@@ -174,7 +172,7 @@ public class ProgramSettingDialog extends javax.swing.JDialog {
             .add(conectSetPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                 .add(btnCheckEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(lblStatus))
-            .addContainerGap(8, Short.MAX_VALUE))
+            .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     btnSave.setText("Save");
