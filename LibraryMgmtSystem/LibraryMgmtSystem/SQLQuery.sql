@@ -1289,13 +1289,3 @@ SET IDENTITY_INSERT [dbo].[Book] OFF
 
 							/*END*/
 
-SELECT  CAST(IssueDate AS FLOAT) AS DueDate FROM BorrowDetail
-
-SELECT B.BorID,E.EmpID,BO.BookID,E.[Name],BO.CallNumber,BO.Title,
-BD.IssueDate, BD.DueDate FROM Borrow B JOIN 
-BorrowDetail BD ON B.BorID=BD.BorID
-JOIN Employee E ON B.EmpID=E.EmpID JOIN Book BO
-ON BD.BookID=BO.BookID WHERE BD.IssueStatus=0
-AND CAST(BD.IssueDate AS FLOAT) BETWEEN 1 and 60000
-AND CAST(BD.DueDate AS FLOAT) BETWEEN 1 and 99999
-

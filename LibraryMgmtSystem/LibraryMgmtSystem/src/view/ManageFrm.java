@@ -417,6 +417,20 @@ public class ManageFrm extends javax.swing.JFrame {
     public void setMnEmp(javax.swing.JMenu mnEmp) {
         this.mnEmp = mnEmp;
     }
+    
+    /**
+     * @return the mnSubHelp
+     */
+    public javax.swing.JMenuItem getMnSubHelp() {
+        return mnSubHelp;
+    }
+
+    /**
+     * @param mnSubHelp the mnSubHelp to set
+     */
+    public void setMnSubHelp(javax.swing.JMenuItem mnSubHelp) {
+        this.mnSubHelp = mnSubHelp;
+    }
 
     /**
      * @return the mnSub
