@@ -1,0 +1,347 @@
+/*
+ * Created by JFormDesigner on Mon Jan 17 16:00:02 GMT+07:00 2011
+ */
+
+package view;
+
+import java.awt.Container;
+import java.awt.Dialog;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.text.ParseException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+/**
+ * @author Nanette G Hutchison
+ */
+public class EditBookDialog extends JDialog {
+	public EditBookDialog(Frame owner) {
+		super(owner, true);
+		initComponents();
+		// Set format factory
+		try {
+			txtISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+					new javax.swing.text.MaskFormatter("###-####")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @return the txtISBN
+	 */
+	public JFormattedTextField getTxtISBN() {
+		return txtISBN;
+	}
+
+	/**
+	 * @param txtISBN
+	 *            the txtISBN to set
+	 */
+	public void setTxtISBN(JFormattedTextField txtISBN) {
+		this.txtISBN = txtISBN;
+	}
+
+	/**
+	 * @return the txtTitle
+	 */
+	public JTextField getTxtTitle() {
+		return txtTitle;
+	}
+
+	/**
+	 * @param txtTitle
+	 *            the txtTitle to set
+	 */
+	public void setTxtTitle(JTextField txtTitle) {
+		this.txtTitle = txtTitle;
+	}
+
+	/**
+	 * @return the txtAuthor
+	 */
+	public JTextField getTxtAuthor() {
+		return txtAuthor;
+	}
+
+	/**
+	 * @param txtAuthor
+	 *            the txtAuthor to set
+	 */
+	public void setTxtAuthor(JTextField txtAuthor) {
+		this.txtAuthor = txtAuthor;
+	}
+
+	/**
+	 * @return the txtPublisher
+	 */
+	public JTextField getTxtPublisher() {
+		return txtPublisher;
+	}
+
+	/**
+	 * @param txtPublisher
+	 *            the txtPublisher to set
+	 */
+	public void setTxtPublisher(JTextField txtPublisher) {
+		this.txtPublisher = txtPublisher;
+	}
+
+	/**
+	 * @return the spinCopy
+	 */
+	public JSpinner getSpinCopy() {
+		return spinCopy;
+	}
+
+	/**
+	 * @param spinCopy
+	 *            the spinCopy to set
+	 */
+	public void setSpinCopy(JSpinner spinCopy) {
+		this.spinCopy = spinCopy;
+	}
+
+	/**
+	 * @return the spinLib
+	 */
+	public JSpinner getSpinLib() {
+		return spinLib;
+	}
+
+	/**
+	 * @param spinLib
+	 *            the spinLib to set
+	 */
+	public void setSpinLib(JSpinner spinLib) {
+		this.spinLib = spinLib;
+	}
+
+	/**
+	 * @return the cbxSub
+	 */
+	public JComboBox getCbxSub() {
+		return cbxSub;
+	}
+
+	/**
+	 * @param cbxSub
+	 *            the cbxSub to set
+	 */
+	public void setCbxSub(JComboBox cbxSub) {
+		this.cbxSub = cbxSub;
+	}
+
+	/**
+	 * @return the btnSave
+	 */
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	/**
+	 * @param btnSave
+	 *            the btnSave to set
+	 */
+	public void setBtnSave(JButton btnSave) {
+		this.btnSave = btnSave;
+	}
+
+	/**
+	 * @return the btnCancel
+	 */
+	public JButton getBtnCancel() {
+		return btnCancel;
+	}
+
+	/**
+	 * @param btnCancel
+	 *            the btnCancel to set
+	 */
+	public void setBtnCancel(JButton btnCancel) {
+		this.btnCancel = btnCancel;
+	}
+
+	public EditBookDialog(Dialog owner) {
+		super(owner);
+		initComponents();
+	}
+
+	private void initComponents() {
+		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// //GEN-BEGIN:initComponents
+		label1 = new JLabel();
+		panel1 = new JPanel();
+		label2 = new JLabel();
+		txtISBN = new JFormattedTextField();
+		label3 = new JLabel();
+		txtTitle = new JTextField();
+		label4 = new JLabel();
+		txtAuthor = new JTextField();
+		label5 = new JLabel();
+		txtPublisher = new JTextField();
+		label6 = new JLabel();
+		spinCopy = new JSpinner();
+		label8 = new JLabel();
+		spinLib = new JSpinner();
+		label7 = new JLabel();
+		cbxSub = new JComboBox();
+		btnSave = new JButton();
+		btnCancel = new JButton();
+
+		// ======== this ========
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new GridBagLayout());
+		((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] { 0,
+				0, 0 };
+		((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] { 0, 0 };
+		((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {
+				0.0, 1.0, 1.0E-4 };
+		((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {
+				1.0, 1.0E-4 };
+
+		// ---- label1 ----
+		label1.setIcon(new ImageIcon(getClass().getResource(
+				"/view/images/labelImages/EditBook.png")));
+		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(0, 0, 0, 5), 0, 0));
+
+		// ======== panel1 ========
+		{
+			panel1.setBorder(new CompoundBorder(new TitledBorder(
+					"Book Information"), new EmptyBorder(5, 5, 5, 5)));
+			panel1.setLayout(new GridBagLayout());
+			((GridBagLayout) panel1.getLayout()).columnWidths = new int[] { 0,
+					65, 95, 73, 0 };
+			((GridBagLayout) panel1.getLayout()).rowHeights = new int[] { 0, 0,
+					0, 0, 0, 0, 0, 0 };
+			((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {
+					0.0, 0.0, 1.0, 0.0, 1.0E-4 };
+			((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {
+					0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4 };
+
+			// ---- label2 ----
+			label2.setText("ISBN:");
+			panel1.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(txtISBN, new GridBagConstraints(1, 0, 3, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
+
+			// ---- label3 ----
+			label3.setText("Title:");
+			panel1.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(txtTitle, new GridBagConstraints(1, 1, 3, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
+
+			// ---- label4 ----
+			label4.setText("Author:");
+			panel1.add(label4, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(txtAuthor, new GridBagConstraints(1, 2, 3, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
+
+			// ---- label5 ----
+			label5.setText("Publisher:");
+			panel1.add(label5, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(txtPublisher, new GridBagConstraints(1, 3, 3, 1, 0.0,
+					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
+
+			// ---- label6 ----
+			label6.setText("No of copies:");
+			panel1.add(label6, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(spinCopy, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+
+			// ---- label8 ----
+			label8.setText("No in library:");
+			panel1.add(label8, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+					new Insets(0, 0, 5, 5), 0, 0));
+
+			// ---- spinLib ----
+			spinLib.setEnabled(false);
+			panel1.add(spinLib, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
+
+			// ---- label7 ----
+			label7.setText("Subject:");
+			panel1.add(label7, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(cbxSub, new GridBagConstraints(1, 5, 2, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+
+			// ---- btnSave ----
+			btnSave.setText("Save");
+			panel1.add(btnSave, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 5), 0, 0));
+
+			// ---- btnCancel ----
+			btnCancel.setText("Cancel");
+			panel1.add(btnCancel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0,
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(0, 0, 0, 5), 0, 0));
+		}
+		contentPane.add(panel1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
+						0, 0, 0, 0), 0, 0));
+		setSize(535, 300);
+		setLocationRelativeTo(null);
+		// JFormDesigner - End of component initialization
+		// //GEN-END:initComponents
+	}
+
+	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// //GEN-BEGIN:variables
+	private JLabel label1;
+	private JPanel panel1;
+	private JLabel label2;
+	private JFormattedTextField txtISBN;
+	private JLabel label3;
+	private JTextField txtTitle;
+	private JLabel label4;
+	private JTextField txtAuthor;
+	private JLabel label5;
+	private JTextField txtPublisher;
+	private JLabel label6;
+	private JSpinner spinCopy;
+	private JLabel label8;
+	private JSpinner spinLib;
+	private JLabel label7;
+	private JComboBox cbxSub;
+	private JButton btnSave;
+	private JButton btnCancel;
+	// JFormDesigner - End of variables declaration //GEN-END:variables
+}
