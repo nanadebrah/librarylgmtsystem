@@ -192,7 +192,7 @@ public class EmployeeController {
     }
 
     /**
-     * Delete a employee
+     * Delete an employee
      */
     private void deleteEmp() {
         parent.doBlur();

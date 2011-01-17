@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -127,6 +128,20 @@ public class LoginController {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 view.dispose();
                 System.exit(0);
+            }
+        });
+
+        //Add event open help mn
+        view.getMnSubHelp().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                java.io.File f = new java.io.File(System.getProperty("user.dir")
+                    + java.io.File.separator + "UserManual.pdf");
+                try {
+                     Runtime.getRuntime().exec("open "+f.getPath());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 

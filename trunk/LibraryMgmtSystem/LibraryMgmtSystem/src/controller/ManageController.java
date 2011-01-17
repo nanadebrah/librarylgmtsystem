@@ -8,6 +8,7 @@ import com.jhlabs.image.BlurFilter;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
@@ -302,6 +303,20 @@ public class ManageController {
             }
 
             public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+        });
+
+        //Add event open help mn
+        view.getMnSubHelp().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                java.io.File f = new java.io.File(System.getProperty("user.dir")
+                    + java.io.File.separator + "UserManual.pdf");
+                try {
+                     Runtime.getRuntime().exec("open "+f.getPath());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 

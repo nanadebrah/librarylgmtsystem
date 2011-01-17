@@ -395,7 +395,7 @@ public class AccessBorrow {
                 } else {
                     arr[10] = "Checked-In";
                     arr[13] = LibUtil.getInstance().convertDate(rsDetails.getDate(14).toString());
-                    arr[14] = String.valueOf(rsDetails.getFloat(15));
+                    arr[14] = "$"+String.valueOf(rsDetails.getFloat(15));
                 }
                 arr[11] = LibUtil.getInstance().convertDate(rsDetails.getDate(12).toString());
                 arr[12] = LibUtil.getInstance().convertDate(rsDetails.getDate(13).toString());
