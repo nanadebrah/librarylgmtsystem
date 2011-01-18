@@ -83,8 +83,13 @@ public class ProSettingController {
 
 			public void actionPerformed(ActionEvent e) {
 				try {
-					UIManager.setLookAndFeel(UIManager
-							.getSystemLookAndFeelClassName());
+					if (LibUtil.getInstance().isWindows()) {
+						UIManager
+								.setLookAndFeel(new javax.swing.plaf.metal.MetalLookAndFeel());
+					} else {
+						UIManager.setLookAndFeel(UIManager
+								.getSystemLookAndFeelClassName());
+					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

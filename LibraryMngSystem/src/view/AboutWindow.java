@@ -21,6 +21,7 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  * 
  * @author CuongNQ
  */
+@SuppressWarnings("serial")
 public class AboutWindow extends JWindow {
 
 	// Defined absolute layout
@@ -35,7 +36,7 @@ public class AboutWindow extends JWindow {
 	JButton btnClose;
 	// Defined frame
 	Frame frame;
-	// Defined dalog
+	// Defined dialog
 	Dialog dialog;
 
 	public AboutWindow(Frame j, Dialog d) {
@@ -47,7 +48,7 @@ public class AboutWindow extends JWindow {
 		// Add action close when click
 		btnClose.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				// Show current jframe
+				// Show current frame
 				dispose();
 				if (frame != null)
 					frame.setVisible(true);
@@ -76,7 +77,7 @@ public class AboutWindow extends JWindow {
 		this.pack();
 		// Set pane to center of monitor
 		this.setLocationRelativeTo(null);
-		// Setvisibe to display this pane
+		// Set visible to display this pane
 		this.setVisible(true);
 	}
 }

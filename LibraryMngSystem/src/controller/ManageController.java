@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibUtil;
+
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
 import org.jdesktop.jxlayer.plaf.ext.LockableUI;
@@ -318,15 +320,7 @@ public class ManageController {
 		view.getMnHelp().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				java.io.File f = new java.io.File(System
-						.getProperty("user.dir")
-						+ java.io.File.separator
-						+ "UserManual.pdf");
-				try {
-					Runtime.getRuntime().exec("open " + f.getPath());
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
+				LibUtil.getInstance().openHelp();
 			}
 		});
 

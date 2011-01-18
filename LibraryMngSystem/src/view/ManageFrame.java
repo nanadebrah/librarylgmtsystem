@@ -4,6 +4,7 @@
 
 package view;
 
+import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
@@ -300,189 +301,169 @@ public class ManageFrame extends JFrame {
 		btnAnalytic = new JButton();
 		panelMain = new JPanel();
 
-		// ======== this ========
+		//======== this ========
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(900, 470));
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 
-		// ======== menuBar1 ========
+		//======== menuBar1 ========
 		{
 
-			// ======== menu1 ========
+			//======== menu1 ========
 			{
 				menu1.setText("System");
 
-				// ---- mnSetting ----
+				//---- mnSetting ----
 				mnSetting.setText("Setting");
-				mnSetting.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/ProgramSetting.png")));
+				mnSetting.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/ProgramSetting.png")));
 				menu1.add(mnSetting);
 
-				// ---- mnLogout ----
+				//---- mnLogout ----
 				mnLogout.setText("Logout");
-				mnLogout.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Logout.png")));
+				mnLogout.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Logout.png")));
 				menu1.add(mnLogout);
 				menu1.addSeparator();
 
-				// ---- mnQuit ----
+				//---- mnQuit ----
 				mnQuit.setText("Quit");
-				mnQuit.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Quit.png")));
+				mnQuit.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Quit.png")));
 				menu1.add(mnQuit);
 			}
 			menuBar1.add(menu1);
 
-			// ======== mnEmployee ========
+			//======== mnEmployee ========
 			{
 				mnEmployee.setText("Employee");
 			}
 			menuBar1.add(mnEmployee);
 
-			// ======== mnBook ========
+			//======== mnBook ========
 			{
 				mnBook.setText("Book");
 			}
 			menuBar1.add(mnBook);
 
-			// ======== mnSubject ========
+			//======== mnSubject ========
 			{
 				mnSubject.setText("Subject");
 			}
 			menuBar1.add(mnSubject);
 
-			// ======== mnBorrow ========
+			//======== mnBorrow ========
 			{
 				mnBorrow.setText("Borrow");
 			}
 			menuBar1.add(mnBorrow);
 
-			// ======== mnAnalytic ========
+			//======== mnAnalytic ========
 			{
 				mnAnalytic.setText("Analytic");
 			}
 			menuBar1.add(mnAnalytic);
 
-			// ======== menuHelp ========
+			//======== menuHelp ========
 			{
 				menuHelp.setText("Help");
 
-				// ---- mnHelp ----
+				//---- mnHelp ----
 				mnHelp.setText("Help");
-				mnHelp.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Help.png")));
+				mnHelp.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Help.png")));
 				menuHelp.add(mnHelp);
 
-				// ---- mnAboutUs ----
+				//---- mnAboutUs ----
 				mnAboutUs.setText("About us");
-				mnAboutUs.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/About.png")));
+				mnAboutUs.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/About.png")));
 				menuHelp.add(mnAboutUs);
 			}
 			menuBar1.add(menuHelp);
 		}
 		setJMenuBar(menuBar1);
 
-		// ======== scrollPane1 ========
+		//======== scrollPane1 ========
 		{
 
-			// ======== panel2 ========
+			//======== panel2 ========
 			{
 				panel2.setLayout(new GridBagLayout());
-				((GridBagLayout) panel2.getLayout()).columnWidths = new int[] {
-						0, 0 };
-				((GridBagLayout) panel2.getLayout()).rowHeights = new int[] {
-						0, 0, 0 };
-				((GridBagLayout) panel2.getLayout()).columnWeights = new double[] {
-						1.0, 1.0E-4 };
-				((GridBagLayout) panel2.getLayout()).rowWeights = new double[] {
-						0.0, 0.0, 1.0E-4 };
+				((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {0, 0};
+				((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0};
+				((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
+				((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
-				// ======== xTaskPane1 ========
+				//======== xTaskPane1 ========
 				{
 					xTaskPane1.setTitle("Management");
 					xTaskPane1.setFocusable(false);
-					Container xTaskPane1ContentPane = xTaskPane1
-							.getContentPane();
+					Container xTaskPane1ContentPane = xTaskPane1.getContentPane();
 					xTaskPane1ContentPane.setLayout(new BorderLayout());
 
-					// ---- btnEmployee ----
+					//---- btnEmployee ----
 					btnEmployee.setText("Employee");
 					btnEmployee.setBorderPainted(false);
-					btnEmployee.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Employee.png")));
+					btnEmployee.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Employee.png")));
 					btnEmployee.setHorizontalAlignment(SwingConstants.LEFT);
-					btnEmployee.setFont(new Font("Lucida Grande", Font.PLAIN,
-							12));
+					btnEmployee.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					xTaskPane1ContentPane.add(btnEmployee, BorderLayout.NORTH);
 
-					// ---- btnSubject ----
+					//---- btnSubject ----
 					btnSubject.setText("Subject");
 					btnSubject.setBorderPainted(false);
-					btnSubject.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Sub.png")));
+					btnSubject.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Sub.png")));
 					btnSubject.setHorizontalAlignment(SwingConstants.LEFT);
-					btnSubject
-							.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+					btnSubject.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					xTaskPane1ContentPane.add(btnSubject, BorderLayout.SOUTH);
 
-					// ---- btnBook ----
+					//---- btnBook ----
 					btnBook.setText("Book");
 					btnBook.setBorderPainted(false);
-					btnBook.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Book.png")));
+					btnBook.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Book.png")));
 					btnBook.setHorizontalAlignment(SwingConstants.LEFT);
 					btnBook.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					xTaskPane1ContentPane.add(btnBook, BorderLayout.CENTER);
 				}
-				panel2.add(xTaskPane1, new GridBagConstraints(0, 0, 1, 1, 0.0,
-						0.0, GridBagConstraints.CENTER,
-						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				panel2.add(xTaskPane1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 0), 0, 0));
 
-				// ======== xTaskPane2 ========
+				//======== xTaskPane2 ========
 				{
 					xTaskPane2.setTitle("Borrow & Analytic");
 					xTaskPane2.setFocusable(false);
-					Container xTaskPane2ContentPane = xTaskPane2
-							.getContentPane();
+					Container xTaskPane2ContentPane = xTaskPane2.getContentPane();
 					xTaskPane2ContentPane.setLayout(new BorderLayout());
 
-					// ---- btnBorrow ----
+					//---- btnBorrow ----
 					btnBorrow.setText("Borrow");
 					btnBorrow.setBorderPainted(false);
-					btnBorrow.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Borrow.png")));
+					btnBorrow.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Borrow.png")));
 					btnBorrow.setHorizontalAlignment(SwingConstants.LEFT);
-					btnBorrow
-							.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+					btnBorrow.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					xTaskPane2ContentPane.add(btnBorrow, BorderLayout.NORTH);
 
-					// ---- btnAnalytic ----
+					//---- btnAnalytic ----
 					btnAnalytic.setText("Analytic");
 					btnAnalytic.setBorderPainted(false);
-					btnAnalytic.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Analytic.png")));
+					btnAnalytic.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Analytic.png")));
 					btnAnalytic.setHorizontalAlignment(SwingConstants.LEFT);
-					btnAnalytic.setFont(new Font("Lucida Grande", Font.PLAIN,
-							12));
+					btnAnalytic.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					xTaskPane2ContentPane.add(btnAnalytic, BorderLayout.CENTER);
 				}
-				panel2.add(xTaskPane2, new GridBagConstraints(0, 1, 1, 1, 0.0,
-						0.0, GridBagConstraints.CENTER,
-						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				panel2.add(xTaskPane2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 0), 0, 0));
 			}
 			scrollPane1.setViewportView(panel2);
 		}
 		contentPane.add(scrollPane1, BorderLayout.LINE_START);
 
-		// ======== panelMain ========
+		//======== panelMain ========
 		{
 			panelMain.setLayout(new CardLayout());
 		}
 		contentPane.add(panelMain, BorderLayout.CENTER);
-		setSize(860, 435);
+		setSize(900, 470);
 		setLocationRelativeTo(null);
-		// JFormDesigner - End of component initialization
 		// //GEN-END:initComponents
 	}
 

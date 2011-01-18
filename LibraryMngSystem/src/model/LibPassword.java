@@ -37,6 +37,7 @@ public class LibPassword {
 	 *            is raw Password must be encrypted
 	 * @return encrypted password
 	 */
+	@SuppressWarnings("static-access")
 	public String encryptPass(String rawPass) {
 		// Defined
 		PBEKeySpec pbeKeySpec;
@@ -103,7 +104,8 @@ public class LibPassword {
 			// Create PBE Cipher
 			cip = Cipher.getInstance("PBEWithMD5AndDES");
 			cip.init(Cipher.DECRYPT_MODE, sKey, pbeParaSpec);
-			// Decrypty the file data and store it in a byte array
+			// Encrypted the file data and store it in a byte array
+			@SuppressWarnings("static-access")
 			byte[] dec = Base64.getInstance().decode(ePass);
 			decrypt = cip.doFinal(dec);
 			dePass = new String(decrypt, "UTF8");
@@ -117,12 +119,12 @@ public class LibPassword {
 	 * Encrypt MD5 password
 	 * 
 	 * @param rawPass
-	 *            is password unencrypt
+	 *            is password 
 	 * @return Password encrypted
 	 */
 	public String encryptMD5(String rawPass) {
 		try {
-			// Create instane of MessageDigest
+			// Create instance of MessageDigest
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			// Resets the digest for further use.
 			md.reset();

@@ -24,6 +24,13 @@
        <string>defaultCloseOperation</string> 
        <int>3</int> 
       </void> 
+      <void method="setProperty"> 
+       <string>minimumSize</string> 
+       <object class="java.awt.Dimension"> 
+        <int>900</int> 
+        <int>470</int> 
+       </object> 
+      </void> 
       <void method="add"> 
        <object class="com.jformdesigner.model.FormContainer"> 
         <string>javax.swing.JScrollPane</string> 
@@ -564,8 +571,8 @@
       <void method="setProperty"> 
        <string>size</string> 
        <object class="java.awt.Dimension"> 
-        <int>860</int> 
-        <int>435</int> 
+        <int>900</int> 
+        <int>470</int> 
        </object> 
       </void> 
      </object> 

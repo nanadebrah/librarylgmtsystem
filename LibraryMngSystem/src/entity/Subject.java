@@ -84,8 +84,8 @@ public class Subject {
 	/*
 	 * subject to vector
 	 */
-	public Vector toVector() {
-		Vector vt = new Vector();
+	public Vector<Object> toVector() {
+		Vector<Object> vt = new Vector<Object>();
 		vt.addElement(SubID);
 		vt.addElement(SubName);
 		vt.addElement(Description);

@@ -86,7 +86,7 @@ public class AccessEmp {
 	 * @param empID
 	 */
 	public void getEmpBorInfo(DefaultTableModel borModel, int empID) {
-		java.util.Vector vt;
+		java.util.Vector<Object> vt;
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -94,7 +94,7 @@ public class AccessEmp {
 			csDetails.setInt(1, empID);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new java.util.Vector();
+				vt = new java.util.Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getInt(2));
 				vt.addElement(rsDetails.getString(3));
@@ -257,7 +257,7 @@ public class AccessEmp {
 			}
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				Vector vt = new Vector();
+				Vector<Object> vt = new Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getString(2));
 				vt.addElement(rsDetails.getString(3));

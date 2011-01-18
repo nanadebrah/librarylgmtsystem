@@ -23,6 +23,7 @@ import model.AccessBorrow;
 import model.AccessEmp;
 import model.AccessFee;
 import model.LibUtil;
+import model.LibValid;
 import view.CheckOutDialog;
 import entity.BorrowDetail;
 import entity.Employee;
@@ -174,7 +175,7 @@ public class CheckOutController {
 			}
 		});
 
-		// Add event doublie click to deselect book
+		// Add event double click to deselect book
 		view.getTblCheckOut().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -245,7 +246,7 @@ public class CheckOutController {
 	 * Check out process
 	 */
 	private void checkOut() {
-		// Add borrow details for earch book
+		// Add borrow details for each book
 		java.util.Iterator it = set.iterator();
 		while (it.hasNext()) {
 			borDetail = new BorrowDetail();
@@ -341,7 +342,7 @@ public class CheckOutController {
 	}
 
 	/**
-	 * Seacrch employee by Id or name
+	 * Search employee by Id or name
 	 */
 	public void searchEmp() {
 
@@ -363,17 +364,22 @@ public class CheckOutController {
 		view.getScrPanBoth().setBorder(
 				javax.swing.BorderFactory
 						.createTitledBorder("Employee Information"));
-		new Thread(new Runnable() {
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
+					"Search", JOptionPane.ERROR_MESSAGE);
+		} else {
+			new Thread(new Runnable() {
 
-			public void run() {
-				totalRow = AccessEmp.getInstance().searchEmp(bothModel,
-						view.getTxtEmpID().getText(),
-						view.getTxtEmpName().getText(), (page - 1));
-				view.getLblPage().setText(
-						"Page " + page + "/"
-								+ LibUtil.getInstance().getPage(totalRow));
-			}
-		}).start();
+				public void run() {
+					totalRow = AccessEmp.getInstance().searchEmp(bothModel,
+							view.getTxtEmpID().getText(),
+							view.getTxtEmpName().getText(), (page - 1));
+					view.getLblPage().setText(
+							"Page " + page + "/"
+									+ LibUtil.getInstance().getPage(totalRow));
+				}
+			}).start();
+		}
 	}
 
 	/**

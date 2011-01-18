@@ -48,6 +48,10 @@
        <string>resizable</string> 
        <boolean>false</boolean> 
       </void> 
+      <void method="setProperty"> 
+       <string>title</string> 
+       <string>Program Setting</string> 
+      </void> 
       <void method="add"> 
        <object class="com.jformdesigner.model.FormComponent"> 
         <string>javax.swing.JLabel</string> 
@@ -109,7 +113,7 @@
          <object class="javax.swing.border.CompoundBorder"> 
           <object class="javax.swing.border.TitledBorder"> 
            <null/> 
-           <string>Program Setting</string> 
+           <string>General &amp; Email</string> 
            <int>4</int> 
            <int>0</int> 
            <null/> 
@@ -432,6 +436,14 @@
         <void method="setProperty"> 
          <string>gridwidth</string> 
          <int>2</int> 
+        </void> 
+        <void method="setProperty"> 
+         <string>hAlign</string> 
+         <int>4</int> 
+        </void> 
+        <void method="setProperty"> 
+         <string>vAlign</string> 
+         <int>0</int> 
         </void> 
        </object> 
       </void> 

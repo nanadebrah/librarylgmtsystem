@@ -4,10 +4,8 @@
  */
 package model;
 
-import java.io.File;
-
 /**
- * Store path to imageicon
+ * Store path to image icon
  * 
  * @author CuongNQ
  */
