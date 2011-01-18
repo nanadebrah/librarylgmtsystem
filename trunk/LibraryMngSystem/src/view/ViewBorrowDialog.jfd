@@ -69,7 +69,7 @@
          <class>java.awt.GridBagLayout</class> 
          <void method="setProperty"> 
           <string>$columnSpecs</string> 
-          <string>left:0, 384:1.0</string> 
+          <string>left:0, 397:1.0</string> 
          </void> 
          <void method="setProperty"> 
           <string>$rowSpecs</string> 
@@ -470,7 +470,7 @@
          <class>java.awt.GridBagLayout</class> 
          <void method="setProperty"> 
           <string>$columnSpecs</string> 
-          <string>0, 248:1.0, left:0, 227:1.0</string> 
+          <string>0, 61:1.0, left:0, 227:1.0</string> 
          </void> 
          <void method="setProperty"> 
           <string>$rowSpecs</string> 
@@ -1035,7 +1035,7 @@
        <string>size</string> 
        <object class="java.awt.Dimension"> 
         <int>700</int> 
-        <int>445</int> 
+        <int>470</int> 
        </object> 
       </void> 
      </object> 

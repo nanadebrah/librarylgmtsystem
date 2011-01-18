@@ -114,8 +114,8 @@ public class BorrowDetail {
 		this.TotalFee = TotalFee;
 	}
 
-	public Vector toVector() {
-		Vector vt = new Vector();
+	public Vector<Object> toVector() {
+		Vector<Object> vt = new Vector<Object>();
 		vt.add(borID);
 		vt.add(empID);
 		vt.addElement(getBookID());

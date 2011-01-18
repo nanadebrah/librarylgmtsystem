@@ -44,7 +44,7 @@ public class AccessAnalytic {
 	 * @return total row from database to calculate page
 	 */
 	public int getTopBook(DefaultTableModel anaModel, int page) {
-		java.util.Vector vt;
+		java.util.Vector<Object> vt;
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -54,7 +54,7 @@ public class AccessAnalytic {
 			csDetails.registerOutParameter(3, java.sql.Types.INTEGER);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new java.util.Vector();
+				vt = new java.util.Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getString(2));
 				vt.addElement(rsDetails.getString(3));
@@ -87,7 +87,7 @@ public class AccessAnalytic {
 	 * @return total row from database to calculate page
 	 */
 	public int getTopBorrower(DefaultTableModel anaModel, int page) {
-		java.util.Vector vt;
+		java.util.Vector<Object> vt;
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -97,7 +97,7 @@ public class AccessAnalytic {
 			csDetails.registerOutParameter(3, java.sql.Types.INTEGER);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new java.util.Vector();
+				vt = new java.util.Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getString(2));
 				vt.addElement(rsDetails.getString(3));

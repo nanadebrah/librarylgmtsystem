@@ -29,7 +29,7 @@ public class AccessBorrow {
 	private ResultSet rsDetails = null;
 	private CallableStatement csDetails = null;
 	private CheckIn checkin;
-	private Vector vt;
+	private Vector<Object> vt;
 	// Defined instance of AccessBorrow
 	private static AccessBorrow instance = new AccessBorrow();
 
@@ -49,13 +49,13 @@ public class AccessBorrow {
 	 * @param map
 	 * @return true if add successful, otherwise false
 	 */
-	public boolean checkOut(int empID, TreeMap map) {
+	public boolean checkOut(int empID, TreeMap<Object, Object> map) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		BorrowDetail borDetail;
-		java.util.Set set;
+		java.util.Set<Object> set;
 		set = map.keySet();
-		java.util.Iterator it = set.iterator();
+		java.util.Iterator<Object> it = set.iterator();
 		try {
 			csDetails = cn.prepareCall(LibProcedure.PREPARE_CHECKOUT);
 			csDetails.setInt(1, empID);
@@ -111,7 +111,7 @@ public class AccessBorrow {
 			}
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new Vector();
+				vt = new Vector<Object>();
 				vt.add(rsDetails.getInt(1));
 				vt.add(rsDetails.getInt(2));
 				vt.add(rsDetails.getInt(3));
@@ -153,6 +153,7 @@ public class AccessBorrow {
 	 * @param page
 	 * @return total row in database
 	 */
+	@SuppressWarnings("deprecation")
 	public int searchCheckingOut(DefaultTableModel anaModel,
 			java.util.Date dueDate, int page) {
 		// Defined connection, rs and cs to connect and query database
@@ -170,7 +171,7 @@ public class AccessBorrow {
 			csDetails.registerOutParameter(4, java.sql.Types.INTEGER);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new Vector();
+				vt = new Vector<Object>();
 				vt.add(rsDetails.getInt(1));
 				vt.add(rsDetails.getInt(2));
 				vt.add(rsDetails.getInt(3));
@@ -233,7 +234,7 @@ public class AccessBorrow {
 	 * @param map
 	 * @param borID
 	 */
-	public void searchCheckOutByBorID(TreeMap map, int borID) {
+	public void searchCheckOutByBorID(TreeMap<Object, CheckIn> map, int borID) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -275,7 +276,7 @@ public class AccessBorrow {
 	 * @param page
 	 * @return total row in database
 	 */
-	public int searchCheckOutByBookInfo(TreeMap map, String CallNo,
+	public int searchCheckOutByBookInfo(TreeMap<Object, CheckIn> map, String CallNo,
 			String ISBN, String Title, String Auth, int page) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
@@ -325,7 +326,7 @@ public class AccessBorrow {
 	 * @param page
 	 * @return total row in database
 	 */
-	public int searchCheckOutByEmpInfo(TreeMap map, String EmpID, String Name,
+	public int searchCheckOutByEmpInfo(TreeMap<Object, CheckIn> map, String EmpID, String Name,
 			int page) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();

@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.AccessSub;
 import model.LibUtil;
+import model.LibValid;
 import view.AddSubjectDialog;
 import view.EditSubjectDialog;
 import view.SubjectPanel;
@@ -125,7 +126,7 @@ public class SubjectController {
 		view.getTblSub().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable acction button
+				// Set enable action button
 				view.getBtnDelete().setEnabled(true);
 				view.getBtnEdit().setEnabled(true);
 				view.getBtnView().setEnabled(true);
@@ -272,7 +273,7 @@ public class SubjectController {
 	 * Do lost focus table
 	 */
 	private void tableFocus() {
-		// Set disable acction button
+		// Set disable action button
 		view.getBtnEdit().setEnabled(false);
 		view.getBtnDelete().setEnabled(false);
 		view.getBtnView().setEnabled(false);
@@ -280,16 +281,21 @@ public class SubjectController {
 	}
 
 	/**
-	 * Seacrh subject
+	 * Search subject
 	 */
-	public void searchSubject() {
-		parent.removeModel(subModel);
-		totalRow = AccessSub.getInstance().searchSubject(subModel,
-				getView().getTxtSubID().getText(),
-				getView().getTxtSubName().getText(), (page - 1));
+	public void searchSubject() {		
+        if (!LibValid.getInstance().SubID(view.getTxtSubID().getText())) {
+            JOptionPane.showMessageDialog(view, "Subject Number not valid!",
+                    "Search", JOptionPane.ERROR_MESSAGE);
+        } else {
+        	parent.removeModel(subModel);
+            totalRow = AccessSub.getInstance().searchSubject(subModel,
+                    getView().getTxtSubID().getText(),
+                    getView().getTxtSubName().getText(), (page - 1));
 
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
+            view.getLblPage().setText("Page " + page + "/"
+                    + LibUtil.getInstance().getPage(totalRow));
+        }
 	}
 
 	/**

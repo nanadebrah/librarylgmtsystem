@@ -414,258 +414,246 @@ public class ViewBorrowDialog extends JDialog {
 		lblSubject = new JLabel();
 		btnClose = new JButton();
 
-		// ======== this ========
+		//======== this ========
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] { 0,
-				0, 0 };
-		((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] { 234,
-				169, 0, 0 };
-		((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {
-				0.0, 1.0, 1.0E-4 };
-		((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {
-				0.0, 1.0, 0.0, 1.0E-4 };
+		((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
+		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {234, 169, 0, 0};
+		((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
+		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, 1.0E-4};
 
-		// ---- label1 ----
-		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/InfoBorrow.png")));
+		//---- label1 ----
+		label1.setIcon(new ImageIcon(getClass().getResource("/view/images/labelImages/InfoBorrow.png")));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-						0, 0, 5, 5), 0, 0));
+			GridBagConstraints.CENTER, GridBagConstraints.NONE,
+			new Insets(0, 0, 5, 5), 0, 0));
 
-		// ======== panel1 ========
+		//======== panel1 ========
 		{
-			panel1.setBorder(new CompoundBorder(new TitledBorder(
-					"Employee Information"), new EmptyBorder(5, 5, 5, 5)));
+			panel1.setBorder(new CompoundBorder(
+				new TitledBorder("Employee Information"),
+				new EmptyBorder(5, 5, 5, 5)));
 			panel1.setLayout(new GridBagLayout());
-			((GridBagLayout) panel1.getLayout()).columnWidths = new int[] { 0,
-					384, 0 };
-			((GridBagLayout) panel1.getLayout()).rowHeights = new int[] { 0, 0,
-					0, 0, 0, 0, 0, 0, 0, 0 };
-			((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {
-					0.0, 1.0, 1.0E-4 };
-			((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {
-					0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4 };
+			((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 397, 0};
+			((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
+			((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
-			// ---- label10 ----
+			//---- label10 ----
 			label10.setText("Employee No:");
 			panel1.add(label10, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblEmpID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label17 ----
+			//---- label17 ----
 			label17.setText("Name:");
 			panel1.add(label17, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblName, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label2 ----
+			//---- label2 ----
 			label2.setText("Date of birth:");
 			panel1.add(label2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblDOB, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label3 ----
+			//---- label3 ----
 			label3.setText("Gender:");
 			panel1.add(label3, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblGender, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label4 ----
+			//---- label4 ----
 			label4.setText("Email:");
 			panel1.add(label4, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblEmail, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label5 ----
+			//---- label5 ----
 			label5.setText("Department:");
 			panel1.add(label5, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblDepart, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label6 ----
+			//---- label6 ----
 			label6.setText("Address:");
 			panel1.add(label6, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblAdd, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label7 ----
+			//---- label7 ----
 			label7.setText("Phone:");
 			panel1.add(label7, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(lblPhone, new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label8 ----
+			//---- label8 ----
 			label8.setText("Permission:");
 			panel1.add(label8, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 0, 5), 0, 0));
-			panel1.add(lblPermission, new GridBagConstraints(1, 8, 1, 1, 0.0,
-					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 0, 5), 0, 0));
+			panel1.add(lblPermission, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 0), 0, 0));
 		}
 		contentPane.add(panel1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-						0, 0, 5, 0), 0, 0));
+			GridBagConstraints.CENTER, GridBagConstraints.NONE,
+			new Insets(0, 0, 5, 0), 0, 0));
 
-		// ======== panel2 ========
+		//======== panel2 ========
 		{
-			panel2.setBorder(new CompoundBorder(new TitledBorder(
-					"Book Information"), new EmptyBorder(5, 5, 5, 5)));
+			panel2.setBorder(new CompoundBorder(
+				new TitledBorder("Book Information"),
+				new EmptyBorder(5, 5, 5, 5)));
 			panel2.setLayout(new GridBagLayout());
-			((GridBagLayout) panel2.getLayout()).columnWidths = new int[] { 0,
-					253, 0, 227, 0 };
-			((GridBagLayout) panel2.getLayout()).rowHeights = new int[] { 0, 0,
-					0, 0, 0, 0, 0 };
-			((GridBagLayout) panel2.getLayout()).columnWeights = new double[] {
-					0.0, 1.0, 0.0, 1.0, 1.0E-4 };
-			((GridBagLayout) panel2.getLayout()).rowWeights = new double[] {
-					1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4 };
+			((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {0, 66, 0, 227, 0};
+			((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0};
+			((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {0.0, 1.0, 0.0, 1.0, 1.0E-4};
+			((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0E-4};
 
-			// ---- label11 ----
+			//---- label11 ----
 			label11.setText("Borrow No:");
 			panel2.add(label11, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblBorID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 
-			// ---- label9 ----
+			//---- label9 ----
 			label9.setText("Call Number:");
 			panel2.add(label9, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblCallNo, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label19 ----
+			//---- label19 ----
 			label19.setText("Issue Status:");
 			panel2.add(label19, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
-			panel2.add(lblIssueStatus, new GridBagConstraints(1, 1, 1, 1, 0.0,
-					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
+			panel2.add(lblIssueStatus, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 
-			// ---- label12 ----
+			//---- label12 ----
 			label12.setText("ISBN:");
 			panel2.add(label12, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblISBN, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label20 ----
+			//---- label20 ----
 			label20.setText("Issue Date:");
 			panel2.add(label20, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
-			panel2.add(lblIssueDate, new GridBagConstraints(1, 2, 1, 1, 0.0,
-					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
+			panel2.add(lblIssueDate, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 
-			// ---- label13 ----
+			//---- label13 ----
 			label13.setText("Title:");
 			panel2.add(label13, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblTitle, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label21 ----
+			//---- label21 ----
 			label21.setText("Due Date:");
 			panel2.add(label21, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblDueDate, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 
-			// ---- label14 ----
+			//---- label14 ----
 			label14.setText("Author Name:");
 			panel2.add(label14, new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblAuthor, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label22 ----
+			//---- label22 ----
 			label22.setText("Return Date:");
 			panel2.add(label22, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
-			panel2.add(lblReturnDate, new GridBagConstraints(1, 4, 1, 1, 0.0,
-					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
+			panel2.add(lblReturnDate, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 
-			// ---- label15 ----
+			//---- label15 ----
 			label15.setText("Publisher:");
 			panel2.add(label15, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel2.add(lblPublish, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label23 ----
+			//---- label23 ----
 			label23.setText("Total Fee:");
 			panel2.add(label23, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 5), 0, 0));
 			panel2.add(lblFee, new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 5), 0, 0));
 
-			// ---- label16 ----
+			//---- label16 ----
 			label16.setText("Subject:");
 			panel2.add(label16, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 0, 5), 0, 0));
 			panel2.add(lblSubject, new GridBagConstraints(3, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 0), 0, 0));
 		}
 		contentPane.add(panel2, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(
-						0, 0, 5, 0), 0, 0));
+			GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+			new Insets(0, 0, 5, 0), 0, 0));
 
-		// ---- btnClose ----
+		//---- btnClose ----
 		btnClose.setText("Close");
 		contentPane.add(btnClose, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-				new Insets(0, 0, 0, 0), 0, 0));
-		setSize(700, 445);
+			GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+			new Insets(0, 0, 0, 0), 0, 0));
+		setSize(700, 470);
 		setLocationRelativeTo(null);
-		// JFormDesigner - End of component initialization
 		// //GEN-END:initComponents
 	}
 

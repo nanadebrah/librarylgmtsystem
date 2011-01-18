@@ -157,7 +157,7 @@ public class AccessBook {
 	 *            is id of book want get
 	 */
 	public void getBookBorInfo(DefaultTableModel borModel, int bookID) {
-		java.util.Vector vt;
+		java.util.Vector<Object> vt;
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -165,7 +165,7 @@ public class AccessBook {
 			csDetails.setInt(1, bookID);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				vt = new java.util.Vector();
+				vt = new java.util.Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getInt(2));
 				vt.addElement(rsDetails.getString(3));
@@ -229,7 +229,7 @@ public class AccessBook {
 			csDetails.registerOutParameter(7, java.sql.Types.INTEGER);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				Vector vt = new Vector();
+				Vector<Object> vt = new Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getString(2));
 				vt.addElement(rsDetails.getString(3));

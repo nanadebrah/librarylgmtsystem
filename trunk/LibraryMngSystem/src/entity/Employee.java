@@ -178,8 +178,8 @@ public class Employee {
 	/**
 	 * Convert employee to vector
 	 */
-	public Vector toVector() {
-		Vector vt = new Vector();
+	public Vector<Object> toVector() {
+		Vector<Object> vt = new Vector<Object>();
 		vt.addElement(EmpID);
 		vt.addElement(Name);
 		if (Gender == 1) {

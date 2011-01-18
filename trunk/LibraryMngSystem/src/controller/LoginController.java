@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import model.AccessLogin;
 import model.LibConfig;
 import model.LibPassword;
+import model.LibUtil;
 
 import org.jdesktop.jxlayer.JXLayer;
 import org.jdesktop.jxlayer.plaf.effect.BufferedImageOpEffect;
@@ -56,7 +57,7 @@ public class LoginController {
 	public LoginController(LoginDialog view, ManageController manageControl) {
 		this.view = view;
 		this.manageControl = manageControl;
-		initComponent();
+		initComponent();		
 	}
 
 	/**
@@ -136,15 +137,7 @@ public class LoginController {
 		view.getMnHelp().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				java.io.File f = new java.io.File(System
-						.getProperty("user.dir")
-						+ java.io.File.separator
-						+ "UserManual.pdf");
-				try {
-					Runtime.getRuntime().exec("open " + f.getPath());
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
+				LibUtil.getInstance().openHelp();
 			}
 		});
 
@@ -197,7 +190,7 @@ public class LoginController {
 	}
 
 	/**
-	 * Connect to SQL Server and check admin info
+	 * Connect to SQL Server and check administrator info
 	 */
 	private void login() {
 		new Thread(new Runnable() {
@@ -216,7 +209,7 @@ public class LoginController {
 							"Wrong username or password.", "Login Failed",
 							JOptionPane.WARNING_MESSAGE);
 					try {
-						// Sleep 1 minisecond/ otherwise can't doBlur again
+						// Sleep 1 minisecond otherwise can't doBlur again
 						Thread.sleep(1);
 					} catch (Exception ex) {
 						ex.printStackTrace();

@@ -107,74 +107,67 @@ public class FeeRateDialog extends JDialog {
 		btnChange = new JButton();
 		btnCancel = new JButton();
 
-		// ======== this ========
+		//======== this ========
+		setResizable(false);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] { 0,
-				0, 0 };
-		((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] { 0, 0 };
-		((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {
-				0.0, 1.0, 1.0E-4 };
-		((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {
-				1.0, 1.0E-4 };
+		((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
+		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {0, 0};
+		((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
+		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {1.0, 1.0E-4};
 
-		// ---- label1 ----
-		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/FeeRate.png")));
+		//---- label1 ----
+		label1.setIcon(new ImageIcon(getClass().getResource("/view/images/labelImages/FeeRate.png")));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-						0, 0, 0, 5), 0, 0));
+			GridBagConstraints.CENTER, GridBagConstraints.NONE,
+			new Insets(0, 0, 0, 5), 0, 0));
 
-		// ======== panel1 ========
+		//======== panel1 ========
 		{
-			panel1.setBorder(new CompoundBorder(new TitledBorder(
-					"Fee Rate Information"), new EmptyBorder(5, 5, 5, 5)));
+			panel1.setBorder(new CompoundBorder(
+				new TitledBorder("Fee Rate Information"),
+				new EmptyBorder(5, 5, 5, 5)));
 			panel1.setLayout(new GridBagLayout());
-			((GridBagLayout) panel1.getLayout()).columnWidths = new int[] { 0,
-					65, 81, 0 };
-			((GridBagLayout) panel1.getLayout()).rowHeights = new int[] { 0, 0,
-					0, 0 };
-			((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {
-					0.0, 0.0, 1.0, 1.0E-4 };
-			((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {
-					0.0, 0.0, 0.0, 1.0E-4 };
+			((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 65, 81, 0};
+			((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
+			((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 1.0E-4};
+			((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
 
-			// ---- label2 ----
+			//---- label2 ----
 			label2.setText("Borrow Fee:");
 			panel1.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(txtFee, new GridBagConstraints(1, 0, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- label3 ----
+			//---- label3 ----
 			label3.setText("Late Fee:");
 			panel1.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(txtFine, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 5, 0), 0, 0));
 
-			// ---- btnChange ----
+			//---- btnChange ----
 			btnChange.setText("Change");
 			panel1.add(btnChange, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+				new Insets(0, 0, 0, 5), 0, 0));
 
-			// ---- btnCancel ----
+			//---- btnCancel ----
 			btnCancel.setText("Cancel");
 			panel1.add(btnCancel, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+				new Insets(0, 0, 0, 0), 0, 0));
 		}
 		contentPane.add(panel1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
-						0, 0, 0, 0), 0, 0));
-		setSize(440, 190);
+			GridBagConstraints.CENTER, GridBagConstraints.NONE,
+			new Insets(0, 0, 0, 0), 0, 0));
+		setSize(460, 195);
 		setLocationRelativeTo(null);
-		// JFormDesigner - End of component initialization
 		// //GEN-END:initComponents
 	}
 

@@ -147,9 +147,9 @@ public class Book {
 	/**
 	 * @return Vector ob book
 	 */
-	public Vector toVector() {
+	public Vector<Object> toVector() {
 		// Defined vector
-		Vector vt = new Vector();
+		Vector<Object> vt = new Vector<Object>();
 		vt.addElement(bookID);
 		vt.addElement(CallNumber);
 		vt.addElement(ISBN);

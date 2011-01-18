@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.AccessEmp;
 import model.LibUtil;
+import model.LibValid;
 import view.AddEmployeeDialog;
 import view.EditEmployeeDialog;
 import view.EmployeePanel;
@@ -83,7 +84,7 @@ public class EmployeeController {
 		view.getTblEmp().addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable acction button
+				// Set enable action button
 				view.getBtnEdit().setEnabled(true);
 				view.getBtnView().setEnabled(true);
 				view.getBtnDelete().setEnabled(true);
@@ -130,7 +131,7 @@ public class EmployeeController {
 			}
 		});
 
-		// Add event delte btn
+		// Add event delete btn
 		view.getBtnDelete().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -229,7 +230,7 @@ public class EmployeeController {
 	 * Do lost focus table
 	 */
 	private void tableFocus() {
-		// Set disable acction button
+		// Set disable action button
 		view.getBtnEdit().setEnabled(false);
 		view.getBtnView().setEnabled(false);
 		view.getBtnDelete().setEnabled(false);
@@ -237,7 +238,7 @@ public class EmployeeController {
 	}
 
 	/**
-	 * Method edit employee on databse and edit on employee table
+	 * Method edit employee on database and edit on employee table
 	 */
 	private void editEmp() {
 		parent.doBlur();
@@ -271,7 +272,7 @@ public class EmployeeController {
 	}
 
 	/**
-	 * Method add employee on databse
+	 * Method add employee on database
 	 */
 	private void addEmp() {
 		parent.doBlur();
@@ -298,21 +299,26 @@ public class EmployeeController {
 	}
 
 	/**
-	 * Seacrch employee by Id or name
+	 * Search employee by Id or name
 	 */
 	public void searchEmp() {
-		parent.removeModel(empModel);
-		new Thread(new Runnable() {
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
+					"Search", JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(empModel);
+			new Thread(new Runnable() {
 
-			public void run() {
-				totalRow = AccessEmp.getInstance().searchEmp(empModel,
-						view.getTxtEmpID().getText(),
-						view.getTxtEmpName().getText(), (page - 1));
-				view.getLblPage().setText(
-						"Page " + page + "/"
-								+ LibUtil.getInstance().getPage(totalRow));
-			}
-		}).start();
+				public void run() {
+					totalRow = AccessEmp.getInstance().searchEmp(empModel,
+							view.getTxtEmpID().getText(),
+							view.getTxtEmpName().getText(), (page - 1));
+					view.getLblPage().setText(
+							"Page " + page + "/"
+									+ LibUtil.getInstance().getPage(totalRow));
+				}
+			}).start();
+		}
 	}
 
 	/**

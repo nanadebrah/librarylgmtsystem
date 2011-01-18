@@ -111,10 +111,11 @@ public class ViewSubjectDialog extends JDialog {
 		btnClose = new JButton();
 
 		//======== this ========
+		setResizable(false);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new GridBagLayout());
 		((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
-		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {164, 10, 0};
+		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {182, 10, 0};
 		((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
 		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
@@ -176,7 +177,7 @@ public class ViewSubjectDialog extends JDialog {
 		contentPane.add(btnClose, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
 			GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
 			new Insets(0, 0, 0, 0), 0, 0));
-		setSize(465, 225);
+		setSize(480, 240);
 		setLocationRelativeTo(null);
 		// //GEN-END:initComponents
 	}

@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import model.AccessBorrow;
 import model.AccessFee;
 import model.LibUtil;
+import model.LibValid;
 import view.BorrowPanel;
 import view.CheckInDialog;
 import view.CheckOutDialog;
@@ -397,12 +398,18 @@ public class BorrowController {
      * 
      */
 	public void searchBorrow() {
-		parent.removeModel(borModel);
-		totalRow = AccessBorrow.getInstance().searchBor(borModel,
-				view.getTxtEmpID().getText(), view.getTxtCallNo().getText(),
-				(page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
+					"Search", JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(borModel);
+			totalRow = AccessBorrow.getInstance().searchBor(borModel,
+					view.getTxtEmpID().getText(),
+					view.getTxtCallNo().getText(), (page - 1));
+			view.getLblPage().setText(
+					"Page " + page + "/"
+							+ LibUtil.getInstance().getPage(totalRow));
+		}
 	}
 
 	/**

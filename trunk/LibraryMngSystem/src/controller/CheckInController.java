@@ -24,6 +24,7 @@ import model.AccessBorrow;
 import model.AccessEmp;
 import model.AccessFee;
 import model.LibUtil;
+import model.LibValid;
 import view.CheckInDialog;
 import entity.CheckIn;
 import entity.Employee;
@@ -115,13 +116,7 @@ public class CheckInController {
 		view.getBtnSearchBor().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				parent.removeModel(searchModel);
-				map.clear();
-				if (view.getTxtBorID().getText().length() > 0) {
-					AccessBorrow.getInstance().searchCheckOutByBorID(map,
-							Integer.parseInt(view.getTxtBorID().getText()));
-					getBorrow();
-				}
+				searchBorID();
 			}
 		});
 
@@ -254,20 +249,44 @@ public class CheckInController {
 	}
 
 	/**
-	 * Search emplooyee
+	 * Search employee
 	 */
 	private void searchByEmpInfo() {
 		isSearchEmp = true;
-		parent.removeModel(searchModel);
-		map.clear();
-		totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
-				view.getTxtEmpID().getText(), view.getTxtEmpName().getText(),
-				(page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
-		getBorrow();
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
+					"Search", JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(searchModel);
+			map.clear();
+			totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
+					view.getTxtEmpID().getText(),
+					view.getTxtEmpName().getText(), (page - 1));
+			view.getLblPage().setText(
+					"Page " + page + "/"
+							+ LibUtil.getInstance().getPage(totalRow));
+			getBorrow();
+		}
 	}
 
+	/**
+	 * Search Borrow by borrow ID
+	 */
+	private void searchBorID() {
+        if (!LibValid.getInstance().BorID(view.getTxtBorID().getText())) {
+            JOptionPane.showMessageDialog(view, "Borrow Number not valid!",
+                    "Search", JOptionPane.ERROR_MESSAGE);
+        } else {
+            parent.removeModel(searchModel);
+            map.clear();
+            if (view.getTxtBorID().getText().length() > 0) {
+                AccessBorrow.getInstance().searchCheckOutByBorID(map,
+                        Integer.parseInt(view.getTxtBorID().getText()));
+                getBorrow();
+            }
+        }
+    }
+	
 	/**
 	 * Search book
 	 */
@@ -399,7 +418,7 @@ public class CheckInController {
 	}
 
 	/**
-	 * Get employee infomation & issue date
+	 * Get employee information & issue date
 	 */
 	private void getInfoSelected() {
 		// Get field employee selected

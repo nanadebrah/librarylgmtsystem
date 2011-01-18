@@ -120,6 +120,10 @@
         <void method="add"> 
          <object class="com.jformdesigner.model.FormComponent"> 
           <string>javax.swing.JTextField</string> 
+          <void method="setProperty"> 
+           <string>enabled</string> 
+           <boolean>false</boolean> 
+          </void> 
           <void property="name"> 
            <string>txtFrom</string> 
           </void> 

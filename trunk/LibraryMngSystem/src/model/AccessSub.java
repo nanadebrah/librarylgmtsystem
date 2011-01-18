@@ -177,7 +177,7 @@ public class AccessSub {
 			}
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				Vector vt = new Vector();
+				Vector<Object> vt = new Vector<Object>();
 				vt.addElement(rsDetails.getInt(1));
 				vt.addElement(rsDetails.getString(2));
 				vt.addElement(rsDetails.getString(3));
