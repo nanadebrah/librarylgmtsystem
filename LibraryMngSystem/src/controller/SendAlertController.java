@@ -29,7 +29,7 @@ public class SendAlertController {
 	private int borID, empID, bookID;
 	private String[] arr;
 	private String[] arrEmail;
-	private String content = "";
+	private String content = Messages.getString("SendAlertController.0");
 	private boolean isSent;
 	private entity.Fee fee;
 
@@ -59,6 +59,7 @@ public class SendAlertController {
 		// Add event send btn
 		view.getBtnSend().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				doSendMail();
 			}
@@ -66,6 +67,7 @@ public class SendAlertController {
 		// Add event close btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 			}
@@ -75,12 +77,73 @@ public class SendAlertController {
 	}
 
 	/**
+	 * Create default content of mail
+	 */
+	private void createContent() {
+		// Design mail content
+		view.getTxtSubject().setText(
+				Messages.getString("SendAlertController.1") + arr[9]);
+		content += Messages.getString("SendAlertController.2") + arr[1]
+				+ Messages.getString("SendAlertController.3");
+		content += Messages.getString("SendAlertController.4") + arr[12]
+				+ Messages.getString("SendAlertController.5")
+				+ Messages.getString("SendAlertController.6");
+		content += Messages.getString("SendAlertController.7")
+				+ Messages.getString("SendAlertController.8")
+				+ new Date().toString()
+				+ Messages.getString("SendAlertController.9")
+				+ Messages.getString("SendAlertController.10") + arr[9]
+				+ Messages.getString("SendAlertController.11")
+				+ Messages.getString("SendAlertController.12") + arr[11]
+				+ Messages.getString("SendAlertController.13")
+				+ Messages.getString("SendAlertController.14") + arr[12]
+				+ Messages.getString("SendAlertController.15")
+				+ Messages.getString("SendAlertController.16")
+				+ fee.getBorFee()
+				+ Messages.getString("SendAlertController.17")
+				+ Messages.getString("SendAlertController.18")
+				+ fee.getLateFee()
+				+ Messages.getString("SendAlertController.19");
+		content += Messages.getString("SendAlertController.20")
+				+ Messages.getString("SendAlertController.21") + arr[1]
+				+ Messages.getString("SendAlertController.22")
+				+ Messages.getString("SendAlertController.23") + arr[4]
+				+ Messages.getString("SendAlertController.24")
+				+ Messages.getString("SendAlertController.25") + arr[6]
+				+ Messages.getString("SendAlertController.26")
+				+ Messages.getString("SendAlertController.27") + arr[7]
+				+ Messages.getString("SendAlertController.28")
+				+ Messages.getString("SendAlertController.29") + arr[5]
+				+ Messages.getString("SendAlertController.30");
+		content += Messages.getString("SendAlertController.31")
+				+ Messages.getString("SendAlertController.32") + arr[15]
+				+ Messages.getString("SendAlertController.33")
+				+ Messages.getString("SendAlertController.34") + arr[16]
+				+ Messages.getString("SendAlertController.35")
+				+ Messages.getString("SendAlertController.36") + arr[17]
+				+ Messages.getString("SendAlertController.37")
+				+ Messages.getString("SendAlertController.38") + arr[18]
+				+ Messages.getString("SendAlertController.39")
+				+ Messages.getString("SendAlertController.40") + arr[19]
+				+ Messages.getString("SendAlertController.41")
+				+ Messages.getString("SendAlertController.42") + arr[20]
+				+ Messages.getString("SendAlertController.43");
+		content += Messages.getString("SendAlertController.44")
+				+ Messages.getString("SendAlertController.45")
+				+ Messages.getString("SendAlertController.46");
+		content += Messages.getString("SendAlertController.47")
+				+ Messages.getString("SendAlertController.48");
+		view.getTxtContent().setText(content);
+	}
+
+	/**
 	 * Send mail
 	 */
 	private void doSendMail() {
 		try {
 			Thread t = new Thread(new Runnable() {
 
+				@Override
 				public void run() {
 					try {
 						view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -100,50 +163,22 @@ public class SendAlertController {
 			t.join();
 			view.setCursor(null);
 			if (isSent) {
-				JOptionPane.showMessageDialog(view, "Send successful!",
-						"Send Alert", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(view,
+						Messages.getString("SendAlertController.49"),
+						Messages.getString("SendAlertController.50"),
+						JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(view, "Send failed!\n"
-						+ "Please recheck your email config", "Send Alert",
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("SendAlertController.51")
+								+ Messages.getString("SendAlertController.52"),
+						Messages.getString("SendAlertController.53"),
 						JOptionPane.ERROR_MESSAGE);
 			}
 			view.dispose();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	/**
-	 * Create default content of mail
-	 */
-	private void createContent() {
-		// Design mail content
-		view.getTxtSubject().setText(
-				"Library Management System: Borrow #" + arr[9]);
-		content += "Dear " + arr[1] + ",\n\n";
-		content += "This email notify to email about your book borrow detail and "
-				+ arr[12]
-				+ " is your borrow's due-date.\n"
-				+ "If you return late, you will be fine.\n\n";
-		content += "========== GENERAL INFORMATION =========\n" + "Date/Time: "
-				+ new Date().toString() + "\n" + "Borrow No: " + arr[9] + "\n"
-				+ "Issue Date: " + arr[11] + "\n" + "Due Date: " + arr[12]
-				+ "\n" + "Borrow Fee: $" + fee.getBorFee() + "/Day\n"
-				+ "Late Fee: $" + fee.getLateFee() + "/Day\n\n";
-		content += "========= EMPLOYEE INFORMATION =========\n" + "Name: "
-				+ arr[1] + "\n" + "Email: " + arr[4] + "\n" + "Address: "
-				+ arr[6] + "\n" + "Phone: " + arr[7] + "\n" + "Department: "
-				+ arr[5] + "\n\n";
-		content += "=========== BOOK INFORMATION ==========\n" + "CallNumber: "
-				+ arr[15] + "\n" + "ISBN: " + arr[16] + "\n" + "Title: "
-				+ arr[17] + "\n" + "Author Name: " + arr[18] + "\n"
-				+ "Publisher: " + arr[19] + "\n" + "Subject: " + arr[20]
-				+ "\n\n";
-		content += "*********************************************************\n"
-				+ "This e-mail was generated by a mail handling system.\n"
-				+ "If you have any question please reply this email.\n\n\n";
-		content += "On behalf of library manager,\n" + "Regards.";
-		view.getTxtContent().setText(content);
 	}
 
 	/**

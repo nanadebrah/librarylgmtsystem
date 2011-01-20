@@ -70,13 +70,14 @@ public class SubjectController {
 		// Add model to table
 		getView().getTblSub().setModel(subModel);
 		// Set model
-		subModel.addColumn("Subject No");
-		subModel.addColumn("Subject Name");
-		subModel.addColumn("Description");
+		subModel.addColumn(Messages.getString("SubjectController.13")); //$NON-NLS-1$
+		subModel.addColumn(Messages.getString("SubjectController.14")); //$NON-NLS-1$
+		subModel.addColumn(Messages.getString("SubjectController.15")); //$NON-NLS-1$
 
 		// Add event add btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				addSubject();
 			}
@@ -85,6 +86,7 @@ public class SubjectController {
 		// Add event search btn
 		view.getBtnSearch().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchSubject();
@@ -95,6 +97,7 @@ public class SubjectController {
 		// Add event edit btn
 		view.getBtnEdit().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				editSubject();
 			}
@@ -103,6 +106,7 @@ public class SubjectController {
 		// Add event view btn
 		view.getBtnView().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				viewSubject();
 			}
@@ -111,6 +115,7 @@ public class SubjectController {
 		// Add event del btn
 		view.getBtnDelete().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				deleteSub();
 			}
@@ -119,12 +124,14 @@ public class SubjectController {
 		// Add event to subject table
 		view.getTblSub().addFocusListener(new FocusAdapter() {
 
+			@Override
 			public void focusLost(java.awt.event.FocusEvent evt) {
 				tableFocus();
 			}
 		});
 		view.getTblSub().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				// Set enable action button
 				view.getBtnDelete().setEnabled(true);
@@ -140,6 +147,7 @@ public class SubjectController {
 		// Add event enter key
 		getView().getTxtSubID().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchSubject();
@@ -148,6 +156,7 @@ public class SubjectController {
 		});
 		getView().getTxtSubName().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchSubject();
@@ -158,6 +167,7 @@ public class SubjectController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -170,6 +180,7 @@ public class SubjectController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -179,6 +190,7 @@ public class SubjectController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchSubject();
@@ -186,6 +198,7 @@ public class SubjectController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				searchSubject();
@@ -194,28 +207,26 @@ public class SubjectController {
 	}
 
 	/**
-	 * Delete a subject
+	 * Add an subject
 	 */
-	private void deleteSub() {
+	private void addSubject() {
 		parent.doBlur();
-		int sure = JOptionPane.showConfirmDialog(parent.getView(),
-				"You sure want delete this subject!", "Delete subject",
-				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-		if (sure == JOptionPane.OK_OPTION) {
-			// Get subID selected
-			String subID = view.getTblSub()
-					.getValueAt(view.getTblSub().getSelectedRow(), 0)
-					.toString();
-			if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {
-				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete failed!\n"
-								+ "May be many books is using this subject.",
-						"Error!", JOptionPane.ERROR_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete successful!", "Successful!",
+		// Display Add subject dialog
+		addSubject = new AddSubjectController(new AddSubjectDialog(
+				parent.getView()));
+		addSubject.getView().setVisible(true);
+		// invoked method add subject
+		if (addSubject.getSub() != null) {
+			if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
+				JOptionPane.showMessageDialog(getView(),
+						Messages.getString("SubjectController.0"),
+						Messages.getString("SubjectController.1"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
-				subModel.removeRow(view.getTblSub().getSelectedRow());
+				view.getTxtSubID().setText(
+						Messages.getString("SubjectController.2")); //$NON-NLS-1$
+				view.getTxtSubName().setText(
+						Messages.getString("SubjectController.3")); //$NON-NLS-1$
+				view.getBtnLast().doClick();
 			}
 		}
 		tableFocus();
@@ -223,19 +234,34 @@ public class SubjectController {
 	}
 
 	/**
-	 * View subject
+	 * Delete a subject
 	 */
-	private void viewSubject() {
-		// Get Id subject selected
-		String subID = view.getTblSub()
-				.getValueAt(view.getTblSub().getSelectedRow(), 0).toString();
-		// Get subject from database
-		Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
+	private void deleteSub() {
 		parent.doBlur();
-		// Create instance of subject edit dialog and display it
-		viewSubject = new ViewSubjectController(new ViewSubjectDialog(
-				parent.getView()), sub);
-		viewSubject.getView().setVisible(true);
+		int sure = JOptionPane.showConfirmDialog(parent.getView(),
+				Messages.getString("SubjectController.4"),
+				Messages.getString("SubjectController.5"), //$NON-NLS-1$ 
+				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+		if (sure == JOptionPane.OK_OPTION) {
+			// Get subID selected
+			String subID = view.getTblSub()
+					.getValueAt(view.getTblSub().getSelectedRow(), 0)
+					.toString();
+			if (!AccessSub.getInstance().deleteSub(Integer.parseInt(subID))) {
+				JOptionPane.showMessageDialog(
+						parent.getView(),
+						Messages.getString("SubjectController.6") //$NON-NLS-1$
+								+ Messages.getString("SubjectController.7"), //$NON-NLS-1$
+						Messages.getString("SubjectController.8"),
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(parent.getView(),
+						Messages.getString("SubjectController.9"),
+						Messages.getString("SubjectController.10"), //$NON-NLS-1$ 
+						JOptionPane.INFORMATION_MESSAGE);
+				subModel.removeRow(view.getTblSub().getSelectedRow());
+			}
+		}
 		tableFocus();
 		parent.doBlur();
 	}
@@ -257,65 +283,15 @@ public class SubjectController {
 		// Update data on database
 		if (editSubject.getSub() != null) {
 			if (AccessSub.getInstance().editSub(editSubject.getSub())) {
-				JOptionPane.showMessageDialog(getView(), "Update successful",
-						"Successful!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(
+						getView(),
+						Messages.getString("SubjectController.11"), //$NON-NLS-1$
+						Messages.getString("SubjectController.12"),
+						JOptionPane.INFORMATION_MESSAGE);
 				// Remove old data on table model
 				subModel.removeRow(view.getTblSub().getSelectedRow());
 				// Add new row
 				subModel.addRow(sub.toVector());
-			}
-		}
-		tableFocus();
-		parent.doBlur();
-	}
-
-	/**
-	 * Do lost focus table
-	 */
-	private void tableFocus() {
-		// Set disable action button
-		view.getBtnEdit().setEnabled(false);
-		view.getBtnDelete().setEnabled(false);
-		view.getBtnView().setEnabled(false);
-		view.getTblSub().setFocusable(false);
-	}
-
-	/**
-	 * Search subject
-	 */
-	public void searchSubject() {		
-        if (!LibValid.getInstance().SubID(view.getTxtSubID().getText())) {
-            JOptionPane.showMessageDialog(view, "Subject Number not valid!",
-                    "Search", JOptionPane.ERROR_MESSAGE);
-        } else {
-        	parent.removeModel(subModel);
-            totalRow = AccessSub.getInstance().searchSubject(subModel,
-                    getView().getTxtSubID().getText(),
-                    getView().getTxtSubName().getText(), (page - 1));
-
-            view.getLblPage().setText("Page " + page + "/"
-                    + LibUtil.getInstance().getPage(totalRow));
-        }
-	}
-
-	/**
-	 * Add an subject
-	 */
-	private void addSubject() {
-		parent.doBlur();
-		// Display Add subject dialog
-		addSubject = new AddSubjectController(new AddSubjectDialog(
-				parent.getView()));
-		addSubject.getView().setVisible(true);
-		// invoked method add subject
-		if (addSubject.getSub() != null) {
-			if (AccessSub.getInstance().addSubject(addSubject.getSub())) {
-				JOptionPane.showMessageDialog(getView(),
-						"Add subject successful", "Successful!",
-						JOptionPane.INFORMATION_MESSAGE);
-				view.getTxtSubID().setText("");
-				view.getTxtSubName().setText("");
-				view.getBtnLast().doClick();
 			}
 		}
 		tableFocus();
@@ -330,10 +306,62 @@ public class SubjectController {
 	}
 
 	/**
+	 * Search subject
+	 */
+	public void searchSubject() {
+		if (!LibValid.getInstance().SubID(view.getTxtSubID().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("SubjectController.16"), //$NON-NLS-1$
+					Messages.getString("SubjectController.17"),
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(subModel);
+			totalRow = AccessSub.getInstance().searchSubject(subModel,
+					getView().getTxtSubID().getText(),
+					getView().getTxtSubName().getText(), (page - 1));
+
+			view.getLblPage().setText(
+					Messages.getString("SubjectController.18") + page
+							+ Messages.getString("SubjectController.19") //$NON-NLS-1$ 
+							+ LibUtil.getInstance().getPage(totalRow));
+		}
+	}
+
+	/**
 	 * @param view
 	 *            the view to set
 	 */
 	public void setView(SubjectPanel view) {
 		this.view = view;
+	}
+
+	/**
+	 * Do lost focus table
+	 */
+	private void tableFocus() {
+		// Set disable action button
+		view.getBtnEdit().setEnabled(false);
+		view.getBtnDelete().setEnabled(false);
+		view.getBtnView().setEnabled(false);
+		view.getTblSub().setFocusable(false);
+	}
+
+	/**
+	 * View subject
+	 */
+	private void viewSubject() {
+		// Get Id subject selected
+		String subID = view.getTblSub()
+				.getValueAt(view.getTblSub().getSelectedRow(), 0).toString();
+		// Get subject from database
+		Subject sub = AccessSub.getInstance().getSubject(new Integer(subID));
+		parent.doBlur();
+		// Create instance of subject edit dialog and display it
+		viewSubject = new ViewSubjectController(new ViewSubjectDialog(
+				parent.getView()), sub);
+		viewSubject.getView().setVisible(true);
+		tableFocus();
+		parent.doBlur();
 	}
 }

@@ -26,33 +26,17 @@ public class Employee {
 	private String Department;
 
 	/**
-	 * @return the EmpID
+	 * @return the Address
 	 */
-	public int getEmpID() {
-		return EmpID;
+	public String getAddress() {
+		return Address;
 	}
 
 	/**
-	 * @param EmpID
-	 *            the EmpID to set
+	 * @return the Department
 	 */
-	public void setEmpID(int EmpID) {
-		this.EmpID = EmpID;
-	}
-
-	/**
-	 * @return the Name
-	 */
-	public String getName() {
-		return Name;
-	}
-
-	/**
-	 * @param Name
-	 *            the Name to set
-	 */
-	public void setName(String Name) {
-		this.Name = Name;
+	public String getDepartment() {
+		return Department;
 	}
 
 	/**
@@ -63,11 +47,24 @@ public class Employee {
 	}
 
 	/**
-	 * @param DOB
-	 *            the DOB to set
+	 * @return the Email
 	 */
-	public void setDOB(long DOB) {
-		this.DOB = DOB;
+	public String getEmail() {
+		return Email;
+	}
+
+	/**
+	 * @return the EmpID
+	 */
+	public int getEmpID() {
+		return EmpID;
+	}
+
+	/**
+	 * @return the fixName
+	 */
+	public String getFixName() {
+		return fixName;
 	}
 
 	/**
@@ -78,26 +75,10 @@ public class Employee {
 	}
 
 	/**
-	 * @param Gender
-	 *            the Gender to set
+	 * @return the Name
 	 */
-	public void setGender(int Gender) {
-		this.Gender = Gender;
-	}
-
-	/**
-	 * @return the Email
-	 */
-	public String getEmail() {
-		return Email;
-	}
-
-	/**
-	 * @param Email
-	 *            the Email to set
-	 */
-	public void setEmail(String Email) {
-		this.Email = Email;
+	public String getName() {
+		return Name;
 	}
 
 	/**
@@ -108,18 +89,17 @@ public class Employee {
 	}
 
 	/**
-	 * @param Password
-	 *            the Password to set
+	 * @return the Permission
 	 */
-	public void setPassword(String Password) {
-		this.Password = Password;
+	public int getPermission() {
+		return Permission;
 	}
 
 	/**
-	 * @return the Address
+	 * @return the phone
 	 */
-	public String getAddress() {
-		return Address;
+	public String getPhone() {
+		return Phone;
 	}
 
 	/**
@@ -131,28 +111,6 @@ public class Employee {
 	}
 
 	/**
-	 * @return the Permission
-	 */
-	public int getPermission() {
-		return Permission;
-	}
-
-	/**
-	 * @param Permission
-	 *            the Permission to set
-	 */
-	public void setPermission(int Permission) {
-		this.Permission = Permission;
-	}
-
-	/**
-	 * @return the Department
-	 */
-	public String getDepartment() {
-		return Department;
-	}
-
-	/**
 	 * @param Department
 	 *            the Department to set
 	 */
@@ -161,10 +119,67 @@ public class Employee {
 	}
 
 	/**
-	 * @return the phone
+	 * @param DOB
+	 *            the DOB to set
 	 */
-	public String getPhone() {
-		return Phone;
+	public void setDOB(long DOB) {
+		this.DOB = DOB;
+	}
+
+	/**
+	 * @param Email
+	 *            the Email to set
+	 */
+	public void setEmail(String Email) {
+		this.Email = Email;
+	}
+
+	/**
+	 * @param EmpID
+	 *            the EmpID to set
+	 */
+	public void setEmpID(int EmpID) {
+		this.EmpID = EmpID;
+	}
+
+	/**
+	 * @param fixName
+	 *            the fixName to set
+	 */
+	public void setFixName(String fixName) {
+		this.fixName = fixName;
+	}
+
+	/**
+	 * @param Gender
+	 *            the Gender to set
+	 */
+	public void setGender(int Gender) {
+		this.Gender = Gender;
+	}
+
+	/**
+	 * @param Name
+	 *            the Name to set
+	 */
+	public void setName(String Name) {
+		this.Name = Name;
+	}
+
+	/**
+	 * @param Password
+	 *            the Password to set
+	 */
+	public void setPassword(String Password) {
+		this.Password = Password;
+	}
+
+	/**
+	 * @param Permission
+	 *            the Permission to set
+	 */
+	public void setPermission(int Permission) {
+		this.Permission = Permission;
 	}
 
 	/**
@@ -183,32 +198,17 @@ public class Employee {
 		vt.addElement(EmpID);
 		vt.addElement(Name);
 		if (Gender == 1) {
-			vt.addElement("Male");
+			vt.addElement(Messages.getString("Employee.0")); //$NON-NLS-1$
 		} else {
-			vt.addElement("Female");
+			vt.addElement(Messages.getString("Employee.1")); //$NON-NLS-1$
 		}
 		vt.addElement(Email);
 		vt.addElement(Department);
 		if (Permission == 1) {
-			vt.addElement("Librarian");
+			vt.addElement(Messages.getString("Employee.2")); //$NON-NLS-1$
 		} else {
-			vt.addElement("Employee");
+			vt.addElement(Messages.getString("Employee.3")); //$NON-NLS-1$
 		}
 		return vt;
-	}
-
-	/**
-	 * @return the fixName
-	 */
-	public String getFixName() {
-		return fixName;
-	}
-
-	/**
-	 * @param fixName
-	 *            the fixName to set
-	 */
-	public void setFixName(String fixName) {
-		this.fixName = fixName;
 	}
 }

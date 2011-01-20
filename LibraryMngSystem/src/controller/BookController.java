@@ -68,18 +68,19 @@ public class BookController {
 		// Add model to table
 		view.getTblBook().setModel(bookModel);
 		// Set model
-		bookModel.addColumn("No");
-		bookModel.addColumn("Call Number");
-		bookModel.addColumn("ISBN");
-		bookModel.addColumn("Title");
-		bookModel.addColumn("Author");
-		bookModel.addColumn("Publisher");
-		bookModel.addColumn("Subject");
-		bookModel.addColumn("Copies/Store");
+		bookModel.addColumn(Messages.getString("BookController.21")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.22")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.23")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.24")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.25")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.26")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.27")); //$NON-NLS-1$
+		bookModel.addColumn(Messages.getString("BookController.28")); //$NON-NLS-1$
 
 		// Add event to book table
 		view.getTblBook().addFocusListener(new FocusAdapter() {
 
+			@Override
 			public void focusLost(java.awt.event.FocusEvent evt) {
 				tableFocus();
 			}
@@ -87,8 +88,9 @@ public class BookController {
 
 		view.getTblBook().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable acction button
+				// Set enable action button
 				view.getBtnEdit().setEnabled(true);
 				view.getBtnDelete().setEnabled(true);
 				view.getBtnView().setEnabled(true);
@@ -102,6 +104,7 @@ public class BookController {
 		// Add event view btn
 		view.getBtnView().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				viewBook();
 			}
@@ -110,6 +113,7 @@ public class BookController {
 		// Add event add btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				addBook();
@@ -119,6 +123,7 @@ public class BookController {
 		// Add event search btn
 		view.getBtnSearch().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				page = 1;
@@ -129,6 +134,7 @@ public class BookController {
 		// Add event edit btn
 		view.getBtnEdit().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				editBook();
 			}
@@ -137,6 +143,7 @@ public class BookController {
 		// Add event del btn
 		view.getBtnDelete().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				deleteBook();
 			}
@@ -145,6 +152,7 @@ public class BookController {
 		// Add enter key search
 		view.getTxtAuthor().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBook();
@@ -153,6 +161,7 @@ public class BookController {
 		});
 		view.getTxtCallNo().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBook();
@@ -161,6 +170,7 @@ public class BookController {
 		});
 		view.getTxtISBN().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBook();
@@ -169,6 +179,7 @@ public class BookController {
 		});
 		view.getTxtTitle().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBook();
@@ -179,6 +190,7 @@ public class BookController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -191,6 +203,7 @@ public class BookController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -200,6 +213,7 @@ public class BookController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchBook();
@@ -207,6 +221,7 @@ public class BookController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				searchBook();
@@ -215,12 +230,51 @@ public class BookController {
 	}
 
 	/**
+	 * Method add a book on database
+	 */
+	private void addBook() {
+		parent.doBlur();
+		// Display Add book dialog
+		addBook = new AddBookController(new AddBookDialog(parent.getView()));
+		addBook.getView().setVisible(true);
+		// invoked method add book
+		if (addBook.getBook() != null) {
+			if (AccessBook.getInstance().addBook(addBook.getBook())) {
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("BookController.0"), //$NON-NLS-1$
+						Messages.getString("BookController.1"),
+						JOptionPane.INFORMATION_MESSAGE);
+				// Move to last page, show newest book
+				view.getTxtAuthor().setText(
+						Messages.getString("BookController.2")); //$NON-NLS-1$
+				view.getTxtCallNo().setText(
+						Messages.getString("BookController.3")); //$NON-NLS-1$
+				view.getTxtISBN().setText(
+						Messages.getString("BookController.4")); //$NON-NLS-1$
+				view.getTxtTitle().setText(
+						Messages.getString("BookController.5")); //$NON-NLS-1$
+				view.getBtnLast().doClick();
+			} else {
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("BookController.6") //$NON-NLS-1$
+								+ Messages.getString("BookController.7"), //$NON-NLS-1$
+						Messages.getString("BookController.8"),
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		parent.doBlur();
+	}
+
+	/**
 	 * Delete a book selected
 	 */
 	private void deleteBook() {
 		parent.doBlur();
 		int sure = JOptionPane.showConfirmDialog(parent.getView(),
-				"You sure want delete this book!", "Delete book",
+				Messages.getString("BookController.9"),
+				Messages.getString("BookController.10"), //$NON-NLS-1$ 
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		if (sure == JOptionPane.OK_OPTION) {
 			// Get book id selected
@@ -228,13 +282,16 @@ public class BookController {
 					.getValueAt(view.getTblBook().getSelectedRow(), 0)
 					.toString();
 			if (!AccessBook.getInstance().deleteBook(Integer.parseInt(bookID))) {
-				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete failed!\n"
-								+ "May be this book is borrowing by some one!",
-						"Error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						parent.getView(),
+						Messages.getString("BookController.11") //$NON-NLS-1$
+								+ Messages.getString("BookController.12"), //$NON-NLS-1$
+						Messages.getString("BookController.13"),
+						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete successful!", "Successful!",
+						Messages.getString("BookController.14"),
+						Messages.getString("BookController.15"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
 				bookModel.removeRow(view.getTblBook().getSelectedRow());
 			}
@@ -243,7 +300,7 @@ public class BookController {
 	}
 
 	/**
-	 * Method edit book on databse and edit on book table
+	 * Method edit book on database and edit on book table
 	 */
 	private void editBook() {
 		parent.doBlur();
@@ -259,20 +316,74 @@ public class BookController {
 		// Update data on database
 		if (editBook.getBook() != null) {
 			if (AccessBook.getInstance().editBook(editBook.getBook())) {
-				JOptionPane.showMessageDialog(view, "Update successful",
-						"Successful!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("BookController.16"), //$NON-NLS-1$
+						Messages.getString("BookController.17"),
+						JOptionPane.INFORMATION_MESSAGE);
 				// Remove old data on table model
 				bookModel.removeRow(view.getTblBook().getSelectedRow());
 				// Add new row
 				bookModel.addRow(book.toVector());
 			} else {
-				JOptionPane.showMessageDialog(parent.getView(),
-						"Edit failed!\n" + "May be ISBN isn't unique.",
-						"Edit Book!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						parent.getView(),
+						Messages.getString("BookController.18")
+								+ Messages.getString("BookController.19"), //$NON-NLS-1$ 
+						Messages.getString("BookController.20"),
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		tableFocus();
 		parent.doBlur();
+	}
+
+	/**
+	 * @return the view
+	 */
+	public BookPanel getView() {
+		return view;
+	}
+
+	/**
+	 * Method search Book
+	 */
+	public void searchBook() {
+		parent.removeModel(bookModel);
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				totalRow = AccessBook.getInstance().searchBook(bookModel,
+						view.getTxtCallNo().getText(),
+						view.getTxtISBN().getText(),
+						view.getTxtTitle().getText(),
+						view.getTxtAuthor().getText(), (page - 1));
+				view.getLblPage().setText(
+						Messages.getString("BookController.29") + page
+								+ Messages.getString("BookController.30") //$NON-NLS-1$ 
+								+ LibUtil.getInstance().getPage(totalRow));
+			}
+		}).start();
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(BookPanel view) {
+		this.view = view;
+	}
+
+	/**
+	 * Do lost focus table
+	 */
+	private void tableFocus() {
+		// Set disable action button
+		view.getBtnDelete().setEnabled(false);
+		view.getBtnEdit().setEnabled(false);
+		view.getBtnView().setEnabled(false);
+		view.getTblBook().setFocusable(false);
 	}
 
 	/**
@@ -291,79 +402,5 @@ public class BookController {
 		viewBook.getView().setVisible(true);
 		tableFocus();
 		parent.doBlur();
-	}
-
-	/**
-	 * Method search Book
-	 */
-	public void searchBook() {
-		parent.removeModel(bookModel);
-		new Thread(new Runnable() {
-
-			public void run() {
-				totalRow = AccessBook.getInstance().searchBook(bookModel,
-						view.getTxtCallNo().getText(),
-						view.getTxtISBN().getText(),
-						view.getTxtTitle().getText(),
-						view.getTxtAuthor().getText(), (page - 1));
-				view.getLblPage().setText(
-						"Page " + page + "/"
-								+ LibUtil.getInstance().getPage(totalRow));
-			}
-		}).start();
-	}
-
-	/**
-	 * Method add a book on database
-	 */
-	private void addBook() {
-		parent.doBlur();
-		// Display Add book dialog
-		addBook = new AddBookController(new AddBookDialog(parent.getView()));
-		addBook.getView().setVisible(true);
-		// invoked method add book
-		if (addBook.getBook() != null) {
-			if (AccessBook.getInstance().addBook(addBook.getBook())) {
-				JOptionPane.showMessageDialog(view, "Add successful",
-						"Successful!", JOptionPane.INFORMATION_MESSAGE);
-				// Move to last page, show newestbook
-				view.getTxtAuthor().setText("");
-				view.getTxtCallNo().setText("");
-				view.getTxtISBN().setText("");
-				view.getTxtTitle().setText("");
-				view.getBtnLast().doClick();
-			} else {
-				JOptionPane.showMessageDialog(view, "Add failed!\n"
-						+ "May be this book have added or ISBN is duplicate.",
-						"Update Book", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-		parent.doBlur();
-	}
-
-	/**
-	 * Do lost focus table
-	 */
-	private void tableFocus() {
-		// Set disable acction button
-		view.getBtnDelete().setEnabled(false);
-		view.getBtnEdit().setEnabled(false);
-		view.getBtnView().setEnabled(false);
-		view.getTblBook().setFocusable(false);
-	}
-
-	/**
-	 * @return the view
-	 */
-	public BookPanel getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(BookPanel view) {
-		this.view = view;
 	}
 }

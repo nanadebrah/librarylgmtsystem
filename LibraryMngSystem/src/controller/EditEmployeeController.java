@@ -44,14 +44,17 @@ public class EditEmployeeController {
 	private void initComponent() {
 		// Set all old field of employee
 		setField();
-		// add event chang permission
+		// add event change permission
 		view.getCbxPermission().addItemListener(new ItemListener() {
 
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// If permission is employee, it doesn't need password
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					if (e.getItem().equals("Employee")) {
-						view.getTxtPass().setText("");
+					if (e.getItem().equals(
+							Messages.getString("EditEmployeeController.0"))) { //$NON-NLS-1$
+						view.getTxtPass().setText(
+								Messages.getString("EditEmployeeController.1")); //$NON-NLS-1$
 						view.getTxtPass().setEditable(false);
 					} else {
 						view.getTxtPass().setEditable(true);
@@ -62,6 +65,7 @@ public class EditEmployeeController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				emp = null;
 				view.dispose();
@@ -70,6 +74,7 @@ public class EditEmployeeController {
 		// Add event add btn
 		view.getBtnSave().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validEmp()) {
 					toObject();
@@ -80,13 +85,15 @@ public class EditEmployeeController {
 		// Add event windows closing
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				emp = null;
 				view.dispose();
 			}
 
+			@Override
 			public void windowOpened(java.awt.event.WindowEvent evt) {
-				// If employee, hiden passtext and pass label
+				// If employee, hidden pass text and pass label
 				if (emp.getPermission() == 0) {
 					view.getTxtPass().setEditable(false);
 				}
@@ -97,57 +104,25 @@ public class EditEmployeeController {
 	}
 
 	/**
-	 * Valid all field of form
-	 * 
-	 * @return
+	 * @return the employee
 	 */
-	private boolean validEmp() {
-		if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
-			JOptionPane.showMessageDialog(view, "Name must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtName().requestFocus();
-			return false;
-		}
-		if (view.getTxtDOB().getDate() == null) {
-			JOptionPane.showMessageDialog(view, "Date of bith must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtDOB().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
-			JOptionPane.showMessageDialog(view, "Address must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtAdd().requestFocus();
-			return false;
-		}
-		if (view.getCbxPermission().getSelectedItem().equals("Librarian")) {
-			if (!LibValid.getInstance().Password(
-					new String(view.getTxtPass().getPassword()))) {
-				JOptionPane.showMessageDialog(view, "Password must valid.",
-						"Valid!", JOptionPane.INFORMATION_MESSAGE);
-				view.getTxtPass().requestFocus();
-				return false;
-			}
-		}
-		if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
-			JOptionPane.showMessageDialog(view, "Email must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtEmail().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
-			JOptionPane.showMessageDialog(view, "Phone must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtPhone().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
-			JOptionPane.showMessageDialog(view, "Department must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtDepart().requestFocus();
-			return false;
-		}
-		return true;
+	public Employee getEmp() {
+		return emp;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public EditEmployeeDialog getView() {
+		return view;
+	}
+
+	/**
+	 * @param emp
+	 *            the emp to set
+	 */
+	public void setEmp(Employee emp) {
+		this.emp = emp;
 	}
 
 	/**
@@ -176,6 +151,14 @@ public class EditEmployeeController {
 	}
 
 	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(EditEmployeeDialog view) {
+		this.view = view;
+	}
+
+	/**
 	 * Transfer all field to object
 	 */
 	private void toObject() {
@@ -192,7 +175,7 @@ public class EditEmployeeController {
 		emp.setPhone(view.getTxtPhone().getText());
 		emp.setDepartment(view.getTxtDepart().getText());
 		if (view.getCbxPermission().getSelectedItem().toString()
-				.equals("Librarian")) {
+				.equals(Messages.getString("EditEmployeeController.2"))) { //$NON-NLS-1$
 			emp.setPermission(1);
 		} else {
 			emp.setName(view.getTxtName().getText());
@@ -201,32 +184,75 @@ public class EditEmployeeController {
 	}
 
 	/**
-	 * @return the emp
+	 * Valid all field of form
+	 * 
+	 * @return
 	 */
-	public Employee getEmp() {
-		return emp;
-	}
-
-	/**
-	 * @param emp
-	 *            the emp to set
-	 */
-	public void setEmp(Employee emp) {
-		this.emp = emp;
-	}
-
-	/**
-	 * @return the view
-	 */
-	public EditEmployeeDialog getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(EditEmployeeDialog view) {
-		this.view = view;
+	private boolean validEmp() {
+		if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditEmployeeController.3"),
+					Messages.getString("EditEmployeeController.4"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtName().requestFocus();
+			return false;
+		}
+		if (view.getTxtDOB().getDate() == null) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("EditEmployeeController.5"), //$NON-NLS-1$
+					Messages.getString("EditEmployeeController.6"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtDOB().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("EditEmployeeController.7"), //$NON-NLS-1$
+					Messages.getString("EditEmployeeController.8"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtAdd().requestFocus();
+			return false;
+		}
+		if (view.getCbxPermission().getSelectedItem()
+				.equals(Messages.getString("EditEmployeeController.9"))) { //$NON-NLS-1$
+			if (!LibValid.getInstance().Password(
+					new String(view.getTxtPass().getPassword()))) {
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("EditEmployeeController.10"), //$NON-NLS-1$
+						Messages.getString("EditEmployeeController.11"),
+						JOptionPane.INFORMATION_MESSAGE);
+				view.getTxtPass().requestFocus();
+				return false;
+			}
+		}
+		if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditEmployeeController.12"),
+					Messages.getString("EditEmployeeController.13"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtEmail().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditEmployeeController.14"),
+					Messages.getString("EditEmployeeController.15"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtPhone().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("EditEmployeeController.16"), //$NON-NLS-1$
+					Messages.getString("EditEmployeeController.17"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtDepart().requestFocus();
+			return false;
+		}
+		return true;
 	}
 }

@@ -24,9 +24,6 @@ public class AccessEmp {
 
 	// Defined instance of AccessEmp
 	private static AccessEmp instance = new AccessEmp();
-	private Connection cn = null;
-	private ResultSet rsDetails = null;
-	private CallableStatement csDetails = null;
 
 	/**
 	 * Static method get instance of AccessEmp
@@ -37,93 +34,10 @@ public class AccessEmp {
 		return instance;
 	}
 
-	/**
-	 * Get a info employee to employee object
-	 * 
-	 * @param EmpID
-	 *            is ID to query on database
-	 * @return Employee queried
-	 */
-	public Employee getEmpInfo(int EmpID) {
-		// Defined Object
-		Employee emp = null;
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.GET_EMP_INFO);
-			csDetails.setInt(1, EmpID);
-			rsDetails = csDetails.executeQuery();
-			if (rsDetails.next()) {
-				emp = new Employee();
-				// Set all field on database to employee object
-				emp.setEmpID(rsDetails.getInt(1));
-				emp.setName(rsDetails.getString(2));
-				emp.setDOB(rsDetails.getDate(3).getTime());
-				emp.setGender(rsDetails.getInt(4));
-				emp.setEmail(rsDetails.getString(5));
-				emp.setAddress(rsDetails.getString(7));
-				emp.setPhone(rsDetails.getString(8));
-				emp.setPermission(rsDetails.getInt(9));
-				emp.setDepartment(rsDetails.getString(10));
-				// return employee object
-				return emp;
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(rsDetails);
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return null;
-	}
+	private Connection cn = null;
+	private ResultSet rsDetails = null;
 
-	/**
-	 * Get borrow details of employee
-	 * 
-	 * @param borModel
-	 * @param empID
-	 */
-	public void getEmpBorInfo(DefaultTableModel borModel, int empID) {
-		java.util.Vector<Object> vt;
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.GET_EMP_BOR_INFO);
-			csDetails.setInt(1, empID);
-			rsDetails = csDetails.executeQuery();
-			while (rsDetails.next()) {
-				vt = new java.util.Vector<Object>();
-				vt.addElement(rsDetails.getInt(1));
-				vt.addElement(rsDetails.getInt(2));
-				vt.addElement(rsDetails.getString(3));
-				vt.addElement(rsDetails.getString(4));
-				vt.addElement(LibUtil.getInstance().convertDate(
-						rsDetails.getDate(5).toString()));
-				vt.addElement(LibUtil.getInstance().convertDate(
-						rsDetails.getDate(6).toString()));
-				if (rsDetails.getString(7).equals("Checked-Out")) {
-					vt.addElement(rsDetails.getString(7));
-					vt.addElement("--");
-					vt.addElement("--");
-				} else {
-					vt.addElement(rsDetails.getString(7));
-					vt.addElement(LibUtil.getInstance().convertDate(
-							rsDetails.getDate(8).toString()));
-					vt.addElement(rsDetails.getFloat(9));
-				}
-				borModel.addRow(vt);
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(rsDetails);
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-	}
+	private CallableStatement csDetails = null;
 
 	/**
 	 * Add employee to database
@@ -172,6 +86,35 @@ public class AccessEmp {
 			LibConnection.close(cn);
 		}
 		return false;
+	}
+
+	/**
+	 * Delete employee
+	 * 
+	 * @param empID
+	 * @return true if delete successful, otherwise false
+	 */
+	public boolean deleteEmp(int empID) {
+		// If root, return it
+		if (empID == 1) {
+			return false;
+		}
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.DETELE_EMP);
+			csDetails.setInt(1, empID);
+			if (csDetails.execute()) {
+				return false;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return true;
 	}
 
 	/**
@@ -227,6 +170,95 @@ public class AccessEmp {
 	}
 
 	/**
+	 * Get borrow details of employee
+	 * 
+	 * @param borModel
+	 * @param empID
+	 */
+	public void getEmpBorInfo(DefaultTableModel borModel, int empID) {
+		java.util.Vector<Object> vt;
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.GET_EMP_BOR_INFO);
+			csDetails.setInt(1, empID);
+			rsDetails = csDetails.executeQuery();
+			while (rsDetails.next()) {
+				vt = new java.util.Vector<Object>();
+				vt.addElement(rsDetails.getInt(1));
+				vt.addElement(rsDetails.getInt(2));
+				vt.addElement(rsDetails.getString(3));
+				vt.addElement(rsDetails.getString(4));
+				vt.addElement(LibUtil.getInstance().convertDate(
+						rsDetails.getDate(5).toString()));
+				vt.addElement(LibUtil.getInstance().convertDate(
+						rsDetails.getDate(6).toString()));
+				if (rsDetails.getString(7).equals(
+						Messages.getString("AccessEmp.0"))) { //$NON-NLS-1$
+					vt.addElement(rsDetails.getString(7));
+					vt.addElement(Messages.getString("AccessEmp.1")); //$NON-NLS-1$
+					vt.addElement(Messages.getString("AccessEmp.2")); //$NON-NLS-1$
+				} else {
+					vt.addElement(rsDetails.getString(7));
+					vt.addElement(LibUtil.getInstance().convertDate(
+							rsDetails.getDate(8).toString()));
+					vt.addElement(rsDetails.getFloat(9));
+				}
+				borModel.addRow(vt);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(rsDetails);
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+	}
+
+	/**
+	 * Get a info employee to employee object
+	 * 
+	 * @param EmpID
+	 *            is ID to query on database
+	 * @return Employee queried
+	 */
+	public Employee getEmpInfo(int EmpID) {
+		// Defined Object
+		Employee emp = null;
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.GET_EMP_INFO);
+			csDetails.setInt(1, EmpID);
+			rsDetails = csDetails.executeQuery();
+			if (rsDetails.next()) {
+				emp = new Employee();
+				// Set all field on database to employee object
+				emp.setEmpID(rsDetails.getInt(1));
+				emp.setName(rsDetails.getString(2));
+				emp.setDOB(rsDetails.getDate(3).getTime());
+				emp.setGender(rsDetails.getInt(4));
+				emp.setEmail(rsDetails.getString(5));
+				emp.setAddress(rsDetails.getString(7));
+				emp.setPhone(rsDetails.getString(8));
+				emp.setPermission(rsDetails.getInt(9));
+				emp.setDepartment(rsDetails.getString(10));
+				// return employee object
+				return emp;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(rsDetails);
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return null;
+	}
+
+	/**
 	 * Search employee from employee database
 	 * 
 	 * @param empModel
@@ -276,34 +308,5 @@ public class AccessEmp {
 			LibConnection.close(cn);
 		}
 		return 1;
-	}
-
-	/**
-	 * Delete employee
-	 * 
-	 * @param empID
-	 * @return true if delete successful, otherwise false
-	 */
-	public boolean deleteEmp(int empID) {
-		// If root, return it
-		if (empID == 1) {
-			return false;
-		}
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.DETELE_EMP);
-			csDetails.setInt(1, empID);
-			if (csDetails.execute()) {
-				return false;
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return true;
 	}
 }

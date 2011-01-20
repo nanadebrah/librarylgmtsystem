@@ -23,33 +23,24 @@ public class CheckIn {
 	private long issueDate;
 
 	/**
+	 * @return the auth
+	 */
+	public String getAuth() {
+		return auth;
+	}
+
+	/**
+	 * @return the bookID
+	 */
+	public int getBookID() {
+		return bookID;
+	}
+
+	/**
 	 * @return the borID
 	 */
 	public int getBorID() {
 		return borID;
-	}
-
-	/**
-	 * @param borID
-	 *            the borID to set
-	 */
-	public void setBorID(int borID) {
-		this.borID = borID;
-	}
-
-	/**
-	 * @return the empID
-	 */
-	public int getEmpID() {
-		return empID;
-	}
-
-	/**
-	 * @param empID
-	 *            the empID to set
-	 */
-	public void setEmpID(int empID) {
-		this.empID = empID;
 	}
 
 	/**
@@ -60,11 +51,17 @@ public class CheckIn {
 	}
 
 	/**
-	 * @param callNumber
-	 *            the callNumber to set
+	 * @return the dueDate
 	 */
-	public void setCallNumber(String callNumber) {
-		this.callNumber = callNumber;
+	public long getDueDate() {
+		return dueDate;
+	}
+
+	/**
+	 * @return the empID
+	 */
+	public int getEmpID() {
+		return empID;
 	}
 
 	/**
@@ -75,11 +72,17 @@ public class CheckIn {
 	}
 
 	/**
-	 * @param ISBN
-	 *            the ISBN to set
+	 * @return the issueDate
 	 */
-	public void setISBN(String ISBN) {
-		this.ISBN = ISBN;
+	public long getIssueDate() {
+		return issueDate;
+	}
+
+	/**
+	 * @return the publisher
+	 */
+	public String getPublisher() {
+		return publisher;
 	}
 
 	/**
@@ -87,21 +90,6 @@ public class CheckIn {
 	 */
 	public String getTitle() {
 		return title;
-	}
-
-	/**
-	 * @param title
-	 *            the title to set
-	 */
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	/**
-	 * @return the auth
-	 */
-	public String getAuth() {
-		return auth;
 	}
 
 	/**
@@ -113,25 +101,27 @@ public class CheckIn {
 	}
 
 	/**
-	 * @return the publisher
+	 * @param bookID
+	 *            the bookID to set
 	 */
-	public String getPublisher() {
-		return publisher;
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
 	}
 
 	/**
-	 * @param publisher
-	 *            the publisher to set
+	 * @param borID
+	 *            the borID to set
 	 */
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public void setBorID(int borID) {
+		this.borID = borID;
 	}
 
 	/**
-	 * @return the dueDate
+	 * @param callNumber
+	 *            the callNumber to set
 	 */
-	public long getDueDate() {
-		return dueDate;
+	public void setCallNumber(String callNumber) {
+		this.callNumber = callNumber;
 	}
 
 	/**
@@ -143,10 +133,19 @@ public class CheckIn {
 	}
 
 	/**
-	 * @return the issueDate
+	 * @param empID
+	 *            the empID to set
 	 */
-	public long getIssueDate() {
-		return issueDate;
+	public void setEmpID(int empID) {
+		this.empID = empID;
+	}
+
+	/**
+	 * @param ISBN
+	 *            the ISBN to set
+	 */
+	public void setISBN(String ISBN) {
+		this.ISBN = ISBN;
 	}
 
 	/**
@@ -158,17 +157,18 @@ public class CheckIn {
 	}
 
 	/**
-	 * @return the bookID
+	 * @param publisher
+	 *            the publisher to set
 	 */
-	public int getBookID() {
-		return bookID;
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 
 	/**
-	 * @param bookID
-	 *            the bookID to set
+	 * @param title
+	 *            the title to set
 	 */
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

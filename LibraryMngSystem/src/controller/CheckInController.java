@@ -6,6 +6,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -43,11 +45,11 @@ public class CheckInController {
 	private DefaultTableModel inModel;
 	private ManageController parent;
 	private CheckIn checkin;
-	private Vector vt;
-	private Set keyset;
-	private Iterator it;
-	private HashSet set;
-	private TreeMap map;
+	private Vector<Object> vt;
+	private Set<?> keyset;
+	private Iterator<?> it;
+	private HashSet<Object> set;
+	private TreeMap<Object, CheckIn> map;
 	private float borFee, lateFee;
 	private int page;
 	private int totalRow;
@@ -83,13 +85,16 @@ public class CheckInController {
 		borFee = fee.getBorFee();
 		lateFee = fee.getLateFee();
 		view.getLblFee().setText(
-				"$" + Float.toString(borFee) + "/Day | $"
-						+ Float.toString(lateFee) + "/Late Day");
+				Messages.getString("CheckInController.6")
+						+ Float.toString(borFee)
+						+ Messages.getString("CheckInController.7") //$NON-NLS-1$ 
+						+ Float.toString(lateFee)
+						+ Messages.getString("CheckInController.8")); //$NON-NLS-1$
 
 		// Create new map
-		map = new TreeMap();
+		map = new TreeMap<Object, CheckIn>();
 		// Create new set
-		set = new HashSet();
+		set = new HashSet<Object>();
 
 		// Set default issue day and return day
 		view.getTxtReturnDate().setDate(new java.util.Date());
@@ -105,6 +110,7 @@ public class CheckInController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkin = null;
 				removeModel();
@@ -115,6 +121,7 @@ public class CheckInController {
 		// Add event search borID btn
 		view.getBtnSearchBor().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				searchBorID();
 			}
@@ -123,6 +130,7 @@ public class CheckInController {
 		// Add event search book info btn
 		view.getBtnSearchBook().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				searchByBookInfo();
 			}
@@ -131,6 +139,7 @@ public class CheckInController {
 		// Add event search emp info btn
 		view.getBtnSearchEmp().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchByEmpInfo();
@@ -140,6 +149,7 @@ public class CheckInController {
 		// Add event double click to select borrow detail
 		view.getTblBoth().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				getInfoSelected();
 				// If double click display edit employee dialog
@@ -152,6 +162,7 @@ public class CheckInController {
 		// Add event double click to deselect borrow detail
 		view.getTblCheckIn().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				// If double click display edit employee dialog
 				if (evt.getClickCount() == 2) {
@@ -163,6 +174,7 @@ public class CheckInController {
 		// Add window event
 		view.addWindowListener(new WindowAdapter() {
 
+			@Override
 			public void windowClosing(WindowEvent evt) {
 				checkin = null;
 				removeModel();
@@ -172,11 +184,14 @@ public class CheckInController {
 		// Add event check in btn
 		view.getBtnCheckIn().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (inModel.getRowCount() > 0) {
-					int sure = JOptionPane.showConfirmDialog(view,
-							"You sure all information is correct!",
-							"Checking-in", JOptionPane.YES_NO_OPTION,
+					int sure = JOptionPane.showConfirmDialog(
+							view,
+							Messages.getString("CheckInController.9"), //$NON-NLS-1$
+							Messages.getString("CheckInController.10"),
+							JOptionPane.YES_NO_OPTION,
 							JOptionPane.INFORMATION_MESSAGE);
 
 					if (sure == JOptionPane.OK_OPTION) {
@@ -186,8 +201,67 @@ public class CheckInController {
 					}
 				} else {
 					JOptionPane.showMessageDialog(view,
-							"All information not correct!", "Check-in",
+							Messages.getString("CheckInController.11"),
+							Messages.getString("CheckInController.12"), //$NON-NLS-1$ 
 							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		// Add event enter key press
+		view.getTxtAuth().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByBookInfo();
+				}
+			}
+		});
+		view.getTxtBorID().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchBorID();
+				}
+			}
+		});
+		view.getTxtCallNumber().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByBookInfo();
+				}
+			}
+		});
+		view.getTxtEmpID().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByEmpInfo();
+				}
+			}
+		});
+		view.getTxtEmpName().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByEmpInfo();
+				}
+			}
+		});
+		view.getTxtISBN().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByBookInfo();
+				}
+			}
+		});
+		view.getTxtTitle().addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+					searchByEmpInfo();
 				}
 			}
 		});
@@ -195,6 +269,7 @@ public class CheckInController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -211,6 +286,7 @@ public class CheckInController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -224,6 +300,7 @@ public class CheckInController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				if (isSearchEmp) {
@@ -235,6 +312,7 @@ public class CheckInController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				if (isSearchEmp) {
@@ -246,69 +324,6 @@ public class CheckInController {
 		});
 		// Escape dialog by key
 		model.LibUtil.installEscapeCloseOperation(view);
-	}
-
-	/**
-	 * Search employee
-	 */
-	private void searchByEmpInfo() {
-		isSearchEmp = true;
-		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
-			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
-					"Search", JOptionPane.ERROR_MESSAGE);
-		} else {
-			parent.removeModel(searchModel);
-			map.clear();
-			totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
-					view.getTxtEmpID().getText(),
-					view.getTxtEmpName().getText(), (page - 1));
-			view.getLblPage().setText(
-					"Page " + page + "/"
-							+ LibUtil.getInstance().getPage(totalRow));
-			getBorrow();
-		}
-	}
-
-	/**
-	 * Search Borrow by borrow ID
-	 */
-	private void searchBorID() {
-        if (!LibValid.getInstance().BorID(view.getTxtBorID().getText())) {
-            JOptionPane.showMessageDialog(view, "Borrow Number not valid!",
-                    "Search", JOptionPane.ERROR_MESSAGE);
-        } else {
-            parent.removeModel(searchModel);
-            map.clear();
-            if (view.getTxtBorID().getText().length() > 0) {
-                AccessBorrow.getInstance().searchCheckOutByBorID(map,
-                        Integer.parseInt(view.getTxtBorID().getText()));
-                getBorrow();
-            }
-        }
-    }
-	
-	/**
-	 * Search book
-	 */
-	private void searchByBookInfo() {
-		isSearchEmp = false;
-		parent.removeModel(searchModel);
-		map.clear();
-		totalRow = AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
-				view.getTxtCallNumber().getText(), view.getTxtISBN().getText(),
-				view.getTxtTitle().getText(), view.getTxtAuth().getText(),
-				(page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
-		getBorrow();
-	}
-
-	/**
-	 * Clear all model
-	 */
-	private void removeModel() {
-		parent.removeModel(searchModel);
-		parent.removeModel(inModel);
 	}
 
 	/**
@@ -333,15 +348,28 @@ public class CheckInController {
 	}
 
 	/**
+	 * Remove book for check in
+	 */
+	private void deselectBook() {
+		String bookID = view.getTblCheckIn()
+				.getValueAt(view.getTblCheckIn().getSelectedRow(), 1)
+				.toString();
+		String borId = view.getTblCheckIn()
+				.getValueAt(view.getTblCheckIn().getSelectedRow(), 0)
+				.toString();
+		inModel.removeRow(view.getTblCheckIn().getSelectedRow());
+		set.remove(borId + Messages.getString("CheckInController.0") + bookID); //$NON-NLS-1$
+	}
+
+	/**
 	 * Get borrow from map to search table
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void getBorrow() {
 		keyset = map.keySet();
 		it = keyset.iterator();
 		while (it.hasNext()) {
-			checkin = (CheckIn) map.get(it.next());
-			vt = new Vector();
+			checkin = map.get(it.next());
+			vt = new Vector<Object>();
 			vt.add(checkin.getBorID());
 			vt.add(checkin.getEmpID());
 			vt.add(checkin.getBookID());
@@ -356,65 +384,10 @@ public class CheckInController {
 	}
 
 	/**
-	 * Remove book for check in
+	 * @return the check in
 	 */
-	private void deselectBook() {
-		String bookID = view.getTblCheckIn()
-				.getValueAt(view.getTblCheckIn().getSelectedRow(), 1)
-				.toString();
-		String borId = view.getTblCheckIn()
-				.getValueAt(view.getTblCheckIn().getSelectedRow(), 0)
-				.toString();
-		inModel.removeRow(view.getTblCheckIn().getSelectedRow());
-		set.remove(borId + "," + bookID);
-	}
-
-	/**
-	 * Calculate borrow info and select book prepare to check in
-	 */
-	private void selectBook() {
-		// Get field borID selected
-		String borID = view.getTblBoth()
-				.getValueAt(view.getTblBoth().getSelectedRow(), 0).toString();
-		// Get field bookID selected
-		String bookID = view.getTblBoth()
-				.getValueAt(view.getTblBoth().getSelectedRow(), 2).toString();
-		// If this book is'n selected
-		if (set.add(borID + "," + bookID)) {
-			// Set all check-in information
-			checkin = (CheckIn) map.get(borID + "," + bookID);
-			// Set issue date
-			view.getTxtIssueDate().setDate(
-					new java.util.Date(checkin.getIssueDate()));
-			// Create a new vector to add checkin info from checkin object
-			vt = new Vector();
-			vt.add(checkin.getBorID());
-			vt.add(checkin.getBookID());
-			vt.add(checkin.getCallNumber());
-			vt.add(checkin.getTitle());
-			// Calculate Borrow infomation
-			int DueDay = (int) ((checkin.getDueDate() - checkin.getIssueDate()) / (24 * 60 * 60 * 1000));
-			int DayBor = (int) (view.getTxtReturnDate().getDate().getTime() - checkin
-					.getIssueDate()) / (24 * 60 * 60 * 1000);
-			// If day borrow is great than due day, set it default due day
-			if (DayBor > DueDay) {
-				DayBor = DueDay;
-			}
-			int DayLate = (int) (view.getTxtReturnDate().getDate().getTime() - checkin
-					.getDueDate()) / (24 * 60 * 60 * 1000);
-			float BorrowFee = DayBor * borFee;
-			float Fine = 0;
-			vt.add(DayBor + "/" + BorrowFee);
-			if (DayLate > 0) {
-				Fine = DayLate * lateFee;
-				vt.add(DayLate + "/" + Fine);
-			} else {
-				vt.add(0 + "/" + 0);
-			}
-			vt.add(BorrowFee + Fine);
-			inModel.addRow(vt);
-		}
-
+	public CheckIn getCheckin() {
+		return checkin;
 	}
 
 	/**
@@ -433,17 +406,21 @@ public class CheckInController {
 
 		view.getLblDOB().setText(LibUtil.getInstance().convertDate(DOB));
 		if (emp.getGender() == 1) {
-			view.getLblGender().setText("Male");
+			view.getLblGender().setText(
+					Messages.getString("CheckInController.1")); //$NON-NLS-1$
 		} else {
-			view.getLblGender().setText("Female");
+			view.getLblGender().setText(
+					Messages.getString("CheckInController.2")); //$NON-NLS-1$
 		}
 		view.getLblAddress().setText(emp.getAddress());
 		view.getLblPhone().setText(emp.getPhone());
 		view.getLblDepart().setText(emp.getDepartment());
 		if (emp.getPermission() == 1) {
-			view.getLblPermission().setText("Librarian");
+			view.getLblPermission().setText(
+					Messages.getString("CheckInController.3")); //$NON-NLS-1$
 		} else {
-			view.getLblPermission().setText("Employee");
+			view.getLblPermission().setText(
+					Messages.getString("CheckInController.4")); //$NON-NLS-1$
 		}
 		// Get field borID selected
 		String borID = view.getTblBoth()
@@ -452,7 +429,8 @@ public class CheckInController {
 		String bookID = view.getTblBoth()
 				.getValueAt(view.getTblBoth().getSelectedRow(), 2).toString();
 		// Set all check-in information
-		checkin = (CheckIn) map.get(borID + "," + bookID);
+		checkin = map.get(borID
+				+ Messages.getString("CheckInController.5") + bookID); //$NON-NLS-1$
 		view.getTxtIssueDate().setDate(
 				new java.util.Date(checkin.getIssueDate()));
 	}
@@ -465,18 +443,126 @@ public class CheckInController {
 	}
 
 	/**
-	 * @param view
-	 *            the view to set
+	 * Clear all model
 	 */
-	public void setView(CheckInDialog view) {
-		this.view = view;
+	private void removeModel() {
+		parent.removeModel(searchModel);
+		parent.removeModel(inModel);
 	}
 
 	/**
-	 * @return the check in
+	 * Search Borrow by borrow ID
 	 */
-	public CheckIn getCheckin() {
-		return checkin;
+	private void searchBorID() {
+		if (!LibValid.getInstance().BorID(view.getTxtBorID().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("CheckInController.13"), //$NON-NLS-1$
+					Messages.getString("CheckInController.14"),
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(searchModel);
+			map.clear();
+			if (view.getTxtBorID().getText().length() > 0) {
+				AccessBorrow.getInstance().searchCheckOutByBorID(map,
+						Integer.parseInt(view.getTxtBorID().getText()));
+				getBorrow();
+			}
+		}
+	}
+
+	/**
+	 * Search book
+	 */
+	private void searchByBookInfo() {
+		isSearchEmp = false;
+		parent.removeModel(searchModel);
+		map.clear();
+		totalRow = AccessBorrow.getInstance().searchCheckOutByBookInfo(map,
+				view.getTxtCallNumber().getText(), view.getTxtISBN().getText(),
+				view.getTxtTitle().getText(), view.getTxtAuth().getText(),
+				(page - 1));
+		view.getLblPage().setText(
+				Messages.getString("CheckInController.15") + page
+						+ Messages.getString("CheckInController.16")
+						+ LibUtil.getInstance().getPage(totalRow));
+		getBorrow();
+	}
+
+	/**
+	 * Search employee
+	 */
+	private void searchByEmpInfo() {
+		isSearchEmp = true;
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("CheckInController.17"), //$NON-NLS-1$
+					Messages.getString("CheckInController.18"),
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(searchModel);
+			map.clear();
+			totalRow = AccessBorrow.getInstance().searchCheckOutByEmpInfo(map,
+					view.getTxtEmpID().getText(),
+					view.getTxtEmpName().getText(), (page - 1));
+			view.getLblPage().setText(
+					Messages.getString("CheckInController.19") + page
+							+ Messages.getString("CheckInController.20") //$NON-NLS-1$ 
+							+ LibUtil.getInstance().getPage(totalRow));
+			getBorrow();
+		}
+	}
+
+	/**
+	 * Calculate borrow info and select book prepare to check in
+	 */
+	private void selectBook() {
+		// Get field borID selected
+		String borID = view.getTblBoth()
+				.getValueAt(view.getTblBoth().getSelectedRow(), 0).toString();
+		// Get field bookID selected
+		String bookID = view.getTblBoth()
+				.getValueAt(view.getTblBoth().getSelectedRow(), 2).toString();
+		// If this book is'n selected
+		if (set.add(borID + Messages.getString("CheckInController.21") + bookID)) { //$NON-NLS-1$
+			// Set all check-in information
+			checkin = map.get(borID
+					+ Messages.getString("CheckInController.22") + bookID); //$NON-NLS-1$
+			// Set issue date
+			view.getTxtIssueDate().setDate(
+					new java.util.Date(checkin.getIssueDate()));
+			// Create a new vector to add checkin info from checkin object
+			vt = new Vector<Object>();
+			vt.add(checkin.getBorID());
+			vt.add(checkin.getBookID());
+			vt.add(checkin.getCallNumber());
+			vt.add(checkin.getTitle());
+			// Calculate Borrow information
+			int DueDay = (int) ((checkin.getDueDate() - checkin.getIssueDate()) / (24 * 60 * 60 * 1000));
+			int DayBor = (int) (view.getTxtReturnDate().getDate().getTime() - checkin
+					.getIssueDate()) / (24 * 60 * 60 * 1000);
+			// If day borrow is great than due day, set it default due day
+			if (DayBor > DueDay) {
+				DayBor = DueDay;
+			}
+			int DayLate = (int) (view.getTxtReturnDate().getDate().getTime() - checkin
+					.getDueDate()) / (24 * 60 * 60 * 1000);
+			float BorrowFee = DayBor * borFee;
+			float Fine = 0;
+			vt.add(DayBor
+					+ Messages.getString("CheckInController.23") + BorrowFee); //$NON-NLS-1$
+			if (DayLate > 0) {
+				Fine = DayLate * lateFee;
+				vt.add(DayLate
+						+ Messages.getString("CheckInController.24") + Fine); //$NON-NLS-1$
+			} else {
+				vt.add(0 + Messages.getString("CheckInController.25") + 0); //$NON-NLS-1$
+			}
+			vt.add(BorrowFee + Fine);
+			inModel.addRow(vt);
+		}
+
 	}
 
 	/**
@@ -485,5 +571,13 @@ public class CheckInController {
 	 */
 	public void setCheckin(CheckIn checkin) {
 		this.checkin = checkin;
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(CheckInDialog view) {
+		this.view = view;
 	}
 }

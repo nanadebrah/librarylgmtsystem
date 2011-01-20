@@ -16,6 +16,13 @@ public class Fee {
 	private float LateFee;
 
 	/**
+	 * @return the BorFee
+	 */
+	public float getBorFee() {
+		return BorFee;
+	}
+
+	/**
 	 * @return the Fee
 	 */
 	public String getFee() {
@@ -23,18 +30,10 @@ public class Fee {
 	}
 
 	/**
-	 * @param Fee
-	 *            the Fee to set
+	 * @return the LateFee
 	 */
-	public void setFee(String Fee) {
-		this.Fee = Fee;
-	}
-
-	/**
-	 * @return the BorFee
-	 */
-	public float getBorFee() {
-		return BorFee;
+	public float getLateFee() {
+		return LateFee;
 	}
 
 	/**
@@ -46,10 +45,11 @@ public class Fee {
 	}
 
 	/**
-	 * @return the LateFee
+	 * @param Fee
+	 *            the Fee to set
 	 */
-	public float getLateFee() {
-		return LateFee;
+	public void setFee(String Fee) {
+		this.Fee = Fee;
 	}
 
 	/**

@@ -68,21 +68,23 @@ public class EmployeeController {
 		// Add model to table
 		view.getTblEmp().setModel(empModel);
 		// Set model
-		empModel.addColumn("No");
-		empModel.addColumn("Name");
-		empModel.addColumn("Gender");
-		empModel.addColumn("Email");
-		empModel.addColumn("Department");
-		empModel.addColumn("Permission");
+		empModel.addColumn(Messages.getString("EmployeeController.19")); //$NON-NLS-1$
+		empModel.addColumn(Messages.getString("EmployeeController.20")); //$NON-NLS-1$
+		empModel.addColumn(Messages.getString("EmployeeController.21")); //$NON-NLS-1$
+		empModel.addColumn(Messages.getString("EmployeeController.22")); //$NON-NLS-1$
+		empModel.addColumn(Messages.getString("EmployeeController.23")); //$NON-NLS-1$
+		empModel.addColumn(Messages.getString("EmployeeController.24")); //$NON-NLS-1$
 		// Add event to employee table
 		view.getTblEmp().addFocusListener(new FocusAdapter() {
 
+			@Override
 			public void focusLost(java.awt.event.FocusEvent evt) {
 				tableFocus();
 			}
 		});
 		view.getTblEmp().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				// Set enable action button
 				view.getBtnEdit().setEnabled(true);
@@ -98,6 +100,7 @@ public class EmployeeController {
 		// Add event to add employee btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				addEmp();
@@ -107,6 +110,7 @@ public class EmployeeController {
 		// Add event click search employee
 		view.getBtnSearch().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				page = 1;
@@ -117,6 +121,7 @@ public class EmployeeController {
 		// Add event view button
 		view.getBtnView().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				viewEmp();
 			}
@@ -125,6 +130,7 @@ public class EmployeeController {
 		// Add event edit btn
 		view.getBtnEdit().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				editEmp();
@@ -134,6 +140,7 @@ public class EmployeeController {
 		// Add event delete btn
 		view.getBtnDelete().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				deleteEmp();
 			}
@@ -142,6 +149,7 @@ public class EmployeeController {
 		// Add event enter key
 		view.getTxtEmpID().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchEmp();
@@ -150,6 +158,7 @@ public class EmployeeController {
 		});
 		view.getTxtEmpName().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchEmp();
@@ -160,6 +169,7 @@ public class EmployeeController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -172,6 +182,7 @@ public class EmployeeController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -181,6 +192,7 @@ public class EmployeeController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchEmp();
@@ -188,6 +200,7 @@ public class EmployeeController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				searchEmp();
@@ -196,12 +209,47 @@ public class EmployeeController {
 	}
 
 	/**
+	 * Method add employee on database
+	 */
+	private void addEmp() {
+		parent.doBlur();
+		// Display Add employee dialog
+		addEmp = new AddEmployeeController(new AddEmployeeDialog(
+				parent.getView()));
+		addEmp.getView().setVisible(true);
+		// invoked method add employee
+		if (addEmp.getEmp() != null) {
+			if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("EmployeeController.0"), //$NON-NLS-1$
+						Messages.getString("EmployeeController.1"),
+						JOptionPane.INFORMATION_MESSAGE);
+				// Move last page and show newest employee
+				view.getTxtEmpID().setText(
+						Messages.getString("EmployeeController.2")); //$NON-NLS-1$
+				view.getTxtEmpName().setText(
+						Messages.getString("EmployeeController.3")); //$NON-NLS-1$
+				view.getBtnLast().doClick();
+			} else {
+				JOptionPane.showMessageDialog(view,
+						Messages.getString("EmployeeController.4") //$NON-NLS-1$
+								+ Messages.getString("EmployeeController.5"),
+						Messages.getString("EmployeeController.6"), //$NON-NLS-1$ 
+						JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		parent.doBlur();
+	}
+
+	/**
 	 * Delete an employee
 	 */
 	private void deleteEmp() {
 		parent.doBlur();
 		int sure = JOptionPane.showConfirmDialog(parent.getView(),
-				"You sure want delete this employee!", "Delete employee",
+				Messages.getString("EmployeeController.7"),
+				Messages.getString("EmployeeController.8"), //$NON-NLS-1$ 
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		if (sure == JOptionPane.OK_OPTION) {
 			// Get Id employee selected
@@ -209,32 +257,22 @@ public class EmployeeController {
 					.getValueAt(view.getTblEmp().getSelectedRow(), 0)
 					.toString();
 			if (!AccessEmp.getInstance().deleteEmp(Integer.parseInt(empID))) {
-				JOptionPane
-						.showMessageDialog(
-								parent.getView(),
-								"Delete failed!\n"
-										+ "May be this employee is borrowing many books.",
-								"Error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						parent.getView(),
+						Messages.getString("EmployeeController.9") //$NON-NLS-1$
+								+ Messages.getString("EmployeeController.10"), //$NON-NLS-1$
+						Messages.getString("EmployeeController.11"),
+						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete successful!", "Successful!",
+						Messages.getString("EmployeeController.12"),
+						Messages.getString("EmployeeController.13"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
 				empModel.removeRow(view.getTblEmp().getSelectedRow());
 			}
 		}
 		tableFocus();
 		parent.doBlur();
-	}
-
-	/**
-	 * Do lost focus table
-	 */
-	private void tableFocus() {
-		// Set disable action button
-		view.getBtnEdit().setEnabled(false);
-		view.getBtnView().setEnabled(false);
-		view.getBtnDelete().setEnabled(false);
-		view.getTblEmp().setFocusable(false);
 	}
 
 	/**
@@ -254,15 +292,20 @@ public class EmployeeController {
 		// Update data on database
 		if (editEmp.getEmp() != null) {
 			if (AccessEmp.getInstance().editEmp(editEmp.getEmp())) {
-				JOptionPane.showMessageDialog(view, "Update successful",
-						"Successful!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("EmployeeController.14"), //$NON-NLS-1$
+						Messages.getString("EmployeeController.15"),
+						JOptionPane.INFORMATION_MESSAGE);
 				// Remove old data on table model
 				empModel.removeRow(view.getTblEmp().getSelectedRow());
 				// Add new row
 				empModel.addRow(emp.toVector());
 			} else {
-				JOptionPane.showMessageDialog(view, "Edit failed!\n"
-						+ "May be username isn't unique.", "Edit Employee",
+				JOptionPane.showMessageDialog(view,
+						Messages.getString("EmployeeController.16") //$NON-NLS-1$
+								+ Messages.getString("EmployeeController.17"),
+						Messages.getString("EmployeeController.18"), //$NON-NLS-1$ 
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -272,30 +315,10 @@ public class EmployeeController {
 	}
 
 	/**
-	 * Method add employee on database
+	 * @return the view
 	 */
-	private void addEmp() {
-		parent.doBlur();
-		// Display Add employee dialog
-		addEmp = new AddEmployeeController(new AddEmployeeDialog(
-				parent.getView()));
-		addEmp.getView().setVisible(true);
-		// invoked method add employee
-		if (addEmp.getEmp() != null) {
-			if (AccessEmp.getInstance().addEmp(addEmp.getEmp())) {
-				JOptionPane.showMessageDialog(view, "Add successful",
-						"Successful!", JOptionPane.INFORMATION_MESSAGE);
-				// Move last page and show newest employee
-				view.getTxtEmpID().setText("");
-				view.getTxtEmpName().setText("");
-				view.getBtnLast().doClick();
-			} else {
-				JOptionPane.showMessageDialog(view, "Add failed!\n"
-						+ "May be this librarian have added.", "Add Employee",
-						JOptionPane.ERROR_MESSAGE);
-			}
-		}
-		parent.doBlur();
+	public EmployeePanel getView() {
+		return view;
 	}
 
 	/**
@@ -303,22 +326,48 @@ public class EmployeeController {
 	 */
 	public void searchEmp() {
 		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
-			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
-					"Search", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("EmployeeController.25"), //$NON-NLS-1$
+					Messages.getString("EmployeeController.26"),
+					JOptionPane.ERROR_MESSAGE);
 		} else {
 			parent.removeModel(empModel);
 			new Thread(new Runnable() {
 
+				@Override
 				public void run() {
 					totalRow = AccessEmp.getInstance().searchEmp(empModel,
 							view.getTxtEmpID().getText(),
 							view.getTxtEmpName().getText(), (page - 1));
 					view.getLblPage().setText(
-							"Page " + page + "/"
+							Messages.getString("EmployeeController.27")
+									+ page
+									+ Messages
+											.getString("EmployeeController.28") //$NON-NLS-1$ 
 									+ LibUtil.getInstance().getPage(totalRow));
 				}
 			}).start();
 		}
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(EmployeePanel view) {
+		this.view = view;
+	}
+
+	/**
+	 * Do lost focus table
+	 */
+	private void tableFocus() {
+		// Set disable action button
+		view.getBtnEdit().setEnabled(false);
+		view.getBtnView().setEnabled(false);
+		view.getBtnDelete().setEnabled(false);
+		view.getTblEmp().setFocusable(false);
 	}
 
 	/**
@@ -337,20 +386,5 @@ public class EmployeeController {
 		viewEmp.getView().setVisible(true);
 		tableFocus();
 		parent.doBlur();
-	}
-
-	/**
-	 * @return the view
-	 */
-	public EmployeePanel getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(EmployeePanel view) {
-		this.view = view;
 	}
 }

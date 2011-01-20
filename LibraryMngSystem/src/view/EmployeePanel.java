@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Mon Jan 17 15:17:07 GMT+07:00 2011
- */
-
 package view;
 
 import java.awt.BorderLayout;
@@ -22,210 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Nanette G Hutchison
+ * @author CuongNQ
  */
+@SuppressWarnings("serial")
 public class EmployeePanel extends JPanel {
 	public EmployeePanel() {
 		initComponents();
 	}
 
-	/**
-	 * @return the tblEmp
-	 */
-	public JTable getTblEmp() {
-		return tblEmp;
-	}
-
-	/**
-	 * @param tblEmp
-	 *            the tblEmp to set
-	 */
-	public void setTblEmp(JTable tblEmp) {
-		this.tblEmp = tblEmp;
-	}
-
-	/**
-	 * @return the txtEmpID
-	 */
-	public JTextField getTxtEmpID() {
-		return txtEmpID;
-	}
-
-	/**
-	 * @param txtEmpID
-	 *            the txtEmpID to set
-	 */
-	public void setTxtEmpID(JTextField txtEmpID) {
-		this.txtEmpID = txtEmpID;
-	}
-
-	/**
-	 * @return the txtEmpName
-	 */
-	public JTextField getTxtEmpName() {
-		return txtEmpName;
-	}
-
-	/**
-	 * @param txtEmpName
-	 *            the txtEmpName to set
-	 */
-	public void setTxtEmpName(JTextField txtEmpName) {
-		this.txtEmpName = txtEmpName;
-	}
-
-	/**
-	 * @return the lblPage
-	 */
-	public JLabel getLblPage() {
-		return lblPage;
-	}
-
-	/**
-	 * @param lblPage
-	 *            the lblPage to set
-	 */
-	public void setLblPage(JLabel lblPage) {
-		this.lblPage = lblPage;
-	}
-
-	/**
-	 * @return the btnFirst
-	 */
-	public JButton getBtnFirst() {
-		return btnFirst;
-	}
-
-	/**
-	 * @param btnFirst
-	 *            the btnFirst to set
-	 */
-	public void setBtnFirst(JButton btnFirst) {
-		this.btnFirst = btnFirst;
-	}
-
-	/**
-	 * @return the btnBack
-	 */
-	public JButton getBtnBack() {
-		return btnBack;
-	}
-
-	/**
-	 * @param btnBack
-	 *            the btnBack to set
-	 */
-	public void setBtnBack(JButton btnBack) {
-		this.btnBack = btnBack;
-	}
-
-	/**
-	 * @return the btnNext
-	 */
-	public JButton getBtnNext() {
-		return btnNext;
-	}
-
-	/**
-	 * @param btnNext
-	 *            the btnNext to set
-	 */
-	public void setBtnNext(JButton btnNext) {
-		this.btnNext = btnNext;
-	}
-
-	/**
-	 * @return the btnLast
-	 */
-	public JButton getBtnLast() {
-		return btnLast;
-	}
-
-	/**
-	 * @param btnLast
-	 *            the btnLast to set
-	 */
-	public void setBtnLast(JButton btnLast) {
-		this.btnLast = btnLast;
-	}
-
-	/**
-	 * @return the btnAdd
-	 */
-	public JButton getBtnAdd() {
-		return btnAdd;
-	}
-
-	/**
-	 * @param btnAdd
-	 *            the btnAdd to set
-	 */
-	public void setBtnAdd(JButton btnAdd) {
-		this.btnAdd = btnAdd;
-	}
-
-	/**
-	 * @return the btnEdit
-	 */
-	public JButton getBtnEdit() {
-		return btnEdit;
-	}
-
-	/**
-	 * @param btnEdit
-	 *            the btnEdit to set
-	 */
-	public void setBtnEdit(JButton btnEdit) {
-		this.btnEdit = btnEdit;
-	}
-
-	/**
-	 * @return the btnView
-	 */
-	public JButton getBtnView() {
-		return btnView;
-	}
-
-	/**
-	 * @param btnView
-	 *            the btnView to set
-	 */
-	public void setBtnView(JButton btnView) {
-		this.btnView = btnView;
-	}
-
-	/**
-	 * @return the btnDelete
-	 */
-	public JButton getBtnDelete() {
-		return btnDelete;
-	}
-
-	/**
-	 * @param btnDelete
-	 *            the btnDelete to set
-	 */
-	public void setBtnDelete(JButton btnDelete) {
-		this.btnDelete = btnDelete;
-	}
-
-	/**
-	 * @return the btnSearch
-	 */
-	public JButton getBtnSearch() {
-		return btnSearch;
-	}
-
-	/**
-	 * @param btnSearch
-	 *            the btnSearch to set
-	 */
-	public void setBtnSearch(JButton btnSearch) {
-		this.btnSearch = btnSearch;
-	}
-
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		panel1 = new JPanel();
 		btnFirst = new JButton();
@@ -391,6 +193,9 @@ public class EmployeePanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
 									5), 0, 0));
+
+					// ---- txtEmpID ----
+					txtEmpID.setToolTipText("Search by employee number");
 					panel4.add(txtEmpID, new GridBagConstraints(1, 0, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
@@ -402,6 +207,9 @@ public class EmployeePanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
 									5), 0, 0));
+
+					// ---- txtEmpName ----
+					txtEmpName.setToolTipText("Search by employee name");
 					panel4.add(txtEmpName, new GridBagConstraints(1, 1, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
@@ -415,11 +223,11 @@ public class EmployeePanel extends JPanel {
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
 		add(panel2, BorderLayout.CENTER);
-		// JFormDesigner - End of component initialization
+		// End of component initialization
 		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JPanel panel1;
 	private JButton btnFirst;
@@ -442,5 +250,200 @@ public class EmployeePanel extends JPanel {
 	private JTextField txtEmpID;
 	private JLabel label3;
 	private JTextField txtEmpName;
-	// JFormDesigner - End of variables declaration //GEN-END:variables
+
+	// End of variables declaration //GEN-END:variables
+	/**
+	 * @return the btnFirst
+	 */
+	public JButton getBtnFirst() {
+		return btnFirst;
+	}
+
+	/**
+	 * @param btnFirst
+	 *            the btnFirst to set
+	 */
+	public void setBtnFirst(JButton btnFirst) {
+		this.btnFirst = btnFirst;
+	}
+
+	/**
+	 * @return the btnBack
+	 */
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	/**
+	 * @param btnBack
+	 *            the btnBack to set
+	 */
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+	/**
+	 * @return the lblPage
+	 */
+	public JLabel getLblPage() {
+		return lblPage;
+	}
+
+	/**
+	 * @param lblPage
+	 *            the lblPage to set
+	 */
+	public void setLblPage(JLabel lblPage) {
+		this.lblPage = lblPage;
+	}
+
+	/**
+	 * @return the btnNext
+	 */
+	public JButton getBtnNext() {
+		return btnNext;
+	}
+
+	/**
+	 * @param btnNext
+	 *            the btnNext to set
+	 */
+	public void setBtnNext(JButton btnNext) {
+		this.btnNext = btnNext;
+	}
+
+	/**
+	 * @return the btnLast
+	 */
+	public JButton getBtnLast() {
+		return btnLast;
+	}
+
+	/**
+	 * @param btnLast
+	 *            the btnLast to set
+	 */
+	public void setBtnLast(JButton btnLast) {
+		this.btnLast = btnLast;
+	}
+
+	/**
+	 * @return the tblEmp
+	 */
+	public JTable getTblEmp() {
+		return tblEmp;
+	}
+
+	/**
+	 * @param tblEmp
+	 *            the tblEmp to set
+	 */
+	public void setTblEmp(JTable tblEmp) {
+		this.tblEmp = tblEmp;
+	}
+
+	/**
+	 * @return the btnAdd
+	 */
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	/**
+	 * @param btnAdd
+	 *            the btnAdd to set
+	 */
+	public void setBtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
+	}
+
+	/**
+	 * @return the btnEdit
+	 */
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	/**
+	 * @param btnEdit
+	 *            the btnEdit to set
+	 */
+	public void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	/**
+	 * @return the btnView
+	 */
+	public JButton getBtnView() {
+		return btnView;
+	}
+
+	/**
+	 * @param btnView
+	 *            the btnView to set
+	 */
+	public void setBtnView(JButton btnView) {
+		this.btnView = btnView;
+	}
+
+	/**
+	 * @return the btnDelete
+	 */
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	/**
+	 * @param btnDelete
+	 *            the btnDelete to set
+	 */
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	/**
+	 * @return the btnSearch
+	 */
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	/**
+	 * @param btnSearch
+	 *            the btnSearch to set
+	 */
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	/**
+	 * @return the txtEmpID
+	 */
+	public JTextField getTxtEmpID() {
+		return txtEmpID;
+	}
+
+	/**
+	 * @param txtEmpID
+	 *            the txtEmpID to set
+	 */
+	public void setTxtEmpID(JTextField txtEmpID) {
+		this.txtEmpID = txtEmpID;
+	}
+
+	/**
+	 * @return the txtEmpName
+	 */
+	public JTextField getTxtEmpName() {
+		return txtEmpName;
+	}
+
+	/**
+	 * @param txtEmpName
+	 *            the txtEmpName to set
+	 */
+	public void setTxtEmpName(JTextField txtEmpName) {
+		this.txtEmpName = txtEmpName;
+	}
 }

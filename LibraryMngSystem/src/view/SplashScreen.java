@@ -20,10 +20,21 @@ import controller.ManageController;
 
 /**
  * 
- * @author CuongNQ 
- * This class constant function to display splash screen
+ * @author CuongNQ This class constant function to display splash screen
  */
+@SuppressWarnings("serial")
 public class SplashScreen extends JWindow {
+
+	/**
+	 * 
+	 * @param args
+	 *            START LIBRARY MANAGEMENT SYSTEM
+	 */
+	public static void main(String[] args) {
+		javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
+		javax.swing.JDialog.setDefaultLookAndFeelDecorated(true);
+		new SplashScreen().loadProcess();
+	}
 
 	// Defined absolute content
 	AbsoluteLayout absolute;
@@ -37,12 +48,13 @@ public class SplashScreen extends JWindow {
 	LoginDialog loginDialog;
 	// Defined Management controller
 	ManageController manControl;
+
 	// Defined Management frame
 	ManageFrame manage;
 
 	/**
-     *
-     */
+	 * Default constructor
+	 */
 	public SplashScreen() {
 		initComponent();
 		// Pack all component
@@ -54,8 +66,8 @@ public class SplashScreen extends JWindow {
 	}
 
 	/**
-     *
-     */
+	 * Initialize the splash screen
+	 */
 	private void initComponent() {
 		// Create new instance of content
 		absolute = new AbsoluteLayout();
@@ -84,6 +96,7 @@ public class SplashScreen extends JWindow {
 		// Create new thread to run process bar
 		Thread t = new Thread() {
 
+			@Override
 			public void run() {
 				int i = 0;
 				while (i < 101) {
@@ -124,16 +137,5 @@ public class SplashScreen extends JWindow {
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	/**
-	 * 
-	 * @param args
-	 *            START LIBRARY MANAGEMENT SYSTEM
-	 */
-	public static void main(String[] args) {
-		javax.swing.JFrame.setDefaultLookAndFeelDecorated(true);
-		javax.swing.JDialog.setDefaultLookAndFeelDecorated(true);
-		new SplashScreen().loadProcess();
 	}
 }

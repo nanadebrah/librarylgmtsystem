@@ -26,6 +26,11 @@ public class AddSubjectController {
 	private Subject sub = null;
 	private AddSubjectDialog view;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param view
+	 */
 	public AddSubjectController(AddSubjectDialog view) {
 		this.view = view;
 		initComponent();
@@ -41,6 +46,7 @@ public class AddSubjectController {
 		// Add event close btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				sub = null;
 				view.dispose();
@@ -50,6 +56,7 @@ public class AddSubjectController {
 		// Add event add btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (LibValid.getInstance().Sub(view.getTxtName().getText())) {
 					// set object
@@ -58,7 +65,8 @@ public class AddSubjectController {
 					view.dispose();
 				} else {
 					JOptionPane.showMessageDialog(view,
-							"Subject name not valid.", "Valid!",
+							Messages.getString("AddSubjectController.0"),
+							Messages.getString("AddSubjectController.1"), //$NON-NLS-1$ 
 							JOptionPane.INFORMATION_MESSAGE);
 					view.getTxtName().requestFocus();
 				}
@@ -68,6 +76,7 @@ public class AddSubjectController {
 		// Add window event
 		view.addWindowListener(new WindowAdapter() {
 
+			@Override
 			public void windowClosing(WindowEvent evt) {
 				sub = null;
 			}
@@ -76,19 +85,18 @@ public class AddSubjectController {
 		model.LibUtil.installEscapeCloseOperation(view);
 	}
 
-	/*
-	 * Transfer all field to object
-	 */
-	private void toObject() {
-		sub.setSubName(view.getTxtName().getText());
-		sub.setDescription(view.getTxtDes().getText());
-	}
-
 	/**
 	 * @return the sub
 	 */
 	public Subject getSub() {
 		return sub;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public AddSubjectDialog getView() {
+		return view;
 	}
 
 	/**
@@ -100,17 +108,18 @@ public class AddSubjectController {
 	}
 
 	/**
-	 * @return the view
-	 */
-	public AddSubjectDialog getView() {
-		return view;
-	}
-
-	/**
 	 * @param view
 	 *            the view to set
 	 */
 	public void setView(AddSubjectDialog view) {
 		this.view = view;
+	}
+
+	/*
+	 * Transfer all field to object
+	 */
+	private void toObject() {
+		sub.setSubName(view.getTxtName().getText());
+		sub.setDescription(view.getTxtDes().getText());
 	}
 }

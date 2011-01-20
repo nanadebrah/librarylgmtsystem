@@ -45,6 +45,7 @@ public class FeeRateController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				fee = null;
 				view.dispose();
@@ -54,6 +55,7 @@ public class FeeRateController {
 		// Add event close window
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				fee = null;
 				view.dispose();
@@ -63,21 +65,25 @@ public class FeeRateController {
 		// Add event change btn
 		view.getBtnChange().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				if (view.getTxtFee().getText().length() > 0
 						&& view.getTxtFine().getText().length() > 0) {
 					fee = new Fee();
-					fee.setFee("Fee");
+					fee.setFee(Messages.getString("FeeRateController.2")); //$NON-NLS-1$
 					fee.setBorFee(new Float(view.getTxtFee().getText()
 							.substring(1)));
 					fee.setLateFee(new Float(view.getTxtFine().getText()
 							.substring(1)));
 					view.dispose();
 				} else {
-					JOptionPane.showMessageDialog(view,
-							"All field must valid.\n" + "Example: $7.10",
-							"Valid!", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(
+							view,
+							Messages.getString("FeeRateController.3")
+									+ Messages.getString("FeeRateController.4"), //$NON-NLS-1$ 
+							Messages.getString("FeeRateController.5"),
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -90,23 +96,12 @@ public class FeeRateController {
 	 */
 	private void getCurrentSetting() {
 		fee = AccessFee.getInstance().getFee();
-		view.getTxtFee().setText("$" + Float.toString(getFee().getBorFee()));
-		view.getTxtFine().setText("$" + Float.toString(getFee().getLateFee()));
-	}
-
-	/**
-	 * @return the view
-	 */
-	public FeeRateDialog getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(FeeRateDialog view) {
-		this.view = view;
+		view.getTxtFee().setText(
+				Messages.getString("FeeRateController.0")
+						+ Float.toString(getFee().getBorFee()));
+		view.getTxtFine().setText(
+				Messages.getString("FeeRateController.1")
+						+ Float.toString(getFee().getLateFee()));
 	}
 
 	/**
@@ -117,10 +112,25 @@ public class FeeRateController {
 	}
 
 	/**
+	 * @return the view
+	 */
+	public FeeRateDialog getView() {
+		return view;
+	}
+
+	/**
 	 * @param fee
 	 *            the fee to set
 	 */
 	public void setFee(Fee fee) {
 		this.fee = fee;
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(FeeRateDialog view) {
+		this.view = view;
 	}
 }

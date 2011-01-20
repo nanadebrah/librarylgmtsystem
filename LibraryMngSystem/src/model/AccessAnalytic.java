@@ -78,12 +78,12 @@ public class AccessAnalytic {
 	}
 
 	/**
-	 * Acess to database to get top book brrowed
+	 * Access to database to get top book borrowed
 	 * 
 	 * @param anaModel
-	 *            is model to add brrower infomation get from database
+	 *            is model to add borrower information get from database
 	 * @param page
-	 *            is nevagation bar proces
+	 *            is navigation bar process
 	 * @return total row from database to calculate page
 	 */
 	public int getTopBorrower(DefaultTableModel anaModel, int page) {

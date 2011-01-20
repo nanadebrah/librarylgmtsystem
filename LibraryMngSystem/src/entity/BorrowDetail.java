@@ -25,10 +25,67 @@ public class BorrowDetail {
 	private float TotalFee;
 
 	/**
+	 * @return the bookID
+	 */
+	public int getBookID() {
+		return bookID;
+	}
+
+	/**
 	 * @return the borID
 	 */
 	public int getBorID() {
 		return borID;
+	}
+
+	/**
+	 * @return the DueDate
+	 */
+	public long getDueDate() {
+		return DueDate;
+	}
+
+	/**
+	 * @return the empID
+	 */
+	public int getEmpID() {
+		return empID;
+	}
+
+	/**
+	 * @return the IssueDate
+	 */
+	public long getIssueDate() {
+		return IssueDate;
+	}
+
+	/**
+	 * @return the IssueStatus
+	 */
+	public int getIssueStatus() {
+		return IssueStatus;
+	}
+
+	/**
+	 * @return the ReturnDate
+	 */
+	public long getReturnDate() {
+		return ReturnDate;
+	}
+
+	/**
+	 * @return the TotalFee
+	 */
+	public float getTotalFee() {
+		return TotalFee;
+	}
+
+	/**
+	 * @param bookID
+	 *            the bookID to set
+	 */
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
 	}
 
 	/**
@@ -40,25 +97,19 @@ public class BorrowDetail {
 	}
 
 	/**
-	 * @return the IssueStatus
+	 * @param DueDate
+	 *            the DueDate to set
 	 */
-	public int getIssueStatus() {
-		return IssueStatus;
+	public void setDueDate(long DueDate) {
+		this.DueDate = DueDate;
 	}
 
 	/**
-	 * @param IssueStatus
-	 *            the IssueStatus to set
+	 * @param empID
+	 *            the empID to set
 	 */
-	public void setIssueStatus(int IssueStatus) {
-		this.IssueStatus = IssueStatus;
-	}
-
-	/**
-	 * @return the IssueDate
-	 */
-	public long getIssueDate() {
-		return IssueDate;
+	public void setEmpID(int empID) {
+		this.empID = empID;
 	}
 
 	/**
@@ -70,25 +121,11 @@ public class BorrowDetail {
 	}
 
 	/**
-	 * @return the DueDate
+	 * @param IssueStatus
+	 *            the IssueStatus to set
 	 */
-	public long getDueDate() {
-		return DueDate;
-	}
-
-	/**
-	 * @param DueDate
-	 *            the DueDate to set
-	 */
-	public void setDueDate(long DueDate) {
-		this.DueDate = DueDate;
-	}
-
-	/**
-	 * @return the ReturnDate
-	 */
-	public long getReturnDate() {
-		return ReturnDate;
+	public void setIssueStatus(int IssueStatus) {
+		this.IssueStatus = IssueStatus;
 	}
 
 	/**
@@ -97,13 +134,6 @@ public class BorrowDetail {
 	 */
 	public void setReturnDate(long ReturnDate) {
 		this.ReturnDate = ReturnDate;
-	}
-
-	/**
-	 * @return the TotalFee
-	 */
-	public float getTotalFee() {
-		return TotalFee;
 	}
 
 	/**
@@ -124,40 +154,10 @@ public class BorrowDetail {
 		vt.add(LibUtil.getInstance().convertDate(
 				new java.sql.Date(DueDate).toString()));
 		if (IssueStatus == 0) {
-			vt.addElement("Check-out");
+			vt.addElement(Messages.getString("BorrowDetail.0")); //$NON-NLS-1$
 		} else {
-			vt.addElement("Check-in");
+			vt.addElement(Messages.getString("BorrowDetail.1")); //$NON-NLS-1$
 		}
 		return vt;
-	}
-
-	/**
-	 * @return the empID
-	 */
-	public int getEmpID() {
-		return empID;
-	}
-
-	/**
-	 * @param empID
-	 *            the empID to set
-	 */
-	public void setEmpID(int empID) {
-		this.empID = empID;
-	}
-
-	/**
-	 * @return the bookID
-	 */
-	public int getBookID() {
-		return bookID;
-	}
-
-	/**
-	 * @param bookID
-	 *            the bookID to set
-	 */
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
 	}
 }

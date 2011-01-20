@@ -7,7 +7,6 @@ package controller;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -61,6 +60,7 @@ public class ManageController {
 	// Defined program setting
 	private ProSettingController proControl;
 	// Defined about window
+	@SuppressWarnings("unused")
 	private AboutWindow about;
 	// Defined Setting Dialog
 	private ManageFrame view;
@@ -86,6 +86,7 @@ public class ManageController {
 	/**
 	 * initialize the controller.
 	 */
+	@SuppressWarnings("serial")
 	private void initComponent() {
 		// Create new instance of program setting
 		proControl = new ProSettingController(new ProSettingDialog(view), this);
@@ -99,6 +100,7 @@ public class ManageController {
 		// Create employee model
 		empModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -107,6 +109,7 @@ public class ManageController {
 		// Create book model
 		bookModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -114,6 +117,7 @@ public class ManageController {
 		// Create subject model
 		subModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -121,6 +125,7 @@ public class ManageController {
 		// Create borrow model
 		borModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -128,6 +133,7 @@ public class ManageController {
 		// Create analytic model
 		anaModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -145,60 +151,75 @@ public class ManageController {
 		anaControl = new AnalyticController(new AnalyticPanel(), anaModel, this);
 
 		// Add employee panel
-		view.getPanelMain().add(empControl.getView(), "PalEmployee");
-		// Add ebook panel
-		view.getPanelMain().add(bookControl.getView(), "PalBook");
+		view.getPanelMain().add(empControl.getView(),
+				Messages.getString("ManageController.0")); //$NON-NLS-1$
+		// Add book panel
+		view.getPanelMain().add(bookControl.getView(),
+				Messages.getString("ManageController.1")); //$NON-NLS-1$
 		// Add subject panel
-		view.getPanelMain().add(subControl.getView(), "PalSubject");
+		view.getPanelMain().add(subControl.getView(),
+				Messages.getString("ManageController.2")); //$NON-NLS-1$
 		// Add borrow panel
-		view.getPanelMain().add(borControl.getView(), "PalBorrow");
+		view.getPanelMain().add(borControl.getView(),
+				Messages.getString("ManageController.3")); //$NON-NLS-1$
 		// Add subject panel
-		view.getPanelMain().add(anaControl.getView(), "PalAnalytic");
+		view.getPanelMain().add(anaControl.getView(),
+				Messages.getString("ManageController.4")); //$NON-NLS-1$
 
 		// Add btn Employee manage
 		view.getBtnEmployee().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(view.getPanelMain(), "PalEmployee");
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.5")); //$NON-NLS-1$
 				setBorSelect(view.getBtnEmployee());
 			}
 		});
 		// Add btn Book manage
 		view.getBtnBook().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(view.getPanelMain(), "PalBook");
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.6")); //$NON-NLS-1$
 				setBorSelect(view.getBtnBook());
 			}
 		});
 		// Add btn Subject Manage
 		view.getBtnSubject().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(view.getPanelMain(), "PalSubject");
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.7")); //$NON-NLS-1$
 				setBorSelect(view.getBtnSubject());
 			}
 		});
 		// Add btn Borrow Manage
 		view.getBtnBorrow().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(view.getPanelMain(), "PalBorrow");
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.8")); //$NON-NLS-1$
 				setBorSelect(view.getBtnBorrow());
 			}
 		});
 		// Add btn Analytics Manage
 		view.getBtnAnalytic().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(view.getPanelMain(), "PalAnalytic");
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.9")); //$NON-NLS-1$
 				setBorSelect(view.getBtnAnalytic());
 			}
 		});
 
 		// Add event window opened
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
-
+			@Override
 			public void windowOpened(java.awt.event.WindowEvent evt) {
 				setBorSelect(view.getBtnEmployee());
 				empControl.searchEmp();
@@ -211,6 +232,7 @@ public class ManageController {
 		// Add event quit
 		view.getMnQuit().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 				System.exit(0);
@@ -220,6 +242,7 @@ public class ManageController {
 		// Add event about us
 		view.getMnAboutUs().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.setVisible(false);// hidden current frame
 				about = new AboutWindow(view, null);
@@ -229,6 +252,7 @@ public class ManageController {
 		// Add event logout menu
 		view.getMnLogout().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 				loginControl.getView().setVisible(true);
@@ -238,6 +262,7 @@ public class ManageController {
 		// Add event menu setting
 		view.getMnSetting().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				doBlur();
 				proControl.getView().setVisible(true);
@@ -249,76 +274,97 @@ public class ManageController {
 		view.getMnAnalytic().addMenuListener(
 				new javax.swing.event.MenuListener() {
 
-					public void menuSelected(javax.swing.event.MenuEvent evt) {
-						cardLayout.show(view.getPanelMain(), "PalAnalytic");
-						setBorSelect(view.getBtnAnalytic());
+					@Override
+					public void menuCanceled(javax.swing.event.MenuEvent evt) {
 					}
 
+					@Override
 					public void menuDeselected(javax.swing.event.MenuEvent evt) {
 					}
 
-					public void menuCanceled(javax.swing.event.MenuEvent evt) {
+					@Override
+					public void menuSelected(javax.swing.event.MenuEvent evt) {
+						cardLayout.show(view.getPanelMain(),
+								Messages.getString("ManageController.10")); //$NON-NLS-1$
+						setBorSelect(view.getBtnAnalytic());
 					}
 				});
 		view.getMnSubject().addMenuListener(
 				new javax.swing.event.MenuListener() {
 
-					public void menuSelected(javax.swing.event.MenuEvent evt) {
-						cardLayout.show(view.getPanelMain(), "PalSubject");
-						setBorSelect(view.getBtnSubject());
+					@Override
+					public void menuCanceled(javax.swing.event.MenuEvent evt) {
 					}
 
+					@Override
 					public void menuDeselected(javax.swing.event.MenuEvent evt) {
 					}
 
-					public void menuCanceled(javax.swing.event.MenuEvent evt) {
+					@Override
+					public void menuSelected(javax.swing.event.MenuEvent evt) {
+						cardLayout.show(view.getPanelMain(),
+								Messages.getString("ManageController.11")); //$NON-NLS-1$
+						setBorSelect(view.getBtnSubject());
 					}
 				});
 		view.getMnBook().addMenuListener(new javax.swing.event.MenuListener() {
 
-			public void menuSelected(javax.swing.event.MenuEvent evt) {
-				cardLayout.show(view.getPanelMain(), "PalBook");
-				setBorSelect(view.getBtnBook());
+			@Override
+			public void menuCanceled(javax.swing.event.MenuEvent evt) {
 			}
 
+			@Override
 			public void menuDeselected(javax.swing.event.MenuEvent evt) {
 			}
 
-			public void menuCanceled(javax.swing.event.MenuEvent evt) {
+			@Override
+			public void menuSelected(javax.swing.event.MenuEvent evt) {
+				cardLayout.show(view.getPanelMain(),
+						Messages.getString("ManageController.12")); //$NON-NLS-1$
+				setBorSelect(view.getBtnBook());
 			}
 		});
 		view.getMnBorrow().addMenuListener(
 				new javax.swing.event.MenuListener() {
 
-					public void menuSelected(javax.swing.event.MenuEvent evt) {
-						cardLayout.show(view.getPanelMain(), "PalBorrow");
-						setBorSelect(view.getBtnBorrow());
+					@Override
+					public void menuCanceled(javax.swing.event.MenuEvent evt) {
 					}
 
+					@Override
 					public void menuDeselected(javax.swing.event.MenuEvent evt) {
 					}
 
-					public void menuCanceled(javax.swing.event.MenuEvent evt) {
+					@Override
+					public void menuSelected(javax.swing.event.MenuEvent evt) {
+						cardLayout.show(view.getPanelMain(),
+								Messages.getString("ManageController.13")); //$NON-NLS-1$
+						setBorSelect(view.getBtnBorrow());
 					}
 				});
 		view.getMnEmployee().addMenuListener(
 				new javax.swing.event.MenuListener() {
 
-					public void menuSelected(javax.swing.event.MenuEvent evt) {
-						cardLayout.show(view.getPanelMain(), "PalEmployee");
-						setBorSelect(view.getBtnEmployee());
+					@Override
+					public void menuCanceled(javax.swing.event.MenuEvent evt) {
 					}
 
+					@Override
 					public void menuDeselected(javax.swing.event.MenuEvent evt) {
 					}
 
-					public void menuCanceled(javax.swing.event.MenuEvent evt) {
+					@Override
+					public void menuSelected(javax.swing.event.MenuEvent evt) {
+						cardLayout.show(view.getPanelMain(),
+								Messages.getString("ManageController.14")); //$NON-NLS-1$
+						setBorSelect(view.getBtnEmployee());
 					}
 				});
 
 		// Add event open help mn
 		view.getMnHelp().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				LibUtil.getInstance().openHelp();
 			}
@@ -338,6 +384,34 @@ public class ManageController {
 	}
 
 	/**
+	 * Blur main frame when dialog open
+	 */
+	public void doBlur() {
+		// set layer blur to pane
+		view.setContentPane(layer);
+		blurUI.setLocked(!blurUI.isLocked());
+	}
+
+	/**
+	 * @return the view
+	 */
+	public ManageFrame getView() {
+		return view;
+	}
+
+	/**
+	 * Remove all row on table model
+	 * 
+	 * @param model
+	 */
+	public void removeModel(DefaultTableModel model) {
+		int row = model.getRowCount();
+		for (int i = 0; i < row; i++) {
+			model.removeRow(0);
+		}
+	}
+
+	/**
 	 * Start program by run display login dialog
 	 */
 	public void Run() {
@@ -354,34 +428,6 @@ public class ManageController {
 		view.getBtnBorrow().setBorderPainted(false);
 		view.getBtnAnalytic().setBorderPainted(false);
 		btSelected.setBorderPainted(true);
-	}
-
-	/**
-	 * Removel all row on table model
-	 * 
-	 * @param model
-	 */
-	public void removeModel(DefaultTableModel model) {
-		int row = model.getRowCount();
-		for (int i = 0; i < row; i++) {
-			model.removeRow(0);
-		}
-	}
-
-	/**
-	 * Blur main frame when dialog open
-	 */
-	public void doBlur() {
-		// set layer blur to pane
-		view.setContentPane(layer);
-		blurUI.setLocked(!blurUI.isLocked());
-	}
-
-	/**
-	 * @return the view
-	 */
-	public ManageFrame getView() {
-		return view;
 	}
 
 	/**

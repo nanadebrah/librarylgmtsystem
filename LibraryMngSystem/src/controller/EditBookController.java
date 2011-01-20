@@ -51,6 +51,7 @@ public class EditBookController {
 		// Add event add btn
 		view.getBtnSave().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validBook()) {
 					toObject();
@@ -62,6 +63,7 @@ public class EditBookController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				book = null;
 				view.dispose();
@@ -71,6 +73,7 @@ public class EditBookController {
 		// Add event spinner txt no book
 		view.getSpinCopy().addChangeListener(new ChangeListener() {
 
+			@Override
 			public void stateChanged(ChangeEvent e) {
 				balance();
 			}
@@ -79,6 +82,7 @@ public class EditBookController {
 		// Add event windows closing
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				book = null;
 				view.dispose();
@@ -89,42 +93,92 @@ public class EditBookController {
 	}
 
 	/**
-	 * Valid all field display appropriate message
-	 * 
-	 * @return
+	 * Balance value copies and value in library
 	 */
-	private boolean validBook() {
-		if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
-			JOptionPane.showMessageDialog(view,
-					"You need add minimum 1 subject!", "Error!",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
+	private void balance() {
+		// Defined new no of copies value
+		int newNoC = Integer.parseInt(view.getSpinCopy().getValue().toString());
+
+		// If no of copies (NOC) equal no in library(NIL), increased or subtract
+		// both value
+		if (noCopies == noInLib) {
+			if (newNoC < 1) {
+				view.getSpinCopy().setValue(1);
+				view.getSpinLib().setValue(1);
+			} else {
+				view.getSpinLib().setValue(newNoC);
+			}
+		} else {// If value of their don't equal
+			// If new NOC smaller NOC, it is subtract
+			if (newNoC < noCopies) {
+				// If offset of NOC and new NOC is larger than NIL, conflict
+				if ((noCopies - newNoC) > noInLib) {
+					// Set NIL=0 and set NOC is offset of NOC and NIL
+					view.getSpinLib().setValue(0);
+					view.getSpinCopy().setValue(noCopies - noInLib);
+				} else {// Else is NIL subtract with offset of NOC and new NOC
+					view.getSpinLib().setValue(noInLib - (noCopies - newNoC));
+				}
+			} else {// ELse all is add
+				view.getSpinLib().setValue(noInLib + (newNoC - noCopies));
+			}
 		}
-		if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
-			JOptionPane.showMessageDialog(view, "ISBN must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtISBN().requestFocus();
-			return false;
+	}
+
+	/**
+	 * @return the book
+	 */
+	public Book getBook() {
+		return book;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public EditBookDialog getView() {
+		return view;
+	}
+
+	/**
+	 * @param book
+	 *            the book to set
+	 */
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	/**
+	 * Set all info to field
+	 */
+	private void setField() {
+		if (book != null) {
+			noCopies = book.getNoOfCopy();
+			noInLib = book.getNoInLib();
+			view.getTxtISBN().setText(book.getISBN());
+			view.getTxtTitle().setText(book.getTitle());
+			view.getTxtAuthor().setText(book.getAuthName());
+			view.getTxtPublisher().setText(book.getPublisher());
+			view.getSpinCopy().setValue(noCopies);
+			view.getSpinLib().setValue(noInLib);
+
+			// Load subject list
+			String[] subList = AccessSub.getInstance().getAllSubjectName()
+					.split(Messages.getString("EditBookController.0")); //$NON-NLS-1$
+			for (String subName : subList) {
+				view.getCbxSub().addItem(subName);
+				if (subName.equals(book.getSubName())) {
+					view.getCbxSub().setSelectedItem(subName);
+				}
+			}
 		}
-		if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
-			JOptionPane.showMessageDialog(view, "Title must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtTitle().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
-			JOptionPane.showMessageDialog(view, "Author must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtAuthor().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Publish(view.getTxtPublisher().getText())) {
-			JOptionPane.showMessageDialog(view, "Publisher must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtPublisher().requestFocus();
-			return false;
-		}
-		return true;
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(EditBookDialog view) {
+		this.view = view;
 	}
 
 	/**
@@ -146,91 +200,51 @@ public class EditBookController {
 	}
 
 	/**
-	 * Balance value copies and value in library
+	 * Valid all field display appropriate message
+	 * 
+	 * @return
 	 */
-	private void balance() {
-		// Defined new no of copies value
-		int newNoC = Integer.parseInt(view.getSpinCopy().getValue().toString());
-
-		// Neu so copy bang so trong kho
-		if (noCopies == noInLib) {
-			if (newNoC < 1) {
-				view.getSpinCopy().setValue(1);
-				view.getSpinLib().setValue(1);
-			} else {
-				view.getSpinLib().setValue(newNoC);
-			}
-		} else {// Neu chung ko bang nhau
-			// Neu so moi nho hon so cu tuc la tru
-			if (newNoC < noCopies) {
-				// Neu so giam di ma lon hon so trong kho
-				if ((noCopies - newNoC) > noInLib) {
-					// set so trong kho bang 0 va set so copy bang hieu voi so
-					// trong kho
-					view.getSpinLib().setValue(0);
-					view.getSpinCopy().setValue(noCopies - noInLib);
-				} else {// Neu khong la so tru di nho hon so trong kho
-					view.getSpinLib().setValue(noInLib - (noCopies - newNoC));
-				}
-			} else {// Neu khong la cong
-				view.getSpinLib().setValue(noInLib + (newNoC - noCopies));
-			}
+	private boolean validBook() {
+		if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditBookController.1"),
+					Messages.getString("EditBookController.2"), //$NON-NLS-1$ 
+					JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
-	}
-
-	/**
-	 * Set all info to field
-	 */
-	private void setField() {
-		if (book != null) {
-			noCopies = book.getNoOfCopy();
-			noInLib = book.getNoInLib();
-			view.getTxtISBN().setText(book.getISBN());
-			view.getTxtTitle().setText(book.getTitle());
-			view.getTxtAuthor().setText(book.getAuthName());
-			view.getTxtPublisher().setText(book.getPublisher());
-			view.getSpinCopy().setValue(noCopies);
-			view.getSpinLib().setValue(noInLib);
-
-			// Load subject list
-			String[] subList = AccessSub.getInstance().getAllSubjectName()
-					.split(",");
-			for (String subName : subList) {
-				view.getCbxSub().addItem(subName);
-				if (subName.equals(book.getSubName())) {
-					view.getCbxSub().setSelectedItem(subName);
-				}
-			}
+		if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditBookController.3"),
+					Messages.getString("EditBookController.4"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtISBN().requestFocus();
+			return false;
 		}
-	}
-
-	/**
-	 * @return the book
-	 */
-	public Book getBook() {
-		return book;
-	}
-
-	/**
-	 * @param book
-	 *            the book to set
-	 */
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	/**
-	 * @return the view
-	 */
-	public EditBookDialog getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(EditBookDialog view) {
-		this.view = view;
+		if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditBookController.5"),
+					Messages.getString("EditBookController.6"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtTitle().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("EditBookController.7"),
+					Messages.getString("EditBookController.8"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtAuthor().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Publish(view.getTxtPublisher().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("EditBookController.9"), //$NON-NLS-1$
+					Messages.getString("EditBookController.10"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtPublisher().requestFocus();
+			return false;
+		}
+		return true;
 	}
 }

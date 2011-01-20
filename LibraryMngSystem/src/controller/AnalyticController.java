@@ -66,6 +66,7 @@ public class AnalyticController {
 		// Add event search btn
 		view.getBtnSearch().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.requestFocus();
 				searchCheckingOut();
@@ -75,6 +76,7 @@ public class AnalyticController {
 		// Add event top book btn
 		view.getBtnTopBook().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				getTopBook();
 			}
@@ -83,6 +85,7 @@ public class AnalyticController {
 		// Add event top borrower btn
 		view.getBtnTopBorrow().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				getTopBorrower();
 			}
@@ -91,6 +94,7 @@ public class AnalyticController {
 		// Add event send alert btn
 		view.getBtnAlert().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				sendEmail();
 			}
@@ -99,13 +103,15 @@ public class AnalyticController {
 		// Add event table
 		view.getTblAna().addFocusListener(new FocusAdapter() {
 
+			@Override
 			public void focusLost(java.awt.event.FocusEvent evt) {
-				// Set disable acction button
+				// Set disable action button
 				view.getBtnAlert().setEnabled(false);
 			}
 		});
 		view.getTblAna().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				if (isSearch) {
 					// Set enable action button
@@ -126,6 +132,7 @@ public class AnalyticController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -146,6 +153,7 @@ public class AnalyticController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -163,6 +171,7 @@ public class AnalyticController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				if (isSearch) {
@@ -178,6 +187,7 @@ public class AnalyticController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				if (isSearch) {
@@ -191,6 +201,91 @@ public class AnalyticController {
 				}
 			}
 		});
+	}
+
+	/**
+	 * Get top book borrowed by employee
+	 */
+	private void getTopBook() {
+		isSearch = false;
+		isTopBook = true;
+		// Clear column
+		anaModel.setColumnCount(0);
+		parent.removeModel(anaModel);
+		// Set model
+		anaModel.addColumn(Messages.getString("AnalyticController.0")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.1")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.2")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.3")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.4")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.5")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.6")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.7")); //$NON-NLS-1$
+		totalRow = AccessAnalytic.getInstance()
+				.getTopBook(anaModel, (page - 1));
+		view.getLblPage().setText(
+				Messages.getString("AnalyticController.8") + page
+						+ Messages.getString("AnalyticController.9")
+						+ LibUtil.getInstance().getPage(totalRow));
+	}
+
+	/**
+	 * Get top borrower
+	 */
+	private void getTopBorrower() {
+		isSearch = false;
+		isTopBook = false;
+		// Clear column
+		anaModel.setColumnCount(0);
+		parent.removeModel(anaModel);
+		// Set model
+		anaModel.addColumn(Messages.getString("AnalyticController.10")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.11")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.12")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.13")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.14")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.15")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.16")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.17")); //$NON-NLS-1$
+		totalRow = AccessAnalytic.getInstance().getTopBorrower(anaModel,
+				(page - 1));
+		view.getLblPage().setText(
+				Messages.getString("AnalyticController.18") + page
+						+ Messages.getString("AnalyticController.19")
+						+ LibUtil.getInstance().getPage(totalRow));
+	}
+
+	/**
+	 * @return the view
+	 */
+	public AnalyticPanel getView() {
+		return view;
+	}
+
+	/**
+	 * Search checking out to send alert
+	 */
+	private void searchCheckingOut() {
+		isSearch = true;
+		// Clear column
+		anaModel.setColumnCount(0);
+		parent.removeModel(anaModel);
+		// Set model
+		anaModel.addColumn(Messages.getString("AnalyticController.20")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.21")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.22")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.23")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.24")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.25")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.26")); //$NON-NLS-1$
+		anaModel.addColumn(Messages.getString("AnalyticController.27")); //$NON-NLS-1$
+
+		totalRow = AccessBorrow.getInstance().searchCheckingOut(anaModel,
+				view.getTxtDueDate().getDate(), (page - 1));
+		view.getLblPage().setText(
+				Messages.getString("AnalyticController.28") + page
+						+ Messages.getString("AnalyticController.29")
+						+ LibUtil.getInstance().getPage(totalRow));
 	}
 
 	/**
@@ -211,85 +306,6 @@ public class AnalyticController {
 				parent.getView()), borID, empID, Integer.parseInt(bookID));
 		sendEmail.getView().setVisible(true);
 		parent.doBlur();
-	}
-
-	/**
-	 * Search checking out to send alert
-	 */
-	private void searchCheckingOut() {
-		isSearch = true;
-		// Clear column
-		anaModel.setColumnCount(0);
-		parent.removeModel(anaModel);
-		// Set model
-		anaModel.addColumn("Borrow No");
-		anaModel.addColumn("Employee No");
-		anaModel.addColumn("Book No");
-		anaModel.addColumn("Employee Name");
-		anaModel.addColumn("Call Number");
-		anaModel.addColumn("Title");
-		anaModel.addColumn("Issue Date");
-		anaModel.addColumn("Due Date");
-
-		totalRow = AccessBorrow.getInstance().searchCheckingOut(anaModel,
-				view.getTxtDueDate().getDate(), (page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
-	}
-
-	/**
-	 * Get top borrower
-	 */
-	private void getTopBorrower() {
-		isSearch = false;
-		isTopBook = false;
-		// Clear column
-		anaModel.setColumnCount(0);
-		parent.removeModel(anaModel);
-		// Set model
-		anaModel.addColumn("Employee No");
-		anaModel.addColumn("Name");
-		anaModel.addColumn("Gender");
-		anaModel.addColumn("Email");
-		anaModel.addColumn("Department");
-		anaModel.addColumn("Phone");
-		anaModel.addColumn("Permission");
-		anaModel.addColumn("No borrowed");
-		totalRow = AccessAnalytic.getInstance().getTopBorrower(anaModel,
-				(page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
-	}
-
-	/**
-	 * Get top book borrowed by employee
-	 */
-	private void getTopBook() {
-		isSearch = false;
-		isTopBook = true;
-		// Clear column
-		anaModel.setColumnCount(0);
-		parent.removeModel(anaModel);
-		// Set model
-		anaModel.addColumn("Book No");
-		anaModel.addColumn("Call Number");
-		anaModel.addColumn("ISBN");
-		anaModel.addColumn("Title");
-		anaModel.addColumn("Author");
-		anaModel.addColumn("Publisher");
-		anaModel.addColumn("Subject");
-		anaModel.addColumn("No of borrowed");
-		totalRow = AccessAnalytic.getInstance()
-				.getTopBook(anaModel, (page - 1));
-		view.getLblPage().setText(
-				"Page " + page + "/" + LibUtil.getInstance().getPage(totalRow));
-	}
-
-	/**
-	 * @return the view
-	 */
-	public AnalyticPanel getView() {
-		return view;
 	}
 
 	/**

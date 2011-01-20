@@ -74,6 +74,7 @@ public class BorrowController {
 		// Create book model
 		searchModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -81,6 +82,7 @@ public class BorrowController {
 		// Create book model
 		bothModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -88,6 +90,7 @@ public class BorrowController {
 		// Create check-out model
 		outModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -95,6 +98,7 @@ public class BorrowController {
 		// Create check-in model
 		inModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
@@ -108,48 +112,49 @@ public class BorrowController {
 		view.getTblBorrow().setModel(borModel);
 
 		// Set searchModel
-		searchModel.addColumn("Borrow No");
-		searchModel.addColumn("Employee No");
-		searchModel.addColumn("Book ID");
-		searchModel.addColumn("Call Number");
-		searchModel.addColumn("Title");
-		searchModel.addColumn("Auth");
-		searchModel.addColumn("Publisher");
-		searchModel.addColumn("Due Date");
+		searchModel.addColumn(Messages.getString("BorrowController.17")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.18")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.19")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.20")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.21")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.22")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.23")); //$NON-NLS-1$
+		searchModel.addColumn(Messages.getString("BorrowController.24")); //$NON-NLS-1$
 
 		// Set int model
-		inModel.addColumn("Borrow No");
-		inModel.addColumn("Book No");
-		inModel.addColumn("Call Number");
-		inModel.addColumn("Title");
-		inModel.addColumn("Day Borrow/Fee");
-		inModel.addColumn("Day Late/Fine");
-		inModel.addColumn("Total Fee");
+		inModel.addColumn(Messages.getString("BorrowController.25")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.26")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.27")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.28")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.29")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.30")); //$NON-NLS-1$
+		inModel.addColumn(Messages.getString("BorrowController.31")); //$NON-NLS-1$
 
 		// Set bor model
-		borModel.addColumn("Borrow No");
-		borModel.addColumn("Employee No");
-		borModel.addColumn("Book No");
-		borModel.addColumn("Employee Name");
-		borModel.addColumn("Call Number");
-		borModel.addColumn("Title");
-		borModel.addColumn("Issue Date");
-		borModel.addColumn("Due Date");
-		borModel.addColumn("Issue Status");
-		borModel.addColumn("Return Date");
-		borModel.addColumn("Total Fee");
+		borModel.addColumn(Messages.getString("BorrowController.32")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.33")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.34")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.35")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.36")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.37")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.38")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.39")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.40")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.41")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("BorrowController.42")); //$NON-NLS-1$
 
 		// Set out model
-		outModel.addColumn("Book No");
-		outModel.addColumn("Call Number");
-		outModel.addColumn("ISBN");
-		outModel.addColumn("Title");
-		outModel.addColumn("Author");
-		outModel.addColumn("Publisher");
+		outModel.addColumn(Messages.getString("BorrowController.43")); //$NON-NLS-1$
+		outModel.addColumn(Messages.getString("BorrowController.44")); //$NON-NLS-1$
+		outModel.addColumn(Messages.getString("BorrowController.45")); //$NON-NLS-1$
+		outModel.addColumn(Messages.getString("BorrowController.46")); //$NON-NLS-1$
+		outModel.addColumn(Messages.getString("BorrowController.47")); //$NON-NLS-1$
+		outModel.addColumn(Messages.getString("BorrowController.48")); //$NON-NLS-1$
 
 		// Add event fee rate btn
 		view.getBtnFee().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				editFee();
@@ -159,6 +164,7 @@ public class BorrowController {
 		// Add event check out btn
 		view.getBtnCheckOut().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				checkOut();
@@ -168,6 +174,7 @@ public class BorrowController {
 		// Add event check in btn
 		view.getBtnCheckIn().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				checkIn();
@@ -177,6 +184,7 @@ public class BorrowController {
 		// Add event search btn
 		view.getBtnSearch().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				tableFocus();
 				page = 1;
@@ -187,6 +195,7 @@ public class BorrowController {
 		// Add event view btn
 		view.getBtnView().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				viewBorrowInfo();
 			}
@@ -194,6 +203,7 @@ public class BorrowController {
 
 		view.getBtnDelete().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				deleteBorrow();
 			}
@@ -202,6 +212,7 @@ public class BorrowController {
 		// Add event to borrow table
 		view.getTblBorrow().addFocusListener(new FocusAdapter() {
 
+			@Override
 			public void focusLost(java.awt.event.FocusEvent evt) {
 				tableFocus();
 			}
@@ -209,8 +220,9 @@ public class BorrowController {
 
 		view.getTblBorrow().addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable acction button
+				// Set enable action button
 				view.getBtnView().setEnabled(true);
 				view.getBtnDelete().setEnabled(true);
 				// If double click display edit employee dialog
@@ -223,6 +235,7 @@ public class BorrowController {
 		// Add event enter key
 		view.getTxtEmpID().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBorrow();
@@ -231,6 +244,7 @@ public class BorrowController {
 		});
 		view.getTxtCallNo().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					searchBorrow();
@@ -241,6 +255,7 @@ public class BorrowController {
 		// Add event navigation btn
 		view.getBtnNext().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page == LibUtil.getInstance().getPage(totalRow)
 						|| LibUtil.getInstance().getPage(totalRow) == 0) {
@@ -253,6 +268,7 @@ public class BorrowController {
 		});
 		view.getBtnBack().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (page != 1 && LibUtil.getInstance().getPage(totalRow) != 0) {
 					page--;
@@ -262,6 +278,7 @@ public class BorrowController {
 		});
 		view.getBtnFirst().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = 1;
 				searchBorrow();
@@ -269,6 +286,7 @@ public class BorrowController {
 		});
 		view.getBtnLast().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				page = LibUtil.getInstance().getPage(totalRow);
 				searchBorrow();
@@ -277,12 +295,60 @@ public class BorrowController {
 	}
 
 	/**
+	 * Check in dialog
+	 */
+	private void checkIn() {
+		parent.doBlur();
+		checkIn = new CheckInController(new CheckInDialog(parent.getView()),
+				searchModel, inModel, parent);
+		checkIn.getView().setVisible(true);
+		if (checkIn.getCheckin() != null) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("BorrowController.0"), //$NON-NLS-1$
+					Messages.getString("BorrowController.1"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtCallNo().setText(
+					Messages.getString("BorrowController.2")); //$NON-NLS-1$
+			view.getTxtEmpID()
+					.setText(Messages.getString("BorrowController.3")); //$NON-NLS-1$
+			view.getBtnLast().doClick();
+		}
+		parent.doBlur();
+	}
+
+	/**
+	 * Check out dialog
+	 */
+	private void checkOut() {
+		parent.doBlur();
+		checkOut = new CheckOutController(new CheckOutDialog(parent.getView()),
+				bothModel, outModel, parent);
+		checkOut.getView().setVisible(true);
+
+		if (checkOut.getBorDetail() != null) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("BorrowController.4"), //$NON-NLS-1$
+					Messages.getString("BorrowController.5"),
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtCallNo().setText(
+					Messages.getString("BorrowController.6")); //$NON-NLS-1$
+			view.getTxtEmpID()
+					.setText(Messages.getString("BorrowController.7")); //$NON-NLS-1$
+			view.getBtnLast().doClick();
+		}
+		parent.doBlur();
+	}
+
+	/**
 	 * Delete a borrow, it must checked in
 	 */
 	private void deleteBorrow() {
 		parent.doBlur();
 		int sure = JOptionPane.showConfirmDialog(parent.getView(),
-				"You sure want delete this borrow!", "Delete borrow",
+				Messages.getString("BorrowController.8"),
+				Messages.getString("BorrowController.9"), //$NON-NLS-1$ 
 				JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 		if (sure == JOptionPane.OK_OPTION) {
 			// Get borID and bookID selected
@@ -294,18 +360,86 @@ public class BorrowController {
 					.toString();
 			if (!AccessBorrow.getInstance().deleteBorrow(
 					Integer.parseInt(borID), Integer.parseInt(bookID))) {
-				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete failed!\n"
-								+ "May be this borrow isn't checked-in.",
-						"Error!", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						parent.getView(),
+						Messages.getString("BorrowController.10") //$NON-NLS-1$
+								+ Messages.getString("BorrowController.11"), //$NON-NLS-1$
+						Messages.getString("BorrowController.12"),
+						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(parent.getView(),
-						"Delete successful!", "Successful!",
+						Messages.getString("BorrowController.13"),
+						Messages.getString("BorrowController.14"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
 				borModel.removeRow(view.getTblBorrow().getSelectedRow());
 			}
 		}
 		parent.doBlur();
+	}
+
+	/**
+	 * Edit fee dialog
+	 */
+	private void editFee() {
+		parent.doBlur();
+		feeControl = new FeeRateController(new FeeRateDialog(parent.getView()));
+		feeControl.getView().setVisible(true);
+		if (feeControl.getFee() != null) {
+			AccessFee.getInstance().editFee(feeControl.getFee());
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("BorrowController.15"), //$NON-NLS-1$
+					Messages.getString("BorrowController.16"),
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		parent.doBlur();
+	}
+
+	/**
+	 * @return the view
+	 */
+	public BorrowPanel getView() {
+		return view;
+	}
+
+	/**
+     * 
+     */
+	public void searchBorrow() {
+		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("BorrowController.49"), //$NON-NLS-1$
+					Messages.getString("BorrowController.50"),
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			parent.removeModel(borModel);
+			totalRow = AccessBorrow.getInstance().searchBor(borModel,
+					view.getTxtEmpID().getText(),
+					view.getTxtCallNo().getText(), (page - 1));
+			view.getLblPage().setText(
+					Messages.getString("BorrowController.51") + page
+							+ Messages.getString("BorrowController.52") //$NON-NLS-1$ 
+							+ LibUtil.getInstance().getPage(totalRow));
+		}
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(BorrowPanel view) {
+		this.view = view;
+	}
+
+	/**
+	 * Do lost focus table
+	 */
+	private void tableFocus() {
+		// Set disable action button
+		view.getBtnView().setEnabled(false);
+		view.getBtnDelete().setEnabled(false);
+		view.getTblBorrow().setFocusable(false);
 	}
 
 	/**
@@ -330,100 +464,5 @@ public class BorrowController {
 				parent.getView()), borID, empID, Integer.parseInt(bookID));
 		viewControl.getView().setVisible(true);
 		parent.doBlur();
-	}
-
-	/**
-	 * Do lost focus table
-	 */
-	private void tableFocus() {
-		// Set disable acction button
-		view.getBtnView().setEnabled(false);
-		view.getBtnDelete().setEnabled(false);
-		view.getTblBorrow().setFocusable(false);
-	}
-
-	/**
-	 * Check in dialog
-	 */
-	private void checkIn() {
-		parent.doBlur();
-		checkIn = new CheckInController(new CheckInDialog(parent.getView()),
-				searchModel, inModel, parent);
-		checkIn.getView().setVisible(true);
-		if (checkIn.getCheckin() != null) {
-			JOptionPane.showMessageDialog(view, "Check-in successful!",
-					"Check-in", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtCallNo().setText("");
-			view.getTxtEmpID().setText("");
-			view.getBtnLast().doClick();
-		}
-		parent.doBlur();
-	}
-
-	/**
-	 * Check out dialog
-	 */
-	private void checkOut() {
-		parent.doBlur();
-		checkOut = new CheckOutController(new CheckOutDialog(parent.getView()),
-				bothModel, outModel, parent);
-		checkOut.getView().setVisible(true);
-
-		if (checkOut.getBorDetail() != null) {
-			JOptionPane.showMessageDialog(view, "Check-out successful!",
-					"Check-out", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtCallNo().setText("");
-			view.getTxtEmpID().setText("");
-			view.getBtnLast().doClick();
-		}
-		parent.doBlur();
-	}
-
-	/**
-	 * Edit fee dialog
-	 */
-	private void editFee() {
-		parent.doBlur();
-		feeControl = new FeeRateController(new FeeRateDialog(parent.getView()));
-		feeControl.getView().setVisible(true);
-		if (feeControl.getFee() != null) {
-			AccessFee.getInstance().editFee(feeControl.getFee());
-			JOptionPane.showMessageDialog(view, "Update successful",
-					"Successful!", JOptionPane.INFORMATION_MESSAGE);
-		}
-		parent.doBlur();
-	}
-
-	/**
-     * 
-     */
-	public void searchBorrow() {
-		if (!LibValid.getInstance().EmpID(view.getTxtEmpID().getText())) {
-			JOptionPane.showMessageDialog(view, "Employee Number not valid!",
-					"Search", JOptionPane.ERROR_MESSAGE);
-		} else {
-			parent.removeModel(borModel);
-			totalRow = AccessBorrow.getInstance().searchBor(borModel,
-					view.getTxtEmpID().getText(),
-					view.getTxtCallNo().getText(), (page - 1));
-			view.getLblPage().setText(
-					"Page " + page + "/"
-							+ LibUtil.getInstance().getPage(totalRow));
-		}
-	}
-
-	/**
-	 * @return the view
-	 */
-	public BorrowPanel getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(BorrowPanel view) {
-		this.view = view;
 	}
 }

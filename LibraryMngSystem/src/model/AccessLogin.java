@@ -20,7 +20,7 @@ public class AccessLogin {
 	private Connection cn = null;
 	private ResultSet rsDetails = null;
 	private CallableStatement csDetails = null;
-	// Defined instance of Login
+	// Defined instance of AccessLogin
 	private static AccessLogin instance = new AccessLogin();
 
 	/**
@@ -41,6 +41,9 @@ public class AccessLogin {
 		try {
 			// invoked static method to get connection
 			cn = LibConnection.getConnection();
+			if (cn == null) {
+				return false;
+			}
 			try {
 				// invoked store procedure login and get resultset
 				csDetails = cn.prepareCall(LibProcedure.LOGIN);

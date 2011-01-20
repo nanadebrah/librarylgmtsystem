@@ -42,18 +42,59 @@ package model;
  */
 public class Base64 {
 
-	Base64() {
-		super();
-	}
-
 	// Defined instance of AccessSub
 	private static Base64 instance = new Base64();
 
 	/**
-	 * Static method get instance of AccessSub
+	 * Decode data and return bytes. Assumes that the data passed in is ASCII
+	 * text.
 	 */
-	public static Base64 getInstance() {
-		return instance;
+	public final static byte[] decode(byte[] data) {
+		int tail = data.length;
+		while (data[tail - 1] == '=' && (tail > 1))
+			tail--;
+		byte dest[] = new byte[tail - data.length / 4];
+
+		// ASCII printable to 0-63 conversion
+		for (int idx = 0; idx < data.length; idx++) {
+			if (data[idx] == '=')
+				data[idx] = 0;
+			else if (data[idx] == '/')
+				data[idx] = 63;
+			else if (data[idx] == '+')
+				data[idx] = 62;
+			else if (data[idx] >= '0' && data[idx] <= '9')
+				data[idx] = (byte) (data[idx] - ('0' - 52));
+			else if (data[idx] >= 'a' && data[idx] <= 'z')
+				data[idx] = (byte) (data[idx] - ('a' - 26));
+			else if (data[idx] >= 'A' && data[idx] <= 'Z')
+				data[idx] = (byte) (data[idx] - 'A');
+		}
+
+		// 4-byte to 3-byte conversion
+		int sidx, didx;
+		for (sidx = 0, didx = 0; didx < dest.length - 2; sidx += 4, didx += 3) {
+			dest[didx] = (byte) (((data[sidx] << 2) & 255) | ((data[sidx + 1] >>> 4) & 3));
+			dest[didx + 1] = (byte) (((data[sidx + 1] << 4) & 255) | ((data[sidx + 2] >>> 2) & 017));
+			dest[didx + 2] = (byte) (((data[sidx + 2] << 6) & 255) | (data[sidx + 3] & 077));
+		}
+		if (didx < dest.length) {
+			dest[didx] = (byte) (((data[sidx] << 2) & 255) | ((data[sidx + 1] >>> 4) & 3));
+		}
+		if (++didx < dest.length) {
+			dest[didx] = (byte) (((data[sidx + 1] << 4) & 255) | ((data[sidx + 2] >>> 2) & 017));
+		}
+		return dest;
+	}
+
+	/**
+	 * Decode data and return bytes.
+	 */
+	public final static byte[] decode(String str) {
+		if (str == null)
+			return null;
+		byte data[] = str.getBytes();
+		return decode(data);
 	}
 
 	/**
@@ -103,73 +144,13 @@ public class Base64 {
 	}
 
 	/**
-	 * Decode data and return bytes.
+	 * Static method get instance of AccessSub
 	 */
-	public final static byte[] decode(String str) {
-		if (str == null)
-			return null;
-		byte data[] = str.getBytes();
-		return decode(data);
+	public static Base64 getInstance() {
+		return instance;
 	}
 
-	/**
-	 * Decode data and return bytes. Assumes that the data passed in is ASCII
-	 * text.
-	 */
-	public final static byte[] decode(byte[] data) {
-		int tail = data.length;
-		while (data[tail - 1] == '=' && tail > 1)
-			tail--;
-		byte dest[] = new byte[tail - data.length / 4];
-
-		// ASCII printable to 0-63 conversion
-		for (int idx = 0; idx < data.length; idx++) {
-			if (data[idx] == '=')
-				data[idx] = 0;
-			else if (data[idx] == '/')
-				data[idx] = 63;
-			else if (data[idx] == '+')
-				data[idx] = 62;
-			else if (data[idx] >= '0' && data[idx] <= '9')
-				data[idx] = (byte) (data[idx] - ('0' - 52));
-			else if (data[idx] >= 'a' && data[idx] <= 'z')
-				data[idx] = (byte) (data[idx] - ('a' - 26));
-			else if (data[idx] >= 'A' && data[idx] <= 'Z')
-				data[idx] = (byte) (data[idx] - 'A');
-		}
-
-		// 4-byte to 3-byte conversion
-		int sidx, didx;
-		for (sidx = 0, didx = 0; didx < dest.length - 2; sidx += 4, didx += 3) {
-			dest[didx] = (byte) (((data[sidx] << 2) & 255) | ((data[sidx + 1] >>> 4) & 3));
-			dest[didx + 1] = (byte) (((data[sidx + 1] << 4) & 255) | ((data[sidx + 2] >>> 2) & 017));
-			dest[didx + 2] = (byte) (((data[sidx + 2] << 6) & 255) | (data[sidx + 3] & 077));
-		}
-		if (didx < dest.length) {
-			dest[didx] = (byte) (((data[sidx] << 2) & 255) | ((data[sidx + 1] >>> 4) & 3));
-		}
-		if (++didx < dest.length) {
-			dest[didx] = (byte) (((data[sidx + 1] << 4) & 255) | ((data[sidx + 2] >>> 2) & 017));
-		}
-		return dest;
-	}
-
-	/**
-	 * A simple test that encodes and decodes the first command line argument.
-	 */
-	public static final void main(String[] args) {
-		if (args.length != 1) {
-			System.out.println("Usage: Base64 string");
-			System.exit(0);
-		}
-		try {
-			String e = Base64.encode(args[0].getBytes());
-			String d = new String(Base64.decode(e));
-			System.out.println("Input   = '" + args[0] + "'");
-			System.out.println("Encoded = '" + e + "'");
-			System.out.println("Decoded = '" + d + "'");
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
+	Base64() {
+		super();
 	}
 }

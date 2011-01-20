@@ -43,6 +43,7 @@ public class ViewEmployeeController {
 	/**
 	 * initialize the controller.
 	 */
+	@SuppressWarnings("serial")
 	private void initComponent() {
 		// Set all information
 		view.getLblID().setText(new Integer(emp.getEmpID()).toString());
@@ -51,22 +52,27 @@ public class ViewEmployeeController {
 
 		view.getLblDOB().setText(LibUtil.getInstance().convertDate(DOB));
 		if (emp.getGender() == 1) {
-			view.getLblGender().setText("Male");
+			view.getLblGender().setText(
+					Messages.getString("ViewEmployeeController.0")); //$NON-NLS-1$
 		} else {
-			view.getLblGender().setText("Female");
+			view.getLblGender().setText(
+					Messages.getString("ViewEmployeeController.1")); //$NON-NLS-1$
 		}
 		view.getLblEmail().setText(emp.getEmail());
 		view.getLblAdd().setText(emp.getAddress());
 		view.getLblPhone().setText(emp.getPhone());
 		view.getLblDepart().setText(emp.getDepartment());
 		if (emp.getPermission() == 1) {
-			view.getLblPermission().setText("Librarian");
+			view.getLblPermission().setText(
+					Messages.getString("ViewEmployeeController.2")); //$NON-NLS-1$
 		} else {
-			view.getLblPermission().setText("Employee");
+			view.getLblPermission().setText(
+					Messages.getString("ViewEmployeeController.3")); //$NON-NLS-1$
 		}
 		// Add event close btn
 		view.getBtnClose().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 			}
@@ -75,19 +81,20 @@ public class ViewEmployeeController {
 		// Create bor model
 		borModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
 		};
-		borModel.addColumn("Borrow No");
-		borModel.addColumn("Book No");
-		borModel.addColumn("Call Number");
-		borModel.addColumn("Title");
-		borModel.addColumn("Issue Date");
-		borModel.addColumn("Due Date");
-		borModel.addColumn("Issue Status");
-		borModel.addColumn("Return Date");
-		borModel.addColumn("Total Fee");
+		borModel.addColumn(Messages.getString("ViewEmployeeController.4")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.5")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.6")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.7")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.8")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.9")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.10")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.11")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewEmployeeController.12")); //$NON-NLS-1$
 
 		// Add model to table
 		view.getTblBor().setModel(borModel);

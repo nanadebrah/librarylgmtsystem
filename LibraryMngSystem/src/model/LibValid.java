@@ -6,158 +6,176 @@ package model;
 
 /**
  * Valid all field
+ * 
  * @author CuongNQ
  */
 public class LibValid {
+	// Defined instance of LibValid
+	private static LibValid instance = new LibValid();
 
-    private static LibValid instance = new LibValid();
-    private String ISBNRegex = "\\d{3}-\\d{4}";
-    private String EmpIDRegex = "\\d{0,10}";
-    private String SubIDRegex = "\\d{0,10}";
-    private String BorIDRegex = "\\d{0,10}";
-    private String PasswordRegex = "[a-zA-Z0-9]{4,12}";
-    private String NameRegex = "^[a-zA-Z][a-zA-Z.'_0-9- ]{1,99}";
-    private String AddressRegex = "[a-zA-Z_0-9-.' ]{2,100}";
-    private String EmailRegex = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9_-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private String TitleRegex = "[a-zA-Z_0-9-.' ]{2,100}";
-    private String AuthRegex = "[a-zA-Z_0-9-.' ]{2,30}";
-    private String SubRegex = "[a-zA-Z_0-9-.' ]{2,30}";
-    private String DepartRegex = "[a-zA-Z_0-9-.' ]{2,50}";
-    private String PublishRegex = "[a-zA-Z_0-9-.' ]{2,150}";
-    private String PhoneNumberRegex = "\\d{5,20}";
+	/**
+	 * Create instance of LibValid
+	 * 
+	 * @return instance
+	 */
+	public static LibValid getInstance() {
+		return instance;
+	}
 
-    /**
-     * Create instane of LibValid
-     * @return instance
-     */
-    public static LibValid getInstance() {
-        return instance;
-    }
+	private String ISBNRegex = Messages.getString("LibValid.0"); //$NON-NLS-1$
+	private String EmpIDRegex = Messages.getString("LibValid.1"); //$NON-NLS-1$
+	private String SubIDRegex = Messages.getString("LibValid.2"); //$NON-NLS-1$
+	private String BorIDRegex = Messages.getString("LibValid.3"); //$NON-NLS-1$
+	private String PasswordRegex = Messages.getString("LibValid.4"); //$NON-NLS-1$
+	private String NameRegex = Messages.getString("LibValid.5"); //$NON-NLS-1$
+	private String AddressRegex = Messages.getString("LibValid.6"); //$NON-NLS-1$
+	private String EmailRegex = Messages.getString("LibValid.7") //$NON-NLS-1$
+			+ Messages.getString("LibValid.8"); //$NON-NLS-1$
+	private String TitleRegex = Messages.getString("LibValid.9"); //$NON-NLS-1$
+	private String AuthRegex = Messages.getString("LibValid.10"); //$NON-NLS-1$
+	private String SubRegex = Messages.getString("LibValid.11"); //$NON-NLS-1$
+	private String DepartRegex = Messages.getString("LibValid.12"); //$NON-NLS-1$
+	private String PublishRegex = Messages.getString("LibValid.13"); //$NON-NLS-1$
 
-    /**
-     * Valid ISBN
-     * @param ISBN
-     * @return true,false
-     */
-    public boolean ISBN(String ISBN) {
-        return ISBN.matches(ISBNRegex);
-    }
+	private String PhoneNumberRegex = Messages.getString("LibValid.14"); //$NON-NLS-1$
 
-    /**
-     * Valid Name
-     * @param Name
-     * @return true,false
-     */
-    public boolean Name(String Name) {
-        return Name.matches(NameRegex);
-    }
+	/**
+	 * Valid Address
+	 * 
+	 * @param Address
+	 * @return true,false
+	 */
+	public boolean Address(String Address) {
+		return Address.matches(AddressRegex);
+	}
 
-    /**
-     * Valid Address
-     * @param Address
-     * @return true,false
-     */
-    public boolean Address(String Address) {
-        return Address.matches(AddressRegex);
-    }
+	/**
+	 * Valid AuthorName
+	 * 
+	 * @param Auth
+	 * @return true,false
+	 */
+	public boolean Auth(String Auth) {
+		return Auth.matches(AuthRegex);
+	}
 
-    /**
-     * Valid Password
-     * @param Pass
-     * @return true,false
-     */
-    public boolean Password(String Pass) {
-        return Pass.matches(PasswordRegex);
-    }
+	/**
+	 * Valid Borrow ID
+	 * 
+	 * @param BorID
+	 * @return
+	 */
+	public boolean BorID(String BorID) {
+		return BorID.matches(BorIDRegex);
+	}
 
-    /**
-     * Valid Title
-     * @param Title
-     * @return true,false
-     */
-    public boolean Title(String Title) {
-        return Title.matches(TitleRegex);
-    }
+	/**
+	 * Valid Department
+	 * 
+	 * @param Depart
+	 * @return true,false
+	 */
+	public boolean Depart(String Depart) {
+		return Depart.matches(DepartRegex);
+	}
 
-    /**
-     * Valid Phone
-     * @param Phone
-     * @return true,false
-     */
-    public boolean Phone(String Phone) {
-        return Phone.matches(PhoneNumberRegex);
-    }
+	/**
+	 * Valid Email
+	 * 
+	 * @param Email
+	 * @return true,false
+	 */
+	public boolean Email(String Email) {
+		return Email.matches(EmailRegex);
+	}
 
-    /**
-     * Valid Email
-     * @param Email
-     * @return true,false
-     */
-    public boolean Email(String Email) {
-        return Email.matches(EmailRegex);
-    }
+	/**
+	 * Valid Employee ID
+	 * 
+	 * @param EmpID
+	 * @return
+	 */
+	public boolean EmpID(String EmpID) {
+		return EmpID.matches(EmpIDRegex);
+	}
 
-    /**
-     * Valid Department
-     * @param Depart
-     * @return true,false
-     */
-    public boolean Depart(String Depart) {
-        return Depart.matches(DepartRegex);
-    }
+	/**
+	 * Valid ISBN
+	 * 
+	 * @param ISBN
+	 * @return true,false
+	 */
+	public boolean ISBN(String ISBN) {
+		return ISBN.matches(ISBNRegex);
+	}
 
-    /**
-     * Valid AuthorName
-     * @param Auth
-     * @return true,false
-     */
-    public boolean Auth(String Auth) {
-        return Auth.matches(AuthRegex);
-    }
+	/**
+	 * Valid Name
+	 * 
+	 * @param Name
+	 * @return true,false
+	 */
+	public boolean Name(String Name) {
+		return Name.matches(NameRegex);
+	}
 
-    /**
-     * Valid Puslisher
-     * @param Publish
-     * @return true,flase
-     */
-    public boolean Publish(String Publish) {
-        return Publish.matches(PublishRegex);
-    }
+	/**
+	 * Valid Password
+	 * 
+	 * @param Pass
+	 * @return true,false
+	 */
+	public boolean Password(String Pass) {
+		return Pass.matches(PasswordRegex);
+	}
 
-    /**
-     *  Valid Subject
-     * @param Sub
-     * @return true,false
-     */
-    public boolean Sub(String Sub) {
-        return Sub.matches(SubRegex);
-    }
+	/**
+	 * Valid Phone
+	 * 
+	 * @param Phone
+	 * @return true,false
+	 */
+	public boolean Phone(String Phone) {
+		return Phone.matches(PhoneNumberRegex);
+	}
 
-    /**
-     * Valid Employee ID
-     * @param EmpID
-     * @return
-     */
-    public boolean EmpID(String EmpID) {
-        return EmpID.matches(EmpIDRegex);
-    }
+	/**
+	 * Valid Publisher
+	 * 
+	 * @param Publish
+	 * @return true,false
+	 */
+	public boolean Publish(String Publish) {
+		return Publish.matches(PublishRegex);
+	}
 
-    /**
-     * Valid Subject ID
-     * @param SubID
-     * @return
-     */
-    public boolean SubID(String SubID) {
-        return SubID.matches(SubIDRegex);
-    }
+	/**
+	 * Valid Subject
+	 * 
+	 * @param Sub
+	 * @return true,false
+	 */
+	public boolean Sub(String Sub) {
+		return Sub.matches(SubRegex);
+	}
 
-    /**
-     * Valid Borrow ID
-     * @param BorID
-     * @return
-     */
-    public boolean BorID(String BorID) {
-        return BorID.matches(BorIDRegex);
-    }
+	/**
+	 * Valid Subject ID
+	 * 
+	 * @param SubID
+	 * @return
+	 */
+	public boolean SubID(String SubID) {
+		return SubID.matches(SubIDRegex);
+	}
+
+	/**
+	 * Valid Title
+	 * 
+	 * @param Title
+	 * @return true,false
+	 */
+	public boolean Title(String Title) {
+		return Title.matches(TitleRegex);
+	}
 }

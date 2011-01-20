@@ -41,6 +41,7 @@ public class ViewBookController {
 	/**
 	 * initialize the controller.
 	 */
+	@SuppressWarnings("serial")
 	private void initComponent() {
 		// Set all information
 		view.getLblID().setText(Integer.toString(book.getBookID()));
@@ -56,6 +57,7 @@ public class ViewBookController {
 		// Add event btn close
 		view.getBtnClose().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 			}
@@ -64,19 +66,20 @@ public class ViewBookController {
 		// Create bor model
 		borModel = new DefaultTableModel() {
 
+			@Override
 			public boolean isCellEditable(int column, int row) {
 				return false;
 			}
 		};
-		borModel.addColumn("Borrow No");
-		borModel.addColumn("Employee No");
-		borModel.addColumn("Name");
-		borModel.addColumn("Department");
-		borModel.addColumn("Issue Date");
-		borModel.addColumn("Due Date");
-		borModel.addColumn("Issue Status");
-		borModel.addColumn("Return Date");
-		borModel.addColumn("Total Fee");
+		borModel.addColumn(Messages.getString("ViewBookController.0")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.1")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.2")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.3")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.4")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.5")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.6")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.7")); //$NON-NLS-1$
+		borModel.addColumn(Messages.getString("ViewBookController.8")); //$NON-NLS-1$
 
 		// Add model to table
 		view.getTblBor().setModel(borModel);
