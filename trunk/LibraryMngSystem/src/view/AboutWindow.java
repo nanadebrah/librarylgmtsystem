@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.Dialog;
@@ -47,6 +43,7 @@ public class AboutWindow extends JWindow {
 		this.dialog = d;
 		// Add action close when click
 		btnClose.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				// Show current frame
 				dispose();

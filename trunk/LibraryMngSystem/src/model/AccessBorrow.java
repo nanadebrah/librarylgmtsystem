@@ -36,10 +36,42 @@ public class AccessBorrow {
 	/**
 	 * Static method get instance of AccessBorrow
 	 * 
-	 * @return instance of acessborrow
+	 * @return instance of accessborrow
 	 */
 	public static AccessBorrow getInstance() {
 		return instance;
+	}
+
+	/**
+	 * Check in borrow had checked-out, return book
+	 * 
+	 * @param borID
+	 * @param bookID
+	 * @param returnDate
+	 * @param totalfee
+	 * @return true if successful, otherwise false
+	 */
+	public boolean checkIn(int borID, int bookID, long returnDate,
+			float totalfee) {
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+
+		try {
+			csDetails = cn.prepareCall(LibProcedure.CHECK_IN);
+			csDetails.setInt(1, borID);
+			csDetails.setInt(2, bookID);
+			csDetails.setDate(3, new Date(returnDate));
+			csDetails.setFloat(4, totalfee);
+			csDetails.execute();
+			return true;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return false;
 	}
 
 	/**
@@ -78,6 +110,102 @@ public class AccessBorrow {
 			LibConnection.close(cn);
 		}
 		return false;
+	}
+
+	/**
+	 * Delete borrow (All borrow details and borrow)
+	 * 
+	 * @param borID
+	 * @param bookID
+	 * @return true if delete successful, otherwise false
+	 */
+	public boolean deleteBorrow(int borID, int bookID) {
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.DETELE_BORROW);
+			csDetails.setInt(1, borID);
+			csDetails.setInt(2, bookID);
+			if (csDetails.execute()) {
+				return false;
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return true;
+	}
+
+	/**
+	 * Get full borrow details information
+	 * 
+	 * @param arr
+	 * @param borID
+	 * @param empID
+	 * @param bookID
+	 */
+	public void getFullBorInfo(String[] arr, int borID, int empID, int bookID) {
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.GET_FULL_BOR_INFO);
+			csDetails.setInt(1, borID);
+			csDetails.setInt(2, empID);
+			csDetails.setInt(3, bookID);
+			rsDetails = csDetails.executeQuery();
+			if (rsDetails.next()) {
+				arr[0] = String.valueOf(rsDetails.getInt(1));
+				arr[1] = rsDetails.getString(2);
+				arr[2] = LibUtil.getInstance().convertDate(
+						rsDetails.getDate(3).toString());
+				if (rsDetails.getInt(4) == 1) {
+					arr[3] = Messages.getString("AccessBorrow.0"); //$NON-NLS-1$
+				} else {
+					arr[3] = Messages.getString("AccessBorrow.1"); //$NON-NLS-1$
+				}
+				arr[4] = rsDetails.getString(5);
+				arr[5] = rsDetails.getString(6);
+				arr[6] = rsDetails.getString(7);
+				arr[7] = rsDetails.getString(8);
+				if (rsDetails.getInt(9) == 1) {
+					arr[8] = Messages.getString("AccessBorrow.2"); //$NON-NLS-1$
+				} else {
+					arr[8] = Messages.getString("AccessBorrow.3"); //$NON-NLS-1$
+				}
+				arr[9] = String.valueOf(rsDetails.getInt(10));
+				if (rsDetails.getInt(11) == 0) {
+					arr[10] = Messages.getString("AccessBorrow.4"); //$NON-NLS-1$
+					arr[13] = Messages.getString("AccessBorrow.5"); //$NON-NLS-1$
+					arr[14] = Messages.getString("AccessBorrow.6"); //$NON-NLS-1$
+				} else {
+					arr[10] = Messages.getString("AccessBorrow.7"); //$NON-NLS-1$
+					arr[13] = LibUtil.getInstance().convertDate(
+							rsDetails.getDate(14).toString());
+					arr[14] = Messages.getString("AccessBorrow.8")
+							+ String.valueOf(rsDetails.getFloat(15));
+				}
+				arr[11] = LibUtil.getInstance().convertDate(
+						rsDetails.getDate(12).toString());
+				arr[12] = LibUtil.getInstance().convertDate(
+						rsDetails.getDate(13).toString());
+				arr[15] = rsDetails.getString(16);
+				arr[16] = rsDetails.getString(17);
+				arr[17] = rsDetails.getString(18);
+				arr[18] = rsDetails.getString(19);
+				arr[19] = rsDetails.getString(20);
+				arr[20] = rsDetails.getString(21);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(rsDetails);
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
 	}
 
 	/**
@@ -123,11 +251,11 @@ public class AccessBorrow {
 				vt.add(LibUtil.getInstance().convertDate(
 						rsDetails.getDate(8).toString()));
 				if (rsDetails.getInt(9) == 0) {
-					vt.add("Checked-Out");
-					vt.add("--");
-					vt.add("--");
+					vt.add(Messages.getString("AccessBorrow.9")); //$NON-NLS-1$
+					vt.add(Messages.getString("AccessBorrow.10")); //$NON-NLS-1$
+					vt.add(Messages.getString("AccessBorrow.11")); //$NON-NLS-1$
 				} else {
-					vt.add("Checked-In");
+					vt.add(Messages.getString("AccessBorrow.12")); //$NON-NLS-1$
 					vt.add(rsDetails.getDate(10));
 					vt.add(rsDetails.getFloat(11));
 				}
@@ -197,35 +325,57 @@ public class AccessBorrow {
 	}
 
 	/**
-	 * Check in borrow had checked-out, return book
+	 * Search checkout information by book info
 	 * 
-	 * @param borID
-	 * @param bookID
-	 * @param returnDate
-	 * @param totalfee
-	 * @return true if successful, otherwise false
+	 * @param map
+	 * @param CallNo
+	 * @param ISBN
+	 * @param Title
+	 * @param Auth
+	 * @param page
+	 * @return total row in database
 	 */
-	public boolean checkIn(int borID, int bookID, long returnDate,
-			float totalfee) {
+	public int searchCheckOutByBookInfo(TreeMap<Object, CheckIn> map,
+			String CallNo, String ISBN, String Title, String Auth, int page) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
-
 		try {
-			csDetails = cn.prepareCall(LibProcedure.CHECK_IN);
-			csDetails.setInt(1, borID);
-			csDetails.setInt(2, bookID);
-			csDetails.setDate(3, new Date(returnDate));
-			csDetails.setFloat(4, totalfee);
-			csDetails.execute();
-			return true;
+			csDetails = cn
+					.prepareCall(LibProcedure.SEARCH_CHECKOUT_BY_BOOK_INFO);
+			csDetails.setString(1, CallNo);
+			csDetails.setString(2, ISBN);
+			csDetails.setString(3, Title);
+			csDetails.setString(4, Auth);
+			csDetails.setInt(5, page);
+			csDetails.setInt(6, LibUtil.noRow);
+			csDetails.registerOutParameter(7, java.sql.Types.INTEGER);
+			rsDetails = csDetails.executeQuery();
+			while (rsDetails.next()) {
+				checkin = new CheckIn();
+				checkin.setBorID(rsDetails.getInt(1));
+				checkin.setEmpID(rsDetails.getInt(2));
+				checkin.setBookID(rsDetails.getInt(3));
+				checkin.setCallNumber(rsDetails.getString(4));
+				checkin.setISBN(rsDetails.getString(5));
+				checkin.setTitle(rsDetails.getString(6));
+				checkin.setAuth(rsDetails.getString(7));
+				checkin.setPublisher(rsDetails.getString(8));
+				checkin.setDueDate(rsDetails.getDate(9).getTime());
+				checkin.setIssueDate(rsDetails.getDate(10).getTime());
+				map.put(checkin.getBorID()
+						+ Messages.getString("AccessBorrow.13")
+						+ checkin.getBookID(), checkin);
+			}
+			return csDetails.getInt(7);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			// close all connect
+			LibConnection.close(rsDetails);
 			LibConnection.close(csDetails);
 			LibConnection.close(cn);
 		}
-		return false;
+		return 1;
 	}
 
 	/**
@@ -252,8 +402,9 @@ public class AccessBorrow {
 				checkin.setPublisher(rsDetails.getString(7));
 				checkin.setDueDate(rsDetails.getDate(8).getTime());
 				checkin.setIssueDate(rsDetails.getDate(9).getTime());
-				map.put(checkin.getBorID() + "," + checkin.getCallNumber(),
-						checkin);
+				map.put(checkin.getBorID()
+						+ Messages.getString("AccessBorrow.14") + checkin.getCallNumber(), //$NON-NLS-1$
+				checkin);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -266,59 +417,7 @@ public class AccessBorrow {
 	}
 
 	/**
-	 * Search checkout information by book info
-	 * 
-	 * @param map
-	 * @param CallNo
-	 * @param ISBN
-	 * @param Title
-	 * @param Auth
-	 * @param page
-	 * @return total row in database
-	 */
-	public int searchCheckOutByBookInfo(TreeMap<Object, CheckIn> map, String CallNo,
-			String ISBN, String Title, String Auth, int page) {
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn
-					.prepareCall(LibProcedure.SEARCH_CHECKOUT_BY_BOOK_INFO);
-			csDetails.setString(1, CallNo);
-			csDetails.setString(2, ISBN);
-			csDetails.setString(3, Title);
-			csDetails.setString(4, Auth);
-			csDetails.setInt(5, page);
-			csDetails.setInt(6, LibUtil.noRow);
-			csDetails.registerOutParameter(7, java.sql.Types.INTEGER);
-			rsDetails = csDetails.executeQuery();
-			while (rsDetails.next()) {
-				checkin = new CheckIn();
-				checkin.setBorID(rsDetails.getInt(1));
-				checkin.setEmpID(rsDetails.getInt(2));
-				checkin.setBookID(rsDetails.getInt(3));
-				checkin.setCallNumber(rsDetails.getString(4));
-				checkin.setISBN(rsDetails.getString(5));
-				checkin.setTitle(rsDetails.getString(6));
-				checkin.setAuth(rsDetails.getString(7));
-				checkin.setPublisher(rsDetails.getString(8));
-				checkin.setDueDate(rsDetails.getDate(9).getTime());
-				checkin.setIssueDate(rsDetails.getDate(10).getTime());
-				map.put(checkin.getBorID() + "," + checkin.getBookID(), checkin);
-			}
-			return csDetails.getInt(7);
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(rsDetails);
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return 1;
-	}
-
-	/**
-	 * Search checkout information by employee infomation
+	 * Search checkout information by employee information
 	 * 
 	 * @param map
 	 * @param EmpID
@@ -326,8 +425,8 @@ public class AccessBorrow {
 	 * @param page
 	 * @return total row in database
 	 */
-	public int searchCheckOutByEmpInfo(TreeMap<Object, CheckIn> map, String EmpID, String Name,
-			int page) {
+	public int searchCheckOutByEmpInfo(TreeMap<Object, CheckIn> map,
+			String EmpID, String Name, int page) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
@@ -359,7 +458,9 @@ public class AccessBorrow {
 				checkin.setPublisher(rsDetails.getString(8));
 				checkin.setDueDate(rsDetails.getDate(9).getTime());
 				checkin.setIssueDate(rsDetails.getDate(10).getTime());
-				map.put(checkin.getBorID() + "," + checkin.getBookID(), checkin);
+				map.put(checkin.getBorID()
+						+ Messages.getString("AccessBorrow.15")
+						+ checkin.getBookID(), checkin);
 			}
 			return csDetails.getInt(4);
 		} catch (SQLException ex) {
@@ -371,100 +472,5 @@ public class AccessBorrow {
 			LibConnection.close(cn);
 		}
 		return 1;
-	}
-
-	/**
-	 * Get full borrow details information
-	 * 
-	 * @param arr
-	 * @param borID
-	 * @param empID
-	 * @param bookID
-	 */
-	public void getFullBorInfo(String[] arr, int borID, int empID, int bookID) {
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.GET_FULL_BOR_INFO);
-			csDetails.setInt(1, borID);
-			csDetails.setInt(2, empID);
-			csDetails.setInt(3, bookID);
-			rsDetails = csDetails.executeQuery();
-			if (rsDetails.next()) {
-				arr[0] = String.valueOf(rsDetails.getInt(1));
-				arr[1] = rsDetails.getString(2);
-				arr[2] = LibUtil.getInstance().convertDate(
-						rsDetails.getDate(3).toString());
-				if (rsDetails.getInt(4) == 1) {
-					arr[3] = "Male";
-				} else {
-					arr[3] = "Female";
-				}
-				arr[4] = rsDetails.getString(5);
-				arr[5] = rsDetails.getString(6);
-				arr[6] = rsDetails.getString(7);
-				arr[7] = rsDetails.getString(8);
-				if (rsDetails.getInt(9) == 1) {
-					arr[8] = "Librarian";
-				} else {
-					arr[8] = "Employee";
-				}
-				arr[9] = String.valueOf(rsDetails.getInt(10));
-				if (rsDetails.getInt(11) == 0) {
-					arr[10] = "Checked-Out";
-					arr[13] = "--";
-					arr[14] = "--";
-				} else {
-					arr[10] = "Checked-In";
-					arr[13] = LibUtil.getInstance().convertDate(
-							rsDetails.getDate(14).toString());
-					arr[14] = "$" + String.valueOf(rsDetails.getFloat(15));
-				}
-				arr[11] = LibUtil.getInstance().convertDate(
-						rsDetails.getDate(12).toString());
-				arr[12] = LibUtil.getInstance().convertDate(
-						rsDetails.getDate(13).toString());
-				arr[15] = rsDetails.getString(16);
-				arr[16] = rsDetails.getString(17);
-				arr[17] = rsDetails.getString(18);
-				arr[18] = rsDetails.getString(19);
-				arr[19] = rsDetails.getString(20);
-				arr[20] = rsDetails.getString(21);
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(rsDetails);
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-	}
-
-	/**
-	 * Delete borrow (All borrow details and borrow)
-	 * 
-	 * @param borID
-	 * @param bookID
-	 * @return true if delete successful, otherwise false
-	 */
-	public boolean deleteBorrow(int borID, int bookID) {
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.DETELE_BORROW);
-			csDetails.setInt(1, borID);
-			csDetails.setInt(2, bookID);
-			if (csDetails.execute()) {
-				return false;
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return true;
 	}
 }

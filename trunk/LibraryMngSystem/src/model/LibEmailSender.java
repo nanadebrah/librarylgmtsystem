@@ -59,14 +59,16 @@ public class LibEmailSender {
 
 		// create some properties and get the default Session
 		Properties props = new Properties();
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", smtpPort);
+		props.put(Messages.getString("LibEmailSender.0"), host); //$NON-NLS-1$
+		props.put(Messages.getString("LibEmailSender.1"), smtpPort); //$NON-NLS-1$
 		// props.put("mail.debug", "true");
-		props.put("mail.smtp.starttls.enable", "true");
+		props.put(Messages.getString("LibEmailSender.2"),
+				Messages.getString("LibEmailSender.3")); //$NON-NLS-1$ 
 
 		Session session = null;
 		if (username != null && password != null) {
-			props.put("mail.smtp.auth", "true");
+			props.put(Messages.getString("LibEmailSender.4"),
+					Messages.getString("LibEmailSender.5")); //$NON-NLS-1$ 
 			session = Session.getInstance(props, new MyPasswordAuthenticator(
 					username, password));
 		} else {
@@ -85,7 +87,8 @@ public class LibEmailSender {
 		MimeBodyPart messageBodyPart = new MimeBodyPart();
 
 		// fill message
-		messageBodyPart.setContent(body, "text/plain");
+		messageBodyPart
+				.setContent(body, Messages.getString("LibEmailSender.6")); //$NON-NLS-1$
 
 		Multipart multipart = new MimeMultipart();
 		multipart.addBodyPart(messageBodyPart);
@@ -95,7 +98,7 @@ public class LibEmailSender {
 			messageBodyPart = new MimeBodyPart();
 			FileDataSource fds = new FileDataSource(fileAttachment);
 			messageBodyPart.setDataHandler(new DataHandler(fds));
-			messageBodyPart.setFileName("attatch.pdf");
+			messageBodyPart.setFileName(Messages.getString("LibEmailSender.7")); //$NON-NLS-1$
 
 			multipart.addBodyPart(messageBodyPart);
 		}
@@ -123,20 +126,23 @@ public class LibEmailSender {
 
 		// create some properties and get the default Session
 		Properties props = new Properties();
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", smtpPort);
+		props.put(Messages.getString("LibEmailSender.8"), host); //$NON-NLS-1$
+		props.put(Messages.getString("LibEmailSender.9"), smtpPort); //$NON-NLS-1$
 		// props.put("mail.debug", "true");
-		props.put("mail.smtp.starttls.enable", "true");
+		props.put(Messages.getString("LibEmailSender.10"),
+				Messages.getString("LibEmailSender.11")); //$NON-NLS-1$ 
 
 		Session session = null;
 		if (username != null && password != null) {
-			props.put("mail.smtp.auth", "true");
+			props.put(Messages.getString("LibEmailSender.12"),
+					Messages.getString("LibEmailSender.13")); //$NON-NLS-1$ 
 			session = Session.getInstance(props, new MyPasswordAuthenticator(
 					username, password));
 		} else {
 			session = Session.getDefaultInstance(props, null);
 		}
-		Transport transport = session.getTransport("smtp");
+		Transport transport = session.getTransport(Messages
+				.getString("LibEmailSender.14")); //$NON-NLS-1$
 		try {
 			transport.connect();
 			return transport.isConnected();
@@ -177,6 +183,7 @@ class MyPasswordAuthenticator extends Authenticator {
 	 * 
 	 * @return
 	 */
+	@Override
 	public PasswordAuthentication getPasswordAuthentication() {
 		return new PasswordAuthentication(user, pw);
 	}

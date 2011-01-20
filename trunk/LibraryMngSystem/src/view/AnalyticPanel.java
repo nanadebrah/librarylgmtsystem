@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Mon Jan 17 15:39:03 GMT+07:00 2011
- */
-
 package view;
 
 import java.awt.BorderLayout;
@@ -23,180 +19,16 @@ import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
- * @author Nanette G Hutchison
+ * @author CuongNQ
  */
+@SuppressWarnings("serial")
 public class AnalyticPanel extends JPanel {
 	public AnalyticPanel() {
 		initComponents();
 	}
 
-	/**
-	 * @return the btnFirst
-	 */
-	public JButton getBtnFirst() {
-		return btnFirst;
-	}
-
-	/**
-	 * @param btnFirst
-	 *            the btnFirst to set
-	 */
-	public void setBtnFirst(JButton btnFirst) {
-		this.btnFirst = btnFirst;
-	}
-
-	/**
-	 * @return the btnBack
-	 */
-	public JButton getBtnBack() {
-		return btnBack;
-	}
-
-	/**
-	 * @param btnBack
-	 *            the btnBack to set
-	 */
-	public void setBtnBack(JButton btnBack) {
-		this.btnBack = btnBack;
-	}
-
-	/**
-	 * @return the btnNext
-	 */
-	public JButton getBtnNext() {
-		return btnNext;
-	}
-
-	/**
-	 * @param btnNext
-	 *            the btnNext to set
-	 */
-	public void setBtnNext(JButton btnNext) {
-		this.btnNext = btnNext;
-	}
-
-	/**
-	 * @return the btnLast
-	 */
-	public JButton getBtnLast() {
-		return btnLast;
-	}
-
-	/**
-	 * @param btnLast
-	 *            the btnLast to set
-	 */
-	public void setBtnLast(JButton btnLast) {
-		this.btnLast = btnLast;
-	}
-
-	/**
-	 * @return the tblAna
-	 */
-	public JTable getTblAna() {
-		return tblAna;
-	}
-
-	/**
-	 * @param tblAna
-	 *            the tblAna to set
-	 */
-	public void setTblAna(JTable tblAna) {
-		this.tblAna = tblAna;
-	}
-
-	/**
-	 * @return the btnTopBook
-	 */
-	public JButton getBtnTopBook() {
-		return btnTopBook;
-	}
-
-	/**
-	 * @param btnTopBook
-	 *            the btnTopBook to set
-	 */
-	public void setBtnTopBook(JButton btnTopBook) {
-		this.btnTopBook = btnTopBook;
-	}
-
-	/**
-	 * @return the btnTopBorrow
-	 */
-	public JButton getBtnTopBorrow() {
-		return btnTopBorrow;
-	}
-
-	/**
-	 * @param btnTopBorrow
-	 *            the btnTopBorrow to set
-	 */
-	public void setBtnTopBorrow(JButton btnTopBorrow) {
-		this.btnTopBorrow = btnTopBorrow;
-	}
-
-	/**
-	 * @return the btnAlert
-	 */
-	public JButton getBtnAlert() {
-		return btnAlert;
-	}
-
-	/**
-	 * @param btnAlert
-	 *            the btnAlert to set
-	 */
-	public void setBtnAlert(JButton btnAlert) {
-		this.btnAlert = btnAlert;
-	}
-
-	/**
-	 * @return the btnSearch
-	 */
-	public JButton getBtnSearch() {
-		return btnSearch;
-	}
-
-	/**
-	 * @param btnSearch
-	 *            the btnSearch to set
-	 */
-	public void setBtnSearch(JButton btnSearch) {
-		this.btnSearch = btnSearch;
-	}
-
-	/**
-	 * @return the txtDueDate
-	 */
-	public JXDatePicker getTxtDueDate() {
-		return txtDueDate;
-	}
-
-	/**
-	 * @param txtDueDate
-	 *            the txtDueDate to set
-	 */
-	public void setTxtDueDate(JXDatePicker txtDueDate) {
-		this.txtDueDate = txtDueDate;
-	}
-
-	/**
-	 * @return the lblPage
-	 */
-	public JLabel getLblPage() {
-		return lblPage;
-	}
-
-	/**
-	 * @param lblPage
-	 *            the lblPage to set
-	 */
-	public void setLblPage(JLabel lblPage) {
-		this.lblPage = lblPage;
-	}
-
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		panel1 = new JPanel();
 		btnFirst = new JButton();
@@ -345,6 +177,10 @@ public class AnalyticPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
 									5), 0, 0));
+
+					// ---- txtDueDate ----
+					txtDueDate
+							.setToolTipText("Search borrow checked in by due-date");
 					panel4.add(txtDueDate, new GridBagConstraints(1, 0, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
@@ -358,11 +194,11 @@ public class AnalyticPanel extends JPanel {
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
 		add(panel2, BorderLayout.CENTER);
-		// JFormDesigner - End of component initialization
+		// End of component initialization
 		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JPanel panel1;
 	private JButton btnFirst;
@@ -382,5 +218,170 @@ public class AnalyticPanel extends JPanel {
 	private JPanel panel4;
 	private JLabel label2;
 	private JXDatePicker txtDueDate;
-	// JFormDesigner - End of variables declaration //GEN-END:variables
+
+	// End of variables declaration //GEN-END:variables
+	/**
+	 * @return the btnFirst
+	 */
+	public JButton getBtnFirst() {
+		return btnFirst;
+	}
+
+	/**
+	 * @param btnFirst
+	 *            the btnFirst to set
+	 */
+	public void setBtnFirst(JButton btnFirst) {
+		this.btnFirst = btnFirst;
+	}
+
+	/**
+	 * @return the btnBack
+	 */
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	/**
+	 * @param btnBack
+	 *            the btnBack to set
+	 */
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+	/**
+	 * @return the lblPage
+	 */
+	public JLabel getLblPage() {
+		return lblPage;
+	}
+
+	/**
+	 * @param lblPage
+	 *            the lblPage to set
+	 */
+	public void setLblPage(JLabel lblPage) {
+		this.lblPage = lblPage;
+	}
+
+	/**
+	 * @return the btnNext
+	 */
+	public JButton getBtnNext() {
+		return btnNext;
+	}
+
+	/**
+	 * @param btnNext
+	 *            the btnNext to set
+	 */
+	public void setBtnNext(JButton btnNext) {
+		this.btnNext = btnNext;
+	}
+
+	/**
+	 * @return the btnLast
+	 */
+	public JButton getBtnLast() {
+		return btnLast;
+	}
+
+	/**
+	 * @param btnLast
+	 *            the btnLast to set
+	 */
+	public void setBtnLast(JButton btnLast) {
+		this.btnLast = btnLast;
+	}
+
+	/**
+	 * @return the tblAna
+	 */
+	public JTable getTblAna() {
+		return tblAna;
+	}
+
+	/**
+	 * @param tblAna
+	 *            the tblAna to set
+	 */
+	public void setTblAna(JTable tblAna) {
+		this.tblAna = tblAna;
+	}
+
+	/**
+	 * @return the btnTopBook
+	 */
+	public JButton getBtnTopBook() {
+		return btnTopBook;
+	}
+
+	/**
+	 * @param btnTopBook
+	 *            the btnTopBook to set
+	 */
+	public void setBtnTopBook(JButton btnTopBook) {
+		this.btnTopBook = btnTopBook;
+	}
+
+	/**
+	 * @return the btnTopBorrow
+	 */
+	public JButton getBtnTopBorrow() {
+		return btnTopBorrow;
+	}
+
+	/**
+	 * @param btnTopBorrow
+	 *            the btnTopBorrow to set
+	 */
+	public void setBtnTopBorrow(JButton btnTopBorrow) {
+		this.btnTopBorrow = btnTopBorrow;
+	}
+
+	/**
+	 * @return the btnAlert
+	 */
+	public JButton getBtnAlert() {
+		return btnAlert;
+	}
+
+	/**
+	 * @param btnAlert
+	 *            the btnAlert to set
+	 */
+	public void setBtnAlert(JButton btnAlert) {
+		this.btnAlert = btnAlert;
+	}
+
+	/**
+	 * @return the btnSearch
+	 */
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	/**
+	 * @param btnSearch
+	 *            the btnSearch to set
+	 */
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	/**
+	 * @return the txtDueDate
+	 */
+	public JXDatePicker getTxtDueDate() {
+		return txtDueDate;
+	}
+
+	/**
+	 * @param txtDueDate
+	 *            the txtDueDate to set
+	 */
+	public void setTxtDueDate(JXDatePicker txtDueDate) {
+		this.txtDueDate = txtDueDate;
+	}
 }

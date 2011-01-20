@@ -37,10 +37,32 @@ public class Subject {
 	}
 
 	/**
+	 * @return the Description
+	 */
+	public String getDescription() {
+		return Description;
+	}
+
+	/**
 	 * @return the SubID
 	 */
 	public int getSubID() {
 		return SubID;
+	}
+
+	/**
+	 * @return the SubName
+	 */
+	public String getSubName() {
+		return SubName;
+	}
+
+	/**
+	 * @param Description
+	 *            the Description to set
+	 */
+	public void setDescription(String Description) {
+		this.Description = Description;
 	}
 
 	/**
@@ -52,33 +74,11 @@ public class Subject {
 	}
 
 	/**
-	 * @return the SubName
-	 */
-	public String getSubName() {
-		return SubName;
-	}
-
-	/**
 	 * @param SubName
 	 *            the SubName to set
 	 */
 	public void setSubName(String SubName) {
 		this.SubName = SubName;
-	}
-
-	/**
-	 * @return the Description
-	 */
-	public String getDescription() {
-		return Description;
-	}
-
-	/**
-	 * @param Description
-	 *            the Description to set
-	 */
-	public void setDescription(String Description) {
-		this.Description = Description;
 	}
 
 	/*

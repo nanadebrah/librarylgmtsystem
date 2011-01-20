@@ -30,6 +30,11 @@ public class AddBookController {
 	private Book book = null;
 	private AddBookDialog view;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param view
+	 */
 	public AddBookController(AddBookDialog view) {
 		this.view = view;
 		initComponent();
@@ -49,6 +54,7 @@ public class AddBookController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				book = null;
 				view.dispose();
@@ -58,6 +64,7 @@ public class AddBookController {
 		// Add window event
 		view.addWindowListener(new WindowAdapter() {
 
+			@Override
 			public void windowClosing(WindowEvent evt) {
 				book = null;
 			}
@@ -66,13 +73,18 @@ public class AddBookController {
 		// Add event window opened
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowOpened(java.awt.event.WindowEvent evt) {
 				new Thread(new Runnable() {
 
+					@Override
 					public void run() {
 						// Load subject list
-						String[] subList = AccessSub.getInstance()
-								.getAllSubjectName().split(",");
+						String[] subList = AccessSub
+								.getInstance()
+								.getAllSubjectName()
+								.split(Messages
+										.getString("AddBookController.0")); //$NON-NLS-1$
 						for (String subName : subList) {
 							view.getCbxSub().addItem(subName);
 						}
@@ -84,6 +96,7 @@ public class AddBookController {
 		// Add event add btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validBook()) {
 					// set object
@@ -97,6 +110,7 @@ public class AddBookController {
 		// Add event sniper txt no book
 		view.getSpinCopy().addChangeListener(new ChangeListener() {
 
+			@Override
 			public void stateChanged(ChangeEvent e) {
 				// set min value
 				if (Integer.parseInt(view.getSpinCopy().getValue().toString()) < 1) {
@@ -111,42 +125,33 @@ public class AddBookController {
 	}
 
 	/**
-	 * Valid all field display appropriate message
-	 * 
-	 * @return
+	 * @return the book
 	 */
-	private boolean validBook() {
-		if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
-			JOptionPane.showMessageDialog(view,
-					"You need add minimum 1 subject!", "Error!",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-		if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
-			JOptionPane.showMessageDialog(view, "ISBN must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtISBN().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
-			JOptionPane.showMessageDialog(view, "Title must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtTitle().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
-			JOptionPane.showMessageDialog(view, "Author must valid.", "Valid!",
-					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtAuthor().requestFocus();
-			return false;
-		}
-		if (!LibValid.getInstance().Publish(view.getTxtPublisher().getText())) {
-			JOptionPane.showMessageDialog(view, "Publisher must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtPublisher().requestFocus();
-			return false;
-		}
-		return true;
+	public Book getBook() {
+		return book;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public AddBookDialog getView() {
+		return view;
+	}
+
+	/**
+	 * @param book
+	 *            the book to set
+	 */
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(AddBookDialog view) {
+		this.view = view;
 	}
 
 	/**
@@ -165,32 +170,50 @@ public class AddBookController {
 	}
 
 	/**
-	 * @return the book
+	 * Valid all field display appropriate message
+	 * 
+	 * @return
 	 */
-	public Book getBook() {
-		return book;
-	}
-
-	/**
-	 * @param book
-	 *            the book to set
-	 */
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	/**
-	 * @return the view
-	 */
-	public AddBookDialog getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(AddBookDialog view) {
-		this.view = view;
+	private boolean validBook() {
+		if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddBookController.1"),//$NON-NLS-1$
+					Messages.getString("AddBookController.2"), //$NON-NLS-1$ 
+					JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddBookController.3"),//$NON-NLS-1$
+					Messages.getString("AddBookController.4"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtISBN().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddBookController.5"),//$NON-NLS-1$
+					Messages.getString("AddBookController.6"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtTitle().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddBookController.7"),//$NON-NLS-1$
+					Messages.getString("AddBookController.8"), //$NON-NLS-1$ 
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtAuthor().requestFocus();
+			return false;
+		}
+		if (!LibValid.getInstance().Publish(view.getTxtPublisher().getText())) {
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddBookController.9"), //$NON-NLS-1$
+					Messages.getString("AddBookController.10"),//$NON-NLS-1$
+					JOptionPane.INFORMATION_MESSAGE);
+			view.getTxtPublisher().requestFocus();
+			return false;
+		}
+		return true;
 	}
 }

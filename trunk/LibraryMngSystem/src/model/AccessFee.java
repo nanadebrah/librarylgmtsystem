@@ -33,6 +33,31 @@ public class AccessFee {
 	}
 
 	/**
+	 * Edit fee and fine setting
+	 * 
+	 * @param fee
+	 * @return true if successful, otherwise false
+	 */
+	public boolean editFee(Fee fee) {
+		// Defined connection, rs and cs to connect and query database
+		Connection cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.EDIT_FEE);
+			csDetails.setFloat(1, fee.getBorFee());
+			csDetails.setFloat(2, fee.getLateFee());
+			csDetails.execute();
+			return true;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return false;
+	}
+
+	/**
 	 * Get fee and fine rate
 	 * 
 	 * @return fee object
@@ -63,30 +88,5 @@ public class AccessFee {
 			LibConnection.close(cn);
 		}
 		return null;
-	}
-
-	/**
-	 * Edit fee and fine setting
-	 * 
-	 * @param fee
-	 * @return true if successful, otherwise false
-	 */
-	public boolean editFee(Fee fee) {
-		// Defined connection, rs and cs to connect and query database
-		Connection cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.EDIT_FEE);
-			csDetails.setFloat(1, fee.getBorFee());
-			csDetails.setFloat(2, fee.getLateFee());
-			csDetails.execute();
-			return true;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return false;
 	}
 }

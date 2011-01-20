@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Mon Jan 17 15:20:24 GMT+07:00 2011
- */
-
 package view;
 
 import java.awt.BorderLayout;
@@ -22,240 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Nanette G Hutchison
+ * @author CuongNQ
  */
+@SuppressWarnings("serial")
 public class BookPanel extends JPanel {
 	public BookPanel() {
 		initComponents();
 	}
 
-	/**
-	 * @return the txtTitle
-	 */
-	public JTextField getTxtTitle() {
-		return txtTitle;
-	}
-
-	/**
-	 * @param txtTitle
-	 *            the txtTitle to set
-	 */
-	public void setTxtTitle(JTextField txtTitle) {
-		this.txtTitle = txtTitle;
-	}
-
-	/**
-	 * @return the txtISBN
-	 */
-	public JTextField getTxtISBN() {
-		return txtISBN;
-	}
-
-	/**
-	 * @param txtISBN
-	 *            the txtISBN to set
-	 */
-	public void setTxtISBN(JTextField txtISBN) {
-		this.txtISBN = txtISBN;
-	}
-
-	/**
-	 * @return the lblPage
-	 */
-	public JLabel getLblPage() {
-		return lblPage;
-	}
-
-	/**
-	 * @param lblPage
-	 *            the lblPage to set
-	 */
-	public void setLblPage(JLabel lblPage) {
-		this.lblPage = lblPage;
-	}
-
-	/**
-	 * @return the btnFirst
-	 */
-	public JButton getBtnFirst() {
-		return btnFirst;
-	}
-
-	/**
-	 * @param btnFirst
-	 *            the btnFirst to set
-	 */
-	public void setBtnFirst(JButton btnFirst) {
-		this.btnFirst = btnFirst;
-	}
-
-	/**
-	 * @return the btnBack
-	 */
-	public JButton getBtnBack() {
-		return btnBack;
-	}
-
-	/**
-	 * @param btnBack
-	 *            the btnBack to set
-	 */
-	public void setBtnBack(JButton btnBack) {
-		this.btnBack = btnBack;
-	}
-
-	/**
-	 * @return the btnNext
-	 */
-	public JButton getBtnNext() {
-		return btnNext;
-	}
-
-	/**
-	 * @param btnNext
-	 *            the btnNext to set
-	 */
-	public void setBtnNext(JButton btnNext) {
-		this.btnNext = btnNext;
-	}
-
-	/**
-	 * @return the btnLast
-	 */
-	public JButton getBtnLast() {
-		return btnLast;
-	}
-
-	/**
-	 * @param btnLast
-	 *            the btnLast to set
-	 */
-	public void setBtnLast(JButton btnLast) {
-		this.btnLast = btnLast;
-	}
-
-	/**
-	 * @return the tblBook
-	 */
-	public JTable getTblBook() {
-		return tblBook;
-	}
-
-	/**
-	 * @param tblBook
-	 *            the tblBook to set
-	 */
-	public void setTblBook(JTable tblBook) {
-		this.tblBook = tblBook;
-	}
-
-	/**
-	 * @return the btnAdd
-	 */
-	public JButton getBtnAdd() {
-		return btnAdd;
-	}
-
-	/**
-	 * @param btnAdd
-	 *            the btnAdd to set
-	 */
-	public void setBtnAdd(JButton btnAdd) {
-		this.btnAdd = btnAdd;
-	}
-
-	/**
-	 * @return the btnEdit
-	 */
-	public JButton getBtnEdit() {
-		return btnEdit;
-	}
-
-	/**
-	 * @param btnEdit
-	 *            the btnEdit to set
-	 */
-	public void setBtnEdit(JButton btnEdit) {
-		this.btnEdit = btnEdit;
-	}
-
-	/**
-	 * @return the btnView
-	 */
-	public JButton getBtnView() {
-		return btnView;
-	}
-
-	/**
-	 * @param btnView
-	 *            the btnView to set
-	 */
-	public void setBtnView(JButton btnView) {
-		this.btnView = btnView;
-	}
-
-	/**
-	 * @return the btnDelete
-	 */
-	public JButton getBtnDelete() {
-		return btnDelete;
-	}
-
-	/**
-	 * @param btnDelete
-	 *            the btnDelete to set
-	 */
-	public void setBtnDelete(JButton btnDelete) {
-		this.btnDelete = btnDelete;
-	}
-
-	/**
-	 * @return the btnSearch
-	 */
-	public JButton getBtnSearch() {
-		return btnSearch;
-	}
-
-	/**
-	 * @param btnSearch
-	 *            the btnSearch to set
-	 */
-	public void setBtnSearch(JButton btnSearch) {
-		this.btnSearch = btnSearch;
-	}
-
-	/**
-	 * @return the txtCallNo
-	 */
-	public JTextField getTxtCallNo() {
-		return txtCallNo;
-	}
-
-	/**
-	 * @param txtCallNo
-	 *            the txtCallNo to set
-	 */
-	public void setTxtCallNo(JTextField txtCallNo) {
-		this.txtCallNo = txtCallNo;
-	}
-
-	/**
-	 * @return the txtAuthor
-	 */
-	public JTextField getTxtAuthor() {
-		return txtAuthor;
-	}
-
-	/**
-	 * @param txtAuthor
-	 *            the txtAuthor to set
-	 */
-	public void setTxtAuthor(JTextField txtAuthor) {
-		this.txtAuthor = txtAuthor;
-	}
-
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		panel1 = new JPanel();
 		btnFirst = new JButton();
@@ -425,6 +197,9 @@ public class BookPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
 									5), 0, 0));
+
+					// ---- txtCallNo ----
+					txtCallNo.setToolTipText("Search book by call number");
 					panel4.add(txtCallNo, new GridBagConstraints(1, 0, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
@@ -436,6 +211,9 @@ public class BookPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
 									5), 0, 0));
+
+					// ---- txtTitle ----
+					txtTitle.setToolTipText("Search book by title");
 					panel4.add(txtTitle, new GridBagConstraints(3, 0, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
@@ -447,6 +225,9 @@ public class BookPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
 									5), 0, 0));
+
+					// ---- txtISBN ----
+					txtISBN.setToolTipText("Search book by ISBN");
 					panel4.add(txtISBN, new GridBagConstraints(1, 1, 1, 1, 0.0,
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
@@ -458,6 +239,9 @@ public class BookPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
 									5), 0, 0));
+
+					// ---- txtAuthor ----
+					txtAuthor.setToolTipText("Search book by author name");
 					panel4.add(txtAuthor, new GridBagConstraints(3, 1, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
@@ -471,11 +255,11 @@ public class BookPanel extends JPanel {
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
 		add(panel2, BorderLayout.CENTER);
-		// JFormDesigner - End of component initialization
+		// End of component initialization
 		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JPanel panel1;
 	private JButton btnFirst;
@@ -502,5 +286,230 @@ public class BookPanel extends JPanel {
 	private JTextField txtISBN;
 	private JLabel label5;
 	private JTextField txtAuthor;
-	// JFormDesigner - End of variables declaration //GEN-END:variables
+
+	// End of variables declaration //GEN-END:variables
+	/**
+	 * @return the btnFirst
+	 */
+	public JButton getBtnFirst() {
+		return btnFirst;
+	}
+
+	/**
+	 * @param btnFirst
+	 *            the btnFirst to set
+	 */
+	public void setBtnFirst(JButton btnFirst) {
+		this.btnFirst = btnFirst;
+	}
+
+	/**
+	 * @return the btnBack
+	 */
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	/**
+	 * @param btnBack
+	 *            the btnBack to set
+	 */
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+	/**
+	 * @return the lblPage
+	 */
+	public JLabel getLblPage() {
+		return lblPage;
+	}
+
+	/**
+	 * @param lblPage
+	 *            the lblPage to set
+	 */
+	public void setLblPage(JLabel lblPage) {
+		this.lblPage = lblPage;
+	}
+
+	/**
+	 * @return the btnNext
+	 */
+	public JButton getBtnNext() {
+		return btnNext;
+	}
+
+	/**
+	 * @param btnNext
+	 *            the btnNext to set
+	 */
+	public void setBtnNext(JButton btnNext) {
+		this.btnNext = btnNext;
+	}
+
+	/**
+	 * @return the btnLast
+	 */
+	public JButton getBtnLast() {
+		return btnLast;
+	}
+
+	/**
+	 * @param btnLast
+	 *            the btnLast to set
+	 */
+	public void setBtnLast(JButton btnLast) {
+		this.btnLast = btnLast;
+	}
+
+	/**
+	 * @return the tblBook
+	 */
+	public JTable getTblBook() {
+		return tblBook;
+	}
+
+	/**
+	 * @param tblBook
+	 *            the tblBook to set
+	 */
+	public void setTblBook(JTable tblBook) {
+		this.tblBook = tblBook;
+	}
+
+	/**
+	 * @return the btnAdd
+	 */
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	/**
+	 * @param btnAdd
+	 *            the btnAdd to set
+	 */
+	public void setBtnAdd(JButton btnAdd) {
+		this.btnAdd = btnAdd;
+	}
+
+	/**
+	 * @return the btnEdit
+	 */
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	/**
+	 * @param btnEdit
+	 *            the btnEdit to set
+	 */
+	public void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	/**
+	 * @return the btnView
+	 */
+	public JButton getBtnView() {
+		return btnView;
+	}
+
+	/**
+	 * @param btnView
+	 *            the btnView to set
+	 */
+	public void setBtnView(JButton btnView) {
+		this.btnView = btnView;
+	}
+
+	/**
+	 * @return the btnDelete
+	 */
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	/**
+	 * @param btnDelete
+	 *            the btnDelete to set
+	 */
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	/**
+	 * @return the btnSearch
+	 */
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	/**
+	 * @param btnSearch
+	 *            the btnSearch to set
+	 */
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	/**
+	 * @return the txtCallNo
+	 */
+	public JTextField getTxtCallNo() {
+		return txtCallNo;
+	}
+
+	/**
+	 * @param txtCallNo
+	 *            the txtCallNo to set
+	 */
+	public void setTxtCallNo(JTextField txtCallNo) {
+		this.txtCallNo = txtCallNo;
+	}
+
+	/**
+	 * @return the txtTitle
+	 */
+	public JTextField getTxtTitle() {
+		return txtTitle;
+	}
+
+	/**
+	 * @param txtTitle
+	 *            the txtTitle to set
+	 */
+	public void setTxtTitle(JTextField txtTitle) {
+		this.txtTitle = txtTitle;
+	}
+
+	/**
+	 * @return the txtISBN
+	 */
+	public JTextField getTxtISBN() {
+		return txtISBN;
+	}
+
+	/**
+	 * @param txtISBN
+	 *            the txtISBN to set
+	 */
+	public void setTxtISBN(JTextField txtISBN) {
+		this.txtISBN = txtISBN;
+	}
+
+	/**
+	 * @return the txtAuthor
+	 */
+	public JTextField getTxtAuthor() {
+		return txtAuthor;
+	}
+
+	/**
+	 * @param txtAuthor
+	 *            the txtAuthor to set
+	 */
+	public void setTxtAuthor(JTextField txtAuthor) {
+		this.txtAuthor = txtAuthor;
+	}
 }

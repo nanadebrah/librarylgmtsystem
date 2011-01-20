@@ -28,6 +28,11 @@ public class AddEmployeeController {
 	private Employee emp = null;
 	private AddEmployeeDialog view;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param view
+	 */
 	public AddEmployeeController(AddEmployeeDialog view) {
 		this.view = view;
 		initComponent();
@@ -43,6 +48,7 @@ public class AddEmployeeController {
 		// Add event close btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				emp = null;
 				view.dispose();
@@ -52,6 +58,7 @@ public class AddEmployeeController {
 		// Add event add btn
 		view.getBtnAdd().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (validEmp()) {
 					// set object
@@ -62,14 +69,17 @@ public class AddEmployeeController {
 			}
 		});
 
-		// Add item listenner
+		// Add item listener
 		view.getCbxPermission().addItemListener(new ItemListener() {
 
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// If permission is employee, it doesn't need password
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					if (e.getItem().equals("Employee")) {
-						view.getTxtPass().setText("");
+					if (e.getItem().equals(
+							Messages.getString("AddEmployeeController.0"))) { //$NON-NLS-1$
+						view.getTxtPass().setText(
+								Messages.getString("AddEmployeeController.1")); //$NON-NLS-1$
 						view.getTxtPass().setEditable(false);
 					} else {
 						view.getTxtPass().setEditable(true);
@@ -81,12 +91,43 @@ public class AddEmployeeController {
 		// Add window event
 		view.addWindowListener(new WindowAdapter() {
 
+			@Override
 			public void windowClosing(WindowEvent evt) {
 				emp = null;
 			}
 		});
 		// Escape dialog by key
 		model.LibUtil.installEscapeCloseOperation(view);
+	}
+
+	/**
+	 * @return the emp
+	 */
+	public Employee getEmp() {
+		return emp;
+	}
+
+	/**
+	 * @return the view
+	 */
+	public AddEmployeeDialog getView() {
+		return view;
+	}
+
+	/**
+	 * @param emp
+	 *            the emp to set
+	 */
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+	/**
+	 * @param view
+	 *            the view to set
+	 */
+	public void setView(AddEmployeeDialog view) {
+		this.view = view;
 	}
 
 	/**
@@ -107,7 +148,7 @@ public class AddEmployeeController {
 		emp.setPhone(view.getTxtPhone().getText());
 		emp.setDepartment(view.getTxtDepart().getText());
 		if (view.getCbxPermission().getSelectedItem().toString()
-				.equals("Librarian")) {
+				.equals(Messages.getString("AddEmployeeController.2"))) { //$NON-NLS-1$
 			emp.setPermission(1);
 		} else {
 			emp.setPermission(0);
@@ -121,80 +162,69 @@ public class AddEmployeeController {
 	 */
 	private boolean validEmp() {
 		if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
-			JOptionPane.showMessageDialog(view, "Name must valid.", "Valid!",
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddEmployeeController.3"),
+					Messages.getString("AddEmployeeController.4"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtName().requestFocus();
 			return false;
 		}
 		if (view.getTxtDOB().getDate() == null) {
-			JOptionPane.showMessageDialog(view, "Date of bith must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("AddEmployeeController.5"), //$NON-NLS-1$
+					Messages.getString("AddEmployeeController.6"),
+					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtDOB().requestFocus();
 			return false;
 		}
 		if (!LibValid.getInstance().Address(view.getTxtAdd().getText())) {
-			JOptionPane.showMessageDialog(view, "Address must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("AddEmployeeController.7"), //$NON-NLS-1$
+					Messages.getString("AddEmployeeController.8"),
+					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtAdd().requestFocus();
 			return false;
 		}
-		if (view.getCbxPermission().getSelectedItem().equals("Librarian")) {
+		if (view.getCbxPermission().getSelectedItem()
+				.equals(Messages.getString("AddEmployeeController.9"))) { //$NON-NLS-1$
 			if (!LibValid.getInstance().Password(
 					new String(view.getTxtPass().getPassword()))) {
-				JOptionPane.showMessageDialog(view, "Password must valid.",
-						"Valid!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(
+						view,
+						Messages.getString("AddEmployeeController.10"), //$NON-NLS-1$
+						Messages.getString("AddEmployeeController.11"),
+						JOptionPane.INFORMATION_MESSAGE);
 				view.getTxtPass().requestFocus();
 				return false;
 			}
 		}
 		if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
-			JOptionPane.showMessageDialog(view, "Email must valid.", "Valid!",
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddEmployeeController.12"),
+					Messages.getString("AddEmployeeController.13"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtEmail().requestFocus();
 			return false;
 		}
 		if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
-			JOptionPane.showMessageDialog(view, "Phone must valid.", "Valid!",
+			JOptionPane.showMessageDialog(view,
+					Messages.getString("AddEmployeeController.14"),
+					Messages.getString("AddEmployeeController.15"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtPhone().requestFocus();
 			return false;
 		}
 		if (!LibValid.getInstance().Depart(view.getTxtDepart().getText())) {
-			JOptionPane.showMessageDialog(view, "Department must valid.",
-					"Valid!", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(
+					view,
+					Messages.getString("AddEmployeeController.16"), //$NON-NLS-1$
+					Messages.getString("AddEmployeeController.17"),
+					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtDepart().requestFocus();
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * @return the view
-	 */
-	public AddEmployeeDialog getView() {
-		return view;
-	}
-
-	/**
-	 * @param view
-	 *            the view to set
-	 */
-	public void setView(AddEmployeeDialog view) {
-		this.view = view;
-	}
-
-	/**
-	 * @return the emp
-	 */
-	public Employee getEmp() {
-		return emp;
-	}
-
-	/**
-	 * @param emp
-	 *            the emp to set
-	 */
-	public void setEmp(Employee emp) {
-		this.emp = emp;
 	}
 }

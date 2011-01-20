@@ -25,33 +25,24 @@ public class Book {
 	private int noInLib;
 
 	/**
+	 * @return the AuthName
+	 */
+	public String getAuthName() {
+		return AuthName;
+	}
+
+	/**
+	 * @return the bookID
+	 */
+	public int getBookID() {
+		return bookID;
+	}
+
+	/**
 	 * @return the CallNumber
 	 */
 	public String getCallNumber() {
 		return CallNumber;
-	}
-
-	/**
-	 * @param CallNumber
-	 *            the CallNumber to set
-	 */
-	public void setCallNumber(String CallNumber) {
-		this.CallNumber = CallNumber;
-	}
-
-	/**
-	 * @return the subID
-	 */
-	public int getSubID() {
-		return subID;
-	}
-
-	/**
-	 * @param subID
-	 *            the subID to set
-	 */
-	public void setSubID(int subID) {
-		this.subID = subID;
 	}
 
 	/**
@@ -62,11 +53,38 @@ public class Book {
 	}
 
 	/**
-	 * @param ISBN
-	 *            the ISBN to set
+	 * @return the noInLib
 	 */
-	public void setISBN(String ISBN) {
-		this.ISBN = ISBN;
+	public int getNoInLib() {
+		return noInLib;
+	}
+
+	/**
+	 * @return the noOfCopy
+	 */
+	public int getNoOfCopy() {
+		return noOfCopy;
+	}
+
+	/**
+	 * @return the Publisher
+	 */
+	public String getPublisher() {
+		return Publisher;
+	}
+
+	/**
+	 * @return the subID
+	 */
+	public int getSubID() {
+		return subID;
+	}
+
+	/**
+	 * @return the subName
+	 */
+	public String getSubName() {
+		return subName;
 	}
 
 	/**
@@ -74,21 +92,6 @@ public class Book {
 	 */
 	public String getTitle() {
 		return Title;
-	}
-
-	/**
-	 * @param Title
-	 *            the Title to set
-	 */
-	public void setTitle(String Title) {
-		this.Title = Title;
-	}
-
-	/**
-	 * @return the AuthName
-	 */
-	public String getAuthName() {
-		return AuthName;
 	}
 
 	/**
@@ -100,25 +103,35 @@ public class Book {
 	}
 
 	/**
-	 * @return the Publisher
+	 * @param bookID
+	 *            the bookID to set
 	 */
-	public String getPublisher() {
-		return Publisher;
+	public void setBookID(int bookID) {
+		this.bookID = bookID;
 	}
 
 	/**
-	 * @param Publisher
-	 *            the Publisher to set
+	 * @param CallNumber
+	 *            the CallNumber to set
 	 */
-	public void setPublisher(String Publisher) {
-		this.Publisher = Publisher;
+	public void setCallNumber(String CallNumber) {
+		this.CallNumber = CallNumber;
 	}
 
 	/**
-	 * @return the noOfCopy
+	 * @param ISBN
+	 *            the ISBN to set
 	 */
-	public int getNoOfCopy() {
-		return noOfCopy;
+	public void setISBN(String ISBN) {
+		this.ISBN = ISBN;
+	}
+
+	/**
+	 * @param noInLib
+	 *            the noInLib to set
+	 */
+	public void setNoInLib(int noInLib) {
+		this.noInLib = noInLib;
 	}
 
 	/**
@@ -130,18 +143,35 @@ public class Book {
 	}
 
 	/**
-	 * @return the noInLib
+	 * @param Publisher
+	 *            the Publisher to set
 	 */
-	public int getNoInLib() {
-		return noInLib;
+	public void setPublisher(String Publisher) {
+		this.Publisher = Publisher;
 	}
 
 	/**
-	 * @param noInLib
-	 *            the noInLib to set
+	 * @param subID
+	 *            the subID to set
 	 */
-	public void setNoInLib(int noInLib) {
-		this.noInLib = noInLib;
+	public void setSubID(int subID) {
+		this.subID = subID;
+	}
+
+	/**
+	 * @param subName
+	 *            the subName to set
+	 */
+	public void setSubName(String subName) {
+		this.subName = subName;
+	}
+
+	/**
+	 * @param Title
+	 *            the Title to set
+	 */
+	public void setTitle(String Title) {
+		this.Title = Title;
 	}
 
 	/**
@@ -157,37 +187,7 @@ public class Book {
 		vt.addElement(AuthName);
 		vt.addElement(Publisher);
 		vt.addElement(subName);
-		vt.addElement(noOfCopy + "/" + noInLib);
+		vt.addElement(noOfCopy + Messages.getString("Book.0") + noInLib); //$NON-NLS-1$
 		return vt;
-	}
-
-	/**
-	 * @return the subName
-	 */
-	public String getSubName() {
-		return subName;
-	}
-
-	/**
-	 * @param subName
-	 *            the subName to set
-	 */
-	public void setSubName(String subName) {
-		this.subName = subName;
-	}
-
-	/**
-	 * @return the bookID
-	 */
-	public int getBookID() {
-		return bookID;
-	}
-
-	/**
-	 * @param bookID
-	 *            the bookID to set
-	 */
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
 	}
 }

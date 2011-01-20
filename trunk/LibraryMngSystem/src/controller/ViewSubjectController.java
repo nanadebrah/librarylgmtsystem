@@ -44,6 +44,7 @@ public class ViewSubjectController {
 		// Add event close btn
 		view.getBtnClose().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 			}

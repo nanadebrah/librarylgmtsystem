@@ -1,7 +1,3 @@
-/*
- * Created by JFormDesigner on Mon Jan 17 15:23:31 GMT+07:00 2011
- */
-
 package view;
 
 import java.awt.BorderLayout;
@@ -22,225 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @author Nanette G Hutchison
+ * @author CuongNQ
  */
+@SuppressWarnings("serial")
 public class BorrowPanel extends JPanel {
 	public BorrowPanel() {
 		initComponents();
 	}
 
-	/**
-	 * @return the lblPage
-	 */
-	public JLabel getLblPage() {
-		return lblPage;
-	}
-
-	/**
-	 * @param lblPage
-	 *            the lblPage to set
-	 */
-	public void setLblPage(JLabel lblPage) {
-		this.lblPage = lblPage;
-	}
-
-	/**
-	 * @return the btnFirst
-	 */
-	public JButton getBtnFirst() {
-		return btnFirst;
-	}
-
-	/**
-	 * @param btnFirst
-	 *            the btnFirst to set
-	 */
-	public void setBtnFirst(JButton btnFirst) {
-		this.btnFirst = btnFirst;
-	}
-
-	/**
-	 * @return the btnBack
-	 */
-	public JButton getBtnBack() {
-		return btnBack;
-	}
-
-	/**
-	 * @param btnBack
-	 *            the btnBack to set
-	 */
-	public void setBtnBack(JButton btnBack) {
-		this.btnBack = btnBack;
-	}
-
-	/**
-	 * @return the btnNext
-	 */
-	public JButton getBtnNext() {
-		return btnNext;
-	}
-
-	/**
-	 * @param btnNext
-	 *            the btnNext to set
-	 */
-	public void setBtnNext(JButton btnNext) {
-		this.btnNext = btnNext;
-	}
-
-	/**
-	 * @return the btnLast
-	 */
-	public JButton getBtnLast() {
-		return btnLast;
-	}
-
-	/**
-	 * @param btnLast
-	 *            the btnLast to set
-	 */
-	public void setBtnLast(JButton btnLast) {
-		this.btnLast = btnLast;
-	}
-
-	/**
-	 * @return the tblBorrow
-	 */
-	public JTable getTblBorrow() {
-		return tblBorrow;
-	}
-
-	/**
-	 * @param tblBorrow
-	 *            the tblBorrow to set
-	 */
-	public void setTblBorrow(JTable tblBorrow) {
-		this.tblBorrow = tblBorrow;
-	}
-
-	/**
-	 * @return the btnCheckOut
-	 */
-	public JButton getBtnCheckOut() {
-		return btnCheckOut;
-	}
-
-	/**
-	 * @param btnCheckOut
-	 *            the btnCheckOut to set
-	 */
-	public void setBtnCheckOut(JButton btnCheckOut) {
-		this.btnCheckOut = btnCheckOut;
-	}
-
-	/**
-	 * @return the btnCheckIn
-	 */
-	public JButton getBtnCheckIn() {
-		return btnCheckIn;
-	}
-
-	/**
-	 * @param btnCheckIn
-	 *            the btnCheckIn to set
-	 */
-	public void setBtnCheckIn(JButton btnCheckIn) {
-		this.btnCheckIn = btnCheckIn;
-	}
-
-	/**
-	 * @return the btnFee
-	 */
-	public JButton getBtnFee() {
-		return btnFee;
-	}
-
-	/**
-	 * @param btnFee
-	 *            the btnFee to set
-	 */
-	public void setBtnFee(JButton btnFee) {
-		this.btnFee = btnFee;
-	}
-
-	/**
-	 * @return the btnView
-	 */
-	public JButton getBtnView() {
-		return btnView;
-	}
-
-	/**
-	 * @param btnView
-	 *            the btnView to set
-	 */
-	public void setBtnView(JButton btnView) {
-		this.btnView = btnView;
-	}
-
-	/**
-	 * @return the btnDelete
-	 */
-	public JButton getBtnDelete() {
-		return btnDelete;
-	}
-
-	/**
-	 * @param btnDelete
-	 *            the btnDelete to set
-	 */
-	public void setBtnDelete(JButton btnDelete) {
-		this.btnDelete = btnDelete;
-	}
-
-	/**
-	 * @return the btnSearch
-	 */
-	public JButton getBtnSearch() {
-		return btnSearch;
-	}
-
-	/**
-	 * @param btnSearch
-	 *            the btnSearch to set
-	 */
-	public void setBtnSearch(JButton btnSearch) {
-		this.btnSearch = btnSearch;
-	}
-
-	/**
-	 * @return the txtCallNo
-	 */
-	public JTextField getTxtCallNo() {
-		return txtCallNo;
-	}
-
-	/**
-	 * @param txtCallNo
-	 *            the txtCallNo to set
-	 */
-	public void setTxtCallNo(JTextField txtCallNo) {
-		this.txtCallNo = txtCallNo;
-	}
-
-	/**
-	 * @return the txtEmpID
-	 */
-	public JTextField getTxtEmpID() {
-		return txtEmpID;
-	}
-
-	/**
-	 * @param txtEmpID
-	 *            the txtEmpID to set
-	 */
-	public void setTxtEmpID(JTextField txtEmpID) {
-		this.txtEmpID = txtEmpID;
-	}
-
 	private void initComponents() {
-		// JFormDesigner - Component initialization - DO NOT MODIFY
+		// Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		panel1 = new JPanel();
 		btnFirst = new JButton();
@@ -410,11 +197,15 @@ public class BorrowPanel extends JPanel {
 							0.0, 0.0, 1.0E-4 };
 
 					// ---- label2 ----
-					label2.setText("Call No:");
+					label2.setText("Book Call No:");
 					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0,
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
 									5), 0, 0));
+
+					// ---- txtCallNo ----
+					txtCallNo
+							.setToolTipText("Search borrow by call number of book");
 					panel4.add(txtCallNo, new GridBagConstraints(1, 0, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
@@ -426,6 +217,9 @@ public class BorrowPanel extends JPanel {
 							0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
 									5), 0, 0));
+
+					// ---- txtEmpID ----
+					txtEmpID.setToolTipText("Search borrow by employee no");
 					panel4.add(txtEmpID, new GridBagConstraints(1, 1, 1, 1,
 							0.0, 0.0, GridBagConstraints.CENTER,
 							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
@@ -439,11 +233,11 @@ public class BorrowPanel extends JPanel {
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
 		add(panel2, BorderLayout.CENTER);
-		// JFormDesigner - End of component initialization
+		// End of component initialization
 		// //GEN-END:initComponents
 	}
 
-	// JFormDesigner - Variables declaration - DO NOT MODIFY
+	// Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JPanel panel1;
 	private JButton btnFirst;
@@ -467,5 +261,215 @@ public class BorrowPanel extends JPanel {
 	private JTextField txtCallNo;
 	private JLabel label3;
 	private JTextField txtEmpID;
-	// JFormDesigner - End of variables declaration //GEN-END:variables
+
+	// End of variables declaration //GEN-END:variables
+	/**
+	 * @return the btnFirst
+	 */
+	public JButton getBtnFirst() {
+		return btnFirst;
+	}
+
+	/**
+	 * @param btnFirst
+	 *            the btnFirst to set
+	 */
+	public void setBtnFirst(JButton btnFirst) {
+		this.btnFirst = btnFirst;
+	}
+
+	/**
+	 * @return the btnBack
+	 */
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+	/**
+	 * @param btnBack
+	 *            the btnBack to set
+	 */
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+	/**
+	 * @return the lblPage
+	 */
+	public JLabel getLblPage() {
+		return lblPage;
+	}
+
+	/**
+	 * @param lblPage
+	 *            the lblPage to set
+	 */
+	public void setLblPage(JLabel lblPage) {
+		this.lblPage = lblPage;
+	}
+
+	/**
+	 * @return the btnNext
+	 */
+	public JButton getBtnNext() {
+		return btnNext;
+	}
+
+	/**
+	 * @param btnNext
+	 *            the btnNext to set
+	 */
+	public void setBtnNext(JButton btnNext) {
+		this.btnNext = btnNext;
+	}
+
+	/**
+	 * @return the btnLast
+	 */
+	public JButton getBtnLast() {
+		return btnLast;
+	}
+
+	/**
+	 * @param btnLast
+	 *            the btnLast to set
+	 */
+	public void setBtnLast(JButton btnLast) {
+		this.btnLast = btnLast;
+	}
+
+	/**
+	 * @return the tblBorrow
+	 */
+	public JTable getTblBorrow() {
+		return tblBorrow;
+	}
+
+	/**
+	 * @param tblBorrow
+	 *            the tblBorrow to set
+	 */
+	public void setTblBorrow(JTable tblBorrow) {
+		this.tblBorrow = tblBorrow;
+	}
+
+	/**
+	 * @return the btnCheckOut
+	 */
+	public JButton getBtnCheckOut() {
+		return btnCheckOut;
+	}
+
+	/**
+	 * @param btnCheckOut
+	 *            the btnCheckOut to set
+	 */
+	public void setBtnCheckOut(JButton btnCheckOut) {
+		this.btnCheckOut = btnCheckOut;
+	}
+
+	/**
+	 * @return the btnCheckIn
+	 */
+	public JButton getBtnCheckIn() {
+		return btnCheckIn;
+	}
+
+	/**
+	 * @param btnCheckIn
+	 *            the btnCheckIn to set
+	 */
+	public void setBtnCheckIn(JButton btnCheckIn) {
+		this.btnCheckIn = btnCheckIn;
+	}
+
+	/**
+	 * @return the btnFee
+	 */
+	public JButton getBtnFee() {
+		return btnFee;
+	}
+
+	/**
+	 * @param btnFee
+	 *            the btnFee to set
+	 */
+	public void setBtnFee(JButton btnFee) {
+		this.btnFee = btnFee;
+	}
+
+	/**
+	 * @return the btnView
+	 */
+	public JButton getBtnView() {
+		return btnView;
+	}
+
+	/**
+	 * @param btnView
+	 *            the btnView to set
+	 */
+	public void setBtnView(JButton btnView) {
+		this.btnView = btnView;
+	}
+
+	/**
+	 * @return the btnDelete
+	 */
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	/**
+	 * @param btnDelete
+	 *            the btnDelete to set
+	 */
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+	/**
+	 * @return the btnSearch
+	 */
+	public JButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	/**
+	 * @param btnSearch
+	 *            the btnSearch to set
+	 */
+	public void setBtnSearch(JButton btnSearch) {
+		this.btnSearch = btnSearch;
+	}
+
+	/**
+	 * @return the txtCallNo
+	 */
+	public JTextField getTxtCallNo() {
+		return txtCallNo;
+	}
+
+	/**
+	 * @param txtCallNo
+	 *            the txtCallNo to set
+	 */
+	public void setTxtCallNo(JTextField txtCallNo) {
+		this.txtCallNo = txtCallNo;
+	}
+
+	/**
+	 * @return the txtEmpID
+	 */
+	public JTextField getTxtEmpID() {
+		return txtEmpID;
+	}
+
+	/**
+	 * @param txtEmpID
+	 *            the txtEmpID to set
+	 */
+	public void setTxtEmpID(JTextField txtEmpID) {
+		this.txtEmpID = txtEmpID;
+	}
 }

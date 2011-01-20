@@ -8,6 +8,8 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JList;
 import javax.swing.SwingUtilities;
@@ -35,15 +37,32 @@ public class ProSettingController {
 	private ProSettingDialog view;
 	private ManageController parent;
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param view
+	 * @param parent
+	 */
 	public ProSettingController(ProSettingDialog view, ManageController parent) {
 		this.parent = parent;
 		this.view = view;
 		initComponent();
 	}
 
+	/**
+	 * Initialize the controller.
+	 */
+	@SuppressWarnings("serial")
 	private void initComponent() {
-		// Load config
-		LibConfig.getInstance().loadProConfig(view);
+		// Add event open window
+		view.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				// Load config
+				LibConfig.getInstance().loadProConfig(view);
+			}
+		});
 
 		// Fill value to combobox theme
 		view.getCbxTheme().setRenderer(
@@ -62,6 +81,7 @@ public class ProSettingController {
 		// Add event change theme
 		view.getCbxTheme().addItemListener(new java.awt.event.ItemListener() {
 
+			@Override
 			public void itemStateChanged(java.awt.event.ItemEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
 
@@ -81,6 +101,7 @@ public class ProSettingController {
 		// Add event save btn
 		view.getBtnDefault().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (LibUtil.getInstance().isWindows()) {
@@ -98,16 +119,21 @@ public class ProSettingController {
 				SwingUtilities.updateComponentTreeUI(parent.getView());
 				parent.getView().pack();
 				view.getSpinNoRow().setValue(20);
-				view.getTxtEmail().setText("Lib.Mgmt.Sys@gmail.com");
-				view.getTxtHost().setText("smtp.gmail.com");
-				view.getTxtPort().setText("587");
-				view.getTxtPass().setText("9988776655");
+				view.getTxtEmail().setText(
+						Messages.getString("ProSettingController.2")); //$NON-NLS-1$
+				view.getTxtHost().setText(
+						Messages.getString("ProSettingController.3")); //$NON-NLS-1$
+				view.getTxtPort().setText(
+						Messages.getString("ProSettingController.4")); //$NON-NLS-1$
+				view.getTxtPass().setText(
+						Messages.getString("ProSettingController.5")); //$NON-NLS-1$
 			}
 		});
 
 		// Add event close btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.dispose();
 			}
@@ -116,6 +142,7 @@ public class ProSettingController {
 		// Add event btn save
 		view.getBtnSave().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				LibConfig.getInstance().saveProConfig(
 						view.getSpinNoRow().getValue().toString(),
@@ -132,6 +159,7 @@ public class ProSettingController {
 		// Add event spn change
 		view.getSpinNoRow().addChangeListener(new ChangeListener() {
 
+			@Override
 			public void stateChanged(ChangeEvent e) {
 				if (Integer.parseInt(view.getSpinNoRow().getValue().toString()) < 1) {
 					view.getSpinNoRow().setValue(1);
@@ -142,11 +170,13 @@ public class ProSettingController {
 		// Add event btn Check email
 		view.getBtnCheck().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 				try {
 					Thread t = new Thread(new Runnable() {
 
+						@Override
 						public void run() {
 							checkConnection();
 							view.setCursor(null);
@@ -171,9 +201,11 @@ public class ProSettingController {
 					view.getTxtHost().getText(), view.getTxtPort().getText(),
 					view.getTxtEmail().getText(),
 					new String(view.getTxtPass().getPassword()))) {
-				view.getLblStatus().setText("Successful!");
+				view.getLblStatus().setText(
+						Messages.getString("ProSettingController.0")); //$NON-NLS-1$
 			} else {
-				view.getLblStatus().setText("Failed!");
+				view.getLblStatus().setText(
+						Messages.getString("ProSettingController.1")); //$NON-NLS-1$
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

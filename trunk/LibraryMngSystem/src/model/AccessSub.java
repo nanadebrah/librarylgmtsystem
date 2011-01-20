@@ -23,9 +23,6 @@ public class AccessSub {
 
 	// Defined instance of AccessSub
 	private static AccessSub instance = new AccessSub();
-	private Connection cn = null;
-	private ResultSet rsDetails = null;
-	private CallableStatement csDetails = null;
 
 	/**
 	 * Static method get instance of AccessSub
@@ -33,6 +30,11 @@ public class AccessSub {
 	public static AccessSub getInstance() {
 		return instance;
 	}
+
+	private Connection cn = null;
+	private ResultSet rsDetails = null;
+
+	private CallableStatement csDetails = null;
 
 	/**
 	 * Add a subject method
@@ -61,30 +63,56 @@ public class AccessSub {
 	}
 
 	/**
-	 * Get subject id method
+	 * Delete subject
 	 * 
-	 * @param subName
-	 * @return
+	 * @param subID
+	 * @return true if delete successful, otherwise false
 	 */
-	public int getSubjectID(String subName) {
+	public boolean deleteSub(int subID) {
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
-			csDetails = cn.prepareCall(LibProcedure.GET_SUBID);
-			csDetails.setString(1, subName);
-			rsDetails = csDetails.executeQuery();
-			if (rsDetails.next()) {
-				return rsDetails.getInt(1);
+			csDetails = cn.prepareCall(LibProcedure.DETELE_SUB);
+			csDetails.setInt(1, subID);
+			if (csDetails.execute()) {
+				return false;
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			// close all connect
-			LibConnection.close(rsDetails);
 			LibConnection.close(csDetails);
 			LibConnection.close(cn);
 		}
-		return 0;
+		return true;
+	}
+
+	/**
+	 * Edit subject
+	 * 
+	 * @param sub
+	 *            is subject object
+	 * @return true if edit successful, otherwise false
+	 */
+	public boolean editSub(Subject sub) {
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+
+		try {
+			csDetails = cn.prepareCall(LibProcedure.EDIT_SUB);
+			csDetails.setInt(1, sub.getSubID());
+			csDetails.setString(2, sub.getSubName());
+			csDetails.setString(3, sub.getDescription());
+			csDetails.execute();
+			return true;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return false;
 	}
 
 	/**
@@ -93,14 +121,15 @@ public class AccessSub {
 	 * @return subject name, will be split by "," char
 	 */
 	public String getAllSubjectName() {
-		String sub = "";
+		String sub = Messages.getString("AccessSub.0"); //$NON-NLS-1$
 		// Defined connection, rs and cs to connect and query database
 		cn = LibConnection.getConnection();
 		try {
 			csDetails = cn.prepareCall(LibProcedure.GET_ALL_SUBNAME);
 			rsDetails = csDetails.executeQuery();
 			while (rsDetails.next()) {
-				sub += rsDetails.getString(1) + ",";
+				sub += rsDetails.getString(1)
+						+ Messages.getString("AccessSub.1"); //$NON-NLS-1$
 			}
 			return sub;
 		} catch (SQLException ex) {
@@ -111,7 +140,7 @@ public class AccessSub {
 			LibConnection.close(csDetails);
 			LibConnection.close(cn);
 		}
-		return "";
+		return Messages.getString("AccessSub.2"); //$NON-NLS-1$
 	}
 
 	/**
@@ -144,6 +173,33 @@ public class AccessSub {
 			LibConnection.close(cn);
 		}
 		return null;
+	}
+
+	/**
+	 * Get subject id method
+	 * 
+	 * @param subName
+	 * @return
+	 */
+	public int getSubjectID(String subName) {
+		// Defined connection, rs and cs to connect and query database
+		cn = LibConnection.getConnection();
+		try {
+			csDetails = cn.prepareCall(LibProcedure.GET_SUBID);
+			csDetails.setString(1, subName);
+			rsDetails = csDetails.executeQuery();
+			if (rsDetails.next()) {
+				return rsDetails.getInt(1);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			// close all connect
+			LibConnection.close(rsDetails);
+			LibConnection.close(csDetails);
+			LibConnection.close(cn);
+		}
+		return 0;
 	}
 
 	/**
@@ -193,58 +249,5 @@ public class AccessSub {
 			LibConnection.close(cn);
 		}
 		return 1;
-	}
-
-	/**
-	 * Edit subject
-	 * 
-	 * @param sub
-	 *            is subject object
-	 * @return true if edit successful, otherwise false
-	 */
-	public boolean editSub(Subject sub) {
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-
-		try {
-			csDetails = cn.prepareCall(LibProcedure.EDIT_SUB);
-			csDetails.setInt(1, sub.getSubID());
-			csDetails.setString(2, sub.getSubName());
-			csDetails.setString(3, sub.getDescription());
-			csDetails.execute();
-			return true;
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return false;
-	}
-
-	/**
-	 * Delete subject
-	 * 
-	 * @param subID
-	 * @return true if delete successful, otherwise false
-	 */
-	public boolean deleteSub(int subID) {
-		// Defined connection, rs and cs to connect and query database
-		cn = LibConnection.getConnection();
-		try {
-			csDetails = cn.prepareCall(LibProcedure.DETELE_SUB);
-			csDetails.setInt(1, subID);
-			if (csDetails.execute()) {
-				return false;
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			// close all connect
-			LibConnection.close(csDetails);
-			LibConnection.close(cn);
-		}
-		return true;
 	}
 }

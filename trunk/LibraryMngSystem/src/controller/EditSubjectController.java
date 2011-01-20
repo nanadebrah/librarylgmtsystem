@@ -47,6 +47,7 @@ public class EditSubjectController {
 		// Add event cancel btn
 		view.getBtnCancel().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				sub = null;
 				view.dispose();
@@ -56,6 +57,7 @@ public class EditSubjectController {
 		// Add event close window
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				sub = null;
 				view.dispose();
@@ -65,6 +67,7 @@ public class EditSubjectController {
 		// Add event save btn
 		view.getBtnSave().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (LibValid.getInstance().Sub(view.getTxtName().getText())) {
 					sub.setSubName(view.getTxtName().getText());
@@ -72,7 +75,8 @@ public class EditSubjectController {
 					view.dispose();
 				} else {
 					JOptionPane.showMessageDialog(view,
-							"Subject name not valid.", "Valid!",
+							Messages.getString("EditSubjectController.0"),
+							Messages.getString("EditSubjectController.1"), //$NON-NLS-1$ 
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -89,18 +93,18 @@ public class EditSubjectController {
 	}
 
 	/**
+	 * @return the view
+	 */
+	public EditSubjectDialog getView() {
+		return view;
+	}
+
+	/**
 	 * @param sub
 	 *            the sub to set
 	 */
 	public void setSub(Subject sub) {
 		this.sub = sub;
-	}
-
-	/**
-	 * @return the view
-	 */
-	public EditSubjectDialog getView() {
-		return view;
 	}
 
 	/**

@@ -4,17 +4,18 @@
  */
 package controller;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import model.AccessLogin;
 import model.LibConfig;
+import model.LibConnection;
 import model.LibPassword;
 import model.LibUtil;
 
@@ -57,17 +58,17 @@ public class LoginController {
 	public LoginController(LoginDialog view, ManageController manageControl) {
 		this.view = view;
 		this.manageControl = manageControl;
-		initComponent();		
+		initComponent();
 	}
 
 	/**
 	 * initialize the controller.
 	 */
 	private void initComponent() {
-
+		// Load connection config file
+		LibConnection.getInstance().getProperty();
 		// Load user & pass from config file
-		LibConfig.getInstance().loadLoginConfig(view.getTxtUser(),
-				view.getTxtPass(), view.getCbxRemember());
+		LibConfig.getInstance().loadLoginConfig(view);
 		// Create new instance of blurUI
 		blurUI = new LockableUI(new BufferedImageOpEffect(new BlurFilter()));
 		// Create new instance of Jcomponent
@@ -83,6 +84,7 @@ public class LoginController {
 		// Add event to menu setting
 		view.getMnConnection().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Blur layer
 				doBlur();
@@ -97,6 +99,7 @@ public class LoginController {
 		// Add event to menu quit
 		view.getMnQuit().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Dispose this frame
 				view.dispose();
@@ -107,6 +110,7 @@ public class LoginController {
 		// Add event to about us
 		view.getMnAbout().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				view.setVisible(false);// hidden current frame
 				about = new AboutWindow(null, view);
@@ -116,6 +120,7 @@ public class LoginController {
 		// Add event to login
 		view.getBtnLogin().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				// invoked doRemember method to remember password
 				doRemember();
@@ -127,6 +132,7 @@ public class LoginController {
 		// Add event windows closing
 		view.addWindowListener(new java.awt.event.WindowAdapter() {
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				view.dispose();
 				System.exit(0);
@@ -136,6 +142,7 @@ public class LoginController {
 		// Add event open help mn
 		view.getMnHelp().addActionListener(new ActionListener() {
 
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				LibUtil.getInstance().openHelp();
 			}
@@ -144,6 +151,7 @@ public class LoginController {
 		// Add event enter key
 		view.getTxtUser().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// invoked doRemember method to remember password
@@ -156,6 +164,7 @@ public class LoginController {
 
 		view.getTxtPass().addKeyListener(new KeyAdapter() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					// invoked doRemember method to remember password
@@ -185,8 +194,17 @@ public class LoginController {
 					view.getTxtUser().getText(),
 					new String(view.getTxtPass().getPassword()));
 		} else {
-			LibConfig.getInstance().saveLoginConfig("", "");
+			LibConfig.getInstance().saveLoginConfig(
+					Messages.getString("LoginController.0"),
+					Messages.getString("LoginController.1")); //$NON-NLS-1$ 
 		}
+	}
+
+	/**
+	 * @return the view
+	 */
+	public LoginDialog getView() {
+		return view;
 	}
 
 	/**
@@ -195,36 +213,48 @@ public class LoginController {
 	private void login() {
 		new Thread(new Runnable() {
 
+			@Override
 			public void run() {
-				if (AccessLogin.getInstance().login(
-						view.getTxtUser().getText(),
-						LibPassword.getInstance().encryptMD5(
-								new String(view.getTxtPass().getPassword())))) {
-					view.dispose();
-					// Display manage frame
-					manageControl.getView().setVisible(true);
-				} else {
-					doBlur();
-					JOptionPane.showMessageDialog(view,
-							"Wrong username or password.", "Login Failed",
-							JOptionPane.WARNING_MESSAGE);
-					try {
+				try {
+					// Create cursor and disable two field, btn
+					view.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+					view.getTxtUser().setEnabled(false);
+					view.getTxtPass().setEnabled(false);
+					view.getBtnLogin().setEnabled(false);
+
+					if (AccessLogin.getInstance().login(
+							view.getTxtUser().getText(),
+							LibPassword.getInstance()
+									.encryptMD5(
+											new String(view.getTxtPass()
+													.getPassword())))) {
+						view.dispose();
+						// Display manage frame
+						manageControl.getView().setVisible(true);
+					} else {
+						doBlur();
+						JOptionPane.showMessageDialog(
+								view,
+								Messages.getString("LoginController.2"), //$NON-NLS-1$
+								Messages.getString("LoginController.3"),
+								JOptionPane.WARNING_MESSAGE);
 						// Sleep 1 minisecond otherwise can't doBlur again
 						Thread.sleep(1);
-					} catch (Exception ex) {
-						ex.printStackTrace();
+						doBlur();
 					}
-					doBlur();
+				} catch (Exception ex) {
+					// TODO: handle exception
+					ex.printStackTrace();
+				} finally {
+					// Return current cursor and set enable field, btn
+					view.setCursor(null);
+					view.getTxtUser().setEnabled(true);
+					view.getTxtPass().setEnabled(true);
+					view.getBtnLogin().setEnabled(true);
 				}
+
 			}
 		}).start();
-	}
-
-	/**
-	 * @return the view
-	 */
-	public LoginDialog getView() {
-		return view;
 	}
 
 	/**
