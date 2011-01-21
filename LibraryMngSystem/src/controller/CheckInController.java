@@ -555,12 +555,10 @@ public class CheckInController {
 					.getDueDate()) / (24 * 60 * 60 * 1000);
 			float BorrowFee = DayBor * borFee;
 			float Fine = 0;
-			vt.add(DayBor
-					+ Messages.getString("Slash") + BorrowFee); //$NON-NLS-1$
+			vt.add(DayBor + Messages.getString("Slash") + BorrowFee); //$NON-NLS-1$
 			if (DayLate > 0) {
 				Fine = DayLate * lateFee;
-				vt.add(DayLate
-						+ Messages.getString("Slash") + Fine); //$NON-NLS-1$
+				vt.add(DayLate + Messages.getString("Slash") + Fine); //$NON-NLS-1$
 			} else {
 				vt.add(0 + Messages.getString("Slash") + 0); //$NON-NLS-1$
 			}

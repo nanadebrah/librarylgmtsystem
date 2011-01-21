@@ -434,10 +434,8 @@ public class CheckOutController {
 							view.getTxtEmpID().getText(),
 							view.getTxtEmpName().getText(), (page - 1));
 					view.getLblPage().setText(
-							Messages.getString("CheckOutController.27")
-									+ page
-									+ Messages
-											.getString("Slash") //$NON-NLS-1$ 
+							Messages.getString("CheckOutController.27") + page
+									+ Messages.getString("Slash") //$NON-NLS-1$ 
 									+ LibUtil.getInstance().getPage(totalRow));
 				}
 			}).start();
@@ -458,8 +456,7 @@ public class CheckOutController {
 					.toString();
 			// if it field is no in copy, get it
 			if (i == 7) {
-				String[] temp = field.split(Messages
-						.getString("Slash")); //$NON-NLS-1$
+				String[] temp = field.split(Messages.getString("Slash")); //$NON-NLS-1$
 				noInLib = Integer.parseInt(temp[1]);
 				// If of store book
 				if (noInLib == 0) {

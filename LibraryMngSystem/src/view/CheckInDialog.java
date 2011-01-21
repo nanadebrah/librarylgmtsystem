@@ -108,433 +108,486 @@ public class CheckInDialog extends JDialog {
 		btnCheckIn = new JButton();
 		btnCancel = new JButton();
 
-		//======== this ========
+		// ======== this ========
 		setMinimumSize(new Dimension(800, 550));
 		setTitle("Check-In Book");
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0};
-		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {73, 0, 0};
-		((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
-		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 1.0, 1.0E-4};
+		((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] { 0,
+				0 };
+		((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] { 73,
+				0, 0 };
+		((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {
+				1.0, 1.0E-4 };
+		((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {
+				0.0, 1.0, 1.0E-4 };
 
-		//======== panel1 ========
+		// ======== panel1 ========
 		{
 			panel1.setLayout(new GridBagLayout());
-			((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {225, 0, 0};
-			((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0};
-			((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
-			((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
+			((GridBagLayout) panel1.getLayout()).columnWidths = new int[] {
+					225, 0, 0 };
+			((GridBagLayout) panel1.getLayout()).rowHeights = new int[] { 0, 0 };
+			((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {
+					1.0, 1.0, 1.0E-4 };
+			((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {
+					0.0, 1.0E-4 };
 
-			//======== panel11 ========
+			// ======== panel11 ========
 			{
-				panel11.setBorder(new CompoundBorder(
-					new TitledBorder(new CompoundBorder(
-						new EmptyBorder(5, 5, 5, 0),
-						new BorderUIResource.EtchedBorderUIResource()), "Borrow Search"),
-					new EmptyBorder(5, 5, 5, 5)));
+				panel11.setBorder(new CompoundBorder(new TitledBorder(
+						new CompoundBorder(new EmptyBorder(5, 5, 5, 0),
+								new BorderUIResource.EtchedBorderUIResource()),
+						"Borrow Search"), new EmptyBorder(5, 5, 5, 5)));
 				panel11.setLayout(new GridBagLayout());
-				((GridBagLayout)panel11.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-				((GridBagLayout)panel11.getLayout()).rowHeights = new int[] {37, 0};
-				((GridBagLayout)panel11.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 1.0E-4};
-				((GridBagLayout)panel11.getLayout()).rowWeights = new double[] {1.0, 1.0E-4};
+				((GridBagLayout) panel11.getLayout()).columnWidths = new int[] {
+						0, 0, 0, 0 };
+				((GridBagLayout) panel11.getLayout()).rowHeights = new int[] {
+						37, 0 };
+				((GridBagLayout) panel11.getLayout()).columnWeights = new double[] {
+						0.0, 0.0, 1.0, 1.0E-4 };
+				((GridBagLayout) panel11.getLayout()).rowWeights = new double[] {
+						1.0, 1.0E-4 };
 
-				//---- btnSearchBor ----
+				// ---- btnSearchBor ----
 				btnSearchBor.setText("Search");
 				btnSearchBor.setBorderPainted(false);
-				btnSearchBor.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+				btnSearchBor.setIcon(new ImageIcon(getClass().getResource(
+						LibImages.TASKBAR_SEARCH)));
 				btnSearchBor.setHorizontalTextPosition(SwingConstants.CENTER);
 				btnSearchBor.setVerticalTextPosition(SwingConstants.BOTTOM);
-				panel11.add(btnSearchBor, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.NONE,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel11.add(btnSearchBor, new GridBagConstraints(0, 0, 1, 1,
+						0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.NONE, new Insets(0, 0, 0, 5), 0, 0));
 
-				//---- label5 ----
+				// ---- label5 ----
 				label5.setText("Borrow No:");
-				panel11.add(label5, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel11.add(label5, new GridBagConstraints(1, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//---- txtBorID ----
+				// ---- txtBorID ----
 				txtBorID.setToolTipText("Search by borrow borrow number");
-				panel11.add(txtBorID, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+				panel11.add(txtBorID, new GridBagConstraints(2, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
+						0, 0));
 			}
 			panel1.add(panel11, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 5), 0, 0));
 
-			//======== panel2 ========
+			// ======== panel2 ========
 			{
-				panel2.setBorder(new CompoundBorder(
-					new TitledBorder(new CompoundBorder(
-						new EmptyBorder(5, 0, 5, 5),
-						new BorderUIResource.EtchedBorderUIResource()), "Book Search"),
-					new EmptyBorder(5, 5, 5, 5)));
+				panel2.setBorder(new CompoundBorder(new TitledBorder(
+						new CompoundBorder(new EmptyBorder(5, 0, 5, 5),
+								new BorderUIResource.EtchedBorderUIResource()),
+						"Book Search"), new EmptyBorder(5, 5, 5, 5)));
 				panel2.setLayout(new GridBagLayout());
-				((GridBagLayout)panel2.getLayout()).columnWidths = new int[] {74, 66, 126, 54, 161, 0};
-				((GridBagLayout)panel2.getLayout()).rowHeights = new int[] {0, 16, 0};
-				((GridBagLayout)panel2.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 0.0, 1.0, 1.0E-4};
-				((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
+				((GridBagLayout) panel2.getLayout()).columnWidths = new int[] {
+						74, 66, 126, 54, 161, 0 };
+				((GridBagLayout) panel2.getLayout()).rowHeights = new int[] {
+						0, 16, 0 };
+				((GridBagLayout) panel2.getLayout()).columnWeights = new double[] {
+						0.0, 0.0, 1.0, 0.0, 1.0, 1.0E-4 };
+				((GridBagLayout) panel2.getLayout()).rowWeights = new double[] {
+						0.0, 0.0, 1.0E-4 };
 
-				//---- label3 ----
+				// ---- label3 ----
 				label3.setText("Call Number:");
 				panel2.add(label3, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- txtCallNumber ----
+				// ---- txtCallNumber ----
 				txtCallNumber.setToolTipText("Search by book call number");
-				panel2.add(txtCallNumber, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel2.add(txtCallNumber, new GridBagConstraints(2, 0, 1, 1,
+						0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- label1 ----
+				// ---- label1 ----
 				label1.setText("Title:");
 				panel2.add(label1, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- txtTitle ----
+				// ---- txtTitle ----
 				txtTitle.setToolTipText("Search by book title");
-				panel2.add(txtTitle, new GridBagConstraints(4, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel2.add(txtTitle, new GridBagConstraints(4, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- btnSearchBook ----
+				// ---- btnSearchBook ----
 				btnSearchBook.setText("Search");
 				btnSearchBook.setBorderPainted(false);
-				btnSearchBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+				btnSearchBook.setIcon(new ImageIcon(getClass().getResource(
+						LibImages.TASKBAR_SEARCH)));
 				btnSearchBook.setHorizontalTextPosition(SwingConstants.CENTER);
 				btnSearchBook.setVerticalTextPosition(SwingConstants.BOTTOM);
-				panel2.add(btnSearchBook, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel2.add(btnSearchBook, new GridBagConstraints(0, 0, 1, 2,
+						0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
 
-				//---- label4 ----
+				// ---- label4 ----
 				label4.setText("ISBN:");
 				panel2.add(label4, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+						GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//---- txtISBN ----
+				// ---- txtISBN ----
 				txtISBN.setToolTipText("Search by book ISBN");
-				panel2.add(txtISBN, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel2.add(txtISBN, new GridBagConstraints(2, 1, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//---- label2 ----
+				// ---- label2 ----
 				label2.setText("Author:");
 				panel2.add(label2, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+						GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//---- txtAuth ----
+				// ---- txtAuth ----
 				txtAuth.setToolTipText("Search by author name");
-				panel2.add(txtAuth, new GridBagConstraints(4, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+				panel2.add(txtAuth, new GridBagConstraints(4, 1, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
+						0, 0));
 			}
 			panel1.add(panel2, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 0), 0, 0));
 		}
 		contentPane.add(panel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-			GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-			new Insets(0, 0, 5, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(
+						0, 0, 5, 0), 0, 0));
 
-		//======== panel6 ========
+		// ======== panel6 ========
 		{
 			panel6.setLayout(new GridBagLayout());
-			((GridBagLayout)panel6.getLayout()).columnWidths = new int[] {0, 125, 0};
-			((GridBagLayout)panel6.getLayout()).rowHeights = new int[] {251, 147, 0};
-			((GridBagLayout)panel6.getLayout()).columnWeights = new double[] {1.0, 1.0, 1.0E-4};
-			((GridBagLayout)panel6.getLayout()).rowWeights = new double[] {1.0, 1.0, 1.0E-4};
+			((GridBagLayout) panel6.getLayout()).columnWidths = new int[] { 0,
+					125, 0 };
+			((GridBagLayout) panel6.getLayout()).rowHeights = new int[] { 251,
+					147, 0 };
+			((GridBagLayout) panel6.getLayout()).columnWeights = new double[] {
+					1.0, 1.0, 1.0E-4 };
+			((GridBagLayout) panel6.getLayout()).rowWeights = new double[] {
+					1.0, 1.0, 1.0E-4 };
 
-			//======== panel7 ========
+			// ======== panel7 ========
 			{
 				panel7.setLayout(new GridBagLayout());
-				((GridBagLayout)panel7.getLayout()).columnWidths = new int[] {503, 0};
-				((GridBagLayout)panel7.getLayout()).rowHeights = new int[] {83, 0, 0};
-				((GridBagLayout)panel7.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
-				((GridBagLayout)panel7.getLayout()).rowWeights = new double[] {1.0, 0.0, 1.0E-4};
+				((GridBagLayout) panel7.getLayout()).columnWidths = new int[] {
+						503, 0 };
+				((GridBagLayout) panel7.getLayout()).rowHeights = new int[] {
+						83, 0, 0 };
+				((GridBagLayout) panel7.getLayout()).columnWeights = new double[] {
+						1.0, 1.0E-4 };
+				((GridBagLayout) panel7.getLayout()).rowWeights = new double[] {
+						1.0, 0.0, 1.0E-4 };
 
-				//======== scrollPane1 ========
+				// ======== scrollPane1 ========
 				{
 
-					//---- tblBoth ----
+					// ---- tblBoth ----
 					tblBoth.setModel(new DefaultTableModel(2, 0));
 					scrollPane1.setViewportView(tblBoth);
 				}
-				panel7.add(scrollPane1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel7.add(scrollPane1, new GridBagConstraints(0, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//======== panel8 ========
+				// ======== panel8 ========
 				{
 					panel8.setLayout(new FlowLayout());
 
-					//---- btnFirst ----
+					// ---- btnFirst ----
 					btnFirst.setBorderPainted(false);
-					btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
+					btnFirst.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_FIRST)));
 					panel8.add(btnFirst);
 
-					//---- btnBack ----
+					// ---- btnBack ----
 					btnBack.setBorderPainted(false);
-					btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
+					btnBack.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_BACK)));
 					panel8.add(btnBack);
 
-					//---- lblPage ----
+					// ---- lblPage ----
 					lblPage.setText("Page");
 					panel8.add(lblPage);
 
-					//---- btnNext ----
+					// ---- btnNext ----
 					btnNext.setBorderPainted(false);
-					btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
+					btnNext.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_NEXT)));
 					panel8.add(btnNext);
 
-					//---- btnLast ----
+					// ---- btnLast ----
 					btnLast.setBorderPainted(false);
-					btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
+					btnLast.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_LAST)));
 					panel8.add(btnLast);
 				}
 				panel7.add(panel8, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+						GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
+						0, 0));
 			}
 			panel6.add(panel7, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
-
-			//======== panel9 ========
-			{
-				panel9.setBorder(new CompoundBorder(
-					new TitledBorder(new CompoundBorder(
-						new EmptyBorder(5, 5, 5, 5),
-						new BorderUIResource.EtchedBorderUIResource()), "Employee Information"),
-					new EmptyBorder(5, 5, 5, 5)));
-				panel9.setLayout(new GridBagLayout());
-				((GridBagLayout)panel9.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-				((GridBagLayout)panel9.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-				((GridBagLayout)panel9.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 1.0E-4};
-				((GridBagLayout)panel9.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
-
-				//---- label28 ----
-				label28.setText("Employee No:");
-				panel9.add(label28, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
 					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
 					new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- txtEmpID ----
-				txtEmpID.setToolTipText("Search employee by employee number");
-				panel9.add(txtEmpID, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+			// ======== panel9 ========
+			{
+				panel9.setBorder(new CompoundBorder(new TitledBorder(
+						new CompoundBorder(new EmptyBorder(5, 5, 5, 5),
+								new BorderUIResource.EtchedBorderUIResource()),
+						"Employee Information"), new EmptyBorder(5, 5, 5, 5)));
+				panel9.setLayout(new GridBagLayout());
+				((GridBagLayout) panel9.getLayout()).columnWidths = new int[] {
+						0, 0, 0, 0 };
+				((GridBagLayout) panel9.getLayout()).rowHeights = new int[] {
+						0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+				((GridBagLayout) panel9.getLayout()).columnWeights = new double[] {
+						0.0, 0.0, 1.0, 1.0E-4 };
+				((GridBagLayout) panel9.getLayout()).rowWeights = new double[] {
+						0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+						1.0E-4 };
 
-				//---- btnSearchEmp ----
+				// ---- label28 ----
+				label28.setText("Employee No:");
+				panel9.add(label28, new GridBagConstraints(1, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+
+				// ---- txtEmpID ----
+				txtEmpID.setToolTipText("Search employee by employee number");
+				panel9.add(txtEmpID, new GridBagConstraints(2, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+
+				// ---- btnSearchEmp ----
 				btnSearchEmp.setText("Search");
 				btnSearchEmp.setBorderPainted(false);
-				btnSearchEmp.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+				btnSearchEmp.setIcon(new ImageIcon(getClass().getResource(
+						LibImages.TASKBAR_SEARCH)));
 				btnSearchEmp.setVerticalTextPosition(SwingConstants.BOTTOM);
 				btnSearchEmp.setHorizontalTextPosition(SwingConstants.CENTER);
-				panel9.add(btnSearchEmp, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(btnSearchEmp, new GridBagConstraints(0, 0, 1, 2,
+						0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- label29 ----
+				// ---- label29 ----
 				label29.setText("Employee Name:");
-				panel9.add(label29, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label29, new GridBagConstraints(1, 1, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5, 5),
+						0, 0));
 
-				//---- txtEmpName ----
+				// ---- txtEmpName ----
 				txtEmpName.setToolTipText("Search employee by employee name");
-				panel9.add(txtEmpName, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(txtEmpName, new GridBagConstraints(2, 1, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5, 0),
+						0, 0));
 
-				//---- label30 ----
+				// ---- label30 ----
 				label30.setText("No:");
-				panel9.add(label30, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label30, new GridBagConstraints(0, 2, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblID ----
+				// ---- lblID ----
 				lblID.setText("Empty");
 				panel9.add(lblID, new GridBagConstraints(1, 2, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label31 ----
+				// ---- label31 ----
 				label31.setText("Name:");
-				panel9.add(label31, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label31, new GridBagConstraints(0, 3, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblName ----
+				// ---- lblName ----
 				lblName.setText("Empty");
-				panel9.add(lblName, new GridBagConstraints(1, 3, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(lblName, new GridBagConstraints(1, 3, 2, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label32 ----
+				// ---- label32 ----
 				label32.setText("Date of birth:");
-				panel9.add(label32, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label32, new GridBagConstraints(0, 4, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblDOB ----
+				// ---- lblDOB ----
 				lblDOB.setText("Empty");
 				panel9.add(lblDOB, new GridBagConstraints(1, 4, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label33 ----
+				// ---- label33 ----
 				label33.setText("Gender:");
-				panel9.add(label33, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label33, new GridBagConstraints(0, 5, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblGender ----
+				// ---- lblGender ----
 				lblGender.setText("Empty");
-				panel9.add(lblGender, new GridBagConstraints(1, 5, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(lblGender, new GridBagConstraints(1, 5, 2, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label34 ----
+				// ---- label34 ----
 				label34.setText("Department:");
-				panel9.add(label34, new GridBagConstraints(0, 6, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label34, new GridBagConstraints(0, 6, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblDepart ----
+				// ---- lblDepart ----
 				lblDepart.setText("Empty");
-				panel9.add(lblDepart, new GridBagConstraints(1, 6, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(lblDepart, new GridBagConstraints(1, 6, 2, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label35 ----
+				// ---- label35 ----
 				label35.setText("Address:");
-				panel9.add(label35, new GridBagConstraints(0, 7, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label35, new GridBagConstraints(0, 7, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblAddress ----
+				// ---- lblAddress ----
 				lblAddress.setText("Empty");
-				panel9.add(lblAddress, new GridBagConstraints(1, 7, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(lblAddress, new GridBagConstraints(1, 7, 2, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label36 ----
+				// ---- label36 ----
 				label36.setText("Phone:");
-				panel9.add(label36, new GridBagConstraints(0, 8, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 5), 0, 0));
+				panel9.add(label36, new GridBagConstraints(0, 8, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
-				//---- lblPhone ----
+				// ---- lblPhone ----
 				lblPhone.setText("Empty");
-				panel9.add(lblPhone, new GridBagConstraints(1, 8, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 5, 0), 0, 0));
+				panel9.add(lblPhone, new GridBagConstraints(1, 8, 2, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
-				//---- label37 ----
+				// ---- label37 ----
 				label37.setText("Permission");
-				panel9.add(label37, new GridBagConstraints(0, 9, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel9.add(label37, new GridBagConstraints(0, 9, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 0, 5), 0, 0));
 
-				//---- lblPermission ----
+				// ---- lblPermission ----
 				lblPermission.setText("Empty");
-				panel9.add(lblPermission, new GridBagConstraints(1, 9, 2, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-					new Insets(0, 0, 0, 0), 0, 0));
+				panel9.add(lblPermission, new GridBagConstraints(1, 9, 2, 1,
+						0.0, 0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 			}
 			panel6.add(panel9, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//======== scrollPane2 ========
+			// ======== scrollPane2 ========
 			{
 
-				//---- tblCheckIn ----
+				// ---- tblCheckIn ----
 				tblCheckIn.setModel(new DefaultTableModel(2, 0));
 				scrollPane2.setViewportView(tblCheckIn);
 			}
-			panel6.add(scrollPane2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 5), 0, 0));
+			panel6.add(scrollPane2, new GridBagConstraints(0, 1, 1, 1, 0.0,
+					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 5), 0, 0));
 
-			//======== panel3 ========
+			// ======== panel3 ========
 			{
 				panel3.setLayout(new BorderLayout());
 
-				//======== panel5 ========
+				// ======== panel5 ========
 				{
 					panel5.setBorder(new CompoundBorder(
-						new TitledBorder(new CompoundBorder(
-							new EmptyBorder(5, 5, 5, 5),
-							new BorderUIResource.EtchedBorderUIResource()), "Check-Out Infromation"),
-						new EmptyBorder(5, 5, 5, 5)));
+							new TitledBorder(
+									new CompoundBorder(
+											new EmptyBorder(5, 5, 5, 5),
+											new BorderUIResource.EtchedBorderUIResource()),
+									"Check-Out Infromation"), new EmptyBorder(
+									5, 5, 5, 5)));
 					panel5.setLayout(new GridBagLayout());
-					((GridBagLayout)panel5.getLayout()).columnWidths = new int[] {0, 0, 0};
-					((GridBagLayout)panel5.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
-					((GridBagLayout)panel5.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
-					((GridBagLayout)panel5.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+					((GridBagLayout) panel5.getLayout()).columnWidths = new int[] {
+							0, 0, 0 };
+					((GridBagLayout) panel5.getLayout()).rowHeights = new int[] {
+							0, 0, 0, 0 };
+					((GridBagLayout) panel5.getLayout()).columnWeights = new double[] {
+							0.0, 0.0, 1.0E-4 };
+					((GridBagLayout) panel5.getLayout()).rowWeights = new double[] {
+							0.0, 0.0, 0.0, 1.0E-4 };
 
-					//---- label23 ----
+					// ---- label23 ----
 					label23.setText("Issue Date:");
-					panel5.add(label23, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 5), 0, 0));
-					panel5.add(txtIssueDate, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 0), 0, 0));
+					panel5.add(label23, new GridBagConstraints(0, 0, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									5), 0, 0));
+					panel5.add(txtIssueDate, new GridBagConstraints(1, 0, 1, 1,
+							0.0, 0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									0), 0, 0));
 
-					//---- label26 ----
+					// ---- label26 ----
 					label26.setText("Return Date:");
-					panel5.add(label26, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 5), 0, 0));
-					panel5.add(txtReturnDate, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 0), 0, 0));
+					panel5.add(label26, new GridBagConstraints(0, 1, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									5), 0, 0));
+					panel5.add(txtReturnDate, new GridBagConstraints(1, 1, 1,
+							1, 0.0, 0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									0), 0, 0));
 
-					//---- label24 ----
+					// ---- label24 ----
 					label24.setText("Fee:");
-					panel5.add(label24, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 5), 0, 0));
+					panel5.add(label24, new GridBagConstraints(0, 2, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									5), 0, 0));
 
-					//---- lblFee ----
+					// ---- lblFee ----
 					lblFee.setText("Fee");
-					panel5.add(lblFee, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 0), 0, 0));
+					panel5.add(lblFee, new GridBagConstraints(1, 2, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									0), 0, 0));
 				}
 				panel3.add(panel5, BorderLayout.CENTER);
 
-				//======== panel10 ========
+				// ======== panel10 ========
 				{
 					panel10.setLayout(new FlowLayout());
 
-					//---- btnCheckIn ----
+					// ---- btnCheckIn ----
 					btnCheckIn.setText("CheckIn");
 					panel10.add(btnCheckIn);
 
-					//---- btnCancel ----
+					// ---- btnCancel ----
 					btnCancel.setText("Cancel");
 					panel10.add(btnCancel);
 				}
 				panel3.add(panel10, BorderLayout.SOUTH);
 			}
 			panel6.add(panel3, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 0), 0, 0));
 		}
 		contentPane.add(panel6, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-			GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-			new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(
+						0, 0, 0, 0), 0, 0));
 		setSize(835, 585);
 		setLocationRelativeTo(null);
 		// //GEN-END:initComponents
@@ -602,6 +655,7 @@ public class CheckInDialog extends JDialog {
 	private JPanel panel10;
 	private JButton btnCheckIn;
 	private JButton btnCancel;
+
 	// End of variables declaration //GEN-END:variables
 	/**
 	 * @return the btnSearchBor

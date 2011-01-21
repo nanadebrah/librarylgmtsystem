@@ -53,67 +53,76 @@ public class SubjectPanel extends JPanel {
 		label3 = new JLabel();
 		txtSubName = new JTextField();
 
-		//======== this ========
+		// ======== this ========
 		setLayout(new BorderLayout());
 
-		//======== panel1 ========
+		// ======== panel1 ========
 		{
 			panel1.setLayout(new FlowLayout());
 
-			//---- btnFirst ----
+			// ---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_FIRST)));
 			panel1.add(btnFirst);
 
-			//---- btnBack ----
+			// ---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
+			btnBack.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_BACK)));
 			panel1.add(btnBack);
 
-			//---- lblPage ----
+			// ---- lblPage ----
 			lblPage.setText("Page");
 			panel1.add(lblPage);
 
-			//---- btnNext ----
+			// ---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
+			btnNext.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_NEXT)));
 			panel1.add(btnNext);
 
-			//---- btnLast ----
+			// ---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
+			btnLast.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_LAST)));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
 
-		//======== panel2 ========
+		// ======== panel2 ========
 		{
 			panel2.setLayout(new BorderLayout());
 
-			//======== scrollPane1 ========
+			// ======== scrollPane1 ========
 			{
 
-				//---- tblSub ----
+				// ---- tblSub ----
 				tblSub.setModel(new DefaultTableModel(2, 0));
 				scrollPane1.setViewportView(tblSub);
 			}
 			panel2.add(scrollPane1, BorderLayout.CENTER);
 
-			//======== panel3 ========
+			// ======== panel3 ========
 			{
 				panel3.setLayout(new GridBagLayout());
-				((GridBagLayout)panel3.getLayout()).columnWidths = new int[] {0, 0, 0};
-				((GridBagLayout)panel3.getLayout()).rowHeights = new int[] {0, 0};
-				((GridBagLayout)panel3.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-				((GridBagLayout)panel3.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
+				((GridBagLayout) panel3.getLayout()).columnWidths = new int[] {
+						0, 0, 0 };
+				((GridBagLayout) panel3.getLayout()).rowHeights = new int[] {
+						0, 0 };
+				((GridBagLayout) panel3.getLayout()).columnWeights = new double[] {
+						0.0, 1.0, 1.0E-4 };
+				((GridBagLayout) panel3.getLayout()).rowWeights = new double[] {
+						0.0, 1.0E-4 };
 
-				//======== toolBar1 ========
+				// ======== toolBar1 ========
 				{
 					toolBar1.setFloatable(false);
 
-					//---- btnAdd ----
+					// ---- btnAdd ----
 					btnAdd.setText("Add");
-					btnAdd.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ADD)));
+					btnAdd.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_ADD)));
 					btnAdd.setBorderPainted(false);
 					btnAdd.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnAdd.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -121,10 +130,11 @@ public class SubjectPanel extends JPanel {
 					toolBar1.add(btnAdd);
 					toolBar1.addSeparator();
 
-					//---- btnEdit ----
+					// ---- btnEdit ----
 					btnEdit.setText("Edit");
 					btnEdit.setBorderPainted(false);
-					btnEdit.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
+					btnEdit.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_EDIT)));
 					btnEdit.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnEdit.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnEdit.setEnabled(false);
@@ -132,10 +142,11 @@ public class SubjectPanel extends JPanel {
 					btnEdit.setMnemonic('I');
 					toolBar1.add(btnEdit);
 
-					//---- btnView ----
+					// ---- btnView ----
 					btnView.setText("View");
 					btnView.setBorderPainted(false);
-					btnView.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
+					btnView.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_VIEW)));
 					btnView.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnView.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnView.setEnabled(false);
@@ -143,10 +154,11 @@ public class SubjectPanel extends JPanel {
 					btnView.setMnemonic('V');
 					toolBar1.add(btnView);
 
-					//---- btnDelete ----
+					// ---- btnDelete ----
 					btnDelete.setText("Delete");
 					btnDelete.setBorderPainted(false);
-					btnDelete.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_DELETE)));
+					btnDelete.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_DELETE)));
 					btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnDelete.setEnabled(false);
@@ -155,51 +167,62 @@ public class SubjectPanel extends JPanel {
 					toolBar1.add(btnDelete);
 					toolBar1.addSeparator();
 
-					//---- btnSearch ----
+					// ---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_SEARCH)));
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setMnemonic('R');
 					toolBar1.add(btnSearch);
 				}
-				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//======== panel4 ========
+				// ======== panel4 ========
 				{
 					panel4.setLayout(new GridBagLayout());
-					((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 0, 0};
-					((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0, 0};
-					((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-					((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
+					((GridBagLayout) panel4.getLayout()).columnWidths = new int[] {
+							0, 0, 0 };
+					((GridBagLayout) panel4.getLayout()).rowHeights = new int[] {
+							0, 0, 0 };
+					((GridBagLayout) panel4.getLayout()).columnWeights = new double[] {
+							0.0, 1.0, 1.0E-4 };
+					((GridBagLayout) panel4.getLayout()).rowWeights = new double[] {
+							0.0, 0.0, 1.0E-4 };
 
-					//---- label2 ----
+					// ---- label2 ----
 					label2.setText("Subject No:");
-					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 5), 0, 0));
+					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									5), 0, 0));
 
-					//---- txtSubID ----
+					// ---- txtSubID ----
 					txtSubID.setToolTipText("Search by subject number");
-					panel4.add(txtSubID, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 5, 0), 0, 0));
+					panel4.add(txtSubID, new GridBagConstraints(1, 0, 1, 1,
+							0.0, 0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
+									0), 0, 0));
 
-					//---- label3 ----
+					// ---- label3 ----
 					label3.setText("Subject Name:");
-					panel4.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 5), 0, 0));
-					panel4.add(txtSubName, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 0), 0, 0));
+					panel4.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									5), 0, 0));
+					panel4.add(txtSubName, new GridBagConstraints(1, 1, 1, 1,
+							0.0, 0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									0), 0, 0));
 				}
 				panel3.add(panel4, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+						GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
+						0, 0));
 			}
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
@@ -230,6 +253,7 @@ public class SubjectPanel extends JPanel {
 	private JTextField txtSubID;
 	private JLabel label3;
 	private JTextField txtSubName;
+
 	// End of variables declaration //GEN-END:variables
 	/**
 	 * @return the btnFirst

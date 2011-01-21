@@ -225,16 +225,14 @@ public class SubjectController {
 						Messages.getString("SubjectController.0"),
 						Messages.getString("SubjectController.1"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
-				view.getTxtSubID().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
-				view.getTxtSubName().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtSubID().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtSubName().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			}
 		}
 		parent.doBlur();
-		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1,
-				0, false, false);
+		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1, 0,
+				false, false);
 	}
 
 	/**
@@ -300,8 +298,8 @@ public class SubjectController {
 		}
 		parent.doBlur();
 		// Set selection to edited subject
-		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1,
-				0, false, false);
+		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1, 0,
+				false, false);
 	}
 
 	/**

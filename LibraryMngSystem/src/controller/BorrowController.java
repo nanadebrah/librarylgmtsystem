@@ -311,10 +311,8 @@ public class BorrowController {
 					Messages.getString("BorrowController.0"), //$NON-NLS-1$
 					Messages.getString("BorrowController.1"),
 					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtCallNo().setText(
-					Messages.getString("EmptyText")); //$NON-NLS-1$
-			view.getTxtEmpID()
-					.setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+			view.getTxtCallNo().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+			view.getTxtEmpID().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getBtnLast().doClick();
 		}
 		parent.doBlur();
@@ -335,10 +333,8 @@ public class BorrowController {
 					Messages.getString("BorrowController.4"), //$NON-NLS-1$
 					Messages.getString("BorrowController.5"),
 					JOptionPane.INFORMATION_MESSAGE);
-			view.getTxtCallNo().setText(
-					Messages.getString("EmptyText")); //$NON-NLS-1$
-			view.getTxtEmpID()
-					.setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+			view.getTxtCallNo().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+			view.getTxtEmpID().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getBtnLast().doClick();
 		}
 		parent.doBlur();
