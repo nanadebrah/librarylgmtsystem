@@ -17,6 +17,8 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -60,12 +62,12 @@ public class EmployeePanel extends JPanel {
 
 			//---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/First.png")));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
 			panel1.add(btnFirst);
 
 			//---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Back.png")));
+			btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
 			panel1.add(btnBack);
 
 			//---- lblPage ----
@@ -74,12 +76,12 @@ public class EmployeePanel extends JPanel {
 
 			//---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Next.png")));
+			btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
 			panel1.add(btnNext);
 
 			//---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Last.png")));
+			btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
@@ -111,7 +113,7 @@ public class EmployeePanel extends JPanel {
 
 					//---- btnAdd ----
 					btnAdd.setText("Add");
-					btnAdd.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Add.png")));
+					btnAdd.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ADD)));
 					btnAdd.setBorderPainted(false);
 					btnAdd.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnAdd.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -122,7 +124,7 @@ public class EmployeePanel extends JPanel {
 					//---- btnEdit ----
 					btnEdit.setText("Edit");
 					btnEdit.setBorderPainted(false);
-					btnEdit.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Edit.png")));
+					btnEdit.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_EDIT)));
 					btnEdit.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnEdit.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnEdit.setEnabled(false);
@@ -133,7 +135,7 @@ public class EmployeePanel extends JPanel {
 					//---- btnView ----
 					btnView.setText("View");
 					btnView.setBorderPainted(false);
-					btnView.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/View.png")));
+					btnView.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
 					btnView.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnView.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnView.setEnabled(false);
@@ -144,7 +146,7 @@ public class EmployeePanel extends JPanel {
 					//---- btnDelete ----
 					btnDelete.setText("Delete");
 					btnDelete.setBorderPainted(false);
-					btnDelete.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Delete.png")));
+					btnDelete.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_DELETE)));
 					btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnDelete.setEnabled(false);
@@ -156,7 +158,7 @@ public class EmployeePanel extends JPanel {
 					//---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
 					toolBar1.add(btnSearch);

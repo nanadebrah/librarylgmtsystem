@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -121,7 +123,7 @@ public class SendAlertDialog extends JDialog {
 
 			// ---- label5 ----
 			label5.setIcon(new ImageIcon(getClass().getResource(
-					"/view/images/labelImages/Email.png")));
+					LibImages.LABEL_EMAIL)));
 			panel1.add(label5, new GridBagConstraints(2, 3, 2, 1, 0.0, 0.0,
 					GridBagConstraints.CENTER, GridBagConstraints.NONE,
 					new Insets(0, 0, 5, 0), 0, 0));

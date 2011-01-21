@@ -17,6 +17,8 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -61,12 +63,12 @@ public class BorrowPanel extends JPanel {
 
 			//---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/First.png")));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
 			panel1.add(btnFirst);
 
 			//---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Back.png")));
+			btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
 			panel1.add(btnBack);
 
 			//---- lblPage ----
@@ -75,12 +77,12 @@ public class BorrowPanel extends JPanel {
 
 			//---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Next.png")));
+			btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
 			panel1.add(btnNext);
 
 			//---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Last.png")));
+			btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
@@ -112,7 +114,7 @@ public class BorrowPanel extends JPanel {
 
 					//---- btnCheckOut ----
 					btnCheckOut.setText("Check-out");
-					btnCheckOut.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/CheckOut.png")));
+					btnCheckOut.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_CHECKOUT)));
 					btnCheckOut.setBorderPainted(false);
 					btnCheckOut.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnCheckOut.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -122,7 +124,7 @@ public class BorrowPanel extends JPanel {
 					//---- btnCheckIn ----
 					btnCheckIn.setText("Check-in");
 					btnCheckIn.setBorderPainted(false);
-					btnCheckIn.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/CheckIn.png")));
+					btnCheckIn.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_CHECKIN)));
 					btnCheckIn.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnCheckIn.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnCheckIn.setMnemonic('N');
@@ -131,7 +133,7 @@ public class BorrowPanel extends JPanel {
 					//---- btnFee ----
 					btnFee.setText("Fee rate");
 					btnFee.setBorderPainted(false);
-					btnFee.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Fee.png")));
+					btnFee.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FEE)));
 					btnFee.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnFee.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnFee.setMnemonic('F');
@@ -141,7 +143,7 @@ public class BorrowPanel extends JPanel {
 					//---- btnView ----
 					btnView.setText("View");
 					btnView.setBorderPainted(false);
-					btnView.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/View.png")));
+					btnView.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_VIEW)));
 					btnView.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnView.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnView.setEnabled(false);
@@ -152,7 +154,7 @@ public class BorrowPanel extends JPanel {
 					//---- btnDelete ----
 					btnDelete.setText("Delete");
 					btnDelete.setBorderPainted(false);
-					btnDelete.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Delete.png")));
+					btnDelete.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_DELETE)));
 					btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnDelete.setEnabled(false);
@@ -164,7 +166,7 @@ public class BorrowPanel extends JPanel {
 					//---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnSearch.setMnemonic('R');

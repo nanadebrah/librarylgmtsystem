@@ -23,6 +23,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.BorderUIResource;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -76,7 +78,7 @@ public class AddBookDialog extends JDialog {
 
 		// ---- label1 ----
 		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/AddBook.png")));
+				LibImages.LABEL_ADDBOOK)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
 						0, 0, 0, 0), 0, 0));

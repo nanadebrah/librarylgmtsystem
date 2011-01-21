@@ -25,6 +25,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibImages;
+
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -140,7 +142,7 @@ public class CheckInDialog extends JDialog {
 				//---- btnSearchBor ----
 				btnSearchBor.setText("Search");
 				btnSearchBor.setBorderPainted(false);
-				btnSearchBor.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+				btnSearchBor.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 				btnSearchBor.setHorizontalTextPosition(SwingConstants.CENTER);
 				btnSearchBor.setVerticalTextPosition(SwingConstants.BOTTOM);
 				panel11.add(btnSearchBor, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
@@ -203,7 +205,7 @@ public class CheckInDialog extends JDialog {
 				//---- btnSearchBook ----
 				btnSearchBook.setText("Search");
 				btnSearchBook.setBorderPainted(false);
-				btnSearchBook.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+				btnSearchBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 				btnSearchBook.setHorizontalTextPosition(SwingConstants.CENTER);
 				btnSearchBook.setVerticalTextPosition(SwingConstants.BOTTOM);
 				panel2.add(btnSearchBook, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,
@@ -275,12 +277,12 @@ public class CheckInDialog extends JDialog {
 
 					//---- btnFirst ----
 					btnFirst.setBorderPainted(false);
-					btnFirst.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/First.png")));
+					btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
 					panel8.add(btnFirst);
 
 					//---- btnBack ----
 					btnBack.setBorderPainted(false);
-					btnBack.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Back.png")));
+					btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
 					panel8.add(btnBack);
 
 					//---- lblPage ----
@@ -289,12 +291,12 @@ public class CheckInDialog extends JDialog {
 
 					//---- btnNext ----
 					btnNext.setBorderPainted(false);
-					btnNext.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Next.png")));
+					btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
 					panel8.add(btnNext);
 
 					//---- btnLast ----
 					btnLast.setBorderPainted(false);
-					btnLast.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Last.png")));
+					btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
 					panel8.add(btnLast);
 				}
 				panel7.add(panel8, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
@@ -333,7 +335,7 @@ public class CheckInDialog extends JDialog {
 				//---- btnSearchEmp ----
 				btnSearchEmp.setText("Search");
 				btnSearchEmp.setBorderPainted(false);
-				btnSearchEmp.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+				btnSearchEmp.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 				btnSearchEmp.setVerticalTextPosition(SwingConstants.BOTTOM);
 				btnSearchEmp.setHorizontalTextPosition(SwingConstants.CENTER);
 				panel9.add(btnSearchEmp, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,

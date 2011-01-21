@@ -22,6 +22,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import model.LibImages;
+
 import org.jdesktop.swingx.JXTaskPane;
 
 /**
@@ -76,20 +78,20 @@ public class ManageFrame extends JFrame {
 
 				//---- mnSetting ----
 				mnSetting.setText("Setting");
-				mnSetting.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/ProgramSetting.png")));
+				mnSetting.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_PRO_SETTING)));
 				mnSetting.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, KeyEvent.ALT_MASK));
 				menu1.add(mnSetting);
 
 				//---- mnLogout ----
 				mnLogout.setText("Logout");
-				mnLogout.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Logout.png")));
+				mnLogout.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_LOGOUT)));
 				mnLogout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.ALT_MASK));
 				menu1.add(mnLogout);
 				menu1.addSeparator();
 
 				//---- mnQuit ----
 				mnQuit.setText("Quit");
-				mnQuit.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Quit.png")));
+				mnQuit.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_QUIT)));
 				mnQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.ALT_MASK));
 				menu1.add(mnQuit);
 			}
@@ -136,13 +138,13 @@ public class ManageFrame extends JFrame {
 
 				//---- mnHelp ----
 				mnHelp.setText("Help");
-				mnHelp.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/Help.png")));
+				mnHelp.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_HELP)));
 				mnHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 				menuHelp.add(mnHelp);
 
 				//---- mnAboutUs ----
 				mnAboutUs.setText("About us");
-				mnAboutUs.setIcon(new ImageIcon(getClass().getResource("/view/images/menuImages/About.png")));
+				mnAboutUs.setIcon(new ImageIcon(getClass().getResource(LibImages.MENU_ABOUT)));
 				menuHelp.add(mnAboutUs);
 			}
 			menuBar1.add(menuHelp);
@@ -170,7 +172,7 @@ public class ManageFrame extends JFrame {
 					//---- btnEmployee ----
 					btnEmployee.setText("Employee");
 					btnEmployee.setBorderPainted(false);
-					btnEmployee.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Employee.png")));
+					btnEmployee.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_EMPLOYEE)));
 					btnEmployee.setHorizontalAlignment(SwingConstants.LEFT);
 					btnEmployee.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					btnEmployee.setMnemonic('E');
@@ -179,7 +181,7 @@ public class ManageFrame extends JFrame {
 					//---- btnSubject ----
 					btnSubject.setText("Subject");
 					btnSubject.setBorderPainted(false);
-					btnSubject.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Sub.png")));
+					btnSubject.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SUB)));
 					btnSubject.setHorizontalAlignment(SwingConstants.LEFT);
 					btnSubject.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					btnSubject.setMnemonic('S');
@@ -188,7 +190,7 @@ public class ManageFrame extends JFrame {
 					//---- btnBook ----
 					btnBook.setText("Book");
 					btnBook.setBorderPainted(false);
-					btnBook.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Book.png")));
+					btnBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BOOK)));
 					btnBook.setHorizontalAlignment(SwingConstants.LEFT);
 					btnBook.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					btnBook.setMnemonic('B');
@@ -208,7 +210,7 @@ public class ManageFrame extends JFrame {
 					//---- btnBorrow ----
 					btnBorrow.setText("Borrow");
 					btnBorrow.setBorderPainted(false);
-					btnBorrow.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Borrow.png")));
+					btnBorrow.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BORROW)));
 					btnBorrow.setHorizontalAlignment(SwingConstants.LEFT);
 					btnBorrow.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					btnBorrow.setMnemonic('O');
@@ -217,7 +219,7 @@ public class ManageFrame extends JFrame {
 					//---- btnAnalytic ----
 					btnAnalytic.setText("Analytic");
 					btnAnalytic.setBorderPainted(false);
-					btnAnalytic.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Analytic.png")));
+					btnAnalytic.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_ANALYTIC)));
 					btnAnalytic.setHorizontalAlignment(SwingConstants.LEFT);
 					btnAnalytic.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 					btnAnalytic.setMnemonic('A');
