@@ -18,7 +18,7 @@ public class LibImages {
 	 * Other image
 	 */
 	public static final String SPLASH = Messages.getString("LibImages.0"); //$NON-NLS-1$
-
+	public static final String ICON = Messages.getString("LibImages.1"); //$NON-NLS-1$
 	public static final String ABOUT = Messages.getString("LibImages.1"); //$NON-NLS-1$
 	/**
 	 * Label image
