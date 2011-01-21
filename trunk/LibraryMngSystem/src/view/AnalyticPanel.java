@@ -51,125 +51,146 @@ public class AnalyticPanel extends JPanel {
 		label2 = new JLabel();
 		txtDueDate = new JXDatePicker();
 
-		//======== this ========
+		// ======== this ========
 		setLayout(new BorderLayout());
 
-		//======== panel1 ========
+		// ======== panel1 ========
 		{
 			panel1.setLayout(new FlowLayout());
 
-			//---- btnFirst ----
+			// ---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_FIRST)));
 			panel1.add(btnFirst);
 
-			//---- btnBack ----
+			// ---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
+			btnBack.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_BACK)));
 			panel1.add(btnBack);
 
-			//---- lblPage ----
+			// ---- lblPage ----
 			lblPage.setText("Page");
 			panel1.add(lblPage);
 
-			//---- btnNext ----
+			// ---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
+			btnNext.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_NEXT)));
 			panel1.add(btnNext);
 
-			//---- btnLast ----
+			// ---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
+			btnLast.setIcon(new ImageIcon(getClass().getResource(
+					LibImages.TASKBAR_LAST)));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
 
-		//======== panel2 ========
+		// ======== panel2 ========
 		{
 			panel2.setLayout(new BorderLayout());
 
-			//======== scrollPane1 ========
+			// ======== scrollPane1 ========
 			{
 
-				//---- tblAna ----
+				// ---- tblAna ----
 				tblAna.setModel(new DefaultTableModel(2, 0));
 				scrollPane1.setViewportView(tblAna);
 			}
 			panel2.add(scrollPane1, BorderLayout.CENTER);
 
-			//======== panel3 ========
+			// ======== panel3 ========
 			{
 				panel3.setLayout(new GridBagLayout());
-				((GridBagLayout)panel3.getLayout()).columnWidths = new int[] {0, 0, 0};
-				((GridBagLayout)panel3.getLayout()).rowHeights = new int[] {0, 0};
-				((GridBagLayout)panel3.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-				((GridBagLayout)panel3.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
+				((GridBagLayout) panel3.getLayout()).columnWidths = new int[] {
+						0, 0, 0 };
+				((GridBagLayout) panel3.getLayout()).rowHeights = new int[] {
+						0, 0 };
+				((GridBagLayout) panel3.getLayout()).columnWeights = new double[] {
+						0.0, 1.0, 1.0E-4 };
+				((GridBagLayout) panel3.getLayout()).rowWeights = new double[] {
+						0.0, 1.0E-4 };
 
-				//======== toolBar1 ========
+				// ======== toolBar1 ========
 				{
 					toolBar1.setFloatable(false);
 
-					//---- btnTopBook ----
+					// ---- btnTopBook ----
 					btnTopBook.setText("Top Book");
-					btnTopBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBOOK)));
+					btnTopBook.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_TOPBOOK)));
 					btnTopBook.setBorderPainted(false);
 					btnTopBook.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnTopBook.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnTopBook.setMnemonic('K');
 					toolBar1.add(btnTopBook);
 
-					//---- btnTopBorrow ----
+					// ---- btnTopBorrow ----
 					btnTopBorrow.setText("Top Borrower");
 					btnTopBorrow.setBorderPainted(false);
-					btnTopBorrow.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBORROWER)));
+					btnTopBorrow.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_TOPBORROWER)));
 					btnTopBorrow.setVerticalTextPosition(SwingConstants.BOTTOM);
-					btnTopBorrow.setHorizontalTextPosition(SwingConstants.CENTER);
+					btnTopBorrow
+							.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnTopBorrow.setMnemonic('P');
 					toolBar1.add(btnTopBorrow);
 
-					//---- btnAlert ----
+					// ---- btnAlert ----
 					btnAlert.setText("Overdue Alert");
 					btnAlert.setBorderPainted(false);
-					btnAlert.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
+					btnAlert.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_SENDALERT)));
 					btnAlert.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnAlert.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnAlert.setEnabled(false);
 					btnAlert.setRequestFocusEnabled(false);
 					toolBar1.add(btnAlert);
 
-					//---- btnSearch ----
+					// ---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource(
+							LibImages.TASKBAR_SEARCH)));
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setMnemonic('C');
 					toolBar1.add(btnSearch);
 				}
-				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 5), 0, 0));
+				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0,
+						0.0, GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
+						0, 0));
 
-				//======== panel4 ========
+				// ======== panel4 ========
 				{
 					panel4.setLayout(new GridBagLayout());
-					((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 0, 0};
-					((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0};
-					((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-					((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
+					((GridBagLayout) panel4.getLayout()).columnWidths = new int[] {
+							0, 0, 0 };
+					((GridBagLayout) panel4.getLayout()).rowHeights = new int[] {
+							0, 0 };
+					((GridBagLayout) panel4.getLayout()).columnWeights = new double[] {
+							0.0, 1.0, 1.0E-4 };
+					((GridBagLayout) panel4.getLayout()).rowWeights = new double[] {
+							0.0, 1.0E-4 };
 
-					//---- label2 ----
+					// ---- label2 ----
 					label2.setText("Due Date:");
-					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 5), 0, 0));
-					panel4.add(txtDueDate, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-						new Insets(0, 0, 0, 0), 0, 0));
+					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0,
+							0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									5), 0, 0));
+					panel4.add(txtDueDate, new GridBagConstraints(1, 0, 1, 1,
+							0.0, 0.0, GridBagConstraints.CENTER,
+							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
+									0), 0, 0));
 				}
 				panel3.add(panel4, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-					new Insets(0, 0, 0, 0), 0, 0));
+						GridBagConstraints.CENTER,
+						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
+						0, 0));
 			}
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
@@ -197,6 +218,7 @@ public class AnalyticPanel extends JPanel {
 	private JPanel panel4;
 	private JLabel label2;
 	private JXDatePicker txtDueDate;
+
 	// End of variables declaration //GEN-END:variables
 	/**
 	 * @return the btnFirst

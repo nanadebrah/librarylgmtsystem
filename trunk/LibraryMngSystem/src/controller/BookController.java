@@ -249,14 +249,10 @@ public class BookController {
 						Messages.getString("BookController.1"),
 						JOptionPane.INFORMATION_MESSAGE);
 				// Move to last page, show newest book
-				view.getTxtAuthor().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
-				view.getTxtCallNo().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
-				view.getTxtISBN().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
-				view.getTxtTitle().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtAuthor().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtCallNo().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtISBN().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtTitle().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			} else {
 				JOptionPane.showMessageDialog(

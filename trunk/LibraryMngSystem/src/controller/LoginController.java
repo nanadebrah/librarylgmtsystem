@@ -237,7 +237,7 @@ public class LoginController {
 								view,
 								Messages.getString("LoginController.2"), //$NON-NLS-1$
 								Messages.getString("LoginController.3"),
-								JOptionPane.WARNING_MESSAGE);						
+								JOptionPane.WARNING_MESSAGE);
 						// Sleep 1 minisecond otherwise can't doBlur again
 						Thread.sleep(1);
 						doBlur();

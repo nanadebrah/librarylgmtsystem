@@ -61,124 +61,132 @@ public class EditBookDialog extends JDialog {
 		btnSave = new JButton();
 		btnCancel = new JButton();
 
-		//======== this ========
+		// ======== this ========
 		setResizable(false);
 		setTitle("Edit Book");
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
-		((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {0, 0};
-		((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {1.0, 1.0E-4};
+		((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] { 0,
+				0, 0 };
+		((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] { 0, 0 };
+		((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {
+				0.0, 1.0, 1.0E-4 };
+		((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {
+				1.0, 1.0E-4 };
 
-		//---- label1 ----
-		label1.setIcon(new ImageIcon(getClass().getResource(LibImages.LABEL_EDITBOOK)));
+		// ---- label1 ----
+		label1.setIcon(new ImageIcon(getClass().getResource(
+				LibImages.LABEL_EDITBOOK)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-			GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-			new Insets(0, 0, 0, 5), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+				new Insets(0, 0, 0, 5), 0, 0));
 
-		//======== panel1 ========
+		// ======== panel1 ========
 		{
-			panel1.setBorder(new CompoundBorder(
-				new TitledBorder(new CompoundBorder(
-					new EmptyBorder(5, 5, 5, 5),
-					new BorderUIResource.EtchedBorderUIResource()), "Book Information"),
-				new EmptyBorder(5, 5, 5, 5)));
+			panel1.setBorder(new CompoundBorder(new TitledBorder(
+					new CompoundBorder(new EmptyBorder(5, 5, 5, 5),
+							new BorderUIResource.EtchedBorderUIResource()),
+					"Book Information"), new EmptyBorder(5, 5, 5, 5)));
 			panel1.setLayout(new GridBagLayout());
-			((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 65, 95, 73, 0};
-			((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
-			((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 0.0, 1.0E-4};
-			((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+			((GridBagLayout) panel1.getLayout()).columnWidths = new int[] { 0,
+					65, 95, 73, 0 };
+			((GridBagLayout) panel1.getLayout()).rowHeights = new int[] { 0, 0,
+					0, 0, 0, 0, 0, 0 };
+			((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {
+					0.0, 0.0, 1.0, 0.0, 1.0E-4 };
+			((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {
+					0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4 };
 
-			//---- label2 ----
+			// ---- label2 ----
 			label2.setText("ISBN:");
 			panel1.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 
-			//---- txtISBN ----
+			// ---- txtISBN ----
 			try {
-				txtISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+				txtISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+						new javax.swing.text.MaskFormatter("###-####")));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			panel1.add(txtISBN, new GridBagConstraints(1, 0, 3, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//---- label3 ----
+			// ---- label3 ----
 			label3.setText("Title:");
 			panel1.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(txtTitle, new GridBagConstraints(1, 1, 3, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//---- label4 ----
+			// ---- label4 ----
 			label4.setText("Author:");
 			panel1.add(label4, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(txtAuthor, new GridBagConstraints(1, 2, 3, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//---- label5 ----
+			// ---- label5 ----
 			label5.setText("Publisher:");
 			panel1.add(label5, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
-			panel1.add(txtPublisher, new GridBagConstraints(1, 3, 3, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
+			panel1.add(txtPublisher, new GridBagConstraints(1, 3, 3, 1, 0.0,
+					0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//---- label6 ----
+			// ---- label6 ----
 			label6.setText("No of copies:");
 			panel1.add(label6, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(spinCopy, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 
-			//---- label8 ----
+			// ---- label8 ----
 			label8.setText("No in library:");
 			panel1.add(label8, new GridBagConstraints(2, 4, 1, 1, 0.0, 0.0,
-				GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+					new Insets(0, 0, 5, 5), 0, 0));
 
-			//---- spinLib ----
+			// ---- spinLib ----
 			spinLib.setEnabled(false);
 			panel1.add(spinLib, new GridBagConstraints(3, 4, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 0), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 0), 0, 0));
 
-			//---- label7 ----
+			// ---- label7 ----
 			label7.setText("Subject:");
 			panel1.add(label7, new GridBagConstraints(0, 5, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 			panel1.add(cbxSub, new GridBagConstraints(1, 5, 2, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 5, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 5, 5), 0, 0));
 
-			//---- btnSave ----
+			// ---- btnSave ----
 			btnSave.setText("Save");
 			panel1.add(btnSave, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-				new Insets(0, 0, 0, 5), 0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+					new Insets(0, 0, 0, 5), 0, 0));
 
-			//---- btnCancel ----
+			// ---- btnCancel ----
 			btnCancel.setText("Cancel");
 			panel1.add(btnCancel, new GridBagConstraints(2, 6, 1, 1, 0.0, 0.0,
-				GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-				new Insets(0, 0, 0, 5), 0, 0));
+					GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+					new Insets(0, 0, 0, 5), 0, 0));
 		}
 		contentPane.add(panel1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-			GridBagConstraints.CENTER, GridBagConstraints.NONE,
-			new Insets(0, 0, 0, 0), 0, 0));
+				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
+						0, 0, 0, 0), 0, 0));
 		setSize(535, 305);
 		setLocationRelativeTo(null);
 		// //GEN-END:initComponents
@@ -204,6 +212,7 @@ public class EditBookDialog extends JDialog {
 	private JComboBox cbxSub;
 	private JButton btnSave;
 	private JButton btnCancel;
+
 	// JFormDesigner - End of variables declaration //GEN-END:variables
 	/**
 	 * @return the txtISBN

@@ -229,10 +229,8 @@ public class EmployeeController {
 						Messages.getString("EmployeeController.1"),
 						JOptionPane.INFORMATION_MESSAGE);
 				// Move last page and show newest employee
-				view.getTxtEmpID().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
-				view.getTxtEmpName().setText(
-						Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtEmpID().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
+				view.getTxtEmpName().setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			} else {
 				JOptionPane.showMessageDialog(view,
@@ -244,8 +242,8 @@ public class EmployeeController {
 		}
 		parent.doBlur();
 		// Set selection to new employee
-		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1,
-				0, false, false);
+		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1, 0,
+				false, false);
 	}
 
 	/**
@@ -317,8 +315,8 @@ public class EmployeeController {
 		}
 		parent.doBlur();
 		// Set selection to employee book
-		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1,
-				0, false, false);
+		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1, 0,
+				false, false);
 	}
 
 	/**
@@ -348,10 +346,8 @@ public class EmployeeController {
 							view.getTxtEmpID().getText(),
 							view.getTxtEmpName().getText(), (page - 1));
 					view.getLblPage().setText(
-							Messages.getString("EmployeeController.27")
-									+ page
-									+ Messages
-											.getString("Slash") //$NON-NLS-1$ 
+							Messages.getString("EmployeeController.27") + page
+									+ Messages.getString("Slash") //$NON-NLS-1$ 
 									+ LibUtil.getInstance().getPage(totalRow));
 				}
 			}).start();
