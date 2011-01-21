@@ -54,7 +54,7 @@ public class EditEmployeeController {
 					if (e.getItem().equals(
 							Messages.getString("EditEmployeeController.0"))) { //$NON-NLS-1$
 						view.getTxtPass().setText(
-								Messages.getString("EditEmployeeController.1")); //$NON-NLS-1$
+								Messages.getString("EmptyText")); //$NON-NLS-1$
 						view.getTxtPass().setEditable(false);
 					} else {
 						view.getTxtPass().setEditable(true);
@@ -192,7 +192,7 @@ public class EditEmployeeController {
 		if (!LibValid.getInstance().Name(view.getTxtName().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditEmployeeController.3"),
-					Messages.getString("EditEmployeeController.4"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtName().requestFocus();
 			return false;
@@ -201,7 +201,7 @@ public class EditEmployeeController {
 			JOptionPane.showMessageDialog(
 					view,
 					Messages.getString("EditEmployeeController.5"), //$NON-NLS-1$
-					Messages.getString("EditEmployeeController.6"),
+					Messages.getString("ValidTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtDOB().requestFocus();
 			return false;
@@ -210,7 +210,7 @@ public class EditEmployeeController {
 			JOptionPane.showMessageDialog(
 					view,
 					Messages.getString("EditEmployeeController.7"), //$NON-NLS-1$
-					Messages.getString("EditEmployeeController.8"),
+					Messages.getString("ValidTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtAdd().requestFocus();
 			return false;
@@ -222,7 +222,7 @@ public class EditEmployeeController {
 				JOptionPane.showMessageDialog(
 						view,
 						Messages.getString("EditEmployeeController.10"), //$NON-NLS-1$
-						Messages.getString("EditEmployeeController.11"),
+						Messages.getString("ValidTitle"),
 						JOptionPane.INFORMATION_MESSAGE);
 				view.getTxtPass().requestFocus();
 				return false;
@@ -231,7 +231,7 @@ public class EditEmployeeController {
 		if (!LibValid.getInstance().Email(view.getTxtEmail().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditEmployeeController.12"),
-					Messages.getString("EditEmployeeController.13"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtEmail().requestFocus();
 			return false;
@@ -239,7 +239,7 @@ public class EditEmployeeController {
 		if (!LibValid.getInstance().Phone(view.getTxtPhone().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditEmployeeController.14"),
-					Messages.getString("EditEmployeeController.15"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtPhone().requestFocus();
 			return false;
@@ -248,7 +248,7 @@ public class EditEmployeeController {
 			JOptionPane.showMessageDialog(
 					view,
 					Messages.getString("EditEmployeeController.16"), //$NON-NLS-1$
-					Messages.getString("EditEmployeeController.17"),
+					Messages.getString("ValidTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtDepart().requestFocus();
 			return false;

@@ -196,7 +196,7 @@ public class Employee {
 	public Vector<Object> toVector() {
 		Vector<Object> vt = new Vector<Object>();
 		vt.addElement(EmpID);
-		vt.addElement(Name);
+		vt.addElement(fixName);
 		if (Gender == 1) {
 			vt.addElement(Messages.getString("Employee.0")); //$NON-NLS-1$
 		} else {

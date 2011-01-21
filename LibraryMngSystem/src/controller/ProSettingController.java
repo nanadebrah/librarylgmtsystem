@@ -126,7 +126,7 @@ public class ProSettingController {
 				view.getTxtPort().setText(
 						Messages.getString("ProSettingController.4")); //$NON-NLS-1$
 				view.getTxtPass().setText(
-						Messages.getString("ProSettingController.5")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 			}
 		});
 

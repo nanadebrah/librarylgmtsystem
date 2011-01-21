@@ -195,8 +195,8 @@ public class LoginController {
 					new String(view.getTxtPass().getPassword()));
 		} else {
 			LibConfig.getInstance().saveLoginConfig(
-					Messages.getString("LoginController.0"),
-					Messages.getString("LoginController.1")); //$NON-NLS-1$ 
+					Messages.getString("EmptyText"),
+					Messages.getString("EmptyText")); //$NON-NLS-1$ 
 		}
 	}
 
@@ -237,10 +237,11 @@ public class LoginController {
 								view,
 								Messages.getString("LoginController.2"), //$NON-NLS-1$
 								Messages.getString("LoginController.3"),
-								JOptionPane.WARNING_MESSAGE);
+								JOptionPane.WARNING_MESSAGE);						
 						// Sleep 1 minisecond otherwise can't doBlur again
 						Thread.sleep(1);
 						doBlur();
+						view.getTxtUser().requestFocus();
 					}
 				} catch (Exception ex) {
 					// TODO: handle exception

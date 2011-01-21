@@ -72,7 +72,7 @@ public class AccessBook {
 	}
 
 	/**
-	 * Detele book from database
+	 * Delete book from database
 	 * 
 	 * @param bookID
 	 *            to delete book

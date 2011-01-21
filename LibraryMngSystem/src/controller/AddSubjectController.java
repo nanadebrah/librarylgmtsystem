@@ -66,7 +66,7 @@ public class AddSubjectController {
 				} else {
 					JOptionPane.showMessageDialog(view,
 							Messages.getString("AddSubjectController.0"),
-							Messages.getString("AddSubjectController.1"), //$NON-NLS-1$ 
+							Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 							JOptionPane.INFORMATION_MESSAGE);
 					view.getTxtName().requestFocus();
 				}

@@ -29,7 +29,7 @@ public class SendAlertController {
 	private int borID, empID, bookID;
 	private String[] arr;
 	private String[] arrEmail;
-	private String content = Messages.getString("SendAlertController.0");
+	private String content = Messages.getString("EmptyText");
 	private boolean isSent;
 	private entity.Fee fee;
 

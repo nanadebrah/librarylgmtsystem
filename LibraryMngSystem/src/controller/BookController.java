@@ -10,6 +10,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -89,14 +90,16 @@ public class BookController {
 		view.getTblBook().addMouseListener(new MouseAdapter() {
 
 			@Override
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable action button
-				view.getBtnEdit().setEnabled(true);
-				view.getBtnDelete().setEnabled(true);
-				view.getBtnView().setEnabled(true);
-				// If double click display edit book dialog
-				if (evt.getClickCount() == 2) {
-					viewBook();
+			public void mouseClicked(MouseEvent evt) {
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// Set enable action button
+					view.getBtnEdit().setEnabled(true);
+					view.getBtnDelete().setEnabled(true);
+					view.getBtnView().setEnabled(true);
+					// If double click display edit book dialog
+					if (evt.getClickCount() == 2) {
+						viewBook();
+					}
 				}
 			}
 		});
@@ -247,13 +250,13 @@ public class BookController {
 						JOptionPane.INFORMATION_MESSAGE);
 				// Move to last page, show newest book
 				view.getTxtAuthor().setText(
-						Messages.getString("BookController.2")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getTxtCallNo().setText(
-						Messages.getString("BookController.3")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getTxtISBN().setText(
-						Messages.getString("BookController.4")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getTxtTitle().setText(
-						Messages.getString("BookController.5")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			} else {
 				JOptionPane.showMessageDialog(
@@ -265,6 +268,9 @@ public class BookController {
 			}
 		}
 		parent.doBlur();
+		// Set selection to new book
+		view.getTblBook().changeSelection(view.getTblBook().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**
@@ -286,7 +292,7 @@ public class BookController {
 						parent.getView(),
 						Messages.getString("BookController.11") //$NON-NLS-1$
 								+ Messages.getString("BookController.12"), //$NON-NLS-1$
-						Messages.getString("BookController.13"),
+						Messages.getString("ErrorTitle"),
 						JOptionPane.ERROR_MESSAGE);
 			} else {
 				JOptionPane.showMessageDialog(parent.getView(),
@@ -296,6 +302,7 @@ public class BookController {
 				bookModel.removeRow(view.getTblBook().getSelectedRow());
 			}
 		}
+		tableFocus();
 		parent.doBlur();
 	}
 
@@ -334,8 +341,10 @@ public class BookController {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		tableFocus();
 		parent.doBlur();
+		// Set selection to edited book
+		view.getTblBook().changeSelection(view.getTblBook().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**
@@ -361,7 +370,7 @@ public class BookController {
 						view.getTxtAuthor().getText(), (page - 1));
 				view.getLblPage().setText(
 						Messages.getString("BookController.29") + page
-								+ Messages.getString("BookController.30") //$NON-NLS-1$ 
+								+ Messages.getString("Slash") //$NON-NLS-1$ 
 								+ LibUtil.getInstance().getPage(totalRow));
 			}
 		}).start();

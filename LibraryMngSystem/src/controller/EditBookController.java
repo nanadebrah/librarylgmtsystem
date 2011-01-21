@@ -208,14 +208,14 @@ public class EditBookController {
 		if (view.getCbxSub().getSelectedItem().toString().length() <= 0) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditBookController.1"),
-					Messages.getString("EditBookController.2"), //$NON-NLS-1$ 
+					Messages.getString("ErrorTitle"), //$NON-NLS-1$ 
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 		if (!LibValid.getInstance().ISBN(view.getTxtISBN().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditBookController.3"),
-					Messages.getString("EditBookController.4"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtISBN().requestFocus();
 			return false;
@@ -223,7 +223,7 @@ public class EditBookController {
 		if (!LibValid.getInstance().Title(view.getTxtTitle().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditBookController.5"),
-					Messages.getString("EditBookController.6"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtTitle().requestFocus();
 			return false;
@@ -231,7 +231,7 @@ public class EditBookController {
 		if (!LibValid.getInstance().Auth(view.getTxtAuthor().getText())) {
 			JOptionPane.showMessageDialog(view,
 					Messages.getString("EditBookController.7"),
-					Messages.getString("EditBookController.8"), //$NON-NLS-1$ 
+					Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtAuthor().requestFocus();
 			return false;
@@ -240,7 +240,7 @@ public class EditBookController {
 			JOptionPane.showMessageDialog(
 					view,
 					Messages.getString("EditBookController.9"), //$NON-NLS-1$
-					Messages.getString("EditBookController.10"),
+					Messages.getString("ValidTitle"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtPublisher().requestFocus();
 			return false;

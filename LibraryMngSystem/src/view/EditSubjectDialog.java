@@ -36,7 +36,7 @@ public class EditSubjectDialog extends JDialog {
 	}
 
 	private void initComponents() {
-		// Component initialization - DO NOT MODIFY
+		// JFormDesigner - Component initialization - DO NOT MODIFY
 		// //GEN-BEGIN:initComponents
 		label1 = new JLabel();
 		panel1 = new JPanel();
@@ -130,11 +130,11 @@ public class EditSubjectDialog extends JDialog {
 						0, 0, 0, 0), 0, 0));
 		setSize(525, 275);
 		setLocationRelativeTo(null);
-		// End of component initialization
+		// JFormDesigner - End of component initialization
 		// //GEN-END:initComponents
 	}
 
-	// Variables declaration - DO NOT MODIFY
+	// JFormDesigner - Variables declaration - DO NOT MODIFY
 	// //GEN-BEGIN:variables
 	private JLabel label1;
 	private JPanel panel1;
@@ -146,7 +146,7 @@ public class EditSubjectDialog extends JDialog {
 	private JButton btnSave;
 	private JButton btnCancel;
 
-	// End of variables declaration //GEN-END:variables
+	// JFormDesigner - End of variables declaration //GEN-END:variables
 	/**
 	 * @return the txtName
 	 */

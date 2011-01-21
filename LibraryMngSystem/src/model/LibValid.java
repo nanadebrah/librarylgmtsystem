@@ -22,22 +22,20 @@ public class LibValid {
 		return instance;
 	}
 
-	private String ISBNRegex = Messages.getString("LibValid.0"); //$NON-NLS-1$
-	private String EmpIDRegex = Messages.getString("LibValid.1"); //$NON-NLS-1$
-	private String SubIDRegex = Messages.getString("LibValid.2"); //$NON-NLS-1$
-	private String BorIDRegex = Messages.getString("LibValid.3"); //$NON-NLS-1$
-	private String PasswordRegex = Messages.getString("LibValid.4"); //$NON-NLS-1$
-	private String NameRegex = Messages.getString("LibValid.5"); //$NON-NLS-1$
-	private String AddressRegex = Messages.getString("LibValid.6"); //$NON-NLS-1$
-	private String EmailRegex = Messages.getString("LibValid.7") //$NON-NLS-1$
-			+ Messages.getString("LibValid.8"); //$NON-NLS-1$
-	private String TitleRegex = Messages.getString("LibValid.9"); //$NON-NLS-1$
-	private String AuthRegex = Messages.getString("LibValid.10"); //$NON-NLS-1$
-	private String SubRegex = Messages.getString("LibValid.11"); //$NON-NLS-1$
-	private String DepartRegex = Messages.getString("LibValid.12"); //$NON-NLS-1$
-	private String PublishRegex = Messages.getString("LibValid.13"); //$NON-NLS-1$
-
-	private String PhoneNumberRegex = Messages.getString("LibValid.14"); //$NON-NLS-1$
+	private String ISBNRegex = Messages.getString("ISBN"); //$NON-NLS-1$
+	private String EmpIDRegex = Messages.getString("ID"); //$NON-NLS-1$
+	private String SubIDRegex = Messages.getString("ID"); //$NON-NLS-1$
+	private String BorIDRegex = Messages.getString("ID"); //$NON-NLS-1$
+	private String PasswordRegex = Messages.getString("Password"); //$NON-NLS-1$
+	private String NameRegex = Messages.getString("Name"); //$NON-NLS-1$
+	private String AddressRegex = Messages.getString("Address"); //$NON-NLS-1$
+	private String EmailRegex = Messages.getString("Email"); //$NON-NLS-1$
+	private String TitleRegex = Messages.getString("Title"); //$NON-NLS-1$
+	private String AuthRegex = Messages.getString("Author"); //$NON-NLS-1$
+	private String SubRegex = Messages.getString("Subject"); //$NON-NLS-1$
+	private String DepartRegex = Messages.getString("Depart"); //$NON-NLS-1$
+	private String PublishRegex = Messages.getString("Publisher"); //$NON-NLS-1$
+	private String PhoneNumberRegex = Messages.getString("Phone"); //$NON-NLS-1$
 
 	/**
 	 * Valid Address

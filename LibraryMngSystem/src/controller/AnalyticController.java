@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -113,17 +114,19 @@ public class AnalyticController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				if (isSearch) {
-					// Set enable action button
-					view.getBtnAlert().setEnabled(true);
-				} else {
-					// Set disable action button
-					view.getBtnAlert().setEnabled(false);
-				}
-				// If double click display edit subject dialog
-				if (evt.getClickCount() == 2) {
+				if (evt.getButton() == MouseEvent.BUTTON1) {
 					if (isSearch) {
-						sendEmail();
+						// Set enable action button
+						view.getBtnAlert().setEnabled(true);
+					} else {
+						// Set disable action button
+						view.getBtnAlert().setEnabled(false);
+					}
+					// If double click display edit subject dialog
+					if (evt.getClickCount() == 2) {
+						if (isSearch) {
+							sendEmail();
+						}
 					}
 				}
 			}
@@ -225,7 +228,7 @@ public class AnalyticController {
 				.getTopBook(anaModel, (page - 1));
 		view.getLblPage().setText(
 				Messages.getString("AnalyticController.8") + page
-						+ Messages.getString("AnalyticController.9")
+						+ Messages.getString("Slash")
 						+ LibUtil.getInstance().getPage(totalRow));
 	}
 
@@ -251,7 +254,7 @@ public class AnalyticController {
 				(page - 1));
 		view.getLblPage().setText(
 				Messages.getString("AnalyticController.18") + page
-						+ Messages.getString("AnalyticController.19")
+						+ Messages.getString("Slash")
 						+ LibUtil.getInstance().getPage(totalRow));
 	}
 
@@ -284,7 +287,7 @@ public class AnalyticController {
 				view.getTxtDueDate().getDate(), (page - 1));
 		view.getLblPage().setText(
 				Messages.getString("AnalyticController.28") + page
-						+ Messages.getString("AnalyticController.29")
+						+ Messages.getString("Slash")
 						+ LibUtil.getInstance().getPage(totalRow));
 	}
 

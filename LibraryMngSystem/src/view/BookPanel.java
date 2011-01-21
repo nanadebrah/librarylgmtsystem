@@ -55,207 +55,172 @@ public class BookPanel extends JPanel {
 		label5 = new JLabel();
 		txtAuthor = new JTextField();
 
-		// ======== this ========
+		//======== this ========
 		setLayout(new BorderLayout());
 
-		// ======== panel1 ========
+		//======== panel1 ========
 		{
 			panel1.setLayout(new FlowLayout());
 
-			// ---- btnFirst ----
+			//---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource(
-					"/view/images/taskbarImages/First.png")));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/First.png")));
 			panel1.add(btnFirst);
 
-			// ---- btnBack ----
+			//---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource(
-					"/view/images/taskbarImages/Back.png")));
+			btnBack.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Back.png")));
 			panel1.add(btnBack);
 
-			// ---- lblPage ----
+			//---- lblPage ----
 			lblPage.setText("Page");
 			panel1.add(lblPage);
 
-			// ---- btnNext ----
+			//---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource(
-					"/view/images/taskbarImages/Next.png")));
+			btnNext.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Next.png")));
 			panel1.add(btnNext);
 
-			// ---- btnLast ----
+			//---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource(
-					"/view/images/taskbarImages/Last.png")));
+			btnLast.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Last.png")));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
 
-		// ======== panel2 ========
+		//======== panel2 ========
 		{
 			panel2.setLayout(new BorderLayout());
 
-			// ======== scrollPane1 ========
+			//======== scrollPane1 ========
 			{
 
-				// ---- tblBook ----
+				//---- tblBook ----
 				tblBook.setModel(new DefaultTableModel(2, 0));
 				scrollPane1.setViewportView(tblBook);
 			}
 			panel2.add(scrollPane1, BorderLayout.CENTER);
 
-			// ======== panel3 ========
+			//======== panel3 ========
 			{
 				panel3.setLayout(new GridBagLayout());
-				((GridBagLayout) panel3.getLayout()).columnWidths = new int[] {
-						0, 0, 0 };
-				((GridBagLayout) panel3.getLayout()).rowHeights = new int[] {
-						0, 0 };
-				((GridBagLayout) panel3.getLayout()).columnWeights = new double[] {
-						0.0, 1.0, 1.0E-4 };
-				((GridBagLayout) panel3.getLayout()).rowWeights = new double[] {
-						0.0, 1.0E-4 };
+				((GridBagLayout)panel3.getLayout()).columnWidths = new int[] {0, 0, 0};
+				((GridBagLayout)panel3.getLayout()).rowHeights = new int[] {0, 0};
+				((GridBagLayout)panel3.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
+				((GridBagLayout)panel3.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
 
-				// ======== toolBar1 ========
+				//======== toolBar1 ========
 				{
 					toolBar1.setFloatable(false);
 
-					// ---- btnAdd ----
+					//---- btnAdd ----
 					btnAdd.setText("Add");
-					btnAdd.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Add.png")));
+					btnAdd.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Add.png")));
 					btnAdd.setBorderPainted(false);
 					btnAdd.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnAdd.setVerticalTextPosition(SwingConstants.BOTTOM);
+					btnAdd.setMnemonic('D');
 					toolBar1.add(btnAdd);
 					toolBar1.addSeparator();
 
-					// ---- btnEdit ----
+					//---- btnEdit ----
 					btnEdit.setText("Edit");
 					btnEdit.setBorderPainted(false);
-					btnEdit.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Edit.png")));
+					btnEdit.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Edit.png")));
 					btnEdit.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnEdit.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnEdit.setEnabled(false);
 					btnEdit.setRequestFocusEnabled(false);
+					btnEdit.setMnemonic('I');
 					toolBar1.add(btnEdit);
 
-					// ---- btnView ----
+					//---- btnView ----
 					btnView.setText("View");
 					btnView.setBorderPainted(false);
-					btnView.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/View.png")));
+					btnView.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/View.png")));
 					btnView.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnView.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnView.setEnabled(false);
 					btnView.setRequestFocusEnabled(false);
+					btnView.setMnemonic('V');
 					toolBar1.add(btnView);
 
-					// ---- btnDelete ----
+					//---- btnDelete ----
 					btnDelete.setText("Delete");
 					btnDelete.setBorderPainted(false);
-					btnDelete.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Delete.png")));
+					btnDelete.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Delete.png")));
 					btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnDelete.setEnabled(false);
 					btnDelete.setRequestFocusEnabled(false);
+					btnDelete.setMnemonic('T');
 					toolBar1.add(btnDelete);
 					toolBar1.addSeparator();
 
-					// ---- btnSearch ----
+					//---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource(
-							"/view/images/taskbarImages/Search.png")));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
+					btnSearch.setMnemonic('R');
 					toolBar1.add(btnSearch);
 				}
-				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0,
-						0.0, GridBagConstraints.CENTER,
-						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5),
-						0, 0));
+				panel3.add(toolBar1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(0, 0, 0, 5), 0, 0));
 
-				// ======== panel4 ========
+				//======== panel4 ========
 				{
 					panel4.setLayout(new GridBagLayout());
-					((GridBagLayout) panel4.getLayout()).columnWidths = new int[] {
-							0, 0, 0, 0, 0 };
-					((GridBagLayout) panel4.getLayout()).rowHeights = new int[] {
-							0, 0, 0 };
-					((GridBagLayout) panel4.getLayout()).columnWeights = new double[] {
-							0.0, 1.0, 0.0, 1.0, 1.0E-4 };
-					((GridBagLayout) panel4.getLayout()).rowWeights = new double[] {
-							0.0, 0.0, 1.0E-4 };
+					((GridBagLayout)panel4.getLayout()).columnWidths = new int[] {0, 0, 0, 0, 0};
+					((GridBagLayout)panel4.getLayout()).rowHeights = new int[] {0, 0, 0};
+					((GridBagLayout)panel4.getLayout()).columnWeights = new double[] {0.0, 1.0, 0.0, 1.0, 1.0E-4};
+					((GridBagLayout)panel4.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
-					// ---- label2 ----
+					//---- label2 ----
 					label2.setText("Call No:");
-					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0,
-							0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
-									5), 0, 0));
+					panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 5, 5), 0, 0));
+					panel4.add(txtCallNo, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 5, 5), 0, 0));
 
-					// ---- txtCallNo ----
-					txtCallNo.setToolTipText("Search book by call number");
-					panel4.add(txtCallNo, new GridBagConstraints(1, 0, 1, 1,
-							0.0, 0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
-									5), 0, 0));
-
-					// ---- label4 ----
+					//---- label4 ----
 					label4.setText("Title:");
-					panel4.add(label4, new GridBagConstraints(2, 0, 1, 1, 0.0,
-							0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
-									5), 0, 0));
+					panel4.add(label4, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 5, 5), 0, 0));
+					panel4.add(txtTitle, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 5, 0), 0, 0));
 
-					// ---- txtTitle ----
-					txtTitle.setToolTipText("Search book by title");
-					panel4.add(txtTitle, new GridBagConstraints(3, 0, 1, 1,
-							0.0, 0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 5,
-									0), 0, 0));
-
-					// ---- label3 ----
+					//---- label3 ----
 					label3.setText("ISBN:");
-					panel4.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0,
-							0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
-									5), 0, 0));
+					panel4.add(label3, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 0, 5), 0, 0));
+					panel4.add(txtISBN, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 0, 5), 0, 0));
 
-					// ---- txtISBN ----
-					txtISBN.setToolTipText("Search book by ISBN");
-					panel4.add(txtISBN, new GridBagConstraints(1, 1, 1, 1, 0.0,
-							0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
-									5), 0, 0));
-
-					// ---- label5 ----
+					//---- label5 ----
 					label5.setText("Author:");
-					panel4.add(label5, new GridBagConstraints(2, 1, 1, 1, 0.0,
-							0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
-									5), 0, 0));
-
-					// ---- txtAuthor ----
-					txtAuthor.setToolTipText("Search book by author name");
-					panel4.add(txtAuthor, new GridBagConstraints(3, 1, 1, 1,
-							0.0, 0.0, GridBagConstraints.CENTER,
-							GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0,
-									0), 0, 0));
+					panel4.add(label5, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 0, 5), 0, 0));
+					panel4.add(txtAuthor, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0,
+						GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+						new Insets(0, 0, 0, 0), 0, 0));
 				}
 				panel3.add(panel4, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-						GridBagConstraints.CENTER,
-						GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0),
-						0, 0));
+					GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+					new Insets(0, 0, 0, 0), 0, 0));
 			}
 			panel2.add(panel3, BorderLayout.NORTH);
 		}
 		add(panel2, BorderLayout.CENTER);
-		// End of component initialization
 		// //GEN-END:initComponents
 	}
 
@@ -286,7 +251,6 @@ public class BookPanel extends JPanel {
 	private JTextField txtISBN;
 	private JLabel label5;
 	private JTextField txtAuthor;
-
 	// End of variables declaration //GEN-END:variables
 	/**
 	 * @return the btnFirst
