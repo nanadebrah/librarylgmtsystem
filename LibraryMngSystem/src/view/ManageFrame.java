@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.InputEvent;
@@ -70,7 +71,10 @@ public class ManageFrame extends JFrame {
 		setTitle("Library Management System");
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LibImages.ICON));
+		java.net.URL url = getClass().getResource(LibImages.ICON);
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Image img = kit.createImage(url);
+		setIconImage(img);
 
 		// ======== menuBar1 ========
 		{
