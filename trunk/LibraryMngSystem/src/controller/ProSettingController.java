@@ -57,7 +57,7 @@ public class ProSettingController {
 		// Add event open window
 		view.addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowOpened(WindowEvent e) {
+			public void windowActivated(WindowEvent e) {
 				// TODO Auto-generated method stub
 				// Load config
 				LibConfig.getInstance().loadProConfig(view);
