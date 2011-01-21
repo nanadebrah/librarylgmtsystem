@@ -23,6 +23,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.BorderUIResource;
 
+import model.LibImages;
+
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -83,7 +85,7 @@ public class EditEmployeeDialog extends JDialog {
 
 		// ---- label1 ----
 		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/EditEmp.png")));
+				LibImages.LABEL_EDITEMP)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
 						0, 0, 0, 5), 0, 0));

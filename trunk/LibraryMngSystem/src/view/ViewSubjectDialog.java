@@ -18,6 +18,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -63,7 +65,7 @@ public class ViewSubjectDialog extends JDialog {
 
 		// ---- label1 ----
 		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/InfoSub.png")));
+				LibImages.LABEL_INFOSUB)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
 						0, 0, 5, 5), 0, 0));

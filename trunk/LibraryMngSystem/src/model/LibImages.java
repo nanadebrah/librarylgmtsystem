@@ -57,15 +57,12 @@ public class LibImages {
 	/**
 	 * Menu image
 	 */
-	public static final String MENU_ADD = Messages.getString("LibImages.18"); //$NON-NLS-1$
-
-	public static final String MENU_DELETE = Messages.getString("LibImages.19"); //$NON-NLS-1$
-	public static final String MENU_EDIT = Messages.getString("LibImages.20"); //$NON-NLS-1$
 	public static final String MENU_LOGOUT = Messages.getString("LibImages.21"); //$NON-NLS-1$
 	public static final String MENU_QUIT = Messages.getString("LibImages.22"); //$NON-NLS-1$
 	public static final String MENU_SETTING = Messages
 			.getString("LibImages.23"); //$NON-NLS-1$
-	public static final String MENU_VIEW = Messages.getString("LibImages.24"); //$NON-NLS-1$
+	public static final String MENU_PRO_SETTING = Messages
+			.getString("LibImages.48"); //$NON-NLS-1$
 	public static final String MENU_ABOUT = Messages.getString("LibImages.25"); //$NON-NLS-1$
 	public static final String MENU_HELP = Messages.getString("LibImages.26"); //$NON-NLS-1$
 	/**
@@ -94,7 +91,7 @@ public class LibImages {
 			.getString("LibImages.35"); //$NON-NLS-1$
 	public static final String TASKBAR_CHECKOUT = Messages
 			.getString("LibImages.36"); //$NON-NLS-1$
-	public static final String TASKBAR_DETELE = Messages
+	public static final String TASKBAR_DELETE = Messages
 			.getString("LibImages.37"); //$NON-NLS-1$
 	public static final String TASKBAR_EDIT = Messages
 			.getString("LibImages.38"); //$NON-NLS-1$

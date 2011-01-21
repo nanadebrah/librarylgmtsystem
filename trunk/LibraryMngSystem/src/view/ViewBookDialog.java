@@ -20,6 +20,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -178,7 +180,7 @@ public class ViewBookDialog extends JDialog {
 
 		// ---- label1 ----
 		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/InfoBook.png")));
+				LibImages.LABEL_INFOBOOK)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
 						0, 0, 5, 5), 0, 0));

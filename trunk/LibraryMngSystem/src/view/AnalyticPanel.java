@@ -16,6 +16,8 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import model.LibImages;
+
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -58,12 +60,12 @@ public class AnalyticPanel extends JPanel {
 
 			//---- btnFirst ----
 			btnFirst.setBorderPainted(false);
-			btnFirst.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/First.png")));
+			btnFirst.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_FIRST)));
 			panel1.add(btnFirst);
 
 			//---- btnBack ----
 			btnBack.setBorderPainted(false);
-			btnBack.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Back.png")));
+			btnBack.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_BACK)));
 			panel1.add(btnBack);
 
 			//---- lblPage ----
@@ -72,12 +74,12 @@ public class AnalyticPanel extends JPanel {
 
 			//---- btnNext ----
 			btnNext.setBorderPainted(false);
-			btnNext.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Next.png")));
+			btnNext.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_NEXT)));
 			panel1.add(btnNext);
 
 			//---- btnLast ----
 			btnLast.setBorderPainted(false);
-			btnLast.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Last.png")));
+			btnLast.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_LAST)));
 			panel1.add(btnLast);
 		}
 		add(panel1, BorderLayout.SOUTH);
@@ -109,7 +111,7 @@ public class AnalyticPanel extends JPanel {
 
 					//---- btnTopBook ----
 					btnTopBook.setText("Top Book");
-					btnTopBook.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/TopBook.png")));
+					btnTopBook.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBOOK)));
 					btnTopBook.setBorderPainted(false);
 					btnTopBook.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnTopBook.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -119,7 +121,7 @@ public class AnalyticPanel extends JPanel {
 					//---- btnTopBorrow ----
 					btnTopBorrow.setText("Top Borrower");
 					btnTopBorrow.setBorderPainted(false);
-					btnTopBorrow.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/TopBorrower.png")));
+					btnTopBorrow.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_TOPBORROWER)));
 					btnTopBorrow.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnTopBorrow.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnTopBorrow.setMnemonic('P');
@@ -128,7 +130,7 @@ public class AnalyticPanel extends JPanel {
 					//---- btnAlert ----
 					btnAlert.setText("Overdue Alert");
 					btnAlert.setBorderPainted(false);
-					btnAlert.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/SendAlert.png")));
+					btnAlert.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SENDALERT)));
 					btnAlert.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnAlert.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnAlert.setEnabled(false);
@@ -138,7 +140,7 @@ public class AnalyticPanel extends JPanel {
 					//---- btnSearch ----
 					btnSearch.setText("Search");
 					btnSearch.setBorderPainted(false);
-					btnSearch.setIcon(new ImageIcon(getClass().getResource("/view/images/taskbarImages/Search.png")));
+					btnSearch.setIcon(new ImageIcon(getClass().getResource(LibImages.TASKBAR_SEARCH)));
 					btnSearch.setVerticalTextPosition(SwingConstants.BOTTOM);
 					btnSearch.setHorizontalTextPosition(SwingConstants.CENTER);
 					btnSearch.setMnemonic('C');

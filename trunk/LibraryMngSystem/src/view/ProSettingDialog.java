@@ -24,6 +24,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import model.LibImages;
+
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.SkinInfo;
 
@@ -78,7 +80,7 @@ public class ProSettingDialog extends JDialog {
 		((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
 		//---- label1 ----
-		label1.setIcon(new ImageIcon(getClass().getResource("/view/images/labelImages/Setting.png")));
+		label1.setIcon(new ImageIcon(getClass().getResource(LibImages.LABEL_SETTING)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 			GridBagConstraints.CENTER, GridBagConstraints.NONE,
 			new Insets(0, 0, 5, 5), 0, 0));

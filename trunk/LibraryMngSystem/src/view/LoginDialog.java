@@ -25,6 +25,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.plaf.BorderUIResource;
 
+import model.LibImages;
+
 /**
  * @author CuongNQ
  */
@@ -85,14 +87,14 @@ public class LoginDialog extends JDialog {
 				// ---- mnConnection ----
 				mnConnection.setText("Connection");
 				mnConnection.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Setting.png")));
+						LibImages.MENU_SETTING)));
 				menu1.add(mnConnection);
 				menu1.addSeparator();
 
 				// ---- mnQuit ----
 				mnQuit.setText("Quit");
 				mnQuit.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Quit.png")));
+						LibImages.MENU_QUIT)));
 				menu1.add(mnQuit);
 			}
 			menuBar1.add(menu1);
@@ -104,13 +106,13 @@ public class LoginDialog extends JDialog {
 				// ---- mnHelp ----
 				mnHelp.setText("Help");
 				mnHelp.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/Help.png")));
+						LibImages.MENU_HELP)));
 				menu2.add(mnHelp);
 
 				// ---- mnAbout ----
 				mnAbout.setText("About us");
 				mnAbout.setIcon(new ImageIcon(getClass().getResource(
-						"/view/images/menuImages/About.png")));
+						LibImages.MENU_ABOUT)));
 				menu2.add(mnAbout);
 			}
 			menuBar1.add(menu2);
@@ -119,7 +121,7 @@ public class LoginDialog extends JDialog {
 
 		// ---- label1 ----
 		label1.setIcon(new ImageIcon(getClass().getResource(
-				"/view/images/labelImages/Login.png")));
+				LibImages.LABEL_LOGIN)));
 		contentPane.add(label1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(
 						0, 0, 5, 5), 0, 0));
