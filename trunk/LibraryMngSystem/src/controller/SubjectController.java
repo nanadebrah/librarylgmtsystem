@@ -10,6 +10,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -133,13 +134,15 @@ public class SubjectController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable action button
-				view.getBtnDelete().setEnabled(true);
-				view.getBtnEdit().setEnabled(true);
-				view.getBtnView().setEnabled(true);
-				// If double click display edit subject dialog
-				if (evt.getClickCount() == 2) {
-					viewSubject();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// Set enable action button
+					view.getBtnDelete().setEnabled(true);
+					view.getBtnEdit().setEnabled(true);
+					view.getBtnView().setEnabled(true);
+					// If double click display edit subject dialog
+					if (evt.getClickCount() == 2) {
+						viewSubject();
+					}
 				}
 			}
 		});
@@ -223,14 +226,15 @@ public class SubjectController {
 						Messages.getString("SubjectController.1"), //$NON-NLS-1$ 
 						JOptionPane.INFORMATION_MESSAGE);
 				view.getTxtSubID().setText(
-						Messages.getString("SubjectController.2")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getTxtSubName().setText(
-						Messages.getString("SubjectController.3")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			}
 		}
-		tableFocus();
 		parent.doBlur();
+		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**
@@ -294,8 +298,10 @@ public class SubjectController {
 				subModel.addRow(sub.toVector());
 			}
 		}
-		tableFocus();
 		parent.doBlur();
+		// Set selection to edited subject
+		view.getTblSub().changeSelection(view.getTblSub().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**

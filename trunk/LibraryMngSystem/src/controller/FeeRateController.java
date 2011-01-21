@@ -82,7 +82,7 @@ public class FeeRateController {
 							view,
 							Messages.getString("FeeRateController.3")
 									+ Messages.getString("FeeRateController.4"), //$NON-NLS-1$ 
-							Messages.getString("FeeRateController.5"),
+							Messages.getString("ValidTitle"),
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}

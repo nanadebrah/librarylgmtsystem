@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
@@ -174,12 +175,14 @@ public class CheckOutController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					if (!isSearchEmp) {
-						selectBook();
-					} else {
-						selectEmployee();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						if (!isSearchEmp) {
+							selectBook();
+						} else {
+							selectEmployee();
+						}
 					}
 				}
 			}
@@ -190,9 +193,11 @@ public class CheckOutController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					deselectBook();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						deselectBook();
+					}
 				}
 			}
 		});
@@ -385,7 +390,7 @@ public class CheckOutController {
 						view.getTxtAuth().getText(), (page - 1));
 				view.getLblPage().setText(
 						Messages.getString("CheckOutController.16") + page
-								+ Messages.getString("CheckOutController.17") //$NON-NLS-1$ 
+								+ Messages.getString("Slash") //$NON-NLS-1$ 
 								+ LibUtil.getInstance().getPage(totalRow));
 			}
 		}).start();
@@ -432,7 +437,7 @@ public class CheckOutController {
 							Messages.getString("CheckOutController.27")
 									+ page
 									+ Messages
-											.getString("CheckOutController.28") //$NON-NLS-1$ 
+											.getString("Slash") //$NON-NLS-1$ 
 									+ LibUtil.getInstance().getPage(totalRow));
 				}
 			}).start();
@@ -454,7 +459,7 @@ public class CheckOutController {
 			// if it field is no in copy, get it
 			if (i == 7) {
 				String[] temp = field.split(Messages
-						.getString("CheckOutController.29")); //$NON-NLS-1$
+						.getString("Slash")); //$NON-NLS-1$
 				noInLib = Integer.parseInt(temp[1]);
 				// If of store book
 				if (noInLib == 0) {

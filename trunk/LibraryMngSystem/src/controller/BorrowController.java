@@ -10,6 +10,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -222,12 +223,14 @@ public class BorrowController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable action button
-				view.getBtnView().setEnabled(true);
-				view.getBtnDelete().setEnabled(true);
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					viewBorrowInfo();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// Set enable action button
+					view.getBtnView().setEnabled(true);
+					view.getBtnDelete().setEnabled(true);
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						viewBorrowInfo();
+					}
 				}
 			}
 		});
@@ -309,9 +312,9 @@ public class BorrowController {
 					Messages.getString("BorrowController.1"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtCallNo().setText(
-					Messages.getString("BorrowController.2")); //$NON-NLS-1$
+					Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getTxtEmpID()
-					.setText(Messages.getString("BorrowController.3")); //$NON-NLS-1$
+					.setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getBtnLast().doClick();
 		}
 		parent.doBlur();
@@ -333,9 +336,9 @@ public class BorrowController {
 					Messages.getString("BorrowController.5"),
 					JOptionPane.INFORMATION_MESSAGE);
 			view.getTxtCallNo().setText(
-					Messages.getString("BorrowController.6")); //$NON-NLS-1$
+					Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getTxtEmpID()
-					.setText(Messages.getString("BorrowController.7")); //$NON-NLS-1$
+					.setText(Messages.getString("EmptyText")); //$NON-NLS-1$
 			view.getBtnLast().doClick();
 		}
 		parent.doBlur();
@@ -419,7 +422,7 @@ public class BorrowController {
 					view.getTxtCallNo().getText(), (page - 1));
 			view.getLblPage().setText(
 					Messages.getString("BorrowController.51") + page
-							+ Messages.getString("BorrowController.52") //$NON-NLS-1$ 
+							+ Messages.getString("Slash") //$NON-NLS-1$ 
 							+ LibUtil.getInstance().getPage(totalRow));
 		}
 	}

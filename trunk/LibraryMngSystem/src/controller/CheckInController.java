@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
@@ -151,10 +152,12 @@ public class CheckInController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				getInfoSelected();
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					selectBook();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					getInfoSelected();
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						selectBook();
+					}
 				}
 			}
 		});
@@ -164,9 +167,11 @@ public class CheckInController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					deselectBook();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						deselectBook();
+					}
 				}
 			}
 		});
@@ -484,7 +489,7 @@ public class CheckInController {
 				(page - 1));
 		view.getLblPage().setText(
 				Messages.getString("CheckInController.15") + page
-						+ Messages.getString("CheckInController.16")
+						+ Messages.getString("Slash")
 						+ LibUtil.getInstance().getPage(totalRow));
 		getBorrow();
 	}
@@ -508,7 +513,7 @@ public class CheckInController {
 					view.getTxtEmpName().getText(), (page - 1));
 			view.getLblPage().setText(
 					Messages.getString("CheckInController.19") + page
-							+ Messages.getString("CheckInController.20") //$NON-NLS-1$ 
+							+ Messages.getString("Slash") //$NON-NLS-1$ 
 							+ LibUtil.getInstance().getPage(totalRow));
 			getBorrow();
 		}
@@ -551,13 +556,13 @@ public class CheckInController {
 			float BorrowFee = DayBor * borFee;
 			float Fine = 0;
 			vt.add(DayBor
-					+ Messages.getString("CheckInController.23") + BorrowFee); //$NON-NLS-1$
+					+ Messages.getString("Slash") + BorrowFee); //$NON-NLS-1$
 			if (DayLate > 0) {
 				Fine = DayLate * lateFee;
 				vt.add(DayLate
-						+ Messages.getString("CheckInController.24") + Fine); //$NON-NLS-1$
+						+ Messages.getString("Slash") + Fine); //$NON-NLS-1$
 			} else {
-				vt.add(0 + Messages.getString("CheckInController.25") + 0); //$NON-NLS-1$
+				vt.add(0 + Messages.getString("Slash") + 0); //$NON-NLS-1$
 			}
 			vt.add(BorrowFee + Fine);
 			inModel.addRow(vt);

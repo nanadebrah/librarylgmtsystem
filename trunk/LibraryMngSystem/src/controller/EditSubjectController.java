@@ -76,7 +76,7 @@ public class EditSubjectController {
 				} else {
 					JOptionPane.showMessageDialog(view,
 							Messages.getString("EditSubjectController.0"),
-							Messages.getString("EditSubjectController.1"), //$NON-NLS-1$ 
+							Messages.getString("ValidTitle"), //$NON-NLS-1$ 
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}

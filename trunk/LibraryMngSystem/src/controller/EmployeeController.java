@@ -10,6 +10,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -86,13 +87,15 @@ public class EmployeeController {
 
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				// Set enable action button
-				view.getBtnEdit().setEnabled(true);
-				view.getBtnView().setEnabled(true);
-				view.getBtnDelete().setEnabled(true);
-				// If double click display edit employee dialog
-				if (evt.getClickCount() == 2) {
-					viewEmp();
+				if (evt.getButton() == MouseEvent.BUTTON1) {
+					// Set enable action button
+					view.getBtnEdit().setEnabled(true);
+					view.getBtnView().setEnabled(true);
+					view.getBtnDelete().setEnabled(true);
+					// If double click display edit employee dialog
+					if (evt.getClickCount() == 2) {
+						viewEmp();
+					}
 				}
 			}
 		});
@@ -227,9 +230,9 @@ public class EmployeeController {
 						JOptionPane.INFORMATION_MESSAGE);
 				// Move last page and show newest employee
 				view.getTxtEmpID().setText(
-						Messages.getString("EmployeeController.2")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getTxtEmpName().setText(
-						Messages.getString("EmployeeController.3")); //$NON-NLS-1$
+						Messages.getString("EmptyText")); //$NON-NLS-1$
 				view.getBtnLast().doClick();
 			} else {
 				JOptionPane.showMessageDialog(view,
@@ -240,6 +243,9 @@ public class EmployeeController {
 			}
 		}
 		parent.doBlur();
+		// Set selection to new employee
+		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**
@@ -309,9 +315,10 @@ public class EmployeeController {
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		tableFocus();
-		view.getTblEmp().clearSelection();
 		parent.doBlur();
+		// Set selection to employee book
+		view.getTblEmp().changeSelection(view.getTblEmp().getRowCount() - 1,
+				0, false, false);
 	}
 
 	/**
@@ -344,7 +351,7 @@ public class EmployeeController {
 							Messages.getString("EmployeeController.27")
 									+ page
 									+ Messages
-											.getString("EmployeeController.28") //$NON-NLS-1$ 
+											.getString("Slash") //$NON-NLS-1$ 
 									+ LibUtil.getInstance().getPage(totalRow));
 				}
 			}).start();
